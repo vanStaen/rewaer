@@ -1,0 +1,33 @@
+{
+  "name": "rewaer_backend",
+  "version": "1.0.0",
+  "description": "Rewaer App, BackEnd",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write '**/*.{html,js,jsx,ts,tsx,css,json,graphql,graphqls}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanStaen/rewaer_backend.git"
+  },
+  "keywords": [
+    "rewear",
+    "app",
+    "node.js",
+    "server_side"
+  ],
+  "author": "Clément van Staen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanStaen/rewaer/issues"
+  },
+  "homepage": "https://github.com/vanStaen/rewaer#readme",
+  "dependencies": {
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "lint": "^0.7.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1"
+  }
+}
