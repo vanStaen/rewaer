@@ -4,7 +4,9 @@
   "description": "Rewaer App, BackEnd",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --write '**/*.{html,js,jsx,ts,tsx,css,json,graphql,graphqls}'"
+    "prettier": "prettier --write '**/*.{html,js,jsx,ts,tsx,css,json,graphql,graphqls}'",
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
