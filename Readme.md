@@ -22,7 +22,8 @@ https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 https://www.youtube.com/watch?v=SBvmnHTQIPY </br>
 https://www.youtube.com/watch?v=vjf774RKrLc </br>
 https://www.youtube.com/watch?v=vn3tm0quoqE </br>
-https://www.youtube.com/watch?v=hdI2bqOjy3c (javascript)</br>
+https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
+https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
 
 (less relevant): </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
