@@ -6,7 +6,9 @@
   "scripts": {
     "prettier": "prettier --write '**/*.{html,js,jsx,ts,tsx,css,json,graphql,graphqls}'",
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "version": "heroku --version; git --version",
+    "deploy": "heroku login; heroku create; git push heroku master; heroku open"
   },
   "repository": {
     "type": "git",
