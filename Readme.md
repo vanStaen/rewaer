@@ -17,20 +17,23 @@ See the last seconds of thios video (https://www.youtube.com/watch?v=ENrzD9HAZK4
 
 ## HOW TO KEEP LEARNING: 
 
-### Tutorial I followed: 
+### Tutorial I followed:
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 
 ### Tutorial to watch: 
 https://www.youtube.com/watch?v=L72fhGm1tfE (JS Express) </br>
 https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch)</br>
-https://www.youtube.com/watch?v=vjf774RKrLc </br>
-https://www.youtube.com/watch?v=vn3tm0quoqE </br>
+https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
+https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
+https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
 https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
 
 
 (less relevant): </br>
+https://www.youtube.com/watch?v=RF5_MPSNAtU (twitter tabs) </br>
+https://www.youtube.com/watch?v=u21W_tfPVrY (vs Code - ten tips) </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
 https://www.youtube.com/watch?v=ahCwqrYpIuM </br>
 https://www.youtube.com/watch?v=iiADhChRriM </br>
