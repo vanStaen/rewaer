@@ -20,6 +20,7 @@ See the last seconds of thios video (https://www.youtube.com/watch?v=ENrzD9HAZK4
 ### Tutorial I followed:
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
+Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br>  
 
 ### Tutorial to watch: 
 https://www.youtube.com/watch?v=L72fhGm1tfE (JS Express) </br>
@@ -29,15 +30,18 @@ https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & 
 https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
 https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
+https://www.youtube.com/watch?v=R8rmfD9Y5-c (Javascript Array Methods) </br>
 
 
 (less relevant): </br>
-https://www.youtube.com/watch?v=RF5_MPSNAtU (twitter tabs) </br>
-https://www.youtube.com/watch?v=u21W_tfPVrY (vs Code - ten tips) </br>
+https://www.youtube.com/watch?v=RF5_MPSNAtU (Twitter Bot) </br>
+https://www.youtube.com/watch?v=u21W_tfPVrY (VS Code - ten tips) </br>
+https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
+https://www.youtube.com/watch?v=6YhqQ2ZW1sc (Gatsby Crash Course) </br>
+https://www.youtube.com/watch?v=hQWRp-FdTpc (SSH Crash Course) </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
 https://www.youtube.com/watch?v=ahCwqrYpIuM </br>
 https://www.youtube.com/watch?v=iiADhChRriM </br>
 https://www.youtube.com/watch?v=byW6l5T4mxs </br>
 https://www.youtube.com/watch?v=vDXkpJw16os </br>
 https://reactjs.org/docs/create-a-new-react-app.html </br>
-https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
