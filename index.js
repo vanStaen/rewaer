@@ -1,4 +1,7 @@
-// NODE ONLY
+// JS Express exemple
+
+
+// NODE exemple
 /*
 const http = require('http');
 const path = require('path');
