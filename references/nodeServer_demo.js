@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
     // Inital Cintent type
     let contentType = 'text/html'
 
-    // Chec(k ext and set content type
+    // Check ext and set content type
     switch (extName) {
         case '.js':
             contentType = 'text/javascript';
@@ -73,7 +73,6 @@ const server = http.createServer((req, res) => {
         }
     })
 
-
     // Rest Api
     if (req.url === '/api/pics') {
         const usersJson = [
@@ -81,7 +80,6 @@ const server = http.createServer((req, res) => {
             { id: 1, pic: 'theresa2.jpg' },
             { id: 2, pic: 'theresa3.jpg' }
         ];
-
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(usersJson));
     }
