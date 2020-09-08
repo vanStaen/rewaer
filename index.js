@@ -26,11 +26,16 @@ app.get('/api/pics', (req, res) => {
 
 // Endpoint handlers: Get single picture (based on id)
 app.get('/api/pics/:id', (req, res) => {
-    res.json(pics.filter(pic => pic.id === parseInt(req.params.id)));
+    const found = pics.some(pic => pic.id === parseInt(req.params.id));
+    if (found) {
+        res.json(pics.filter(pic => pic.id === parseInt(req.params.id)));
+    } else {
+        res.status(400).json({ error: `No picture found with id ${req.params.id}` })
+    }
 });
 
 // Listen on a port
-app.listen(PORT, () => console.log(`Server started on port ${PORT} `));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 
 
