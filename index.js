@@ -4,6 +4,11 @@ const test = require('./test');
 const logger = require('./helpers/logger')
 const PORT = process.env.PORT || 5000;
 
+const pics = [
+    { id: 0, pic: 'pic1.jpg' },
+    { id: 1, pic: 'pic2.jpg' },
+    { id: 2, pic: 'pic3.jpg' }
+];
 
 // Init Express
 const app = express();
@@ -14,14 +19,14 @@ app.use(logger);
 // Set Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Endpoint handlers : /api/pics
+// Endpoint handlers: Get ALL pictures
 app.get('/api/pics', (req, res) => {
-    const picJson = [
-        { id: 0, pic: 'pic1.jpg' },
-        { id: 1, pic: 'pic2.jpg' },
-        { id: 2, pic: 'poic3.jpg' }
-    ];
-    res.json(picJson);
+    res.json(pics);
+});
+
+// Endpoint handlers: Get single picture (based on id)
+app.get('/api/pics/:id', (req, res) => {
+    res.json(pics.filter(pic => pic.id === parseInt(req.params.id)));
 });
 
 // Listen on a port
