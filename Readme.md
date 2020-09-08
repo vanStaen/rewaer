@@ -2,11 +2,11 @@
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. 
 
 
-## HOW TO RUN SCRIPTS
+## HOW TOs
+### HOW TO RUN SCRIPTS
 To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed in the package.json file. 
 
-
-## HOW TO DEPLOY
+### HOW TO DEPLOY
 The server is at the moment (05.09.2020) hosted on heroku.com. Usual Login, usual pwd!</br>
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 Use `heroku login`to log to your account. Then with `heroku create` then `git push heroku master`, you can deploy the app. `heroku open`to get the app opened in your browser. 
@@ -14,8 +14,14 @@ Use `heroku login`to log to your account. Then with `heroku create` then `git pu
 ### Alternative host for an older me
 See the last seconds of thios video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine. 
 
+## LEARNING:
 
-## HOW TO KEEP LEARNING: 
+### MIDDLEWARE
+Middleware in JS Express are function that are placed between `REQ` (request) and `RES` (result), and are use to manipulate the data between the two. One exemple of those, in our code, would be the logger function. 
+
+In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file. 
+
+## RESSOURCES: 
 
 ### Tutorial I followed:
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
