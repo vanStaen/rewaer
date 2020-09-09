@@ -46,16 +46,17 @@ Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx
 Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
 
 ### Tutorial to watch: 
-https://www.youtube.com/watch?v=L72fhGm1tfE (JS Express) </br>
-https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch)</br>
 https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
+https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
+https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
+
+### other and less relevant: </br>
+https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch)</br>
 https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
 https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
 https://www.youtube.com/watch?v=R8rmfD9Y5-c (Javascript Array Methods) </br>
-
-### other and less relevant: </br>
 https://www.youtube.com/watch?v=RF5_MPSNAtU (Twitter Bot) </br>
 https://www.youtube.com/watch?v=u21W_tfPVrY (VS Code - ten tips) </br>
 https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
