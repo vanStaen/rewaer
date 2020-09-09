@@ -14,11 +14,11 @@ To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew &&
 Use `heroku login`to log to your account. Then with `heroku create` then `git push heroku master`, you can deploy the app. `heroku open`to get the app opened in your browser. 
 
 #### Alternative host for an older me
-See the last seconds of thios video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine. 
+See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine. 
 
 ## LEARNING:
 
-#### MIDDLEWARE
+#### EXPRESS MIDDLEWARE
 Middleware in JS Express are function that are placed between `REQ` (request) and `RES` (result), and are use to manipulate the data between the two. One exemple of those, in our code, would be the logger function. 
 
 In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file. 
@@ -26,9 +26,10 @@ In order to have in run, it has top be initialised in the main script with `app.
 ## RESSOURCES: 
 
 ### Tutorial I followed:
+Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br> 
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
-Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br>  
+Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
 
 ### Tutorial to watch: 
 https://www.youtube.com/watch?v=L72fhGm1tfE (JS Express) </br>
