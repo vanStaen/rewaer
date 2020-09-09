@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-const pics = [
-    { id: 0, pic: 'pic1.jpg' },
-    { id: 1, pic: 'pic2.jpg' },
-    { id: 2, pic: 'pic3.jpg' }
-];
+const pics = require('../helpers/mockData');
 
 // GET all pictures
 router.get('/', (req, res) => {

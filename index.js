@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const test = require('./test');
 const logger = require('./helpers/logger')
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +17,3 @@ app.use('/api/pictures', require('./api/pictures'));
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-
-console.log(test);
