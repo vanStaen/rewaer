@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Endpoint handlers: /api/pictures
 app.use('/api/pictures', require('./api/pictures'));
+app.use('/api/users', require('./api/users'));
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
