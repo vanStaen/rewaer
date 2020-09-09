@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pics = require('../helpers/mockData');
+const pics = require('../helpers/mockData/mockDataPics');
 
 // GET all pictures
 router.get('/', (req, res) => {
@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
     if (found) {
         res.json(pics.filter(pic => pic.id === parseInt(req.params.id)));
     } else {
-        res.status(400).json({ error: `No picture found with id ${req.params.id}` })
+        res.status(400).json({ error: `No picture found with id#${req.params.id}` })
     }
 });
 

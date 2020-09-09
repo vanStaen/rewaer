@@ -1,0 +1,12 @@
+ > GET: http://localhost:5000/api/users (id: e7d6ca40-b43d-4f83-8fa2-190682b395d8) - 09/09/2020, 13:37:14
+ > GET: http://localhost:5000/api/users/7 (id: 8d2d3a68-7123-4df8-bb5a-6178668fa266) - 09/09/2020, 13:37:17
+ > GET: http://localhost:5000/api/users/7 (id: aaacaf67-3310-4bcb-861b-0f7525ddd6a6) - 09/09/2020, 13:37:35
+ > GET: http://localhost:5000/api/pictures/2 (id: b4034f1d-77a0-41f1-bf33-d387c5f02dc6) - 09/09/2020, 13:38:34
+ > GET: http://localhost:5000/api/pictures/ (id: 5450620f-4738-41ca-a5d1-2b1edabed673) - 09/09/2020, 13:38:37
+ > GET: http://localhost:5000/api/pictures/ (id: d1156693-f2c8-49b9-b904-e4860512cc6f) - 09/09/2020, 13:39:54
+ > GET: http://localhost:5000/api/pictures/ (id: 66fac2de-1ca1-4b26-b6b5-c4a3b0c007a8) - 09/09/2020, 13:42:43
+ > GET: http://localhost:5000/api/users/ (id: 21b81326-d2d6-4ba8-a769-d2c71dad43e8) - 09/09/2020, 13:42:47
+ > GET: http://localhost:5000/api/users/ (id: 3d964a43-3c14-47f8-9b44-188b2348096f) - 09/09/2020, 13:44:17
+09/09/2020, 13:45:36 > GET: http://localhost:5000/api/users/ (id: 6d5b9200-38f7-43ed-b165-daa7ff03d481) - 
+09/09/2020, 13:45:39 > GET: http://localhost:5000/api/users/121 (id: 03283c3b-9c62-42a0-8416-31ddada3686e) - 
+09/09/2020, 13:45:40 > GET: http://localhost:5000/api/users/1 (id: 1c01e6ed-f185-4ef5-a8a1-8f38a34dfa2a) - 
