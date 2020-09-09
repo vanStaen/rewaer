@@ -1,2 +1,0 @@
-8efe0881-be60-4902-be94-79b5377deead - 08/09/2020, 23:17:04 > GET: http://localhost:5000/api/pics
-5e52e280-8450-4d3c-84ef-618dc310e897 - 08/09/2020, 23:17:12 > GET: http://localhost:5000/api/pics
