@@ -26,7 +26,7 @@ See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4)
 
 ## LEARNING:
 
-#### express middleware
+### JS Express - middleware functions
 Middleware in JS Express are function that are placed between `REQ` (request) and `RES` (result), and are use to manipulate the data between the two. One exemple of those, in our code, would be the logger function. 
 
 In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file. 
