@@ -23,7 +23,7 @@ const pics = [
     }
 ];
 
-/* rewaer_pictures */
+/* rewaer_users */
 const users = [
     {
         id: 1,
@@ -50,3 +50,4 @@ const items = [
 
 
 module.exports = pics;
+module.exports = users;
