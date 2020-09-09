@@ -6,8 +6,11 @@ const PORT = process.env.PORT || 5000;
 // Init Express
 const app = express();
 
-// Initialise Middleware function
-// the logger will log everything going through the server
+// Body Parser Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Logger Middelware 
 app.use(logger);
 
 // Set Static folder
