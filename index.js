@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Initialise Middleware function
+// the logger will log everything going through the server
 app.use(logger);
 
 // Set Static folder
