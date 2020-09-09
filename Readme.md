@@ -13,7 +13,7 @@ Here is a curl exemple to access the pictures endpoint:`curl --location --reques
 To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed in the package.json file. 
 
 ### Deploy to live
-The server is at the moment (05.09.2020) hosted on heroku.com. Usual Login, usual pwd!</br>
+The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
 
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 
