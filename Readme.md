@@ -3,7 +3,7 @@ This repo intend to host the Backend of the app REWEAR. Written with Node.js and
 
 ## ACCESS
 You can access the deployed version under this link: https://rewaer-backend.herokuapp.com/
-The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/logs.txt (hosted in the public folder).
+The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/log.txt (hosted in the public folder).
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
