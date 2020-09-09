@@ -17,4 +17,9 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// POST add pictures
+router.post('/', (req, res) => {
+    res.send(res.body);
+});
+
 module.exports = router;
