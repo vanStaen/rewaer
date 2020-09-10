@@ -2,8 +2,14 @@
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. 
 
 ## ACCESS
-You can access the deployed version under this link: https://rewaer-backend.herokuapp.com/
-The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/logs.txt (hosted in the public folder).
+
+### Local
+The server can be access (after being started) on http://localhost:5000/ locally, or http://127.0.0.1:5000 or the local netwok. 
+
+
+### Online
+You can access the deployed version under: https://rewaer-backend.herokuapp.com/
+The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/log.txt (hosted in the public folder).
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
@@ -33,28 +39,35 @@ In order to have in run, it has top be initialised in the main script with `app.
 
 ## RESSOURCES: 
 
+How to integrate different database types with express.
+https://expressjs.com/en/guide/database-integration.html </br>
+
 ### Tutorial I followed:
 Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br> 
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
+MySQL in 10 min : https://www.youtube.com/watch?v=2bW3HuaAUcY</br>
 
 ### Tutorial to watch: 
-https://www.youtube.com/watch?v=L72fhGm1tfE (JS Express) </br>
-https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch)</br>
 https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
+https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
+https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
+
+### other and less relevant: </br>
+https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch) </br>
 https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
 https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
 https://www.youtube.com/watch?v=R8rmfD9Y5-c (Javascript Array Methods) </br>
-
-### other and less relevant: </br>
 https://www.youtube.com/watch?v=RF5_MPSNAtU (Twitter Bot) </br>
 https://www.youtube.com/watch?v=u21W_tfPVrY (VS Code - ten tips) </br>
 https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
 https://www.youtube.com/watch?v=6YhqQ2ZW1sc (Gatsby Crash Course) </br>
 https://www.youtube.com/watch?v=hQWRp-FdTpc (SSH Crash Course) </br>
+https://www.youtube.com/watch?v=4PZb0tkxuUk (GPG Encryption for beginners) </br>
+https://www.youtube.com/watch?v=BwuLxPH8IDs (typescript 3h tutorial) </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
 https://www.youtube.com/watch?v=ahCwqrYpIuM </br>
 https://www.youtube.com/watch?v=iiADhChRriM </br>
