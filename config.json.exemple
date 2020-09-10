@@ -1,5 +1,6 @@
 {
-    "dbPort": 31979,
-    "dbHost": "40.117.155.19",
-    "dbName": "node-login"
+    "host": 31979,
+    "user": "40.117.155.19",
+    "password": "node-login",
+    "database": "my_db"
 }

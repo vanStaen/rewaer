@@ -1,11 +1,10 @@
 # REWAER
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. 
 
-## ACCESS
+## ACCESS SERVER
 
 ### Local
 The server can be access (after being started) on http://localhost:5000/ locally, or http://127.0.0.1:5000 or the local netwok. 
-
 
 ### Online
 You can access the deployed version under: https://rewaer-backend.herokuapp.com/
@@ -13,12 +12,10 @@ The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/lo
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
-## HOW TO
-
-### Run customs scripts
+## CUSTOM SCRIPTS
 To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed in the package.json file. 
 
-### Deploy to live
+## DEPLOY
 The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
 
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
