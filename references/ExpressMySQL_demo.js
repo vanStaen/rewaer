@@ -7,19 +7,25 @@ var dbPwd = CONFIG.password;
 var dbName = CONFIG.database;
 
 var mysql = require('mysql')
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'dbuser',
-    password: 's3kreee7',
-    database: 'my_db'
+var con = mysql.createConnection({
+    host: dbHost,
+    user: dbUser,
+    password: dbPwd,
+    database: dbName
 })
 
-connection.connect()
+const query = "SELECT * FROM rewaer_objects";
 
-connection.query('SELECT * FROM ', function (err, rows, fields) {
-    if (err) throw err
+// make to connection to the database.
+con.connect(function (err) {
+    if (err) throw err;
 
-    console.log('The solution is: ', rows[0].solution)
-})
+    // if connection is successful
+    con.query(query, (err, result, fields) => {
+        // if any error while executing above query, throw error
+        if (err) throw err;
 
-connection.end()
+        // if there is no error, you have the result
+        console.log(result);
+    });
+});
