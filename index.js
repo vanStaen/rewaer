@@ -3,7 +3,8 @@ const path = require('path');
 const logger = require('./helpers/logger')
 const PORT = process.env.PORT || 5000;
 
-/* var CONFIG = require('./config.json');
+/* 
+var CONFIG = require('./config.json');
 var dbPort = CONFIG.dbPort;
 var dbHost = CONFIG.dbHost;
 var dbName = CONFIG.dbName;
