@@ -39,11 +39,15 @@ In order to have in run, it has top be initialised in the main script with `app.
 
 ## RESSOURCES: 
 
+How to integrate different database types with express.
+https://expressjs.com/en/guide/database-integration.html </br>
+
 ### Tutorial I followed:
 Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br> 
 Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
+MySQL in 10 min : https://www.youtube.com/watch?v=2bW3HuaAUcY</br>
 
 ### Tutorial to watch: 
 https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
@@ -62,6 +66,7 @@ https://www.youtube.com/watch?v=u21W_tfPVrY (VS Code - ten tips) </br>
 https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
 https://www.youtube.com/watch?v=6YhqQ2ZW1sc (Gatsby Crash Course) </br>
 https://www.youtube.com/watch?v=hQWRp-FdTpc (SSH Crash Course) </br>
+https://www.youtube.com/watch?v=4PZb0tkxuUk (GPG Encryption for beginners) </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
 https://www.youtube.com/watch?v=ahCwqrYpIuM </br>
 https://www.youtube.com/watch?v=iiADhChRriM </br>
