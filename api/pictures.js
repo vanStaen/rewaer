@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const uuid = require('uuid');
+const moment = require('moment');
 const pics = require('../helpers/mockData/mockDataPics');
 
 // GET all pictures
@@ -19,7 +21,22 @@ router.get('/:id', (req, res) => {
 
 // POST add pictures
 router.post('/', (req, res) => {
-    res.send(req.body);
+
+    const newPic = {
+        id: uuid.v4(),
+        originalFileName: req.body.originalFileName,
+        extension: req.body.extension,
+        url: req.body.url,
+        dateAdded: moment().format("DD/MM/YYYY, H:mm:ss")
+    }
+
+    if (!newPic.url) {
+        return res.status(400).json({ error: `Error: Some field are missing.` });
+    }
+
+    pics.push(newPic);
+    res.json(pics);
+
 });
 
 module.exports = router;

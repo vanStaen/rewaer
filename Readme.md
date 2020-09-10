@@ -56,7 +56,7 @@ https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & 
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
 
 ### other and less relevant: </br>
-https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch)</br>
+https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch) </br>
 https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
 https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
@@ -67,6 +67,7 @@ https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
 https://www.youtube.com/watch?v=6YhqQ2ZW1sc (Gatsby Crash Course) </br>
 https://www.youtube.com/watch?v=hQWRp-FdTpc (SSH Crash Course) </br>
 https://www.youtube.com/watch?v=4PZb0tkxuUk (GPG Encryption for beginners) </br>
+https://www.youtube.com/watch?v=BwuLxPH8IDs (typescript 3h tutorial) </br>
 https://www.youtube.com/watch?v=JTOJsU3FSD8 </br>
 https://www.youtube.com/watch?v=ahCwqrYpIuM </br>
 https://www.youtube.com/watch?v=iiADhChRriM </br>
