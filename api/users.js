@@ -17,4 +17,9 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// POST add users
+router.post('/', (req, res) => {
+    res.send(req.body);
+});
+
 module.exports = router;
