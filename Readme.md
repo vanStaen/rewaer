@@ -1,6 +1,12 @@
 # REWAER
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. 
 
+## INSTALL/RUN LOCALY
+
+Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
+Run `npm install`tp fetch and install all dependencies listed in the `package.json` file. 
+With `npm run dev` you can start the server on your machine. 
+
 ## ACCESS SERVER
 
 ### Local
@@ -12,15 +18,13 @@ The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/lo
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
-## CUSTOM SCRIPTS
-To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed in the package.json file. 
 
 ## DEPLOY
 The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
 
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 
-Use `heroku login`to log to your account. Then with `heroku create` then `git push heroku master`, you can deploy the app. `heroku open` to get the app opened in your browser. 
+Use `heroku login` to log to your account. Then with `heroku create` then `git push heroku master`, you can deploy the app. `heroku open` to get the app opened in your browser. 
 
 Use the custom script `npm run deploy` to run all of the above commant at once.
 
@@ -29,24 +33,26 @@ See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4)
 
 ## LEARNING:
 
+### Custom Script
+To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed (and can be added) in the package.json file, under 'script'.
+
 ### JS Express - middleware functions
 Middleware in JS Express are function that are placed between `REQ` (request) and `RES` (result), and are use to manipulate the data between the two. One exemple of those, in our code, would be the logger function. 
 
 In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file. 
 
 ## RESSOURCES: 
-
-How to integrate different database types with express.
+How to integrate different database types with express. 
 https://expressjs.com/en/guide/database-integration.html </br>
 
 ### Tutorial I followed:
-Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br> 
-Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
-Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
-Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
-MySQL in 10 min : https://www.youtube.com/watch?v=2bW3HuaAUcY</br>
+- Web developpement overview in 2020 : https://www.youtube.com/watch?v=0pThnRneDjw </br> 
+- Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
+- Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
+- Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
 
 ### Tutorial to watch: 
+https://www.youtube.com/watch?v=2bW3HuaAUcY (MySQL in 10 min)</br>
 https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
 https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
