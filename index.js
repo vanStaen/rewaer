@@ -16,6 +16,10 @@ app.use(logger);
 // Set Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/routes.log', (req, res) => {
+    res.sendFile(path.join(__dirname, 'routes.log'));
+});
+
 // Endpoint routes handlers: /api/pictures
 app.use('/api/pictures', require('./api/pictures'));
 app.use('/api/users', require('./api/users'));

@@ -18,6 +18,8 @@ The logs are saved in a text file under: https://rewaer-backend.herokuapp.com/lo
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
+The access log can be seen at https://rewaer-backend.herokuapp.com/routes.log
+
 
 ## DEPLOY
 The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
