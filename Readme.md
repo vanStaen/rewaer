@@ -25,7 +25,9 @@ The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
 
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 
-Use `heroku login` to log to your account. Then with `heroku create` then `git push heroku master`, you can deploy the app. `heroku open` to get the app opened in your browser. 
+Then, for existing repositories, simply add the heroku remote to git with `$ heroku git:remote -a rewaer-backend`.
+
+Use `heroku login` to log to your account. Then `git push heroku master`, you can deploy the app. `heroku open` to get the app opened in your browser. 
 
 Use the custom script `npm run deploy` to run all of the above commant at once.
 
