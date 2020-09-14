@@ -80,3 +80,4 @@ https://www.youtube.com/watch?v=iiADhChRriM </br>
 https://www.youtube.com/watch?v=byW6l5T4mxs </br>
 https://www.youtube.com/watch?v=vDXkpJw16os </br>
 https://reactjs.org/docs/create-a-new-react-app.html </br>
+https://medium.com/javascript-in-plain-english/how-to-schedule-cron-jobs-in-node-js-897215e2e5d3 (Node.js: send enmail and cronjob) </br>
