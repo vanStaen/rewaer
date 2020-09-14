@@ -17,7 +17,7 @@ You can access the deployed version under: https://rewaer-backend.herokuapp.com/
 
 Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
 
-The access log can be seen at https://rewaer-backend.herokuapp.com/routes.log
+The log can be seen at https://rewaer-backend.herokuapp.com/log
 
 
 ## DEPLOY
