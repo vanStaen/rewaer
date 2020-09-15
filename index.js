@@ -16,6 +16,7 @@ app.use(logger);
 // Set Static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Static pointing to the logs
 app.get('/log', (req, res) => {
     res.sendFile(path.join(__dirname, 'routes.log'));
 });
