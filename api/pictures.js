@@ -39,4 +39,22 @@ router.post('/', (req, res) => {
 
 });
 
+// PUT single picture (based on id)
+router.put('/:id', (req, res) => {
+    const found = pics.some(pic => pic.id === parseInt(req.params.id));
+    if (found) {
+        const updatedPicture = req.body
+        pics.forEach(pic => {
+            if (pic.id === parseInt(req.params.id)) {
+                pic.originalFileName = updatedPicture.originalFileName ? updatedPicture.originalFileName : pic.originalFileName;
+                pic.extension = updatedPicture.extension ? updatedPicture.extension : pic.extension;
+                pic.url = updatedPicture.url ? updatedPicture.url : pic.url;
+                res.json({ msg: `Picture #${pic.id} has been updated.`, pic });
+            }
+        })
+    } else {
+        res.status(400).json({ error: `No picture found with id#${req.params.id}` })
+    }
+});
+
 module.exports = router;
