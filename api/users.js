@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     res.json(users);
 });
 
-// GET single picture (based on id)
+// GET single user (based on id)
 router.get('/:id', (req, res) => {
     const found = users.some(users => users.id === parseInt(req.params.id));
     if (found) {
@@ -37,6 +37,25 @@ router.post('/', (req, res) => {
     users.push(newUser);
     res.json(users);
 
+});
+
+// PUT single user (based on id)
+router.put('/:id', (req, res) => {
+    const found = users.some(user => user.id === parseInt(req.params.id));
+    if (found) {
+        const updatedUser = req.body
+        users.forEach(user => {
+            if (user.id === parseInt(req.params.id)) {
+                user.userName = updatedUser.userName ? updatedUser.userName : user.userName;
+                user.googleId = updatedUser.googleId ? updatedUser.googleId : user.googleId;
+                user.dateCreated = updatedUser.dateCreated ? updatedUser.dateCreated : user.dateCreated;
+                user.statusActive = updatedUser.statusActive ? updatedUser.statusActive : user.statusActive;
+                res.json({ msg: `User #${user.id} has been updated.`, user });
+            }
+        })
+    } else {
+        res.status(400).json({ error: `No user found with id#${req.params.id}` })
+    }
 });
 
 module.exports = router;

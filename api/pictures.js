@@ -43,12 +43,12 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const found = pics.some(pic => pic.id === parseInt(req.params.id));
     if (found) {
-        const updatedPictures = req.body
+        const updatedPicture = req.body
         pics.forEach(pic => {
             if (pic.id === parseInt(req.params.id)) {
-                pic.originalFileName = updatedPictures.originalFileName ? updatedPictures.originalFileName : pic.originalFileName;
-                pic.extension = updatedPictures.extension ? updatedPictures.extension : pic.extension;
-                pic.url = updatedPictures.url ? updatedPictures.url : pic.url;
+                pic.originalFileName = updatedPicture.originalFileName ? updatedPicture.originalFileName : pic.originalFileName;
+                pic.extension = updatedPicture.extension ? updatedPicture.extension : pic.extension;
+                pic.url = updatedPicture.url ? updatedPicture.url : pic.url;
                 res.json({ msg: `Picture #${pic.id} has been updated.`, pic });
             }
         })
