@@ -92,3 +92,4 @@ https://www.youtube.com/watch?v=vDXkpJw16os </br>
 https://reactjs.org/docs/create-a-new-react-app.html </br>
 https://medium.com/javascript-in-plain-english/how-to-schedule-cron-jobs-in-node-js-897215e2e5d3 (Node.js: send enmail and cronjob) </br>
 https://www.youtube.com/watch?v=tBr-PybP_9c (messagerie app with react) </br>
+https://www.youtube.com/watch?v=8GPPJpiLqHk (10 hack javascript project)
