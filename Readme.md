@@ -92,4 +92,6 @@ https://www.youtube.com/watch?v=vDXkpJw16os </br>
 https://reactjs.org/docs/create-a-new-react-app.html </br>
 https://medium.com/javascript-in-plain-english/how-to-schedule-cron-jobs-in-node-js-897215e2e5d3 (Node.js: send enmail and cronjob) </br>
 https://www.youtube.com/watch?v=tBr-PybP_9c (messagerie app with react) </br>
-https://www.youtube.com/watch?v=8GPPJpiLqHk (10 hack javascript project)
+https://www.youtube.com/watch?v=8GPPJpiLqHk (10 hack javascript project) </br>
+https://www.youtube.com/watch?v=I6ypD7qv3Z8 (Fullstack React GraphQL TypeScript Tutorial 12hours) </br>
+https://www.youtube.com/watch?v=3nLTB_E6XAM (React hook and router: Responsive website) </br>
