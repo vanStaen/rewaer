@@ -24,8 +24,18 @@ The log can be seen at https://rewaer-backend.herokuapp.com/log
 
 ## DATABASE
 
-**We use MangoDB for this project.**
-how to install mongodb locally on MAc : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+**We use MangoDB for this project.** </br>
+And use the Mondo Compass as GUI for the database. 
+
+### Run MongoDB locally: 
+- how to install mongodb locally on MAc : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+- to run mangoDB, use `brew services start mongodb-community@4.4` from anywhere. 
+- to stop it, user `brew services stop mongodb-community@4.4`.
+- to connect to the Mango shell, `mongo`
+
+### Cluster
+the cluster is called `rewaer01`, and hosted in a M0 sandbox on AWS (frankfurt).
+
 
 ## DEPLOY
 
