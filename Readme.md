@@ -64,7 +64,6 @@ https://expressjs.com/en/guide/database-integration.html </br>
 
 ### Tutorial to watch:
 
-https://www.youtube.com/watch?v=2bW3HuaAUcY (MySQL in 10 min)</br>
 https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
 https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
