@@ -28,14 +28,24 @@ The log can be seen at https://rewaer-backend.herokuapp.com/log
 And use the Mondo Compass as GUI for the database. 
 
 ### Run MongoDB locally: 
-- how to install mongodb locally on MAc : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+- how to install mongodb locally on Mac : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 - to run mangoDB, use `brew services start mongodb-community@4.4` from anywhere. 
 - to stop it, user `brew services stop mongodb-community@4.4`.
 - to connect to the Mango shell, `mongo`
 
-### Cluster
-the cluster is called `rewaer01`, and hosted in a M0 sandbox on AWS (frankfurt).
+cheatsheet for wroking in the shell:
+- `show dbs` - will list all your database
+- `use {your db}` - will select your db, or create it if do not exist yet
+- `show collections` - will list all collection in your db
+- `{your db}.dropDatabase()` - will delete the collection
+- `db.{your db}.find()` - will show all data in your db
+- `db.{your db}.find().pretty()`- same as before, but easier to read
 
+### MongoDB in the cloud
+You can manage the mongoDB under https://cloud.mongodb.com/
+
+#### Cluster
+The cluster is called `rewaer01`, and hosted in a M0 sandbox on AWS (frankfurt).
 
 ## DEPLOY
 
