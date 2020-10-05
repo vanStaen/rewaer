@@ -22,6 +22,11 @@ Here is a curl exemple to access the pictures endpoint:`curl --location --reques
 
 The log can be seen at https://rewaer-backend.herokuapp.com/log
 
+## DATABASE
+
+**We use MangoDB for this project.**
+how to install mongodb locally on MAc : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+
 ## DEPLOY
 
 The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
@@ -61,10 +66,10 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 - Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 - Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
+- Introduction to database types: https://www.youtube.com/watch?v=W2Z7fbCLSTw</br>
 
 ### Tutorial to watch:
 
-https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
 https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
