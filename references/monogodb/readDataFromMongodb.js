@@ -1,13 +1,12 @@
 const { MongoClient } = require("mongodb");
-const dbConfigInfo = require('../config.db.json');
+const dbConfigInfo = require('../../config.db.json');
 
 const uri = "mongodb+srv://" + dbConfigInfo.user + ":" + dbConfigInfo.password + "@" + dbConfigInfo.host + "/" + dbConfigInfo.database + "?retryWrites=true&w=majority&useUnifiedTopology=true"
 const client = new MongoClient(uri);
 
-async function main() {
+async function read() {
     try {
         await client.connect();
-
         const database = client.db("rewear");
         const collection = database.collection("users");
 
@@ -35,4 +34,4 @@ async function main() {
     }
 }
 
-main().catch(console.error);
+read().catch(console.error);
