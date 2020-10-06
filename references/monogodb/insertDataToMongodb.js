@@ -13,6 +13,7 @@ async function insert() {
 
         // create a user to be inserted
         const newUser = {
+            userID: 2,
             name: "TestUser",
             email: "test@user.com",
             joinDate: moment().format('DD-MM-YYYY'),
@@ -20,6 +21,7 @@ async function insert() {
             avatar: 'test.jpg',
             active: false
         };
+        // insertOne vs insertMany
         const result = await collection.insertOne(newUser);
         console.log(
             `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
