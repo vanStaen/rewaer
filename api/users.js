@@ -4,7 +4,7 @@ const uuid = require("uuid");
 const moment = require("moment");
 const users = require("../helpers/mockData/mockDataUsers");
 
-// GET all pictures
+// GET all users
 router.get("/", (req, res) => {
   res.json(users);
 });
