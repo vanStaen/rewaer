@@ -12,7 +12,6 @@ async function main() {
         // Make the appropriate DB calls
         await listDatabases(client);
         await listUsers(client);
-
     } catch (e) {
         console.error(e);
     } finally {
@@ -30,7 +29,6 @@ async function listUsers(client) {
     console.log("Users:");
     const users = await client.db("rewaer").collection('users').find({}).toArray();
     console.log(users);
-};
 
 // Run main
 main().catch(console.error);
