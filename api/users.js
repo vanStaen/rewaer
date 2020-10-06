@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const uuid = require("uuid");
 const moment = require("moment");
-const users = require("../helpers/mockData/mockDataUsers");
+const User = require('../models/User');
 
 // GET all users
 router.get("/", (req, res) => {
@@ -20,21 +20,29 @@ router.get("/:id", (req, res) => {
 });
 
 // POST add users
-router.post("/", (req, res) => {
-  const newUser = {
-    id: uuid.v4(),
-    userName: req.body.userName,
-    googleId: req.body.googleId,
-    dateCreated: moment().format("DD/MM/YYYY, H:mm:ss"),
-    statusActive: true,
-  };
+router.post("/", async (req, res) => {
+  const user = new User({
+    userID: uuid.v4(),
+    name: req.body.name,
+    email: req.body.email,
+    joinDate: moment().format("DD-MM-YYYY"),
+    encryptedPWD: req.body.pwd,
+    active: true,
+  });
 
-  if (!newUser.userName || !newUser.googleId) {
+  if (!user.name || !user.email || !user.encryptedPWD) {
     return res.status(400).json({ error: `Error: Some field are missing.` });
   }
 
-  users.push(newUser);
-  res.json(users);
+  try {
+    const savedUser = await user.save();
+    res.status(200).json(savedUser);
+  }
+  catch (err) {
+    res.status(400).json({ message: err });
+  }
+
+
 });
 
 // PUT single user (based on id)

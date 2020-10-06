@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
-const logger = require('./helpers/logger')
+const mongoose = require('mongoose');
+const logger = require('./helpers/logger');
 const PORT = process.env.PORT || 5000;
+require('dotenv/config');
 
 // Init Express
 const app = express();
@@ -24,6 +26,13 @@ app.get('/log', (req, res) => {
 // Endpoint routes handlers: /api/pictures
 app.use('/api/pictures', require('./api/pictures'));
 app.use('/api/users', require('./api/users'));
+
+// Connect to Mongo db
+mongoose.connect(
+    process.env.DB_REWAER_CONNECTION,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log('Connected to db!')
+)
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
