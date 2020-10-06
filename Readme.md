@@ -87,10 +87,10 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 - Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
 - Introduction to database types: https://www.youtube.com/watch?v=W2Z7fbCLSTw</br>
+- Basic MongoDB : https://www.youtube.com/watch?v=-56x56UppqQ</br>
 
 ### Tutorial to watch:
 
-https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
 
