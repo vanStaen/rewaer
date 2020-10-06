@@ -22,6 +22,31 @@ Here is a curl exemple to access the pictures endpoint:`curl --location --reques
 
 The log can be seen at https://rewaer-backend.herokuapp.com/log
 
+## DATABASE
+
+**We use MangoDB for this project.** </br>
+And use the Mondo Compass as GUI for the database. 
+
+### Run MongoDB locally: 
+- how to install mongodb locally on Mac : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+- to run mangoDB, use `brew services start mongodb-community@4.4` from anywhere. 
+- to stop it, user `brew services stop mongodb-community@4.4`.
+- to connect to the Mango shell, `mongo`
+
+cheatsheet for wroking in the shell:
+- `show dbs` - will list all your database
+- `use {your db}` - will select your db, or create it if do not exist yet
+- `show collections` - will list all collection in your db
+- `{your db}.dropDatabase()` - will delete the collection
+- `db.{your db}.find()` - will show all data in your db
+- `db.{your db}.find().pretty()`- same as before, but easier to read
+
+### MongoDB in the cloud
+You can manage the mongoDB under https://cloud.mongodb.com/
+
+#### Cluster
+The cluster is called `rewaer01`, and hosted in a M0 sandbox on AWS (frankfurt).
+
 ## DEPLOY
 
 The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
@@ -61,11 +86,10 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Basic of node.js: https://www.youtube.com/watch?v=ENrzD9HAZK4 </br>
 - Creating a basic server with node.js: https://www.youtube.com/watch?v=fBNz5xF-Kx4 </br>
 - Creating a API with JS Express: https://www.youtube.com/watch?v=L72fhGm1tfE</br>
+- Introduction to database types: https://www.youtube.com/watch?v=W2Z7fbCLSTw</br>
 
 ### Tutorial to watch:
 
-https://www.youtube.com/watch?v=2bW3HuaAUcY (MySQL in 10 min)</br>
-https://www.youtube.com/watch?v=W2Z7fbCLSTw (Databases & Models)</br>
 https://www.youtube.com/watch?v=-56x56UppqQ (MongoDB Crash course) </br>
 https://www.youtube.com/watch?v=vjf774RKrLc (Restful Api With Node.js Express & MongoDB) </br>
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
