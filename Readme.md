@@ -77,6 +77,12 @@ Middleware in JS Express are function that are placed between `REQ` (request) an
 
 In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file.
 
+### .env
+
+Private or sensible data can be stored and access into and form a .env file: This is listed in the .gitignore, and should enver get pushed to git. 
+
+Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config` Vars : https://dashboard.heroku.com/apps/rewaer-backend/settings. 
+
 ## RESSOURCES:
 
 How to integrate different database types with express.
