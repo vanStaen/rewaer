@@ -3,4 +3,4 @@ public/log.txt
 config.json
 config.db.json
 *.log
-.env
+*.env
