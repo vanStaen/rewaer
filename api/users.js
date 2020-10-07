@@ -5,24 +5,32 @@ const moment = require("moment");
 const User = require('../models/User');
 
 // GET all users
-router.get("/", (req, res) => {
-  res.json(users);
+router.get("/", async (req, res) => {
+  try {
+    const user = await User.find();
+    res.json(user);
+  }
+  catch (err) {
+    res.status(400).json({ message: err });
+  }
 });
 
 // GET single user (based on id)
-router.get("/:id", (req, res) => {
-  const found = users.some((users) => users.id === parseInt(req.params.id));
-  if (found) {
-    res.json(users.filter((users) => users.id === parseInt(req.params.id)));
-  } else {
-    res.status(400).json({ error: `No user found with id#${req.params.id}` });
+router.get("/:userID", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userID)
+    res.json(user);
+  }
+  catch (err) {
+    res.status(400).json({
+      error: `No user found with id#${req.params.userID} (error ${err})`
+    });
   }
 });
 
 // POST add users
 router.post("/", async (req, res) => {
   const user = new User({
-    userID: uuid.v4(),
     name: req.body.name,
     email: req.body.email,
     joinDate: moment().format("DD-MM-YYYY"),
@@ -44,6 +52,11 @@ router.post("/", async (req, res) => {
 
 
 });
+
+
+
+
+// TODO ::
 
 // PUT single user (based on id)
 router.put("/:id", (req, res) => {
@@ -72,7 +85,7 @@ router.put("/:id", (req, res) => {
   }
 });
 
-// GET single user (based on id)
+// Delete single user (based on id)
 router.delete("/:id", (req, res) => {
   const found = users.some((users) => users.id === parseInt(req.params.id));
   if (found) {
