@@ -27,6 +27,7 @@ The log can be seen at https://rewaer-backend.herokuapp.com/log
 **We use MangoDB for this project.** </br>
 And use the Mondo Compass as GUI for the database. 
 Here is the Mongodb doc for usage with Node.js: https://docs.mongodb.com/drivers/node/usage-examples 
+How to querry the db from javascript: https://mongodb.github.io/node-mongodb-native/markdown-docs/queries.html#
 
 ### Run MongoDB locally: 
 - how to install mongodb locally on Mac : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
@@ -34,7 +35,7 @@ Here is the Mongodb doc for usage with Node.js: https://docs.mongodb.com/drivers
 - to stop it, user `brew services stop mongodb-community@4.4`.
 - to connect to the Mango shell, `mongo`
 
-cheatsheet for wroking in the shell:
+cheatsheet for working in the shell:
 - `show dbs` - will list all your database
 - `use {your db}` - will select your db, or create it if do not exist yet
 - `show collections` - will list all collection in your db
