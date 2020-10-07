@@ -23,8 +23,7 @@ app.get('/log', (req, res) => {
     res.sendFile(path.join(__dirname, 'routes.log'));
 });
 
-// Endpoint routes handlers: /api/pictures
-app.use('/api/pictures', require('./api/pictures'));
+// Endpoint routes handlers:
 app.use('/api/users', require('./api/users'));
 
 // Connect to Mongo db
