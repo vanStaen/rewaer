@@ -18,9 +18,13 @@ The server can be access (after being started) on http://localhost:5000/ locally
 
 You can access the deployed version under: https://rewaer-backend.herokuapp.com/
 
-Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/pictures'`
+Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/users'`
 
-The log can be seen at https://rewaer-backend.herokuapp.com/log
+
+### Debug
+
+To access heroku's log, run `heroku logs --tail` in the terminal. 
+The log's saved by the index.js page can be seen at https://rewaer-backend.herokuapp.com/log
 
 ## DATABASE
 
