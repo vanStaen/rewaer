@@ -4,6 +4,7 @@ const uuid = require("uuid");
 const moment = require("moment");
 const User = require('../models/User');
 
+
 // GET all users
 router.get("/", async (req, res) => {
   try {
@@ -14,6 +15,7 @@ router.get("/", async (req, res) => {
     res.status(400).json({ message: err });
   }
 });
+
 
 // GET single user (based on id)
 router.get("/:userID", async (req, res) => {
@@ -27,6 +29,7 @@ router.get("/:userID", async (req, res) => {
     });
   }
 });
+
 
 // POST add users
 router.post("/", async (req, res) => {
@@ -54,48 +57,44 @@ router.post("/", async (req, res) => {
 });
 
 
-
-
-// TODO ::
-
-// PUT single user (based on id)
-router.put("/:id", (req, res) => {
-  const found = users.some((user) => user.id === parseInt(req.params.id));
-  if (found) {
-    const updatedUser = req.body;
-    users.forEach((user) => {
-      if (user.id === parseInt(req.params.id)) {
-        user.userName = updatedUser.userName
-          ? updatedUser.userName
-          : user.userName;
-        user.googleId = updatedUser.googleId
-          ? updatedUser.googleId
-          : user.googleId;
-        user.dateCreated = updatedUser.dateCreated
-          ? updatedUser.dateCreated
-          : user.dateCreated;
-        user.statusActive = updatedUser.statusActive
-          ? updatedUser.statusActive
-          : user.statusActive;
-        res.json({ msg: `User #${user.id} has been updated.`, user });
-      }
+// Delete single user (based on id)
+router.delete("/:userID", async (req, res) => {
+  try {
+    const removedUser = await User.remove({ _id: req.params.userID })
+    res.json({
+      msg: `User #${req.params.userID} has been deleted.`
     });
-  } else {
-    res.status(400).json({ error: `No user found with id#${req.params.id}` });
+  }
+  catch (err) {
+    res.status(400).json({
+      error: `No user found with id#${req.params.userID} (error ${err})`
+    });
   }
 });
 
-// Delete single user (based on id)
-router.delete("/:id", (req, res) => {
-  const found = users.some((users) => users.id === parseInt(req.params.id));
-  if (found) {
-    res.json({
-      msg: `Picture #${pic.id} has been deleted.`,
-      users: users.filter((users) => users.id == parseInt(req.params.id)),
+
+// patch single user (based on id)
+router.patch("/:userID", async (req, res) => {
+  try {
+    const updateField = {};
+    if (req.body.name) { updateField.name = req.body.name; }
+    if (req.body.email) { updateField.email = req.body.email; }
+    if (req.body.encryptedPWD) { updateField.name = req.body.encryptedPWD; }
+    if (req.body.active !== null) { updateField.active = req.body.active; }
+    const updatedUser = await User.updateOne(
+      { _id: req.params.userID },
+      { $set: updateField }
+    )
+    res.status(200).json({
+      message: `User id#${req.params.userID} has been updated.`
     });
-  } else {
-    res.status(400).json({ error: `No user found with id#${req.params.id}` });
   }
+  catch (err) {
+    res.status(400).json({
+      error: `No user found with id#${req.params.userID} (error ${err})`
+    });
+  }
+
 });
 
 module.exports = router;
