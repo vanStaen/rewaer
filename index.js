@@ -27,11 +27,11 @@ app.get('/log', (req, res) => {
 app.use('/api/users', require('./api/users'));
 
 // Connect to Mongo db
-/*mongoose.connect(
+mongoose.connect(
     process.env.DB_REWAER_CONNECTION,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Connected to db!')
-)*/
+)
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
