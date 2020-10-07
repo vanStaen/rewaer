@@ -7,6 +7,5 @@ Rewaer Back End
     - [ ] Import data from MySQL
 - [ ] Protect access to the BackEnd 
 
-
 ## Completed ✓
 - [x] Set up route for User + database handling
