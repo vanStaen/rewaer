@@ -81,7 +81,7 @@ In order to have in run, it has top be initialised in the main script with `app.
 
 Private or sensible data can be stored and access into and form a .env file: This is listed in the .gitignore, and should enver get pushed to git. 
 
-Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config` Vars : https://dashboard.heroku.com/apps/rewaer-backend/settings. 
+Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config` Vars : https://dashboard.heroku.com/apps/rewaer-backend/settings. (more info in the docu : https://devcenter.heroku.com/articles/config-vars)
 
 ## RESSOURCES:
 
