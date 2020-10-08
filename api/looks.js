@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Look = require('../models/look');
+const Look = require('../models/Look');
 
 
 // GET all looks
