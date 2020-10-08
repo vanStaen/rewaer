@@ -33,9 +33,7 @@ router.get("/:itemID", async (req, res) => {
 router.post("/", async (req, res) => {
   const item = new Item({
     user: req.body.user,
-    email: req.body.email,
-    encryptedPWD: req.body.pwd,
-    active: true,
+    mediaUrl: req.body.email
   });
 
   if (!item.name || !item.email || !item.encryptedPWD) {
@@ -75,7 +73,13 @@ router.delete("/:itemID", async (req, res) => {
 router.patch("/:itemID", async (req, res) => {
   const updateField = {};
   if (req.body.user) { updateField.user = req.body.user; }
+  if (req.body.mediaUrl) { updateField.mediaUrl = req.body.mediaUrl; }
+  if (req.body.category) { updateField.category = req.body.category; }
+  if (req.body.desc) { updateField.desc = req.body.desc; }
+  if (req.body.colors) { updateField.colors = req.body.colors; }
+  if (req.body.brand) { updateField.brand = req.body.brand; }
   if (req.body.active !== undefined) { updateField.active = req.body.active; }
+  if (req.body.favorite !== undefined) { updateField.favorite = req.body.favorite; }
   try {
     const updatedItem = await Item.updateOne(
       { _id: req.params.itemID },
