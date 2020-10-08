@@ -3,10 +3,11 @@ Rewaer Back End
 
 ## To-dos:
 - [ ] Set up the rest of the database
-    - [ ] Define the other collections (model)
+    - [x] Define the other collection (model: Looks)
     - [ ] Import data from MySQL
+    - [ ] Import pictures from FTP
 - [ ] Protect access to the BackEnd 
-- [ ] Whitelist Heroku IP in mongodb Atlas
 
 ## Completed ✓
 - [x] Set up route for User + database handling
+- [x] Whitelist Heroku IP in mongodb Atlas
