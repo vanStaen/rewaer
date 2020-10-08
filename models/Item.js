@@ -42,4 +42,4 @@ const LookSchema = mongoose.Schema({
 }
 )
 
-module.exports = mongoose.model('Look', LookSchema)
+module.exports = mongoose.model('Item', LookSchema)

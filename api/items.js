@@ -33,10 +33,10 @@ router.get("/:itemID", async (req, res) => {
 router.post("/", async (req, res) => {
   const item = new Item({
     user: req.body.user,
-    mediaUrl: req.body.email
+    mediaUrl: req.body.mediaUrl
   });
 
-  if (!item.name || !item.email || !item.encryptedPWD) {
+  if (!item.user || !item.mediaUrl) {
     return res.status(400).json({ error: `Error: Some field are missing.` });
   }
 
