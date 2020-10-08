@@ -9,6 +9,10 @@ const LookSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    "mediaUrl": {
+        type: String,
+        required: true
+    },
     "dateCreated": {
         type: Date,
         default: Date.now
