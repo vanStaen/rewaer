@@ -5,10 +5,6 @@ const LookSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    "category": {
-        type: String,
-        required: true
-    },
     "mediaUrl": {
         type: String,
         required: true
@@ -21,15 +17,21 @@ const LookSchema = mongoose.Schema({
         type: [String],
         required: false
     },
+    "category": {
+        type: String,
+        required: false
+    },
     "active": {
         type: Boolean,
-        required: true
+        required: true,
+        default: true
     },
     "favorite": {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 }
 )
 
-module.exports = mongoose.model('Look', UserSchema)
+module.exports = mongoose.model('Look', LookSchema)
