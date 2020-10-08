@@ -4,8 +4,8 @@ Rewaer Back End
 ## To-dos:
 - [ ] Set up the rest of the database
     - [x] Define the other collection (model: Looks)
-    - [ ] Import data from MySQL
-    - [ ] Import pictures from FTP
+    - [ ] Import old look data from MySQL
+    - [x] Import pictures from FTP
 - [ ] Protect access to the BackEnd 
 
 ## Completed ✓
