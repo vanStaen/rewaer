@@ -1,4 +1,4 @@
-# REWAER
+# REWAER-BACKEND
 
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express.
 
@@ -49,6 +49,9 @@ cheatsheet for working in the shell:
 
 ### MongoDB in the cloud
 You can manage the mongoDB under https://cloud.mongodb.com/
+
+#### Heroku IP White listing
+Heroku static IP (obtained with the add "QuotaGuard Static IP's") has to be white-listed by mongodb in order to have a working connection. You can check the IP here: https://www.quotaguard.com/dashboard/static
 
 #### Cluster
 The cluster is called `rewaer01`, and hosted in a M0 sandbox on AWS (frankfurt).
@@ -106,6 +109,7 @@ https://expressjs.com/en/guide/database-integration.html </br>
 
 
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
+https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d (Handle images with node/mangoose))
 
 ### other and less relevant: </br>
 

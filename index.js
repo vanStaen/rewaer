@@ -25,6 +25,7 @@ app.get('/log', (req, res) => {
 
 // Endpoint routes handlers:
 app.use('/api/users', require('./api/users'));
+app.use('/api/looks', require('./api/looks'));
 
 // Connect to Mongo db
 mongoose.connect(
