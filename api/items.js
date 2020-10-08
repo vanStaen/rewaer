@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
 // Delete single item (based on id)
 router.delete("/:itemID", async (req, res) => {
   try {
-    const removedItem = await Item.remove({ _id: req.params.itemID })
+    const removedItem = await Item.deleteOne({ _id: req.params.itemID })
     res.json({
       msg: `Item #${req.params.itemID} has been deleted.`
     });

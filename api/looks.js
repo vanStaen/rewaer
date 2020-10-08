@@ -57,7 +57,7 @@ router.post("/", async (req, res) => {
 // Delete single look (based on id)
 router.delete("/:lookID", async (req, res) => {
   try {
-    const removedLook = await Look.remove({ _id: req.params.lookID })
+    const removedLook = await Look.deleteOne({ _id: req.params.lookID })
     res.json({
       msg: `Look #${req.params.lookID} has been deleted.`
     });
