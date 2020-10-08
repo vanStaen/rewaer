@@ -74,12 +74,12 @@ router.delete("/:userID", async (req, res) => {
 
 // patch single user (based on id)
 router.patch("/:userID", async (req, res) => {
+  const updateField = {};
+  if (req.body.name) { updateField.name = req.body.name; }
+  if (req.body.email) { updateField.email = req.body.email; }
+  if (req.body.encryptedPWD) { updateField.name = req.body.encryptedPWD; }
+  if (req.body.active !== undefined) { updateField.active = req.body.active; }
   try {
-    const updateField = {};
-    if (req.body.name) { updateField.name = req.body.name; }
-    if (req.body.email) { updateField.email = req.body.email; }
-    if (req.body.encryptedPWD) { updateField.name = req.body.encryptedPWD; }
-    if (req.body.active !== null) { updateField.active = req.body.active; }
     const updatedUser = await User.updateOne(
       { _id: req.params.userID },
       { $set: updateField }

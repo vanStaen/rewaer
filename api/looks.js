@@ -72,14 +72,14 @@ router.delete("/:lookID", async (req, res) => {
 
 // patch single look (based on id)
 router.patch("/:lookID", async (req, res) => {
+  const updateField = {};
+  if (req.body.user) { updateField.user = req.body.user; }
+  if (req.body.mediaUrl) { updateField.mediaUrl = req.body.mediaUrl; }
+  if (req.body.items) { updateField.name = req.body.items; }
+  if (req.body.category) { updateField.category = req.body.category; }
+  if (req.body.active !== undefined) { updateField.active = req.body.active; }
+  if (req.body.favorite !== undefined) { updateField.favorite = req.body.favorite; }
   try {
-    const updateField = {};
-    if (req.body.user) { updateField.user = req.body.user; }
-    if (req.body.mediaUrl) { updateField.mediaUrl = req.body.mediaUrl; }
-    if (req.body.items) { updateField.name = req.body.items; }
-    if (req.body.category) { updateField.category = req.body.category; }
-    if (req.body.active !== null) { updateField.active = req.body.active; }
-    if (req.body.favorite !== null) { updateField.favorite = req.body.favorite; }
     const updatedLook = await Look.updateOne(
       { _id: req.params.lookID },
       { $set: updateField }
