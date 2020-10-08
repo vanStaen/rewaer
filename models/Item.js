@@ -13,12 +13,20 @@ const LookSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    "items": {
+    "category": {
         type: [String],
         required: false
     },
-    "category": {
+    "desc": {
+        type: String,
+        required: false
+    },
+    "colors": {
         type: [String],
+        required: false
+    },
+    "brand": {
+        type: String,
         required: false
     },
     "active": {
