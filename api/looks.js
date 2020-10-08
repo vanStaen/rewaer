@@ -6,8 +6,8 @@ const Look = require('../models/look');
 // GET all looks
 router.get("/", async (req, res) => {
   try {
-    const user = await User.find();
-    res.json(user);
+    const look = await Look.find();
+    res.json(look);
   }
   catch (err) {
     res.status(400).json({ message: err });
@@ -15,10 +15,10 @@ router.get("/", async (req, res) => {
 });
 
 
-// GET single user (based on id)
+// GET single look (based on id)
 router.get("/:lookID", async (req, res) => {
   try {
-    const look = await User.findById(req.params.lookID)
+    const look = await Look.findById(req.params.lookID)
     res.json(look);
   }
   catch (err) {
@@ -29,7 +29,7 @@ router.get("/:lookID", async (req, res) => {
 });
 
 
-// POST add users
+// POST add looks
 router.post("/", async (req, res) => {
   const look = new Look({
     user: req.body.user,
@@ -54,23 +54,23 @@ router.post("/", async (req, res) => {
 });
 
 
-// Delete single user (based on id)
+// Delete single look (based on id)
 router.delete("/:lookID", async (req, res) => {
   try {
     const removedLook = await Look.remove({ _id: req.params.lookID })
     res.json({
-      msg: `Look #${req.params.userID} has been deleted.`
+      msg: `Look #${req.params.lookID} has been deleted.`
     });
   }
   catch (err) {
     res.status(400).json({
-      error: `No look found with id#${req.params.userID} (error ${err})`
+      error: `No look found with id#${req.params.lookID} (error ${err})`
     });
   }
 });
 
 
-// patch single user (based on id)
+// patch single look (based on id)
 router.patch("/:lookID", async (req, res) => {
   try {
     const updateField = {};
@@ -85,7 +85,7 @@ router.patch("/:lookID", async (req, res) => {
       { $set: updateField }
     )
     res.status(200).json({
-      message: `Look id#${req.params.userID} has been updated.`
+      message: `Look id#${req.params.lookID} has been updated.`
     });
   }
   catch (err) {

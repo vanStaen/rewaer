@@ -9,9 +9,9 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    "joinDate": {
-        type: String,
-        required: true
+    "dateCreated": {
+        type: Date,
+        default: Date.now
     },
     "encryptedPWD": {
         type: String,
