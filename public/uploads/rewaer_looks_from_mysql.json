@@ -2,7 +2,7 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-03-10 00:00:00",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "1.jpg"
     },
@@ -387,7 +387,7 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-04-25 11:19:00",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "103.jpg"
     },
@@ -541,7 +541,7 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-22 13:56:10",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "129.jpg"
     },
@@ -555,14 +555,14 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-22 16:51:12",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "131.jpg"
     },
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-22 16:56:10",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "132.jpg"
     },
@@ -576,14 +576,14 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-23 15:07:41",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "134.jpg"
     },
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-23 15:15:00",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "135.jpg"
     },
@@ -639,7 +639,7 @@
     {
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-05-28 12:19:04",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "143.jpg"
     },
@@ -667,7 +667,7 @@
     {
         "user": "5f7b703967bc3d80cd193d10",
         "datecreated": "2019-05-30 12:35:11",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "147.jpg"
     },
@@ -693,7 +693,6 @@
         "mediaUrl": "150.jpg"
     },
     {
-        "numero": "100",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-06 17:13:59",
         "active": true,
@@ -701,7 +700,6 @@
         "mediaUrl": "151.jpg"
     },
     {
-        "numero": "101",
         "user": "5f7b703967bc3d80cd193d10",
         "datecreated": "2019-06-07 10:06:05",
         "active": true,
@@ -709,15 +707,13 @@
         "mediaUrl": "152.jpg"
     },
     {
-        "numero": "102",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-07 12:36:50",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "153.jpg"
     },
     {
-        "numero": "103",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-07 14:39:47",
         "active": true,
@@ -725,7 +721,6 @@
         "mediaUrl": "154.jpg"
     },
     {
-        "numero": "104",
         "user": "5f7b703967bc3d80cd193d10",
         "datecreated": "2019-06-08 11:18:09",
         "active": true,
@@ -733,7 +728,6 @@
         "mediaUrl": "155.jpg"
     },
     {
-        "numero": "105",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-11 15:30:46",
         "active": true,
@@ -741,15 +735,13 @@
         "mediaUrl": "156.jpg"
     },
     {
-        "numero": "106",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-18 12:12:46",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "157.jpg"
     },
     {
-        "numero": "107",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-18 15:52:01",
         "active": true,
@@ -757,7 +749,6 @@
         "mediaUrl": "158.jpg"
     },
     {
-        "numero": "108",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-18 15:52:24",
         "active": true,
@@ -765,7 +756,6 @@
         "mediaUrl": "159.jpg"
     },
     {
-        "numero": "109",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-20 13:33:35",
         "active": true,
@@ -773,7 +763,6 @@
         "mediaUrl": "160.jpg"
     },
     {
-        "numero": "110",
         "user": "5f7b703967bc3d80cd193d10",
         "datecreated": "2019-06-21 09:49:35",
         "active": true,
@@ -781,7 +770,6 @@
         "mediaUrl": "161.jpg"
     },
     {
-        "numero": "111",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-06-21 13:06:47",
         "active": true,
@@ -789,7 +777,6 @@
         "mediaUrl": "162.jpg"
     },
     {
-        "numero": "112",
         "user": "5f7b703967bc3d80cd193d10",
         "datecreated": "2019-06-27 21:56:48",
         "active": true,
@@ -797,7 +784,6 @@
         "mediaUrl": "163.jpg"
     },
     {
-        "numero": "113",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-07-04 12:55:09",
         "active": true,
@@ -805,7 +791,6 @@
         "mediaUrl": "164.jpg"
     },
     {
-        "numero": "114",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-07-04 12:55:44",
         "active": true,
@@ -813,15 +798,13 @@
         "mediaUrl": "165.jpg"
     },
     {
-        "numero": "115",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-02 09:55:05",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "166.jpg"
     },
     {
-        "numero": "116",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-02 11:05:13",
         "active": true,
@@ -829,7 +812,6 @@
         "mediaUrl": "167.jpg"
     },
     {
-        "numero": "117",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-02 11:05:38",
         "active": true,
@@ -837,64 +819,50 @@
         "mediaUrl": "168.jpg"
     },
     {
-        "numero": "118",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-05 16:30:34",
-        "title": "",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "169.jpg"
     },
     {
-        "numero": "119",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-07 13:12:53",
-        "title": "",
         "active": true,
         "favorite": false,
         "mediaUrl": "170.jpg"
     },
     {
-        "numero": "120",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-08-13 13:59:50",
-        "title": "",
         "active": true,
         "favorite": false,
         "mediaUrl": "171.jpg"
     },
     {
-        "numero": "121",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-09-18 13:33:08",
-        "title": "",
-        "status": "0",
+        "active": true,
         "favorite": false,
         "mediaUrl": "172.jpg"
     },
     {
-        "numero": "122",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-09-20 10:06:01",
-        "title": "",
         "active": true,
         "favorite": false,
         "mediaUrl": "173.jpg"
     },
     {
-        "numero": "123",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-10-16 10:08:19",
-        "title": "",
         "active": true,
         "favorite": false,
         "mediaUrl": "174.jpg"
     },
     {
-        "numero": "124",
         "user": "5f7b6eb267bc3d80cd193d0e",
         "datecreated": "2019-12-11 14:08:42",
-        "title": "",
         "active": true,
         "favorite": false,
         "mediaUrl": "175"
