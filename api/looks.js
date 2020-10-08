@@ -71,6 +71,7 @@ router.delete("/:lookID", async (req, res) => {
 
 
 // patch single look (based on id)
+// -> This probably won't work with arrays (eg. category and items).
 router.patch("/:lookID", async (req, res) => {
   const updateField = {};
   if (req.body.user) { updateField.user = req.body.user; }

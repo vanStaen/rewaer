@@ -18,7 +18,7 @@ const LookSchema = mongoose.Schema({
         required: false
     },
     "category": {
-        type: String,
+        type: [String],
         required: false
     },
     "active": {
