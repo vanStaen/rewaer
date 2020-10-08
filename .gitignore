@@ -4,3 +4,4 @@ config.json
 config.db.json
 *.log
 *.env
+public/uploads
