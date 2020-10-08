@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const moment = require("moment");
 const User = require('../models/User');
 
 
@@ -35,7 +34,6 @@ router.post("/", async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    dateCreated: moment().format("DD-MM-YYYY"),
     encryptedPWD: req.body.pwd,
     active: true,
   });
