@@ -21,9 +21,11 @@ app.get('/log', (req, res) => {
     res.sendFile(path.join(__dirname, 'routes.log'));
 });
 
-// Endpoint routes handlers: /api/pictures
+// Endpoint routes handlers: 
 app.use('/api/pictures', require('./api/pictures'));
 app.use('/api/users', require('./api/users'));
+// Special kid : GraphQL
+app.use('/graphql', require('./api/graphql'));
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
