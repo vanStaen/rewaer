@@ -27,6 +27,8 @@ app.get('/log', (req, res) => {
 app.use('/api/users', require('./api/users'));
 app.use('/api/looks', require('./api/looks'));
 app.use('/api/items', require('./api/items'));
+// Special kid : GraphQL
+app.use('/graphql', require('./api/graphql'));
 
 // Connect to Mongo db
 mongoose.connect(
