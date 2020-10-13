@@ -1,0 +1,11 @@
+{
+    query {
+        user {
+            name
+            age
+        }
+    }
+}
+
+// Query -> get data (like a GET)
+// Mutaion -> change data (like a POST, PUT, PATCH, DELETE)
