@@ -1,9 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const graphqlHttp = require("express-graphql");
+
+const graphqlResolver = require("schema");
+const graphqlSchema = require("resolvers");
 const logger = require("./helpers/logger");
-const PORT = process.env.PORT || 5000;
+
 require("dotenv/config");
+const PORT = process.env.PORT || 5000;
 
 // Init Express
 const app = express();
@@ -29,7 +34,23 @@ app.use("/api/looks", require("./api/looks"));
 app.use("/api/items", require("./api/items"));
 
 // GraphQL
-app.use("/graphql", require("./graphql/graphql"));
+app.use(
+  "/graphql",
+  graphqlHttp({
+    schema: graphqlSchema,
+    rootValue: graphqlResolver,
+    graphiql: true,
+    formatError(err) {
+      if (!err.originalError) {
+        return err;
+      }
+      const data = err.originalError.data;
+      const message = err.message || "Something went wrong with GraphQL!";
+      const code = err.originalError.code || 500;
+      return { message: message, status: code, data: data };
+    },
+  })
+);
 
 // Connect to Mongo db
 mongoose.connect(

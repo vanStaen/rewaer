@@ -14,18 +14,18 @@ module.exports = buildSchema(`
     
     ${userSchemas.UserInputData}
     ${lookSchemas.LookInputData}
-    ${itemSchemas.itemInputData}
+    ${itemSchemas.ItemInputData} 
 
     type RootQuery {
         ${userSchemas.UserQueries}
         ${lookSchemas.LookQueries}
-        ${itemSchemas.itemQueries}
+        ${itemSchemas.ItemQueries}
     }
 
     type RootMutations {
         ${userSchemas.UserMutations}
-        ${lookSchemas.UserMutations}
-        ${itemSchemas.UserMutations}
+        ${lookSchemas.LookMutations}
+        ${itemSchemas.ItemMutations}
     }
 
     schema {
