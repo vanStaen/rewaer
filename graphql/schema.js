@@ -28,4 +28,9 @@ module.exports = buildSchema(`
         ${itemSchemas.UserMutations}
     }
 
+    schema {
+        query: RootQuery
+        mutation: RootMutations
+    }
+
 `);
