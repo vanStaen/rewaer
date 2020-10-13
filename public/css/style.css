@@ -1,4 +1,5 @@
-body, a {
-    background: #333;
-    color: #fff;
+body,
+a {
+  background: #333;
+  color: #fff;
 }

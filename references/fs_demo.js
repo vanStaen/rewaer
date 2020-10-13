@@ -4,30 +4,46 @@ const path = require("path");
 /* SHIFT + OPT + A to comment */
 
 // Create folder
-fs.mkdir(path.join(__dirname, "/test"), {}, err => {
-    if (err) throw err;
-    console.log('Folder created!')
+fs.mkdir(path.join(__dirname, "/test"), {}, (err) => {
+  if (err) throw err;
+  console.log("Folder created!");
 });
 
 // Create and write to files
-fs.writeFile(path.join(__dirname, "/test", 'hello.txt'), 'Hello world!', err => {
+fs.writeFile(
+  path.join(__dirname, "/test", "hello.txt"),
+  "Hello world!",
+  (err) => {
     if (err) throw err;
-    console.log('File created!')
+    console.log("File created!");
     // File Append
-    fs.appendFile(path.join(__dirname, "/test", 'hello.txt'), ' I love node.js', err => {
+    fs.appendFile(
+      path.join(__dirname, "/test", "hello.txt"),
+      " I love node.js",
+      (err) => {
         if (err) throw err;
-        console.log('File appended!')
-    });
-});
+        console.log("File appended!");
+      }
+    );
+  }
+);
 
 // Read file
-fs.readFile(path.join(__dirname, "/test", 'hello.txt'), 'utf-8', (err, data) => {
+fs.readFile(
+  path.join(__dirname, "/test", "hello.txt"),
+  "utf-8",
+  (err, data) => {
     if (err) throw err;
-    console.log(data)
-});
+    console.log(data);
+  }
+);
 
 // Rename
-fs.rename(path.join(__dirname, "/test", 'hello.txt'), path.join(__dirname, "/test", 'helloworld.txt'), err => {
+fs.rename(
+  path.join(__dirname, "/test", "hello.txt"),
+  path.join(__dirname, "/test", "helloworld.txt"),
+  (err) => {
     if (err) throw err;
-    console.log('File renamed!')
-});
+    console.log("File renamed!");
+  }
+);
