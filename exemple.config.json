@@ -1,6 +1,16 @@
-{
-    "host": 31979,
-    "user": "40.117.155.19",
-    "password": "node-login",
-    "database": "my_db"
-}
+[
+    {
+        "name": "monog_db_atlas",
+        "host": "abc123.fharb.mongodb.net",
+        "user": "abc123",
+        "password": "password",
+        "database": "abc123"
+    },
+    {
+        "name": "ftp_ionos",
+        "server": "home123456789.1and1-data.host",
+        "user": "u123456789",
+        "protocol": "SFTP/SSH",
+        "password": "password!"
+    }
+]
