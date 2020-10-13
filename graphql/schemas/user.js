@@ -3,11 +3,18 @@ type User {
     _id: ID!
     name: String!
     email: String!
-    dateCreated: date
+    dateCreated: String
     encryptedPWD: String!
     avatar: String
-    active: Boolean!
+    active: Boolean
 }`;
+
+exports.AuthData = `
+type AuthData {
+    token: String!
+    userId: String!
+    }
+`;
 
 exports.UserInputData = `
 input UserInputData {
@@ -18,7 +25,7 @@ input UserInputData {
 }`;
 
 exports.UserQueries = `
-    user(name: String): User!
+    login(email: String!, encryptedPWD: String!): AuthData!
 `;
 
 exports.UserMutations = `    

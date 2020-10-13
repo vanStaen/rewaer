@@ -3,7 +3,7 @@ type Item {
     _id: ID!
     user: String!
     mediaUrl: String!
-    dateCreated: date
+    dateCreated: String
     category: [String]
     desc: String
     colors: [String]
@@ -23,7 +23,7 @@ input ItemInputData {
 }`;
 
 exports.ItemQueries = `
-    items(byUser: ID!, activeOnly: boolean): [Item!]!
+    items(byUser: ID!, activeOnly: Boolean): [Item!]!
 `;
 
 exports.ItemMutations = `

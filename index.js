@@ -1,14 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const graphqlHttp = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 
-const graphqlResolver = require("schema");
-const graphqlSchema = require("resolvers");
+const graphqlSchema = require("./graphql/schema");
+const graphqlResolver = require("./graphql/resolvers");
 const logger = require("./helpers/logger");
 
-require("dotenv/config");
 const PORT = process.env.PORT || 5000;
+require("dotenv/config");
 
 // Init Express
 const app = express();
@@ -36,9 +36,31 @@ app.use("/api/items", require("./api/items"));
 // GraphQL
 app.use(
   "/graphql",
-  graphqlHttp({
+  graphqlHTTP({
     schema: graphqlSchema,
-    rootValue: graphqlResolver,
+    rootValue: {
+      login: (args) => {
+        return {
+          token: "123456789",
+          userId: "123456789",
+        };
+      },
+      createUser: (args) => {
+        const userName = args.userInput.name;
+        const userEmail = args.userInput.email;
+        const encryptedPWD = args.userInput.encryptedPWD;
+        const avatar = args.userInput.avatar;
+        return {
+          _id: "123456789",
+          name: userName,
+          email: userEmail,
+          dateCreated: Date.now(),
+          encryptedPWD: encryptedPWD,
+          avatar: avatar,
+          active: true,
+        };
+      },
+    },
     graphiql: true,
     formatError(err) {
       if (!err.originalError) {

@@ -3,7 +3,7 @@ type Look {
     _id: ID!
     user: String!
     mediaUrl: String!
-    dateCreated: date
+    dateCreated: String
     items: [String!]
     category: [String]
     active: Boolean!
@@ -14,13 +14,13 @@ exports.LookInputData = `
 input LookInputData {
     user: String!
     mediaUrl: String!
-    dateCreated: date
+    dateCreated: String
     items: [String]
     category: [String]
 }`;
 
 exports.LookQueries = `
-    Look(name: String): Look!
+    looks(byUser: ID!, activeOnly: Boolean): Look!
 `;
 
 exports.LookMutations = `
