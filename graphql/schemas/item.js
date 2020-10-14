@@ -23,7 +23,7 @@ input ItemInputData {
 }`;
 
 exports.ItemQueries = `
-    items(byUser: ID!, activeOnly: Boolean): [Item!]!
+    items: [Item!]!
 `;
 
 exports.ItemMutations = `

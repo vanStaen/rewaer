@@ -1,3 +1,5 @@
+const User = require("../../models/User");
+
 exports.User = {
   /*login: (args) => {
     return {
@@ -5,45 +7,27 @@ exports.User = {
       userId: "123456789",
     };
   },*/
-  users: () => {
-    const users = [
-      {
-        _id: "5f7b6eb267bc3d80cd193d0e",
-        name: "Clément",
-        email: "clement.vanstaengmail.com",
-        dateCreated: "03-09-2019",
-        encryptedPWD: "61cf1385b1755bbee51cfc02400b1825",
-        avatar: "1.jpg",
-        active: true,
-      },
-      {
-        _id: "5f7b703967bc3d80cd193d10",
-        name: "Theresa",
-        email: "theresa.pogge@gmail.com",
-        dateCreated: "03-09-2019",
-        encryptedPWD: "931dd0ac6207488f6e0a63acd7eb977e",
-        avatar: "2.jpg",
-        active: true,
-      },
-    ];
-
+  users: async () => {
+    const users = await User.find();
     return users;
   },
-  /*createUser: (args) => {
-    const userName = args.userInput.name;
-    const userEmail = args.userInput.email;
-    const encryptedPWD = args.userInput.encryptedPWD;
-    const avatar = args.userInput.avatar;
-    return {
-      _id: "123456789",
-      name: userName,
-      email: userEmail,
-      dateCreated: Date.now(),
-      encryptedPWD: encryptedPWD,
-      avatar: avatar,
+  createUser: async (args) => {
+    const user = new User({
+      name: args.userInput.name,
+      email: args.userInput.email,
+      encryptedPWD: args.userInput.encryptedPWD,
       active: true,
-    };
-  }*/
+    });
+    if (!user.name || !user.email || !user.encryptedPWD) {
+      return res.status(400).json({ error: `Error: Some field are missing.` });
+    }
+    try {
+      const savedUser = await user.save();
+      return savedUser;
+    } catch (err) {
+      return { message: err };
+    }
+  },
 };
 
 //updateUser(userId: ID!, userInput: UserInputData!): User!

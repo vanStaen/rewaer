@@ -1,8 +1,14 @@
-{
-  query {
-    user {
-      name
-      email
-    }
+query {
+  users {
+    name
+    email
+  }
+}
+
+mutation {
+  createUser(
+    userInput: { name: "test", email: "test@test.com", encryptedPWD: "123" }
+  ) {
+    name
   }
 }

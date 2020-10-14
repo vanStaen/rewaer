@@ -20,7 +20,7 @@ input LookInputData {
 }`;
 
 exports.LookQueries = `
-    looks(byUser: ID!, activeOnly: Boolean): Look!
+    looks: [Look]!
 `;
 
 exports.LookMutations = `
