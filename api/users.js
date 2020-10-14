@@ -69,7 +69,7 @@ router.patch("/:userID", async (req, res) => {
     updateField.email = req.body.email;
   }
   if (req.body.encryptedPWD) {
-    updateField.name = req.body.encryptedPWD;
+    updateField.encryptedPWD = req.body.encryptedPWD;
   }
   if (req.body.active !== undefined) {
     updateField.active = req.body.active;
