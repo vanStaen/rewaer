@@ -5,6 +5,7 @@ Rewaer Back End
 ## To-dos:
 
 - [ ] Implement GraphQL
+  - [x] First Steps
   - [x] Create all Schemas
   - [ ] Create all Resolvers
 - [ ] Implement Auth
