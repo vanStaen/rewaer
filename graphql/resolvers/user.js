@@ -12,17 +12,33 @@ exports.User = {
       encryptedPWD: args.userInput.encryptedPWD,
       active: true,
     });
-    if (!user.name || !user.email || !user.encryptedPWD) {
-      return res.status(400).json({ error: `Error: Some field are missing.` });
+    const savedUser = await user.save();
+    return savedUser;
+  },
+  deleteUser: async (args) => {
+    const removedUser = await User.deleteOne({ _id: args.userId });
+    return removedUser;
+  },
+  updateUser: async (args) => {
+    const updateField = {};
+    if (args.userInput.name) {
+      updateField.name = args.userInput.name;
     }
-    try {
-      const savedUser = await user.save();
-      return savedUser;
-    } catch (err) {
-      return { message: err };
+    if (args.userInput.email) {
+      updateField.email = args.userInput.email;
     }
+    if (args.userInput.encryptedPWD) {
+      updateField.encryptedPWD = args.userInput.encryptedPWD;
+    }
+    if (args.userInput.active !== undefined) {
+      updateField.active = args.userInput.active;
+    }
+    const updatedUser = await User.updateOne(
+      { _id: args.userId },
+      { $set: updateField }
+    );
+    return updatedUser;
   },
 };
 
 //updateUser(userId: ID!, userInput: UserInputData!): User!
-//deleteUser(userId: ID!): User!

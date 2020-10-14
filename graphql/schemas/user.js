@@ -32,5 +32,5 @@ exports.UserQueries = `
 exports.UserMutations = `    
     createUser(userInput: UserInputData!): User!
     updateUser(userId: ID!, userInput: UserInputData!): User!
-    deleteUser(userId: ID!): User!
+    deleteUser(userId: ID!): User
 `;
