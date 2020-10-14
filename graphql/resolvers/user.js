@@ -1,12 +1,6 @@
 const User = require("../../models/User");
 
 exports.User = {
-  /*login: (args) => {
-    return {
-      token: "123456789",
-      userId: "123456789",
-    };
-  },*/
   users: async () => {
     const users = await User.find();
     return users;
