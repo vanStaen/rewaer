@@ -3,7 +3,7 @@ type Item {
     _id: ID!
     user: String!
     mediaUrl: String!
-    dateCreated: String
+    dateCreated: String!
     category: [String]
     desc: String
     colors: [String]

@@ -3,7 +3,7 @@ type User {
     _id: ID!
     name: String!
     email: String!
-    dateCreated: String
+    dateCreated: String!
     encryptedPWD: String!
     avatar: String
     active: Boolean
@@ -26,6 +26,7 @@ input UserInputData {
 
 exports.UserQueries = `
     login(email: String!, encryptedPWD: String!): AuthData!
+    users: [User!]!
 `;
 
 exports.UserMutations = `    

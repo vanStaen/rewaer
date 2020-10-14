@@ -3,7 +3,7 @@ type Look {
     _id: ID!
     user: String!
     mediaUrl: String!
-    dateCreated: String
+    dateCreated: String!
     items: [String!]
     category: [String]
     active: Boolean!
