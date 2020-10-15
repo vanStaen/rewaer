@@ -4,10 +4,6 @@ Rewaer Back End
 
 ## To-dos:
 
-- [ ] Implement GraphQL
-  - [x] First Steps
-  - [x] Create all Schemas
-  - [ ] Create all Resolvers
 - [ ] Implement Auth
 - [ ] Write tests
 - [ ] Git hub deployment including tests
@@ -21,3 +17,7 @@ Rewaer Back End
   - [x] Define the other collection (model: Items)
   - [x] Import old look data from MySQL
   - [x] Import pictures from FTP
+- [x] Implement GraphQL
+  - [x] First Steps
+  - [x] Create all Schemas
+  - [x] Create all Resolvers
