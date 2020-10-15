@@ -18,7 +18,11 @@ The server can be access (after being started) on http://localhost:5000/ locally
 
 You can access the deployed version under: https://rewaer-backend.herokuapp.com/
 
-Here is a curl exemple to access the pictures endpoint:`curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/users'`
+Here is a curl exemple to access the users endpoint:
+
+```
+curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/users'
+```
 
 ### Debug
 
