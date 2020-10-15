@@ -6,7 +6,7 @@ exports.Item = {
     return items;
   },
   deleteItem: async (args) => {
-    const removedItem = await Item.deleteOne({ _id: args.userId });
+    const removedItem = await Item.deleteOne({ _id: args.itemId });
     return removedItem;
   },
 };

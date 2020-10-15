@@ -43,3 +43,9 @@ mutation {
     user
   }
 }
+
+mutation {
+  deleteItem(itemId: "5f7f68874c3d5604f845edb9") {
+    _id
+  }
+}
