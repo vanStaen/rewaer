@@ -13,10 +13,11 @@ type Look {
 exports.LookInputData = `
 input LookInputData {
     user: String!
-    mediaUrl: String!
-    dateCreated: String
+    mediaUrl: String
     items: [String]
     category: [String]
+    active: Boolean
+    favorite: Boolean
 }`;
 
 exports.LookQueries = `
