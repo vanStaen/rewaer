@@ -15,11 +15,13 @@ type Item {
 exports.ItemInputData = `
 input ItemInputData {
     user: String!
-    mediaUrl: String!
+    mediaUrl: String
     category: [String]
     desc: String
     colors: [String]
     brand: String
+    active: Boolean
+    favorite: Boolean
 }`;
 
 exports.ItemQueries = `
