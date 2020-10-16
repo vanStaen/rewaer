@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const LookSchema = mongoose.Schema({
   user: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   mediaUrl: {
@@ -13,10 +14,12 @@ const LookSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  items: {
-    type: [String],
-    required: false,
-  },
+  items: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Item",
+    },
+  ],
   category: {
     type: [String],
     required: false,

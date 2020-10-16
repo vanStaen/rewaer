@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const ItemSchema = mongoose.Schema({
   user: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   mediaUrl: {
