@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  encryptedPWD: {
+  password: {
     type: String,
     required: true,
   },

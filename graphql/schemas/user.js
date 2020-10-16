@@ -4,7 +4,7 @@ type User {
     name: String!
     email: String!
     dateCreated: String!
-    encryptedPWD: String!
+    password: String
     avatar: String
     active: Boolean
 }`;
@@ -20,12 +20,12 @@ exports.UserInputData = `
 input UserInputData {
     name: String!
     email: String!
-    encryptedPWD: String!
+    password: String!
     avatar: String
 }`;
 
 exports.UserQueries = `
-    login(email: String!, encryptedPWD: String!): AuthData!
+    login(email: String!, password: String!): AuthData!
     users: [User!]!
 `;
 

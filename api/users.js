@@ -29,11 +29,11 @@ router.post("/", async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    encryptedPWD: req.body.pwd,
+    password: req.body.pwd,
     active: true,
   });
 
-  if (!user.name || !user.email || !user.encryptedPWD) {
+  if (!user.name || !user.email || !user.password) {
     return res.status(400).json({ error: `Error: Some field are missing.` });
   }
 
@@ -68,8 +68,8 @@ router.patch("/:userID", async (req, res) => {
   if (req.body.email) {
     updateField.email = req.body.email;
   }
-  if (req.body.encryptedPWD) {
-    updateField.encryptedPWD = req.body.encryptedPWD;
+  if (req.body.password) {
+    updateField.password = req.body.password;
   }
   if (req.body.active !== undefined) {
     updateField.active = req.body.active;

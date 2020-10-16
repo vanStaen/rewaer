@@ -12,7 +12,7 @@ exports.User = {
     const user = new User({
       name: args.userInput.name,
       email: args.userInput.email,
-      encryptedPWD: args.userInput.encryptedPWD,
+      password: args.userInput.password,
       active: true,
     });
     const savedUser = await user.save();
@@ -30,8 +30,8 @@ exports.User = {
     if (args.userInput.email) {
       updateField.email = args.userInput.email;
     }
-    if (args.userInput.encryptedPWD) {
-      updateField.encryptedPWD = args.userInput.encryptedPWD;
+    if (args.userInput.password) {
+      updateField.password = args.userInput.password;
     }
     if (args.userInput.active !== undefined) {
       updateField.active = args.userInput.active;

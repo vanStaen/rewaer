@@ -26,7 +26,7 @@ async function insert() {
       name: "TestUser",
       email: "test@user.com",
       joinDate: moment().format("DD-MM-YYYY"),
-      encryptedPWD: "password",
+      password: "password",
       avatar: "test.jpg",
       active: false,
     };
