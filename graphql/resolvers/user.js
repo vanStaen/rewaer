@@ -2,8 +2,11 @@ const User = require("../../models/User");
 
 exports.User = {
   users: async () => {
-    const users = await User.find();
-    return users;
+    return User.find().then((users) => {
+      return users.map((user) => {
+        return { ...user._doc };
+      });
+    });
   },
   createUser: async (args) => {
     const user = new User({

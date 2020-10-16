@@ -1,9 +1,12 @@
 const Item = require("../../models/Item");
 
 exports.Item = {
-  items: async () => {
-    const items = await Item.find();
-    return items;
+  items: () => {
+    return Item.find().then((items) => {
+      return items.map((item) => {
+        return { ...item._doc };
+      });
+    });
   },
   deleteItem: async (args) => {
     const removedItem = await Item.deleteOne({ _id: args.itemId });

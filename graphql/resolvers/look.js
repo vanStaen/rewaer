@@ -2,8 +2,11 @@ const Look = require("../../models/Look");
 
 exports.Look = {
   looks: async () => {
-    const looks = await Look.find();
-    return looks;
+    return Look.find().then((looks) => {
+      return looks.map((look) => {
+        return { ...look._doc };
+      });
+    });
   },
   deleteLook: async (args) => {
     const removedLook = await Look.deleteOne({ _id: args.lookId });
@@ -13,7 +16,7 @@ exports.Look = {
     const look = new Look({
       user: args.lookInput.user,
       mediaUrl: args.lookInput.mediaUrl,
-      items: args.lookInput.desc,
+      items: args.lookInput.items,
       category: args.lookInput.category,
     });
     const savedLook = await look.save();
