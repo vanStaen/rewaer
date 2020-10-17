@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
 exports.User = {
@@ -8,19 +9,27 @@ exports.User = {
       });
     });
   },
-  createUser: async (args) => {
-    const user = new User({
-      name: args.userInput.name,
-      email: args.userInput.email,
-      password: args.userInput.password,
-      active: true,
-    });
-    const savedUser = await user.save();
-    return savedUser;
+  createUser: (args) => {
+    return bcrypt
+      .hash(args.userInput.password, 12)
+      .then((hashedPassword) => {
+        const user = new User({
+          name: args.userInput.name,
+          email: args.userInput.email,
+          password: hashedPassword,
+          active: true,
+        });
+        return user.save();
+      })
+      .then((result) => {
+        return { ...result._doc, password: null };
+      })
+      .catch((err) => {
+        throw err;
+      });
   },
   deleteUser: async (args) => {
     const removedUser = await User.deleteOne({ _id: args.userId });
-    return removedUser;
   },
   updateUser: async (args) => {
     const updateField = {};
@@ -31,11 +40,12 @@ exports.User = {
       updateField.email = args.userInput.email;
     }
     if (args.userInput.password) {
-      updateField.password = args.userInput.password;
+      updateField.password = await bcrypt.hash(args.userInput.password, 12);
     }
     if (args.userInput.active !== undefined) {
       updateField.active = args.userInput.active;
     }
+
     const updatedUser = await User.updateOne(
       { _id: args.userId },
       { $set: updateField }

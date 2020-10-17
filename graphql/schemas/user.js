@@ -22,6 +22,7 @@ input UserInputData {
     email: String!
     password: String!
     avatar: String
+    active: Boolean
 }`;
 
 exports.UserQueries = `
