@@ -3,13 +3,12 @@ const User = require("../../models/User");
 
 exports.User = {
   users: async () => {
-    return User.find().then((users) => {
-      return users.map((user) => {
-        return {
-          ...user._doc,
-          dateCreated: new Date(user._doc.dateCreated).toISOString(),
-        };
-      });
+    const users = await User.find();
+    return users.map((user) => {
+      return {
+        ...user._doc,
+        dateCreated: new Date(user._doc.dateCreated).toISOString(),
+      };
     });
   },
   createUser: (args) => {

@@ -1,14 +1,13 @@
 const Item = require("../../models/Item");
 
 exports.Item = {
-  items: () => {
-    return Item.find().then((items) => {
-      return items.map((item) => {
-        return {
-          ...item._doc,
-          dateCreated: new Date(item._doc.dateCreated).toISOString(),
-        };
-      });
+  items: async () => {
+    const items = await Item.find();
+    return items.map((item) => {
+      return {
+        ...item._doc,
+        dateCreated: new Date(item._doc.dateCreated).toISOString(),
+      };
     });
   },
   deleteItem: async (args) => {

@@ -2,13 +2,12 @@ const Look = require("../../models/Look");
 
 exports.Look = {
   looks: async () => {
-    return Look.find().then((looks) => {
-      return looks.map((look) => {
-        return {
-          ...look._doc,
-          dateCreated: new Date(look._doc.dateCreated).toISOString(),
-        };
-      });
+    const looks = await Look.find();
+    return looks.map((look) => {
+      return {
+        ...look._doc,
+        dateCreated: new Date(look._doc.dateCreated).toISOString(),
+      };
     });
   },
   deleteLook: async (args) => {
