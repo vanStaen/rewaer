@@ -13,6 +13,7 @@ exports.AuthData = `
 type AuthData {
     token: String!
     userId: String!
+    tokenExpiration: Int!
     }
 `;
 
@@ -27,7 +28,7 @@ input UserInputData {
 
 exports.UserQueries = `
     login(email: String!, password: String!): AuthData!
-    users: [User!]!
+    users: [User!]! 
 `;
 
 exports.UserMutations = `    

@@ -2,6 +2,16 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 
 exports.User = {
+  login: async ({ email, password }) => {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      throw new Error("User does not exist!");
+    }
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      throw new Error("Password is incorrect!");
+    }
+  },
   users: async () => {
     const users = await User.find();
     return users.map((user) => {
