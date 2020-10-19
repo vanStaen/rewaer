@@ -20,7 +20,7 @@ exports.User = {
     );
     return { userId: user.id, token: token, tokenExpiration: 2 };
   },
-  /* users: async () => {
+  users: async () => {
     const users = await User.find();
     return users.map((user) => {
       return {
@@ -28,7 +28,7 @@ exports.User = {
         dateCreated: new Date(user._doc.dateCreated).toISOString(),
       };
     });
-  }, */
+  },
   createUser: (args) => {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {

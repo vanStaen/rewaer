@@ -4,9 +4,9 @@ Rewaer Back End
 
 ## To-dos:
 
-- [ ] Implement Auth
+- [ ] Restraint Querries to UserIds
 - [ ] Write tests
-- [ ] Git hub deployment running tests
+- [ ] Run test on deploy
 
 ## Completed ✓
 
@@ -22,3 +22,4 @@ Rewaer Back End
   - [x] Create all Schemas
   - [x] Create all Resolvers
 - [x] Encrypt passwords
+- [x] Implement Auth
