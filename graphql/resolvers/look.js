@@ -4,7 +4,10 @@ exports.Look = {
   looks: async () => {
     return Look.find().then((looks) => {
       return looks.map((look) => {
-        return { ...look._doc };
+        return {
+          ...look._doc,
+          dateCreated: new Date(look._doc.dateCreated).toISOString(),
+        };
       });
     });
   },

@@ -5,7 +5,10 @@ exports.User = {
   users: async () => {
     return User.find().then((users) => {
       return users.map((user) => {
-        return { ...user._doc };
+        return {
+          ...user._doc,
+          dateCreated: new Date(user._doc.dateCreated).toISOString(),
+        };
       });
     });
   },

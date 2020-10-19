@@ -4,7 +4,10 @@ exports.Item = {
   items: () => {
     return Item.find().then((items) => {
       return items.map((item) => {
-        return { ...item._doc };
+        return {
+          ...item._doc,
+          dateCreated: new Date(item._doc.dateCreated).toISOString(),
+        };
       });
     });
   },
