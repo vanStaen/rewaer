@@ -26,6 +26,7 @@ exports.User = {
       return {
         ...user._doc,
         dateCreated: new Date(user._doc.dateCreated).toISOString(),
+        password: undefined,
       };
     });
   },
@@ -53,7 +54,7 @@ exports.User = {
         throw err;
       });
   },
-  /*deleteUser: async (args) => {
+  /* deleteUser: async (args) => {
     const removedUser = await User.deleteOne({ _id: args.userId });
   },*/
   updateUser: async (args) => {
