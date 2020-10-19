@@ -3,7 +3,7 @@ const Look = require("../../models/Look");
 exports.Look = {
   looks: async () => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated");
+      throw new Error("Unauthenticated!");
     }
     const looks = await Look.find();
     return looks.map((look) => {
@@ -15,14 +15,14 @@ exports.Look = {
   },
   deleteLook: async (args) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated");
+      throw new Error("Unauthenticated!");
     }
     const removedLook = await Look.deleteOne({ _id: args.lookId });
     return removedLook;
   },
   createLook: async (args) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated");
+      throw new Error("Unauthenticated!");
     }
     const look = new Look({
       user: "5f8b4de2a1448a92c7ba74eb",
@@ -35,7 +35,7 @@ exports.Look = {
   },
   updateLook: async (args) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated");
+      throw new Error("Unauthenticated!");
     }
     const updateField = {};
     if (args.lookInput.user) {
