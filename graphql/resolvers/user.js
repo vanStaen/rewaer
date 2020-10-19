@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 const User = require("../../models/User");
+require("dotenv/config");
 
 exports.User = {
   login: async ({ email, password }) => {
@@ -14,7 +15,7 @@ exports.User = {
     }
     const token = await jsonwebtoken.sign(
       { userId: user.id, email: user.email },
-      "9e2wPV97CWelKCV62ZXd0jhfBlCXigQz",
+      process.env.AUTH_SECRET_KEY,
       { expiresIn: "2h" }
     );
     return { userId: user.id, token: token, tokenExpiration: 2 };
@@ -77,5 +78,3 @@ exports.User = {
     return updatedUser;
   },
 };
-
-//updateUser(userId: ID!, userInput: UserInputData!): User!

@@ -104,7 +104,12 @@ Types are :
 
 Private or sensible data can be stored and access into and form a .env file: This is listed in the .gitignore, and should enver get pushed to git.
 
-Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config` Vars : https://dashboard.heroku.com/apps/rewaer-backend/settings. (more info in the docu : https://devcenter.heroku.com/articles/config-vars)
+Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config Vars` : https://dashboard.heroku.com/apps/rewaer-backend/settings. (more info in the docu : https://devcenter.heroku.com/articles/config-vars)
+
+The following config vars are needed for this back end:
+
+- DB_REWAER_CONNECTION : Url to connect to the database (including db name, and pwd)
+- AUTH_SECRET_KEY: use to encrypt and validate every token from this App.
 
 ## RESSOURCES:
 
