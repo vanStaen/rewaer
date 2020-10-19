@@ -6,7 +6,7 @@ Rewaer Back End
 
 - [ ] Implement Auth
 - [ ] Write tests
-- [ ] Git hub deployment including tests
+- [ ] Git hub deployment running tests
 
 ## Completed ✓
 
@@ -21,3 +21,4 @@ Rewaer Back End
   - [x] First Steps
   - [x] Create all Schemas
   - [x] Create all Resolvers
+- [x] Encrypt passwords
