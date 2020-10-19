@@ -1,7 +1,10 @@
 const Item = require("../../models/Item");
 
 exports.Item = {
-  items: async () => {
+  items: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const items = await Item.find();
     return items.map((item) => {
       return {
@@ -11,10 +14,16 @@ exports.Item = {
     });
   },
   deleteItem: async (args) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const removedItem = await Item.deleteOne({ _id: args.itemId });
     return removedItem;
   },
   createItem: async (args) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const item = new Item({
       user: "5f8b4de2a1448a92c7ba74eb",
       mediaUrl: args.itemInput.mediaUrl,
@@ -27,6 +36,9 @@ exports.Item = {
     return savedItem;
   },
   updateItem: async (args) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const updateField = {};
     if (args.itemInput.user) {
       updateField.user = args.itemInput.user;

@@ -3,15 +3,28 @@ require("dotenv/config");
 
 module.exports = (req, res, next) => {
   const authHeader = req.get("Authorization");
-  if (!authheader) {
+  if (!authHeader) {
     req.isAuth = false;
     return next();
   }
   // Authorization: Bearer <token>
   const token = authHeader.split(" ")[1];
   if (!token || token === "") {
-    req.isAuth = true;
+    req.isAuth = false;
     return next();
   }
-  jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY);
+  let decodedToken;
+  try {
+    decodedToken = jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY);
+  } catch (err) {
+    req.isAuth = false;
+    return next();
+  }
+  if (!decodedToken) {
+    req.isAuth = false;
+    return next();
+  }
+  req.isAuth = true;
+  req.userId = decodedToken.userId;
+  next();
 };

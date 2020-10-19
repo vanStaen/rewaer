@@ -6,6 +6,7 @@ const { graphqlHTTP } = require("express-graphql");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const logger = require("./helpers/logger");
+const isAuth = require("./middleware/is-auth");
 
 const PORT = process.env.PORT || 5000;
 require("dotenv/config");
@@ -32,6 +33,9 @@ app.get("/log", (req, res) => {
 app.use("/api/users", require("./api/users"));
 app.use("/api/looks", require("./api/looks"));
 app.use("/api/items", require("./api/items"));
+
+// Authorization Middleware
+app.use(isAuth);
 
 // GraphQL
 app.use(
