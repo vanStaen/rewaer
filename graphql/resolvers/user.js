@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jsonwebtoken = require("jsonwebtoken");
 const User = require("../../models/User");
 
 exports.User = {
@@ -11,6 +12,12 @@ exports.User = {
     if (!isValid) {
       throw new Error("Password is incorrect!");
     }
+    const token = await jsonwebtoken.sign(
+      { userId: user.id, email: user.email },
+      "9e2wPV97CWelKCV62ZXd0jhfBlCXigQz",
+      { expiresIn: "2h" }
+    );
+    return { userId: user.id, token: token, tokenExpiration: 2 };
   },
   users: async () => {
     const users = await User.find();
