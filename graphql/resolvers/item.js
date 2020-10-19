@@ -14,7 +14,7 @@ exports.Item = {
   },
   createItem: async (args) => {
     const item = new Item({
-      user: args.itemInput.user,
+      user: "5f8b4de2a1448a92c7ba74eb",
       mediaUrl: args.itemInput.mediaUrl,
       category: args.itemInput.category,
       desc: args.itemInput.desc,

@@ -1,7 +1,7 @@
 exports.Look = `
 type Look {
     _id: ID!
-    user: String!
+    user: User!
     mediaUrl: String!
     dateCreated: String!
     items: [String!]
@@ -12,7 +12,6 @@ type Look {
 
 exports.LookInputData = `
 input LookInputData {
-    user: String!
     mediaUrl: String
     items: [String]
     category: [String]

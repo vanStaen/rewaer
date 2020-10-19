@@ -14,7 +14,6 @@ type Item {
 
 exports.ItemInputData = `
 input ItemInputData {
-    user: String!
     mediaUrl: String
     category: [String]
     desc: String
