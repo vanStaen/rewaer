@@ -1,6 +1,7 @@
 # REWAER-BACKEND
 
-This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express.
+This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. </br>
+Please address any questions/comments to admin@rewear.com.
 
 ## INSTALL/RUN LOCALY
 

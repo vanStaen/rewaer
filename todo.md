@@ -4,7 +4,7 @@ Rewaer Back End
 
 ## To-dos:
 
-- [ ] Restraint Querries to UserIds
+- [ ] Restraint queries to UserIds
 - [ ] Write tests
 - [ ] Run test on deploy
 
@@ -23,3 +23,4 @@ Rewaer Back End
   - [x] Create all Resolvers
 - [x] Encrypt passwords
 - [x] Implement Auth
+- [x] Create admin@rewaer.com email
