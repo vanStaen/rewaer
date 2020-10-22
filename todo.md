@@ -5,6 +5,7 @@ Rewaer Back End
 ## To-dos:
 
 - [ ] Restraint queries to UserIds
+- [ ] Go through the resolvers todo's
 - [ ] Write tests
 - [ ] Run test on deploy
 
