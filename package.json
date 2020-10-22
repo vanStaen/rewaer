@@ -1,6 +1,6 @@
 {
   "name": "rewaer_backend",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Rewaer App, BackEnd",
   "main": "index.js",
   "scripts": {

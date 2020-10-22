@@ -3,7 +3,7 @@
 This repo intend to host the Backend of the app REWEAR. Written with Node.js and JS express. </br>
 Please address any questions/comments to admin@rewear.com.
 
-## INSTALL/RUN LOCALY
+## INSTALL/RUN LOCALLY
 
 Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
 Run `npm install`tp fetch and install all dependencies listed in the `package.json` file.
