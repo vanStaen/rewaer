@@ -13,14 +13,14 @@ exports.Item = {
       };
     });
   },
-  deleteItem: async (args) => {
+  deleteItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
     const removedItem = await Item.deleteOne({ _id: args.itemId });
     return removedItem;
   },
-  createItem: async (args) => {
+  createItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
@@ -35,7 +35,7 @@ exports.Item = {
     const savedItem = await item.save();
     return savedItem;
   },
-  updateItem: async (args) => {
+  updateItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }

@@ -20,6 +20,7 @@ exports.User = {
     );
     return { userId: user.id, token: token, tokenExpiration: 2 };
   },
+  // todo: Should be deactivated
   users: async () => {
     const users = await User.find();
     return users.map((user) => {
@@ -30,7 +31,10 @@ exports.User = {
       };
     });
   },
-  createUser: (args) => {
+  createUser: (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated!");
+    }
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
         if (user) {
@@ -54,10 +58,15 @@ exports.User = {
         throw err;
       });
   },
-  /* deleteUser: async (args) => {
+  // todo: user should only allowed to delete it's own profile
+  deleteUser: async (args) => {
     const removedUser = await User.deleteOne({ _id: args.userId });
-  },*/
-  updateUser: async (args) => {
+  },
+  // todo: user should only update it's own profile
+  updateUser: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated!");
+    }
     const updateField = {};
     if (args.userInput.name) {
       updateField.name = args.userInput.name;
