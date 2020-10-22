@@ -1,7 +1,12 @@
+# dependencies
 node_modules
+
+# logging
 public/log.txt
-config.json
-config.db.json
 *.log
+
+# developement
 *.env
+
+# production
 public/uploads
