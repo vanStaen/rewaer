@@ -32,9 +32,6 @@ exports.User = {
     });
   },
   createUser: (args, req) => {
-    if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
-    }
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
         if (user) {
