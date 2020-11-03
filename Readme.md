@@ -130,6 +130,7 @@ https://expressjs.com/en/guide/database-integration.html </br>
 
 ### Tutorial to watch:
 
+https://www.youtube.com/watch?v=4_ZiJGY5F38 (MERN user auth)</br>
 https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
 https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d (Handle images with node/mangoose))
 
