@@ -5,7 +5,7 @@ const { graphqlHTTP } = require("express-graphql");
 
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
-const logger = require("./helpers/logger");
+const logger = require("./middleware/logger");
 const isAuth = require("./middleware/is-auth");
 
 const PORT = process.env.PORT || 5000;
