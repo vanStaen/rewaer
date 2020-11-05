@@ -41,9 +41,7 @@ app.get("/log", (req, res) => {
 });
 
 // Endpoint routes handlers:
-app.use("/api/users", require("./api/users"));
-app.use("/api/looks", require("./api/looks"));
-app.use("/api/items", require("./api/items"));
+app.use("/api/auth", require("./api/auth"));
 
 // Authorization Middleware
 app.use(isAuth);

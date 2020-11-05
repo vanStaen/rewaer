@@ -126,7 +126,8 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Introduction to database types: https://www.youtube.com/watch?v=W2Z7fbCLSTw</br>
 - Basic MongoDB : https://www.youtube.com/watch?v=-56x56UppqQ</br>
 - Restful Api With Node.js Express & MongoDB : https://www.youtube.com/watch?v=vjf774RKrLc </br>
-- Introduction to GrahQL: https://www.youtube.com/watch?v=7giZGFDGnkc
+- Introduction to GrahQL: https://www.youtube.com/watch?v=7giZGFDGnkc </br>
+- JWT Auth inNode : https://www.youtube.com/watch?v=mbsmsi7l3r4 </br>
 
 ### Tutorial to watch:
 

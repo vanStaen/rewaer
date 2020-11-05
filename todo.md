@@ -4,6 +4,7 @@ Rewaer Back End
 
 ## To-dos:
 
+- [ ] Refresh JWT token
 - [ ] Restraint queries to UserIds
 - [ ] Go through the resolvers todo's
 - [ ] Write tests
