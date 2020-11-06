@@ -25,7 +25,7 @@ exports.Look = {
       throw new Error("Unauthenticated!");
     }
     const look = new Look({
-      user: "5f8b4de2a1448a92c7ba74eb",
+      user: args.lookInput.user,
       mediaUrl: args.lookInput.mediaUrl,
       items: args.lookInput.items,
       category: args.lookInput.category,

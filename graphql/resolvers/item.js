@@ -25,7 +25,7 @@ exports.Item = {
       throw new Error("Unauthenticated!");
     }
     const item = new Item({
-      user: "5f8b4de2a1448a92c7ba74eb",
+      user: args.itemInput.user,
       mediaUrl: args.itemInput.mediaUrl,
       category: args.itemInput.category,
       desc: args.itemInput.desc,
