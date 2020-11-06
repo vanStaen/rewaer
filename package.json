@@ -8,7 +8,8 @@
     "start": "node index.js",
     "dev": "nodemon index",
     "version": "heroku --version; git --version",
-    "deploy": "heroku login; heroku git:remote -a rewaer-backend; git push heroku master; heroku open"
+    "deploy": "heroku login; heroku git:remote -a rewaer-backend; git push heroku master",
+    "log": "heroku logs --tail"
   },
   "repository": {
     "type": "git",
