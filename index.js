@@ -40,9 +40,6 @@ app.get("/log", (req, res) => {
   res.sendFile(path.join(__dirname, "routes.log"));
 });
 
-// Endpoint routes handlers:
-app.use("/api/auth", require("./api/auth"));
-
 // Authorization Middleware
 app.use(isAuth);
 

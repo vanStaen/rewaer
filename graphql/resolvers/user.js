@@ -4,7 +4,7 @@ const User = require("../../models/User");
 require("dotenv/config");
 
 exports.User = {
-  login: async ({ email, password }) => {
+  /* login: async ({ email, password }) => {
     const user = await User.findOne({ email: email });
     if (!user) {
       throw new Error("User does not exist!");
@@ -19,8 +19,7 @@ exports.User = {
       { expiresIn: "2h" }
     );
     return { userId: user.id, token: token, tokenExpiration: 2 };
-  },
-  // todo: Should be deactivated
+  }, 
   users: async () => {
     const users = await User.find();
     return users.map((user) => {
@@ -30,7 +29,7 @@ exports.User = {
         password: undefined,
       };
     });
-  },
+  }, */
   createUser: (args, req) => {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
@@ -55,10 +54,10 @@ exports.User = {
         throw err;
       });
   },
-  // todo: user should only allowed to delete it's own profile
+  /* todo: user should only allowed to delete it's own profile
   deleteUser: async (args) => {
     const removedUser = await User.deleteOne({ _id: args.userId });
-  },
+  }, */
   // todo: user should only update it's own profile
   updateUser: async (args, req) => {
     if (!req.isAuth) {

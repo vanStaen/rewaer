@@ -26,13 +26,12 @@ input UserInputData {
     active: Boolean
 }`;
 
-exports.UserQueries = `
+/* exports.UserQueries = `
     login(email: String!, password: String!): AuthData!
     users: [User!]! 
-`;
+`; */
 
 exports.UserMutations = `    
     createUser(userInput: UserInputData!): User!
     updateUser(userId: ID!, userInput: UserInputData!): User!
-    deleteUser(userId: ID!): User
 `;
