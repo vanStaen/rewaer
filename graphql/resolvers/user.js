@@ -4,32 +4,6 @@ const User = require("../../models/User");
 require("dotenv/config");
 
 exports.User = {
-  /* login: async ({ email, password }) => {
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      throw new Error("User does not exist!");
-    }
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      throw new Error("Password is incorrect!");
-    }
-    const token = await jsonwebtoken.sign(
-      { userId: user.id, email: user.email },
-      process.env.AUTH_SECRET_KEY,
-      { expiresIn: "2h" }
-    );
-    return { userId: user.id, token: token, tokenExpiration: 2 };
-  }, 
-  users: async () => {
-    const users = await User.find();
-    return users.map((user) => {
-      return {
-        ...user._doc,
-        dateCreated: new Date(user._doc.dateCreated).toISOString(),
-        password: undefined,
-      };
-    });
-  }, */
   createUser: (args, req) => {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
@@ -54,11 +28,6 @@ exports.User = {
         throw err;
       });
   },
-  /* todo: user should only allowed to delete it's own profile
-  deleteUser: async (args) => {
-    const removedUser = await User.deleteOne({ _id: args.userId });
-  }, */
-  // todo: user should only update it's own profile
   updateUser: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
