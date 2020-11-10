@@ -43,6 +43,9 @@ app.get("/log", (req, res) => {
 // Authorization Middleware
 app.use(isAuth);
 
+// Router to API
+app.use("/upload", require("./api/upload"));
+
 // GraphQL
 app.use(
   "/graphql",
