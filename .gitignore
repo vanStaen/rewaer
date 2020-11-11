@@ -9,4 +9,4 @@ public/log.txt
 *.env
 
 # production
-public/uploads
+public/old
