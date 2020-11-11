@@ -1,11 +1,36 @@
 const express = require("express");
 const AWS = require('aws-sdk');
 const multer = require('multer');
-
 const router = express.Router();
-const upload = multer({dest: 'public/uploads/'});
 
-/* 
+// Allow only JPG nd PNG
+const fileFilter = (req, file, callback) =>{
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    callback(null, true)
+  } else {
+    callback(null, true)
+  }
+}
+
+// Limits size of 5MB
+const limits = { fileSize: 1024 * 1024 * 5 };
+
+// Define the upload methods
+const upload = multer({dest: 'public/uploads/', limits: limits, fileFilter: fileFilter });
+
+// POST upload
+router.post("/", upload.single('image'), (req, res, next) => {
+    console.log('file', req.file);
+    const id = req.body.userId;
+    console.log('id', id);
+    res.status(200).json({userId: req.body.userId, fileName: req.file.originalname });
+});
+
+module.exports = router;
+
+
+
+/*
 // configure the keys for accessing AWS
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -25,14 +50,4 @@ const uploadFile = (buffer, name, type) => {
     };
     return s3.upload(params).promise();
   }; 
-  */
-
-// POST upload
-router.post("/", upload.single('image'), (req, res, next) => {
-    console.log('file', req.file);
-    const id = req.body.userId;
-    console.log('id', id);
-    res.status(200).json({userId: req.body.userId, fileName: req.file.originalname });
-});
-
-module.exports = router;
+*/

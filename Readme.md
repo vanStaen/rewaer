@@ -128,14 +128,9 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Restful Api With Node.js Express & MongoDB : https://www.youtube.com/watch?v=vjf774RKrLc </br>
 - Introduction to GrahQL: https://www.youtube.com/watch?v=7giZGFDGnkc </br>
 - JWT Auth inNode : https://www.youtube.com/watch?v=mbsmsi7l3r4 </br>
+- Uploading files with Multer : https://www.youtube.com/watch?v=srPXMt1Q0nY </br>
 
-### Tutorial to watch:
-
-https://www.youtube.com/watch?v=4_ZiJGY5F38 (MERN user auth)</br>
-https://www.youtube.com/watch?v=6FOq4cUdH8k (Auth app in node with mondo compt. db) </br>
-https://medium.com/@alvenw/how-to-store-images-to-mongodb-with-node-js-fb3905c37e6d (Handle images with node/mangoose))
-
-### other and less relevant: </br>
+### Watchlist:
 
 https://www.youtube.com/watch?v=SBvmnHTQIPY (Node.js app from scratch) </br>
 https://www.youtube.com/watch?v=vn3tm0quoqE (The async, await and promises) </br>
