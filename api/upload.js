@@ -20,14 +20,14 @@ const upload = multer({dest: 'public/uploads/', limits: limits, fileFilter: file
 
 // POST upload
 router.post("/", upload.single('image'), (req, res, next) => {
+    if (!req.isAuth) {
+      res.status(401).json({error: "Unauthenticated"});
+    }
     console.log('file', req.file);
-    const id = req.body.userId;
-    console.log('id', id);
-    res.status(200).json({userId: req.body.userId, fileName: req.file.originalname });
+    res.status(200).json({resultFileName: req.file.filename });
 });
 
 module.exports = router;
-
 
 
 /*
