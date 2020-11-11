@@ -1,7 +1,11 @@
 const express = require("express");
 const AWS = require('aws-sdk');
-const router = express.Router();
+const multer = require('multer');
 
+const router = express.Router();
+const upload = multer({dest: 'public/uploads/'});
+
+/* 
 // configure the keys for accessing AWS
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -20,11 +24,15 @@ const uploadFile = (buffer, name, type) => {
       Key: `${name}.${type.ext}`,
     };
     return s3.upload(params).promise();
-  };
+  }; 
+  */
 
 // POST upload
-router.post("/", async (req, res) => {
-    res.status(200).json({msg: 'Upload was a success!' });
+router.post("/", upload.single('image'), (req, res, next) => {
+    console.log('file', req.file);
+    const id = req.body.userId;
+    console.log('id', id);
+    res.status(200).json({userId: req.body.userId, fileName: req.file.originalname });
 });
 
 module.exports = router;
