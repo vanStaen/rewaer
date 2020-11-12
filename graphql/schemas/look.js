@@ -19,7 +19,6 @@ input LookInputData {
     category: [String]
     active: Boolean
     favorite: Boolean
-    user: String! 
 }`;
 
 exports.LookQueries = `
