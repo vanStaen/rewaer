@@ -19,13 +19,13 @@ const limits = { fileSize: 1024 * 1024 * 5 };
 const upload = multer({dest: 'public/uploads/', limits: limits, fileFilter: fileFilter });
 
 // POST upload
-router.post("/", upload.single('image'), (req, res, next) => {
-    if (!req.isAuth) {
-      res.status(401).json({error: "Unauthenticated"});
-    } else {
+router.post("/",(req, res, next) => {
+  if (!req.isAuth)
+    return res.status(401).json({error: "Unauthenticated"});
+  next();
+}, upload.single('image'), (req, res, next) => {
       console.log('file', req.file);
       res.status(200).json({resultFileName: req.file.filename });
-    }
 });
 
 module.exports = router;
