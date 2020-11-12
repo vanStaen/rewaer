@@ -21,6 +21,7 @@ input ItemInputData {
     brand: String
     active: Boolean
     favorite: Boolean
+    user: String! 
 }`;
 
 exports.ItemQueries = `

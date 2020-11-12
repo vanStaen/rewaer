@@ -5,7 +5,7 @@ exports.Item = {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
-    const items = await Item.find();
+    const items = await Item.find({ user: req.userId });
     return items.map((item) => {
       return {
         ...item._doc,
@@ -25,7 +25,7 @@ exports.Item = {
       throw new Error("Unauthenticated!");
     }
     const item = new Item({
-      user: args.itemInput.user,
+      user: req.userId,
       mediaUrl: args.itemInput.mediaUrl,
       category: args.itemInput.category,
       desc: args.itemInput.desc,

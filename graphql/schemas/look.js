@@ -2,7 +2,7 @@ exports.Look = `
 type Look {
     _id: ID!
     title: String
-    user: User!
+    user: String!
     mediaUrl: String!
     dateCreated: String!
     items: [String!]
@@ -19,6 +19,7 @@ input LookInputData {
     category: [String]
     active: Boolean
     favorite: Boolean
+    user: String! 
 }`;
 
 exports.LookQueries = `

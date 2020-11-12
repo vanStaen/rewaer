@@ -5,7 +5,7 @@ exports.Look = {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
-    const looks = await Look.find();
+    const looks = await Look.find({ user: req.userId });
     return looks.map((look) => {
       return {
         ...look._doc,
@@ -25,7 +25,7 @@ exports.Look = {
       throw new Error("Unauthenticated!");
     }
     const look = new Look({
-      user: args.lookInput.user,
+      user: req.userId,
       mediaUrl: args.lookInput.mediaUrl,
       items: args.lookInput.items,
       category: args.lookInput.category,
@@ -38,9 +38,6 @@ exports.Look = {
       throw new Error("Unauthenticated!");
     }
     const updateField = {};
-    if (args.lookInput.user) {
-      updateField.user = args.lookInput.user;
-    }
     if (args.lookInput.mediaUrl) {
       updateField.mediaUrl = args.lookInput.mediaUrl;
     }
