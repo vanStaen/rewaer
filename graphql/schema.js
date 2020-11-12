@@ -21,6 +21,7 @@ module.exports = buildSchema(`
     type RootQuery {
         ${lookSchemas.LookQueries}
         ${itemSchemas.ItemQueries}
+        ${userSchemas.UserQueries}
         ${itemDummy.DummyQueries}
     }
 

@@ -12,6 +12,7 @@ Rewaer Back End
 - [ ] Restraint/filter result for userID (is auth delivers the user ID)
 - [ ] Write tests
 - [ ] Run test on deploy
+- [ ] Refactor user resolver to use FindOne()
 
 ## Completed ✓
 

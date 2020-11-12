@@ -4,6 +4,18 @@ const User = require("../../models/User");
 require("dotenv/config");
 
 exports.User = {
+  user: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error("Unauthenticated!");
+    }
+    const users = await User.find({ _id: req.userId });
+    return users.map((user) => {
+      return {
+        ...user._doc,
+        dateCreated: new Date(user._doc.dateCreated).toISOString(),
+      };
+    });
+  },
   createUser: (args, req) => {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
