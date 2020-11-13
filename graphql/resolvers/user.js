@@ -20,7 +20,7 @@ exports.User = {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
         if (user) {
-          throw new Error("User exists already");
+          throw new Error("There is already an account associated to this email.");
         }
         return bcrypt.hash(args.userInput.password, 12);
       })
