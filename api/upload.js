@@ -24,7 +24,7 @@ router.post("/", (req, res, next) => {
     return res.status(401).json({ error: "Unauthenticated" });
   next();
 }, upload.single('file'), (req, res, next) => {
-  console.log('file', req.file);
+  console.log('Uploaded File', req.file);
   res.status(200).json({ uploadedFileName: req.file.filename });
 });
 
