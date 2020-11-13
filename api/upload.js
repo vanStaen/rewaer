@@ -4,7 +4,7 @@ const multer = require('multer');
 const router = express.Router();
 
 // Allow only JPG nd PNG
-const fileFilter = (req, file, callback) =>{
+const fileFilter = (req, file, callback) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     callback(null, true)
   } else {
@@ -16,16 +16,16 @@ const fileFilter = (req, file, callback) =>{
 const limits = { fileSize: 1024 * 1024 * 5 };
 
 // Define the upload methods
-const upload = multer({dest: 'public/uploads/', limits: limits, fileFilter: fileFilter });
+const upload = multer({ dest: 'public/uploads/', limits: limits, fileFilter: fileFilter });
 
 // POST upload
-router.post("/",(req, res, next) => {
+router.post("/", (req, res, next) => {
   if (!req.isAuth)
-    return res.status(401).json({error: "Unauthenticated"});
+    return res.status(401).json({ error: "Unauthenticated" });
   next();
 }, upload.single('image'), (req, res, next) => {
-      console.log('file', req.file);
-      res.status(200).json({resultFileName: req.file.filename });
+  console.log('file', req.file);
+  res.status(200).json({ uploadedFileName: req.file.filename });
 });
 
 module.exports = router;
@@ -37,7 +37,7 @@ AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   });
-  
+
 // create S3 instance
 const s3 = new AWS.S3();
 
@@ -50,5 +50,5 @@ const uploadFile = (buffer, name, type) => {
       Key: `${name}.${type.ext}`,
     };
     return s3.upload(params).promise();
-  }; 
+  };
 */
