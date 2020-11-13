@@ -16,6 +16,7 @@ Rewaer Back End
 - [ ] Refactor user resolver to use FindOne()
 - [ ] give a 7day TTL (time to live) to the refresh token stored in the database 
   - https://github.com/mongoosejs/mongoose-ttl
+  - https://docs.mongodb.com/manual/tutorial/expire-data/
 
 ## Completed ✓
 
