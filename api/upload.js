@@ -23,7 +23,7 @@ router.post("/", (req, res, next) => {
   if (!req.isAuth)
     return res.status(401).json({ error: "Unauthenticated" });
   next();
-}, upload.single('image'), (req, res, next) => {
+}, upload.single('file'), (req, res, next) => {
   console.log('file', req.file);
   res.status(200).json({ uploadedFileName: req.file.filename });
 });
