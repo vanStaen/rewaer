@@ -6,13 +6,16 @@ Rewaer Back End
 
 - [ ] Store image data
   - [x] Create AWS S3 bucket
-  - [ ] learn how to use it
-  - [ ] save a link to image in db
+  - [ ] Rest API 'upload'
+  - [ ] Save image in s3 bucket
+  - [ ] return a link to file to FE
 - [ ] Refresh JWT token
 - [ ] Restraint/filter result for userID (is auth delivers the user ID)
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] Refactor user resolver to use FindOne()
+- [ ] give a 7day TTL (time to live) to the refresh token stored in the database 
+  - https://github.com/mongoosejs/mongoose-ttl
 
 ## Completed ✓
 
