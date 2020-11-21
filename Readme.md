@@ -158,4 +158,5 @@ https://www.youtube.com/watch?v=8GPPJpiLqHk (10 hack javascript project) </br>
 https://www.youtube.com/watch?v=I6ypD7qv3Z8 (Fullstack React GraphQL TypeScript Tutorial 12hours) </br>
 https://www.youtube.com/watch?v=3nLTB_E6XAM (React hook and router: Responsive website) </br>
 https://www.youtube.com/watch?v=gq5yubc1u18 (URL Shortener in 3133.7 seconds with Node.js + Express + MongoDB) </br>
-https://www.youtube.com/watch?v=dtKciwk_si4 (TODO LIST in react and vamilla JS)
+https://www.youtube.com/watch?v=dtKciwk_si4 (TODO LIST in react and vamilla JS) </br>
+https://www.youtube.com/watch?v=wLUJ9VNzZXo control a video with your scroll bar </br>
