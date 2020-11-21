@@ -4,11 +4,6 @@ Rewaer Back End
 
 ## To-dos:
 
-- [ ] Store image data
-  - [x] Create AWS S3 bucket
-  - [x] Rest API 'upload'
-  - [x] Save image in s3 bucket
-  - [ ] return a link to file to FE
 - [ ] Refresh JWT token
 - [ ] Restraint/filter result for userID (is auth delivers the user ID)
 - [ ] Write tests
@@ -35,3 +30,8 @@ Rewaer Back End
 - [x] Implement Auth
 - [x] Create admin@rewaer.com email
 - [x] Clean resolvers
+- [x] Store image data
+  - [x] Create AWS S3 bucket
+  - [x] Rest API 'upload'
+  - [x] Save image in s3 bucket
+  - [x] return a link to file to FE
