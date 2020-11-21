@@ -30,9 +30,6 @@ const uploadS3 = multer({
     s3: s3,
     bucket: process.env.S3_BUCKET_ID,
     acl: 'public-read',
-    key: function (req, file, cb) {
-      cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
-    }
   }),
   limits: sizeLimits,
   fileFilter: fileFilter
