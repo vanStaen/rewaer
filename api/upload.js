@@ -57,9 +57,7 @@ router.post('/', (req, res, next) => {
         // If Success
         const imageName = req.file.key;
         const imageUrl = req.file.location;
-        // TODO : Save the file name into database
-
-        // Return name and Url to client
+        // Return file name and file url to client
         res.json({
           imageName: imageName,
           imageUrl: imageUrl
