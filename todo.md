@@ -4,8 +4,6 @@ Rewaer Back End
 
 ## To-dos:
 
-- [ ] Refresh JWT token
-- [ ] Restraint/filter result for userID (is auth delivers the user ID)
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] Refactor user resolver to use FindOne()
@@ -34,4 +32,6 @@ Rewaer Back End
   - [x] Create AWS S3 bucket
   - [x] Rest API 'upload'
   - [x] Save image in s3 bucket
-  - [x] return a link to file to FE
+  - [x] return a fileURL to FE
+- [x] Refresh JWT token (auth server)
+- [x] Restraint/filter result for userID (is_auth delivers the user ID)
