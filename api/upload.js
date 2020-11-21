@@ -56,11 +56,13 @@ router.post('/', (req, res, next) => {
       } else {
         // If Success
         const imageName = req.file.key;
-        const imageLocation = req.file.location;
-        // Save the file name into database into profile model
+        const imageUrl = req.file.location;
+        // TODO : Save the file name into database
+
+        // Return name and Url to client
         res.json({
           imageName: imageName,
-          imageLocation: imageLocation
+          imageUrl: imageUrl
         });
       }
     }
