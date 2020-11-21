@@ -129,6 +129,8 @@ https://expressjs.com/en/guide/database-integration.html </br>
 - Introduction to GrahQL: https://www.youtube.com/watch?v=7giZGFDGnkc </br>
 - JWT Auth inNode : https://www.youtube.com/watch?v=mbsmsi7l3r4 </br>
 - Uploading files with Multer : https://www.youtube.com/watch?v=srPXMt1Q0nY </br>
+- Configure Iam user and s3 bucket on AWS: https://imranhsayed.medium.com/how-to-create-a-user-and-bucket-amazon-web-services-aws-40631416e65 </br>
+- Upload file on s3 bucket: https://codeytek.com/course/upload-files-images-on-amazon-web-services-course/
 
 ### Watchlist:
 
