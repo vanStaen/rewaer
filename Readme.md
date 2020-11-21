@@ -140,7 +140,6 @@ https://www.youtube.com/watch?v=hdI2bqOjy3c (Javascript) </br>
 https://www.youtube.com/watch?v=sBws8MSXN7A (React JS) </br>
 https://www.youtube.com/watch?v=R8rmfD9Y5-c (Javascript Array Methods) </br>
 https://www.youtube.com/watch?v=RF5_MPSNAtU (Twitter Bot) </br>
-https://www.youtube.com/watch?v=u21W_tfPVrY (VS Code - ten tips) </br>
 https://www.youtube.com/watch?v=eB0nUzAI7M8 (GitHub Actions) </br>
 https://www.youtube.com/watch?v=6YhqQ2ZW1sc (Gatsby Crash Course) </br>
 https://www.youtube.com/watch?v=hQWRp-FdTpc (SSH Crash Course) </br>
