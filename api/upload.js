@@ -8,6 +8,15 @@ const router = express.Router();
 // Limits size of 5MB
 const sizeLimits = { fileSize: 1024 * 1024 * 5 };
 
+// Allow only JPG nd PNG
+const fileFilter = (req, file, callback) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    callback(null, true)
+  } else {
+    callback(null, true)
+  }
+}
+
 // Define s23 bucket login info
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_IAM_KEY,
@@ -25,13 +34,17 @@ const uploadS3 = multer({
       cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
     }
   }),
-  limits: sizeLimits
+  limits: sizeLimits,
+  fileFilter: fileFilter
 }).single('file');
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
+  if (!req.isAuth)
+    return res.status(401).json({ error: "Unauthenticated" });
+  next();
+}, (req, res) => {
   uploadS3(req, res, (error) => {
-    console.log('requestOkokok', req.file);
-    console.log('error', error);
+    console.log('Requested File: ', req.file);
     if (error) {
       console.log('errors', error);
       res.json({ error: error });
@@ -57,17 +70,8 @@ router.post('/', (req, res) => {
 
 module.exports = router;
 
-
 /*
-
-// Allow only JPG nd PNG
-const fileFilter = (req, file, callback) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-    callback(null, true)
-  } else {
-    callback(null, true)
-  }
-}
+// ### UPLOAD ON THE SERVER:
 
 // Define the upload methods
 const upload = multer({ dest: 'public/uploads/', limits: sizeLimits, fileFilter: fileFilter });
@@ -81,32 +85,4 @@ router.post("/", (req, res, next) => {
   console.log('Uploaded File', req.file);
   res.status(200).json({ uploadedFileName: req.file.filename });
 });
-
-
-const uploadFile = (buffer, name, type) => {
-    const params = {
-      ACL: 'public-read',
-      Body: buffer,
-      Bucket: process.env.S3_BUCKET_ID,
-      ContentType: type.mime,
-      Key: `${name}.${type.ext}`,
-    };
-    return s3.upload(params).promise();
-  };
-
-
-function checkFileType(file, cb) {
-  // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
-  // Check ext
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Check mime
-  const mimetype = filetypes.test(file.mimetype);
-  if (mimetype && extname) {
-    return cb(null, true);
-  } else {
-    cb('Error: Images Only!');
-  }
-}
-
 */
