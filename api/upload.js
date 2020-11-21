@@ -52,11 +52,11 @@ router.post('/', (req, res, next) => {
         res.json('Error: No File Selected');
       } else {
         // If Success
-        const imageName = req.file.key;
+        const imageOriginalName = req.file.originalname;
         const imageUrl = req.file.location;
         // Return file name and file url to client
         res.json({
-          imageName: imageName,
+          imageOriginalName: imageOriginalName,
           imageUrl: imageUrl
         });
       }
