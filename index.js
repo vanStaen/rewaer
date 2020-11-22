@@ -65,6 +65,9 @@ app.use(
   })
 );
 
+// Fix moongoose deprecation warning
+mongoose.set('useCreateIndex', true);
+
 // Connect to Mongo db
 mongoose.connect(
   process.env.DB_REWAER_CONNECTION,
