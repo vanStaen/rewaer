@@ -27,6 +27,7 @@ exports.Look = {
     const look = new Look({
       user: req.userId,
       mediaUrl: args.lookInput.mediaUrl,
+      title: args.lookInput.title,
       items: args.lookInput.items,
       category: args.lookInput.category,
     });
