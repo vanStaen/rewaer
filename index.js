@@ -45,6 +45,7 @@ app.use(isAuth);
 
 // Router to API
 app.use("/upload", require("./api/upload"));
+app.use("/thumbs", require("./api/thumbs"));
 
 // GraphQL
 app.use(

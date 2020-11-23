@@ -2,7 +2,6 @@ const express = require("express");
 const AWS = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
-const path = require('path');
 const router = express.Router();
 
 // Limits size of 5MB
@@ -41,7 +40,7 @@ router.post('/', (req, res, next) => {
   next();
 }, (req, res) => {
   uploadS3(req, res, (error) => {
-    console.log('Requested File: ', req.file);
+    //console.log('Requested File: ', req.file);
     if (error) {
       console.log('errors', error);
       res.json({ error: error });
@@ -64,22 +63,4 @@ router.post('/', (req, res, next) => {
   });
 });
 
-
 module.exports = router;
-
-/*
-// ### UPLOAD ON THE SERVER:
-
-// Define the upload methods
-const upload = multer({ dest: 'public/uploads/', limits: sizeLimits, fileFilter: fileFilter });
-
-// POST upload
-router.post("/", (req, res, next) => {
-  if (!req.isAuth)
-    return res.status(401).json({ error: "Unauthenticated" });
-  next();
-}, upload.single('file'), (req, res, next) => {
-  console.log('Uploaded File', req.file);
-  res.status(200).json({ uploadedFileName: req.file.filename });
-});
-*/
