@@ -19,16 +19,14 @@ router.post("/", async (req, res) => {
 
   const url = req.body.url;
 
+  createThumbnail(url)
+    .then(finalURL => {
+      console.log('Wait until it happens');
+      return res.status(401).json({ thumbURL: finalURL });
+    });
+
   /*
-  createThumbPic('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg')
-    .then((thumbPicUrlLocal) => {
-      console.log('Link to thumbnail', thumbPicUrlLocal);
-      res.status(201).json({ thumbUrl: thumbPicUrlLocal });
-    })
-    .catch((err) => {
-      res.status(400).json({ error: err });
-    })
- 
+
   const uploadThumbnailToS3 = async () => {
     const tempURLThumb = await createThumbPic();
     console.log('2', tempURLThumb);

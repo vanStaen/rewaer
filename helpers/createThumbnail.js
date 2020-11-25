@@ -1,33 +1,48 @@
-const jimp = require('jimp');
+const { LexRuntime } = require('aws-sdk');
+const Jimp = require('jimp');
 const { v1: uuidv1 } = require('uuid');
 
-const createThumbnail = (originalImageUrl) => {
+const createThumbnail = async (originalImageUrl) => {
 
-    return jimp.read(originalImageUrl, (err, img) => {
+    const tempPath = './public/uploads/';
+    const tempFileName = uuidv1();
+    const tempURL = tempPath + tempFileName;
 
-        const tempPath = './public/uploads/';
-        const tempFileName = uuidv1();
-        const tempURL = tempPath + tempFileName;
+    const url = await Jimp.read(originalImageUrl)
+        .then(image => {
+            image
+                .resize(120, 120)
+                .quality(60)
+                .writeAsync(tempURL);
+            //console.log('Pic was resized and saved', image);
+            return tempURL;
+        })
+        .then(imageURL => {
+            console.log('Thumb pic was generated', imageURL);
+            return imageURL;
+        })
+        .catch(err => {
+            console.error(err);
+        });
 
-        if (err) {
-            console.log(err);
-            return;
-        }
-        img.resize(120, 120)
-            .quality(60)
-            .writeAsync(tempURL);
-
-        console.log('Image was resized', tempURL);
-
-    })
-        .then(thumbPicUrl => {
-            console.log('Thumb pic was generated', resolve(thumbPicUrl));
-        }).catch(console.error);
-
-
+    return url;
 }
 
 module.exports = createThumbnail;
 
-//createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg');
+/*
+### SOLUTION 1 ###
+async function testrun() {
+    const finalURL = await createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg');
+    console.log('Wait until it happens');
+    console.log(finalURL);
+}
+testrun();
 
+### SOLUTION 2 ###
+createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg')
+    .then(finalURL => {
+        console.log('Wait until it happens');
+        console.log(finalURL);
+    });
+*/
