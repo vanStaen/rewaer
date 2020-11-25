@@ -2,7 +2,7 @@ const Jimp = require('jimp');
 
 const createThumbnail = async (originalImageUrl, randomName) => {
 
-    const tempPath = './public/uploads/';
+    const tempPath = 'public/uploads/';
     const tempURL = tempPath + randomName;
 
     const url = await Jimp.read(originalImageUrl)
