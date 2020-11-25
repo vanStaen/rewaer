@@ -4,18 +4,22 @@ const router = express.Router();
 
 const createThumbnail = require('../helpers/createThumbnail')
 const uploadFileToS3 = require('../helpers/uploadFileToS3')
+const deleteLocalFile = require('../helpers/deleteLocalFile')
 
 // Post a URL of a pic and get a URL of its thumb on AWS S3
 router.post("/", async (req, res) => {
 
   const url = req.body.url;
-  const randomName = uuidv1();
+  const fileName = uuidv1();
 
-  createThumbnail(url, randomName)
+  createThumbnail(url, fileName)
     .then(thumbUrlLocal => {
-      uploadFileToS3(thumbUrlLocal, randomName)
+      uploadFileToS3(thumbUrlLocal, fileName)
         .then(thumbUrlS3 => {
-          return res.status(401).json({ thumbUrl: thumbUrlS3 });
+          deleteLocalFile(fileName);
+          return res.status(201).json({ thumbUrl: thumbUrlS3 });
+        }).catch((err) => {
+          return res.status(400).json({ error: err });
         });
     });
 
