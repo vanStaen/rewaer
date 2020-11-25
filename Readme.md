@@ -81,19 +81,21 @@ Use the custom script `npm run deploy` to run all of the above commant at once.
 
 See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine.
 
-## LEARNING:
-
-### Custom Script
+## CUSTOM SCRIPT
 
 To run custom script, use `npm run script`. For instance: `npm run dev`, will run nodemon index. All the available custom script are listed (and can be added) in the package.json file, under 'script'.
 
-### JS Express - middleware functions
+## MIDDELWARE
 
 Middleware in JS Express are function that are placed between `REQ` (request) and `RES` (result), and are use to manipulate the data between the two. One exemple of those, in our code, would be the logger function.
 
 In order to have in run, it has top be initialised in the main script with `app.use(logger)`. The function itself has been moved to an helper folder to keep a clean main file.
 
-### GraphQL
+## IS-AUTH
+
+Our ost import middleware is IS-AUTH. It intercept any request, and look for the presence of a token: If present, it will be verified, and the UserID and Email extracted from it. Those information are then used by the resolvers.
+
+## GRAPHQL
 
 Types are :
 
@@ -101,7 +103,7 @@ Types are :
 - Mutation: change data (like a POST, PUT, PATCH, DELETE)
   Instead of controller (handling a route), resolvers are use to resovle a type.
 
-### .env
+## .ENV
 
 Private or sensible data can be stored and access into and form a .env file: This is listed in the .gitignore, and should enver get pushed to git.
 
@@ -111,8 +113,16 @@ The following config vars are needed for this back end:
 
 - DB_REWAER_CONNECTION : Url to connect to the database (including db name, and pwd)
 - AUTH_SECRET_KEY: use to encrypt and validate every token from this App.
+- S3_BUCKET_ID : Name of the AWS s3 bucket where the pictures are stored
+- AWS_IAM_KEY : ID key of the AWS user allowed to use the bucket.
+- AWS_IAM_SECRET_KEY: Same as above, but the secret part of the ID data.
 
-## RESSOURCES:
+## IMAGES MANIPULATION
 
-How to integrate different database types with express.
-https://expressjs.com/en/guide/database-integration.html </br>
+To generate the image's thumbnail I use the librairy _JIMP_ ("JavaScript Image Manipulation Program"). It can also be used to crop, rotate, flip and mirror images. See documentation for more: https://www.npmjs.com/package/jimp.
+
+## MONGODB
+
+We store all data but the images in a mongo database. The code use mongoose to interact with the database. The model save in the eponyme folder are to be seen as "types" and are used by mongoose to validate the data pushed to the database. The table are automatically generated based on the models.
+
+Tip: How to integrate different database types with express : https://expressjs.com/en/guide/database-integration.html </br>
