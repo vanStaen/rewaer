@@ -1,9 +1,9 @@
 const express = require("express");
 const AWS = require('aws-sdk');
 const fs = require('fs');
-const jimp = require('jimp');
-const { v1: uuidv1 } = require('uuid');
 const router = express.Router();
+
+const createThumbnail = require('../helpers/createThumbnail')
 
 
 // Define S3 bucket login info
@@ -15,30 +15,23 @@ const s3 = new AWS.S3({
 
 
 // Post a URL of a pic and get a URL of its thumb on AWS S3
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
 
   const url = req.body.url;
-  const tempPath = './public/uploads/';
-  const tempFileName = uuidv1();
 
-  const createThumbPic = async () => {
-    const tempURL = tempPath + tempFileName;
-    jimp.read(url, async (err, img) => {
-      if (err) {
-        res.status(400).json({
-          error: `${err})`,
-        });
-        return;
-      }
-      img.resize(120, 120)
-        .quality(60)
-        .write(tempURL);
-    });
-    return tempURL;
-  }
-
+  /*
+  createThumbPic('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg')
+    .then((thumbPicUrlLocal) => {
+      console.log('Link to thumbnail', thumbPicUrlLocal);
+      res.status(201).json({ thumbUrl: thumbPicUrlLocal });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err });
+    })
+ 
   const uploadThumbnailToS3 = async () => {
     const tempURLThumb = await createThumbPic();
+    console.log('2', tempURLThumb);
     const file = await fs.readFileSync(tempURLThumb);
     const params = {
       Bucket: process.env.S3_BUCKET_ID,
@@ -51,14 +44,7 @@ router.post("/", (req, res) => {
       console.log(`File uploaded successfully. ${data.Location}`);
     });
     return Data.Location;
-  }
-
-  // Execute Code and respond to client
-  uploadThumbnailToS3().then((resData) => {
-    res.status(201).json({ thumbUrl: resData });
-  }).catch((err) => {
-    res.status(400).json({ error: err });
-  });
+  } */
 
 });
 
