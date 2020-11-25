@@ -3,7 +3,7 @@ const { v1: uuidv1 } = require('uuid');
 const router = express.Router();
 
 const createThumbnail = require('../helpers/createThumbnail')
-const uploadLocalFileS3 = require('../helpers/uploadLocalFileS3')
+const uploadFileToS3 = require('../helpers/uploadFileToS3')
 
 // Post a URL of a pic and get a URL of its thumb on AWS S3
 router.post("/", async (req, res) => {
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
 
   createThumbnail(url, randomName)
     .then(thumbUrlLocal => {
-      uploadLocalFileS3(thumbUrlLocal, randomName)
+      uploadFileToS3(thumbUrlLocal, randomName)
         .then(thumbUrlS3 => {
           return res.status(401).json({ thumbUrl: thumbUrlS3 });
         });

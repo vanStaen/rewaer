@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
-const uploadLocalFileS3 = async (fileUrlLocal, key) => {
+const uploadFileToS3 = async (fileUrlLocal, key) => {
 
     // Define S3 bucket login info
     const s3 = await new AWS.S3({
@@ -31,7 +31,7 @@ const uploadLocalFileS3 = async (fileUrlLocal, key) => {
 
 }
 
-module.exports = uploadLocalFileS3;
+module.exports = uploadFileToS3;
 
 
 /*
