@@ -6,10 +6,13 @@ Rewaer Back End
 
 - [ ] Generate thumbnail
   - [x] create a thumbs endpoint
-  - [ ] create thumbnail in upload endpoint
+  - [x] create thumbnail in upload endpoint
   - [ ] upload thumbnail to S3
   - [ ] return thumbnail Url to front end
   - [ ] adapt look and item models for mediaURLthumb
+    - [x] models
+    - [ ] schemas
+    - [ ] resolvers
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] give a 7day TTL (time to live) to the refresh token stored in the database

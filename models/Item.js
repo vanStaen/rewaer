@@ -9,6 +9,10 @@ const ItemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  mediaUrlThumb: {
+    type: String,
+    required: true,
+  },
   dateCreated: {
     type: Date,
     default: Date.now,
