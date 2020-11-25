@@ -1,12 +1,9 @@
-const { LexRuntime } = require('aws-sdk');
 const Jimp = require('jimp');
-const { v1: uuidv1 } = require('uuid');
 
-const createThumbnail = async (originalImageUrl) => {
+const createThumbnail = async (originalImageUrl, randomName) => {
 
     const tempPath = './public/uploads/';
-    const tempFileName = uuidv1();
-    const tempURL = tempPath + tempFileName;
+    const tempURL = tempPath + randomName;
 
     const url = await Jimp.read(originalImageUrl)
         .then(image => {
