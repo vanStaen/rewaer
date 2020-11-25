@@ -17,10 +17,6 @@ const createThumbnail = async (originalImageUrl) => {
             //console.log('Pic was resized and saved', image);
             return tempURL;
         })
-        .then(imageURL => {
-            console.log('Thumb pic was generated', imageURL);
-            return imageURL;
-        })
         .catch(err => {
             console.error(err);
         });
@@ -31,7 +27,7 @@ const createThumbnail = async (originalImageUrl) => {
 module.exports = createThumbnail;
 
 /*
-### SOLUTION 1 ###
+### SOLUTION 1 : ASYNC/AWAIT ###
 async function testrun() {
     const finalURL = await createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg');
     console.log('Wait until it happens');
@@ -39,7 +35,7 @@ async function testrun() {
 }
 testrun();
 
-### SOLUTION 2 ###
+### SOLUTION 2 : THEN/CATCH ###
 createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg')
     .then(finalURL => {
         console.log('Wait until it happens');

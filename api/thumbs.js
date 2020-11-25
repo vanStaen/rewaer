@@ -21,12 +21,10 @@ router.post("/", async (req, res) => {
 
   createThumbnail(url)
     .then(finalURL => {
-      console.log('Wait until it happens');
       return res.status(401).json({ thumbURL: finalURL });
     });
 
   /*
-
   const uploadThumbnailToS3 = async () => {
     const tempURLThumb = await createThumbPic();
     console.log('2', tempURLThumb);
@@ -42,7 +40,8 @@ router.post("/", async (req, res) => {
       console.log(`File uploaded successfully. ${data.Location}`);
     });
     return Data.Location;
-  } */
+  } 
+  */
 
 });
 
