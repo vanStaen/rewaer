@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const fs = require('fs');
 
-const uploadFileToS3 = async (fileUrlLocal, key) => {
+const uploadFileFromUrlToS3 = async (fileUrlLocal, key) => {
 
     // Define S3 bucket login info
     const s3 = await new AWS.S3({
@@ -10,8 +10,8 @@ const uploadFileToS3 = async (fileUrlLocal, key) => {
         Bucket: process.env.S3_BUCKET_ID
     });
 
-    console.log('key', process.env.AWS_IAM_KEY)
-    console.log('secret-key', process.env.AWS_IAM_SECRET_KEY,)
+    //console.log('key', process.env.AWS_IAM_KEY)
+    //console.log('secret-key', process.env.AWS_IAM_SECRET_KEY,)
 
     const file = await fs.readFileSync(fileUrlLocal);
 
@@ -33,13 +33,13 @@ const uploadFileToS3 = async (fileUrlLocal, key) => {
 
 }
 
-module.exports = uploadFileToS3;
+module.exports = uploadFileFromUrlToS3;
 
 
 /*
 ### SOLUTION 1 : THEN/CATCH
 
-uploadLocalFileS3('./public/uploads/d7894ac0-2f45-11eb-af5b-1def7dbe0c26', 'd7894ac0-2f45-11eb-af5b-1def7dbe0c26')
+uploadFileFromUrlToS3('./public/uploads/d7894ac0-2f45-11eb-af5b-1def7dbe0c26', 'd7894ac0-2f45-11eb-af5b-1def7dbe0c26')
     .then(finalURL => {
         console.log('Wait until it happens');
         console.log(finalURL);
@@ -48,7 +48,7 @@ uploadLocalFileS3('./public/uploads/d7894ac0-2f45-11eb-af5b-1def7dbe0c26', 'd789
 ### SOLUTION 2 : AWAIT/SYNC
 
 async function testrun() {
-    const finalURL = await uploadLocalFileS3('./public/uploads/d7894ac0-2f45-11eb-af5b-1def7dbe0c26', 'd7894ac0-2f45-11eb-af5b-1def7dbe0c26')
+    const finalURL = await uploadFileFromUrlToS3('./public/uploads/d7894ac0-2f45-11eb-af5b-1def7dbe0c26', 'd7894ac0-2f45-11eb-af5b-1def7dbe0c26')
     console.log('Wait until it happens');
     console.log(finalURL);
 }
