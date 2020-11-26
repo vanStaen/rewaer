@@ -10,7 +10,7 @@ const deleteLocalFile = require('../helpers/deleteLocalFile')
 router.post("/", async (req, res) => {
 
   const url = req.body.url;
-  const fileName = uuidv1();
+  const fileName = "t_" + uuidv1();
 
   createThumbnail(url, fileName)
     .then(thumbUrlLocal => {
@@ -22,7 +22,6 @@ router.post("/", async (req, res) => {
           return res.status(400).json({ error: err });
         });
     });
-
 
 });
 
