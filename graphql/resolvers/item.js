@@ -27,6 +27,7 @@ exports.Item = {
     const item = new Item({
       user: req.userId,
       mediaUrl: args.itemInput.mediaUrl,
+      mediaUrlThumb: args.lookInput.mediaUrlThumb,
       category: args.itemInput.category,
       desc: args.itemInput.desc,
       colors: args.itemInput.colors,
@@ -45,6 +46,9 @@ exports.Item = {
     }
     if (args.itemInput.mediaUrl) {
       updateField.mediaUrl = args.itemInput.mediaUrl;
+    }
+    if (args.itemInput.mediaUrl) {
+      updateField.mediaUrlThumb = args.itemInput.mediaUrlThumb;
     }
     if (args.itemInput.category) {
       updateField.category = args.itemInput.category;

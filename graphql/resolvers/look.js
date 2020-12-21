@@ -17,8 +17,8 @@ exports.Look = {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
-    const removedLook = await Look.deleteOne({ _id: args.lookId });
-    return removedLook;
+    await Look.deleteOne({ _id: args.lookId });
+    return ({ success: "Delete was sucessful!" });
   },
   createLook: async (args, req) => {
     if (!req.isAuth) {
@@ -27,6 +27,7 @@ exports.Look = {
     const look = new Look({
       user: req.userId,
       mediaUrl: args.lookInput.mediaUrl,
+      mediaUrlThumb: args.lookInput.mediaUrlThumb,
       title: args.lookInput.title,
       items: args.lookInput.items,
       category: args.lookInput.category,
@@ -41,6 +42,9 @@ exports.Look = {
     const updateField = {};
     if (args.lookInput.mediaUrl) {
       updateField.mediaUrl = args.lookInput.mediaUrl;
+    }
+    if (args.lookInput.mediaUrl) {
+      updateField.mediaUrlThumb = args.lookInput.mediaUrlThumb;
     }
     if (args.lookInput.category) {
       updateField.category = args.lookInput.category;

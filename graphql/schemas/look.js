@@ -4,6 +4,7 @@ type Look {
     title: String
     user: String!
     mediaUrl: String!
+    mediaUrlThumb: String!
     dateCreated: String!
     items: [String!]
     category: [String]
@@ -14,6 +15,7 @@ type Look {
 exports.LookInputData = `
 input LookInputData {
     mediaUrl: String
+    mediaUrlThumb: String
     title: String
     items: [String]
     category: [String]
