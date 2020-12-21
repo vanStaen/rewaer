@@ -77,6 +77,10 @@ Use `heroku login` to log to your account. Then `git push heroku master`, you ca
 
 Use the custom script `npm run deploy` to run all of the above commant at once.
 
+#### Heroku CLI slow?
+Delete the .netrc file in the home folder (and maybe restart your IDE).
+`cmd+shift+point` to show hidden files on mac.
+
 #### Alternative host for an older me
 
 See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine.
