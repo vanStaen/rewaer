@@ -72,6 +72,7 @@ router.post('/', async (req, res, next) => {
                   thumbUrl: thumbUrlS3
                 });
               }).catch((err) => {
+                console.log(err)
                 return res.status(400).json({ error: err });
               });
           });
