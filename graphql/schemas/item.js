@@ -18,6 +18,7 @@ exports.ItemInputData = `
 input ItemInputData {
     mediaUrl: String
     mediaUrlThumb: String
+    title: String
     category: [String]
     desc: String
     colors: [String]
