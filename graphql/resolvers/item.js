@@ -5,7 +5,7 @@ exports.Item = {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
-    const items = await Item.find({ user: req.userId });
+    const items = await Item.find({ user: req.userId }).sort({ '_id': -1 });
     return items.map((item) => {
       return {
         ...item._doc,
@@ -27,7 +27,7 @@ exports.Item = {
     const item = new Item({
       user: req.userId,
       mediaUrl: args.itemInput.mediaUrl,
-      mediaUrlThumb: args.lookInput.mediaUrlThumb,
+      mediaUrlThumb: args.itemInput.mediaUrlThumb,
       title: args.itemInput.title,
       category: args.itemInput.category,
       desc: args.itemInput.desc,
@@ -48,8 +48,8 @@ exports.Item = {
     if (args.itemInput.mediaUrl) {
       updateField.mediaUrl = args.itemInput.mediaUrl;
     }
-    if (args.itemInput.mediaUrl) {
-      updateField.mediaUrlThumb = args.itemInput.mediaUrlThumb;
+    if (args.lookInput.mediaUrlThumb) {
+      updateField.mediaUrlThumb = args.lookInput.mediaUrlThumb;
     }
     if (args.itemInput.title) {
       updateField.title = args.itemInput.title;
