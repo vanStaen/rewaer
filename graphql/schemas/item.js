@@ -3,6 +3,7 @@ type Item {
     _id: ID!
     user: String!
     mediaUrl: String!
+    mediaUrlThumb: String!
     dateCreated: String!
     category: [String]
     desc: String
@@ -15,6 +16,7 @@ type Item {
 exports.ItemInputData = `
 input ItemInputData {
     mediaUrl: String
+    mediaUrlThumb: String
     category: [String]
     desc: String
     colors: [String]
