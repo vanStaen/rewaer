@@ -49,6 +49,9 @@ exports.Look = {
     if (args.lookInput.category) {
       updateField.category = args.lookInput.category;
     }
+    if (args.lookInput.title) {
+      updateField.title = args.lookInput.title;
+    }
     if (args.lookInput.items) {
       updateField.items = args.lookInput.items;
     }

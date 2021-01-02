@@ -4,6 +4,7 @@ type Item {
     user: String!
     mediaUrl: String!
     mediaUrlThumb: String!
+    title: String
     dateCreated: String!
     category: [String]
     desc: String

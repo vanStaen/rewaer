@@ -13,6 +13,10 @@ const ItemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  title: {
+    type: String,
+    required: false,
+  },
   dateCreated: {
     type: Date,
     default: Date.now,

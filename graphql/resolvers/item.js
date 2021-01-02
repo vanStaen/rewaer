@@ -28,6 +28,7 @@ exports.Item = {
       user: req.userId,
       mediaUrl: args.itemInput.mediaUrl,
       mediaUrlThumb: args.lookInput.mediaUrlThumb,
+      title: args.itemInput.title,
       category: args.itemInput.category,
       desc: args.itemInput.desc,
       colors: args.itemInput.colors,
@@ -49,6 +50,9 @@ exports.Item = {
     }
     if (args.itemInput.mediaUrl) {
       updateField.mediaUrlThumb = args.itemInput.mediaUrlThumb;
+    }
+    if (args.itemInput.title) {
+      updateField.title = args.itemInput.title;
     }
     if (args.itemInput.category) {
       updateField.category = args.itemInput.category;
