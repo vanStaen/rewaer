@@ -18,7 +18,7 @@ exports.Item = {
       throw new Error("Unauthenticated!");
     }
     const removedItem = await Item.deleteOne({ _id: args.itemId });
-    return removedItem;
+    return ({ _id: args.itemId });
   },
   createItem: async (args, req) => {
     if (!req.isAuth) {

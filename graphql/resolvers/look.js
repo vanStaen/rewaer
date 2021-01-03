@@ -18,7 +18,7 @@ exports.Look = {
       throw new Error("Unauthenticated!");
     }
     await Look.deleteOne({ _id: args.lookId });
-    return ({ success: "Delete was sucessful!" });
+    return ({ _id: args.lookId });
   },
   createLook: async (args, req) => {
     if (!req.isAuth) {
