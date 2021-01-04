@@ -11,11 +11,12 @@ const deleteLocalFile = require('../helpers/deleteLocalFile')
 // Limits size of 5MB
 const sizeLimits = { fileSize: 1024 * 1024 * 5 };
 
-// Allow only JPG nd PNG
+// Allow only JPG and PNG
 const fileFilter = (req, file, callback) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     callback(null, true)
   } else {
+    console.log("Wrong format!")
     callback(null, true)
   }
 }
