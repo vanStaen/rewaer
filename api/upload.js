@@ -3,7 +3,6 @@ const AWS = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const router = express.Router();
-const { v1: uuidv1 } = require('uuid');
 
 const createThumbnail = require('../helpers/createThumbnail')
 const uploadFileFromUrlToS3 = require('../helpers/uploadFileFromUrlToS3')
