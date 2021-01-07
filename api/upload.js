@@ -45,8 +45,8 @@ router.post('/', (req, res, next) => {
     return res.status(401).json({ error: "Unauthenticated" });
   next();
 }, (req, res) => {
+  console.log('Requested File: ', req.file);
   uploadS3(req, res, (error) => {
-    console.log('Requested File: ', req.file);
     if (error) {
       console.log('errors', error);
       res.json({ error: error });
