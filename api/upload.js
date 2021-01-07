@@ -39,6 +39,42 @@ const uploadS3 = multer({
   fileFilter: fileFilter
 }).single('file');
 
+
+router.post('/', (req, res, next) => {
+  if (!req.isAuth)
+    return res.status(401).json({ error: "Unauthenticated" });
+  next();
+}, (req, res) => {
+  uploadS3(req, res, (error) => {
+    console.log('Requested File: ', req.file);
+    if (error) {
+      console.log('errors', error);
+      res.json({ error: error });
+    } else {
+      // If File not found
+      if (req.file === undefined) {
+        console.log('Error: No File Selected!');
+        res.json('Error: No File Selected');
+      } else {
+        // If Success
+        const imageOriginalName = req.file.originalname;
+        const imageUrl = req.file.location;
+        // Return file name and file url to client
+        res.json({
+          imageOriginalName: imageOriginalName,
+          imageUrl: imageUrl,
+          thumbUrl: imageUrl
+        });
+      }
+    }
+  });
+});
+
+
+module.exports = router;
+
+/*
+
 router.post('/', async (req, res, next) => {
   if (!req.isAuth)
     return res.status(401).json({ error: "Unauthenticated" });
@@ -79,37 +115,5 @@ router.post('/', async (req, res, next) => {
   });
 });
 
-module.exports = router;
-
-/*
-
-router.post('/', (req, res, next) => {
-  if (!req.isAuth)
-    return res.status(401).json({ error: "Unauthenticated" });
-  next();
-}, (req, res) => {
-  uploadS3(req, res, (error) => {
-    //console.log('Requested File: ', req.file);
-    if (error) {
-      console.log('errors', error);
-      res.json({ error: error });
-    } else {
-      // If File not found
-      if (req.file === undefined) {
-        console.log('Error: No File Selected!');
-        res.json('Error: No File Selected');
-      } else {
-        // If Success
-        const imageOriginalName = req.file.originalname;
-        const imageUrl = req.file.location;
-        // Return file name and file url to client
-        res.json({
-          imageOriginalName: imageOriginalName,
-          imageUrl: imageUrl
-        });
-      }
-    }
-  });
-});
 
 */
