@@ -2,6 +2,7 @@
 
 ## To-dos:
 
+- [ ] User endpoint should create a User through the Auth Service "Passport"
 - [ ] Generate thumbnail
   - [x] create a thumbs endpoint
   - [x] create thumbnail in upload endpoint
