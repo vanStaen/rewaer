@@ -16,7 +16,7 @@ const uploadFileFromUrlToS3 = async (fileUrlLocal, key) => {
         Bucket: process.env.S3_BUCKET_ID,
         Key: key,
         Body: file,
-        acl: 'public-read',
+        ACL: 'public-read',
     };
 
     // Uploading files to the bucket
