@@ -10,27 +10,23 @@ const uploadFileFromUrlToS3 = async (fileUrlLocal, key) => {
         Bucket: process.env.S3_BUCKET_ID
     });
 
-    //console.log('key', process.env.AWS_IAM_KEY)
-    //console.log('secret-key', process.env.AWS_IAM_SECRET_KEY,)
-
     const file = await fs.readFileSync(fileUrlLocal);
 
     const params = {
         Bucket: process.env.S3_BUCKET_ID,
         Key: key,
-        Body: file
+        Body: file,
     };
 
     // Uploading files to the bucket
     await s3.upload(params, function (err, data) {
         if (err) { throw err; }
         console.log(`File uploaded successfully. ${data.Location}`);
-    });
-
+    }); 
+    
     const url = `https://${process.env.S3_BUCKET_ID}.s3.eu-central-1.amazonaws.com/${key}`
-
     return url;
-
+    
 }
 
 module.exports = uploadFileFromUrlToS3;

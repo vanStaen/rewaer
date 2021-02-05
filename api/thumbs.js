@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fs = require('fs');
 const { v1: uuidv1 } = require('uuid');
 
 const createThumbnail = require('../helpers/createThumbnail')
@@ -14,13 +15,15 @@ router.post("/", async (req, res) => {
 
   createThumbnail(url, fileName)
     .then(thumbUrlLocal => {
+      fs.watch(thumbUrlLocal, () => { 
       uploadFileFromUrlToS3(thumbUrlLocal, fileName)
-        .then(thumbUrlS3 => {
+      .then(thumbUrlS3 => {
           deleteLocalFile(fileName);
           return res.status(201).json({ thumbUrl: thumbUrlS3 });
         }).catch((err) => {
           return res.status(400).json({ error: err });
         });
+      });     
     });
 
 });
