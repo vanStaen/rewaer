@@ -81,7 +81,8 @@ router.delete("/:id", async (req, res) => {
   try {   
     var params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
     s3.deleteObject(params, function(err, data) {
-      console.log(`Object id${req.params.id} has been deleted`);
+      console.log(`Object id ${req.params.id} has been deleted`);
+      res.status(204).json({});
     });
   } catch (err) {
     res.status(400).json({
