@@ -70,6 +70,25 @@ router.post('/', (req, res, next) => {
   });
 });
 
+// DELETE single data from songbook (based on id)
+router.delete("/:id", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
+  try {   
+    var params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
+    s3.deleteObject(params, function(err, data) {
+      console.log(`Object id${req.params.id} has been deleted`);
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
 
 module.exports = router;
 
