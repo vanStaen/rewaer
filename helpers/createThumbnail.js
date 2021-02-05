@@ -8,7 +8,7 @@ const createThumbnail = async (originalImageUrl, randomName) => {
     const url = await Jimp.read(originalImageUrl)
         .then(image => {
             image
-                .resize(120, 120)
+                .resize(250, Jimp.AUTO )
                 .quality(60)
                 .writeAsync(tempURL);
             //console.log('Pic was resized and saved', image);
