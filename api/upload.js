@@ -22,8 +22,9 @@ const fileFilter = (req, file, callback) => {
   }
 }
 
-// Setup the AWS region
+// Setup the AWS
 AWS.config.region = 'eu-west-1';
+AWS.config.signatureVersion ='v4';
 
 // Define s23 bucket login info
 const s3 = new AWS.S3({
