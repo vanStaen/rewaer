@@ -4,7 +4,7 @@ const deleteLocalFile = async (fileName) => {
 
     const root = './public/uploads/';
     const path = root + fileName;
-    console.log(path);
+    //console.log(path);
 
     try {
         fs.unlinkSync(path);

@@ -25,7 +25,7 @@ const uploadFileFromUrlToS3 = async (fileUrlLocal, key) => {
     // Uploading files to the bucket
     await s3.upload(params, function (err, data) {
         if (err) { throw err; }
-        console.log(`File uploaded successfully. ${data.Location}`);
+        //console.log(`File uploaded successfully. ${data.Location}`);
     }); 
     
     const url = `https://${process.env.S3_BUCKET_ID}.s3.eu-central-1.amazonaws.com/${key}`
