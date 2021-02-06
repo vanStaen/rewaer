@@ -37,6 +37,7 @@ const uploadS3 = multer({
     acl: 'public-read',
     key: function (req, file, cb) {
       console.log("file.path", file.path);
+      console.log("file.originalname", file.originalname);
       cb(null, file.originalname);
   }
   }),
