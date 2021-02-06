@@ -38,11 +38,6 @@ const uploadS3 = multer({
     s3: s3,
     bucket: process.env.S3_BUCKET_ID,
     acl: 'public-read',
-    key: function (req, file, cb) {
-      console.log("file.path", file.path);
-      console.log("file.originalname", file.originalname);
-      cb(null, file.originalname);
-  }
   }),
   limits: sizeLimits,
   fileFilter: fileFilter
@@ -101,10 +96,13 @@ router.delete("/:id", async (req, res) => {
     return;
   }
   try {   
-    var params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
+    const params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
     s3.deleteObject(params, function(err, data) {
-      console.log(`Object id ${req.params.id} has been deleted`);
-      res.status(204).json({});
+      const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + req.params.id };
+      s3.deleteObject(paramsThumb, function(err, data) {      
+        res.status(204).json({});
+        //console.log(`Object id ${req.params.id} has been deleted`);
+      });
     });
   } catch (err) {
     res.status(400).json({
