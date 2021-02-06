@@ -19,6 +19,9 @@ const uploadFileFromUrlToS3 = async (fileUrlLocal, key) => {
         ACL: 'public-read',
     };
 
+    console.log("key", key);
+    console.log("file", file);
+
     // Uploading files to the bucket
     await s3.upload(params, function (err, data) {
         if (err) { throw err; }

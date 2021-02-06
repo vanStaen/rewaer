@@ -71,7 +71,8 @@ router.post('/', async (req, res, next) => {
 }, (req, res) => {
   uploadS3(req, res, (error) => {
     if (error) {
-      console.log('errors', error);
+      console.log('Upload s3, error: ', error);
+      console.log('File:', req.file)
       res.json({ error: error });
     } else {
       // If File not found
