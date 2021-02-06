@@ -8,7 +8,7 @@ const deleteLocalFile = async (fileName) => {
 
     try {
         fs.unlinkSync(path);
-        console.log(`File ${fileName} successfully deleted`);
+        //console.log(`File ${fileName} successfully deleted`);
     } catch (err) {
         console.log('error', err);
     }
