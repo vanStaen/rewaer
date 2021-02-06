@@ -36,36 +36,13 @@ const uploadS3 = multer({
     bucket: process.env.S3_BUCKET_ID,
     acl: 'public-read',
     key: function (req, file, cb) {
-        console.log(file);
-        cb(null, file.originalname);
-    }
+      console.log(file.originalname);
+      cb(null, file.originalname);
+  }
   }),
   limits: sizeLimits,
   fileFilter: fileFilter
 }).single('file');
-
-
-// DELETE single file object from s3 (based on key)
-router.delete("/:id", async (req, res) => {
-  if (!req.isAuth) {
-    res.status(401).json({
-      error: "Unauthorized",
-    });
-    return;
-  }
-  try {   
-    var params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
-    s3.deleteObject(params, function(err, data) {
-      console.log(`Object id ${req.params.id} has been deleted`);
-      res.status(204).json({});
-    });
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-
 
 // POST single file object to s3
 router.post('/', async (req, res, next) => {
@@ -109,6 +86,29 @@ router.post('/', async (req, res, next) => {
     }
   });
 });
+
+
+// DELETE single file object from s3 (based on key)
+router.delete("/:id", async (req, res) => {
+  if (!req.isAuth) {
+    res.status(401).json({
+      error: "Unauthorized",
+    });
+    return;
+  }
+  try {   
+    var params = {  Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
+    s3.deleteObject(params, function(err, data) {
+      console.log(`Object id ${req.params.id} has been deleted`);
+      res.status(204).json({});
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
+
 
 module.exports = router;
 
