@@ -22,6 +22,9 @@ const fileFilter = (req, file, callback) => {
   }
 }
 
+// Setup the AWS region
+AWS.config.region = 'eu-west-1';
+
 // Define s23 bucket login info
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_IAM_KEY,
