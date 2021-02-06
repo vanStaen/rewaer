@@ -9,8 +9,8 @@ const createThumbnail = require('../helpers/createThumbnail')
 const uploadFileFromUrlToS3 = require('../helpers/uploadFileFromUrlToS3')
 const deleteLocalFile = require('../helpers/deleteLocalFile')
 
-// Limits size of 5MB
-const sizeLimits = { fileSize: 1024 * 1024 * 5 };
+// Limits size of 10MB
+const sizeLimits = { fileSize: 1024 * 1024 * 10 };
 
 // Allow only JPG and PNG
 const fileFilter = (req, file, callback) => {
@@ -35,6 +35,10 @@ const uploadS3 = multer({
     s3: s3,
     bucket: process.env.S3_BUCKET_ID,
     acl: 'public-read',
+    key: function (req, file, cb) {
+        console.log(file);
+        cb(null, file.originalname);
+    }
   }),
   limits: sizeLimits,
   fileFilter: fileFilter
@@ -72,7 +76,6 @@ router.post('/', async (req, res, next) => {
   uploadS3(req, res, (error) => {
     if (error) {
       console.log('Upload s3, error: ', error);
-      console.log('File:', req.file)
       res.json({ error: error });
     } else {
       // If File not found
