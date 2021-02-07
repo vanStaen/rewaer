@@ -1,6 +1,7 @@
 const Item = require("../../models/Item");
 
 exports.Item = {
+
   items: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
@@ -13,13 +14,23 @@ exports.Item = {
       };
     });
   },
+
   deleteItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
-    const removedItem = await Item.deleteOne({ _id: args.itemId });
+    const itemToDelete = await Item.findOne({ _id: args.itemId });
+    const s3ObjectID = itemToDelete.mediaUrl.split("/").slice(-1)[0];
+    const params = {  Bucket: process.env.S3_BUCKET_ID, Key: s3ObjectID };
+      s3.deleteObject(params, function(err, data) {
+        const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + s3ObjectID };
+        s3.deleteObject(paramsThumb, function(err, data) { 
+        });
+      });
+    await Item.deleteOne({ _id: args.itemId });
     return ({ _id: args.itemId });
   },
+
   createItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
@@ -37,6 +48,7 @@ exports.Item = {
     const savedItem = await item.save();
     return savedItem;
   },
+
   updateItem: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");

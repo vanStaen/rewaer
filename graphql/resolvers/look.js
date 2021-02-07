@@ -1,6 +1,15 @@
 const Look = require("../../models/Look");
+const AWS = require('aws-sdk');
+
+// Define s3 bucket login info
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_IAM_KEY,
+  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
+  Bucket: process.env.S3_BUCKET_ID
+});
 
 exports.Look = {
+
   looks: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
@@ -13,13 +22,23 @@ exports.Look = {
       };
     });
   },
+
   deleteLook: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
     }
+    const lookToDelete = await Look.findOne({ _id: args.lookId });
+    const s3ObjectID = lookToDelete.mediaUrl.split("/").slice(-1)[0];
+    const params = {  Bucket: process.env.S3_BUCKET_ID, Key: s3ObjectID };
+      s3.deleteObject(params, function(err, data) {
+        const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + s3ObjectID };
+        s3.deleteObject(paramsThumb, function(err, data) { 
+        });
+      });
     await Look.deleteOne({ _id: args.lookId });
     return ({ _id: args.lookId });
   },
+
   createLook: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
@@ -35,6 +54,7 @@ exports.Look = {
     const savedLook = await look.save();
     return savedLook;
   },
+
   updateLook: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
