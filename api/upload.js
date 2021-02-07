@@ -26,7 +26,7 @@ const fileFilter = (req, file, callback) => {
 AWS.config.region = 'eu-west-1';
 AWS.config.signatureVersion ='v4';
 
-// Define s23 bucket login info
+// Define s3 bucket login info
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_IAM_KEY,
   secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
@@ -69,7 +69,7 @@ router.post('/', async (req, res, next) => {
             fs.watch(thumbUrlLocal, () => { 
             uploadFileFromUrlToS3(thumbUrlLocal, thumbName)
               .then(thumbUrlS3 => {
-                deleteLocalFile(thumbName);
+                //deleteLocalFile(thumbName);
                 // Return file name and file url to client
                 return res.status(200).json({
                   imageOriginalName: imageOriginalName,
