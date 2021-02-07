@@ -69,7 +69,7 @@ router.post('/', async (req, res, next) => {
             fs.watch(thumbUrlLocal, () => { 
             uploadFileFromUrlToS3(thumbUrlLocal, thumbName)
               .then(thumbUrlS3 => {
-                //deleteLocalFile(thumbName);
+                deleteLocalFile(thumbName);
                 // Return file name and file url to client
                 return res.status(200).json({
                   imageOriginalName: imageOriginalName,
