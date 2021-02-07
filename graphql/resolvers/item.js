@@ -1,4 +1,12 @@
 const Item = require("../../models/Item");
+const AWS = require('aws-sdk');
+
+// Define s3 bucket login info
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_IAM_KEY,
+  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
+  Bucket: process.env.S3_BUCKET_ID
+});
 
 exports.Item = {
 
@@ -60,8 +68,8 @@ exports.Item = {
     if (args.itemInput.mediaUrl) {
       updateField.mediaUrl = args.itemInput.mediaUrl;
     }
-    if (args.lookInput.mediaUrlThumb) {
-      updateField.mediaUrlThumb = args.lookInput.mediaUrlThumb;
+    if (args.itemInput.mediaUrlThumb) {
+      updateField.mediaUrlThumb = args.itemInput.mediaUrlThumb;
     }
     if (args.itemInput.title) {
       updateField.title = args.itemInput.title;
