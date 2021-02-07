@@ -7,11 +7,11 @@ const createThumbnail = async (originalImageUrl, randomName) => {
 
     const url = await Jimp.read(originalImageUrl)
         .then(image => {
+            if (image.bitmap.width > image.bitmap.length) {image.rotate(270)}
             image
-                .resize(250, Jimp.AUTO )
+                .resize(240, Jimp.AUTO, Jimp.RESIZE_BILINEAR)
                 .quality(60)
-                .writeAsync(tempURL);
-            //console.log('Pic was resized and saved', image);
+                .writeAsync(tempURL)
             return tempURL;
         })
         .catch(err => {
@@ -22,20 +22,3 @@ const createThumbnail = async (originalImageUrl, randomName) => {
 }
 
 module.exports = createThumbnail;
-
-/*
-### SOLUTION 1 : ASYNC/AWAIT ###
-async function testrun() {
-    const finalURL = await createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg');
-    console.log('Wait until it happens');
-    console.log(finalURL);
-}
-testrun();
-
-### SOLUTION 2 : THEN/CATCH ###
-createThumbnail('https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg')
-    .then(finalURL => {
-        console.log('Wait until it happens');
-        console.log(finalURL);
-    });
-*/
