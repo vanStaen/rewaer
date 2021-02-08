@@ -59,7 +59,7 @@ app.use(
     schema: graphqlSchema,
     rootValue: graphqlResolver,
     graphiql: false,
-    formatError: (err) => {
+    customFormatErrorFn: (err) => {
       const error = getErrorCode(err.message)
       const message = error.message || "Something went wrong with GraphQL!";
       const code = error.statusCode || 500;
