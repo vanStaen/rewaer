@@ -105,7 +105,9 @@ Types are :
 
 - Query: get data (like a GET)
 - Mutation: change data (like a POST, PUT, PATCH, DELETE)
-  Instead of controller (handling a route), resolvers are use to resovle a type.
+  Instead of controller (handling a route), resolvers are use to resolve a type.
+
+The error handling is a bit more complicated as with a normal REST API. This tutorial gives a good solution that have been implemented in this project: https://medium.com/@estrada9166/return-custom-errors-with-status-code-on-graphql-45fca360852.
 
 ## .ENV
 

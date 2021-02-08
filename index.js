@@ -7,6 +7,11 @@ const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 const logger = require("./middleware/logger");
 const isAuth = require("./middleware/is-auth");
+const { errorType } = require("./config/errors")
+
+const getErrorCode = errorName => {
+  return errorType[errorName];
+}
 
 const PORT = process.env.PORT || 5000;
 require("dotenv/config");
@@ -18,7 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Allow cross orign request
+// Allow cross origin request
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
@@ -29,7 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Logger Middelware
+// Logger Middleware
 app.use(logger);
 
 // Set Static folder
@@ -54,19 +59,16 @@ app.use(
     schema: graphqlSchema,
     rootValue: graphqlResolver,
     graphiql: false,
-    customFormatErrorFn(err) {
-      if (!err.originalError) {
-        return err;
-      }
-      const data = err.originalError.data;
-      const message = err.message || "Something went wrong with GraphQL!";
-      const code = err.originalError.code || 500;
-      return { message: message, status: code, data: data };
-    },
+    formatError: (err) => {
+      const error = getErrorCode(err.message)
+      const message = error.message || "Something went wrong with GraphQL!";
+      const code = error.statusCode || 500;
+      return { message: message, status: code };
+    }
   })
 );
 
-// Fix moongoose deprecation warning
+// Fix mongoose deprecation warning
 mongoose.set('useCreateIndex', true);
 
 // Connect to Mongo db

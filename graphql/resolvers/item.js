@@ -1,4 +1,5 @@
 const Item = require("../../models/Item");
+const { errorName } = require("../../config/errors")
 const AWS = require('aws-sdk');
 
 // Define s3 bucket login info
@@ -12,7 +13,7 @@ exports.Item = {
 
   items: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const items = await Item.find({ user: req.userId }).sort({ '_id': -1 });
     return items.map((item) => {
@@ -25,7 +26,7 @@ exports.Item = {
 
   deleteItem: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const itemToDelete = await Item.findOne({ _id: args.itemId });
     const s3ObjectID = itemToDelete.mediaUrl.split("/").slice(-1)[0];
@@ -41,7 +42,7 @@ exports.Item = {
 
   createItem: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const item = new Item({
       user: req.userId,
@@ -59,7 +60,7 @@ exports.Item = {
 
   updateItem: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const updateField = {};
     if (args.itemInput.user) {

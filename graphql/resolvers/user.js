@@ -1,11 +1,13 @@
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
+const { errorName } = require("../../config/errors")
 require("dotenv/config");
 
 exports.User = {
+  
   user: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const users = await User.find({ _id: req.userId });
     return users.map((user) => {
@@ -15,11 +17,12 @@ exports.User = {
       };
     });
   },
+
   createUser: (args, req) => {
     return User.findOne({ email: args.userInput.email })
       .then((user) => {
         if (user) {
-          throw new Error("There is already an account associated to this email.");
+          throw new Error(errorName.EMAIL_ALREADY_IN_USE);
         }
         return bcrypt.hash(args.userInput.password, 12);
       })
@@ -39,9 +42,10 @@ exports.User = {
         throw err;
       });
   },
+
   updateUser: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const updateField = {};
     if (args.userInput.name) {
@@ -56,7 +60,6 @@ exports.User = {
     if (args.userInput.active !== undefined) {
       updateField.active = args.userInput.active;
     }
-
     const updatedUser = await User.updateOne(
       { _id: args.userId },
       { $set: updateField }

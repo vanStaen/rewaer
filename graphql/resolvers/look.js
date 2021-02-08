@@ -1,4 +1,5 @@
 const Look = require("../../models/Look");
+const { errorName } = require("../../config/errors")
 const AWS = require('aws-sdk');
 
 // Define s3 bucket login info
@@ -12,7 +13,7 @@ exports.Look = {
 
   looks: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const looks = await Look.find({ user: req.userId }).sort({ '_id': -1 });
     return looks.map((look) => {
@@ -25,7 +26,7 @@ exports.Look = {
 
   deleteLook: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const lookToDelete = await Look.findOne({ _id: args.lookId });
     const s3ObjectID = lookToDelete.mediaUrl.split("/").slice(-1)[0];
@@ -41,7 +42,7 @@ exports.Look = {
 
   createLook: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const look = new Look({
       user: req.userId,
@@ -57,7 +58,7 @@ exports.Look = {
 
   updateLook: async (args, req) => {
     if (!req.isAuth) {
-      throw new Error("Unauthenticated!");
+      throw new Error(errorName.UNAUTHORIZED);
     }
     const updateField = {};
     if (args.lookInput.mediaUrl) {
