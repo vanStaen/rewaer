@@ -48,6 +48,7 @@ exports.Look = {
       user: req.userId,
       mediaUrl: args.lookInput.mediaUrl,
       mediaUrlThumb: args.lookInput.mediaUrlThumb,
+      mediaUrlMedium: args.lookInput.mediaUrlMedium,
       title: args.lookInput.title,
       items: args.lookInput.items,
       category: args.lookInput.category,
@@ -66,6 +67,9 @@ exports.Look = {
     }
     if (args.lookInput.mediaUrlThumb) {
       updateField.mediaUrlThumb = args.lookInput.mediaUrlThumb;
+    }
+    if (args.lookInput.mediaUrlMedium) {
+      updateField.mediaUrlMedium = args.lookInput.mediaUrlMedium;
     }
     if (args.lookInput.category) {
       updateField.category = args.lookInput.category;
