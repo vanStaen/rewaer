@@ -71,13 +71,25 @@ router.post('/', async (req, res, next) => {
             uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb)
               .then(UrlThumbS3 => {
                 deleteLocalFile(nameImageThumb)
-                .then(() => {
-                  // Return file name and file url to client
-                  return res.status(200).json({
-                    imageOriginalName: imageOriginalName,
-                    imageUrl: imageUrl,
-                    thumbUrl: UrlThumbS3
-                  });
+                .then(() => {                  
+                  resizeImage(imageUrl, nameImageMedium, 750, 60)
+                    .then(mediumUrlLocal => {
+                      fs.watch(mediumUrlLocal, () => { 
+                      uploadFileFromUrlToS3(mediumUrlLocal, nameImageMedium)
+                        .then(UrlMediumbS3 => {
+                          deleteLocalFile(nameImageMedium)
+                          .then(() => {
+                            // Return file name and file url to client
+                            return res.status(200).json({
+                              imageOriginalName: imageOriginalName,
+                              imageUrl: imageUrl,
+                              thumbUrl: UrlThumbS3,
+                              mediumUrl: UrlMediumbS3
+                            });
+                         })
+                      })
+                     })
+                  })
                 })
                }).catch((err) => {
                 console.log(err)
