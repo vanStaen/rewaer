@@ -3,15 +3,7 @@
 ## To-dos:
 
 - [ ] User endpoint should create a User through the Auth Service "Passport"
-- [ ] Generate thumbnail
-  - [x] create a thumbs endpoint
-  - [x] create thumbnail in upload endpoint
-  - [ ] upload thumbnail to S3
-  - [ ] return thumbnail Url to front end
-  - [ ] adapt look and item models for mediaURLthumb
-    - [x] models
-    - [ ] schemas
-    - [ ] resolvers
+
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] give a 7day TTL (time to live) to the refresh token stored in the database
@@ -42,3 +34,9 @@
   - [x] return a fileURL to FE
 - [x] Refresh JWT token (auth server)
 - [x] Restraint/filter result for userID (is_auth delivers the user ID)
+- [x] Generate thumbnail
+  - [x] create a thumbs endpoint
+  - [x] create thumbnail in upload endpoint
+  - [x] upload thumbnail to S3
+  - [x] return thumbnail Url to front end
+  - [x] adapt look and item models for mediaURLthumb/medium
