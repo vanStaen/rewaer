@@ -1,6 +1,6 @@
 const Jimp = require('jimp');
 
-const createThumbnail = async (originalImageUrl, randomName) => {
+const resizeImage = async (originalImageUrl, randomName, size, quality) => {
 
     const tempPath = './public/uploads/';
     const tempURL = tempPath + randomName;
@@ -9,8 +9,8 @@ const createThumbnail = async (originalImageUrl, randomName) => {
         .then(image => {
             if (image.bitmap.width > image.bitmap.length) {image.rotate(270)}
             image
-                .resize(240, Jimp.AUTO, Jimp.RESIZE_BILINEAR)
-                .quality(60)
+                .resize(size, Jimp.AUTO, Jimp.RESIZE_BILINEAR)
+                .quality(quality)
                 .writeAsync(tempURL)
             return tempURL;
         })
@@ -21,4 +21,4 @@ const createThumbnail = async (originalImageUrl, randomName) => {
     return url;
 }
 
-module.exports = createThumbnail;
+module.exports = resizeImage;

@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const { v1: uuidv1 } = require('uuid');
 
-const createThumbnail = require('../helpers/createThumbnail')
+const resizeImage = require('../helpers/resizeImage')
 const uploadFileFromUrlToS3 = require('../helpers/uploadFileFromUrlToS3')
 const deleteLocalFile = require('../helpers/deleteLocalFile')
 
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
   const url = req.body.url;
   const fileName = "t_" + uuidv1();
 
-  createThumbnail(url, fileName)
+  resizeImage(url, fileName, 240, 60)
     .then(thumbUrlLocal => {
       fs.watch(thumbUrlLocal, () => { 
       uploadFileFromUrlToS3(thumbUrlLocal, fileName)

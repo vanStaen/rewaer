@@ -5,7 +5,7 @@ const multerS3 = require('multer-s3');
 const router = express.Router();
 const fs = require('fs');
 
-const createThumbnail = require('../helpers/createThumbnail')
+const resizeImage = require('../helpers/resizeImage')
 const uploadFileFromUrlToS3 = require('../helpers/uploadFileFromUrlToS3')
 const deleteLocalFile = require('../helpers/deleteLocalFile')
 
@@ -62,20 +62,21 @@ router.post('/', async (req, res, next) => {
         // If Success
         const imageOriginalName = req.file.originalname;
         const imageUrl = req.file.location;
-        const thumbName = "t_" + req.file.key;
+        const nameImageThumb = "t_" + req.file.key;
+        const nameImageMedium = "m_" + req.file.key;
         // Create Thumbnail
-        createThumbnail(imageUrl, thumbName)
+        resizeImage(imageUrl, nameImageThumb, 240, 60)
           .then(thumbUrlLocal => {
             fs.watch(thumbUrlLocal, () => { 
-            uploadFileFromUrlToS3(thumbUrlLocal, thumbName)
-              .then(thumbUrlS3 => {
-                deleteLocalFile(thumbName)
+            uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb)
+              .then(UrlThumbS3 => {
+                deleteLocalFile(nameImageThumb)
                 .then(() => {
                   // Return file name and file url to client
                   return res.status(200).json({
                     imageOriginalName: imageOriginalName,
                     imageUrl: imageUrl,
-                    thumbUrl: thumbUrlS3
+                    thumbUrl: UrlThumbS3
                   });
                 })
                }).catch((err) => {
