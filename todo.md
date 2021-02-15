@@ -3,7 +3,6 @@
 ## To-dos:
 
 - [ ] User endpoint should create a User through the Auth Service "Passport"
-
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] give a 7day TTL (time to live) to the refresh token stored in the database

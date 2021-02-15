@@ -33,7 +33,10 @@ exports.Item = {
     const params = {  Bucket: process.env.S3_BUCKET_ID, Key: s3ObjectID };
       s3.deleteObject(params, function(err, data) {
         const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + s3ObjectID };
-        s3.deleteObject(paramsThumb, function(err, data) { 
+          s3.deleteObject(paramsThumb, function(err, data) { 
+            const paramsMedium = {  Bucket: process.env.S3_BUCKET_ID, Key: "m_" + s3ObjectID };
+            s3.deleteObject(paramsMedium, function(err, data) { 
+          });
         });
       });
     await Item.deleteOne({ _id: args.itemId });
