@@ -71,7 +71,7 @@ router.post(
           .then((thumbUrlLocal) => {
               fs.watch(thumbUrlLocal, () => {
                 uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb)
-                  .then((UrlThumbS3) => {
+                .then((UrlThumbS3) => {
                     resizeImage(imageUrl, nameImageMedium, 750, 60)
                     .then((mediumUrlLocal) => {
                         fs.watch(mediumUrlLocal, () => {
@@ -98,14 +98,14 @@ router.post(
                         console.log(err);
                         return res.status(400).json({ error: err });
                       });
-                  })
-                  .then(() => {
-                    deleteLocalFile(nameImageThumb);
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                    return res.status(400).json({ error: err });
-                  });
+                })
+                .then(() => {
+                  deleteLocalFile(nameImageThumb);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  return res.status(400).json({ error: err });
+                });
               });
             }
           );
