@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   }
   // Authorization: Bearer <token>
   const token = authHeader.split(" ")[1];
-  if (!token || token === "") {
+  if (!token || token === "undefined" || token === "") {
     req.isAuth = false;
     return next();
   }
