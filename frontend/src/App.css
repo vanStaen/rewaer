@@ -1,0 +1,6 @@
+/*@import "~antd/dist/antd.css";*/
+@import "../src/style/rewaer-antd.css";
+
+.main-content {
+  margin: 2rem 3rem;
+}

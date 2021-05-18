@@ -1,0 +1,11 @@
+.ant-card-meta {
+  text-align: center;
+}
+
+.card__spinner {
+  text-align: center;
+  border-radius: 4px;
+  padding-top: 160px;
+  width: 240px;
+  height: 320px;
+}

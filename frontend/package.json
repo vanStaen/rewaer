@@ -1,0 +1,42 @@
+{
+  "name": "rewaer_frontend",
+  "version": "0.1.0",
+  "description": "Rewaer App, FrontEnd",
+  "scripts": {
+    "start": "react-scripts start",
+    "prebuild": "rm -rf ../build",
+    "build": "npm i; react-scripts build",
+    "postbuild": "mv build ../",
+    "test": "react-scripts test"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "antd": "^4.7.3",
+    "axios": "^0.21.1",
+    "jsonwebtoken": "^8.5.1",
+    "mobx": "^6.1.7",
+    "mobx-react": "^7.0.5",
+    "moment": "^2.29.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
