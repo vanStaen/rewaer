@@ -17,18 +17,13 @@ The server can be access (after being started) on http://localhost:5000/ locally
 
 ### Online
 
-You can access the deployed version under: https://rewaer-backend.herokuapp.com/
-
-Here is a curl exemple to access the users endpoint:
-
-```
-curl --location --request GET 'https://rewaer-backend.herokuapp.com/api/users'
-```
+You can access the deployed version under: https://rewaer.herokuapp.com/
+Here is a *curl* exemple to access the users endpoint:`curl --location --request GET 'https://rewaer.herokuapp.com/api/users'`
 
 ### Debug
 
 To access heroku's log, run `heroku logs --tail` in the terminal.
-The log's saved by the index.js page can be seen at https://rewaer-backend.herokuapp.com/log
+The log's saved by the index.js page can be seen at https://rewaer.herokuapp.com/log
 
 ## DATABASE
 
@@ -71,7 +66,7 @@ The server is at the moment hosted on heroku.com. Usual Login, usual pwd!</br>
 
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 
-Then, for existing repositories, simply add the heroku remote to git with `heroku git:remote -a rewaer-backend`.
+Then, for existing repositories, simply add the heroku remote to git with `heroku git:remote -a rewaer`.
 
 Use `heroku login` to log to your account. Then `git push heroku master`, you can deploy the app. `heroku open` to get the app opened in your browser.
 
@@ -113,7 +108,7 @@ The error handling is a bit more complicated as with a normal REST API. This tut
 
 Private or sensible data can be stored and access into and form a .env file: This is listed in the .gitignore, and should never get pushed to git.
 
-Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config Vars` : https://dashboard.heroku.com/apps/rewaer-backend/settings. (more info in the documentation : https://devcenter.heroku.com/articles/config-vars)
+Every variable saved in this file should be created in Heroku too, in order to be available to the app in live production. Therefore, one need to add those under `settings/Config Vars` : https://dashboard.heroku.com/apps/rewaer/settings. (more info in the documentation : https://devcenter.heroku.com/articles/config-vars)
 
 The following config vars are needed for this back end:
 

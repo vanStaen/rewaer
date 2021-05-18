@@ -5,7 +5,6 @@ const { graphqlHTTP } = require("express-graphql");
 
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
-const logger = require("./middleware/logger");
 const isAuth = require("./middleware/is-auth");
 const { errorType } = require("./config/errors")
 
@@ -23,6 +22,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Authorization Middleware
+app.use(isAuth);
+
 // Allow cross origin request
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -34,19 +36,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// Logger Middleware
-app.use(logger);
+// Set up for React
+app.use(express.static(path.join(__dirname, "build")));
+app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
 
-// Set Static folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Static pointing to the logs
-app.get("/log", (req, res) => {
-  res.sendFile(path.join(__dirname, "routes.log"));
-});
-
-// Authorization Middleware
-app.use(isAuth);
 
 // Router to API
 app.use("/upload", require("./api/upload"));
