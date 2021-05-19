@@ -14,8 +14,6 @@ import {
 
 import "./MenuBar.css";
 
-const { SubMenu } = Menu;
-
 class MenuBar extends Component {
   constructor(props) {
     super(props);
