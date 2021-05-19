@@ -67,13 +67,13 @@ const App = observer(() => {
                 <Redirect from="/friends" to="/auth" exact />
               )}
               {!authStore.refreshToken && (
-                <Redirect from="/profile" to="/auth" exact />
+                <Redirect from="/profil" to="/auth" exact />
               )}
               {authStore.refreshToken && (
-                <Redirect from="/" to="/profile" exact />
+                <Redirect from="/" to="/profil" exact />
               )}
               {authStore.refreshToken && (
-                <Redirect from="/auth" to="/profile" exact />
+                <Redirect from="/auth" to="/profil" exact />
               )}
               {authStore.refreshToken && (
                 <Route path="/looks" component={LooksPage} />
@@ -88,7 +88,7 @@ const App = observer(() => {
                 <Route path="/friends" component={FriendsPage} />
               )}
               {authStore.refreshToken && (
-                <Route path="/profile" component={ProfilPage} />
+                <Route path="/profil" component={ProfilPage} />
               )}
               <Route path="/info" component={InfoPage} />
             </Switch>
