@@ -52,7 +52,7 @@ router.post(
     next();
   },
   (req, res) => {
-    uploadS3(req, res, (error) => {
+    uploadS3(req, res, async (error) => {
       if (error) {
         console.log("Upload s3, error: ", error);
         res.json({ error: error });
@@ -61,54 +61,39 @@ router.post(
         if (req.file === undefined) {
           res.json({ Error: "No File Selected" });
         } else {
-          // If Success
           const imageOriginalName = req.file.originalname;
           const imageUrl = req.file.location;
           const nameImageThumb = "t_" + req.file.key;
           const nameImageMedium = "m_" + req.file.key;
-          // Create Thumbnail
-          resizeImage(imageUrl, nameImageThumb, 240, 60)
-          .then((thumbUrlLocal) => {
-              fs.watch(thumbUrlLocal, () => {
-                uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb)
-                .then((UrlThumbS3) => {
-                    resizeImage(imageUrl, nameImageMedium, 750, 60)
-                    .then((mediumUrlLocal) => {
-                        fs.watch(mediumUrlLocal, () => {
-                          uploadFileFromUrlToS3(mediumUrlLocal, nameImageMedium)
-                            .then((UrlMediumbS3) => {
-                              // Return file name and file url to client
-                              return res.status(200).json({
-                                imageOriginalName: imageOriginalName,
-                                imageUrl: imageUrl,
-                                thumbUrl: UrlThumbS3,
-                                mediumUrl: UrlMediumbS3,
-                              });
-                            })
-                            .then(() => {
-                              deleteLocalFile(nameImageMedium);
-                            })
-                            .catch((err) => {
-                              console.log(err);
-                              return res.status(400).json({ error: err });
-                            });
-                        });
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                        return res.status(400).json({ error: err });
-                      });
-                })
-                .then(() => {
-                  deleteLocalFile(nameImageThumb);
-                })
-                .catch((err) => {
-                  console.log(err);
-                  return res.status(400).json({ error: err });
-                });
-              });
-            }
-          );
+          // If file, upload to S3
+          try {
+            const [thumbUrlLocal, mediumUrlLocal] = await Promise.all([
+              resizeImage(imageUrl, nameImageThumb, 240, 60),
+              resizeImage(imageUrl, nameImageMedium, 750, 60),
+            ]);
+            const [UrlThumbS3, UrlMediumbS3] = await Promise.all([
+              uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb),
+              uploadFileFromUrlToS3(mediumUrlLocal, nameImageMedium),
+            ]);
+            // Delete locally stored files
+            await Promise.all([
+              deleteLocalFile(nameImageMedium),
+              deleteLocalFile(nameImageThumb),
+            ]);
+            // Return file name and file url to client
+            return res.status(200).json({
+              message: "Upload success!",
+              id: req.file.key,
+              imageOriginalName: imageOriginalName,
+              imageUrl: imageUrl,
+              thumbUrl: UrlThumbS3,
+              mediumUrl: UrlMediumbS3,
+            });
+          }
+          catch (err) {
+            console.log(err);
+            return res.status(400).json({ error: err });
+          };         
         }
       }
     });
@@ -124,17 +109,19 @@ router.delete("/:id", async (req, res) => {
     return;
   }
   try {
-    const params = { Bucket: process.env.S3_BUCKET_ID, Key: req.params.id };
-    s3.deleteObject(params, function (err, data) {
-      const paramsThumb = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: "t_" + req.params.id,
-      };
-      s3.deleteObject(paramsThumb, function (err, data) {
-        res.status(204).json({});
-        //console.log(`Object id ${req.params.id} has been deleted`);
-      });
-    });
+    const params = { 
+      Bucket: process.env.S3_BUCKET_ID, 
+      Key: req.params.id 
+    };
+    const paramsThumb = {
+      Bucket: process.env.S3_BUCKET_ID,
+      Key: "t_" + req.params.id,
+    };
+    await Promise.all([    
+      s3.deleteObject(params, function (err, data) {}),
+      s3.deleteObject(paramsThumb, function (err, data) {}),
+    ]);
+    res.status(204).json({});
   } catch (err) {
     res.status(400).json({
       error: `${err}`,
