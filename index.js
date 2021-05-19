@@ -43,6 +43,10 @@ app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.h
 
 // Router to API
 app.use("/upload", require("./api/upload"));
+app.use("/user", require("./api/user"));
+app.use("/login", require("./api/login"));
+app.use("/token", require("./api/token"));
+app.use("/logout", require("./api/logout"));
 
 // GraphQL
 app.use(

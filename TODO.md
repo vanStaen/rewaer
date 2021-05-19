@@ -2,7 +2,6 @@
 
 ## To-dos:
 
-- [ ] User endpoint should create a User through the Auth Service "Passport"
 - [ ] Write tests
 - [ ] Run test on deploy
 - [ ] give a 7day TTL (time to live) to the refresh token stored in the database
@@ -20,11 +19,8 @@
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
-- [ ] On nofile select, do not create item/look
-- [ ] Merge FRONT- and BACKEND into one project
+- [ ] On no-file select, do not create item/look
 - [ ] Merge README's
-- [ ] Refactor upload endpoints
-- [ ] Merge Auth service
 
 ## Completed ✓
 
@@ -99,3 +95,4 @@
   - [ ] ~Route Store saved in context~
     - [ ] ~Save all sub-Stores in a main store~
     - [ ] ~Save the main Store into the context~
+- [x] Merge Auth service
