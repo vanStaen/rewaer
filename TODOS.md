@@ -24,6 +24,7 @@
 - [ ] Merge FRONT- and BACKEND into one project
 - [ ] Merge README's
 - [ ] Refactor upload endpoints
+- [ ] Merge Auth service
 
 ## Completed ✓
 
