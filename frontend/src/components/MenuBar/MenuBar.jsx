@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { authStore } from '../../stores/authStore';
+import { authStore } from "../../stores/authStore";
 import { NavLink } from "react-router-dom";
 import { Menu, Avatar, Badge } from "antd";
 import {
@@ -29,7 +29,6 @@ class MenuBar extends Component {
   };
 
   render() {
-
     const { menuSelected } = this.state;
 
     return (
@@ -49,40 +48,27 @@ class MenuBar extends Component {
         >
           Rewær, the green Fashion App
         </span>
+
         {authStore.refreshToken ? (
-          <SubMenu
-            key="profile"
-            title={
-              <NavLink to="/profile">
-                <Badge count={5} offset={[0, 5]}>
-                  <Avatar
-                    src={"https://avatars0.githubusercontent.com/u/12551446"}
-                    size="large"
-                  />
-                </Badge>
-              </NavLink>
-            }
-            style={{ float: "right" }}
-            onClick={authStore.logout}
-          >
-            <Menu.Item key="setting:2" icon={<LogoutOutlined />}>
-              Logout
-            </Menu.Item>
-            {/*
-            <Menu.ItemGroup title="Item 2">
-              <Menu.Item key="setting:3">Option 3</Menu.Item>
-              <Menu.Item key="setting:4">Option 4</Menu.Item>
-            </Menu.ItemGroup> */}
-          </SubMenu>
+          <Menu.Item key="profil" style={{ float: "right" }}>
+            <NavLink to="/profile">
+              <Badge count={5} offset={[0, 5]}>
+                <Avatar
+                  src={"https://avatars0.githubusercontent.com/u/12551446"}
+                  size="large"
+                />
+              </Badge>
+            </NavLink>
+          </Menu.Item>
         ) : (
-            <Menu.Item
-              key="auth"
-              icon={<UserOutlined />}
-              style={{ float: "right" }}
-            >
-              <NavLink to="/auth"> Login</NavLink>
-            </Menu.Item>
-          )}
+          <Menu.Item
+            key="auth"
+            icon={<UserOutlined />}
+            style={{ float: "right" }}
+          >
+            <NavLink to="/auth"> Login</NavLink>
+          </Menu.Item>
+        )}
 
         <Menu.Item
           key="looks"
