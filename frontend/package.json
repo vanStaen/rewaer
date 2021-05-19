@@ -1,7 +1,7 @@
 {
-  "name": "rewaer_frontend",
+  "name": "rewaer",
   "version": "0.1.0",
-  "description": "Rewaer App, FrontEnd",
+  "description": "Rewaer App",
   "scripts": {
     "start": "react-scripts start",
     "prebuild": "rm -rf ../build",
@@ -16,7 +16,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "antd": "^4.7.3",
+    "antd": "^4.15.6",
     "axios": "^0.21.1",
     "jsonwebtoken": "^8.5.1",
     "mobx": "^6.1.7",
@@ -25,7 +25,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^2.1.8"
   },
   "browserslist": {
     "production": [
