@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { authStore } from './stores/authStore';
 import { observer } from "mobx-react";
 import axios from 'axios';
 
@@ -12,6 +11,11 @@ import FriendsPage from "./pages/friends/Friends";
 import InfoPage from "./pages/info/Info";
 import ProfilPage from "./pages/profil/Profil";
 import MenuBar from "./components/MenuBar/MenuBar";
+import { authStore } from './stores/authStore';
+
+
+/* Wrap APP into ErrorBoundary component (Google this) */
+/* Seite rendern, breakpoint auf jede exceptions */
 
 import "./App.css";
 
