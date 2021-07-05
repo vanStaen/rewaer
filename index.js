@@ -38,8 +38,8 @@ app.use((req, res, next) => {
 
 // Set up for React
 app.use(express.static(path.join(__dirname, "build")));
-app.get('/', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
-//TODO: Check how to handle w/o "/" (wildcard e.g. /*)
+
+app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
 
 // Router to API
 app.use("/upload", require("./api/upload"));
