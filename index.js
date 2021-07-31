@@ -1,19 +1,16 @@
-const express = require("express");
 const path = require("path");
-const mongoose = require("mongoose");
+const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 
+const db = require("./models");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
-const isAuth = require("./middleware/is-auth");
-const { errorType } = require("./config/errors")
+const isAuth = require("./middleware/isAuth");
+const cookieSession = require("./middleware/cookieSession");
 
-const getErrorCode = errorName => {
-  return errorType[errorName];
-}
+require("dotenv/config");
 
 const PORT = process.env.PORT || 5000;
-require("dotenv/config");
 
 // Init Express
 const app = express();
@@ -21,6 +18,9 @@ const app = express();
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Session Cookie Middleware
+app.use(cookieSession);
 
 // Authorization Middleware
 app.use(isAuth);
@@ -36,43 +36,37 @@ app.use((req, res, next) => {
   next();
 });
 
+// Router to API endpoints
+app.use("/auth", require("./api/controller/authController"));
+app.use("/upload", require("./api/controller/uploadController"));
+app.use("/user", require("./api/controller/userController"));
+
+// Start DB & use GraphQL
+db.sequelize.sync().then((req)=> {
+  app.use(
+    "/graphql",
+    graphqlHTTP({
+      schema: graphqlSchema,
+      rootValue: graphqlResolver,
+      graphiql: true,     
+      customFormatErrorFn(err) {
+        if (!err.originalError) {
+          return err
+        }
+        const data = err.originalError.data;
+        const message = err.message || 'An error occured with GraphQl';
+        const code = err.originalError.code || 500;
+        return { message: message, status: code, data: data}
+      } 
+    })
+  );
+});
+
 // Set up for React
 app.use(express.static(path.join(__dirname, "build")));
-
-app.get('/*', (req, res) => { res.sendFile(path.join(__dirname, "build", "index.html")); });
-
-// Router to API
-app.use("/upload", require("./api/upload"));
-app.use("/user", require("./api/user"));
-app.use("/login", require("./api/login"));
-app.use("/token", require("./api/token"));
-app.use("/logout", require("./api/logout"));
-
-// GraphQL
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: graphqlSchema,
-    rootValue: graphqlResolver,
-    graphiql: false,
-    customFormatErrorFn: (err) => {
-      const error = getErrorCode(err.message)
-      const message = error.message || "Something went wrong with GraphQL!";
-      const code = error.statusCode || 500;
-      return { message: message, status: code };
-    }
-  })
-);
-
-// Fix mongoose deprecation warning
-mongoose.set('useCreateIndex', true);
-
-// Connect to Mongo db
-mongoose.connect(
-  process.env.DB_REWAER_CONNECTION,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("Connected to db!")
-);
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

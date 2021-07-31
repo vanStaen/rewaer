@@ -1,56 +1,58 @@
-const mongoose = require("mongoose");
+const { sequelize, DataTypes } = require('../lib/sequelizedb');
+const { User } = require('./User');
 
-const ItemSchema = mongoose.Schema({
+const Item = sequelize.define("item", {
   user: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrl: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrlThumb: {
-    type: String,
+    type:  DataTypes.STRING,
     required: true,
   },
   mediaUrlMedium: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   title: {
-    type: String,
+    type: DataTypes.STRING,
     required: false,
   },
-  dateCreated: {
-    type: Date,
-    default: Date.now,
-  },
   category: {
-    type: [String],
+    type: DataTypes.STRING,
     required: false,
   },
   desc: {
-    type: String,
+    type:  DataTypes.STRING,
     required: false,
   },
   colors: {
-    type: [String],
+    type: DataTypes.STRING,
     required: false,
   },
   brand: {
-    type: String,
+    type: DataTypes.STRING,
     required: false,
   },
   active: {
-    type: Boolean,
+    type: DataTypes.BOOLEAN,
     required: true,
     default: true,
   },
   favorite: {
-    type: Boolean,
+    type: DataTypes.BOOLEAN,
     required: true,
     default: false,
   },
 });
 
-module.exports = mongoose.model("Item", ItemSchema);
+User.hasMany(Item);
+Item.belongsTo(User);
+
+module.exports = {
+  Item
+};

@@ -1,24 +1,26 @@
-const mongoose = require("mongoose");
+const { sequelize, DataTypes } = require('../lib/sequelizedb');
+const { User } = require('./User');
+const { Look } = require('./Look');
 
-const LookSchema = mongoose.Schema({
+const Look = sequelize.define("look", {
   user: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrl: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrlThumb: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrlMedium: {
-    type: String,
+    type: DataTypes.STRING,
     required: true,
   },
   dateCreated: {
-    type: Date,
+    type: DataTypes.STRING,
     default: Date.now,
   },
   items: [
@@ -28,23 +30,31 @@ const LookSchema = mongoose.Schema({
     },
   ],
   title: {
-    type: String,
+    type: DataTypes.STRING,
     required: false,
   },
   category: {
-    type: [String],
+    type: DataTypes.STRING,
     required: false,
   },
   active: {
-    type: Boolean,
+    type: DataTypes.BOOLEAN,
     required: true,
     default: true,
   },
   favorite: {
-    type: Boolean,
+    type: DataTypes.BOOLEAN,
     required: true,
     default: false,
   },
 });
 
-module.exports = mongoose.model("Look", LookSchema);
+User.hasMany(Look);
+Look.belongsTo(User);
+
+Look.hasMany(Item);
+Item.belongsToMany(Look);
+
+module.exports = {
+  Look
+};
