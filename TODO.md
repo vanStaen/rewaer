@@ -2,25 +2,25 @@
 
 ## To-dos:
 
-- [ ] Write tests
-- [ ] Run test on deploy
-- [ ] give a 7day TTL (time to live) to the refresh token stored in the database
-  - https://github.com/mongoosejs/mongoose-ttl
-  - https://docs.mongodb.com/manual/tutorial/expire-data/
-- [ ] Move AxiosInterceptor from app.js
-- [ ] On RefreshToken not found in db > logout
+- [ ] Refactoring del la muerte:
+  - [ ] Kill Mongoose, use Sequelize
+  - [ ] Rewrite GraphQl Resolvers
+  - [ ] Rewrite Rest Controller
+  - [ ] Rewrite all call from frontend
+- [ ] Clean/Write Readme
+- [ ] Clean Todos
+  
 - [ ] Handle new account created
   - [x] Show success message in App
   - [x] Handle errors from backend
   - [ ] Send Email to new user
     - [ ] User should confirm email?
 - [ ] Recover password feature
-- [ ] Notification if auth server is down
+  
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
-- [ ] Merge README's
 
 ## Completed ✓
 
