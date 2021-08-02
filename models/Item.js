@@ -2,10 +2,6 @@ const { sequelize, DataTypes } = require('../lib/sequelizedb');
 const { User } = require('./User');
 
 const Item = sequelize.define("item", {
-  user: {
-    type: DataTypes.STRING,
-    required: true,
-  },
   mediaUrl: {
     type: DataTypes.STRING,
     required: true,
