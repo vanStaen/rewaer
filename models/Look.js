@@ -19,12 +19,6 @@ const Look = sequelize.define("look", {
     type: DataTypes.STRING,
     default: Date.now,
   },
-  items: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Item",
-    },
-  ],
   title: {
     type: DataTypes.STRING,
     required: false,
