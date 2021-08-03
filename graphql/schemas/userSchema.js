@@ -9,14 +9,6 @@ type User {
     active: Boolean
 }`;
 
-exports.AuthData = `
-type AuthData {
-    token: String!
-    userId: String!
-    tokenExpiration: Int!
-    }
-`;
-
 exports.UserInputData = `
 input UserInputData {
     name: String

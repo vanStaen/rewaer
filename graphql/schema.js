@@ -1,16 +1,14 @@
 const { buildSchema } = require("graphql");
 
-const userSchemas = require("./schemas/user");
-const lookSchemas = require("./schemas/look");
-const itemSchemas = require("./schemas/item");
+const userSchemas = require("./schemas/userSchema");
+const lookSchemas = require("./schemas/lookSchema");
+const itemSchemas = require("./schemas/itemSchema");
 
 module.exports = buildSchema(`
 
     ${userSchemas.User}    
     ${lookSchemas.Look}
     ${itemSchemas.Item}
-
-    ${userSchemas.AuthData}
     
     ${userSchemas.UserInputData}
     ${lookSchemas.LookInputData}

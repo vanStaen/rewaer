@@ -1,6 +1,6 @@
-const userResolver = require("./resolvers/user");
-const lookResolver = require("./resolvers/look");
-const itemResolver = require("./resolvers/item");
+const userResolver = require("./resolvers/userResolver");
+const lookResolver = require("./resolvers/lookResolver");
+const itemResolver = require("./resolvers/itemResolver");
 
 module.exports = {
   ...userResolver.User,
