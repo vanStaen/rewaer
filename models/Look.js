@@ -1,6 +1,6 @@
-const { sequelize, DataTypes } = require('../lib/sequelizedb');
-const { User } = require('./User');
-const { Item } = require('./Item');
+const { sequelize, DataTypes } = require("../lib/sequelizedb");
+const { User } = require("./User");
+const { Item } = require("./Item");
 
 const Look = sequelize.define("look", {
   mediaUrl: {
@@ -27,6 +27,10 @@ const Look = sequelize.define("look", {
     type: DataTypes.STRING,
     required: false,
   },
+  items: {
+    type: DataTypes.STRING,
+    required: false,
+  },
   active: {
     type: DataTypes.BOOLEAN,
     required: true,
@@ -42,9 +46,6 @@ const Look = sequelize.define("look", {
 User.hasMany(Look);
 Look.belongsTo(User);
 
-Look.hasMany(Item);
-Item.belongsToMany(Look);
-
 module.exports = {
-  Look
+  Look,
 };
