@@ -2,12 +2,18 @@ const { sequelize, DataTypes } = require('../lib/sequelizedb');
 const { User } = require('./User');
 
 const Item = sequelize.define("item", {
+  _id: {
+    type: DataTypes.INTEGER,
+    field: "_id",
+    autoIncrement: true,
+    primaryKey: true,
+  },
   mediaUrl: {
     type: DataTypes.STRING,
     required: true,
   },
   mediaUrlThumb: {
-    type:  DataTypes.STRING,
+    type: DataTypes.STRING,
     required: true,
   },
   mediaUrlMedium: {
@@ -23,7 +29,7 @@ const Item = sequelize.define("item", {
     required: false,
   },
   desc: {
-    type:  DataTypes.STRING,
+    type: DataTypes.STRING,
     required: false,
   },
   colors: {

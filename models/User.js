@@ -1,17 +1,32 @@
 const { sequelize, DataTypes } = require('../lib/sequelizedb');
 
 const User = sequelize.define("user", {
-  name: {
+  _id: {
+    type: DataTypes.INTEGER,
+    field: "_id",
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  firstName: {
     type: DataTypes.STRING,
-    required: true,
+    allowNull: false,
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  userName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
   },
   email: {
     type: DataTypes.STRING,
-    required: true,
-  },
-  dateCreated: {
-    type: DataTypes.STRING,
-    default: Date.now,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    },
   },
   password: {
     type: DataTypes.STRING,
@@ -20,6 +35,18 @@ const User = sequelize.define("user", {
   avatar: {
     type: DataTypes.STRING,
     required: false,
+  },
+  emailSettings: {
+    type: DataTypes.STRING,
+    defaultValue: "[]",
+  },
+  profilSettings: {
+    type: DataTypes.STRING,
+    defaultValue: "[]",
+  },
+  friends: {
+    type: DataTypes.STRING,
+    defaultValue: "[]",
   },
   active: {
     type: DataTypes.BOOLEAN,

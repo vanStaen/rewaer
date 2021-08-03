@@ -3,6 +3,12 @@ const { User } = require("./User");
 const { Item } = require("./Item");
 
 const Look = sequelize.define("look", {
+  _id: {
+    type: DataTypes.INTEGER,
+    field: "_id",
+    autoIncrement: true,
+    primaryKey: true,
+  },
   mediaUrl: {
     type: DataTypes.STRING,
     required: true,

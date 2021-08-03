@@ -1,20 +1,28 @@
 exports.User = `
 type User {
     _id: ID!
-    name: String
+    firstName: String
+    lastName: String
+    userName: String!
     email: String!
-    dateCreated: String!
-    password: String
     avatar: String
+    emailSettings: String
+    profilSettings: String
+    friends: String
     active: Boolean
+    lastActive: Boolean
 }`;
 
 exports.UserInputData = `
 input UserInputData {
-    name: String
+    firstName: String
+    lastName: String
+    userName: String
     email: String!
-    password: String!
     avatar: String
+    emailSettings: String
+    profilSettings: String
+    friends: String
     active: Boolean
 }`;
 
