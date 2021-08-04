@@ -40,6 +40,7 @@ exports.userResolver = {
         userName: args.userInput.userName,
         email: args.userInput.email,
         password: hashedPassword,
+        lastActive: Date.now(),
       });
       return await user.save();
     } catch (err) {
