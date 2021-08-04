@@ -10,7 +10,7 @@ exports.userResolver = {
     }
     return await User.findOne({
       _id: req.userId,
-      include: [Comment, Event, Message, Notification, Photo, Visitor],
+      include: [Item, Look],
     });
   },
 

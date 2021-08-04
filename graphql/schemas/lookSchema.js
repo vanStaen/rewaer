@@ -30,7 +30,7 @@ exports.LookQueries = `
 `;
 
 exports.LookMutations = `
-    createLook(lookInput: LookInputData!): Look!
+    addLook(lookInput: LookInputData!): Look!
     updateLook(lookId: ID!, lookInput: LookInputData!): Look!
     deleteLook(lookId: ID!): Look!
 `;

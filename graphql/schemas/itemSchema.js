@@ -17,10 +17,10 @@ type Item {
 
 exports.ItemInputData = `
 input ItemInputData {
+    title: String
     mediaUrl: String
     mediaUrlThumb: String
     mediaUrlMedium: String
-    title: String
     category: [String]
     desc: String
     colors: [String]
@@ -34,7 +34,7 @@ exports.ItemQueries = `
 `;
 
 exports.ItemMutations = `
-    createItem(itemInput: ItemInputData!): Item!
+    addItem(itemInput: ItemInputData!): Item!
     updateItem(itemId: ID!, itemInput: ItemInputData!): Item!
-    deleteItem(itemId: ID!): Item!
+    deleteItem(itemId: ID!): Boolean!
 `;
