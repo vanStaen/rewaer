@@ -1,6 +1,5 @@
 const { sequelize, DataTypes } = require("../lib/sequelizedb");
 const { User } = require("./User");
-const { Item } = require("./Item");
 
 const Look = sequelize.define("look", {
   _id: {
@@ -8,6 +7,10 @@ const Look = sequelize.define("look", {
     field: "_id",
     autoIncrement: true,
     primaryKey: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    required: false,
   },
   mediaUrl: {
     type: DataTypes.STRING,
@@ -20,14 +23,6 @@ const Look = sequelize.define("look", {
   mediaUrlMedium: {
     type: DataTypes.STRING,
     required: true,
-  },
-  dateCreated: {
-    type: DataTypes.STRING,
-    default: Date.now,
-  },
-  title: {
-    type: DataTypes.STRING,
-    required: false,
   },
   category: {
     type: DataTypes.STRING,

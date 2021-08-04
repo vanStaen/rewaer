@@ -1,18 +1,18 @@
 exports.Item = `
 type Item {
     _id: ID!
-    user: String!
+    title: String
     mediaUrl: String!
     mediaUrlThumb: String!
     mediaUrlMedium: String!
-    title: String
-    dateCreated: String!
     category: [String]
     desc: String
     colors: [String]
     brand: String
     active: Boolean!
     favorite: Boolean!
+    userId: Int!
+    user: User
 }`;
 
 exports.ItemInputData = `
@@ -30,7 +30,7 @@ input ItemInputData {
 }`;
 
 exports.ItemQueries = `
-    items: [Item!]!
+    items: [Item]
 `;
 
 exports.ItemMutations = `

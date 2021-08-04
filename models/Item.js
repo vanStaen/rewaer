@@ -8,6 +8,10 @@ const Item = sequelize.define("item", {
     autoIncrement: true,
     primaryKey: true,
   },
+  title: {
+    type: DataTypes.STRING,
+    required: false,
+  },
   mediaUrl: {
     type: DataTypes.STRING,
     required: true,
@@ -19,10 +23,6 @@ const Item = sequelize.define("item", {
   mediaUrlMedium: {
     type: DataTypes.STRING,
     required: true,
-  },
-  title: {
-    type: DataTypes.STRING,
-    required: false,
   },
   category: {
     type: DataTypes.STRING,

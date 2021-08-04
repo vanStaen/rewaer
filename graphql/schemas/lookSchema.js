@@ -2,31 +2,31 @@ exports.Look = `
 type Look {
     _id: ID!
     title: String
-    user: String!
     mediaUrl: String!
     mediaUrlThumb: String!
     mediaUrlMedium: String!
-    dateCreated: String!
-    items: [String!]
     category: [String]
+    items: [String]
     active: Boolean!
     favorite: Boolean!
+    userId: Int!
+    user: User
 }`;
 
 exports.LookInputData = `
 input LookInputData {
+    title: String
     mediaUrl: String
     mediaUrlThumb: String
     mediaUrlMedium: String
-    title: String
-    items: [String]
     category: [String]
+    items: [String]
     active: Boolean
     favorite: Boolean
 }`;
 
 exports.LookQueries = `
-    looks: [Look]!
+    looks: [Look]
 `;
 
 exports.LookMutations = `
