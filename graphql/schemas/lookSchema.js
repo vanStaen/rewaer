@@ -1,6 +1,7 @@
 exports.Look = `
 type Look {
     _id: ID!
+    userId: Int!
     title: String
     mediaUrl: String!
     mediaUrlThumb: String!
@@ -11,7 +12,6 @@ type Look {
     favorite: Boolean!
     createdAt: String!
     udpatedAt: String!
-    userId: Int!
     user: User
 }`;
 

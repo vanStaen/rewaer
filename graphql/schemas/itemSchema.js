@@ -1,6 +1,7 @@
 exports.Item = `
 type Item {
     _id: ID!
+    userId: Int!
     title: String
     mediaUrl: String!
     mediaUrlThumb: String!
@@ -13,7 +14,6 @@ type Item {
     favorite: Boolean!
     createdAt: String!
     udpatedAt: String!
-    userId: Int!
     user: User
 }`;
 
