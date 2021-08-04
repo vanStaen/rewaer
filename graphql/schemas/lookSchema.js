@@ -26,7 +26,7 @@ input LookInputData {
 }`;
 
 exports.LookQueries = `
-    looks: [Look]
+    getLooks: [Look]
 `;
 
 exports.LookMutations = `

@@ -30,7 +30,7 @@ input ItemInputData {
 }`;
 
 exports.ItemQueries = `
-    items: [Item]
+    getItems: [Item]
 `;
 
 exports.ItemMutations = `

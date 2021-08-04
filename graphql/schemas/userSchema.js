@@ -27,10 +27,11 @@ input UserInputData {
 }`;
 
 exports.UserQueries = `
-    user: [User]!
+    getUser: User
 `;
 
 exports.UserMutations = `    
-    createUser(userInput: UserInputData!): User!
+    addUser(userInput: UserInputData!): User!
     updateUser(userId: ID!, userInput: UserInputData!): User!
+    deleteUser(_id: ID!): Boolean!
 `;
