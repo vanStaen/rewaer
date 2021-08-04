@@ -32,5 +32,5 @@ exports.LookQueries = `
 exports.LookMutations = `
     addLook(lookInput: LookInputData!): Look!
     updateLook(lookId: ID!, lookInput: LookInputData!): Look!
-    deleteLook(lookId: ID!): Look!
+    deleteLook(lookId: ID!): Boolean!
 `;
