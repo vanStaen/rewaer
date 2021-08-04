@@ -38,8 +38,8 @@ app.use((req, res, next) => {
 
 // Router to API endpoints
 app.use("/auth", require("./api/controller/authController"));
-app.use("/upload", require("./api/controller/uploadController"));
-app.use("/user", require("./api/controller/userController"));
+//app.use("/upload", require("./api/controller/uploadController"));
+//app.use("/user", require("./api/controller/userController"));
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req)=> {
