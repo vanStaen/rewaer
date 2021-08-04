@@ -11,6 +11,8 @@ type User {
     friends: String
     active: Boolean
     lastActive: Boolean
+    createdAt: String!
+    udpatedAt: String!
 }`;
 
 exports.UserInputData = `
