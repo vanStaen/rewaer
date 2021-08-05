@@ -25,12 +25,12 @@ const Look = sequelize.define("look", {
     required: true,
   },
   category: {
-    type: DataTypes.STRING,
-    required: false,
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: [],
   },
   items: {
-    type: DataTypes.STRING,
-    required: false,
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
   },
   active: {
     type: DataTypes.BOOLEAN,

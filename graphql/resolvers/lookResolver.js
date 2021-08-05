@@ -7,7 +7,7 @@ exports.lookResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await Looks.findAll({
+    return await Look.findAll({
       where: { userId: req.userId },
       include: User,
     });
