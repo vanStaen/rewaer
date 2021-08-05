@@ -79,7 +79,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getUser {\n    firstName,\n    lastName,\n    userName,\n    email,\n    items {\n        _id\n    },\n    looks {\n        _id\n    }\n  }\n}",
+						"query": "query {\n  getUser {\n    firstName,\n    lastName,\n    userName,\n    email,\n    avatar,\n    items {\n        _id\n    },\n    looks {\n        _id\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -131,7 +131,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: deleteUser",
+			"name": "GraphQL Mutation: updateUser",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -144,7 +144,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  deleteUser(userId: 1)\n}",
+						"query": "mutation {\n  updateUser(\n    userInput: {\n      avatar: \"Some/Url\",\n      friends: [2],\n      emailSettings: \"['test', 'test']\"\n    }\n  ) {\n    _id,\n    firstName,\n    userName,\n    avatar,\n    friends\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -164,7 +164,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: updateUser",
+			"name": "GraphQL Mutation: deleteUser",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -177,18 +177,17 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateUser(\n    userId: \"5f875a845b51af4b2b43ef55\"\n    userInput: {\n      name: \"TestUser\"\n      email: \"blue@test.com\"\n      password: \"123\"\n    }\n  ) {\n    _id\n    name\n  }\n}",
+						"query": "mutation {\n  deleteUser\n}",
 						"variables": ""
 					}
 				},
 				"url": {
-					"raw": "https://rewaer-backend.herokuapp.com/graphql",
-					"protocol": "https",
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
 					"host": [
-						"rewaer-backend",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "5000",
 					"path": [
 						"graphql"
 					]
@@ -208,15 +207,16 @@
 						"value": "application/json"
 					},
 					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmFkNThiMGM2YjgzYTc3MDQyZDZiM2EiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA4NTkwNTMyLCJleHAiOjE2MDg1OTE0MzJ9.cogaChJ22_1bKwDHX-_rtmn5zUuXkTpSmlrE8DuKImk",
-						"type": "text"
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  items {\n    _id\n    desc\n    dateCreated\n    category\n    colors\n    brand\n    active\n    favorite\n    user\n  }\n}",
+						"query": "{\n  getItems {\n    _id,\n    desc,\n    category,\n    colors,\n    brand,\n    active,\n    favorite,\n    createdAt,\n    user {\n        _id,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -236,7 +236,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: createItem",
+			"name": "GraphQL Mutation: addItem",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -246,48 +246,16 @@
 						"value": "application/json"
 					},
 					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmFkNThiMGM2YjgzYTc3MDQyZDZiM2EiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA5NTk4NjQ5LCJleHAiOjE2MDk1OTk1NDl9.l2s6CmUCUciZXd6aWHx_KWvXfcp41L2xRz4QMsryzU4",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "            mutation {\n                createItem(\n                  itemInput: { mediaUrl: \"https://rewaer-static01.s3.eu-central-1.amazonaws.com/5a9952f232e501d5e369253416dcce11\", \n                               mediaUrlThumb: \"https://rewaer-static01.s3.eu-central-1.amazonaws.com/t_5a9952f232e501d5e369253416dcce11\",\n                               title: \"02.01.2021\" }\n                ) {\n                  _id\n                }\n              }",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"graphql"
-					]
-				},
-				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
-			},
-			"response": []
-		},
-		{
-			"name": "GraphQL Mutation: deleteItem",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
+						"key": "",
+						"value": "",
 						"type": "text",
-						"value": "application/json"
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  deleteItem(itemId: \"5f8d7ade7aa45f07e9aa5948\") {\n    _id\n  }\n}",
+						"query": "            mutation {\n                addItem(\n                  itemInput: { \n                    mediaUrl: \"some/url\", \n                    mediaUrlThumb: \"some/Thumb\",\n                    title: \"This is a title\",\n                    }\n                ) {\n                  _id\n                }\n              }",
 						"variables": ""
 					}
 				},
@@ -320,7 +288,40 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateItem(\n    itemId: \"5f884c44e407175caa248ece\"\n    itemInput: { user: \"123\", desc: \"test2\", colors: [\"white\",\"red\"], favorite: false }\n  ) {\n    desc\n  }\n}",
+						"query": "mutation {\n  updateItem(\n    itemId: 1,\n    itemInput: { \n           desc: \"test2\", \n           colors: [\"white\", \"red\"], \n           favorite: false \n           }\n  ) {\n    desc\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
+			},
+			"response": []
+		},
+		{
+			"name": "GraphQL Mutation: deleteItem",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  deleteItem(itemId: 1) \n}",
 						"variables": ""
 					}
 				},
@@ -359,7 +360,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  looks {\n    _id\n    user\n    title\n    active\n    favorite\n    dateCreated\n    mediaUrl\n  }\n}",
+						"query": "{\n  looks {\n    _id,\n    title,\n    active,\n    favorite,\n    createdAt,\n    mediaUrl,\n    user {\n        _id,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -379,7 +380,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: createLook",
+			"name": "GraphQL Mutation: addLook",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -397,7 +398,40 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n     createLook(\n                  lookInput: { \n                      mediaUrl: \"https://rewaer-static01.s3.eu-central-1.amazonaws.com/b1344935950c5f3cfb505af51fd1949d\",\n                      title: \"37321320_10160676222355261_2262054786838822912_o.jpg\" }\n                ) {\n                  _id\n                  title\n                }\n              }",
+						"query": "mutation {\n     addLook(\n        lookInput: { \n            mediaUrl: \"some/Url\",\n            title: \"a title\"\n        }\n    ) {\n    _id\n    title\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					]
+				},
+				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
+			},
+			"response": []
+		},
+		{
+			"name": "GraphQL Mutation: updateLook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateLook(\n    lookId: 1\n    lookInput: { \n        favorite: false \n    }\n  ) {\n      _id\n    favorite\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -435,7 +469,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "          mutation {\n              deleteLook(lookId: \"5ff09cece79e3851fddbea50\") {                  \n                _id\n              }\n            }",
+						"query": "          mutation {\n              deleteLook(lookId: 1) {                  \n                _id\n              }\n            }",
 						"variables": ""
 					}
 				},
@@ -455,40 +489,7 @@
 			"response": []
 		},
 		{
-			"name": "GraphQL Mutation: updateLook",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  updateLook(\n    lookId: \"5f8d93e77aa45f07e9aa594f\"\n    lookInput: { favorite: false }\n  ) {\n    favorite\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"graphql"
-					]
-				},
-				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:5000/upload",
+			"name": "OLD _ http://localhost:5000/upload",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -544,7 +545,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/upload/:id",
+			"name": "OLD _ http://localhost:5000/upload/:id",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
 			},
@@ -595,7 +596,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:5000/thumbs",
+			"name": "OLD _ http://localhost:5000/thumbs",
 			"request": {
 				"method": "POST",
 				"header": [],
