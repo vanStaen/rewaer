@@ -3,7 +3,7 @@ const lookResolver = require("./resolvers/lookResolver");
 const itemResolver = require("./resolvers/itemResolver");
 
 module.exports = {
-  ...userResolver.User,
-  ...lookResolver.Look,
-  ...itemResolver.Item,
+  ...userResolver.userResolver,
+  ...lookResolver.lookResolver,
+  ...itemResolver.itemResolver,
 };

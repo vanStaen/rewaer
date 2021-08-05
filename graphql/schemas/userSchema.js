@@ -13,6 +13,8 @@ type User {
     lastActive: Boolean
     createdAt: String!
     udpatedAt: String!
+    items: [Item]
+    looks: [Look]
 }`;
 
 exports.UserInputData = `
