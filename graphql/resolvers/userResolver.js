@@ -9,7 +9,7 @@ exports.userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      _id: req.userId,
+      where: { _id: req.userId },
       include: [Item, Look],
     });
   },
@@ -19,7 +19,7 @@ exports.userResolver = {
     const foundUserEmail = await User.findOne({
       where: {
         email: args.userInput.email,
-      }
+      },
     });
     if (foundUserEmail) {
       throw new Error("This email is already associated with an account.");

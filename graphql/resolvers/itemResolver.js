@@ -8,7 +8,7 @@ exports.itemResolver = {
       throw new Error("Unauthorized!");
     }
     return await Items.findAll({
-      userId: req.userId,
+      where: { userId: req.userId },
       include: User,
     });
   },

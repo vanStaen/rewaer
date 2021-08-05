@@ -51,6 +51,7 @@ const User = sequelize.define("user", {
   active: {
     type: DataTypes.BOOLEAN,
     required: true,
+    defaultValue: false,
   },
   lastActive: {
     type: DataTypes.DATE,
