@@ -7,7 +7,7 @@ exports.itemResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await Items.findAll({
+    return await Item.findAll({
       where: { userId: req.userId },
       include: User,
     });
@@ -17,6 +17,7 @@ exports.itemResolver = {
   async addItem(args, req) {
     try {
       const item = new Item({
+        userId: req.userId,
         title: args.itemInput.title,
         mediaUrl: args.itemInput.mediaUrl,
         mediaUrlThumb: args.itemInput.mediaUrlThumb,

@@ -42,13 +42,11 @@ const Item = sequelize.define("item", {
   },
   active: {
     type: DataTypes.BOOLEAN,
-    required: true,
-    default: true,
+    defaultValue: true,
   },
   favorite: {
     type: DataTypes.BOOLEAN,
-    required: true,
-    default: false,
+    defaultValue: false,
   },
 });
 
