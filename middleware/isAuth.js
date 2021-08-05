@@ -1,28 +1,24 @@
 const jsonwebtoken = require("jsonwebtoken");
+const { User } = require("../models/User");
 require("dotenv/config");
 
-const devMode = true;
+const devMode = false;
 
-module.exports = (req, res, next) => {
-  const authHeader = req.get("Authorization");
-
+module.exports = async (req, res, next) => {
   // if in development mode
   if (devMode) {
-    console.log(">>> Developement Mode ACTIVATED <<<")
+    console.log("Auth: Developement Mode");
     req.isAuth = true;
     req.userId = "1";
     req.email = "test@test.com";
     return next();
   }
 
-  // if no authorization header found
-  if (!authHeader) {
-    req.isAuth = false;
-    return next();
-  }
-
   // Authorization: Bearer <token>
-  const token = authHeader.split(" ")[1];
+  const token = req.session.token;
+  const refreshToken = req.session.refreshToken;
+
+  // Check tokens are valid:
   if (!token || token === "undefined" || token === "") {
     req.isAuth = false;
     return next();
@@ -31,21 +27,47 @@ module.exports = (req, res, next) => {
   try {
     decodedToken = jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY);
   } catch (err) {
-    req.isAuth = false;
-    return next();
-  }
-  if (!decodedToken) {
-    req.isAuth = false;
-    return next();
+    try {
+      // if refreshToken exist = user checked remind me
+      decodedToken = jsonwebtoken.verify(
+        refreshToken,
+        process.env.AUTH_SECRET_KEY_REFRESH
+      );
+    } catch (err) {
+      req.isAuth = false;
+      return next();
+    }
   }
 
+  // Set Auth variable
   req.isAuth = true;
   req.userId = decodedToken.userId;
-  req.email = decodedToken.email;
 
-  // Debug:
-  // console.log("email:", req.email);
-  // console.log("userId:", req.userId);
+  // Update token in session cookie
+  const accessToken = await jsonwebtoken.sign(
+    { userId: decodedToken.userId },
+    process.env.AUTH_SECRET_KEY,
+    { expiresIn: "15m" }
+  );
+  console.log("accessToken updated!");
+  req.session.token = accessToken;
+
+  // Update refrehstoken in session cookie
+  if (refreshToken) {
+    const refreshToken = await jsonwebtoken.sign(
+      { userId: decodedToken.userId },
+      process.env.AUTH_SECRET_KEY_REFRESH,
+      { expiresIn: "7d" }
+    );
+    console.log("refreshToken updated!");
+    req.session.refreshToken = refreshToken;
+  }
+
+  // Update lastLogin in user table
+  await User.update(
+    { lastActive: Date.now() },
+    { where: { _id: decodedToken.userId } }
+  );
 
   next();
 };

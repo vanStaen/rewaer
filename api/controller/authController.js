@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
     if (!req.body.remind) {
       throw new Error("The 'remind me'-flag shoud not be missing!");
     }
-    const loginSuccess = await authService.login(req.body.username, req.body.email, req.body.password, req.body.remind);
+    const loginSuccess = await authService.authService.login(req, req.body.email, req.body.username, req.body.password, req.body.remind);
     res.status(200).json({
       success: loginSuccess,
     });
@@ -24,11 +24,8 @@ router.post("/login", async (req, res) => {
 // Logout
 router.delete("/logout", async (req, res) => {
   try {
-    if (!req.body.userId) {
-      throw new Error("Please provide at least an 'Email' or a 'Username'");
-    }
-    const logoutSuccess = await authService.logout(req.body.userId);
-    if (logout) {
+    const logoutSuccess = await authService.authService.logout(req);
+    if (logoutSuccess) {
       res.status(200).json({
         success: logoutSuccess,
       });

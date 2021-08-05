@@ -53,7 +53,7 @@ const User = sequelize.define("user", {
     required: true,
   },
   lastActive: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
     allowNull: false,
   },
 });
