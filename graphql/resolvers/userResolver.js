@@ -84,13 +84,17 @@ exports.userResolver = {
     }
   },
 
-  // deleteUser(_id: ID!): Boolean!
+  // deleteUser: Boolean!
   async deleteUser(args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     await User.destroy({
       where: {
-        _id: args._id,
+        _id: req.userId,
       },
     });
+    req.session = null;
     return true;
   },
 };

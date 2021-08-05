@@ -45,8 +45,8 @@ const User = sequelize.define("user", {
     defaultValue: "[]",
   },
   friends: {
-    type: DataTypes.STRING,
-    defaultValue: "[]",
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
   },
   active: {
     type: DataTypes.BOOLEAN,

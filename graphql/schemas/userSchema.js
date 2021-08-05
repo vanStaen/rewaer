@@ -8,9 +8,9 @@ type User {
     avatar: String
     emailSettings: String
     profilSettings: String
-    friends: String
+    friends: [Int]
     active: Boolean
-    lastActive: Boolean
+    lastActive: String!
     createdAt: String!
     udpatedAt: String!
     items: [Item]
@@ -22,12 +22,12 @@ input UserInputData {
     firstName: String
     lastName: String
     userName: String
-    email: String!
+    email: String
     password: String
     avatar: String
     emailSettings: String
     profilSettings: String
-    friends: String
+    friends: [Int]
     active: Boolean
 }`;
 
@@ -37,6 +37,6 @@ exports.UserQueries = `
 
 exports.UserMutations = `    
     addUser(userInput: UserInputData!): User!
-    updateUser(userId: ID!, userInput: UserInputData!): User!
-    deleteUser(_id: ID!): Boolean!
+    updateUser(userInput: UserInputData!): User!
+    deleteUser: Boolean!
 `;
