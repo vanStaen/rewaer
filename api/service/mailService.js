@@ -23,7 +23,7 @@ const emailDisclaimer = `
   Be especially wary of .zip or other compressed or executable file types. 
   Do not provide sensitive personal information (like usernames and passwords) over email. 
   Watch for email senders that use suspicious or misleading domain names. 
-  If you can’t tell if an email is legitimate or not, please transfer it to us at <u>info@merrier.app</u>. 
+  If you can’t tell if an email is legitimate or not, please transfer it to us at <u>info@rewaer.com</u>. 
   Be especially cautious when opening attachments or clicking links if you receive an email 
   containing a warning banner indicating that it originated from an external source.<br/><br/>
   <b>Virus transmission</b><br/>
@@ -35,7 +35,7 @@ const emailDisclaimer = `
   of the author and do not represent those of the company. No liability can be held 
   for any damages, however, caused, to any recipients of this message. <br/><br/>
   <b>GDPR</b><br/>
-  Merrier is compliant with the General Data Protection Regulation (GDPR) (EU) 2016/679. 
+  Rewær is compliant with the General Data Protection Regulation (GDPR) (EU) 2016/679. 
   We are committed to guaranteeing the security and protection of the private information 
   that we process. To understand more about how we collect, store, and process your personal 
   information in compliance with GDPR, please take a look at our privacy policy
@@ -47,7 +47,7 @@ exports.mailService = {
 
   async mail(sendto, subject, body) {
     const requestBody = {
-      "from": "Merrier <info@merrier.app>",
+      "from": "Rewær <info@rewaer.com>",
       "to": sendto,
       "subject": subject,
       "body": `${body}<br/> ${emailDisclaimer}`,
@@ -86,17 +86,17 @@ exports.mailService = {
                   <b>If you did not request this, ignore this email</b> and nothing else will happen.<br/>
                   <br/>
                   This link will only be active for 10 minutes. <br/>
-                  https://merrier.app/recoverpwd/${recoveryToken}<br/>
+                  https://rewaer.com/recoverpwd/${recoveryToken}<br/>
                   <br/>
-                  Merrier App<br/>
-                  <i>The more, the merrier</i>
+                  Rewær App<br/>
+                  <i>The Fashion App for minimalistic and sustainable geniuses!</i>
                   <br/>
                   ${emailDisclaimer}`;
 
     const requestBody = {
-      "from": "Merrier <info@merrier.app>",
+      "from": "Rewær <info@rewaer.com>",
       "to": sendto,
-      "subject": "Merrier.app | Reset your password with this link",
+      "subject": "Rewær.app | Reset your password with this link",
       "body": body,
       "key": process.env.MAILMAN_KEY
     };
@@ -136,17 +136,18 @@ exports.mailService = {
                   Feel free anytime to respond to this mail in order to contact us.<br/>
                   <br/>
                   This link will only be active for 24 hours. <br/>
-                  https://merrier.app/emailverify/${emailVerifyToken}<br/>
+                  https://rewaer.com/emailverify/${emailVerifyToken}<br/>
                   <br/>
-                  Merrier App<br/>
-                  <i>The more, the merrier</i>
+                  Rewær App<br/>
+                  <i>Only trees should get new
+                  leaves every years.</i>
                   <br/>
                   ${emailDisclaimer}`;
 
     const requestBody = {
-      "from": "Merrier <info@merrier.app>",
+      "from": "Rewær <info@rewaer.com>",
       "to": sendto,
-      "subject": "Merrier.app | Confirm your email address with this link",
+      "subject": "Rewær.app | Confirm your email address with this link",
       "body": body,
       "key": process.env.MAILMAN_KEY
     };

@@ -10,11 +10,6 @@ import "./Welcome.css";
 export const Welcome = (props) => {
   const [showLogin, setShowLogin] = useState(props.showLogin);
 
-  let inviteCode = "merrierBetaTest"; //leave this empty for invite-only-signup
-  if (props.match) {
-    inviteCode = props.match.params.inviteCode;
-  }
-
   return (
     <div>
       <div className="welcome__alreadyMember">
@@ -24,11 +19,7 @@ export const Welcome = (props) => {
         <LanguageDropDown />
       </div>
       <div className="welcome__rightPanel">
-        {showLogin ? (
-          <LoginForm />
-        ) : (
-          <SignUpForm setShowLogin={setShowLogin} inviteCode={inviteCode} />
-        )}
+        {showLogin ? <LoginForm /> : <SignUpForm setShowLogin={setShowLogin} />}
       </div>
     </div>
   );
