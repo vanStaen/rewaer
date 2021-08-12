@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const cors = require(`cors`)
 const { graphqlHTTP } = require("express-graphql");
 
 const db = require("./models");
@@ -26,20 +27,33 @@ app.use(cookieSession);
 app.use(isAuth);
 
 // Allow cross origin request
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
+app.use(function (req, res, next) {
+  let corsOptions = {};
+  if ((req.get('host') === 'localhost:5000')) {
+    corsOptions = {
+      origin: 'http://localhost:3000',
+      optionsSuccessStatus: 200
+    }
+  } else {
+    corsOptions = {
+      origin: [
+        'https://www.rewaer.com',
+        'https://rewaer.com',
+        'http://rewaer.herokuapp.com',
+        'https://rewaer.herokuapp.com',
+      ],
+      optionsSuccessStatus: 200
+    }
   }
-  next();
-});
+  cors(corsOptions)(req, res, next);
+})
+
 
 // Router to API endpoints
 app.use("/auth", require("./api/controller/authController"));
+app.use('/user', require('./api/controller/userController'))
+app.use('/mail', require('./api/controller/mailController'))
 //app.use("/upload", require("./api/controller/uploadController"));
-//app.use("/user", require("./api/controller/userController"));
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req)=> {
@@ -64,7 +78,7 @@ db.sequelize.sync().then((req)=> {
 
 // Set up for React
 app.use(express.static(path.join(__dirname, "build")));
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
