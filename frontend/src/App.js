@@ -1,105 +1,43 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { observer } from "mobx-react";
-import axios from 'axios';
 
-import AuthPage from "./pages/auth/Auth";
 import LooksPage from "./pages/looks/Looks";
 import ItemsPage from "./pages/items/Items";
-import MailPage from "./pages/mail/Mail";
-import FriendsPage from "./pages/friends/Friends";
 import InfoPage from "./pages/info/Info";
-import ProfilPage from "./pages/profil/Profil";
+import Profil from "./pages/profil/Profil";
 import MenuBar from "./components/MenuBar/MenuBar";
-import { authStore } from './stores/authStore';
-
-
-/* Wrap APP into ErrorBoundary component (Google this) */
-/* Seite rendern, breakpoint auf jede exceptions */
+import { authStore } from "./stores/authStore";
+import { Welcome } from "./pages/Welcome/Welcome";
 
 import "./App.css";
 
 const App = observer(() => {
-
   useEffect(() => {
-
-    // On mount, update token
-    authStore.refreshToken && authStore.login(authStore.getNewToken(), authStore.refreshToken);
-
-    //Axios Interceptors
-    axios.interceptors.request.use((config) => {
-      const token = authStore.token ?
-      authStore.token :
-      authStore.getNewToken();
-      config.headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }
-      config.validateStatus = (status) => {
-        return true;
-      }
-      return config;
-    }, (error) => {
-      return Promise.reject(error);
-    });
-
-  }, [])
+    authStore.checkAccess();
+  }, []);
 
   return (
-    <div>
-      <BrowserRouter>
-        <React.Fragment>
-          <MenuBar />
-          <main className="main-content">
-            <Switch>
-              {!authStore.refreshToken && (
-                <Redirect from="/" to="/auth" exact />
-              )}
-              {!authStore.refreshToken && (
-                <Route path="/auth" component={AuthPage} />
-              )}
-              {!authStore.refreshToken && (
-                <Redirect from="/looks" to="/auth" exact />
-              )}
-              {!authStore.refreshToken && (
-                <Redirect from="/items" to="/auth" exact />
-              )}
-              {!authStore.refreshToken && (
-                <Redirect from="/mail" to="/auth" exact />
-              )}
-              {!authStore.refreshToken && (
-                <Redirect from="/friends" to="/auth" exact />
-              )}
-              {!authStore.refreshToken && (
-                <Redirect from="/profil" to="/auth" exact />
-              )}
-              {authStore.refreshToken && (
-                <Redirect from="/" to="/profil" exact />
-              )}
-              {authStore.refreshToken && (
-                <Redirect from="/auth" to="/profil" exact />
-              )}
-              {authStore.refreshToken && (
-                <Route path="/looks" component={LooksPage} />
-              )}
-              {authStore.refreshToken && (
-                <Route path="/items" component={ItemsPage} />
-              )}
-              {authStore.refreshToken && (
-                <Route path="/mail" component={MailPage} />
-              )}
-              {authStore.refreshToken && (
-                <Route path="/friends" component={FriendsPage} />
-              )}
-              {authStore.refreshToken && (
-                <Route path="/profil" component={ProfilPage} />
-              )}
-              <Route path="/info" component={InfoPage} />
-            </Switch>
-          </main>
-        </React.Fragment>
-      </BrowserRouter>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Redirect from="/recoverpwd" to="/" />
+          <Redirect from="/invite" to="/" />
+          <Redirect from="/emailverify" to="/" />
+          <Route path="/recoverpwd/:key" component={NewPassword} />
+          <Route path="/invite/:inviteCode" component={Welcome} />
+          <Route path="/emailverify/:verifyCode" component={EmailVerified} />
+          <Route path="/service">"service page"</Route>
+          <Route path="/privacy">"privacy page"</Route>
+          <Route path="/settings">"settings page"</Route>
+          {authStore.hasAccess && <Route path="/looks" component={LooksPage} />}
+          {authStore.hasAccess && <Route path="/items" component={ItemsPage} />}
+          {authStore.hasAccess && <Route path="/profil" component={Profil} />}
+          {authStore.hasAccess && <Route path="/info" component={InfoPage} />}
+          {authStore.hasAccess ? <Home /> : <Welcome showLogin={true} />}
+        </Switch>
+      </div>
+    </Router>
   );
 });
 

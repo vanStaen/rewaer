@@ -1,198 +1,107 @@
-import React, { Component } from "react";
-import { authStore } from "../../stores/authStore";
-import { Form, Input, Button, Checkbox } from "antd";
-import { openNotification } from "../openNotification/openNotification";
+import React, { useState, useRef } from "react";
+import { Form, Input, Button, Checkbox, notification } from "antd";
 import {
-  UserOutlined,
   MailOutlined,
   LockOutlined,
-  EyeInvisibleOutlined,
-  EyeOutlined,
+  SyncOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
+
+import { AlreadyMember } from "../SignUpForm/AlreadyMember";
+import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
+import { authStore } from "../../stores/authStore/authStore";
+import { postVerifyEmailLink } from "./postVerifyEmailLink";
 
 import "./LoginForm.css";
 
-class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLogin: true,
-    };
-  }
+export const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRecovery, setIsRecovery] = useState(false);
+  const isEmail = useRef(undefined);
 
-  switchModeHandler = () => {
-    this.setState((prevState) => {
-      return { isLogin: !prevState.isLogin };
-    });
+  const submitHandler = async (values) => {
+    setIsLoading(true);
+    const email = values.email;
+    isEmail.current = email;
+    const password = values.password;
+    const remember = values.remember;
+    try {
+      const error = await authStore.login(email, null, password, remember);
+      if (error) {
+        if (error === "Error: Email is not verified!") {
+          const errorMessage = (
+            <>
+              <b>Your email is not verified yet!</b> Please check your email
+              postbox for the verification link.
+              <div
+                className="login__verifyEmailLink"
+                onClick={() => {
+                  postVerifyEmailLink(isEmail.current);
+                }}
+              >
+                <LinkOutlined /> Click here to have us send you a brand new link
+                to <span className="link"> verify your email</span>.
+              </div>
+            </>
+          );
+          notification.error({
+            duration: 0,
+            message: errorMessage,
+            placement: "topLeft",
+          });
+        } else if (error === "Error: Password is incorrect!") {
+          const errorMessage = (
+            <>
+              <b>Password is incorrect!</b> <br />
+              Please check your password or use the
+              <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
+                {" "}
+                recover password{" "}
+              </span>{" "}
+              feature.
+            </>
+          );
+          notification.error({
+            message: errorMessage,
+            placement: "topLeft",
+          });
+        } else {
+          notification.error({
+            message: error,
+            placement: "topLeft",
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   };
 
-  render() {
-    const submitHandler = (values) => {
-      const email = values.email;
-      const password = values.password;
-      const remember = values.remember;
+  return isRecovery ? (
+    <PasswordRecover setIsRecovery={setIsRecovery} email={isEmail.current} />
+  ) : (
+    <div className="login__full">
+      <div className="login__header">
+        Log into <b>Merrier</b>
+        .app
+      </div>
 
-      let requestBody = { email: email, password: password };
-
-      async function createUser() {
-        const response = await fetch(process.env.REACT_APP_API_URL, {
-          method: "POST",
-          body: JSON.stringify(requestBody),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        if ((response.status !== 200) & (response.status !== 201)) {
-          const error = await response.json();
-          openNotification(error.errors[0].message, "", 3, "warning");
-          const message = `An error has occured: ${response.status} - ${error.errors[0].message}`;
-          throw new Error(message);
-        }
-        const login = await response.json();
-        return login;
-      }
-
-      async function fetchLogin() {
-        const response = await fetch(
-          process.env.REACT_APP_AUTH_URL + "/login",
-          {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if ((response.status !== 200) & (response.status !== 201)) {
-          const error = await response.json();
-          openNotification(error.error, "", 3, "warning");
-          const message = `An error has occured: ${response.status} - ${error.error}`;
-          throw new Error(message);
-        }
-        const login = await response.json();
-        return login;
-      }
-
-      async function fetchUser(token) {
-        const requestBody = {
-          query: `
-                query {
-                  user {
-                    name
-                    email
-                    dateCreated
-                    avatar
-                    active
-                  }
-                }
-                  `,
-        };
-        const response = await fetch(process.env.REACT_APP_API_URL, {
-          method: "POST",
-          body: JSON.stringify(requestBody),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-        });
-        if ((response.status !== 200) & (response.status !== 201)) {
-          const error = await response.json();
-          openNotification("Error " + response.status, error.error, 0, "error");
-          const message = `An error has occured: ${response.status}`;
-          throw new Error(message);
-        }
-        const user = await response.json();
-        return user;
-      }
-
-      // Register
-      if (!this.state.isLogin) {
-        const username = values.username;
-        requestBody = {
-          query: `
-              mutation {
-                  createUser(
-                    userInput: { name: "${username}", email: "${email}", password: "${password}" }
-                  ) {
-                    name
-                  }
-                }
-                `,
-        };
-        createUser()
-          .then((resData) => {
-            const newUser = resData.data.createUser.name;
-            openNotification(
-              "Account successully created.",
-              "Kudos to you " +
-                newUser +
-                "! You can now log into your account.",
-              5,
-              "success"
-            );
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      } else {
-        // login
-        fetchLogin()
-          .then((resData) => {
-            authStore.login(resData.token, resData.refreshToken);
-            if (remember === true) {
-              // Store RefreshToken and ID, only if "remember" set to true.
-              localStorage.setItem("refreshToken", resData.refreshToken);
-              localStorage.setItem("userId", resData.userId);
-            }
-            openNotification("You have successully log in.", "", 3, "success");
-            // Get user infos
-            fetchUser(resData.token)
-              .then((resData) => {
-                const user = resData.data.user[0];
-                localStorage.setItem("user", JSON.stringify(user));
-              })
-              .catch((error) => {
-                console.log(error.message);
-              });
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      }
-    };
-
-    return (
       <Form
-        name="normal_login"
-        className="login-form"
+        name="form_login"
+        className="login__form"
         initialValues={{
-          remember: true,
+          email: isEmail.current,
         }}
         onFinish={submitHandler}
       >
-        <Form.Item
-          name="username"
-          hidden={this.state.isLogin}
-          rules={[
-            {
-              required: !this.state.isLogin,
-              message: "How should we call you?",
-            },
-          ]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Name"
-          />
-        </Form.Item>
-
         <Form.Item
           name="email"
           rules={[
             {
               type: "email",
               required: true,
-              message: "Please input your Email!",
+              message: "Please input your Email",
             },
           ]}
         >
@@ -201,51 +110,57 @@ class LoginForm extends Component {
             placeholder="Email"
           />
         </Form.Item>
+
         <Form.Item
           name="password"
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "Please input your password!",
             },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="input Password"
-            iconRender={(visible) =>
-              visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
-            }
+            placeholder="Password"
           />
         </Form.Item>
-        <Form.Item hidden={!this.state.isLogin}>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
 
-          <a className="login-form-forgot" href="/#">
-            Recover password
-          </a>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          style={{ display: "inline-block", width: "calc(50%)" }}
+          defaultChecked={false}
+        >
+          <Checkbox className="login__remember">Remember me</Checkbox>
         </Form.Item>
+
+        <Form.Item
+          name="passwordRecover"
+          style={{
+            display: "inline-block",
+            width: "calc(50%)",
+            textAlign: "right",
+          }}
+        >
+          <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
+            Recover password
+          </span>
+        </Form.Item>
+
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="login__formbutton"
           >
-            {this.state.isLogin ? "Log in" : "Create account"}
+            {isLoading ? <SyncOutlined spin /> : "Log me in"}
           </Button>
-          Or{" "}
-          <span
-            style={{ color: "#6C917D", cursor: "pointer" }}
-            onClick={this.switchModeHandler}
-          >
-            {this.state.isLogin ? "register now!" : "log into your account!"}
-          </span>
+          <div className="login__showAlreadyMember">
+            <AlreadyMember />
+          </div>
         </Form.Item>
       </Form>
-    );
-  }
-}
-
-export default LoginForm;
+    </div>
+  );
+};

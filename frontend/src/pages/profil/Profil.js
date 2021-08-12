@@ -1,30 +1,30 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { authStore } from '../../stores/authStore';
-import { userStore } from '../../stores/userStore';
+import { authStore } from "../../stores/authStore";
+import { userStore } from "../../stores/userStore";
 import { Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
 
-const ProfilPage = observer(() => {
-
+const Profil = observer(() => {
   return (
     <div>
-      <Title level={3}>Hello, {userStore.user ? userStore.user.name : 'there'}
+      <Title level={3}>
+        Hello, {userStore.user ? userStore.user.name : "there"}
       </Title>
       <Paragraph copyable>
         <b>User ID:</b> {userStore.userId}
       </Paragraph>
-      { process.env.NODE_ENV === "development" && (
+      {process.env.NODE_ENV === "development" && (
         <div>
-
           <Paragraph
             copyable={{
               text: authStore.token,
               tooltips: ["Copy token", "Token copied!"],
             }}
           >
-            <b>Access Token : </b>{authStore.token}
+            <b>Access Token : </b>
+            {authStore.token}
           </Paragraph>
           <Paragraph
             copyable={{
@@ -32,11 +32,11 @@ const ProfilPage = observer(() => {
               tooltips: ["Copy refresh token", "Refresh Token copied!"],
             }}
           >
-            <b>Refresh Token : </b>{authStore.refreshToken}
+            <b>Refresh Token : </b>
+            {authStore.refreshToken}
           </Paragraph>
         </div>
       )}
-
     </div>
   );
 });

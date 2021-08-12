@@ -1,0 +1,24 @@
+.welcome__leftPanel {
+  width: 40vw;
+  height: 100vh;
+  display: inline-block;
+  vertical-align: top;
+  background-image: url("./../../img/ohboy.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.welcome__rightPanel {
+  width: 60vw;
+  height: 100vh;
+  display: inline-block;
+  vertical-align: top;
+  background-color: white;
+}
+
+.welcome__alreadyMember{
+    position: absolute;
+    right: 1.5em;
+    font-size: .5em;
+}

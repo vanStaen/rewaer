@@ -1,4 +1,4 @@
-.login__full {
+.signup__full {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
   width: 100%;
@@ -8,41 +8,41 @@
   justify-content: center;
 } 
 
-.login__full .login__form {
+.signup__full .signup__form {
   width: 400px;
 }
 
-.login__full .login__formbutton {
+.signup__full .signup__formbutton {
   width: 100%;
 }
 
-.login__full .login__remember {
+.signup__full .signup__terms {
   text-align: left;
   color: #43464D;
 }
 
-.login__full .ant-btn-primary {
+.signup__full .ant-btn-primary {
   background: #43464D;
   border-color: #43464D;
 }
 
-.login__full .ant-btn-primary:hover, 
-.login__full .ant-btn-primary:focus {
+.signup__full .ant-btn-primary:hover, 
+.signup__full .ant-btn-primary:focus {
   background:  rgba(192, 57, 43, .75);
   border-color: rgba(192, 57, 43, .8);
 }
 
-.login__full .ant-checkbox-checked .ant-checkbox-inner {
+.signup__full .ant-checkbox-checked .ant-checkbox-inner {
   border-color: #43464D;
   background: #43464D;
 }
 
-.login__full .ant-checkbox-input:hover {
+.signup__full .ant-checkbox-input:hover {
   border-color: #43464D;
   background: #43464D;
 }
 
-.login__full .login__header {
+.signup__full .signup__header {
   width: 400px;
   font-weight: 200;
   font-size: .75em;
@@ -50,16 +50,6 @@
   margin-bottom: 2vh;
 }
 
-.login__login {
-  padding-top: 15px;
-  color: rgba(0, 0, 0, .75);
-}
-
-.login__showAlreadyMember{
+.signup__showAlreadyMember{
   display: none;
-}
-
-.login__verifyEmailLink {
-  padding-top: 15px;
-  color: rgba(0, 0, 0, .75);
 }
