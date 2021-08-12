@@ -32,6 +32,7 @@
   "homepage": "https://github.com/vanStaen/rewaer.com#readme",
   "dependencies": {
     "aws-sdk": "^2.788.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
