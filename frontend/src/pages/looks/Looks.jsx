@@ -8,7 +8,7 @@ import LookForm from "./LookForm/LookForm";
 
 import "./Looks.css";
 
-const LooksPage = () => {
+export const Looks = () => {
   const [looks, setLooks] = useState([]);
   const [isOutOfDate, setIsOutOfDate] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,5 +71,3 @@ const LooksPage = () => {
     </div>
   );
 };
-
-export default LooksPage;

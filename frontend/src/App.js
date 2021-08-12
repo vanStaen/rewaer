@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import { observer } from "mobx-react";
 
-import LooksPage from "./pages/looks/Looks";
-import ItemsPage from "./pages/items/Items";
-import InfoPage from "./pages/info/Info";
-import Profil from "./pages/profil/Profil";
-import MenuBar from "./components/MenuBar/MenuBar";
-import { authStore } from "./stores/authStore";
+import { Looks } from "./pages/Looks/Looks";
+import { Items } from "./pages/Items/Items";
+import { Info } from "./pages/Info/Info";
+import { Profil } from "./pages/Profil/Profil";
 import { Welcome } from "./pages/Welcome/Welcome";
+import { NewPassword } from "./pages/NewPassword/NewPassword";
+import { authStore } from "./stores/authStore/authStore";
+import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
 import "./App.css";
 
@@ -30,11 +36,11 @@ const App = observer(() => {
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>
-          {authStore.hasAccess && <Route path="/looks" component={LooksPage} />}
-          {authStore.hasAccess && <Route path="/items" component={ItemsPage} />}
+          <Route path="/info" component={Info} />
+          {authStore.hasAccess && <Route path="/looks" component={Looks} />}
+          {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
-          {authStore.hasAccess && <Route path="/info" component={InfoPage} />}
-          {authStore.hasAccess ? <Home /> : <Welcome showLogin={true} />}
+          {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
         </Switch>
       </div>
     </Router>

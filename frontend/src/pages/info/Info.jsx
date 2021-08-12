@@ -3,7 +3,7 @@ import { Typography, Divider } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
 
-class InfoPage extends Component {
+export class Info extends Component {
   render() {
     return (
       <div>
@@ -50,9 +50,10 @@ class InfoPage extends Component {
 
         <Divider plain>Why do you need it?</Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          <em>I don't know what to wear! Do I need new clothes?</em> Fashion accounts for 
-          around 10% of greenhouse gas emissions from human activity, but there 
-          are ways to reduce the impact your wardrobe has on the climate:{" "}
+          <em>I don't know what to wear! Do I need new clothes?</em> Fashion
+          accounts for around 10% of greenhouse gas emissions from human
+          activity, but there are ways to reduce the impact your wardrobe has on
+          the climate:{" "}
           <span style={{ background: "#C8D6CF" }}>
             not buying new clothes you don't need
           </span>{" "}
@@ -102,5 +103,3 @@ class InfoPage extends Component {
     );
   }
 }
-
-export default InfoPage;

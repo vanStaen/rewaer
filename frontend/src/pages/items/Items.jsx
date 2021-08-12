@@ -8,7 +8,7 @@ import ItemForm from "./ItemForm/ItemForm";
 
 import "./Items.css";
 
-const ItemsPage = () => {
+export const Items = () => {
   const [items, setItems] = useState([]);
   const [isOutOfDate, setIsOutOfDate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,5 +57,3 @@ const ItemsPage = () => {
     </div>
   );
 };
-
-export default ItemsPage;

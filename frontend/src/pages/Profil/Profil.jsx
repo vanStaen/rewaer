@@ -6,7 +6,7 @@ import { Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
 
-const Profil = observer(() => {
+export const Profil = observer(() => {
   return (
     <div>
       <Title level={3}>
@@ -40,5 +40,3 @@ const Profil = observer(() => {
     </div>
   );
 });
-
-export default ProfilPage;
