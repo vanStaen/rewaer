@@ -6,6 +6,11 @@ import "./LanguageDropDown.css";
 
 export const LanguageDropDown = (props) => {
   const [language, setLanguage] = useState("EN");
+
+  const browserLanguage =
+    window.navigator.userLanguage || window.navigator.language;
+  console.log(browserLanguage);
+
   const menu = (
     <Menu>
       <Menu.Item

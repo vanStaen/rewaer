@@ -42,6 +42,7 @@ app.use(function (req, res, next) {
         'http://rewaer.herokuapp.com',
         'https://rewaer.herokuapp.com',
       ],
+      credentials: true,
       optionsSuccessStatus: 200
     }
   }

@@ -2,21 +2,14 @@
 
 ## To-dos:
 
-- [ ] Refactoring del la muerte:
-  - [ ] Kill Mongoose, use Sequelize
-  - [ ] Rewrite GraphQl Resolvers
-  - [ ] Rewrite Rest Controller
+- [x] Refactoring del la muerte:
+  - [x] Kill Mongoose, use Sequelize
+  - [x] Rewrite GraphQl Resolvers
+  - [x] Rewrite Rest Controller
   - [ ] Rewrite all call from frontend
 - [ ] Clean/Write Readme
 - [ ] Clean Todos
-  
-- [ ] Handle new account created
-  - [x] Show success message in App
-  - [x] Handle errors from backend
-  - [ ] Send Email to new user
-    - [ ] User should confirm email?
-- [ ] Recover password feature
-  
+    
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
@@ -89,10 +82,7 @@
   - [x] check state usage in already created component
   - [x] Check class vs function component
   - [x] Take API-fetch-code, out from component
-  - [ ] - [x] Implement MobX instead of using context
+  - [x] Implement MobX instead of using context
   - [x] Create an Authorisation Store to hanble token and login
   - [x] Create a store to handle profil data
-  - [ ] ~Route Store saved in context~
-    - [ ] ~Save all sub-Stores in a main store~
-    - [ ] ~Save the main Store into the context~
-- [x] Merge Auth service
+- [x] New Auth logic taken from merrier
