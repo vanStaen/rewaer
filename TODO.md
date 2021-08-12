@@ -6,10 +6,7 @@
   - [x] Kill Mongoose, use Sequelize
   - [x] Rewrite GraphQl Resolvers
   - [x] Rewrite Rest Controller
-  - [ ] Rewrite all call from frontend
-- [ ] Clean/Write Readme
-- [ ] Clean Todos
-    
+  - [ ] Rewrite all call from frontend    
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
