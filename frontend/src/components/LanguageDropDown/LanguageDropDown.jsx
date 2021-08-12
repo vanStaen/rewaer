@@ -9,7 +9,7 @@ export const LanguageDropDown = (props) => {
 
   const browserLanguage =
     window.navigator.userLanguage || window.navigator.language;
-  console.log(browserLanguage);
+  console.log("browserLanguage", browserLanguage);
 
   const menu = (
     <Menu>
@@ -18,21 +18,21 @@ export const LanguageDropDown = (props) => {
           setLanguage("EN");
         }}
       >
-        EN
+        <div className="languageDropdown__item">EN</div>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
           setLanguage("DE");
         }}
       >
-        DE
+        <div className="languageDropdown__item">DE</div>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
           setLanguage("FR");
         }}
       >
-        FR
+        <div className="languageDropdown__item">FR</div>
       </Menu.Item>
     </Menu>
   );

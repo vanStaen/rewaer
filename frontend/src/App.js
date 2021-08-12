@@ -29,8 +29,6 @@ const App = observer(() => {
         <Switch>
           <Route path="/recoverpwd/:key" component={NewPassword} />
           <Route path="/emailverify/:verifyCode" component={EmailVerified} />
-          <Redirect from="/recoverpwd" to="/" />
-          <Redirect from="/emailverify" to="/" />
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>
@@ -38,7 +36,10 @@ const App = observer(() => {
           {authStore.hasAccess && <Route path="/looks" component={Looks} />}
           {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
-          {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
+          <Route path="/" exact>
+            {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
+          </Route>
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>
