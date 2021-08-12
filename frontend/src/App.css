@@ -1,5 +1,6 @@
 @import "~antd/dist/antd.css";
 /*@import "../src/style/rewaer-antd.css";*/
+
 .App {
   min-height: 100vh;
   display: flex;
