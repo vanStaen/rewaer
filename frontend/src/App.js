@@ -27,12 +27,12 @@ const App = observer(() => {
     <Router>
       <div className="App">
         <Switch>
-          <Redirect from="/recoverpwd" to="/" />
-          <Redirect from="/invite" to="/" />
-          <Redirect from="/emailverify" to="/" />
           <Route path="/recoverpwd/:key" component={NewPassword} />
           <Route path="/invite/:inviteCode" component={Welcome} />
           <Route path="/emailverify/:verifyCode" component={EmailVerified} />
+          <Redirect from="/recoverpwd" to="/" />
+          <Redirect from="/invite" to="/" />
+          <Redirect from="/emailverify" to="/" />
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>

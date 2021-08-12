@@ -83,8 +83,8 @@ export const LoginForm = () => {
   ) : (
     <div className="login__full">
       <div className="login__header">
-        Log into <b>Merrier</b>
-        .app
+        Log into <b>Rewær</b>
+        .com
       </div>
 
       <Form

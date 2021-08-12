@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { authStore } from "../../stores/authStore";
-import { userStore } from "../../stores/userStore";
+import { authStore } from "../../stores/authStore/authStore";
+import { userStore } from "../../stores/userStore/userStore";
 import { Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
