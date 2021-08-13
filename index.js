@@ -14,12 +14,13 @@ require("dotenv/config");
 
 const PORT = process.env.PORT || 5000;
 
-// Redirect www trafic to root
-app.set("trust proxy", true);
-app.use(redirectTraffic);
 
 // Init Express
 const app = express();
+
+// Redirect www trafic to root
+app.set("trust proxy", true);
+app.use(redirectTraffic);
 
 // Body Parser Middleware
 app.use(express.json());
