@@ -14,11 +14,10 @@ require("dotenv/config");
 
 const PORT = process.env.PORT || 5000;
 
-
 // Init Express
 const app = express();
 
-// Redirect www trafic to root
+// Redirect trafic to root and https
 app.set("trust proxy", true);
 app.use(redirectTraffic);
 
@@ -63,22 +62,22 @@ app.use('/mail', require('./api/controller/mailController'))
 //app.use("/upload", require("./api/controller/uploadController"));
 
 // Start DB & use GraphQL
-db.sequelize.sync().then((req)=> {
+db.sequelize.sync().then((req) => {
   app.use(
     "/graphql",
     graphqlHTTP({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
-      graphiql: true,     
+      graphiql: true,
       customFormatErrorFn(err) {
         if (!err.originalError) {
           return err
         }
         const data = err.originalError.data;
-        const message = err.message || 'An error occured with GraphQl';
-        const code = err.originalError.code || 500;
-        return { message: message, status: code, data: data}
-      } 
+        const message = err.message || 'An error occured with GraphQl';
+        const code = err.originalError.code || 500;
+        return { message: message, status: code, data: data }
+      }
     })
   );
 });
