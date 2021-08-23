@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const postSendRecoverLink = async (email) => {
+export const postSendRecoverLink = async (email, language = "en") => {
 
     const requestBody = {
         "sendto": email,
+        "language": language,
     };
 
     const response = await axios({
