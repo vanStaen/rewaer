@@ -1,0 +1,28 @@
+{
+  "login": {
+    "newHere": "Erstes mal hier",
+    "signUp": "Zum Anmeldung",
+    "member": "Schon angemeldet",
+    "login": "Einlogen",
+    "emailNotVerifyYet": "Ihre email ist noch nicht bestättigt",
+    "checkPostBoxForVerificationLink": "bitte ihre email postfach prüfen für den Email bestättigungslink",
+    "clickToGetNewVerificationLink": "Bitte hier klicken um eine neue link zu bekommen:",
+    "verifyYourEmail": "Email bestättigen",
+    "passwordIsIncorrect": "Passwort ist inkorrekt",
+    "pleaseCheckPasswordOrUse": "Bitte prüfen Sie Ihre passwort, or nutzen sie die",
+    "recoverPassword": "Password vergessen",
+    "feature": "funktion",
+    "loginto": "Log dich bei",
+    "logintoAfter": "ein",
+    "password": "Passwort",
+    "pleaseInputEmail": "Bitte gebe dein Email ein.",
+    "pleaseInputPassword": "Bitte gebe dein Passwort ein!",
+    "rememberMe": "Eingeloggt bleiben",
+    "logMeIn": "Einloggen",
+    "recoverEmailSent": "Einem email mit dem link um der Passwort zu wiedererstellen ist verschickt worden!",
+    "recoverYourPassword": "Passwort wiedererstellen",
+    "emailDoesNotExist": "Dieses Email würde in unserem Datenbank nicht gefunden!",
+    "sendPasswortResetEmail": "Password wiedererstellungslink schicken",
+    "iRememberNow": "Alles klar, ich errinere mich"
+  }
+}

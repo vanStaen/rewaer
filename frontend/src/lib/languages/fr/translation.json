@@ -1,0 +1,28 @@
+{
+  "login": {
+    "newHere": "Premiére fois",
+    "signUp": "Créer un compte",
+    "member": "Déja membre",
+    "login": "Se connecter",
+    "emailNotVerifyYet": "Votre email n'est pas encore vérifiée.",
+    "checkPostBoxForVerificationLink": "Dans votre boite de reception ce trouve un email avec le lien de verification",
+    "clickToGetNewVerificationLink": "Cliquez ici pour recevoir un nouveau lien de",
+    "verifyYourEmail": "verification d'email",
+    "passwordIsIncorrect": "Mot de passe incorrect",
+    "pleaseCheckPasswordOrUse": "Verifiez votre mot de passe ou utiisez la function",
+    "recoverPassword": "Mot de passe oublié",
+    "feature": "",
+    "loginto": "Connection à",
+    "logintoAfter": "",
+    "password": "Mot de passe",
+    "pleaseInputEmail": "Entrez votre email",
+    "pleaseInputPassword": "Saisissez votre password!",
+    "rememberMe": "Rester connecté",
+    "logMeIn": "Connection",
+    "recoverEmailSent": "Un mail contenant le lien pour changer le mot de passe a été envoyé!",
+    "recoverYourPassword": "Changement de mot de passe",
+    "emailDoesNotExist": "Cet email n'existe pas dans notre base de donnée!",
+    "sendPasswortResetEmail": "Envoyer le lien pour change le mot de passe",
+    "iRememberNow": "C'est bon, je me rapelle"
+  }
+}

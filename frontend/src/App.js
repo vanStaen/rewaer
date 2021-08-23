@@ -16,6 +16,8 @@ import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
+import '../src/lib/i18n';
+
 import "./App.css";
 
 const App = observer(() => {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, notification } from "antd";
 import { MailOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { postEmailExist } from "./postEmailExist";
 import { postSendRecoverLink } from "./postSendRecoverLink";
@@ -9,6 +10,7 @@ import "./PasswordRecover.css";
 
 export const PasswordRecover = (props) => {
   const [emailDoNotExist, setEmailDoNotExist] = useState(undefined);
+  const { t } = useTranslation();
 
   const changeEmailHandler = async (e) => {
     setEmailDoNotExist(undefined);
@@ -24,7 +26,7 @@ export const PasswordRecover = (props) => {
       try {
         await postSendRecoverLink(email);
         notification.success({
-          message: "We sent you an email with a link to recover your password!",
+          message: t("login.recoverEmailSent"),
           placement: "topLeft",
         });
         props.setIsRecovery(false);
@@ -39,7 +41,7 @@ export const PasswordRecover = (props) => {
 
   return (
     <div className="recover__full">
-      <div className="recover__header">Recover your password</div>
+      <div className="recover__header">{t("login.recoverYourPassword")}</div>
 
       <Form
         name="form_recover"
@@ -56,7 +58,7 @@ export const PasswordRecover = (props) => {
             {
               type: "email",
               required: true,
-              message: "Please input your Email",
+              message: t("login.pleaseInputEmail"),
             },
           ]}
         >
@@ -74,8 +76,8 @@ export const PasswordRecover = (props) => {
             disabled={emailDoNotExist === "error" ? true : false}
           >
             {emailDoNotExist === "error"
-              ? "This email doesn't exist in our database!"
-              : "Send password reset email"}
+              ? t("login.emailDoesNotExist")
+              : t("login.sendPasswortResetEmail")}
           </Button>
 
           <div
@@ -85,7 +87,7 @@ export const PasswordRecover = (props) => {
             }}
           >
             <ArrowLeftOutlined />{" "}
-            <span className="link">It's okay, I remember now</span>
+            <span className="link">{t("login.iRememberNow")}</span>
           </div>
         </Form.Item>
       </Form>

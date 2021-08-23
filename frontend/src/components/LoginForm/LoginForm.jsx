@@ -6,6 +6,7 @@ import {
   SyncOutlined,
   LinkOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { AlreadyMember } from "../SignUpForm/AlreadyMember";
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
@@ -18,6 +19,7 @@ export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isRecovery, setIsRecovery] = useState(false);
   const isEmail = useRef(undefined);
+  const { t } = useTranslation();
 
   const submitHandler = async (values) => {
     setIsLoading(true);
@@ -31,16 +33,16 @@ export const LoginForm = () => {
         if (error === "Error: Email is not verified!") {
           const errorMessage = (
             <>
-              <b>Your email is not verified yet!</b> Please check your email
-              postbox for the verification link.
+              <strong>{t("login.emailNotVerifyYet")}!</strong>{" "}
+              {t("login.checkPostBoxForVerificationLink")}.
               <div
                 className="login__verifyEmailLink"
                 onClick={() => {
                   postVerifyEmailLink(isEmail.current);
                 }}
               >
-                <LinkOutlined /> Click here to have us send you a brand new link
-                to <span className="link"> verify your email</span>.
+                <LinkOutlined /> {t("login.clickToGetNewVerificationLink")}
+                <span className="link"> {t("login.verifyYourEmail")}</span>.
               </div>
             </>
           );
@@ -52,13 +54,13 @@ export const LoginForm = () => {
         } else if (error === "Error: Password is incorrect!") {
           const errorMessage = (
             <>
-              <b>Password is incorrect!</b> <br />
-              Please check your password or use the
+              <strong>{t("login.passwordIsIncorrect")}!</strong> <br />
+              {t("login.pleaseCheckPasswordOrUse")}
               <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
                 {" "}
-                recover password{" "}
+                {t("login.recoverPassword")}{" "}
               </span>{" "}
-              feature.
+              {t("login.feature")}.
             </>
           );
           notification.error({
@@ -83,8 +85,8 @@ export const LoginForm = () => {
   ) : (
     <div className="login__full">
       <div className="login__header">
-        Log into <b>rewær</b>
-        .com
+        {t("login.loginto")} <b>rewaer</b>
+        .com {t("login.logintoAfter")}
       </div>
 
       <Form
@@ -101,7 +103,7 @@ export const LoginForm = () => {
             {
               type: "email",
               required: true,
-              message: "Please input your Email",
+              message: t("login.pleaseInputEmail"),
             },
           ]}
         >
@@ -116,13 +118,13 @@ export const LoginForm = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: t("login.pleaseInputPassword"),
             },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password"
+            placeholder={t("login.password")}
           />
         </Form.Item>
 
@@ -132,7 +134,9 @@ export const LoginForm = () => {
           style={{ display: "inline-block", width: "calc(50%)" }}
           defaultChecked={false}
         >
-          <Checkbox className="login__remember">Remember me</Checkbox>
+          <Checkbox className="login__remember">
+            {t("login.rememberMe")}
+          </Checkbox>
         </Form.Item>
 
         <Form.Item
@@ -144,7 +148,7 @@ export const LoginForm = () => {
           }}
         >
           <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
-            Recover password
+            {t("login.recoverPassword").replace(/^\w/, (c) => c.toUpperCase())}
           </span>
         </Form.Item>
 
@@ -154,7 +158,7 @@ export const LoginForm = () => {
             htmlType="submit"
             className="login__formbutton"
           >
-            {isLoading ? <SyncOutlined spin /> : "Log me in"}
+            {isLoading ? <SyncOutlined spin /> : t("login.logMeIn")}
           </Button>
           <div className="login__showAlreadyMember">
             <AlreadyMember />

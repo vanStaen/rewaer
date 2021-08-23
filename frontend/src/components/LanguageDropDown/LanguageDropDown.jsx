@@ -1,35 +1,53 @@
 import React, { useState } from "react";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import "./LanguageDropDown.css";
 
 export const LanguageDropDown = (props) => {
-  const [language, setLanguage] = useState("EN");
+  const { i18n } = useTranslation();
+  const initLanguage = i18n.language.slice(-2);
+  const [language, setLanguage] = useState(
+    initLanguage === "US" ? "EN" : initLanguage
+  );
 
-  const browserLanguage =
+  /* const browserLanguage =
     window.navigator.userLanguage || window.navigator.language;
-  console.log("browserLanguage", browserLanguage);
+  console.log("browserLanguage", browserLanguage); */
+
+  const onLanguageChangeHandler = (value) => {
+    if (value === "en") {
+      i18n.changeLanguage("en-US");
+      setLanguage("EN");
+    } else if (value === "fr") {
+      i18n.changeLanguage("fr-FR");
+      setLanguage("FR");
+    } else if (value === "de") {
+      i18n.changeLanguage("de-DE");
+      setLanguage("DE");
+    }
+  };
 
   const menu = (
     <Menu>
       <Menu.Item
         onClick={() => {
-          setLanguage("EN");
+          onLanguageChangeHandler("en");
         }}
       >
         <div className="languageDropdown__item">EN</div>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
-          setLanguage("DE");
+          onLanguageChangeHandler("de");
         }}
       >
         <div className="languageDropdown__item">DE</div>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
-          setLanguage("FR");
+          onLanguageChangeHandler("fr");
         }}
       >
         <div className="languageDropdown__item">FR</div>
@@ -40,6 +58,7 @@ export const LanguageDropDown = (props) => {
   return (
     <div className="languageDropdown">
       <Dropdown overlay={menu} trigger={"click"}>
+        {/* eslint-disable-next-line */}
         <a
           className="ant-dropdown-link"
           onClick={(e) => {

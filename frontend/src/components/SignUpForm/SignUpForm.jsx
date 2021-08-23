@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, notification, Tooltip } from "antd";
 import {
-  SmileOutlined,
+  CheckOutlined,
   UserOutlined,
   MailOutlined,
   LockOutlined,
   SyncOutlined,
+  SmileOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { postUsernameTaken } from "./postUsernameTaken";
 import { postAddUser } from "./postAddUser";
@@ -18,6 +20,7 @@ export const SignUpForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValidUsername, setIsValidUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
   const [errorMsgUsername, setErrorMsgUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
+  const { t } = useTranslation();
 
   const changeUserNameHandler = async (e) => {
     const username = e.target.value;
@@ -85,15 +88,40 @@ export const SignUpForm = (props) => {
   return (
     <div className="signup__full">
       <div className="signup__header">
-        Sign up to <b>rewær</b>
+        Sign up to <b>rewaer</b>
         .com
       </div>
 
       <Form
         name="form_signup"
         className="signup__form"
+        initialValues={{
+          code: props.inviteCode,
+        }}
         onFinish={submitHandler}
       >
+        <Tooltip
+          trigger={["hover"]}
+          title={"Your invitation code"}
+          placement="left"
+        >
+          <Form.Item
+            name="code"
+            rules={[
+              {
+                required: true,
+                message: "An invitation is required to create a account",
+              },
+            ]}
+          >
+            <Input
+              prefix={<CheckOutlined className="site-form-item-icon" />}
+              placeholder="Invitation code"
+              disabled={props.inviteCode}
+            />
+          </Form.Item>
+        </Tooltip>
+
         <Form.Item
           name="firstname"
           style={{ display: "inline-block", width: "calc(50% - 12px)" }}
@@ -128,7 +156,7 @@ export const SignUpForm = (props) => {
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<SmileOutlined className="site-form-item-icon" />}
             placeholder="Last name"
           />
         </Form.Item>
@@ -151,7 +179,7 @@ export const SignUpForm = (props) => {
             hasFeedback
             rules={[
               {
-                required: false,
+                required: true,
                 message: "How should we call you?",
               },
               {
@@ -165,8 +193,8 @@ export const SignUpForm = (props) => {
             ]}
           >
             <Input
-              prefix={<SmileOutlined className="site-form-item-icon" />}
-              placeholder="Username (optional)"
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Pick a username"
             />
           </Form.Item>
         </Tooltip>
@@ -176,7 +204,7 @@ export const SignUpForm = (props) => {
             {
               type: "email",
               required: true,
-              message: "Please input your Email",
+              message: t("login.pleaseInputEmail"),
             },
           ]}
         >
