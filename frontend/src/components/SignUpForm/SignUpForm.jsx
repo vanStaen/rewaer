@@ -33,11 +33,11 @@ export const SignUpForm = (props) => {
       const isUsernameTaken = await postUsernameTaken(username);
       if (isUsernameTaken === true) {
         setIsValidUsername("error");
-        setErrorMsgUsername("This username is already taken!");
+        setErrorMsgUsername(t("login.usernameIsAlreadyTaken"));
       } else if (isUsernameTaken === false) {
         if (username.includes(" ")) {
           setIsValidUsername("error");
-          setErrorMsgUsername("You can't have spaces in your username.");
+          setErrorMsgUsername(t("login.spacesinUsername"));
         } else {
           setIsValidUsername("success");
           setErrorMsgUsername(null);
@@ -63,8 +63,7 @@ export const SignUpForm = (props) => {
       );
       if (!response.errors) {
         notification.success({
-          message:
-            "We still need you to confirm your email: Please check your email box, there you be an email from us.",
+          message: t("login.pleaseConfirmEmail"),
           placement: "topLeft",
           duration: 0,
         });
@@ -88,8 +87,8 @@ export const SignUpForm = (props) => {
   return (
     <div className="signup__full">
       <div className="signup__header">
-        Sign up to <b>rewaer</b>
-        .com
+        {t("login.signinto")} <b>rewær</b>
+        .com {t("login.signintoAfter")}
       </div>
 
       <Form
@@ -102,7 +101,7 @@ export const SignUpForm = (props) => {
       >
         <Tooltip
           trigger={["hover"]}
-          title={"Your invitation code"}
+          title={t("login.yourInvitationCode")}
           placement="left"
         >
           <Form.Item
@@ -110,13 +109,13 @@ export const SignUpForm = (props) => {
             rules={[
               {
                 required: true,
-                message: "An invitation is required to create a account",
+                message: t("login.invitationRequiredCreateAccount"),
               },
             ]}
           >
             <Input
               prefix={<CheckOutlined className="site-form-item-icon" />}
-              placeholder="Invitation code"
+              placeholder={t("login.invitationCode")}
               disabled={props.inviteCode}
             />
           </Form.Item>
@@ -128,13 +127,13 @@ export const SignUpForm = (props) => {
           rules={[
             {
               required: true,
-              message: "First name missing",
+              message: t("login.firstNameMissing"),
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="First name"
+            placeholder={t("login.firstName")}
           />
         </Form.Item>
         <span
@@ -151,13 +150,13 @@ export const SignUpForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Last name missing",
+              message: t("login.lastNameMissing"),
             },
           ]}
         >
           <Input
             prefix={<SmileOutlined className="site-form-item-icon" />}
-            placeholder="Last name"
+            placeholder={t("login.lastName")}
           />
         </Form.Item>
 
@@ -165,9 +164,9 @@ export const SignUpForm = (props) => {
           trigger={["hover"]}
           title={
             errorMsgUsername
-              ? errorMsgUsername === "This username is already taken!"
-                ? "Already taken!"
-                : "Do not use spaces"
+              ? errorMsgUsername === t("login.usernameIsAlreadyTaken")
+                ? t("login.alreadyTaken")
+                : t("login.doNotUseSpaces")
               : null
           }
           placement="left"
@@ -180,7 +179,7 @@ export const SignUpForm = (props) => {
             rules={[
               {
                 required: true,
-                message: "How should we call you?",
+                message: t("login.howShouldWeCallYou"),
               },
               {
                 validator(_, value) {
@@ -194,7 +193,7 @@ export const SignUpForm = (props) => {
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Pick a username"
+              placeholder={t("login.pickUsername")}
             />
           </Form.Item>
         </Tooltip>
@@ -219,13 +218,13 @@ export const SignUpForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: t("login.pleaseInputYourPassword"),
             },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Choose a password"
+            placeholder={t("login.choosePassword")}
           />
         </Form.Item>
 
@@ -236,21 +235,23 @@ export const SignUpForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: t("login.pleaseConfirmYourPassword"),
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("The passwords do not match!"));
+                return Promise.reject(
+                  new Error(t("login.passwordsDoNotMatch"))
+                );
               },
             }),
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Confirm your password"
+            placeholder={t("login.confirmYourPassword")}
           />
         </Form.Item>
 
@@ -260,15 +261,17 @@ export const SignUpForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please accept our terms & policies!",
+              message: t("login.pleaseAcceptTerms"),
             },
           ]}
         >
           <Checkbox className="signup__terms">
-            Creating an account means you’re okay with our{" "}
-            <a href="/service">Terms of Service</a>,{" "}
-            <a href="/privacy">Privacy Policy</a>, and our default{" "}
-            <a href="/settings">Notification Settings</a>.
+            {t("login.creatingAccountMeans")}{" "}
+            <a href="/service">{t("login.termsService")}</a>,{" "}
+            <a href="/privacy">{t("login.privacyPolicy")}</a>
+            {t("login.andDefault")}{" "}
+            <a href="/settings">{t("login.notificationSettings")}</a>
+            {t("login.creatingAccountMeansAfter")}
           </Checkbox>
         </Form.Item>
 
@@ -278,7 +281,7 @@ export const SignUpForm = (props) => {
             htmlType="submit"
             className="signup__formbutton"
           >
-            {isLoading ? <SyncOutlined spin /> : "Create account"}
+            {isLoading ? <SyncOutlined spin /> : t("login.createAccount")}
           </Button>
           <div className="signup__showAlreadyMember">
             <AlreadyMember />
