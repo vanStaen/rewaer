@@ -61,6 +61,16 @@
     "termsService": "Conditions de service",
     "privacyPolicy": "Politique de confidentialité",
     "andDefault": " et nos",
-    "notificationSettings": "Paramètres de notification"
+    "notificationSettings": "Paramètres de notification",
+    "passwordReseted": "Votre mot de passe a été réinitialisé. Vous serez redirigé vers la page de connexion.",
+    "passwordNotChanged": "Erreur! Le mot de passe n'a pas été modifié: veuillez réessayer.",
+    "linkNotValid": "Ce lien n'est pas valide. Veuillez redémarrer le processus de récupération du mot de passe.",
+    "setNewPassword" : "Définir un nouveau mot de passe",
+    "pleaseInputNewPassword": "Veuillez saisir votre nouveau mot de passe!",
+    "chooseNewPassword": "Choisissez un nouveau mot de passe",
+    "pleaseConfirmNewPassword" : "Veuillez confirmer votre nouveau mot de passe!",
+    "passwordDoNotMatch": "Les mots de passe ne correspondent pas!",
+    "updatePassword": "Mettre à jour le mot de passe",
+    "linkNotValidAnymore": "Le lien n'est plus valide."
   }
 }

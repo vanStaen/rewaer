@@ -60,6 +60,16 @@
     "termsService": "Nutzungs-",
     "privacyPolicy": "Datenschutz-",
     "andDefault": " und unserem standard",
-    "notificationSettings": "Benachrichtigung-bedingungen"
+    "notificationSettings": "Benachrichtigung-bedingungen",
+    "passwordReseted": "Dein Passwort wurde zurück gesetzt. Sie werden auf die Login-Seite weitergeleitet.",
+    "passwordNotChanged": "Fehler! Das Passwort wurde nicht geändert: Bitte versuchen Sie es erneut.",
+    "linkNotValid": "Dieser Link ist ungültig. Bitte starten Sie den Passwortwiederherstellungsprozess neu.",
+    "setNewPassword" : "Geben Sie Ihr neues Passwort ein",
+    "pleaseInputNewPassword": "Bitte geben Sie Ihr neues Passwort ein!",
+    "chooseNewPassword": "Wählen Sie ein neues Passwort",
+    "pleaseConfirmNewPassword" : "Bitte bestätigen Sie Ihr neues Passwort!",
+    "passwordDoNotMatch": "Die Passwörter stimmen nicht überein!",
+    "updatePassword": "Passwort aktualisieren",
+    "linkNotValidAnymore": "Link ist nicht mehr gültig."
   }
 }
