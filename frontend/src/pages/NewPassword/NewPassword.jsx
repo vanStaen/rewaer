@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Form, Input, Button, notification } from "antd";
 import { LockOutlined, SyncOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { postTokenVerify } from "./postTokenVerify";
 import { postChangePassword } from "./postChangePassword";
@@ -10,6 +11,7 @@ import "./NewPassword.css";
 export const NewPassword = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const { t } = useTranslation();
 
   const token = props.match.params.key;
 
@@ -20,8 +22,7 @@ export const NewPassword = (props) => {
       const success = await postChangePassword(token, password);
       if (success === true) {
         notification.success({
-          message:
-            "Your password has been reset. You will be redirected to the login page.",
+          message: t("login.passwordReseted"),
           placement: "topLeft",
         });
         setTimeout(() => {
@@ -29,7 +30,7 @@ export const NewPassword = (props) => {
         }, 3000);
       } else {
         notification.warn({
-          message: "Error! The password wasn't changed: Please try again.",
+          message: t("login.passwordNotChanged"),
           placement: "topLeft",
         });
       }
@@ -48,8 +49,7 @@ export const NewPassword = (props) => {
     if (!tokenValid) {
       setIsValid(false);
       notification.error({
-        message:
-          "This link is not valid. Please restart the password recovery process.",
+        message: t("login.linkNotValid"),
         placement: "topLeft",
         duration: 0,
       });
@@ -65,7 +65,7 @@ export const NewPassword = (props) => {
       <div className="newPassword__leftPanel"></div>
       <div className="newPassword__rightPanel">
         <div className="signup__full">
-          <div className="signup__header">Set a new password</div>
+          <div className="signup__header">{t("login.setNewPassword")}</div>
 
           <Form
             name="form_signup"
@@ -80,13 +80,13 @@ export const NewPassword = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your new password!",
+                  message: t("login.pleaseInputNewPassword"),
                 },
               ]}
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
-                placeholder="Choose a new password"
+                placeholder={t("login.chooseNewPassword")}
               />
             </Form.Item>
 
@@ -97,7 +97,7 @@ export const NewPassword = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "Please confirm your new password!",
+                  message: t("login.pleaseInputNewPassword"),
                 },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
@@ -105,7 +105,7 @@ export const NewPassword = (props) => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error("The passwords do not match!")
+                      new Error(t("login.passwordDoNotMatch"))
                     );
                   },
                 }),
@@ -113,7 +113,7 @@ export const NewPassword = (props) => {
             >
               <Input.Password
                 prefix={<LockOutlined className="site-form-item-icon" />}
-                placeholder="Confirm your new password"
+                placeholder={t("login.pleaseConfirmNewPassword")}
               />
             </Form.Item>
 
@@ -127,9 +127,9 @@ export const NewPassword = (props) => {
                 {isLoading ? (
                   <SyncOutlined spin />
                 ) : isValid ? (
-                  "Update password"
+                  t("login.updatePassword")
                 ) : (
-                  "Link not valid anymore."
+                  t("login.linkNotValidAnymore")
                 )}
               </Button>
             </Form.Item>
