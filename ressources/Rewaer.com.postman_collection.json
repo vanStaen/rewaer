@@ -6,6 +6,125 @@
 	},
 	"item": [
 		{
+			"name": "REST API Endpoint: mail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\",\n    \"subject\": \"this is a test subject\",\n    \"body\": \"this is the email body\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/mail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"mail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REST API Endpoint: mail/recover",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/mail/recover",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"mail",
+						"recover"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REST API Endpoint: mail/emailverify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/mail/emailverify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"mail",
+						"emailverify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REST API Endpoint: user/email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "REST API Endpoint: auth/login",
 			"request": {
 				"method": "POST",
@@ -431,7 +550,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateLook(\n    lookId: 1\n    lookInput: { \n        favorite: false \n    }\n  ) {\n      _id\n    favorite\n  }\n}",
+						"query": "mutation {\n  updateLook(\n    lookId: 1\n    lookInput: { \n        favorite: false \n    }\n  ) {\n    _id\n    favorite\n  }\n}",
 						"variables": ""
 					}
 				},
