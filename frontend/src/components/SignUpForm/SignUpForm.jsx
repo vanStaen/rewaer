@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, notification, Tooltip } from "antd";
 import {
-  CheckOutlined,
   UserOutlined,
   MailOutlined,
   LockOutlined,
@@ -94,33 +93,8 @@ export const SignUpForm = (props) => {
       <Form
         name="form_signup"
         className="signup__form"
-        initialValues={{
-          code: props.inviteCode,
-        }}
         onFinish={submitHandler}
       >
-        <Tooltip
-          trigger={["hover"]}
-          title={t("login.yourInvitationCode")}
-          placement="left"
-        >
-          <Form.Item
-            name="code"
-            rules={[
-              {
-                required: true,
-                message: t("login.invitationRequiredCreateAccount"),
-              },
-            ]}
-          >
-            <Input
-              prefix={<CheckOutlined className="site-form-item-icon" />}
-              placeholder={t("login.invitationCode")}
-              disabled={props.inviteCode}
-            />
-          </Form.Item>
-        </Tooltip>
-
         <Form.Item
           name="firstname"
           style={{ display: "inline-block", width: "calc(50% - 12px)" }}
