@@ -39,7 +39,7 @@ const App = observer(() => {
           {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
           <Route path="/" exact>
-            {true ? <Profil /> : <Welcome showLogin={true} />}
+            {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
           </Route>
           <Redirect to="/" />
         </Switch>
