@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, Avatar, Badge } from "antd";
 import {
@@ -11,7 +11,10 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
+import { authStore } from "../../stores/authStore/authStore";
 import "./MenuBar.css";
+
+const { SubMenu } = Menu;
 
 export const MenuBar = () => {
   const [menuSelected, setMenuSelected] = useState(null);
@@ -39,16 +42,28 @@ export const MenuBar = () => {
           Rewær, the green Fashion App
         </span>
 
-        <Menu.Item key="profil" style={{ float: "right" }}>
-          <NavLink to="/profile">
-            <Badge count={5} offset={[0, 5]}>
-              <Avatar
-                src={"https://avatars0.githubusercontent.com/u/12551446"}
-                size="large"
-              />
-            </Badge>
-          </NavLink>
-        </Menu.Item>
+        <SubMenu
+          style={{ float: "right" }}
+          key="profil"
+          icon={
+            <NavLink to="/profile">
+              <Badge count={5} offset={[0, 5]}>
+                <Avatar
+                  src={"https://avatars0.githubusercontent.com/u/12551446"}
+                  size="large"
+                />
+              </Badge>
+            </NavLink>
+          }
+        >
+          <Menu.Item
+            key="logout"
+            icon={<LogoutOutlined />}
+            onClick={authStore.logout}
+          >
+            Logout
+          </Menu.Item>
+        </SubMenu>
 
         <Menu.Item
           key="looks"
