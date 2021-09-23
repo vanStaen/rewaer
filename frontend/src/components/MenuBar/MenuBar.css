@@ -1,3 +1,15 @@
+.menu__main .ant-menu-horizontal > .ant-menu-item a:hover {
+    color: #6C917D;
+}
+  
+.menu__main .ant-menu-horizontal > .ant-menu-item-selected a {
+    color: #6C917D;
+}
+
+.menu__main .ant-menu-horizontal .ant-menu-item-icon:hover {
+    color: #6C917D;
+}
+  
 
 /* Small screens */
 @media only screen and (max-width: 600px) {

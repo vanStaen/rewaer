@@ -14,10 +14,6 @@ export const Looks = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadLooks();
-  }, [isOutOfDate]);
-
   // Use Callback
   /* mobx store
   @observable
@@ -43,6 +39,10 @@ export const Looks = () => {
       setError(error.message);
     }
   };
+
+  useEffect(() => {
+    loadLooks();
+  }, [isOutOfDate]);
 
   const lookList = looks.map((look) => {
     return (

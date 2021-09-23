@@ -21,67 +21,73 @@ export const MenuBar = () => {
   };
 
   return (
-    <Menu
-      onClick={handleClick}
-      selectedKeys={[menuSelected]}
-      mode="horizontal"
-      style={{ margin: "5px 0px" }}
-    >
-      <span
-        className="menu__RewaerMotto"
-        style={{
-          color: "#6C917D",
-          float: "left",
-          margin: "0px 20px 0px 20px",
-        }}
+    <div className="menu__main">
+      <Menu
+        onClick={handleClick}
+        selectedKeys={[menuSelected]}
+        mode="horizontal"
+        style={{ margin: "5px 0px" }}
       >
-        Rewær, the green Fashion App
-      </span>
+        <span
+          className="menu__RewaerMotto"
+          style={{
+            color: "#6C917D",
+            float: "left",
+            margin: "0px 20px 0px 20px",
+          }}
+        >
+          Rewær, the green Fashion App
+        </span>
 
-      <Menu.Item key="profil" style={{ float: "right" }}>
-        <NavLink to="/profile">
-          <Badge count={5} offset={[0, 5]}>
-            <Avatar
-              src={"https://avatars0.githubusercontent.com/u/12551446"}
-              size="large"
-            />
-          </Badge>
-        </NavLink>
-      </Menu.Item>
+        <Menu.Item key="profil" style={{ float: "right" }}>
+          <NavLink to="/profile">
+            <Badge count={5} offset={[0, 5]}>
+              <Avatar
+                src={"https://avatars0.githubusercontent.com/u/12551446"}
+                size="large"
+              />
+            </Badge>
+          </NavLink>
+        </Menu.Item>
 
-      <Menu.Item
-        key="looks"
-        icon={<CameraOutlined />}
-        style={{ float: "left" }}
-      >
-        <NavLink to="/looks"> Looks</NavLink>
-      </Menu.Item>
+        <Menu.Item
+          key="looks"
+          icon={<CameraOutlined />}
+          style={{ float: "left" }}
+        >
+          <NavLink to="/looks"> Looks</NavLink>
+        </Menu.Item>
 
-      <Menu.Item key="items" icon={<SkinOutlined />} style={{ float: "left" }}>
-        <NavLink to="/items"> Items</NavLink>
-      </Menu.Item>
-      <Menu.Item
-        key="mail"
-        icon={<MailOutlined />}
-        disabled
-        style={{ float: "left" }}
-      >
-        <NavLink to="/mail"> Mail</NavLink>
-      </Menu.Item>
-      <Menu.Item
-        key="friends"
-        icon={<TeamOutlined />}
-        disabled
-        style={{ float: "left" }}
-      >
-        <NavLink to="/friends"> Friends</NavLink>
-      </Menu.Item>
-      <Menu.Item key="info" style={{ float: "left" }}>
-        <NavLink to="/info">
-          &nbsp;&nbsp;
-          <QuestionOutlined />
-        </NavLink>
-      </Menu.Item>
-    </Menu>
+        <Menu.Item
+          key="items"
+          icon={<SkinOutlined />}
+          style={{ float: "left" }}
+        >
+          <NavLink to="/items"> Items</NavLink>
+        </Menu.Item>
+        <Menu.Item
+          key="mail"
+          icon={<MailOutlined />}
+          disabled
+          style={{ float: "left" }}
+        >
+          <NavLink to="/mail"> Mail</NavLink>
+        </Menu.Item>
+        <Menu.Item
+          key="friends"
+          icon={<TeamOutlined />}
+          disabled
+          style={{ float: "left" }}
+        >
+          <NavLink to="/friends"> Friends</NavLink>
+        </Menu.Item>
+        <Menu.Item key="info" style={{ float: "left" }}>
+          <NavLink to="/info">
+            &nbsp;&nbsp;
+            <QuestionOutlined />
+          </NavLink>
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 };
