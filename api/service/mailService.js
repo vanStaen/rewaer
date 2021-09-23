@@ -145,12 +145,13 @@ exports.mailService = {
                   ${emailDisclaimer}`;
 
     const requestBody = {
-      "from": "Rewær <info@rewaer.com>",
+      "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": "Rewær.app | Confirm your email address with this link",
       "body": body,
       "key": process.env.MAILMAN_KEY
     };
+
     try {
       const response = await axios({
         url: process.env.MAILMAN_URL,

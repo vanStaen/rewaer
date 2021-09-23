@@ -7,7 +7,7 @@ export const postVerifyEmailLink = async (email, language = "en") => {
         "language": language,
     };
 
-    console.log(requestBody);
+    //console.log(requestBody);
 
     const response = await axios({
         url: process.env.REACT_APP_API_URL + `/mail/emailverify`,
