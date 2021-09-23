@@ -1,14 +1,17 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { Typography } from "antd";
+
+import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
-import { Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
 
 export const Profil = observer(() => {
   return (
     <div>
+      <MenuBar />
       <Title level={3}>
         Hello, {userStore.user ? userStore.user.name : "there"}
       </Title>
