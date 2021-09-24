@@ -1,3 +1,13 @@
+.looks__main {  
+  width: 100vw;
+  height: 100vh;
+  font-size: .5em;
+}
+
+.looks__container {
+  margin: 50px;
+}
+
 .looks__spinner {
   text-align: center;
   padding-top: 100px;

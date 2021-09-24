@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import { Typography } from "antd";
 
 import { MenuBar } from "../../components/MenuBar/MenuBar";
-import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
 
 import "./Profil.css";
