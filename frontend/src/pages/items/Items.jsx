@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Spin } from "antd";
 
-import fetchItems from "./fetchItems";
-
-import ItemCard from "./ItemCard/ItemCard";
-import ItemForm from "./ItemForm/ItemForm";
+import { fetchItems } from "./fetchItems";
+import { ItemCard } from "./ItemCard/ItemCard";
+import { ItemForm } from "./ItemForm/ItemForm";
 
 import "./Items.css";
 

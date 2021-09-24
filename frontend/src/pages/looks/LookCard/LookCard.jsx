@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+
 import EditableTitle from "../../../components/EditableTitle/EditableTitle";
 import deleteLook from "./deleteLook";
 
@@ -8,7 +9,7 @@ import "./LookCard.css";
 
 const { Meta } = Card;
 
-const LookCard = (props) => {
+export const LookCard = (props) => {
   const spinnerFormated = (
     <div className="card__spinner">
       <Spin size="middle" />
@@ -71,5 +72,3 @@ const LookCard = (props) => {
     </Card>
   );
 };
-
-export default LookCard;

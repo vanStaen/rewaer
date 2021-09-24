@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export default async function fetchItems() {
+export async function fetchItems() {
     const requestBody = {
         query: `
               query {
-                  items {
+                  getItems {
                     _id
                     user
                     title
@@ -17,7 +17,7 @@ export default async function fetchItems() {
                 `,
       };
     const response = await axios({
-        url: process.env.REACT_APP_API_URL,
+        url: process.env.REACT_APP_API_URL + `/graphql/`,
         method: "POST",
         data: requestBody,
     });

@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
     console.log(">>>>>>>>> Auth: Developement Mode is on");
     req.isAuth = true;
     req.userId = "1";
-    req.email = "test@test.com";
+    req.email = "clement.vanstaen@gmail.com";
     return next();
   }
   // Authorization: Bearer <token>

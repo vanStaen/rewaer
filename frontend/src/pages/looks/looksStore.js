@@ -51,12 +51,12 @@ export class LooksStore {
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
-      this.setLooks(looks);
-      this.setIsLoading(false);
-      this.setIsOutOfDate(false);
+      this.looks = looks;
+      this.isloading = false;
+      this.IsOutOfDate = false;
     } catch (error) {
       console.log(error.message);
-      this.setError(error.message);
+      this.error = error.message;
     }
   };
 }
