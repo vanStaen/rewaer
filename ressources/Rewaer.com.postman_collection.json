@@ -137,7 +137,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\",\n    \"remind\": true\n}"
+					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\",\n    \"password\": \"*****\",\n    \"remind\": true\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/auth/login",
@@ -479,7 +479,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  looks {\n    _id,\n    title,\n    active,\n    favorite,\n    createdAt,\n    mediaUrl,\n    user {\n        _id,\n    }\n  }\n}",
+						"query": "{\n  getLooks {\n    _id,\n    title,\n    active,\n    favorite,\n    createdAt,\n    mediaUrl,\n    user {\n        _id,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
