@@ -132,7 +132,7 @@ exports.mailService = {
                   Protecting our community is the upmost important: By following the link 
                   underneath you will help us verify the email now linked to your account. 
                   This is the first step in getting the "verified-account" status.<br/><br/>
-                  <b>If you did not create an acount with us, please ignore this email</b> and nothing else will happen.<br/>
+                  <b>If you did not created an account with us, please ignore this email</b> and nothing else will happen.<br/>
                   Feel free anytime to respond to this mail in order to contact us.<br/>
                   <br/>
                   This link will only be active for 24 hours. <br/>
