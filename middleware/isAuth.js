@@ -2,17 +2,17 @@ const jsonwebtoken = require("jsonwebtoken");
 const { User } = require("../models/User");
 require("dotenv/config");
 
-const devMode = true;
-
 module.exports = async (req, res, next) => {
+
   // if in development mode
-  if (devMode) {
-    console.log(">>>>>>>>> Auth: Developement Mode is on");
+  if (req.get("host") === "localhost:5000") {
+    console.log(">>>> Developement Mode: ON <<<<<");
     req.isAuth = true;
     req.userId = "1";
     req.email = "clement.vanstaen@gmail.com";
     return next();
   }
+
   // Authorization: Bearer <token>
   const token = req.session.token;
   const refreshToken = req.session.refreshToken;
