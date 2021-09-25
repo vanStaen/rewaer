@@ -3,11 +3,10 @@ const AWS = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const router = express.Router();
-const fs = require("fs");
 
-const resizeImage = require("../helpers/resizeImage");
-const uploadFileFromUrlToS3 = require("../helpers/uploadFileFromUrlToS3");
-const deleteLocalFile = require("../helpers/deleteLocalFile");
+const resizeImage = require("../../lib/resizeImage");
+const uploadFileFromUrlToS3 = require("../../lib/uploadFileFromUrlToS3");
+const deleteLocalFile = require("../../lib/deleteLocalFile");
 
 // Limits size of 10MB
 const sizeLimits = { fileSize: 1024 * 1024 * 10 };
