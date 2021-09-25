@@ -1,58 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { observer } from "mobx-react";
 import { Col, Row, Spin } from "antd";
 
-import { fetchItems } from "./fetchItems";
+import { itemsStore } from "./itemsStore";
+import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 
 import "./Items.css";
 
-export const Items = () => {
-  const [items, setItems] = useState([]);
-  const [isOutOfDate, setIsOutOfDate] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+export const Items = observer(() => {
   useEffect(() => {
-    loadItems();
-  }, [isOutOfDate]);
+    itemsStore.loadItems();
+  }, [itemsStore.isOutOfDate]);
 
-  const loadItems = async () => {
-    try {
-      const items = await fetchItems();
-      setItems(items);
-      setIsLoading(false);
-      setIsOutOfDate(false);
-    } catch (error) {
-      console.log(error.message);
-      setError(error.message);
+  const itemList = () => {
+    if (itemsStore.ITEMS) {
+      itemsStore.items.map((item) => {
+        return (
+          <Col key={itemsStore.item._id}>
+            <ItemCard />
+          </Col>
+        );
+      });
+    } else {
+      return null;
     }
   };
 
-  const itemList = items.map((item) => {
-    return (
-      <Col key={item._id}>
-        <ItemCard item={item} setIsOutOfDate={setIsOutOfDate} />
-      </Col>
-    );
-  });
-
   return (
-    <div>
-      {error !== null ? (
-        error
-      ) : isLoading ? (
-        <div className="looks__spinner">
-          <Spin size="large" />
-        </div>
-      ) : (
-        <Row justify={"space-around"}>
-          <Col>
-            <ItemForm setIsOutOfDate={setIsOutOfDate} />
-          </Col>
-          {itemList}
-        </Row>
-      )}
+    <div className="items__main">
+      <MenuBar />
+      <div className="items__container">
+        {itemsStore.error !== null ? (
+          itemsStore.error
+        ) : itemsStore.isLoading ? (
+          <div className="items__spinner">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <Row justify={"space-around"}>
+            <Col>
+              <ItemForm />
+            </Col>
+            {itemList}
+          </Row>
+        )}
+      </div>
     </div>
   );
-};
+});

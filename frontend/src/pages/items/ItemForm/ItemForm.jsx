@@ -4,6 +4,8 @@ import { SkinOutlined } from "@ant-design/icons";
 import axios from "axios";
 import moment from "moment";
 
+import { itemsStore } from "../itemsStore";
+
 import "./ItemForm.css";
 
 export const ItemForm = (props) => {
@@ -67,8 +69,8 @@ export const ItemForm = (props) => {
             message: `File uploaded successfully.`,
             placement: "bottomRight",
           });
-          // retrigger parent component rendering
-          props.setIsOutOfDate(true);
+          // retrigger rendering
+          itemsStore.setIsOutOfDate(true);
           console.log("Success!");
         })
         .catch((error) => {

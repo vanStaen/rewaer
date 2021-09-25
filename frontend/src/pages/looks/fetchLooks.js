@@ -16,8 +16,9 @@ export async function fetchLooks() {
           }
         }
       }
-              `,
+      `,
   };
+  
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/graphql/`,
     method: "POST",

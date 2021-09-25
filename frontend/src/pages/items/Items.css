@@ -1,4 +1,14 @@
-.looks__spinner {
+.items__main {  
+  width: 100vw;
+  height: 100vh;
+  font-size: .5em;
+}
+
+.items__container {
+  margin: 50px;
+}
+
+.items__spinner {
     text-align: center;
     padding-top: 100px;
     width: 100%;

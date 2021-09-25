@@ -3,6 +3,7 @@ import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
 import EditableTitle from "../../../components/EditableTitle/EditableTitle";
+import { itemsStore } from "../itemsStore";
 import deleteItem from "./deleteItem";
 
 import "./ItemCard.css";
@@ -18,14 +19,14 @@ export const ItemCard = (props) => {
 
   const handleDelete = () => {
     // delete Item
-    deleteItem(props.item._id)
+    deleteItem(itemsStore.item._id)
       .then(() => {
         notification.success({
           message: `Item deleted successfully.`,
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
-        props.setIsOutOfDate(true);
+        itemsStore.setIsOutOfDate(true);
         console.log("Success!");
       })
       .catch((error) => {
@@ -41,8 +42,8 @@ export const ItemCard = (props) => {
       style={{ width: 240, marginBottom: 30, height: 385 }}
       cover={
         <Image
-          alt={props.item.title}
-          src={props.item.mediaUrlThumb}
+          alt={itemsStore.item.title}
+          src={itemsStore.item.mediaUrlThumb}
           placeholder={spinnerFormated}
           width={240}
           height={320}
@@ -53,8 +54,8 @@ export const ItemCard = (props) => {
         title={
           <div>
             <EditableTitle
-              title={props.item.title}
-              id={props.item._id}
+              title={itemsStore.item.title}
+              id={itemsStore.item._id}
               type={"item"}
             />
             <Popconfirm

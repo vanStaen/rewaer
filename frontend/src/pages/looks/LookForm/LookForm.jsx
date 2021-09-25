@@ -4,6 +4,8 @@ import { CameraOutlined } from "@ant-design/icons";
 import axios from "axios";
 import moment from "moment";
 
+import { looksStore } from "../looksStore";
+
 import "./LookForm.css";
 
 export const LookForm = (props) => {
@@ -67,7 +69,7 @@ export const LookForm = (props) => {
             placement: "bottomRight",
           });
           // retrigger parent component rendering
-          props.setIsOutOfDate(true);
+          looksStore.setIsOutOfDate(true);
           console.log("Success!");
         })
         .catch((error) => {

@@ -1,22 +1,22 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { fetchLooks } from "./fetchLooks";
+import { fetchItems } from "./fetchItems";
 
-export class LooksStore {
+export class ItemsStore {
 
-  looks = [];
+  items = [];
   isloading = true;
   isOutOfDate = true;
   error= null; 
 
   constructor() {
     makeObservable(this, {
-      looks: observable,
+      items: observable,
       isloading: observable,
       isOutOfDate: observable,
       setIsOutOfDate: action,
       error: observable,
-      loadLooks: action,
+      loadItems: action,
     });
   }
 
@@ -24,19 +24,10 @@ export class LooksStore {
     this.isOutOfDate = isOutOfDate;
   };
 
-  /* mobx store
-  @action
-  loadLooks(){ 
-    loadlooks() 
-    set hier the looks
-    // await -> run_in_action  
-  }
-  */
-
-  loadLooks = async () => {
+  loadItems = async () => {
     try {
-      const looks = await fetchLooks();
-      this.looks = looks;
+      const items = await fetchItems();
+      this.items = items;
       this.isloading = false;
       this.IsOutOfDate = false;
     } catch (error) {
@@ -46,4 +37,4 @@ export class LooksStore {
   };
 }
 
-export const looksStore = new LooksStore();
+export const itemsStore = new ItemsStore();

@@ -19,10 +19,7 @@ export const Looks = observer(() => {
       looksStore.looks.map((look) => {
         return (
           <Col key={look._id}>
-            <LookCard
-              look={looksStore.look}
-              setIsOutOfDate={looksStore.setIsOutOfDate}
-            />
+            <LookCard />
           </Col>
         );
       });
@@ -44,7 +41,7 @@ export const Looks = observer(() => {
         ) : (
           <Row justify={"space-around"}>
             <Col>
-              <LookForm setIsOutOfDate={looksStore.setIsOutOfDate} />
+              <LookForm />
             </Col>
             {lookList}
           </Row>

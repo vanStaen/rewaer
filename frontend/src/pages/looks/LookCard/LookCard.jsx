@@ -3,6 +3,7 @@ import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
 import EditableTitle from "../../../components/EditableTitle/EditableTitle";
+import { looksStore } from "../looksStore";
 import deleteLook from "./deleteLook";
 
 import "./LookCard.css";
@@ -18,14 +19,14 @@ export const LookCard = (props) => {
 
   const handleDelete = () => {
     // delete Look
-    deleteLook(props.look._id)
+    deleteLook(looksStore.look._id)
       .then(() => {
         notification.success({
           message: `Look deleted successfully.`,
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
-        props.setIsOutOfDate(true);
+        looksStore.setIsOutOfDate(true);
         console.log("Success!");
       })
       .catch((error) => {
@@ -41,8 +42,8 @@ export const LookCard = (props) => {
       style={{ width: 240, marginBottom: 30, height: 385 }}
       cover={
         <Image
-          alt={props.look.title}
-          src={props.look.mediaUrlThumb}
+          alt={looksStore.look.title}
+          src={looksStore.look.mediaUrlThumb}
           placeholder={spinnerFormated}
           width={240}
           height={320}
@@ -53,8 +54,8 @@ export const LookCard = (props) => {
         title={
           <div>
             <EditableTitle
-              title={props.look.title}
-              id={props.look._id}
+              title={looksStore.look.title}
+              id={looksStore.look._id}
               type={"look"}
             />
             <Popconfirm
