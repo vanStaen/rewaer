@@ -27,6 +27,7 @@ exports.itemResolver = {
         colors: args.itemInput.colors,
         category: args.itemInput.category,
         brand: args.itemInput.brand,
+        userId: req.userId,
       });
       return await item.save();
     } catch (err) {

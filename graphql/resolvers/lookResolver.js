@@ -23,6 +23,7 @@ exports.lookResolver = {
         mediaUrlMedium: args.lookInput.mediaUrlMedium,
         category: args.lookInput.category,
         items: args.lookInput.items,
+        userId: req.userId,
       });
       return await look.save();
     } catch (err) {
