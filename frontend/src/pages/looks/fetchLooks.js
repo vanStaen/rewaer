@@ -27,6 +27,6 @@ export async function fetchLooks() {
   if ((response.status !== 200) & (response.status !== 201)) {
     throw new Error("Unauthenticated!");
   }
-  const looks = await response.data.data.looks;
+  const looks = await response.data.data.getLooks;
   return looks;
 }

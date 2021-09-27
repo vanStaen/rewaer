@@ -2,9 +2,9 @@ import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
-import EditableTitle from "../../../components/EditableTitle/EditableTitle";
+import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
-import deleteItem from "./deleteItem";
+import { deleteItem } from "./deleteItem";
 
 import "./ItemCard.css";
 
@@ -19,7 +19,7 @@ export const ItemCard = (props) => {
 
   const handleDelete = () => {
     // delete Item
-    deleteItem(itemsStore.item._id)
+    deleteItem(props.item._id)
       .then(() => {
         notification.success({
           message: `Item deleted successfully.`,
@@ -42,8 +42,8 @@ export const ItemCard = (props) => {
       style={{ width: 240, marginBottom: 30, height: 385 }}
       cover={
         <Image
-          alt={itemsStore.item.title}
-          src={itemsStore.item.mediaUrlThumb}
+          alt={props.item.title}
+          src={props.item.mediaUrlThumb}
           placeholder={spinnerFormated}
           width={240}
           height={320}
@@ -54,8 +54,8 @@ export const ItemCard = (props) => {
         title={
           <div>
             <EditableTitle
-              title={itemsStore.item.title}
-              id={itemsStore.item._id}
+              title={props.item.title}
+              id={props.item._id}
               type={"item"}
             />
             <Popconfirm

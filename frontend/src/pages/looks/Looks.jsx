@@ -15,11 +15,13 @@ export const Looks = observer(() => {
   }, [looksStore.isOutOfDate]);
 
   const lookList = () => {
+    console.log("looksStore.looks:", looksStore.looks);
     if (looksStore.looks) {
       looksStore.looks.map((look) => {
+        console.log("look:", look);
         return (
           <Col key={look._id}>
-            <LookCard />
+            <LookCard look={look} />
           </Col>
         );
       });

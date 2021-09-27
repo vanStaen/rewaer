@@ -29,6 +29,6 @@ export async function fetchItems() {
   if ((response.status !== 200) & (response.status !== 201)) {
     throw new Error("Unauthenticated!");
   }
-  const items = await response.data.data.items;
+  const items = await response.data.data.getItems;
   return items;
 }

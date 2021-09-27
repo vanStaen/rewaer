@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { notification} from "antd";
 
-export default async function patchTitle(title, id, type ) {
+export async function patchTitle(title, id, type ) {
 
     let requestBody = {};
 

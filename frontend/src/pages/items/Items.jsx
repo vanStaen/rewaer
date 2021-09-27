@@ -19,7 +19,7 @@ export const Items = observer(() => {
       itemsStore.items.map((item) => {
         return (
           <Col key={itemsStore.item._id}>
-            <ItemCard />
+            <ItemCard item={item} />
           </Col>
         );
       });

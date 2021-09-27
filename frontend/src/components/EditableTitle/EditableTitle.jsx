@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { Input, notification } from "antd";
-import patchTitle from "./patchTitle";
+import { patchTitle } from "./patchTitle";
 import "./EditableTitle.css";
 
-const EditableTitle = (props) => {
+export const EditableTitle = (props) => {
   const [title, setTitle] = useState(
     props.title.replace(/ /g, "").length > 23
       ? `${props.title.replace("-", "/").replace(/ /g, "").slice(0, 23)}...`
@@ -71,5 +71,3 @@ const EditableTitle = (props) => {
     </div>
   );
 };
-
-export default EditableTitle;

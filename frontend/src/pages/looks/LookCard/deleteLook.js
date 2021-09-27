@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function deleteLook(id) {
+export async function deleteLook(id) {
 
     const requestBody = {
         query: `

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function deleteItem(id) {
+export async function deleteItem(id) {
 
     const requestBody = {
         query: `

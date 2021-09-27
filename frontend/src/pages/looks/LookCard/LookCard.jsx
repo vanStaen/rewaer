@@ -2,9 +2,9 @@ import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
-import EditableTitle from "../../../components/EditableTitle/EditableTitle";
+import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
-import deleteLook from "./deleteLook";
+import { deleteLook } from "./deleteLook";
 
 import "./LookCard.css";
 
@@ -19,7 +19,7 @@ export const LookCard = (props) => {
 
   const handleDelete = () => {
     // delete Look
-    deleteLook(looksStore.look._id)
+    deleteLook(props.look._id)
       .then(() => {
         notification.success({
           message: `Look deleted successfully.`,
@@ -42,8 +42,8 @@ export const LookCard = (props) => {
       style={{ width: 240, marginBottom: 30, height: 385 }}
       cover={
         <Image
-          alt={looksStore.look.title}
-          src={looksStore.look.mediaUrlThumb}
+          alt={props.look.title}
+          src={props.look.mediaUrlThumb}
           placeholder={spinnerFormated}
           width={240}
           height={320}
@@ -54,8 +54,8 @@ export const LookCard = (props) => {
         title={
           <div>
             <EditableTitle
-              title={looksStore.look.title}
-              id={looksStore.look._id}
+              title={props.look.title}
+              id={props.look._id}
               type={"look"}
             />
             <Popconfirm
