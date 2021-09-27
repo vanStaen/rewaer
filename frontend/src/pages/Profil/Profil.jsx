@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Typography } from "antd";
 
@@ -10,12 +10,15 @@ import "./Profil.css";
 const { Title, Paragraph } = Typography;
 
 export const Profil = observer(() => {
+  useEffect(() => {
+    userStore.fetchuserData();
+  }, []);
   return (
     <div className="profil__main">
       <MenuBar />
       <div className="profil__container">
         <Title level={4}>
-          Hello, {userStore.user ? userStore.user.name : "there"}
+          Hello, {userStore.name ? userStore.name : "there"}
         </Title>
         <Paragraph copyable>
           <b>User ID:</b> {userStore.userId}

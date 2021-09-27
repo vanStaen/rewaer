@@ -43,7 +43,7 @@ export class UserStore {
     if (userData) {
       this.setEmail(userData.email);
       this.setInfos(userData.infos);
-      this.setName(userData.name);
+      this.setName(userData.firstName);
       this.setUsername(userData.username);
     }
   };
