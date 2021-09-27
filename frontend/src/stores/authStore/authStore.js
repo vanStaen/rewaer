@@ -12,9 +12,9 @@ export class AuthStore {
   constructor() {
     makeObservable(this, {
       hasAccess: observable,
+      setHasAccess: action,
       login: action,
       logout: action,
-      setHasAccess: action,
       checkAccess: action
     });
   }
@@ -47,7 +47,7 @@ export class AuthStore {
   checkAccess = async () => {
     const hasAccess = await getHasAccess();   
     console.log("hasAccess", hasAccess);
-    this.hasAccess = hasAccess;
+    this.setHasAccess(hasAccess);
    }
 }
 

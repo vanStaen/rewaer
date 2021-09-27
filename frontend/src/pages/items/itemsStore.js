@@ -12,27 +12,42 @@ export class ItemsStore {
   constructor() {
     makeObservable(this, {
       items: observable,
+      setItems: action,
       isloading: observable,
+      setIsloading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
       error: observable,
+      setError: action,
       loadItems: action,
     });
   }
+
+  setItems = (items) => {
+    this.items = items;
+  };
+
+  setIsloading = (isloading) => {
+    this.isloading = isloading;
+  };
 
   setIsOutOfDate = (isOutOfDate) => {
     this.isOutOfDate = isOutOfDate;
   };
 
+  setError = (error) => {
+    this.error = error;
+  };
+
   loadItems = async () => {
     try {
       const items = await fetchItems();
-      this.items = items;
-      this.isloading = false;
-      this.IsOutOfDate = false;
+      this.setItems(items);
+      this.setIsloading(false);
+      this.setIsOutOfDate(false);
     } catch (error) {
       console.log(error.message);
-      this.error = error.message;
+      this.setError(error.message);
     }
   };
 }

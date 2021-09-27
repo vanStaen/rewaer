@@ -12,16 +12,31 @@ export class LooksStore {
   constructor() {
     makeObservable(this, {
       looks: observable,
+      setLooks: action,
       isloading: observable,
+      setIsloading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
       error: observable,
+      setError: action,
       loadLooks: action,
     });
   }
 
+  setLooks = (looks) => {
+    this.looks = looks;
+  };
+
+  setIsloading = (isloading) => {
+    this.isloading = isloading;
+  };
+
   setIsOutOfDate = (isOutOfDate) => {
     this.isOutOfDate = isOutOfDate;
+  };
+
+  setError = (error) => {
+    this.error = error;
   };
 
   /* mobx store
@@ -36,12 +51,12 @@ export class LooksStore {
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
-      this.looks = looks;
-      this.isloading = false;
-      this.IsOutOfDate = false;
+      this.setLooks(looks);
+      this.setIsloading(false);
+      this.setIsOutOfDate(false);
     } catch (error) {
       console.log(error.message);
-      this.error = error.message;
+      this.setError(error.message);
     }
   };
 }

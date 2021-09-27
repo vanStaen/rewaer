@@ -41,10 +41,10 @@ export class UserStore {
   fetchuserData = async () => {
     const userData = await getUserInfo();
     if (userData) {
-      userStore.setEmail(userData.email);
-      userStore.setInfos(userData.infos);
-      userStore.setName(userData.name);
-      userStore.setUsername(userData.username);
+      this.setEmail(userData.email);
+      this.setInfos(userData.infos);
+      this.setName(userData.name);
+      this.setUsername(userData.username);
     }
   };
 }
