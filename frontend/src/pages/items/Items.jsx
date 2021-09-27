@@ -14,19 +14,13 @@ export const Items = observer(() => {
     itemsStore.loadItems();
   }, [itemsStore.isOutOfDate]);
 
-  const itemList = () => {
-    if (itemsStore.ITEMS) {
-      itemsStore.items.map((item) => {
-        return (
-          <Col key={itemsStore.item._id}>
-            <ItemCard item={item} />
-          </Col>
-        );
-      });
-    } else {
-      return null;
-    }
-  };
+  const itemList = itemsStore.items.map((item) => {
+    return (
+      <Col key={itemsStore.item._id}>
+        <ItemCard item={item} />
+      </Col>
+    );
+  });
 
   return (
     <div className="items__main">

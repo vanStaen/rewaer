@@ -14,21 +14,13 @@ export const Looks = observer(() => {
     looksStore.loadLooks();
   }, [looksStore.isOutOfDate]);
 
-  const lookList = () => {
-    console.log("looksStore.looks:", looksStore.looks);
-    if (looksStore.looks) {
-      looksStore.looks.map((look) => {
-        console.log("look:", look);
-        return (
-          <Col key={look._id}>
-            <LookCard look={look} />
-          </Col>
-        );
-      });
-    } else {
-      return null;
-    }
-  };
+  const lookList = looksStore.looks.map((look) => {
+    return (
+      <Col key={look._id}>
+        <LookCard look={look} />
+      </Col>
+    );
+  });
 
   return (
     <div className="looks__main">
