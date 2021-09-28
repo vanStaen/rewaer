@@ -43,7 +43,6 @@ export class LooksStore {
   @action
   loadLooks(){ 
     loadlooks() 
-    set hier the looks
     // await -> run_in_action  
   }
   */
