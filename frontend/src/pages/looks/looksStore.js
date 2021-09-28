@@ -50,8 +50,6 @@ export class LooksStore {
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
-      console.log("looks:", looks);
-
       this.setLooks(looks);
       this.setIsloading(false);
       this.setIsOutOfDate(false);

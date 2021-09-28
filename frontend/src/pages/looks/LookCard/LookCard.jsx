@@ -43,7 +43,7 @@ export const LookCard = (props) => {
       cover={
         <Image
           alt={props.look.title}
-          src={props.look.mediaUrlThumb}
+          src={props.look.mediaUrl}
           placeholder={spinnerFormated}
           width={240}
           height={320}
