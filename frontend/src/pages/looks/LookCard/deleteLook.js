@@ -1,25 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
 export async function deleteLook(id) {
-
-    const requestBody = {
-        query: `
+  const requestBody = {
+    query: `
             mutation {
-                deleteLook(lookId: "${id}") {
-                _id
-                }
+                deleteLook(lookId: "${id}") 
             }
             `,
-    };
+  };
 
-    const response = await axios({
-        url: process.env.REACT_APP_API_URL + `/graphql/`,
-        method: "POST",
-        data: requestBody,
-    });
+  console.log(requestBody);
 
-    if ((response.status !== 200) & (response.status !== 201)) {
-        throw new Error("Unauthenticated!");
-    }
+  const response = await axios({
+    url: process.env.REACT_APP_API_URL + `/graphql`,
+    method: "POST",
+    data: requestBody,
+  });
 
-};
+  if ((response.status !== 200) & (response.status !== 201)) {
+    throw new Error("Unauthenticated!");
+  }
+}
