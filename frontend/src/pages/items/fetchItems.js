@@ -13,6 +13,9 @@ export async function fetchItems() {
           active,
           favorite,
           createdAt,
+          mediaUrl,
+          mediaUrlMedium,
+          mediaUrlThumb,
           user {
               _id,
           }

@@ -5,6 +5,7 @@ import axios from "axios";
 import moment from "moment";
 
 import { itemsStore } from "../itemsStore";
+import { postNewItem } from "./postNewItem";
 
 import "./ItemForm.css";
 
@@ -19,27 +20,9 @@ export const ItemForm = (props) => {
   const submitHandler = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-
-    async function postNewLook(requestBody) {
-      const response = await axios({
-        url: process.env.REACT_APP_API_URL,
-        method: "POST",
-        data: requestBody,
-      });
-      if ((response.status !== 200) & (response.status !== 201)) {
-        notification.error({
-          message: `Unauthenticated!`,
-          placement: "bottomRight",
-        });
-        throw new Error("Unauthenticated!");
-      }
-      const newLook = await response.data;
-      return newLook;
-    }
-
     try {
       const res = await axios.post(
-        process.env.REACT_APP_API_URL_UPLOAD,
+        process.env.REACT_APP_API_URL + `/upload`,
         formData
       );
       // Create Item entry
@@ -47,29 +30,14 @@ export const ItemForm = (props) => {
       const mediaUrlThumb = res.data.thumbUrl;
       const mediaUrlMedium = res.data.mediumUrl;
       const title = moment().format("DD.MM.YYYY");
-      const requestBody = {
-        query: `
-            mutation {
-                createItem(
-                  itemInput: { mediaUrl: "${mediaUrl}", 
-                               mediaUrlThumb: "${mediaUrlThumb}",
-                               mediaUrlMedium: "${mediaUrlMedium}",
-                               title: "${title}" }
-                ) {
-                  _id
-                }
-              }
-              `,
-      };
-      console.log("requestBody", requestBody);
-      // post new Item
-      postNewLook(requestBody)
+      // post new Look
+      postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
         .then(() => {
           notification.success({
             message: `File uploaded successfully.`,
             placement: "bottomRight",
           });
-          // retrigger rendering
+          // retrigger parent component rendering
           itemsStore.setIsOutOfDate(true);
           console.log("Success!");
         })

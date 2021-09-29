@@ -11,6 +11,8 @@ export async function fetchLooks() {
           favorite,
           createdAt,
           mediaUrl,
+          mediaUrlMedium,
+          mediaUrlThumb,
           user {
               _id,
           }

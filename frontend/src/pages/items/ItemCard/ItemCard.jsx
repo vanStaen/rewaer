@@ -53,11 +53,6 @@ export const ItemCard = (props) => {
       <Meta
         title={
           <div>
-            <EditableTitle
-              title={props.item.title}
-              id={props.item._id}
-              type={"item"}
-            />
             <Popconfirm
               title="Are you sure to delete this item?"
               onConfirm={handleDelete}
