@@ -21,11 +21,9 @@ export const getUserInfo = async () => {
         data: requestBody,
     });
 
-
     if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Unauthenticated!");
       }
 
-    console.log(response.data.data.getUser);
     return response.data.data.getUser;
 };
