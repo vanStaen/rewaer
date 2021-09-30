@@ -42,6 +42,7 @@ export class ItemsStore {
   loadItems = async () => {
     try {
       const items = await fetchItems();
+      this.setItems(items);
       this.setIsloading(false);
       this.setIsOutOfDate(false);
     } catch (error) {

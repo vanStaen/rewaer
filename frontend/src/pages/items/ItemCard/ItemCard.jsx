@@ -2,7 +2,6 @@ import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
-import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
 import { deleteItem } from "./deleteItem";
 

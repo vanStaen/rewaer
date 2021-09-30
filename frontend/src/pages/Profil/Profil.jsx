@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { Typography } from "antd";
+import { Tooltip } from "antd";
+import { LogoutOutlined, EditOutlined } from "@ant-design/icons";
 
 import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { userStore } from "../../stores/userStore/userStore";
 
 import "./Profil.css";
-
-const { Title, Paragraph } = Typography;
 
 export const Profil = observer(() => {
   useEffect(() => {
@@ -17,12 +16,17 @@ export const Profil = observer(() => {
     <div className="profil__main">
       <MenuBar />
       <div className="profil__container">
-        <Title level={4}>
-          Hello, {userStore.name ? userStore.name : "there"}
-        </Title>
-        <Paragraph copyable>
-          <b>User ID:</b> {userStore.userId}
-        </Paragraph>
+        <div className="profil__avatar">
+          <div className="profil__editAvatar">
+            <Tooltip title="Change your avatar">
+              <EditOutlined />
+            </Tooltip>
+          </div>
+        </div>
+
+        <div className="profil__hello">
+          Hello {userStore.name ? userStore.name : "there"},
+        </div>
       </div>
     </div>
   );
