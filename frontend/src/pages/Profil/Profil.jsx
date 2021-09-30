@@ -32,7 +32,7 @@ export const Profil = observer(() => {
         </div>
 
         <div className="profil__hello">
-          Hello {userStore.name ? userStore.name : "there"},
+          Hello{userStore.name && " " + userStore.name},
         </div>
       </div>
     </div>
