@@ -7,6 +7,7 @@ export class UserStore {
   infos = null;
   name = null;
   username = null;
+  avatar = "https://avatars0.githubusercontent.com/u/12551446";
 
   constructor() {
     makeObservable(this, {
