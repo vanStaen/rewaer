@@ -46,7 +46,6 @@ export class AuthStore {
 
   checkAccess = async () => {
     const hasAccess = await getHasAccess();   
-    console.log("hasAccess", hasAccess);
     this.setHasAccess(hasAccess);
    }
 }
