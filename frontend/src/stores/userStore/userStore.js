@@ -7,7 +7,7 @@ export class UserStore {
   infos = null;
   name = null;
   username = null;
-  avatar = "https://avatars0.githubusercontent.com/u/12551446";
+  avatar = null;
 
   constructor() {
     makeObservable(this, {
@@ -15,10 +15,12 @@ export class UserStore {
       infos: observable,
       name: observable,
       username: observable,
+      avatar: observable,
       setEmail: action,
       setInfos: action,
       setName: action,
       setUsername: action,
+      setAvatar: action,
       fetchuserData: action,
     });
   }
@@ -39,6 +41,11 @@ export class UserStore {
     this.username = username;
   };
 
+  setAvatar = (avatar) => {
+    this.avatar = avatar;
+  };
+
+
   fetchuserData = async () => {
     const userData = await getUserInfo();
     if (userData) {
@@ -46,6 +53,7 @@ export class UserStore {
       this.setInfos(userData.infos);
       this.setName(userData.firstName);
       this.setUsername(userData.username);
+      this.setAvatar(userData.avatar);
     }
   };
 }

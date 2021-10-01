@@ -25,10 +25,11 @@
   display: table-cell;
   text-align: right;
   vertical-align: bottom;
-  font-size: 1.5em;
+  font-size: 22px;
   color: #aaaaaa;
   width: 195px;
   height: 195px;
+  cursor: pointer;
 }
 
 .profil__editAvatar:hover {
@@ -40,4 +41,17 @@
   vertical-align: top;
   font-size: 2em;
   padding: 1em 2em;
+}
+
+.avatar__inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.avatar__inputfile + label {
+    cursor: pointer;
 }

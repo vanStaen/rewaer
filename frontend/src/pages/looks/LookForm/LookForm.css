@@ -18,7 +18,6 @@
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    cursor: pointer;
     font-feature-settings: 'tnum', "tnum";
     display: table-cell;
     vertical-align: middle;

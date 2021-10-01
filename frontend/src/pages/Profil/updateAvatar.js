@@ -1,0 +1,33 @@
+import axios from "axios";
+import { notification } from "antd";
+
+export async function updateAvatar(
+  mediaUrl,
+) {
+  const requestBody = {
+    query: `
+    mutation {
+      updateUser(
+        userInput: {
+          avatar: "${mediaUrl}",
+        }
+      ) {
+        avatar,
+      }
+    }
+          `,
+  };
+  const response = await axios({
+    url: process.env.REACT_APP_API_URL + `/graphql`,
+    method: "POST",
+    data: requestBody,
+  });
+  if ((response.status !== 200) & (response.status !== 201)) {
+    notification.error({
+      message: `Unauthenticated!`,
+      placement: "bottomRight",
+    });
+    throw new Error("Unauthenticated!");
+  }
+  return true;
+}
