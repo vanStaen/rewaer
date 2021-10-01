@@ -26,7 +26,7 @@ export class AuthStore {
     // Call login endpoint
     const resultLogIn = await postLogin(email, username, password, remind);
     if (resultLogIn.success) {
-      this.hasAccess = true;
+      this.setHasAccess(true);
     } else {
       return resultLogIn.error
     }
@@ -36,7 +36,7 @@ export class AuthStore {
     // Call logout endpoint
     const resultLogOut = await deleteLogout();
     if (resultLogOut) {
-      this.hasAccess = false;
+      this.setHasAccess(false);
     }
   };
 
