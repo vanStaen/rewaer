@@ -9,33 +9,6 @@
   display: inline-block;
 }
 
-.profil__avatar {
-  border: 1px solid #aaaaaa;
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  display: inline-block;
-  vertical-align: top;
-  background-position: center;
-  background-size: cover;
-  cursor: pointer;
-}
-
-.profil__editAvatar {
-  display: table-cell;
-  text-align: right;
-  vertical-align: bottom;
-  font-size: 22px;
-  color: #aaaaaa;
-  width: 195px;
-  height: 195px;
-  cursor: pointer;
-}
-
-.profil__editAvatar:hover {
-    color: #6d917e;
-  }
-
 .profil__hello {
   display: inline-block;
   vertical-align: top;
@@ -43,15 +16,3 @@
   padding: 1em 2em;
 }
 
-.avatar__inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.avatar__inputfile + label {
-    cursor: pointer;
-}
