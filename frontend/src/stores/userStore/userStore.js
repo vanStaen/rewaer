@@ -4,23 +4,32 @@ import { getUserInfo } from "./getUserInfo";
 
 export class UserStore {
   email = null;
-  infos = null;
-  name = null;
-  username = null;
+  userName = null;
   avatar = null;
+  firstName = null;
+  lastName = null;
+  emailSettings = [];
+  profilSettings = [];
+  friends = [];
 
   constructor() {
     makeObservable(this, {
       email: observable,
-      infos: observable,
-      name: observable,
-      username: observable,
+      userName: observable,
       avatar: observable,
+      firstName: observable,
+      lastName: observable,
+      emailSettings: observable,
+      profilSettings: observable,
+      friends: observable,
       setEmail: action,
-      setInfos: action,
-      setName: action,
-      setUsername: action,
+      setUserName: action,
       setAvatar: action,
+      setFirstName: action,
+      setLastName: action,
+      setEmailSettings: action,
+      setProfilSettings: action,
+      setFriends: action,
       fetchuserData: action,
     });
   }
@@ -29,31 +38,46 @@ export class UserStore {
     this.email = email;
   };
 
-  setInfos = (infos) => {
-    this.infos = infos;
-  };
-
-  setName = (name) => {
-    this.name = name;
-  };
-
-  setUsername = (username) => {
-    this.username = username;
+  setUserName = (userName) => {
+    this.userName = userName;
   };
 
   setAvatar = (avatar) => {
     this.avatar = avatar;
   };
 
+  setFirstName = (firstName) => {
+    this.firstName = firstName;
+  };
+
+  setLastName = (lastName) => {
+    this.lastName = lastName;
+  };
+
+  setEmailSettings = (emailSettings) => {
+    this.emailSettings = emailSettings;
+  };
+
+  setProfilSettings = (profilSettings) => {
+    this.profilSettings = profilSettings;
+  };
+
+  setFriends = (friends) => {
+    this.friends = friends;
+  };
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
+    console.log(userData)
     if (userData) {
       this.setEmail(userData.email);
-      this.setInfos(userData.infos);
-      this.setName(userData.firstName);
-      this.setUsername(userData.username);
+      this.setUserName(userData.userName);
       this.setAvatar(userData.avatar);
+      this.setFirstName(userData.firstName);
+      this.setLastName(userData.lastName);
+      this.setEmailSettings(userData.emailSettings);
+      this.setProfilSettings(userData.profilSettings);
+      this.setFriends(userData.friends);
     }
   };
 }

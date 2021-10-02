@@ -18,7 +18,7 @@ export const Profil = observer(() => {
       <div className="profil__container">
         <Avatar />
         <div className="profil__hello">
-          Hello{userStore.name && " " + userStore.name},
+          Hello{userStore.firstName && " " + userStore.firstName},
         </div>
       </div>
     </div>
