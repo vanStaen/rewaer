@@ -11,6 +11,7 @@ import { Looks } from "./pages/Looks/Looks";
 import { Items } from "./pages/Items/Items";
 import { Info } from "./pages/Info/Info";
 import { Profil } from "./pages/Profil/Profil";
+import { EditSettings } from "./pages/Profil/EditSettings/EditSettings";
 import { Welcome } from "./pages/Welcome/Welcome";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
@@ -34,11 +35,11 @@ const App = observer(() => {
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>
-          <Route path="/edit_settings">"edit user settings"</Route>
           <Route path="/info" component={Info} />
           {authStore.hasAccess && <Route path="/looks" component={Looks} />}
           {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
+          {authStore.hasAccess && <Route path="/edit_settings" component={EditSettings} />}
           <Route path="/" exact>
             {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
           </Route>
