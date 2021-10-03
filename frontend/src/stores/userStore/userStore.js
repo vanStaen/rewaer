@@ -68,7 +68,6 @@ export class UserStore {
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
-    console.log(userData)
     if (userData) {
       this.setEmail(userData.email);
       this.setUserName(userData.userName);

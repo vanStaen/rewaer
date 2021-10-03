@@ -9,6 +9,7 @@ import {
   MailOutlined,
   QuestionOutlined,
   LogoutOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 
 import { authStore } from "../../stores/authStore/authStore";
@@ -62,6 +63,9 @@ export const MenuBar = () => {
             </NavLink>
           }
         >
+          <Menu.Item key="Settings" icon={<SettingOutlined />}>
+            <NavLink to="/edit_settings/">Edit Settings</NavLink>
+          </Menu.Item>
           <Menu.Item
             key="logout"
             icon={<LogoutOutlined />}

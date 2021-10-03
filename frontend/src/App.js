@@ -34,6 +34,7 @@ const App = observer(() => {
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
           <Route path="/settings">"settings page"</Route>
+          <Route path="/edit_settings">"edit user settings"</Route>
           <Route path="/info" component={Info} />
           {authStore.hasAccess && <Route path="/looks" component={Looks} />}
           {authStore.hasAccess && <Route path="/items" component={Items} />}

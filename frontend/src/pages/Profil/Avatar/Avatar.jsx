@@ -76,7 +76,7 @@ export const Avatar = observer(() => {
           }
         >
           <div className="avatar__editAvatar">
-            <Tooltip title="Change your avatar">
+            <Tooltip placement="bottom" title="Change your avatar">
               <form
                 onSubmit={changeAvatarSubmitHandler}
                 style={{
