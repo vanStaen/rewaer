@@ -9,3 +9,14 @@
   display: inline-block;
 }
 
+.EditSettings__title {
+  font-size: 22px;
+  margin-bottom: 15px;
+
+}
+.EditSettings__singleSetting {
+  font-size: 15px;
+  margin-bottom: 15px;
+
+}
+
