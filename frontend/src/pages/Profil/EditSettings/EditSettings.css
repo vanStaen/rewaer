@@ -5,7 +5,8 @@
 }
 
 .EditSettings__container {
-  margin: 40px 50px;
+  margin: 40px 4vw;
+  width: calc(100vw - 8vw);
   display: inline-block;
 }
 
