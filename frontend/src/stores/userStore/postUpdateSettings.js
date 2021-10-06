@@ -1,20 +1,18 @@
 import axios from "axios";
 
-export const getUserInfo = async () => {
+export const postUpdateSettings = async (emailSettings, profilSettings) => {
   const requestBody = {
     query: `
-        {
-            getUser {
-              firstName,
-              lastName,
-              userName,
-              email,
-              avatar,
-              emailSettings,
-              profilSettings,
-              friends
+        mutation {
+          updateUser(
+            userInput: {
+              emailSettings: ${emailSettings},
+              profilSettings: ${profilSettings}
             }
+          ) {
+            _id
           }
+        }
           `,
   };
 
@@ -28,5 +26,5 @@ export const getUserInfo = async () => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getUser;
+  return true;
 };

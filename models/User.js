@@ -37,12 +37,12 @@ const User = sequelize.define("user", {
     required: false,
   },
   emailSettings: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    defaultValue: [],
+    type: DataTypes.STRING,
+    defaultValue: null,
   },
   profilSettings: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    defaultValue: [],
+    type: DataTypes.STRING,
+    defaultValue: null,
   },
   friends: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
