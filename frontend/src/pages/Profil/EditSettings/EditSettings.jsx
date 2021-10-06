@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import { Divider, Switch } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
@@ -9,8 +9,12 @@ import { userStore } from "../../../stores/userStore/userStore";
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
-  //userStore.emailSettings
-  //userStore.profilSettings
+  const emailSettings = userStore.emailSettings;
+  const profilSettings = userStore.emailSettings;
+
+  console.log("emailSettings", emailSettings);
+  console.log("profilSettings", profilSettings);
+
   return (
     <div className="EditSettings__main">
       <MenuBar />

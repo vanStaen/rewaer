@@ -1,0 +1,5 @@
+{
+  "sendEmailFriendRequest": true,
+  "sendEmailNewMessage": true,
+  "sendEmailMarketing": false
+}
