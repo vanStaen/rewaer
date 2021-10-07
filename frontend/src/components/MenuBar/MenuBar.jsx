@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { observer } from "mobx-react";
 import { Menu, Avatar, Badge } from "antd";
 import {
   UserOutlined,
@@ -18,7 +19,7 @@ import "./MenuBar.css";
 
 const { SubMenu } = Menu;
 
-export const MenuBar = () => {
+export const MenuBar = observer(() => {
   const [menuSelected, setMenuSelected] = useState(null);
 
   const handleClick = (event) => {
@@ -115,4 +116,4 @@ export const MenuBar = () => {
       </Menu>
     </div>
   );
-};
+});
