@@ -6,8 +6,8 @@ type User {
     userName: String!
     email: String!
     avatar: String
-    emailSettings: [String]!
-    profilSettings: [String]!
+    emailSettings: String!
+    profilSettings: String!
     friends: [Int]
     active: Boolean
     lastActive: String!
@@ -25,8 +25,8 @@ input UserInputData {
     email: String
     password: String
     avatar: String
-    emailSettings: [String]
-    profilSettings: [String]
+    emailSettings: String
+    profilSettings: String
     friends: [Int]
     active: Boolean
 }`;

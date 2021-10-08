@@ -38,10 +38,12 @@ const User = sequelize.define("user", {
   },
   emailSettings: {
     type: DataTypes.STRING,
+    allowNull: true,
     defaultValue: null,
   },
   profilSettings: {
     type: DataTypes.STRING,
+    allowNull: true,
     defaultValue: null,
   },
   friends: {

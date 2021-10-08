@@ -1,5 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
+import defaultEmailSettings from "./defaultEmailSettings.json";
+import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserInfo } from "./getUserInfo";
 
 export class UserStore {
@@ -8,8 +10,8 @@ export class UserStore {
   avatar = null;
   firstName = null;
   lastName = null;
-  emailSettings = [];
-  profilSettings = [];
+  emailSettings = null;
+  profilSettings = null;
   friends = [];
 
   constructor() {
@@ -74,9 +76,19 @@ export class UserStore {
       this.setAvatar(userData.avatar);
       this.setFirstName(userData.firstName);
       this.setLastName(userData.lastName);
-      this.setEmailSettings(userData.emailSettings);
-      this.setProfilSettings(userData.profilSettings);
       this.setFriends(userData.friends);
+
+      if (userData.emailSettings === null) {
+        this.setEmailSettings(defaultEmailSettings);
+      } else {
+        this.setEmailSettings(userData.emailSettings);
+      }
+
+      if (userData.setProfilSettings === null) {
+        this.setEmailSettings(defaultProfilSettings);
+      } else {
+        this.setProfilSettings(userData.profilSettings);
+      }
     }
   };
 }
