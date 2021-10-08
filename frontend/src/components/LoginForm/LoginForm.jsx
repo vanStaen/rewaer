@@ -39,6 +39,11 @@ export const LoginForm = () => {
                 className="login__verifyEmailLink"
                 onClick={() => {
                   postVerifyEmailLink(isEmail.current);
+                  notification.success({
+                    duration: 0,
+                    message: t("login.recoverEmailSent"),
+                    placement: "topLeft",
+                  });
                 }}
               >
                 <LinkOutlined /> {t("login.clickToGetNewVerificationLink")}
