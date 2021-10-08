@@ -75,6 +75,7 @@ export const Avatar = observer(() => {
             }
           }
         >
+          {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
           <div className="avatar__editAvatar">
             <Tooltip placement="bottom" title="Change your avatar">
               <form

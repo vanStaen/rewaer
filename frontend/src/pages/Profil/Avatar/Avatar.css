@@ -47,3 +47,12 @@
 .avatar__inputfile + label {
     cursor: pointer;
 }
+
+.avatar__avatar .avatar__noAvatar {
+  position: absolute;
+  padding: 50px;
+  font-size: 100px;
+  color: rgba(109, 145, 126, .25);
+	z-index: -1;
+}
+
