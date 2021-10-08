@@ -10,6 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 import { postUsernameTaken } from "./postUsernameTaken";
+import { postVerifyEmailLink } from "../LoginForm/postVerifyEmailLink";
 import { postAddUser } from "./postAddUser";
 import { AlreadyMember } from "./AlreadyMember";
 
@@ -61,6 +62,7 @@ export const SignUpForm = (props) => {
         password
       );
       if (!response.errors) {
+        await postVerifyEmailLink(email);
         notification.success({
           message: t("login.pleaseConfirmEmail"),
           placement: "topLeft",
