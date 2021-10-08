@@ -12,10 +12,6 @@ export const LanguageDropDown = (props) => {
     initLanguage === "US" ? "EN" : initLanguage
   );
 
-  /* const browserLanguage =
-    window.navigator.userLanguage || window.navigator.language;
-  console.log("browserLanguage", browserLanguage); */
-
   const onLanguageChangeHandler = (value) => {
     if (value === "en") {
       i18n.changeLanguage("en-US");
