@@ -78,17 +78,18 @@ export class UserStore {
       this.setLastName(userData.lastName);
       this.setFriends(userData.friends);
 
-      if (userData.emailSettings === null) {
+      if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
       } else {
         this.setEmailSettings(userData.emailSettings);
       }
 
-      if (userData.setProfilSettings === null) {
-        this.setEmailSettings(defaultProfilSettings);
+      if (userData.profilSettings === null || userData.profilSettings === "{}") {
+        this.setProfilSettings(defaultProfilSettings);
       } else {
         this.setProfilSettings(userData.profilSettings);
       }
+
     }
   };
 }
