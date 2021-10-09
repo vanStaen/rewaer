@@ -81,13 +81,13 @@ export class UserStore {
       if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
       } else {
-        this.setEmailSettings(userData.emailSettings);
+        this.setEmailSettings(JSON.parse(userData.emailSettings));
       }
 
       if (userData.profilSettings === null || userData.profilSettings === "{}") {
         this.setProfilSettings(defaultProfilSettings);
       } else {
-        this.setProfilSettings(userData.profilSettings);
+        this.setProfilSettings(JSON.parse(userData.profilSettings));
       }
 
     }
