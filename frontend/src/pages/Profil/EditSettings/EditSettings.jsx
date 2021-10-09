@@ -9,11 +9,7 @@ import { userStore } from "../../../stores/userStore/userStore";
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
-  const emailSettings = userStore.emailSettings;
-  const profilSettings = userStore.emailSettings;
-
-  console.log("emailSettings", emailSettings);
-  console.log("profilSettings", profilSettings);
+  console.log(userStore.profilSettings);
 
   return (
     <div className="EditSettings__main">
@@ -28,7 +24,7 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
-            defaultChecked
+            checked={userStore.profilSettings.showLastSeenOnline}
           />{" "}
           Show in my profil when I was last seen online
         </div>
@@ -36,6 +32,7 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            checked={userStore.profilSettings.hideProfilToStrangers}
           />{" "}
           Hide my account to anyone which is not my friend
         </div>
@@ -47,7 +44,7 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
-            defaultChecked
+            checked={userStore.emailSettings.sendEmailFriendRequest}
           />{" "}
           Send me a mail when I get a friend request
         </div>
@@ -55,7 +52,7 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
-            defaultChecked
+            checked={userStore.emailSettings.sendEmailNewMessage}
           />{" "}
           Send me a mail when I get a new message
         </div>
@@ -63,8 +60,9 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            checked={userStore.emailSettings.sendEmailMarketing}
           />{" "}
-          Keep me informed about all changes hapenning with Rewær
+          Keep me informed about all changes happening with Rewær
         </div>
       </div>
     </div>
