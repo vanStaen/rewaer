@@ -5,11 +5,19 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
 import { MenuBar } from "../../../components/MenuBar/MenuBar";
 import { userStore } from "../../../stores/userStore/userStore";
+import { updateSettings } from "./updateSettings";
 
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
-  console.log(userStore.profilSettings);
+  const changeEmailSettingsHandler = (setting, value) => {
+    userStore.emailSettings[setting] = value;
+    updateSettings(userStore.profilSettings, userStore.emailSettings);
+  };
+  const changeProfilSettingsHandler = (setting, value) => {
+    userStore.profilSettings[setting] = value;
+    updateSettings(userStore.profilSettings, userStore.emailSettings);
+  };
 
   return (
     <div className="EditSettings__main">
@@ -24,6 +32,12 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            onChange={() => {
+              changeProfilSettingsHandler(
+                "showLastSeenOnline",
+                !userStore.profilSettings.showLastSeenOnline
+              );
+            }}
             checked={userStore.profilSettings.showLastSeenOnline}
           />{" "}
           Show in my profil when I was last seen online
@@ -32,6 +46,12 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            onChange={() => {
+              changeProfilSettingsHandler(
+                "hideProfilToStrangers",
+                !userStore.profilSettings.hideProfilToStrangers
+              );
+            }}
             checked={userStore.profilSettings.hideProfilToStrangers}
           />{" "}
           Hide my account to anyone which is not my friend
@@ -44,6 +64,12 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            onChange={() => {
+              changeEmailSettingsHandler(
+                "sendEmailFriendRequest",
+                !userStore.emailSettings.sendEmailFriendRequest
+              );
+            }}
             checked={userStore.emailSettings.sendEmailFriendRequest}
           />{" "}
           Send me a mail when I get a friend request
@@ -52,6 +78,12 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            onChange={() => {
+              changeEmailSettingsHandler(
+                "sendEmailNewMessage",
+                !userStore.emailSettings.sendEmailNewMessage
+              );
+            }}
             checked={userStore.emailSettings.sendEmailNewMessage}
           />{" "}
           Send me a mail when I get a new message
@@ -60,6 +92,12 @@ export const EditSettings = observer(() => {
           <Switch
             checkedChildren={<CheckOutlined />}
             unCheckedChildren={<CloseOutlined />}
+            onChange={() => {
+              changeEmailSettingsHandler(
+                "sendEmailMarketing",
+                !userStore.emailSettings.sendEmailMarketing
+              );
+            }}
             checked={userStore.emailSettings.sendEmailMarketing}
           />{" "}
           Keep me informed about all changes happening with Rewær
