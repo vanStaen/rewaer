@@ -13,6 +13,7 @@ export class UserStore {
   emailSettings = null;
   profilSettings = null;
   friends = [];
+  lastActive = null; 
 
   constructor() {
     makeObservable(this, {
@@ -24,6 +25,7 @@ export class UserStore {
       emailSettings: observable,
       profilSettings: observable,
       friends: observable,
+      lastActive: observable,
       setEmail: action,
       setUserName: action,
       setAvatar: action,
@@ -32,6 +34,7 @@ export class UserStore {
       setEmailSettings: action,
       setProfilSettings: action,
       setFriends: action,
+      setLastActive: action,
       fetchuserData: action,
     });
   }
@@ -68,6 +71,10 @@ export class UserStore {
     this.friends = friends;
   };
 
+  setLastActive = (lastActive) => {
+    this.lastActive = lastActive
+  }
+
   fetchuserData = async () => {
     const userData = await getUserInfo();
     if (userData) {
@@ -77,6 +84,7 @@ export class UserStore {
       this.setFirstName(userData.firstName);
       this.setLastName(userData.lastName);
       this.setFriends(userData.friends);
+      this.setLastActive(userData.lastActive);
 
       if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);

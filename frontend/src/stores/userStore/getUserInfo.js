@@ -12,7 +12,8 @@ export const getUserInfo = async () => {
               avatar,
               emailSettings,
               profilSettings,
-              friends
+              friends,
+              lastActive
             }
           }
           `,

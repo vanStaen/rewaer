@@ -12,6 +12,12 @@ export const Profil = observer(() => {
     userStore.fetchuserData();
   }, []);
 
+  const showLastSeenOnline = userStore.profilSettings
+    ? userStore.profilSettings.showLastSeenOnline
+    : false;
+
+  const date = new Date(userStore.lastActive);
+
   return (
     <div className="profil__main">
       <MenuBar />
@@ -19,6 +25,12 @@ export const Profil = observer(() => {
         <Avatar />
         <div className="profil__hello">
           Hello{userStore.firstName && " " + userStore.firstName},
+          <br />
+          {showLastSeenOnline && (
+            <div className="profil__lastSeenOnline">
+              Last seen online: {date.toString}
+            </div>
+          )}
         </div>
       </div>
     </div>

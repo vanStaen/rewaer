@@ -42,7 +42,7 @@ export const ItemCard = (props) => {
       cover={
         <Image
           alt={props.item.title}
-          src={props.item.mediaUrlThumb}
+          src={props.item.mediaUrl}
           placeholder={spinnerFormated}
           width={240}
           height={320}
