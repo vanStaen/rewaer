@@ -28,7 +28,7 @@ export const Profil = observer(() => {
           <br />
           {showLastSeenOnline && (
             <div className="profil__lastSeenOnline">
-              Last seen online: {date.toString}
+              Last seen online: {date.toDateString()}
             </div>
           )}
         </div>
