@@ -1,31 +1,26 @@
 import axios from "axios";
 import { notification } from "antd";
 
-export async function updateSettings(
-  profilSettings,
-  emailSettings, 
-) {
-
-  const emailSettingsString = JSON.stringify(emailSettings);
-  const profilSettingsString = JSON.stringify(profilSettings);
-
-  console.log(emailSettingsString);
-  console.log(profilSettingsString);
-
+export async function updateSettings(profilSettings, emailSettings) {
   const requestBody = {
     query: `
-    mutation {
+    mutation ($emailSettings: String, $profilSettings: String){
       updateUser(
         userInput: {          
-        profilSettings: "${emailSettingsString}",
-        emailSettings: "${profilSettingsString}",
+        profilSettings: $emailSettings,
+        emailSettings: $profilSettings,
         }
       ) {
         _id,
       }
     }
-          `,
+    `,
+    variables: {
+      emailSettings: JSON.stringify(emailSettings),
+      profilSettings: JSON.stringify(profilSettings),
+    },
   };
+
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/graphql`,
     method: "POST",
