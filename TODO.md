@@ -2,15 +2,11 @@
 
 ## To-dos:
 
-- [x] Refactoring del la muerte:
-  - [x] Kill Mongoose, use Sequelize
-  - [x] Rewrite GraphQl Resolvers
-  - [x] Rewrite Rest Controller
-  - [ ] Rewrite all call from frontend    
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
+- [ ] REwrite all axios call to use Variable instead of injections
 
 ## Completed ✓
 
@@ -82,4 +78,9 @@
   - [x] Implement MobX instead of using context
   - [x] Create an Authorisation Store to hanble token and login
   - [x] Create a store to handle profil data
-- [x] New Auth logic taken from merrier
+- [x] New Auth logic taken from merrier 
+- [x] Refactoring del la muerte:
+  - [x] Kill Mongoose, use Sequelize
+  - [x] Rewrite GraphQl Resolvers
+  - [x] Rewrite Rest Controller
+  - [x] Rewrite all call from frontend    
