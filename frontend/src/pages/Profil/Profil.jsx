@@ -16,7 +16,7 @@ export const Profil = observer(() => {
     ? userStore.profilSettings.showLastSeenOnline
     : false;
 
-  const date = new Date(userStore.lastActive);
+  const dateLastActive = new Date(userStore.lastActive);
 
   return (
     <div className="profil__main">
@@ -28,7 +28,8 @@ export const Profil = observer(() => {
           <br />
           {showLastSeenOnline && (
             <div className="profil__lastSeenOnline">
-              Last seen online: {date.toDateString()}
+              Last seen online: {dateLastActive.toLocaleDateString()}{" "}
+              {dateLastActive.toLocaleTimeString()}
             </div>
           )}
         </div>

@@ -10,9 +10,9 @@ type User {
     profilSettings: String!
     friends: [Int]
     active: Boolean
-    lastActive: String!
-    createdAt: String!
-    udpatedAt: String!
+    lastActive: Float!
+    createdAt: Float!
+    udpatedAt: Float!
     items: [Item]
     looks: [Look]
 }`;
