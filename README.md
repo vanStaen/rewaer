@@ -55,14 +55,15 @@ To generate the image's thumbnail the library _JIMP_ ("JavaScript Image Manipula
 AntD comes with a standart babyBlue custom color scheme: One can overwrite and customise every single componennt, or change the whole color-theme of ant. Therefore follow the following steps:
 
 1. Install the package _less_: `sudo npm install less -g`.
-2. Create a file `rewaer-theme.less` under `/node_module/antd/dist`.
-3. Fill the file with the 3 lines (were the color code are the new one you want0).
+2. Create a file `rewaer-antd.less`.
+3. Fill the file with the following lines (were the color code are the new one you want).
 
 ```
-@import “./antd.less”;
-@primary-color: #6C917D ;
+@import "../node_modules/antd/lib/style/index.less";
+@import "../node_modules/antd/lib/style/components.less";
+@primary-color: #6C917D;
 @link-color: #6C917D;
 ```
 
-4. From the directory `/node_module/antd/dist` run `lessc -js my-theme.less ../../../src/style/rewaer-antd.css`.
-5. In `app.css`, update the first import to target the file created file: `@import "../src/style/rewaer-antd.css";`
+4. Run `lessc -js src/style/rewaer-antd.less src/style/rewaer-antd.css`.
+5. Link the new generated CSS file with your app! 

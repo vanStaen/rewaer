@@ -19,7 +19,8 @@ import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
 import '../src/lib/i18n';
 
-import "./App.css";
+import "./App.css"; 
+import "./style/rewaer-antd.css"; 
 
 const App = observer(() => {
   useEffect(() => {
