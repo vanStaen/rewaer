@@ -11,12 +11,16 @@ import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
   const changeEmailSettingsHandler = (setting, value) => {
-    userStore.emailSettings[setting] = value;
-    updateSettings(userStore.profilSettings, userStore.emailSettings);
+    const tempEmailSettings = userStore.emailSettings;
+    tempEmailSettings[setting] = value;
+    userStore.setEmailSettings(tempEmailSettings);
+    updateSettings(tempEmailSettings, userStore.profilSettings);
   };
   const changeProfilSettingsHandler = (setting, value) => {
-    userStore.profilSettings[setting] = value;
-    updateSettings(userStore.profilSettings, userStore.emailSettings);
+    const tempProfilSettings = userStore.profilSettings;
+    tempProfilSettings[setting] = value;
+    userStore.setProfilSettings(tempProfilSettings);
+    updateSettings(userStore.emailSettings, tempProfilSettings);
   };
 
   return (
