@@ -4,19 +4,23 @@ import { notification } from "antd";
 export async function updateAvatar(
   mediaUrl,
 ) {
+
   const requestBody = {
     query: `
-    mutation {
+    mutation ($mediaUrl: String) {
       updateUser(
         userInput: {
-          avatar: "${mediaUrl}",
+          avatar: $mediaUrl},
         }
       ) {
         avatar,
       }
-    }
-          `,
+    }`,
+    variables: {
+      mediaUrl: mediaUrl,
+    },
   };
+
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/graphql`,
     method: "POST",
