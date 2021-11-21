@@ -3,10 +3,13 @@ import axios from "axios";
 export async function deleteItem(id) {
   const requestBody = {
     query: `
-            mutation {
-                deleteItem(itemId: "${id}") 
+            mutation ($id: Int) {
+                deleteItem(itemId: $id) 
             }
             `,
+    variables: {
+      id: id,
+    },
   };
 
   const response = await axios({

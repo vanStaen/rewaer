@@ -3,10 +3,13 @@ import axios from "axios";
 export async function deleteLook(id) {
   const requestBody = {
     query: `
-            mutation {
-                deleteLook(lookId: "${id}") 
+            mutation ($id: Int) {
+                deleteLook(lookId: $id) 
             }
             `,
+    variables: {
+      id: id,
+    },
   };
 
   console.log(requestBody);
