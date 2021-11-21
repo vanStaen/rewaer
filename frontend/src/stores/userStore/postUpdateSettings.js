@@ -3,17 +3,21 @@ import axios from "axios";
 export const postUpdateSettings = async (emailSettings, profilSettings) => {
   const requestBody = {
     query: `
-        mutation {
+        mutation ($emailSettings: String, $profilSettings: String){
           updateUser(
             userInput: {
-              emailSettings: ${emailSettings},
-              profilSettings: ${profilSettings}
+              emailSettings: $emailSettings,
+              profilSettings: $profilSettings,
             }
           ) {
             _id
           }
-        }
-          `,
+        } 
+        `,
+    variables: {
+      emailSettings: JSON.stringify(emailSettings),
+      profilSettings: JSON.stringify(profilSettings),
+    },
   };
 
   const response = await axios({

@@ -8,7 +8,7 @@ export async function updateSettings(emailSettings, profilSettings) {
       updateUser(
         userInput: {          
           emailSettings: $emailSettings,
-        profilSettings: $profilSettings,
+          profilSettings: $profilSettings,
         }
       ) {
         _id,
@@ -21,8 +21,8 @@ export async function updateSettings(emailSettings, profilSettings) {
     },
   };
 
-  console.log('emailSettings', JSON.stringify(emailSettings));
-  console.log('profilSettings', JSON.stringify(profilSettings));
+  console.log("emailSettings", JSON.stringify(emailSettings));
+  console.log("profilSettings", JSON.stringify(profilSettings));
 
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/graphql`,

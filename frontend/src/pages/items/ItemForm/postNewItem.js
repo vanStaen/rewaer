@@ -9,17 +9,23 @@ export async function postNewItem(
 ) {
   const requestBody = {
     query: `
-        mutation {
+        mutation ($mediaUrl: String, $mediaUrlThumb: String, $mediaUrlMedium: String, $title: String) {
           addItem(
-            itemInput: { mediaUrl: "${mediaUrl}", 
-                           mediaUrlThumb: "${mediaUrlThumb}",
-                           mediaUrlMedium: "${mediaUrlMedium}",
-                           title: "${title}" }
+            itemInput: { mediaUrl: $mediaUrl, 
+                         mediaUrlThumb: $mediaUrlThumb,
+                         mediaUrlMedium: $mediaUrlMedium,
+                         title: $title }
             ) {
               _id
             }
           }
           `,
+          variables: {
+            mediaUrl: mediaUrl,
+            mediaUrlThumb: mediaUrlThumb,
+            mediaUrlMedium: mediaUrlMedium,
+            title: title,
+          },
   };
   const response = await axios({
     url: process.env.REACT_APP_API_URL + `/graphql`,
