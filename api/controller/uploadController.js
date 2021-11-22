@@ -33,7 +33,7 @@ const s3 = new AWS.S3({
 });
 
 // Define upload function as Single upload of 'file' to s3
-const uploadS3 = multer({
+const uploadParser = multer({
   storage: multerS3({
     s3: s3,
     bucket: process.env.S3_BUCKET_ID,
@@ -47,7 +47,7 @@ const uploadS3 = multer({
 router.post(
   "/",
   (req, res) => {
-    uploadS3(req, res, async (error) => {
+    uploadParser(req, res, async (error) => {
       if (error) {
         console.log("Upload s3, error: ", error);
         res.json({ error: error });
