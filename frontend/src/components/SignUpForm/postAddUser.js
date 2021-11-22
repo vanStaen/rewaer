@@ -27,11 +27,11 @@ export const postAddUser = async (
                     }
                 }`,
     variables: {
-      firstName: firstName,
-      lastName: lastName,
-      userName: userName,
-      email: email,
-      password: password,
+      firstName,
+      lastName,
+      userName,
+      email,
+      password,
     },
   };
 
