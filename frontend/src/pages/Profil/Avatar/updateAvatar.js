@@ -4,20 +4,20 @@ import { notification } from "antd";
 export async function updateAvatar(
   mediaUrl,
 ) {
-
+  
   const requestBody = {
     query: `
     mutation ($mediaUrl: String) {
       updateUser(
         userInput: {
-          avatar: $mediaUrl},
+          avatar: $mediaUrl,
         }
       ) {
         avatar,
       }
     }`,
     variables: {
-      mediaUrl: mediaUrl,
+      mediaUrl,
     },
   };
 
