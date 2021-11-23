@@ -25,30 +25,32 @@ export const ItemForm = (props) => {
         process.env.REACT_APP_API_URL + `/upload`,
         formData
       );
-      // Create Item entry
-      const mediaUrl = res.data.imageUrl;
-      const mediaUrlThumb = res.data.thumbUrl;
-      const mediaUrlMedium = res.data.mediumUrl;
-      const title = moment().format("DD.MM.YYYY");
-      // post new Look
-      postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
-        .then(() => {
-          notification.success({
-            message: `File uploaded successfully.`,
-            placement: "bottomRight",
+      if (res.data) {
+        // Create Item entry
+        const mediaUrl = res.data.imageUrl;
+        const mediaUrlThumb = res.data.thumbUrl;
+        const mediaUrlMedium = res.data.mediumUrl;
+        const title = moment().format("DD.MM.YYYY");
+        // post new Look
+        postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
+          .then(() => {
+            notification.success({
+              message: `File uploaded successfully.`,
+              placement: "bottomRight",
+            });
+            // retrigger parent component rendering
+            itemsStore.setIsOutOfDate(true);
+            console.log("Success!");
+          })
+          .catch((error) => {
+            notification.error({
+              message: `File upload failed.`,
+              placement: "bottomRight",
+            });
+            console.log(error.message);
           });
-          // retrigger parent component rendering
-          itemsStore.setIsOutOfDate(true);
-          console.log("Success!");
-        })
-        .catch((error) => {
-          notification.error({
-            message: `File upload failed.`,
-            placement: "bottomRight",
-          });
-          console.log(error.message);
-        });
-      setIsUploading(false);
+        setIsUploading(false);
+      }
     } catch (err) {
       notification.error({
         message: `File upload failed.`,
