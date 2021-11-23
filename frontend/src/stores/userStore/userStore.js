@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserInfo } from "./getUserInfo";
+import { updateSettings } from "../../pages/Profil/EditSettings/updateSettings";
 
 export class UserStore {
   email = null;
@@ -14,7 +15,7 @@ export class UserStore {
   profilSettings = null;
   language = null;
   friends = [];
-  lastActive = null; 
+  lastActive = null;
 
   constructor() {
     makeObservable(this, {
@@ -79,8 +80,8 @@ export class UserStore {
   };
 
   setLastActive = (lastActive) => {
-    this.lastActive = lastActive
-  }
+    this.lastActive = lastActive;
+  };
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
@@ -93,20 +94,16 @@ export class UserStore {
       this.setLastName(userData.lastName);
       this.setFriends(userData.friends);
       this.setLastActive(userData.lastActive);
-      this.setLanguage(userData.language)
+      this.setLanguage(userData.language);
 
-      if (userData.emailSettings === null || userData.emailSettings === "{}") {
+      if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
+        this.setProfilSettings(defaultProfilSettings);
+        updateSettings(defaultEmailSettings, defaultProfilSettings);
       } else {
         this.setEmailSettings(JSON.parse(userData.emailSettings));
-      }
-
-      if (userData.profilSettings === null || userData.profilSettings === "{}") {
-        this.setProfilSettings(defaultProfilSettings);
-      } else {
         this.setProfilSettings(JSON.parse(userData.profilSettings));
       }
-
     }
   };
 }
