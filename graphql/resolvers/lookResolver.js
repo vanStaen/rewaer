@@ -70,33 +70,37 @@ exports.lookResolver = {
 
   // deleteLook(lookId: ID!): Boolean!
   async deleteLook(args, req) {
-    await Look.destroy({
-      where: {
-        _id: args.lookId,
-      },
-    });
-    return true;
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const lookToDelete = await Look.findOne({ where: { _id: args.lookId } });
+    const lookId = lookToDelete.mediaUrl.split("/").slice(-1)[0];
+    try {
+      const params = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: lookId,
+      };
+      const paramsThumb = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: "t_" + lookId,
+      };
+      const paramsMedium = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: "m_" + lookId,
+      };
+      await Promise.all([
+        s3.deleteObject(params, function (err, data) {}),
+        s3.deleteObject(paramsThumb, function (err, data) {}),
+        s3.deleteObject(paramsMedium, function (err, data) {}),
+      ]);
+      await Look.destroy({
+        where: {
+          _id: args.lookId,
+        },
+      });
+      return true;
+    } catch (err) {
+      return err;
+    }
   },
 };
-
-/*
-// TODO: on delete, delete s3 file too
-deleteLook: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error(errorName.UNAUTHORIZED);
-    }
-    const lookToDelete = await Look.findOne({ _id: args.lookId });
-    const s3ObjectID = lookToDelete.mediaUrl.split("/").slice(-1)[0];
-    const params = {  Bucket: process.env.S3_BUCKET_ID, Key: s3ObjectID };
-      s3.deleteObject(params, function(err, data) {
-        const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + s3ObjectID };
-          s3.deleteObject(paramsThumb, function(err, data) { 
-            const paramsMedium = {  Bucket: process.env.S3_BUCKET_ID, Key: "m_" + s3ObjectID };
-            s3.deleteObject(paramsMedium, function(err, data) { 
-          });
-        });
-      });
-    await Look.deleteOne({ _id: args.lookId });
-    return ({ _id: args.lookId });
-  },
-*/

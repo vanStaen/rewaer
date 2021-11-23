@@ -1,6 +1,14 @@
 const bcrypt = require("bcryptjs");
+const AWS = require("aws-sdk");
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
+
+// Define s3 bucket login info
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_IAM_KEY,
+  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
+  Bucket: process.env.S3_BUCKET_ID,
+});
 
 exports.itemResolver = {
   async getItems(args, req) {
@@ -76,33 +84,37 @@ exports.itemResolver = {
 
   // deleteItem(itemId: ID!): Boolean!
   async deleteItem(args, req) {
-    await Item.destroy({
-      where: {
-        _id: args.itemId,
-      },
-    });
-    return true;
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const itemToDelete = await Item.findOne({ where: { _id: args.itemId } });
+    const itemId = itemToDelete.mediaUrl.split("/").slice(-1)[0];
+    try {
+      const params = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: itemId,
+      };
+      const paramsThumb = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: "t_" + itemId,
+      };
+      const paramsMedium = {
+        Bucket: process.env.S3_BUCKET_ID,
+        Key: "m_" + itemId,
+      };
+      await Promise.all([
+        s3.deleteObject(params, function (err, data) {}),
+        s3.deleteObject(paramsThumb, function (err, data) {}),
+        s3.deleteObject(paramsMedium, function (err, data) {}),
+      ]);
+      await Item.destroy({
+        where: {
+          _id: args.itemId,
+        },
+      });
+      return true;
+    } catch (err) {
+      return err;
+    }
   },
 };
-
-/*
-// TODO: on delete, delete s3 file too
-deleteItem: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error(errorName.UNAUTHORIZED);
-    }
-    const itemToDelete = await Item.findOne({ _id: args.itemId });
-    const s3ObjectID = itemToDelete.mediaUrl.split("/").slice(-1)[0];
-    const params = {  Bucket: process.env.S3_BUCKET_ID, Key: s3ObjectID };
-      s3.deleteObject(params, function(err, data) {
-        const paramsThumb = {  Bucket: process.env.S3_BUCKET_ID, Key: "t_" + s3ObjectID };
-          s3.deleteObject(paramsThumb, function(err, data) { 
-            const paramsMedium = {  Bucket: process.env.S3_BUCKET_ID, Key: "m_" + s3ObjectID };
-            s3.deleteObject(paramsMedium, function(err, data) { 
-          });
-        });
-      });
-    await Item.deleteOne({ _id: args.itemId });
-    return ({ _id: args.itemId });
-  },
-*/
