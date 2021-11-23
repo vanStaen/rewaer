@@ -12,6 +12,7 @@ export const getUserInfo = async () => {
               avatar,
               emailSettings,
               profilSettings,
+              language,
               friends,
               lastActive
             }

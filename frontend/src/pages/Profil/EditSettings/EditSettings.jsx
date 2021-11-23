@@ -1,15 +1,20 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Divider, Switch } from "antd";
+import { Divider, Switch, Radio } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { MenuBar } from "../../../components/MenuBar/MenuBar";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateSettings } from "./updateSettings";
+import { updateLanguage } from "./updateLanguage";
 
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
+  const { i18n } = useTranslation();
+  const initLanguage = i18n.language.slice(0, 2);
+
   const changeEmailSettingsHandler = (setting, value) => {
     const tempEmailSettings = userStore.emailSettings;
     tempEmailSettings[setting] = value;
@@ -23,11 +28,37 @@ export const EditSettings = observer(() => {
     updateSettings(userStore.emailSettings, tempProfilSettings);
   };
 
+  const onLanguageChangeHandler = (event) => {
+    const value = event.target.value;
+    if (value === "en") {
+      i18n.changeLanguage("en-US");
+    } else if (value === "fr") {
+      i18n.changeLanguage("fr-FR");
+    } else if (value === "de") {
+      i18n.changeLanguage("de-DE");
+    }
+    updateLanguage(value);
+  };
+
   return (
     <div className="EditSettings__main">
       <MenuBar />
       <div className="EditSettings__container">
         <div className="EditSettings__title">Edit your settings on Rewær</div>
+        <br />
+        <Divider orientation="left" plain>
+          Display Settings
+        </Divider>
+        <Radio.Group
+          defaultValue={initLanguage}
+          buttonStyle="solid"
+          onChange={onLanguageChangeHandler}
+        >
+          <Radio.Button value="en">English</Radio.Button>
+          <Radio.Button value="fr">Français</Radio.Button>
+          <Radio.Button value="de">Deutsch</Radio.Button>
+        </Radio.Group>
+        <br />
         <br />
         <Divider orientation="left" plain>
           Profil Settings

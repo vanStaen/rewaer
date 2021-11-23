@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import "./LanguageDropDown.css";
 
-export const LanguageDropDown = (props) => {
+export const LanguageDropDown = () => {
   const { i18n } = useTranslation();
   const initLanguage = i18n.language.slice(-2);
   const [language, setLanguage] = useState(

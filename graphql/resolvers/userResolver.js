@@ -38,6 +38,7 @@ exports.userResolver = {
         firstName: args.userInput.firstName,
         lastName: args.userInput.lastName,
         userName: args.userInput.userName,
+        language: args.userInput.language,
         email: args.userInput.email,
         password: hashedPassword,
         lastActive: Date.now(),
@@ -58,6 +59,7 @@ exports.userResolver = {
       "avatar",
       "emailSettings",
       "profilSettings",
+      "language",
       "friends",
     ];
     updatableFields.forEach((field) => {

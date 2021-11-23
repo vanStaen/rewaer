@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import { Looks } from "./pages/Looks/Looks";
 import { Items } from "./pages/Items/Items";
@@ -15,17 +16,27 @@ import { EditSettings } from "./pages/Profil/EditSettings/EditSettings";
 import { Welcome } from "./pages/Welcome/Welcome";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
+import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 
-import '../src/lib/i18n';
+import "../src/lib/i18n";
 
-import "./App.css"; 
-import "./style/rewaer-antd.css"; 
+import "./App.css";
+import "./style/rewaer-antd.css";
 
 const App = observer(() => {
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     authStore.checkAccess();
-  }, []);
+    if (userStore.language === "en") {
+      i18n.changeLanguage("en-US");
+    } else if (userStore.language === "fr") {
+      i18n.changeLanguage("fr-FR");
+    } else if (userStore.language === "de") {
+      i18n.changeLanguage("de-DE");
+    }
+  }, [userStore.language]);
 
   return (
     <Router>
@@ -40,7 +51,9 @@ const App = observer(() => {
           {authStore.hasAccess && <Route path="/looks" component={Looks} />}
           {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
-          {authStore.hasAccess && <Route path="/edit_settings" component={EditSettings} />}
+          {authStore.hasAccess && (
+            <Route path="/edit_settings" component={EditSettings} />
+          )}
           <Route path="/" exact>
             {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
           </Route>

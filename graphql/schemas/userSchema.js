@@ -8,6 +8,7 @@ type User {
     avatar: String
     emailSettings: String!
     profilSettings: String!
+    language: String!
     friends: [Int]
     active: Boolean
     lastActive: Float!
@@ -27,6 +28,7 @@ input UserInputData {
     avatar: String
     emailSettings: String
     profilSettings: String
+    language: String!
     friends: [Int]
     active: Boolean
 }`;

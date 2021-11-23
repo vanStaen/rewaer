@@ -12,6 +12,7 @@ export class UserStore {
   lastName = null;
   emailSettings = null;
   profilSettings = null;
+  language = null;
   friends = [];
   lastActive = null; 
 
@@ -24,6 +25,7 @@ export class UserStore {
       lastName: observable,
       emailSettings: observable,
       profilSettings: observable,
+      language: observable,
       friends: observable,
       lastActive: observable,
       setEmail: action,
@@ -33,6 +35,7 @@ export class UserStore {
       setLastName: action,
       setEmailSettings: action,
       setProfilSettings: action,
+      setLanguage: action,
       setFriends: action,
       setLastActive: action,
       fetchuserData: action,
@@ -67,6 +70,10 @@ export class UserStore {
     this.profilSettings = profilSettings;
   };
 
+  setLanguage = (language) => {
+    this.language = language;
+  };
+
   setFriends = (friends) => {
     this.friends = friends;
   };
@@ -77,6 +84,7 @@ export class UserStore {
 
   fetchuserData = async () => {
     const userData = await getUserInfo();
+
     if (userData) {
       this.setEmail(userData.email);
       this.setUserName(userData.userName);
@@ -85,6 +93,7 @@ export class UserStore {
       this.setLastName(userData.lastName);
       this.setFriends(userData.friends);
       this.setLastActive(userData.lastActive);
+      this.setLanguage(userData.language)
 
       if (userData.emailSettings === null || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
