@@ -24,7 +24,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: .5em;
+  font-size: 14px;
   text-align: justify;
 }
 
@@ -34,6 +34,6 @@
 }
 
 .emailVerified__loader {
-  font-size: 5em;
+  font-size: 75px;
 }
 
