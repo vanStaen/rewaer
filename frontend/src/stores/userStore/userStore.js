@@ -96,7 +96,7 @@ export class UserStore {
       this.setLastActive(userData.lastActive);
       this.setLanguage(userData.language);
 
-      if (userData.emailSettings === null || userData.emailSettings === "{}") {
+      if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);
         this.setProfilSettings(defaultProfilSettings);
         updateSettings(defaultEmailSettings, defaultProfilSettings);

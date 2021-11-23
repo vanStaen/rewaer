@@ -1,6 +1,14 @@
 const bcrypt = require("bcryptjs");
+const AWS = require("aws-sdk");
 const { User } = require("../../models/User");
 const { Look } = require("../../models/Look");
+
+// Define s3 bucket login info
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_IAM_KEY,
+  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
+  Bucket: process.env.S3_BUCKET_ID,
+});
 
 exports.lookResolver = {
   async getLooks(args, req) {
