@@ -6,7 +6,10 @@
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
-- [ ] REwrite all axios call to use Variable instead of injections
+- [ ] Feature to ligthen up an image (Dark-Light balance)
+- [ ] Feature to whiten up an image (White balande)
+- [ ] Loading State before everything is fetched
+- [ ] Translate in all three languages
 
 ## Completed ✓
 
