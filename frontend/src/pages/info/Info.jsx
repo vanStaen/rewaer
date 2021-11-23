@@ -7,7 +7,7 @@ export class Info extends Component {
   render() {
     return (
       <div>
-        <Title level={2}>Rewær, the green Fashion App</Title>
+        <Title level={2}>Rewaer, the green Fashion App</Title>
         <Paragraph>
           <Text type="secondary">
             The Fashion App for minimalistic and sustainable geniuses! <br />
@@ -32,9 +32,9 @@ export class Info extends Component {
           Please address any questions/comments to <b>admin@rewear.com.</b>
         </Paragraph>
 
-        <Divider plain>What is Rewær?</Divider>
+        <Divider plain>What is Rewaer?</Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          Rewær is promoting green fashion based on the principle that{" "}
+          Rewaer is promoting green fashion based on the principle that{" "}
           <span style={{ background: "#C8D6CF" }}>
             the most sustainable piece of clothing is the one you already have
           </span>
@@ -62,7 +62,7 @@ export class Info extends Component {
           and avoid having unworn brandnew stuff laying around forever in your
           drawer. But also,{" "}
           <span style={{ background: "#C8D6CF" }}>
-            Rewær is your own stylist
+            Rewaer is your own stylist
           </span>
           : by keeping track of your favorite styles and items, it will help you
           get dress, to style items you like and own but never think of wearing
@@ -97,7 +97,7 @@ export class Info extends Component {
         <Paragraph disabled>
           App running in {process.env.NODE_ENV} mode.
           <br />
-          ©2021 Rewær All Rights Reserved
+          ©2021 Rewaer All Rights Reserved
         </Paragraph>
       </div>
     );

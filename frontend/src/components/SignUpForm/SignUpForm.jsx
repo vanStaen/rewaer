@@ -88,7 +88,7 @@ export const SignUpForm = (props) => {
   return (
     <div className="signup__full">
       <div className="signup__header">
-        {t("login.signinto")} <b>rewær</b>
+        {t("login.signinto")} <b>rewaer</b>
         .com {t("login.signintoAfter")}
       </div>
 

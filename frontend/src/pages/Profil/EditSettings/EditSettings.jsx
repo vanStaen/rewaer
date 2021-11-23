@@ -44,7 +44,7 @@ export const EditSettings = observer(() => {
     <div className="EditSettings__main">
       <MenuBar />
       <div className="EditSettings__container">
-        <div className="EditSettings__title">Edit your settings on Rewær</div>
+        <div className="EditSettings__title">Edit your settings on Rewaer</div>
         <br />
         <Divider orientation="left" plain>
           Display Settings
@@ -135,7 +135,7 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.emailSettings.sendEmailMarketing}
           />{" "}
-          Keep me informed about all changes happening with Rewær
+          Keep me informed about all changes happening with Rewaer
         </div>
       </div>
     </div>

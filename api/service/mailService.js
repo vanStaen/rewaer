@@ -35,7 +35,7 @@ const emailDisclaimer = `
   of the author and do not represent those of the company. No liability can be held 
   for any damages, however, caused, to any recipients of this message. <br/><br/>
   <b>GDPR</b><br/>
-  Rewær is compliant with the General Data Protection Regulation (GDPR) (EU) 2016/679. 
+  Rewaer is compliant with the General Data Protection Regulation (GDPR) (EU) 2016/679. 
   We are committed to guaranteeing the security and protection of the private information 
   that we process. To understand more about how we collect, store, and process your personal 
   information in compliance with GDPR, please take a look at our privacy policy
@@ -47,7 +47,7 @@ exports.mailService = {
 
   async mail(sendto, subject, body) {
     const requestBody = {
-      "from": "Rewær <info@rewaer.com>",
+      "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": subject,
       "body": `${body}<br/> ${emailDisclaimer}`,
@@ -88,18 +88,19 @@ exports.mailService = {
                   This link will only be active for 10 minutes. <br/>
                   https://rewaer.com/recoverpwd/${recoveryToken}<br/>
                   <br/>
-                  Rewær App<br/>
+                  Rewaer App<br/>
                   <i>The Fashion App for minimalistic and sustainable geniuses!</i>
                   <br/>
                   ${emailDisclaimer}`;
 
     const requestBody = {
-      "from": "Rewær <info@rewaer.com>",
+      "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
-      "subject": "Rewær.app | Reset your password with this link",
+      "subject": "Rewaer.app | Reset your password with this link",
       "body": body,
       "key": process.env.MAILMAN_KEY
     };
+    
     try {
       const response = await axios({
         url: process.env.MAILMAN_URL,
@@ -138,7 +139,7 @@ exports.mailService = {
                   This link will only be active for 24 hours. <br/>
                   https://rewaer.com/emailverify/${emailVerifyToken}<br/>
                   <br/>
-                  Rewær App<br/>
+                  Rewaer App<br/>
                   <i>Only trees should get new
                   leaves every years.</i>
                   <br/>
@@ -147,7 +148,7 @@ exports.mailService = {
     const requestBody = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
-      "subject": "Rewær.app | Confirm your email address with this link",
+      "subject": "Rewaer.app | Confirm your email address with this link",
       "body": body,
       "key": process.env.MAILMAN_KEY
     };
