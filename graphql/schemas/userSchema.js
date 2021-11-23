@@ -28,7 +28,7 @@ input UserInputData {
     avatar: String
     emailSettings: String
     profilSettings: String
-    language: String!
+    language: String
     friends: [Int]
     active: Boolean
 }`;

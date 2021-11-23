@@ -20,8 +20,8 @@ export const SignUpForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValidUsername, setIsValidUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
   const [errorMsgUsername, setErrorMsgUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
-  const { t } = useTranslation();
-  const language = t.language.slice(0, 2);
+  const { t, i18n } = useTranslation();
+  const language = i18n.language.slice(0, 2);
 
   const changeUserNameHandler = async (e) => {
     const username = e.target.value;
