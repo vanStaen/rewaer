@@ -74,7 +74,7 @@ exports.lookResolver = {
       throw new Error("Unauthorized!");
     }
     const lookToDelete = await Look.findOne({ where: { _id: args.lookId } });
-    const lookId = lookToDelete.mediaUrl.split("/").slice(-1)[0];
+    const lookId = lookToDelete.mediaUrl && lookToDelete.mediaUrl.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,

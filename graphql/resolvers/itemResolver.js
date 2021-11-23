@@ -88,7 +88,7 @@ exports.itemResolver = {
       throw new Error("Unauthorized!");
     }
     const itemToDelete = await Item.findOne({ where: { _id: args.itemId } });
-    const itemId = itemToDelete.mediaUrl.split("/").slice(-1)[0];
+    const itemId = itemToDelete.mediaUrl && itemToDelete.mediaUrl.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,
