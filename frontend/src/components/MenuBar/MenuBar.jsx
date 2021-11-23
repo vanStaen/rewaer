@@ -32,7 +32,7 @@ export const MenuBar = observer(() => {
         onClick={handleClick}
         selectedKeys={[menuSelected]}
         mode="horizontal"
-        style={{ margin: "5px 0px" }}
+        style={{ margin: "5px 0 0 0" }}
       >
         <span
           className="menu__RewaerMotto"
@@ -47,26 +47,28 @@ export const MenuBar = observer(() => {
 
         <SubMenu
           style={{ float: "right" }}
-          key="profil"
+          key="user"
           icon={
-            <NavLink to="/profile">
-              <Badge count={1} offset={[0, 5]}>
-                <Avatar
-                  src={userStore.avatar && userStore.avatar}
-                  icon={
-                    !userStore.avatar && (
-                      <UserOutlined style={{ fontSize: "24px" }} />
-                    )
-                  }
-                  size="large"
-                />
-              </Badge>
-            </NavLink>
+            <Badge count={1} offset={[0, 5]}>
+              <Avatar
+                src={userStore.avatar && userStore.avatar}
+                icon={
+                  !userStore.avatar && (
+                    <UserOutlined style={{ fontSize: "24px" }} />
+                  )
+                }
+                size="large"
+              />
+            </Badge>
           }
         >
-          <Menu.Item key="Settings" icon={<SettingOutlined />}>
+          <Menu.Item key="profile" icon={<UserOutlined />}>
+            <NavLink to="/profile">Profile</NavLink>
+          </Menu.Item>
+          <Menu.Item key="settings" icon={<SettingOutlined />}>
             <NavLink to="/edit_settings/">Edit Settings</NavLink>
           </Menu.Item>
+          <div className="menu__customDivider"></div>
           <Menu.Item
             key="logout"
             icon={<LogoutOutlined />}

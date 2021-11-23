@@ -6,6 +6,7 @@ import { itemsStore } from "./itemsStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
+import { Banner } from "../../components/Banner/Banner";
 
 import "./Items.css";
 
@@ -25,6 +26,11 @@ export const Items = observer(() => {
   return (
     <div className="items__main">
       <MenuBar />
+      <Banner
+        id="missingTag"
+        desc="Some items are missing mandatory tags/attributes. Click here to add
+        those."
+      />
       <div className="items__container">
         {itemsStore.error !== null ? (
           itemsStore.error

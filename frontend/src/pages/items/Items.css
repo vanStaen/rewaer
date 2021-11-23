@@ -1,17 +1,16 @@
-.items__main {  
+.items__main {
   width: 100vw;
   height: 100vh;
-  font-size: .5em;
+  font-size: 16px;
 }
 
 .items__container {
-  margin: 50px;
+  margin: 40px;
 }
 
 .items__spinner {
-    text-align: center;
-    padding-top: 100px;
-    width: 100%;
-    height: 320px;
-  }
-  
+  text-align: center;
+  padding-top: 100px;
+  width: 100%;
+  height: 320px;
+}
