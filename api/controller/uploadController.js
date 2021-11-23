@@ -112,9 +112,14 @@ router.delete("/:id", async (req, res) => {
       Bucket: process.env.S3_BUCKET_ID,
       Key: "t_" + req.params.id,
     };
+    const paramsMedium = {
+      Bucket: process.env.S3_BUCKET_ID,
+      Key: "m_" + req.params.id,
+    };
     await Promise.all([    
       s3.deleteObject(params, function (err, data) {}),
       s3.deleteObject(paramsThumb, function (err, data) {}),
+      s3.deleteObject(paramsMedium, function (err, data) {}),
     ]);
     res.status(204).json({});
   } catch (err) {

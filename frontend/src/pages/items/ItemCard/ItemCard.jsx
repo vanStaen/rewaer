@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
+import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
 import { deleteItem } from "./deleteItem";
 
@@ -52,6 +53,11 @@ export const ItemCard = (props) => {
       <Meta
         title={
           <div>
+            <EditableTitle
+              title={props.item.title}
+              id={props.item._id}
+              type={"item"}
+            />
             <Popconfirm
               title="Are you sure to delete this item?"
               onConfirm={handleDelete}
