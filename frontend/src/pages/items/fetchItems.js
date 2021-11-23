@@ -6,6 +6,7 @@ export async function fetchItems() {
       {
         getItems {
           _id,
+          title,
           desc,
           category,
           colors,
