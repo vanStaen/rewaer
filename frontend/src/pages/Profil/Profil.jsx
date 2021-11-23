@@ -28,7 +28,7 @@ export const Profil = observer(() => {
           <br />
           {showLastSeenOnline && (
             <div className="profil__lastSeenOnline">
-              Last seen online: {dateLastActive.toLocaleDateString()}{" "}
+              Last seen online the {dateLastActive.toLocaleDateString()} at{" "}
               {dateLastActive.toLocaleTimeString()}
             </div>
           )}
