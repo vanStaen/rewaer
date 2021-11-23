@@ -10,6 +10,14 @@
 - [ ] Feature to whiten up an image (White balande)
 - [ ] Loading State before everything is fetched
 - [ ] Translate in all three languages
+- [ ] Allow multi-upload and dragdrop (take from kinkograph)
+- [ ] when scrolled down, show floating add items button
+- [ ] shared items
+- [ ] When items are missing basic tags info :
+  - [ ] Banner calling for action
+  - [ ] view of all article missing tag
+  - [ ] Multi tagging of article
+- [ ] With ctrl, multi select of article is possible, and edit panel opens
 
 ## Completed ✓
 
