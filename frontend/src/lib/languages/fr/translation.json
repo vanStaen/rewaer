@@ -1,4 +1,10 @@
 {
+  "main": {
+    "motto": "l'appli mode écolo", 
+    "preview" : "Aperçu",
+    "startWithPhoto": "Commence avec une photo",
+    "clickDragFile": "Clique, ou dépose un fichier ici"
+  },
   "login": {
     "newHere": "Premiére fois",
     "signUp": "Créer un compte",
@@ -78,7 +84,7 @@
     "editSetting": "Configuration",
     "logout": "Deconnection",
     "looks": "Looks",
-    "items": "Items",
+    "items": "Piéces",
     "mail": "Messages",
     "friends": "Amis"
   },
@@ -98,5 +104,11 @@
     "changeAvatar": "Changer d'avatar",
     "avatarUpdateSuccess": "Nouvel avatar uploadé avec succés!",
     "avatarUpdateFail": "L'upload a échoué."
+  },
+  "items" : {
+    "addItem" : "Ajoute une piéces",
+    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
+    "uploadFail": "L'upload a échoué.",
+    "uploadSuccess": "Ficher uploadé avec succés!"
   }
 }

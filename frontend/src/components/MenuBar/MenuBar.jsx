@@ -46,7 +46,7 @@ export const MenuBar = observer(() => {
               margin: "0px 20px 0px 20px",
             }}
           >
-            Rewaer, the green Fashion App
+            Rewaer, {t("main.motto")}
           </span>
 
           <SubMenu

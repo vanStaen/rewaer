@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Col, Row, Spin } from "antd";
+import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "./itemsStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -11,6 +12,7 @@ import { Banner } from "../../components/Banner/Banner";
 import "./Items.css";
 
 export const Items = observer(() => {
+  const { t } = useTranslation();
   useEffect(() => {
     itemsStore.loadItems();
   }, [itemsStore.isOutOfDate]);
@@ -26,12 +28,7 @@ export const Items = observer(() => {
   return (
     <div className="items__main">
       <MenuBar />
-      <Banner
-        id="missingTag"
-        desc="Some items are missing mandatory tags/attributes. Click here to add
-        those."
-        show={true}
-      />
+      <Banner id="missingTag" desc={t("items.missingTagsAlert")} show={true} />
       <div className="items__container">
         {itemsStore.error !== null ? (
           itemsStore.error

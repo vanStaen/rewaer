@@ -1,4 +1,10 @@
 {
+  "main": {
+    "motto": "die grüne Fashion-App", 
+    "preview" : "Vorschau",
+    "startWithPhoto": "Start mit einem Foto",
+    "clickDragFile": "Klicken, oder hier eine Datei ziehen"
+  },
   "login": {
     "newHere": "Erstes mal hier",
     "signUp": "Zum Anmeldung",
@@ -97,5 +103,11 @@
     "changeAvatar": "Profilbild andern",
     "avatarUpdateSuccess": "Avatar würde erfolgreich hochgeladet",
     "avatarUpdateFail": "File upload fehlgeschlagen"
+  },
+  "items" : {
+    "addItem" : "Item hinzufügen",
+    "missingTagsAlert" : "Bei einigen Artikeln fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
+    "uploadFail": "File upload fehlgeschlagen",
+    "uploadSuccess": "File erfolgreich hochgeladet"
   }
 }

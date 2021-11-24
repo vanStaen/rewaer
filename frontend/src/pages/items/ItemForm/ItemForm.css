@@ -26,6 +26,7 @@
     width: 240px;
     height: 385px;
     margin-bottom: 30px;
+    padding: 10px;
 }
 
 .inputfile:focus + label,

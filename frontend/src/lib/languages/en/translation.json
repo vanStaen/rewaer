@@ -1,4 +1,10 @@
 {
+  "main": {
+    "motto": "the green Fashion App", 
+    "preview" : "preview",
+    "startWithPhoto": "Start with a photo",
+    "clickDragFile": "Click, or drag here a file"
+  },
   "login": {
     "newHere": "New here",
     "signUp": "Sign up",
@@ -98,5 +104,11 @@
     "changeAvatar": "Change your avatar",
     "avatarUpdateSuccess": "Avatar updated successfully.",
     "avatarUpdateFail": "File upload failed."
+  },
+  "items" : {
+    "addItem" : "Add Item",
+    "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
+    "uploadFail": "File upload failed.",
+    "uploadSuccess": "File updated successfully."
   }
 }
