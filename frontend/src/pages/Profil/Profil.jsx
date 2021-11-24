@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { userStore } from "../../stores/userStore/userStore";
@@ -8,6 +9,8 @@ import { Avatar } from "./Avatar/Avatar";
 import "./Profil.css";
 
 export const Profil = observer(() => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     userStore.fetchuserData();
   }, []);
@@ -24,11 +27,13 @@ export const Profil = observer(() => {
       <div className="profil__container">
         <Avatar />
         <div className="profil__hello">
-          Hello{userStore.firstName && " " + userStore.firstName},
+          {t("profile.hello")}
+          {userStore.firstName && " " + userStore.firstName},
           <br />
           {showLastSeenOnline && (
             <div className="profil__lastSeenOnline">
-              Last seen online the {dateLastActive.toLocaleDateString()} at{" "}
+              {t("profile.lastSeenOnline")}{" "}
+              {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
               {dateLastActive.toLocaleTimeString()}
             </div>
           )}

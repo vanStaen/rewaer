@@ -72,5 +72,31 @@
     "passwordDoNotMatch": "Les mots de passe ne correspondent pas!",
     "updatePassword": "Mettre à jour le mot de passe",
     "linkNotValidAnymore": "Le lien n'est plus valide."
+  },
+  "menu": {
+    "profile": "Profile",
+    "editSetting": "Configuration",
+    "logout": "Deconnection",
+    "looks": "Looks",
+    "items": "Items",
+    "mail": "Messages",
+    "friends": "Amis"
+  },
+  "profile": {
+    "hello": "Salut",
+    "lastSeenOnline": "Vu pour la dernière fois en ligne le ",
+    "at": "le",
+    "editYourSetting": "Modifiez vos paramètres sur Rewaer",
+    "displaySettings": "Préférences du site",
+    "profileSettings": "Paramètres du profile",
+    "emailSettings": "Paramètres Email",
+    "settingShowLastOnline": "Afficher dans mon profil la dernière fois que j'ai été vu en ligne",
+    "settingHideAccount": "Cacher mon compte à toute personne qui n'est pas mon ami",
+    "settingSendEmailOnFriendRequest": "Prévenir par mail lorsque je reçois une demande d'ami",
+    "settingSendEmailWhenNewMessage": "Prévenir par mail lorsque je reçois un nouveau message",
+    "settingKeepMeInformedAboutRewaer" : "Me tenir au courant de tous les changements qui se passe sur Rewaer",
+    "changeAvatar": "Changer d'avatar",
+    "avatarUpdateSuccess": "Nouvel avatar uploadé avec succés!",
+    "avatarUpdateFail": "L'upload a échoué."
   }
 }

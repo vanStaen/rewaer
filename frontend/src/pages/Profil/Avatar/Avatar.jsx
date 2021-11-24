@@ -3,6 +3,7 @@ import axios from "axios";
 import { observer } from "mobx-react";
 import { Tooltip, notification, Spin } from "antd";
 import { UserOutlined, EditOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateAvatar } from "./updateAvatar";
@@ -10,6 +11,7 @@ import { updateAvatar } from "./updateAvatar";
 import "./Avatar.css";
 
 export const Avatar = observer(() => {
+  const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -30,7 +32,7 @@ export const Avatar = observer(() => {
       updateAvatar(mediaUrl)
         .then(() => {
           notification.success({
-            message: `Avatar updated successfully.`,
+            message: t("profile.avatarUpdateSuccess"),
             placement: "bottomRight",
           });
           userStore.setAvatar(mediaUrl);
@@ -38,7 +40,7 @@ export const Avatar = observer(() => {
         })
         .catch((error) => {
           notification.error({
-            message: `File upload failed.`,
+            message: t("profile.avatarUpdateFail"),
             placement: "bottomRight",
           });
           console.log(error.message);
@@ -46,7 +48,7 @@ export const Avatar = observer(() => {
       setIsUploading(false);
     } catch (err) {
       notification.error({
-        message: `File upload failed.`,
+        message: t("profile.avatarUpdateFail"),
         placement: "bottomRight",
       });
       setIsUploading(false);
@@ -77,7 +79,7 @@ export const Avatar = observer(() => {
         >
           {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
           <div className="avatar__editAvatar">
-            <Tooltip placement="bottom" title="Change your avatar">
+            <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
               <form
                 onSubmit={changeAvatarSubmitHandler}
                 style={{

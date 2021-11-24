@@ -73,7 +73,7 @@
     "updatePassword": "Update password",
     "linkNotValidAnymore": "Link not valid anymore."
   },
-  "Menu": {
+  "menu": {
     "profile": "Profile",
     "editSetting": "Edit Settings",
     "logout": "Logout",
@@ -82,9 +82,9 @@
     "mail": "Mail",
     "friends": "Friends"
   },
-  "Profile": {
+  "profile": {
     "hello": "Hello",
-    "LastSeenOnline": "Last seen online the ",
+    "lastSeenOnline": "Last seen online the ",
     "at": "at",
     "editYourSetting": "Edit your settings on Rewaer",
     "displaySettings": "Display Settings",
@@ -94,6 +94,9 @@
     "settingHideAccount": "Hide my account to anyone which is not my friend",
     "settingSendEmailOnFriendRequest": "Send me a mail when I get a friend request",
     "settingSendEmailWhenNewMessage": "Send me a mail when I get a new message",
-    "settingKeepMeInformedAboutRewaer" : "Keep me informed about all changes happening with Rewaer"
+    "settingKeepMeInformedAboutRewaer" : "Keep me informed about all changes happening with Rewaer",
+    "changeAvatar": "Change your avatar",
+    "avatarUpdateSuccess": "Avatar updated successfully.",
+    "avatarUpdateFail": "File upload failed."
   }
 }

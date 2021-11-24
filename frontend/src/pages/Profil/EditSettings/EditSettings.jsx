@@ -12,7 +12,7 @@ import { updateLanguage } from "./updateLanguage";
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const initLanguage = i18n.language.slice(0, 2);
 
   const changeEmailSettingsHandler = (setting, value) => {
@@ -44,10 +44,12 @@ export const EditSettings = observer(() => {
     <div className="EditSettings__main">
       <MenuBar />
       <div className="EditSettings__container">
-        <div className="EditSettings__title">Edit your settings on Rewaer</div>
+        <div className="EditSettings__title">
+          {t("profile.editYourSetting")}
+        </div>
         <br />
         <Divider orientation="left" plain>
-          Display Settings
+          {t("profile.displaySettings")}
         </Divider>
         <Radio.Group
           defaultValue={initLanguage}
@@ -61,7 +63,7 @@ export const EditSettings = observer(() => {
         <br />
         <br />
         <Divider orientation="left" plain>
-          Profil Settings
+          {t("profile.profileSettings")}
         </Divider>
         <div className="EditSettings__singleSetting">
           <Switch
@@ -75,7 +77,7 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.profilSettings.showLastSeenOnline}
           />{" "}
-          Show in my profil when I was last seen online
+          {t("profile.settingShowLastOnline")}
         </div>
         <div className="EditSettings__singleSetting">
           <Switch
@@ -89,11 +91,11 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.profilSettings.hideProfilToStrangers}
           />{" "}
-          Hide my account to anyone which is not my friend
+          {t("profile.settingHideAccount")}
         </div>
         <br />
         <Divider orientation="left" plain>
-          Email Settings
+          {t("profile.emailSettings")}
         </Divider>
         <div className="EditSettings__singleSetting">
           <Switch
@@ -107,7 +109,7 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.emailSettings.sendEmailFriendRequest}
           />{" "}
-          Send me a mail when I get a friend request
+          {t("profile.settingSendEmailOnFriendRequest")}
         </div>
         <div className="EditSettings__singleSetting">
           <Switch
@@ -121,7 +123,7 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.emailSettings.sendEmailNewMessage}
           />{" "}
-          Send me a mail when I get a new message
+          {t("profile.settingSendEmailWhenNewMessage")}
         </div>
         <div className="EditSettings__singleSetting">
           <Switch
@@ -135,7 +137,7 @@ export const EditSettings = observer(() => {
             }}
             checked={userStore.emailSettings.sendEmailMarketing}
           />{" "}
-          Keep me informed about all changes happening with Rewaer
+          {t("profile.settingKeepMeInformedAboutRewaer")}
         </div>
       </div>
     </div>

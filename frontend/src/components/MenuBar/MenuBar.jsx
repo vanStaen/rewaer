@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 import { Menu, Avatar, Badge } from "antd";
 import {
   UserOutlined,
@@ -20,6 +21,7 @@ import "./MenuBar.css";
 const { SubMenu } = Menu;
 
 export const MenuBar = observer(() => {
+  const { t } = useTranslation();
   const [menuSelected, setMenuSelected] = useState(null);
 
   const handleClick = (event) => {
@@ -65,10 +67,10 @@ export const MenuBar = observer(() => {
             }
           >
             <Menu.Item key="profile" icon={<UserOutlined />}>
-              <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/profile">{t("menu.profile")}</NavLink>
             </Menu.Item>
             <Menu.Item key="settings" icon={<SettingOutlined />}>
-              <NavLink to="/edit_settings/">Edit Settings</NavLink>
+              <NavLink to="/edit_settings/">{t("menu.editSetting")}</NavLink>
             </Menu.Item>
             <div className="menu__customDivider"></div>
             <Menu.Item
@@ -76,7 +78,7 @@ export const MenuBar = observer(() => {
               icon={<LogoutOutlined />}
               onClick={authStore.logout}
             >
-              Logout
+              {t("menu.logout")}
             </Menu.Item>
           </SubMenu>
 
@@ -85,7 +87,7 @@ export const MenuBar = observer(() => {
             icon={<CameraOutlined />}
             style={{ float: "left" }}
           >
-            <NavLink to="/looks"> Looks</NavLink>
+            <NavLink to="/looks"> {t("menu.looks")}</NavLink>
           </Menu.Item>
 
           <Menu.Item
@@ -93,7 +95,7 @@ export const MenuBar = observer(() => {
             icon={<SkinOutlined />}
             style={{ float: "left" }}
           >
-            <NavLink to="/items"> Items</NavLink>
+            <NavLink to="/items"> {t("menu.items")}</NavLink>
           </Menu.Item>
           <Menu.Item
             key="mail"
@@ -101,7 +103,7 @@ export const MenuBar = observer(() => {
             disabled
             style={{ float: "left" }}
           >
-            <NavLink to="/mail"> Mail</NavLink>
+            <NavLink to="/mail"> {t("menu.mail")}</NavLink>
           </Menu.Item>
           <Menu.Item
             key="friends"
@@ -109,7 +111,7 @@ export const MenuBar = observer(() => {
             disabled
             style={{ float: "left" }}
           >
-            <NavLink to="/friends"> Friends</NavLink>
+            <NavLink to="/friends"> {t("menu.friends")}</NavLink>
           </Menu.Item>
           <Menu.Item key="info" style={{ float: "left" }}>
             <NavLink to="/info">
