@@ -32,7 +32,7 @@
     "emailNotVerified": "Your email could not be verified",
     "somethingWrongEmail": "Something went wrong in the verification of the email linked to your account",
     "whatCanYouDo": "What can you do? Go back to the",
-    "requestNewLink" : "sign in, and follow the infos on how to request a new verification link",
+    "requestNewLink": "sign in, and follow the infos on how to request a new verification link",
     "choosePassword": "Choose a password",
     "pleaseInputYourPassword": "Please input your password!",
     "confirmYourPassword": "Confirm your password",
@@ -65,12 +65,35 @@
     "passwordReseted": "Your password has been reset. You will be redirected to the login page.",
     "passwordNotChanged": "Error! The password wasn't changed: Please try again.",
     "linkNotValid": "This link is not valid. Please restart the password recovery process.",
-    "setNewPassword" : "Set a new password",
+    "setNewPassword": "Set a new password",
     "pleaseInputNewPassword": "Please input your new password!",
     "chooseNewPassword": "Choose a new password",
-    "pleaseConfirmNewPassword" : "Please confirm your new password!",
+    "pleaseConfirmNewPassword": "Please confirm your new password!",
     "passwordDoNotMatch": "The passwords do not match!",
     "updatePassword": "Update password",
     "linkNotValidAnymore": "Link not valid anymore."
+  },
+  "Menu": {
+    "profile": "Profile",
+    "editSetting": "Edit Settings",
+    "logout": "Logout",
+    "looks": "Looks",
+    "items": "Items",
+    "mail": "Mail",
+    "friends": "Friends"
+  },
+  "Profile": {
+    "hello": "Hello",
+    "LastSeenOnline": "Last seen online the ",
+    "at": "at",
+    "editYourSetting": "Edit your settings on Rewaer",
+    "displaySettings": "Display Settings",
+    "profileSettings": "Profile Settings",
+    "emailSettings": "Email Settings",
+    "settingShowLastOnline": "Show in my profil when I was last seen online",
+    "settingHideAccount": "Hide my account to anyone which is not my friend",
+    "settingSendEmailOnFriendRequest": "Send me a mail when I get a friend request",
+    "settingSendEmailWhenNewMessage": "Send me a mail when I get a new message",
+    "settingKeepMeInformedAboutRewaer" : "Keep me informed about all changes happening with Rewaer"
   }
 }
