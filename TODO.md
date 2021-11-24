@@ -2,6 +2,10 @@
 
 ## To-dos:
 
+
+- [!] ALWAYS : Translate in all three languages
+- [!] ALWAYS : Prepare events/notifications
+
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
@@ -11,7 +15,6 @@
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
 - [ ] Loading State before everything is fetched
-- [ ] Translate in all three languages
 - [ ] Allow multi-upload and dragdrop (take from kinkograph)
 - [ ] when scrolled down, show floating add items button
 - [ ] shared items
