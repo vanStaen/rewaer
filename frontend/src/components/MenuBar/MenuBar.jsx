@@ -27,95 +27,98 @@ export const MenuBar = observer(() => {
   };
 
   return (
-    <div className="menu__main">
-      <Menu
-        onClick={handleClick}
-        selectedKeys={[menuSelected]}
-        mode="horizontal"
-        style={{ margin: "5px 0 0 0" }}
-      >
-        <span
-          className="menu__RewaerMotto"
-          style={{
-            color: "#6C917D",
-            float: "left",
-            margin: "0px 20px 0px 20px",
-          }}
+    <>
+      <div className="menu__spacer"></div>
+      <div className="menu__main">
+        <Menu
+          onClick={handleClick}
+          selectedKeys={[menuSelected]}
+          mode="horizontal"
+          style={{ margin: "5px 0 0 0" }}
         >
-          Rewaer, the green Fashion App
-        </span>
-
-        <SubMenu
-          style={{ float: "right" }}
-          key="user"
-          icon={
-            <Badge count={1} offset={[0, 5]}>
-              <Avatar
-                src={userStore.avatar && userStore.avatar}
-                icon={
-                  !userStore.avatar && (
-                    <UserOutlined style={{ fontSize: "24px" }} />
-                  )
-                }
-                size="large"
-              />
-            </Badge>
-          }
-        >
-          <Menu.Item key="profile" icon={<UserOutlined />}>
-            <NavLink to="/profile">Profile</NavLink>
-          </Menu.Item>
-          <Menu.Item key="settings" icon={<SettingOutlined />}>
-            <NavLink to="/edit_settings/">Edit Settings</NavLink>
-          </Menu.Item>
-          <div className="menu__customDivider"></div>
-          <Menu.Item
-            key="logout"
-            icon={<LogoutOutlined />}
-            onClick={authStore.logout}
+          <span
+            className="menu__RewaerMotto"
+            style={{
+              color: "#6C917D",
+              float: "left",
+              margin: "0px 20px 0px 20px",
+            }}
           >
-            Logout
+            Rewaer, the green Fashion App
+          </span>
+
+          <SubMenu
+            style={{ float: "right" }}
+            key="user"
+            icon={
+              <Badge count={1} offset={[0, 5]}>
+                <Avatar
+                  src={userStore.avatar && userStore.avatar}
+                  icon={
+                    !userStore.avatar && (
+                      <UserOutlined style={{ fontSize: "24px" }} />
+                    )
+                  }
+                  size={36}
+                />
+              </Badge>
+            }
+          >
+            <Menu.Item key="profile" icon={<UserOutlined />}>
+              <NavLink to="/profile">Profile</NavLink>
+            </Menu.Item>
+            <Menu.Item key="settings" icon={<SettingOutlined />}>
+              <NavLink to="/edit_settings/">Edit Settings</NavLink>
+            </Menu.Item>
+            <div className="menu__customDivider"></div>
+            <Menu.Item
+              key="logout"
+              icon={<LogoutOutlined />}
+              onClick={authStore.logout}
+            >
+              Logout
+            </Menu.Item>
+          </SubMenu>
+
+          <Menu.Item
+            key="looks"
+            icon={<CameraOutlined />}
+            style={{ float: "left" }}
+          >
+            <NavLink to="/looks"> Looks</NavLink>
           </Menu.Item>
-        </SubMenu>
 
-        <Menu.Item
-          key="looks"
-          icon={<CameraOutlined />}
-          style={{ float: "left" }}
-        >
-          <NavLink to="/looks"> Looks</NavLink>
-        </Menu.Item>
-
-        <Menu.Item
-          key="items"
-          icon={<SkinOutlined />}
-          style={{ float: "left" }}
-        >
-          <NavLink to="/items"> Items</NavLink>
-        </Menu.Item>
-        <Menu.Item
-          key="mail"
-          icon={<MailOutlined />}
-          disabled
-          style={{ float: "left" }}
-        >
-          <NavLink to="/mail"> Mail</NavLink>
-        </Menu.Item>
-        <Menu.Item
-          key="friends"
-          icon={<TeamOutlined />}
-          disabled
-          style={{ float: "left" }}
-        >
-          <NavLink to="/friends"> Friends</NavLink>
-        </Menu.Item>
-        <Menu.Item key="info" style={{ float: "left" }}>
-          <NavLink to="/info">
-            &nbsp;&nbsp;
-            <QuestionOutlined />
-          </NavLink>
-        </Menu.Item>
-      </Menu>
-    </div>
+          <Menu.Item
+            key="items"
+            icon={<SkinOutlined />}
+            style={{ float: "left" }}
+          >
+            <NavLink to="/items"> Items</NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="mail"
+            icon={<MailOutlined />}
+            disabled
+            style={{ float: "left" }}
+          >
+            <NavLink to="/mail"> Mail</NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="friends"
+            icon={<TeamOutlined />}
+            disabled
+            style={{ float: "left" }}
+          >
+            <NavLink to="/friends"> Friends</NavLink>
+          </Menu.Item>
+          <Menu.Item key="info" style={{ float: "left" }}>
+            <NavLink to="/info">
+              &nbsp;&nbsp;
+              <QuestionOutlined />
+            </NavLink>
+          </Menu.Item>
+        </Menu>
+      </div>
+    </>
   );
 });
