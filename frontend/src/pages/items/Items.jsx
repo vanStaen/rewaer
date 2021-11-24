@@ -30,6 +30,7 @@ export const Items = observer(() => {
         id="missingTag"
         desc="Some items are missing mandatory tags/attributes. Click here to add
         those."
+        show={true}
       />
       <div className="items__container">
         {itemsStore.error !== null ? (
