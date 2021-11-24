@@ -6,8 +6,10 @@
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
-- [ ] Feature to ligthen up an image (Dark-Light balance)
-- [ ] Feature to whiten up an image (White balande)
+- [ ] Image reworking: 
+  - [ ] Ligthen up an image (Dark-Light balance)
+  - [ ] Whiten up an image (White balande)
+  - [ ] Crop an image
 - [ ] Loading State before everything is fetched
 - [ ] Translate in all three languages
 - [ ] Allow multi-upload and dragdrop (take from kinkograph)
@@ -18,6 +20,8 @@
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
 - [ ] With ctrl, multi select of article is possible, and edit panel opens
+- [ ] Show tag on items not fully taged
+- [ ] make it responsive! 
 
 ## Completed ✓
 
