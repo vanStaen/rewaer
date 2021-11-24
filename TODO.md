@@ -2,10 +2,10 @@
 
 ## To-dos:
 
-
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
-
+ 
+- [ ] Sub pages header (with # of items, edit and multi select function)
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
