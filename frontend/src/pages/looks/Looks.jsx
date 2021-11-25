@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 import { Col, Row, Spin, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
-import { EditOutlined, CopyOutlined, FilterOutlined } from "@ant-design/icons";
+import { EditOutlined, FilterOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -15,7 +15,6 @@ export const Looks = observer(() => {
   const containerElement = useRef(null);
   const missingCardForFullRow = useRef(0);
   const [quickEdit, setQuickEdit] = useState(false);
-  const [multiEdit, setMultiEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const { t } = useTranslation();
 
@@ -79,7 +78,9 @@ export const Looks = observer(() => {
             <div className="looks__toolbarRight">
               <Tooltip
                 placement="topRight"
-                title={quickEdit ? "Hide quick edits" : "Show quick edits"}
+                title={
+                  quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
+                }
               >
                 <EditOutlined
                   className={
@@ -94,26 +95,7 @@ export const Looks = observer(() => {
               </Tooltip>
               <Tooltip
                 placement="topRight"
-                title={
-                  multiEdit
-                    ? "Deactivate multiselect edits"
-                    : "Activate multiselect edits"
-                }
-              >
-                <CopyOutlined
-                  className={
-                    multiEdit
-                      ? "looks__toolbarIcon looks__toolbarIconActive"
-                      : "looks__toolbarIcon"
-                  }
-                  onClick={() => {
-                    setMultiEdit(!multiEdit);
-                  }}
-                />
-              </Tooltip>
-              <Tooltip
-                placement="topRight"
-                title={showFilter ? "Hide filter panel" : "Show filter panel"}
+                title={showFilter ? t("main.hideFilter") : t("main.showFilter")}
               >
                 <FilterOutlined
                   className={

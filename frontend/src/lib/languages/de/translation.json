@@ -5,7 +5,11 @@
     "startWithPhoto": "Start mit einem Foto",
     "clickDragFile": "Klicken, oder hier eine Datei ziehen",    
     "uploadFail": "File upload fehlgeschlagen",
-    "uploadSuccess": "File erfolgreich hochgeladet"
+    "uploadSuccess": "File erfolgreich hochgeladet",
+    "hideQuickEdit": "Quick edits ausblenden",
+    "showQuickEdit": "Quick edits einblenden",
+    "hideFilter": "Filterpanel ausblenden",
+    "showFilter": "Filterpanel einblenden"
   },
   "login": {
     "newHere": "Erstes mal hier",

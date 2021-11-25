@@ -5,7 +5,11 @@
     "startWithPhoto": "Commence avec une photo",
     "clickDragFile": "Clique, ou dépose un fichier ici",
     "uploadFail": "L'upload a échoué.",
-    "uploadSuccess": "Ficher uploadé avec succés!"
+    "uploadSuccess": "Ficher uploadé avec succés!",
+    "hideQuickEdit": "Masquer le panel d'édition rapide",
+    "showQuickEdit": "Afficher le panel d'édition rapide",
+    "hideFilter": "Masquer les filtres",
+    "showFilter": "Afficher les filtres"
   },
   "login": {
     "newHere": "Premiére fois",

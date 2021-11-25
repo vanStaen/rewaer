@@ -4,8 +4,12 @@
     "preview" : "preview",
     "startWithPhoto": "Start with a photo",
     "clickDragFile": "Click, or drag here a file",
-    "uploadFail": "File upload failed.",
-    "uploadSuccess": "File updated successfully."
+    "uploadFail": "File upload failed",
+    "uploadSuccess": "File updated successfully",
+    "hideQuickEdit": "Hide quick edits",
+    "showQuickEdit": "Show quick edits",
+    "hideFilter": "Hide filter panel",
+    "showFilter": "Show filter panel"
   },
   "login": {
     "newHere": "New here",
