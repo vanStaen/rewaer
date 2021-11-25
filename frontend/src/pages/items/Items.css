@@ -32,11 +32,11 @@
 }
 
 .items__toolbarRight .items__toolbarIcon:hover {
-  color: #6C917D;
+  color: rgba(108, 145, 125, .5);
 }
 
 .items__toolbarRight .items__toolbarIconActive {
-  color: #E74C3C;
+  color: #6C917D;
 }
 
 .items__spinner {

@@ -32,11 +32,11 @@
 }
 
 .looks__toolbarRight .looks__toolbarIcon:hover {
-  color: #6C917D;
+  color: rgba(108, 145, 125, .5);
 }
 
 .looks__toolbarRight .looks__toolbarIconActive {
-  color: #E74C3C;
+  color: #6C917D;
 }
 
 .looks__spinner {
