@@ -14,6 +14,8 @@
 - [ ] Settings: 
   - [ ] Select gender
   - [ ] Trigger change password
+  - [ ] Change username
+  - [ ] Archive/Delete account
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
@@ -33,6 +35,7 @@
 - [ ] With ctrl, multi select of article is possible, and edit panel opens
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] make site responsive! 
+- [ ] check that username is not an email
 
 ## Completed ✓
 
