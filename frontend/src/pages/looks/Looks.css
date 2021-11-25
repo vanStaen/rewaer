@@ -47,3 +47,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.looks__ghostCard {
+  border: 1px solid transparent;
+  width: 240px;
+  height: 385px;
+}

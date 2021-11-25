@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 import { Col, Row, Spin, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
@@ -13,13 +13,34 @@ import { Banner } from "../../components/Banner/Banner";
 import "./Items.css";
 
 export const Items = observer(() => {
+  const containerElement = useRef(null);
+  const missingCardForFullRow = useRef(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [multiEdit, setMultiEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const { t } = useTranslation();
+
   useEffect(() => {
     itemsStore.loadItems();
-  }, [itemsStore.isOutOfDate]);
+    calculateMissingCardsForFullRow();
+  }, [
+    itemsStore.isOutOfDate,
+    containerElement.current,
+    missingCardForFullRow.current,
+  ]);
+
+  const calculateMissingCardsForFullRow = useCallback(() => {
+    const containerWidth =
+      containerElement.current === null
+        ? 0
+        : containerElement.current.offsetWidth;
+    const cardWidth = 240;
+    const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
+    const numberLooks = itemsStore.items.length + 1; // +1 for the form
+    const numberFullRow = Math.floor(numberLooks / numberPerRow);
+    missingCardForFullRow.current =
+      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+  }, [containerElement.current]);
 
   const itemList = itemsStore.items.map((item) => {
     return (
@@ -28,6 +49,18 @@ export const Items = observer(() => {
       </Col>
     );
   });
+
+  const GhostCards = () => {
+    let ghost = [];
+    for (let i = 0; i < missingCardForFullRow.current; i++) {
+      ghost.push(
+        <Col key={"ghost" + i}>
+          <div className="items__ghostCard"></div>
+        </Col>
+      );
+    }
+    return ghost;
+  };
 
   return (
     <div className="items__main">
@@ -45,7 +78,7 @@ export const Items = observer(() => {
             desc={t("items.missingTagsAlert")}
             show={true}
           />
-          <div className="items__container">
+          <div ref={containerElement} className="items__container">
             <div className="items__toolbar">
               <div className="items__toolbarLeft">
                 {itemsStore.items.length} items
@@ -107,6 +140,7 @@ export const Items = observer(() => {
                 <ItemForm />
               </Col>
               {itemList}
+              <GhostCards />
             </Row>
           </div>
         </>

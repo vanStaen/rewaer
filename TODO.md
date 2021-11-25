@@ -9,7 +9,6 @@
   - [ ] Quick edits feature
   - [ ] Filtering
   - [ ] multiselect edits
-- [ ] Empty cards to align last row of cards to the left 
 - [ ] Show number of looks/items/friends in Profil
 - [ ] Use custom image component for images
 - [ ] Create own Card component
@@ -107,3 +106,4 @@
   - [x] Rewrite Rest Controller
   - [x] Rewrite all call from frontend    
 - [x] Loading State before everything is fetched
+- [x] Empty cards to align last row of cards to the left 
