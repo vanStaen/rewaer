@@ -12,6 +12,7 @@
 - [ ] Show number of looks/items/friends in Profil
 - [ ] Use custom image component for images
 - [ ] Create own Card component
+  - [ ] picture cover, not stretched
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
