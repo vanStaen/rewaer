@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { notification, Spin } from "antd";
 import { CameraOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import moment from "moment";
 
@@ -10,6 +11,7 @@ import { postNewLook } from "./postNewLook";
 import "./LookForm.css";
 
 export const LookForm = (props) => {
+  const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -34,7 +36,7 @@ export const LookForm = (props) => {
         postNewLook(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
           .then(() => {
             notification.success({
-              message: `File uploaded successfully.`,
+              message: t("main.uploadSuccess"),
               placement: "bottomRight",
             });
             // retrigger parent component rendering
@@ -43,7 +45,7 @@ export const LookForm = (props) => {
           })
           .catch((error) => {
             notification.error({
-              message: `File upload failed.`,
+              message: t("main.uploadFail"),
               placement: "bottomRight",
             });
             console.log(error.message);
@@ -52,7 +54,7 @@ export const LookForm = (props) => {
       }
     } catch (err) {
       notification.error({
-        message: `File upload failed.`,
+        message: t("main.uploadFail"),
         placement: "bottomRight",
       });
       setIsUploading(false);
@@ -79,10 +81,10 @@ export const LookForm = (props) => {
             <p className="form-upload-drag-icon">
               <CameraOutlined />
             </p>
-            <p className="form-upload-text">Create Look</p>
+            <p className="form-upload-text">{t("looks.addLook")}</p>
             <p className="form-upload-hint">
-              Start with a photo <br />
-              Click, or drag here a file
+              {t("main.startWithPhoto")} <br />
+              {t("main.clickDragFile")}
             </p>
           </label>
         )}

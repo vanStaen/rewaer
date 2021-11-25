@@ -3,7 +3,9 @@
     "motto": "the green Fashion App", 
     "preview" : "preview",
     "startWithPhoto": "Start with a photo",
-    "clickDragFile": "Click, or drag here a file"
+    "clickDragFile": "Click, or drag here a file",
+    "uploadFail": "File upload failed.",
+    "uploadSuccess": "File updated successfully."
   },
   "login": {
     "newHere": "New here",
@@ -107,8 +109,9 @@
   },
   "items" : {
     "addItem" : "Add Item",
-    "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
-    "uploadFail": "File upload failed.",
-    "uploadSuccess": "File updated successfully."
+    "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those."
+  },
+  "looks" : {
+    "addLook" : "Add Looks"
   }
 }

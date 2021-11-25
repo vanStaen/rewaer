@@ -3,7 +3,9 @@
     "motto": "l'appli mode écolo", 
     "preview" : "Aperçu",
     "startWithPhoto": "Commence avec une photo",
-    "clickDragFile": "Clique, ou dépose un fichier ici"
+    "clickDragFile": "Clique, ou dépose un fichier ici",
+    "uploadFail": "L'upload a échoué.",
+    "uploadSuccess": "Ficher uploadé avec succés!"
   },
   "login": {
     "newHere": "Premiére fois",
@@ -107,8 +109,9 @@
   },
   "items" : {
     "addItem" : "Ajoute une piéces",
-    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
-    "uploadFail": "L'upload a échoué.",
-    "uploadSuccess": "Ficher uploadé avec succés!"
+    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter."
+  },
+  "looks" : {
+    "addLook" : "Ajoute un look"
   }
 }

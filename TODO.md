@@ -5,7 +5,9 @@
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
  
-- [ ] Sub pages header (with # of items, edit and multi select function)
+- [ ] Sub pages header (with # of items, edit, sort and multi select function)
+- [ ] Empty cards to align last row of cards to the left 
+- [ ] Show number of looks/items/friends in Profil
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
@@ -23,8 +25,8 @@
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
 - [ ] With ctrl, multi select of article is possible, and edit panel opens
-- [ ] Show tag on items not fully taged
-- [ ] make it responsive! 
+- [ ] Show <ExclamationCircleOutlined /> on items not fully taged
+- [ ] make site responsive! 
 
 ## Completed ✓
 

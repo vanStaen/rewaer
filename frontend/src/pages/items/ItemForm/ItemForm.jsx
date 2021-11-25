@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { notification, Spin } from "antd";
 import { SkinOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import moment from "moment";
-import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../itemsStore";
 import { postNewItem } from "./postNewItem";
@@ -37,7 +37,7 @@ export const ItemForm = (props) => {
         postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
           .then(() => {
             notification.success({
-              message: t("items.uploadSuccess"),
+              message: t("main.uploadSuccess"),
               placement: "bottomRight",
             });
             // retrigger parent component rendering
@@ -46,7 +46,7 @@ export const ItemForm = (props) => {
           })
           .catch((error) => {
             notification.error({
-              message: t("items.uploadFail"),
+              message: t("main.uploadFail"),
               placement: "bottomRight",
             });
             console.log(error.message);
@@ -55,7 +55,7 @@ export const ItemForm = (props) => {
       }
     } catch (err) {
       notification.error({
-        message: t("items.uploadFail"),
+        message: t("main.uploadFail"),
         placement: "bottomRight",
       });
       setIsUploading(false);
