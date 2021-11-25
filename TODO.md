@@ -9,7 +9,11 @@
   - [ ] Quick edits feature
   - [ ] Filtering
   - [ ] multiselect edits
-- [ ] Show number of looks/items/friends in Profil
+- [ ] Profile:
+  - [ ] Show number of looks/items/friends in Profil
+- [ ] Settings: 
+  - [ ] Select gender
+  - [ ] Trigger change password
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
