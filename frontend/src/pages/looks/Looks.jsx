@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Col, Row, Spin, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,9 @@ import { LookForm } from "./LookForm/LookForm";
 import "./Looks.css";
 
 export const Looks = observer(() => {
+  const [quickEdit, setQuickEdit] = useState(false);
+  const [multiEdit, setMultiEdit] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
     looksStore.loadLooks();
   }, [looksStore.isOutOfDate]);
@@ -40,14 +43,54 @@ export const Looks = observer(() => {
               {looksStore.looks.length} looks
             </div>
             <div className="looks__toolbarRight">
-              <Tooltip placement="topRight" title="Show quick edits">
-                <EditOutlined className="looks__toolbarIcon" />
+              <Tooltip
+                placement="topRight"
+                title={quickEdit ? "Hide quick edits" : "Show quick edits"}
+              >
+                <EditOutlined
+                  className={
+                    quickEdit
+                      ? "looks__toolbarIcon looks__toolbarIconActive"
+                      : "looks__toolbarIcon"
+                  }
+                  onClick={() => {
+                    setQuickEdit(!quickEdit);
+                  }}
+                />
               </Tooltip>
-              <Tooltip placement="topRight" title="Activate multiselect edits">
-                <CopyOutlined className="looks__toolbarIcon looks__toolbarIconActive" />
+              <Tooltip
+                placement="topRight"
+                title={
+                  multiEdit
+                    ? "Deactivate multiselect edits"
+                    : "Activate multiselect edits"
+                }
+              >
+                <CopyOutlined
+                  className={
+                    multiEdit
+                      ? "looks__toolbarIcon looks__toolbarIconActive"
+                      : "looks__toolbarIcon"
+                  }
+                  onClick={() => {
+                    setMultiEdit(!multiEdit);
+                  }}
+                />
               </Tooltip>
-              <Tooltip placement="topRight" title="Filter the looks">
-                <FilterOutlined className="looks__toolbarIcon" />
+              <Tooltip
+                placement="topRight"
+                title={showFilter ? "Hide filter panel" : "Show filter panel"}
+              >
+                <FilterOutlined
+                  className={
+                    showFilter
+                      ? "looks__toolbarIcon looks__toolbarIconActive"
+                      : "looks__toolbarIcon"
+                  }
+                  onClick={() => {
+                    setShowFilter(!showFilter);
+                  }}
+                />
               </Tooltip>
             </div>
           </div>

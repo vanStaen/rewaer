@@ -5,7 +5,7 @@
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
  
-- [ ] Sub pages header
+- [ ] Toolbar:
   - [ ] Quick edits feature
   - [ ] Filtering
   - [ ] multiselect edits
@@ -21,7 +21,7 @@
   - [ ] Crop an image
 - [ ] Allow multi-upload and dragdrop (take from kinkograph)
 - [ ] when scrolled down, show floating add items button
-- [ ] shared items
+- [ ] shared items are possible (between friends)
 - [ ] When items are missing basic tags info :
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
