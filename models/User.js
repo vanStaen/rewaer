@@ -51,6 +51,11 @@ const User = sequelize.define("user", {
     allowNull: false,
     defaultValue: "en",
   },
+  language: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 3,
+  },
   friends: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],

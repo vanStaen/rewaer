@@ -9,7 +9,8 @@ type User {
     emailSettings: String!
     profilSettings: String!
     language: String!
-    friends: [Int]
+    gender: Int!
+    friends: [ID]
     active: Boolean
     lastActive: Float!
     createdAt: Float!
@@ -29,7 +30,8 @@ input UserInputData {
     emailSettings: String
     profilSettings: String
     language: String
-    friends: [Int]
+    gender: Int
+    friends: [ID]
     active: Boolean
 }`;
 

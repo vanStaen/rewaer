@@ -60,6 +60,7 @@ exports.userResolver = {
       "emailSettings",
       "profilSettings",
       "language",
+      "gender",
       "friends",
     ];
     updatableFields.forEach((field) => {
