@@ -28,23 +28,29 @@ export const Items = observer(() => {
   return (
     <div className="items__main">
       <MenuBar />
-      <Banner id="missingTag" desc={t("items.missingTagsAlert")} show={true} />
-      <div className="items__container">
-        {itemsStore.error !== null ? (
-          itemsStore.error
-        ) : itemsStore.isLoading ? (
-          <div className="items__spinner">
-            <Spin size="large" />
+      {itemsStore.error !== null ? (
+        itemsStore.error
+      ) : itemsStore.isLoading ? (
+        <div className="items__spinner">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <>
+          <Banner
+            id="missingTag"
+            desc={t("items.missingTagsAlert")}
+            show={true}
+          />
+          <div className="items__container">
+            <Row justify={"space-around"}>
+              <Col>
+                <ItemForm />
+              </Col>
+              {itemList}
+            </Row>
           </div>
-        ) : (
-          <Row justify={"space-around"}>
-            <Col>
-              <ItemForm />
-            </Col>
-            {itemList}
-          </Row>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 });

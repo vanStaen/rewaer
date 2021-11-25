@@ -5,7 +5,7 @@ import { fetchItems } from "./fetchItems";
 export class ItemsStore {
 
   items = [];
-  isloading = true;
+  isLoading = true;
   isOutOfDate = true;
   error= null; 
 
@@ -13,8 +13,8 @@ export class ItemsStore {
     makeObservable(this, {
       items: observable,
       setItems: action,
-      isloading: observable,
-      setIsloading: action,
+      isLoading: observable,
+      setIsLoading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
       error: observable,
@@ -27,8 +27,8 @@ export class ItemsStore {
     this.items = items;
   };
 
-  setIsloading = (isloading) => {
-    this.isloading = isloading;
+  setIsLoading = (isLoading) => {
+    this.isLoading = isLoading;
   };
 
   setIsOutOfDate = (isOutOfDate) => {
@@ -43,7 +43,7 @@ export class ItemsStore {
     try {
       const items = await fetchItems();
       this.setItems(items);
-      this.setIsloading(false);
+      this.setIsLoading(false);
       this.setIsOutOfDate(false);
     } catch (error) {
       console.log(error.message);

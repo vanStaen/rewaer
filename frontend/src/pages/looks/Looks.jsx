@@ -25,22 +25,22 @@ export const Looks = observer(() => {
   return (
     <div className="looks__main">
       <MenuBar />
-      <div className="looks__container">
-        {looksStore.error !== null ? (
-          looksStore.error
-        ) : looksStore.isLoading ? (
-          <div className="looks__spinner">
-            <Spin size="large" />
-          </div>
-        ) : (
+      {looksStore.error !== null ? (
+        looksStore.error
+      ) : looksStore.isLoading ? (
+        <div className="looks__spinner">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <div className="looks__container">
           <Row justify={"space-around"}>
             <Col>
               <LookForm />
             </Col>
             {lookList}
           </Row>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 });

@@ -5,7 +5,7 @@ import { fetchLooks } from "./fetchLooks";
 export class LooksStore {
 
   looks = [];
-  isloading = true;
+  isLoading = true;
   isOutOfDate = true;
   error= null; 
 
@@ -13,8 +13,8 @@ export class LooksStore {
     makeObservable(this, {
       looks: observable,
       setLooks: action,
-      isloading: observable,
-      setIsloading: action,
+      isLoading: observable,
+      setIsLoading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
       error: observable,
@@ -27,8 +27,8 @@ export class LooksStore {
     this.looks = looks;
   };
 
-  setIsloading = (isloading) => {
-    this.isloading = isloading;
+  setIsLoading = (isLoading) => {
+    this.isLoading = isLoading;
   };
 
   setIsOutOfDate = (isOutOfDate) => {
@@ -39,19 +39,11 @@ export class LooksStore {
     this.error = error;
   };
 
-  /* mobx store
-  @action
-  loadLooks(){ 
-    loadlooks() 
-    // await -> run_in_action  
-  }
-  */
-
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
       this.setLooks(looks);
-      this.setIsloading(false);
+      this.setIsLoading(false);
       this.setIsOutOfDate(false);
     } catch (error) {
       console.log(error.message);

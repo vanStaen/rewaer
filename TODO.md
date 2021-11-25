@@ -16,7 +16,6 @@
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
-- [ ] Loading State before everything is fetched
 - [ ] Allow multi-upload and dragdrop (take from kinkograph)
 - [ ] when scrolled down, show floating add items button
 - [ ] shared items
@@ -104,3 +103,4 @@
   - [x] Rewrite GraphQl Resolvers
   - [x] Rewrite Rest Controller
   - [x] Rewrite all call from frontend    
+- [x] Loading State before everything is fetched
