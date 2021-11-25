@@ -5,7 +5,10 @@
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
  
-- [ ] Sub pages header (with # of items, edit, sort and multi select function)
+- [ ] Sub pages header
+  - [ ] Quick edits feature
+  - [ ] Filtering
+  - [ ] multiselect edits
 - [ ] Empty cards to align last row of cards to the left 
 - [ ] Show number of looks/items/friends in Profil
 - [ ] Use custom image component for images
