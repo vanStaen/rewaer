@@ -9,6 +9,7 @@ import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
+import { itemCategory } from "../../data/categories";
 
 import "./Items.css";
 
@@ -21,6 +22,7 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
+    console.log(itemCategory);
     calculateMissingCardsForFullRow();
   }, [
     itemsStore.isOutOfDate,

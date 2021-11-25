@@ -8,6 +8,7 @@ import { looksStore } from "./looksStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
+import { lookCategory } from "../../data/categories";
 
 import "./Looks.css";
 
@@ -20,6 +21,7 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     looksStore.loadLooks();
+    console.log(lookCategory);
     calculateMissingCardsForFullRow();
   }, [
     looksStore.isOutOfDate,
