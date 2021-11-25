@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, Tooltip } from "antd";
+import { useTranslation } from "react-i18next";
+import { EditOutlined, CopyOutlined, FilterOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -33,6 +35,22 @@ export const Looks = observer(() => {
         </div>
       ) : (
         <div className="looks__container">
+          <div className="looks__toolbar">
+            <div className="looks__toolbarLeft">
+              {looksStore.looks.length} looks
+            </div>
+            <div className="looks__toolbarRight">
+              <Tooltip placement="topRight" title="Show edit panel">
+                <EditOutlined className="looks__toolbarIcon" />
+              </Tooltip>
+              <Tooltip placement="topRight" title="Activate multiselect">
+                <CopyOutlined className="looks__toolbarIcon looks__toolbarIconActive" />
+              </Tooltip>
+              <Tooltip placement="topRight" title="Filter the looks">
+                <FilterOutlined className="looks__toolbarIcon" />
+              </Tooltip>
+            </div>
+          </div>
           <Row justify={"space-around"}>
             <Col>
               <LookForm />

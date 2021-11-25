@@ -5,7 +5,38 @@
 }
 
 .items__container {
-  margin: 40px;
+  margin: 20px 40px 40px 40px;
+}
+
+.items__toolbar {
+  margin: 0 25px 20px 25px;
+}
+
+.items__toolbarLeft {
+  display: inline-block;
+  color: #aaa;
+  font-size: 14px;
+  width: 50%;
+}
+
+.items__toolbarRight {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+}
+
+.items__toolbarRight .items__toolbarIcon {
+  padding: 0 8px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.items__toolbarRight .items__toolbarIcon:hover {
+  color: #6C917D;
+}
+
+.items__toolbarRight .items__toolbarIconActive {
+  color: #E74C3C;
 }
 
 .items__spinner {

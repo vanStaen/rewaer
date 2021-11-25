@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
+import { EditOutlined, CopyOutlined, FilterOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -42,6 +43,22 @@ export const Items = observer(() => {
             show={true}
           />
           <div className="items__container">
+            <div className="items__toolbar">
+              <div className="items__toolbarLeft">
+                {itemsStore.items.length} items
+              </div>
+              <div className="items__toolbarRight">
+                <Tooltip placement="topRight" title="Show edit panel">
+                  <EditOutlined className="items__toolbarIcon" />
+                </Tooltip>
+                <Tooltip placement="topRight" title="Activate multiselect">
+                  <CopyOutlined className="items__toolbarIcon items__toolbarIconActive" />
+                </Tooltip>
+                <Tooltip placement="topRight" title="Filter the items">
+                  <FilterOutlined className="items__toolbarIcon" />
+                </Tooltip>
+              </div>
+            </div>
             <Row justify={"space-around"}>
               <Col>
                 <ItemForm />
