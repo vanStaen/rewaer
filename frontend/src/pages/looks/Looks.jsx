@@ -40,10 +40,10 @@ export const Looks = observer(() => {
               {looksStore.looks.length} looks
             </div>
             <div className="looks__toolbarRight">
-              <Tooltip placement="topRight" title="Show edit panel">
+              <Tooltip placement="topRight" title="Show quick edits">
                 <EditOutlined className="looks__toolbarIcon" />
               </Tooltip>
-              <Tooltip placement="topRight" title="Activate multiselect">
+              <Tooltip placement="topRight" title="Activate multiselect edits">
                 <CopyOutlined className="looks__toolbarIcon looks__toolbarIconActive" />
               </Tooltip>
               <Tooltip placement="topRight" title="Filter the looks">

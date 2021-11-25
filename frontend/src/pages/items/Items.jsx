@@ -48,10 +48,13 @@ export const Items = observer(() => {
                 {itemsStore.items.length} items
               </div>
               <div className="items__toolbarRight">
-                <Tooltip placement="topRight" title="Show edit panel">
+                <Tooltip placement="topRight" title="Show quick edits">
                   <EditOutlined className="items__toolbarIcon" />
                 </Tooltip>
-                <Tooltip placement="topRight" title="Activate multiselect">
+                <Tooltip
+                  placement="topRight"
+                  title="Activate multiselect edits"
+                >
                   <CopyOutlined className="items__toolbarIcon items__toolbarIconActive" />
                 </Tooltip>
                 <Tooltip placement="topRight" title="Filter the items">
