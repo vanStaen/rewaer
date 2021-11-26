@@ -11,11 +11,13 @@
   - [ ] multiselect edits
 - [ ] Profile:
   - [ ] Show number of looks/items/friends in Profil
+  - [ ] UX: Center column with Max width 
 - [ ] Settings: 
   - [x] Select gender
   - [ ] Trigger change password
   - [ ] Change username
   - [ ] Archive/Delete account
+  - [ ] UX: Center column with Max width 
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched

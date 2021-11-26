@@ -58,27 +58,32 @@ export const EditSettings = observer(() => {
         <Divider orientation="left" plain>
           {t("profile.displaySettings")}
         </Divider>
-        <Radio.Group
-          defaultValue={String(userStore.gender)}
-          buttonStyle="solid"
-          onChange={changeGenderHandler}
-        >
-          <Radio.Button value="1">{t("profile.men")}</Radio.Button>
-          <Radio.Button value="2">{t("profile.women")}</Radio.Button>
-          <Radio.Button value="3">{t("profile.both")}</Radio.Button>
-        </Radio.Group>
-        <br />
-        <br />
-        <Radio.Group
-          defaultValue={initLanguage}
-          buttonStyle="solid"
-          onChange={changeLanguageHandler}
-        >
-          <Radio.Button value="en">English</Radio.Button>
-          <Radio.Button value="fr">Français</Radio.Button>
-          <Radio.Button value="de">Deutsch</Radio.Button>
-        </Radio.Group>
-        <br />
+        <div className="EditSettings__singleSetting">
+          {t("profile.genderBasedGarderobe")}
+          &nbsp;&nbsp;&nbsp;
+          <Radio.Group
+            defaultValue={String(userStore.gender)}
+            buttonStyle="solid"
+            onChange={changeGenderHandler}
+          >
+            <Radio.Button value="1">{t("profile.male")}</Radio.Button>
+            <Radio.Button value="2">{t("profile.female")}</Radio.Button>
+            <Radio.Button value="3">{t("profile.nonbinary")}</Radio.Button>
+          </Radio.Group>
+        </div>
+        <div className="EditSettings__singleSetting">
+          {t("profile.displayLanguage")}
+          &nbsp;&nbsp;&nbsp;
+          <Radio.Group
+            defaultValue={initLanguage}
+            buttonStyle="solid"
+            onChange={changeLanguageHandler}
+          >
+            <Radio.Button value="en">English</Radio.Button>
+            <Radio.Button value="fr">Français</Radio.Button>
+            <Radio.Button value="de">Deutsch</Radio.Button>
+          </Radio.Group>
+        </div>
         <br />
         <Divider orientation="left" plain>
           {t("profile.profileSettings")}

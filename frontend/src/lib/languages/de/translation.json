@@ -111,7 +111,11 @@
     "avatarUpdateFail": "File upload fehlgeschlagen",
     "men": "Herren",
     "women": "Damen",
-    "both": "Nicht-binär"
+    "nonbinary": "Nicht-binär",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "genderBasedGarderobe" : "Basiert auf welcher Geschlecht ist eure Garderobe?",
+    "displayLanguage": "In welche Sprache soll Rewaer sein?"
   },
   "items" : {
     "addItem" : "Item hinzufügen",
