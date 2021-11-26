@@ -4,6 +4,8 @@
 
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
+
+- [?] IDEA : All informations gets stored in an array, and nothing will get overwritten, only added to the array. 
  
 - [ ] Toolbar:
   - [ ] Quick edits feature
