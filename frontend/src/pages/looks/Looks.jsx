@@ -68,7 +68,7 @@ export const Looks = observer(() => {
       {looksStore.error !== null ? (
         looksStore.error
       ) : looksStore.isLoading ? (
-        <div className="looks__spinner">
+        <div className="spinner">
           <Spin size="large" />
         </div>
       ) : (

@@ -6,6 +6,8 @@ import { getUserInfo } from "./getUserInfo";
 import { updateSettings } from "../../pages/Profil/EditSettings/updateSettings";
 
 export class UserStore {
+  isLoading = true;
+  isError = false;
   email = null;
   userName = null;
   avatar = null;
@@ -20,6 +22,8 @@ export class UserStore {
 
   constructor() {
     makeObservable(this, {
+      isLoading: observable,
+      isError: observable,
       email: observable,
       userName: observable,
       avatar: observable,
@@ -31,6 +35,8 @@ export class UserStore {
       gender: observable,
       friends: observable,
       lastActive: observable,
+      setIsLoading: action,
+      setIsError: action,
       setEmail: action,
       setUserName: action,
       setAvatar: action,
@@ -46,7 +52,15 @@ export class UserStore {
     });
   }
 
-  setEmail = (email) => {
+  setIsLoading = (isLoading) => {
+    this.isLoading = isLoading;
+  };
+
+  setIsError = (isError) => {
+    this.isError = isError;
+  };
+
+    setEmail = (email) => {
     this.email = email;
   };
 
@@ -112,7 +126,11 @@ export class UserStore {
         this.setEmailSettings(JSON.parse(userData.emailSettings));
         this.setProfilSettings(JSON.parse(userData.profilSettings));
       }
+      this.setIsError(false);
+    } else {
+      this.setIsError(true);
     }
+    this.setIsLoading(false);
   };
 }
 

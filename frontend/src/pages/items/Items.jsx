@@ -69,7 +69,7 @@ export const Items = observer(() => {
       {itemsStore.error !== null ? (
         itemsStore.error
       ) : itemsStore.isLoading ? (
-        <div className="items__spinner">
+        <div className="spinner">
           <Spin size="large" />
         </div>
       ) : (

@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import { Spin } from "antd";
+import { MehOutlined } from "@ant-design/icons";
+
 import { useTranslation } from "react-i18next";
 
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -24,21 +27,34 @@ export const Profil = observer(() => {
   return (
     <div className="profil__main">
       <MenuBar />
-      <div className="profil__container">
-        <Avatar />
-        <div className="profil__hello">
-          {t("profile.hello")}
-          {userStore.firstName && " " + userStore.firstName},
-          <br />
-          {showLastSeenOnline && (
-            <div className="profil__lastSeenOnline">
-              {t("profile.lastSeenOnline")}{" "}
-              {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
-              {dateLastActive.toLocaleTimeString()}
-            </div>
-          )}
+      {userStore.isLoading ? (
+        <div className="spinner">
+          <Spin size="large" />
         </div>
-      </div>
+      ) : userStore.isError ? (
+        <div className="spinner">
+          Connection error!
+          <br />
+          <br />
+          <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+        </div>
+      ) : (
+        <div className="profil__container">
+          <Avatar />
+          <div className="profil__hello">
+            {t("profile.hello")}
+            {userStore.firstName && " " + userStore.firstName},
+            <br />
+            {showLastSeenOnline && (
+              <div className="profil__lastSeenOnline">
+                {t("profile.lastSeenOnline")}{" "}
+                {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
+                {dateLastActive.toLocaleTimeString()}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 });
