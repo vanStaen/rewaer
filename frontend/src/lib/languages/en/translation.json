@@ -116,7 +116,8 @@
     "male": "Male",
     "female": "Female",
     "genderBasedGarderobe" : "On what gender is your wardrobe based?",
-    "displayLanguage": "In what language should be Rewaer?"
+    "displayLanguage": "In what language should be Rewaer?",
+    "tooltipNB": "Will show both categories"
   },
   "items" : {
     "addItem" : "Add Item",

@@ -116,7 +116,8 @@
     "male": "Homme",
     "female": "Femme",
     "genderBasedGarderobe" : "Sur quel sexe est basé votre garderobe?",
-    "displayLanguage": "Dans quel langue Rewaer doit-il être?"
+    "displayLanguage": "Dans quel langue Rewaer doit-il être?",
+    "tooltipNB": "Affichera homme et femme"
   },
   "items" : {
     "addItem" : "Ajoute une piéces",

@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Divider, Switch, Radio } from "antd";
+import { Divider, Switch, Radio, Tooltip } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -68,7 +68,9 @@ export const EditSettings = observer(() => {
           >
             <Radio.Button value="1">{t("profile.male")}</Radio.Button>
             <Radio.Button value="2">{t("profile.female")}</Radio.Button>
-            <Radio.Button value="3">{t("profile.nonbinary")}</Radio.Button>
+            <Tooltip placement="top" title={t("profile.tooltipNB")}>
+              <Radio.Button value="3">{t("profile.nonbinary")}</Radio.Button>
+            </Tooltip>
           </Radio.Group>
         </div>
         <div className="EditSettings__singleSetting">

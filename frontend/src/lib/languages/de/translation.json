@@ -115,7 +115,8 @@
     "male": "Männlich",
     "female": "Weiblich",
     "genderBasedGarderobe" : "Basiert auf welcher Geschlecht ist eure Garderobe?",
-    "displayLanguage": "In welche Sprache soll Rewaer sein?"
+    "displayLanguage": "In welche Sprache soll Rewaer sein?",
+    "tooltipNB": "Alle Waregruppen werden angezeigt"
   },
   "items" : {
     "addItem" : "Item hinzufügen",
