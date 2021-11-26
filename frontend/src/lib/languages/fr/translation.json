@@ -109,7 +109,10 @@
     "settingKeepMeInformedAboutRewaer" : "Me tenir au courant de tous les changements qui se passe sur Rewaer",
     "changeAvatar": "Changer d'avatar",
     "avatarUpdateSuccess": "Nouvel avatar uploadé avec succés!",
-    "avatarUpdateFail": "L'upload a échoué."
+    "avatarUpdateFail": "L'upload a échoué",
+    "men": "Homme",
+    "women": "Femme",
+    "both": "Non binaire"
   },
   "items" : {
     "addItem" : "Ajoute une piéces",

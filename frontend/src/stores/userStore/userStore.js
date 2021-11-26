@@ -14,6 +14,7 @@ export class UserStore {
   emailSettings = null;
   profilSettings = null;
   language = null;
+  gender = null;
   friends = [];
   lastActive = null;
 
@@ -27,6 +28,7 @@ export class UserStore {
       emailSettings: observable,
       profilSettings: observable,
       language: observable,
+      gender: observable,
       friends: observable,
       lastActive: observable,
       setEmail: action,
@@ -37,6 +39,7 @@ export class UserStore {
       setEmailSettings: action,
       setProfilSettings: action,
       setLanguage: action,
+      setGender: action,
       setFriends: action,
       setLastActive: action,
       fetchuserData: action,
@@ -75,6 +78,10 @@ export class UserStore {
     this.language = language;
   };
 
+  setGender = (gender) => {
+    this.gender = gender;
+  };
+
   setFriends = (friends) => {
     this.friends = friends;
   };
@@ -95,6 +102,7 @@ export class UserStore {
       this.setFriends(userData.friends);
       this.setLastActive(userData.lastActive);
       this.setLanguage(userData.language);
+      this.setGender(userData.gender);
 
       if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
         this.setEmailSettings(defaultEmailSettings);

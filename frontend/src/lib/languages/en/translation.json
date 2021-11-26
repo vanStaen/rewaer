@@ -108,8 +108,11 @@
     "settingSendEmailWhenNewMessage": "Send me a mail when I get a new message",
     "settingKeepMeInformedAboutRewaer" : "Keep me informed about all changes happening with Rewaer",
     "changeAvatar": "Change your avatar",
-    "avatarUpdateSuccess": "Avatar updated successfully.",
-    "avatarUpdateFail": "File upload failed."
+    "avatarUpdateSuccess": "Avatar updated successfully",
+    "avatarUpdateFail": "File upload failed",
+    "men": "Men",
+    "women": "Women",
+    "both": "Non-binary"
   },
   "items" : {
     "addItem" : "Add Item",

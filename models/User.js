@@ -51,7 +51,7 @@ const User = sequelize.define("user", {
     allowNull: false,
     defaultValue: "en",
   },
-  language: {
+  gender: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 3,

@@ -13,6 +13,7 @@ export const getUserInfo = async () => {
               emailSettings,
               profilSettings,
               language,
+              gender,
               friends,
               lastActive
             }

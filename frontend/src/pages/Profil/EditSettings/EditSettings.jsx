@@ -8,6 +8,7 @@ import { MenuBar } from "../../../components/MenuBar/MenuBar";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateSettings } from "./updateSettings";
 import { updateLanguage } from "./updateLanguage";
+import { updateGender } from "./updateGender";
 
 import "./EditSettings.css";
 
@@ -28,7 +29,7 @@ export const EditSettings = observer(() => {
     updateSettings(userStore.emailSettings, tempProfilSettings);
   };
 
-  const onLanguageChangeHandler = (event) => {
+  const changeLanguageHandler = (event) => {
     const value = event.target.value;
     if (value === "en") {
       i18n.changeLanguage("en-US");
@@ -38,6 +39,12 @@ export const EditSettings = observer(() => {
       i18n.changeLanguage("de-DE");
     }
     updateLanguage(value);
+  };
+
+  const changeGenderHandler = (event) => {
+    const value = parseInt(event.target.value);
+    userStore.setGender(value);
+    updateGender(value);
   };
 
   return (
@@ -52,9 +59,20 @@ export const EditSettings = observer(() => {
           {t("profile.displaySettings")}
         </Divider>
         <Radio.Group
+          defaultValue={String(userStore.gender)}
+          buttonStyle="solid"
+          onChange={changeGenderHandler}
+        >
+          <Radio.Button value="1">{t("profile.men")}</Radio.Button>
+          <Radio.Button value="2">{t("profile.women")}</Radio.Button>
+          <Radio.Button value="3">{t("profile.both")}</Radio.Button>
+        </Radio.Group>
+        <br />
+        <br />
+        <Radio.Group
           defaultValue={initLanguage}
           buttonStyle="solid"
-          onChange={onLanguageChangeHandler}
+          onChange={changeLanguageHandler}
         >
           <Radio.Button value="en">English</Radio.Button>
           <Radio.Button value="fr">Français</Radio.Button>

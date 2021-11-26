@@ -108,7 +108,10 @@
     "settingKeepMeInformedAboutRewaer" : "Mich über alle Änderungen bei Rewaer auf dem Laufenden halten",
     "changeAvatar": "Profilbild andern",
     "avatarUpdateSuccess": "Avatar würde erfolgreich hochgeladet",
-    "avatarUpdateFail": "File upload fehlgeschlagen"
+    "avatarUpdateFail": "File upload fehlgeschlagen",
+    "men": "Herren",
+    "women": "Damen",
+    "both": "Nicht-binär"
   },
   "items" : {
     "addItem" : "Item hinzufügen",
