@@ -12,7 +12,7 @@
 - [ ] Profile:
   - [ ] Show number of looks/items/friends in Profil
 - [ ] Settings: 
-  - [ ] Select gender
+  - [x] Select gender
   - [ ] Trigger change password
   - [ ] Change username
   - [ ] Archive/Delete account
