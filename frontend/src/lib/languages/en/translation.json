@@ -9,7 +9,8 @@
     "hideQuickEdit": "Hide quick edits",
     "showQuickEdit": "Show quick edits",
     "hideFilter": "Hide filter panel",
-    "showFilter": "Show filter panel"
+    "showFilter": "Show filter panel",
+    "clickHere": "click here"
   },
   "login": {
     "newHere": "New here",
@@ -117,7 +118,10 @@
     "female": "Female",
     "genderBasedGarderobe" : "On what gender is your wardrobe based?",
     "displayLanguage": "In what language should be Rewaer?",
-    "tooltipNB": "Will show both categories"
+    "tooltipNB": "Will show both categories",
+    "accountSettings" : "User account",
+    "dangerZone": "Danger Zone",
+    "triggerPasswordReset": "To trigger a password reset"
   },
   "items" : {
     "addItem" : "Add Item",

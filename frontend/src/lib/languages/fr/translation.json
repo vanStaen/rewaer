@@ -9,7 +9,8 @@
     "hideQuickEdit": "Masquer le panel d'édition rapide",
     "showQuickEdit": "Afficher le panel d'édition rapide",
     "hideFilter": "Masquer les filtres",
-    "showFilter": "Afficher les filtres"
+    "showFilter": "Afficher les filtres",
+    "clickHere": "cliquer ici"
   },
   "login": {
     "newHere": "Premiére fois",
@@ -117,7 +118,10 @@
     "female": "Femme",
     "genderBasedGarderobe" : "Sur quel sexe est basé votre garderobe?",
     "displayLanguage": "Dans quel langue Rewaer doit-il être?",
-    "tooltipNB": "Affichera homme et femme"
+    "tooltipNB": "Affichera homme et femme",
+    "accountSettings" : "Compte d'utitisateur",
+    "dangerZone": "Zone de danger",
+    "triggerPasswordReset": "Pour changer de mot de passe"
   },
   "items" : {
     "addItem" : "Ajoute une piéces",

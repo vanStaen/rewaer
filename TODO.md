@@ -16,7 +16,7 @@
   - [ ] UX: Center column with Max width 
 - [ ] Settings: 
   - [x] Select gender
-  - [ ] Trigger change password
+  - [x] Trigger change password
   - [ ] Change username
   - [ ] Archive/Delete account
   - [ ] UX: Center column with Max width 

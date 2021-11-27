@@ -9,7 +9,8 @@
     "hideQuickEdit": "Quick edits ausblenden",
     "showQuickEdit": "Quick edits einblenden",
     "hideFilter": "Filterpanel ausblenden",
-    "showFilter": "Filterpanel einblenden"
+    "showFilter": "Filterpanel einblenden",
+    "clickHere": "hier klicken"
   },
   "login": {
     "newHere": "Erstes mal hier",
@@ -116,7 +117,10 @@
     "female": "Weiblich",
     "genderBasedGarderobe" : "Basiert auf welcher Geschlecht ist eure Garderobe?",
     "displayLanguage": "In welche Sprache soll Rewaer sein?",
-    "tooltipNB": "Alle Waregruppen werden angezeigt"
+    "tooltipNB": "Alle Waregruppen werden angezeigt",
+    "accountSettings" : "Nutzerseinstellungen",
+    "dangerZone": "Gefahrenzone",
+    "triggerPasswordReset": "Um der Passwort zu ändern"
   },
   "items" : {
     "addItem" : "Item hinzufügen",

@@ -1,10 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Divider, Switch, Radio, Tooltip } from "antd";
+import { Divider, Switch, Radio, Tooltip, notification } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { MenuBar } from "../../../components/MenuBar/MenuBar";
+import { postSendRecoverLink } from "../../../components/PasswordRecover/postSendRecoverLink";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateSettings } from "./updateSettings";
 import { updateLanguage } from "./updateLanguage";
@@ -47,12 +48,37 @@ export const EditSettings = observer(() => {
     updateGender(value);
   };
 
+  const resetPasswordLink = async () => {
+    try {
+      await postSendRecoverLink(userStore.email);
+      notification.success({
+        message: t("login.recoverEmailSent"),
+        placement: "bottomRight",
+      });
+    } catch (error) {
+      notification.warn({
+        message: error.message,
+        placement: "bottomRight",
+      });
+    }
+  };
+
   return (
     <div className="EditSettings__main">
       <MenuBar />
       <div className="EditSettings__container">
         <div className="EditSettings__title">
           {t("profile.editYourSetting")}
+        </div>
+        <br />
+        <Divider orientation="left" plain>
+          {t("profile.accountSettings")}
+        </Divider>
+        <div className="EditSettings__singleSetting">
+          {t("profile.triggerPasswordReset")}{" "}
+          <span onClick={resetPasswordLink} className="EditSettings__link">
+            {t("main.clickHere")}
+          </span>
         </div>
         <br />
         <Divider orientation="left" plain>
@@ -164,6 +190,11 @@ export const EditSettings = observer(() => {
           />{" "}
           {t("profile.settingKeepMeInformedAboutRewaer")}
         </div>
+        <br />
+        <Divider orientation="left" plain>
+          {t("profile.dangerZone")}
+        </Divider>
+        <div className="EditSettings__singleSetting">Delete Account</div>
       </div>
     </div>
   );

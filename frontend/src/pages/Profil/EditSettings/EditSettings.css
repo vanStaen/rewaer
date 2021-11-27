@@ -1,7 +1,7 @@
 .EditSettings__main {
   width: 100vw;
   height: 100vh;
-  font-size: 0.5em;
+  font-size: 16px;
 }
 
 .EditSettings__container {
@@ -19,5 +19,13 @@
   font-size: 15px;
   margin-bottom: 15px;
 
+}
+
+.EditSettings__singleSetting .EditSettings__link:hover {
+  cursor: pointer;
+}
+
+.EditSettings__singleSetting .EditSettings__link {
+  color: #6C917D;
 }
 
