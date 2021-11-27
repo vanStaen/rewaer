@@ -64,7 +64,7 @@ const User = sequelize.define("user", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  active: {
+  archived: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },

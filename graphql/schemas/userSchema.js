@@ -11,7 +11,7 @@ type User {
     language: String!
     gender: Int!
     friends: [ID]
-    active: Boolean
+    archived: Boolean
     lastActive: Float!
     createdAt: Float!
     udpatedAt: Float!
@@ -32,7 +32,7 @@ input UserInputData {
     language: String
     gender: Int
     friends: [ID]
-    active: Boolean
+    archived: Boolean
 }`;
 
 exports.UserQueries = `

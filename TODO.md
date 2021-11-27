@@ -19,6 +19,7 @@
   - [x] Trigger change password
   - [ ] Change username
   - [ ] Archive/Delete account
+    - [ ] reloging reactivate account (Archived = false)
   - [ ] UX: Center column with Max width 
 - [ ] Use custom image component for images
 - [ ] Create own Card component

@@ -19,6 +19,7 @@ export class UserStore {
   gender = null;
   friends = [];
   lastActive = null;
+  archived = null; 
 
   constructor() {
     makeObservable(this, {
@@ -35,6 +36,7 @@ export class UserStore {
       gender: observable,
       friends: observable,
       lastActive: observable,
+      archived: observable,
       setIsLoading: action,
       setError: action,
       setEmail: action,
@@ -48,6 +50,7 @@ export class UserStore {
       setGender: action,
       setFriends: action,
       setLastActive: action,
+      setArchived: action,
       fetchuserData: action,
     });
   }
@@ -104,6 +107,10 @@ export class UserStore {
     this.lastActive = lastActive;
   };
 
+  setArchived = (archived) => {
+    this.archived = archived;
+  };
+
   fetchuserData = async () => {
     try {
 
@@ -119,6 +126,7 @@ export class UserStore {
         this.setLastActive(userData.lastActive);
         this.setLanguage(userData.language);
         this.setGender(userData.gender);
+        this.setArchived(userData.archived);
 
         if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
           this.setEmailSettings(defaultEmailSettings);

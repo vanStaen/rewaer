@@ -62,6 +62,7 @@ exports.userResolver = {
       "language",
       "gender",
       "friends",
+      "archived",
     ];
     updatableFields.forEach((field) => {
       if (field in args.userInput) {
