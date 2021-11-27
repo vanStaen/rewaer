@@ -7,7 +7,6 @@
 
 - [?] IDEA : All informations gets stored in an array, and nothing will get overwritten, only added to the array. 
  
-- [ ] Display Error in item/look like in profile
 - [ ] Toolbar:
   - [ ] Quick edits feature
   - [ ] Filtering

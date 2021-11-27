@@ -7,7 +7,7 @@ import { updateSettings } from "../../pages/Profil/EditSettings/updateSettings";
 
 export class UserStore {
   isLoading = true;
-  isError = false;
+  error = null;
   email = null;
   userName = null;
   avatar = null;
@@ -23,7 +23,7 @@ export class UserStore {
   constructor() {
     makeObservable(this, {
       isLoading: observable,
-      isError: observable,
+      error: observable,
       email: observable,
       userName: observable,
       avatar: observable,
@@ -36,7 +36,7 @@ export class UserStore {
       friends: observable,
       lastActive: observable,
       setIsLoading: action,
-      setIsError: action,
+      setError: action,
       setEmail: action,
       setUserName: action,
       setAvatar: action,
@@ -56,11 +56,11 @@ export class UserStore {
     this.isLoading = isLoading;
   };
 
-  setIsError = (isError) => {
-    this.isError = isError;
+  setError = (error) => {
+    this.error = error;
   };
 
-    setEmail = (email) => {
+  setEmail = (email) => {
     this.email = email;
   };
 
@@ -105,32 +105,34 @@ export class UserStore {
   };
 
   fetchuserData = async () => {
-    const userData = await getUserInfo();
+    try {
 
-    if (userData) {
-      this.setEmail(userData.email);
-      this.setUserName(userData.userName);
-      this.setAvatar(userData.avatar);
-      this.setFirstName(userData.firstName);
-      this.setLastName(userData.lastName);
-      this.setFriends(userData.friends);
-      this.setLastActive(userData.lastActive);
-      this.setLanguage(userData.language);
-      this.setGender(userData.gender);
+      const userData = await getUserInfo();
 
-      if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
-        this.setEmailSettings(defaultEmailSettings);
-        this.setProfilSettings(defaultProfilSettings);
-        updateSettings(defaultEmailSettings, defaultProfilSettings);
-      } else {
-        this.setEmailSettings(JSON.parse(userData.emailSettings));
-        this.setProfilSettings(JSON.parse(userData.profilSettings));
+      if (userData) {
+        this.setEmail(userData.email);
+        this.setUserName(userData.userName);
+        this.setAvatar(userData.avatar);
+        this.setFirstName(userData.firstName);
+        this.setLastName(userData.lastName);
+        this.setFriends(userData.friends);
+        this.setLastActive(userData.lastActive);
+        this.setLanguage(userData.language);
+        this.setGender(userData.gender);
+
+        if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
+          this.setEmailSettings(defaultEmailSettings);
+          this.setProfilSettings(defaultProfilSettings);
+          updateSettings(defaultEmailSettings, defaultProfilSettings);
+        } else {
+          this.setEmailSettings(JSON.parse(userData.emailSettings));
+          this.setProfilSettings(JSON.parse(userData.profilSettings));
+        }
       }
-      this.setIsError(false);
-    } else {
-      this.setIsError(true);
+      this.setIsLoading(false);
+    } catch (error) {
+      this.setError(error);
     }
-    this.setIsLoading(false);
   };
 }
 

@@ -31,7 +31,7 @@ export const Profil = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : userStore.isError ? (
+      ) : userStore.error ? (
         <div className="spinner">
           Connection error!
           <br />
@@ -39,22 +39,22 @@ export const Profil = observer(() => {
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
         </div>
       ) : (
-        <div className="profil__container">
-          <Avatar />
-          <div className="profil__hello">
-            {t("profile.hello")}
-            {userStore.firstName && " " + userStore.firstName},
+            <div className="profil__container">
+              <Avatar />
+              <div className="profil__hello">
+                {t("profile.hello")}
+                {userStore.firstName && " " + userStore.firstName},
             <br />
-            {showLastSeenOnline && (
-              <div className="profil__lastSeenOnline">
-                {t("profile.lastSeenOnline")}{" "}
-                {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
-                {dateLastActive.toLocaleTimeString()}
+                {showLastSeenOnline && (
+                  <div className="profil__lastSeenOnline">
+                    {t("profile.lastSeenOnline")}{" "}
+                    {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
+                    {dateLastActive.toLocaleTimeString()}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      )}
+            </div>
+          )}
     </div>
   );
 });

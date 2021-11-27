@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { Col, Row, Spin, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { EditOutlined, FilterOutlined } from "@ant-design/icons";
+import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -66,61 +67,66 @@ export const Looks = observer(() => {
     <div className="looks__main">
       <MenuBar />
       {looksStore.error !== null ? (
-        looksStore.error
+        <div className="spinner">
+          {looksStore.error}
+          <br />
+          <br />
+          <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+        </div>
       ) : looksStore.isLoading ? (
         <div className="spinner">
           <Spin size="large" />
         </div>
       ) : (
-        <div ref={containerElement} className="looks__container">
-          <div className="looks__toolbar">
-            <div className="looks__toolbarLeft">
-              {looksStore.looks.length} looks
+            <div ref={containerElement} className="looks__container">
+              <div className="looks__toolbar">
+                <div className="looks__toolbarLeft">
+                  {looksStore.looks.length} looks
             </div>
-            <div className="looks__toolbarRight">
-              <Tooltip
-                placement="topRight"
-                title={
-                  quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
-                }
-              >
-                <EditOutlined
-                  className={
-                    quickEdit
-                      ? "looks__toolbarIcon looks__toolbarIconActive"
-                      : "looks__toolbarIcon"
-                  }
-                  onClick={() => {
-                    setQuickEdit(!quickEdit);
-                  }}
-                />
-              </Tooltip>
-              <Tooltip
-                placement="topRight"
-                title={showFilter ? t("main.hideFilter") : t("main.showFilter")}
-              >
-                <FilterOutlined
-                  className={
-                    showFilter
-                      ? "looks__toolbarIcon looks__toolbarIconActive"
-                      : "looks__toolbarIcon"
-                  }
-                  onClick={() => {
-                    setShowFilter(!showFilter);
-                  }}
-                />
-              </Tooltip>
+                <div className="looks__toolbarRight">
+                  <Tooltip
+                    placement="topRight"
+                    title={
+                      quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
+                    }
+                  >
+                    <EditOutlined
+                      className={
+                        quickEdit
+                          ? "looks__toolbarIcon looks__toolbarIconActive"
+                          : "looks__toolbarIcon"
+                      }
+                      onClick={() => {
+                        setQuickEdit(!quickEdit);
+                      }}
+                    />
+                  </Tooltip>
+                  <Tooltip
+                    placement="topRight"
+                    title={showFilter ? t("main.hideFilter") : t("main.showFilter")}
+                  >
+                    <FilterOutlined
+                      className={
+                        showFilter
+                          ? "looks__toolbarIcon looks__toolbarIconActive"
+                          : "looks__toolbarIcon"
+                      }
+                      onClick={() => {
+                        setShowFilter(!showFilter);
+                      }}
+                    />
+                  </Tooltip>
+                </div>
+              </div>
+              <Row justify={"space-around"}>
+                <Col>
+                  <LookForm />
+                </Col>
+                {lookList}
+                <GhostCards />
+              </Row>
             </div>
-          </div>
-          <Row justify={"space-around"}>
-            <Col>
-              <LookForm />
-            </Col>
-            {lookList}
-            <GhostCards />
-          </Row>
-        </div>
-      )}
+          )}
     </div>
   );
 });
