@@ -12,6 +12,7 @@ type User {
     gender: Int!
     friends: [ID]
     archived: Boolean
+    usernameChange: Int
     lastActive: Float!
     createdAt: Float!
     udpatedAt: Float!
@@ -33,6 +34,7 @@ input UserInputData {
     gender: Int
     friends: [ID]
     archived: Boolean
+    usernameChange: Int
 }`;
 
 exports.UserQueries = `

@@ -57,12 +57,14 @@ exports.userResolver = {
     const updateFields = [];
     const updatableFields = [
       "avatar",
+      "userName",
       "emailSettings",
       "profilSettings",
       "language",
       "gender",
       "friends",
       "archived",
+      "usernameChange",
     ];
     updatableFields.forEach((field) => {
       if (field in args.userInput) {

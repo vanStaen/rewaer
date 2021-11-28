@@ -1,0 +1,2 @@
+export const MAX_USERNAME_CHANGE_ALLOWED = 3;
+ 

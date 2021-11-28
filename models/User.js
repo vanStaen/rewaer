@@ -68,6 +68,14 @@ const User = sequelize.define("user", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  archived: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  usernameChange: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
   lastActive: {
     type: DataTypes.DATE,
     allowNull: false,

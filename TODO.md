@@ -9,6 +9,7 @@
  
 - [ ] Toolbar:
   - [ ] Quick edits feature
+  - [ ] With ctrl, multi select possible, and Quick edits opens
   - [ ] Filtering
   - [ ] multiselect edits
 - [ ] Profile:
@@ -17,10 +18,10 @@
 - [ ] Settings: 
   - [x] Select gender
   - [x] Trigger change password
-  - [ ] Change username
-  - [ ] Archive/Delete account
-    - [ ] reloging reactivate account (Archived = false)
+  - [x] Archive/Delete account
+    - [x] reloging reactivate account (Archived = false)
   - [ ] UX: Center column with Max width 
+  - [ ] Change username
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
@@ -37,7 +38,6 @@
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
-- [ ] With ctrl, multi select of article is possible, and edit panel opens
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] make site responsive! 
 
