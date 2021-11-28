@@ -40,8 +40,14 @@ export const SignUpForm = (props) => {
           setIsValidUsername("error");
           setErrorMsgUsername(t("login.spacesinUsername"));
         } else {
-          setIsValidUsername("success");
-          setErrorMsgUsername(null);
+          const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (username.match(regexEmail)) {
+            setIsValidUsername("error");
+            setErrorMsgUsername(t("login.usernameShouldNotBeAnEmail"));
+          } else {
+            setIsValidUsername("success");
+            setErrorMsgUsername(null);
+          }
         }
       }
     }

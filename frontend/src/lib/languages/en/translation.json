@@ -84,7 +84,8 @@
     "pleaseConfirmNewPassword": "Please confirm your new password!",
     "passwordDoNotMatch": "The passwords do not match!",
     "updatePassword": "Update password",
-    "linkNotValidAnymore": "Link not valid anymore."
+    "linkNotValidAnymore": "Link not valid anymore.",
+    "usernameShouldNotBeAnEmail": "Your username should not be an email"
   },
   "menu": {
     "profile": "Profile",

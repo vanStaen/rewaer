@@ -40,7 +40,6 @@
 - [ ] With ctrl, multi select of article is possible, and edit panel opens
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] make site responsive! 
-- [ ] check that username is not an email
 
 ## Completed ✓
 
@@ -120,3 +119,4 @@
 - [x] Loading State before everything is fetched
 - [x] Empty cards to align last row of cards to the left 
 - [x] Bug fix: Email should be not be case sensitive 
+- [x] Account creation: check that username is not an email

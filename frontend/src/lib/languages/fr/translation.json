@@ -84,7 +84,8 @@
     "pleaseConfirmNewPassword" : "Veuillez confirmer votre nouveau mot de passe!",
     "passwordDoNotMatch": "Les mots de passe ne correspondent pas!",
     "updatePassword": "Mettre à jour le mot de passe",
-    "linkNotValidAnymore": "Le lien n'est plus valide."
+    "linkNotValidAnymore": "Le lien n'est plus valide",
+    "usernameShouldNotBeAnEmail": "Le nom d'utilisateur ne doit pas être un email"
   },
   "menu": {
     "profile": "Profile",
