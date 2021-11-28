@@ -45,7 +45,6 @@
 ## Completed ✓
 
 - [x] Set up route for User + database handling
-- [x] Whitelist Heroku IP in mongodb Atlas
 - [x] Set up the rest of the database
   - [x] Define the other collection (model: Looks)
   - [x] Define the other collection (model: Items)
