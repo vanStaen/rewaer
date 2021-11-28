@@ -19,7 +19,6 @@ export const Profil = observer(() => {
     userStore.fetchuserData();
 
     // Check if account was archived
-    console.log("userStore.archived", userStore.archived);
     if (userStore.archived) {
       archiveAccount(false);
       notification.success({
