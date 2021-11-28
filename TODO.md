@@ -39,7 +39,10 @@
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
-- [ ] make site responsive! 
+- [ ] Make site responsive! 
+- [ ] Redo info page, 
+  - [ ] include https://wearme30times.com/  
+  - [ ] fashion revolution
 
 ## Completed ✓
 
