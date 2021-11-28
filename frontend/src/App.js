@@ -29,6 +29,7 @@ const App = observer(() => {
 
   useEffect(() => {
     authStore.checkAccess();
+    userStore.fetchuserData();
     if (userStore.language === "en") {
       i18n.changeLanguage("en-US");
     } else if (userStore.language === "fr") {

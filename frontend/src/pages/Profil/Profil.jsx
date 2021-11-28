@@ -16,8 +16,6 @@ export const Profil = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    userStore.fetchuserData();
-
     // Check if account was archived
     if (userStore.archived) {
       archiveAccount(false);
