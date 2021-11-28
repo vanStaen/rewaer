@@ -41,6 +41,9 @@
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] make site responsive! 
 - [ ] check that username is not an email
+- [ ] Email should be not be case sensitive 
+  - [ ] when creating account
+  - [ ] when login
 
 ## Completed ✓
 
