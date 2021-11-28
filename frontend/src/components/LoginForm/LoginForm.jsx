@@ -23,7 +23,7 @@ export const LoginForm = () => {
 
   const submitHandler = async (values) => {
     setIsLoading(true);
-    const email = values.email;
+    const email = values.email.toLowerCase();
     isEmail.current = email;
     const password = values.password;
     const remember = values.remember;

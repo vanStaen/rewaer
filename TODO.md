@@ -41,9 +41,6 @@
 - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] make site responsive! 
 - [ ] check that username is not an email
-- [ ] Email should be not be case sensitive 
-  - [ ] when creating account
-  - [ ] when login
 
 ## Completed ✓
 
@@ -123,3 +120,4 @@
   - [x] Rewrite all call from frontend    
 - [x] Loading State before everything is fetched
 - [x] Empty cards to align last row of cards to the left 
+- [x] Bug fix: Email should be not be case sensitive 

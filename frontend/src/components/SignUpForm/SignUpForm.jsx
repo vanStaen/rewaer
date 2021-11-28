@@ -52,7 +52,7 @@ export const SignUpForm = (props) => {
     const firstname = values.firstname;
     const lastname = values.lastname;
     const username = values.username;
-    const email = values.email;
+    const email = values.email.toLowerCase();
     const password = values.password;
     try {
       const response = await postAddUser(

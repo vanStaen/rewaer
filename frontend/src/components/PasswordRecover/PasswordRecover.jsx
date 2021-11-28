@@ -17,7 +17,7 @@ export const PasswordRecover = (props) => {
   };
 
   const submitHandler = async (values) => {
-    const email = values.email;
+    const email = values.email.toLowerCase();
     const emailExist = await postEmailExist(email);
     if (emailExist === false) {
       setEmailDoNotExist("error");
