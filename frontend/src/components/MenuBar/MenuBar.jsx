@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
-import { Menu, Avatar, Badge } from "antd";
+import { Menu, Avatar, Badge, Spin } from "antd";
 import {
   UserOutlined,
   CameraOutlined,
@@ -51,7 +51,7 @@ export const MenuBar = observer(() => {
 
           <SubMenu
             style={{ float: "right" }}
-            key="user"
+            key="profile"
             icon={
               <Badge count={1} offset={[0, 5]}>
                 <Avatar
@@ -66,20 +66,33 @@ export const MenuBar = observer(() => {
               </Badge>
             }
           >
-            <Menu.Item key="profile" icon={<UserOutlined />}>
-              <NavLink to="/profile">{t("menu.profile")}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="settings" icon={<SettingOutlined />}>
-              <NavLink to="/edit_settings/">{t("menu.editSetting")}</NavLink>
-            </Menu.Item>
-            <div className="menu__customDivider"></div>
-            <Menu.Item
-              key="logout"
-              icon={<LogoutOutlined />}
-              onClick={authStore.logout}
-            >
-              {t("menu.logout")}
-            </Menu.Item>
+            {userStore.isLoading ? (
+              <Menu.Item key="spinner" disabled>
+                <Spin
+                  style={{ width: "100%", padding: "10px" }}
+                  size="medium"
+                />
+              </Menu.Item>
+            ) : (
+              <>
+                <Menu.Item key="profile" icon={<UserOutlined />}>
+                  <NavLink to="/profile">{t("menu.profile")}</NavLink>
+                </Menu.Item>
+                <Menu.Item key="settings" icon={<SettingOutlined />}>
+                  <NavLink to="/edit_settings/">
+                    {t("menu.editSetting")}
+                  </NavLink>
+                </Menu.Item>
+                <div className="menu__customDivider"></div>
+                <Menu.Item
+                  key="logout"
+                  icon={<LogoutOutlined />}
+                  onClick={authStore.logout}
+                >
+                  {t("menu.logout")}
+                </Menu.Item>
+              </>
+            )}
           </SubMenu>
 
           <Menu.Item
