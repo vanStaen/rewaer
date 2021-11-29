@@ -122,7 +122,12 @@
     "tooltipNB": "Will show both categories",
     "accountSettings" : "User account",
     "dangerZone": "Danger Zone",
-    "triggerPasswordReset": "To trigger a password reset"
+    "triggerPasswordReset": "To trigger a password reset",
+    "MaxUserNameChange": "You can't change your username anymore",
+    "changesLeft": "changes still left",
+    "changeUserName": "Change your username",
+    "yourNewUserName": "Your new username",
+    "hasBeenSaved": "has been saved"
   },
   "items" : {
     "addItem" : "Add Item",

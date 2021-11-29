@@ -121,7 +121,12 @@
     "tooltipNB": "Alle Waregruppen werden angezeigt",
     "accountSettings" : "Nutzerseinstellungen",
     "dangerZone": "Gefahrenzone",
-    "triggerPasswordReset": "Um der Passwort zu ändern"
+    "triggerPasswordReset": "Um der Passwort zu ändern",
+    "MaxUserNameChange": "Benutzernamen kann nicht mehr geändert",
+    "changesLeft": "Änderungen noch möglich",
+    "changeUserName": "Benutzernamen ändern",
+    "yourNewUserName": "Dein neue Benutzernamen",
+    "hasBeenSaved": "würde erfolgreich gespeichert"
   },
   "items" : {
     "addItem" : "Item hinzufügen",

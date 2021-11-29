@@ -53,7 +53,7 @@
     "passwordsDoNotMatch": "les mots de passe no concordent pas!",
     "usernameIsAlreadyTaken": "Ce nom d'utilisateur est déja pris!",
     "alreadyTaken": "Déja pris!",
-    "spacesinUsername": "Vous ne pouvez pas avoir d'espaces dans votre nom d'utlisateur.",
+    "spacesinUsername": "Vous ne pouvez pas avoir d'espaces dans votre nom d'utlisateur",
     "doNotUseSpaces": "N'utlisez pas d'espaces",
     "pleaseConfirmEmail": "Votre email doit encore être verifiée: Svp, verifiez votre boite email, il devrait y avoir un email de notre part.",
     "signinto": "Se connecter à",
@@ -122,7 +122,12 @@
     "tooltipNB": "Affichera homme et femme",
     "accountSettings" : "Compte d'utitisateur",
     "dangerZone": "Zone de danger",
-    "triggerPasswordReset": "Pour changer de mot de passe"
+    "triggerPasswordReset": "Pour changer de mot de passe",
+    "MaxUserNameChange": "Un changement n'est plus possible",
+    "changesLeft": "changement encore possible",
+    "changeUserName": "Changement du nom d'utilisateur",
+    "yourNewUserName": "Le nouveau nom d'utilisateur",
+    "hasBeenSaved": "a été sauvegardé"
   },
   "items" : {
     "addItem" : "Ajoute une piéces",

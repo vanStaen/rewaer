@@ -21,7 +21,7 @@
   - [x] Archive/Delete account
     - [x] reloging reactivate account (Archived = false)
   - [ ] UX: Center column with Max width 
-  - [ ] Change username
+  - [x] Change username
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched

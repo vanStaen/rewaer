@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import {
-  Divider,
-  Switch,
-  Radio,
-  Tooltip,
-  notification,
-  Button,
-  Input,
-} from "antd";
+import { Divider, Switch, Radio, Tooltip, notification, Button } from "antd";
 import {
   CloseOutlined,
   CheckOutlined,
   DeleteOutlined,
-  InfoCircleOutlined,
-  UserOutlined,
-  ArrowRightOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -27,16 +16,12 @@ import { updateSettings } from "./updateSettings";
 import { updateLanguage } from "./updateLanguage";
 import { updateGender } from "./updateGender";
 import { archiveAccount } from "./archiveAccount";
-import { updateUserName } from "./updateUserName";
-import { postUsernameTaken } from "../../../components/SignUpForm/postUsernameTaken";
-import { MAX_USERNAME_CHANGE_ALLOWED } from "../../../data/setup";
+import { UserNameUpdate } from "./UserNameUpdate/UserNameUpdate";
+
 import "./EditSettings.css";
 
 export const EditSettings = observer(() => {
   const { i18n, t } = useTranslation();
-  const [userNameIsValidating, setUserNameIsValidating] = useState(false);
-  const [userNameAvailable, setUserNameAvailable] = useState(false);
-  const [newUserName, setNewUserName] = useState(null);
   const initLanguage = i18n.language.slice(0, 2);
 
   const changeEmailSettingsHandler = (setting, value) => {
@@ -68,48 +53,6 @@ export const EditSettings = observer(() => {
     const value = parseInt(event.target.value);
     userStore.setGender(value);
     updateGender(value);
-  };
-
-  const onInputUsernameHandler = async (event) => {
-    setUserNameIsValidating(true);
-    const usernameTemp = event.target.value;
-    const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (usernameTemp) {
-      if (usernameTemp.includes(" ") || usernameTemp.match(regexEmail)) {
-        setUserNameAvailable(false);
-      } else {
-        const isTaken = await postUsernameTaken(usernameTemp);
-        setUserNameAvailable(!isTaken);
-        if (!isTaken) {
-          setNewUserName(usernameTemp);
-        }
-      }
-    } else {
-      setUserNameAvailable(false);
-    }
-    setUserNameIsValidating(false);
-  };
-
-  const onChangeUserNameHandler = async () => {
-    setUserNameIsValidating(true);
-    const response = await updateUserName(
-      newUserName,
-      userStore.usernameChange + 1
-    );
-    if (response) {
-      userStore.setUserName(newUserName);
-      userStore.setUsernameChange(userStore.usernameChange + 1);
-      notification.success({
-        message: (
-          <>
-            Your new username <b>{newUserName}</b> has been saved.
-          </>
-        ),
-        placement: "bottomRight",
-      });
-      setNewUserName(null);
-    }
-    setUserNameIsValidating(false);
   };
 
   const deleteAccountHandler = (event) => {
@@ -158,38 +101,7 @@ export const EditSettings = observer(() => {
             {t("main.clickHere")}
           </span>
         </div>
-        <div className="EditSettings__singleSetting">
-          Change your username:{" "}
-          <Input
-            placeholder={userStore.userName}
-            style={{ width: "250px" }}
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            suffix={
-              <Tooltip
-                title={
-                  <>
-                    {MAX_USERNAME_CHANGE_ALLOWED - userStore.usernameChange}{" "}
-                    changes left
-                  </>
-                }
-              >
-                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-              </Tooltip>
-            }
-            onChange={onInputUsernameHandler}
-          />{" "}
-          <Button
-            type="primary"
-            shape="circle"
-            onClick={onChangeUserNameHandler}
-            icon={<ArrowRightOutlined />}
-            loading={userNameIsValidating}
-            disabled={
-              MAX_USERNAME_CHANGE_ALLOWED - userStore.usernameChange === 0 ||
-              !userNameAvailable
-            }
-          />
-        </div>
+        <UserNameUpdate />
         <br />
         <Divider orientation="left" plain>
           {t("profile.displaySettings")}
