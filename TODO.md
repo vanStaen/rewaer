@@ -7,7 +7,7 @@
 
 - [?] IDEA : All informations gets stored in an array, and nothing will get overwritten, only added to the array. 
  
-- [ ] Toolbar:
+- [ ] Items/looks Toolbar:
   - [ ] Quick edits feature
   - [ ] With ctrl, multi select possible, and Quick edits opens
   - [ ] Filtering
@@ -19,12 +19,14 @@
   - [x] Select gender
   - [x] Trigger change password
   - [x] Archive/Delete account
-    - [x] reloging reactivate account (Archived = false)
-  - [ ] UX: Center column with Max width 
+    - [ ] Confirm box showing for 5 seconds (see kinkograph)
+    - [x] Reloging reactivate account (Archived = false)
   - [x] Change username
+  - [ ] UX: Center column with Max width 
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
+  - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
@@ -38,11 +40,11 @@
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
-- [ ] Show <ExclamationCircleOutlined /> on items not fully taged
 - [ ] Make site responsive! 
 - [ ] Redo info page, 
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
+- [ ] BE: update lastSeenOnline with every request 
 
 ## Completed ✓
 
