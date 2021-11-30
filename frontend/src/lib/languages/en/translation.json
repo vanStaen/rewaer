@@ -127,7 +127,13 @@
     "changesLeft": "changes still left",
     "changeUserName": "Change your username",
     "yourNewUserName": "Your new username",
-    "hasBeenSaved": "has been saved"
+    "hasBeenSaved": "has been saved",
+    "deleteAccount": "Delete account",
+    "areYouSure": "Are you sure?",
+    "willBeArchived": "Your account is now archived.",
+    "loggingToReactivate": "Login to reactivate it. If not, it will be automatically deleted in 30 days from now.",
+    "accountReactivated" : "Your account is now reactivated.",
+    "gladToHaveYouBack": "Glad to have you back!"
   },
   "items" : {
     "addItem" : "Add Item",

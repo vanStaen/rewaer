@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { userStore } from "../../stores/userStore/userStore";
 import { Avatar } from "./Avatar/Avatar";
-import { archiveAccount } from "./EditSettings/archiveAccount";
+import { archiveAccount } from "./EditSettings/DeleteAccountButton/archiveAccount";
 
 import "./Profil.css";
 
@@ -22,9 +22,9 @@ export const Profil = observer(() => {
       notification.success({
         message: (
           <>
-            <b>Your account is now reactivated.</b>
+            <b>{t("profile.accountReactivated")}</b>
             <br />
-            Glad to have you back!
+            {t("profile.gladToHaveYouBack")}
           </>
         ),
         placement: "bottomRight",

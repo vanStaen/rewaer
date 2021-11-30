@@ -1,0 +1,13 @@
+.EditSettings__singleSetting .deleteButton {
+    width: 250px;
+    background: rgba(110, 0, 0, 1);
+    border: 1px solid rgb(80, 0, 0);
+  }
+  
+  .EditSettings__singleSetting .deleteButton:hover {
+    background: rgba(110, 0, 0, .5);
+  }
+  
+  .EditSettings__singleSetting .deleteButton:focus {
+    background: rgba(110, 0, 0, .25);
+  }

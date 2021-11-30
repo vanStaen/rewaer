@@ -126,7 +126,13 @@
     "changesLeft": "Änderungen noch möglich",
     "changeUserName": "Benutzernamen ändern",
     "yourNewUserName": "Dein neue Benutzernamen",
-    "hasBeenSaved": "würde erfolgreich gespeichert"
+    "hasBeenSaved": "würde erfolgreich gespeichert",
+    "deleteAccount": "Delete account",
+    "areYouSure": "Sicher?",
+    "willBeArchived": "Diese Konto würde archiviert.",
+    "loggingToReactivate": "Melden Sie sich an, um es zu reaktivieren. Wenn nicht, wird es in 30 Tagen automatisch gelöscht.",
+    "accountReactivated" : "Ihr Konto ist nun reaktiviert.",
+    "gladToHaveYouBack": "Schön, dass Sie wieder da sind!"
   },
   "items" : {
     "addItem" : "Item hinzufügen",

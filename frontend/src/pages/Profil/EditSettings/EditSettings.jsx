@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { Divider, Switch, Radio, Tooltip, notification, Button } from "antd";
-import {
-  CloseOutlined,
-  CheckOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { Divider, Switch, Radio, Tooltip, notification } from "antd";
+import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { MenuBar } from "../../../components/MenuBar/MenuBar";
 import { postSendRecoverLink } from "../../../components/PasswordRecover/postSendRecoverLink";
 import { userStore } from "../../../stores/userStore/userStore";
-import { authStore } from "../../../stores/authStore/authStore.js";
 import { updateSettings } from "./updateSettings";
 import { updateLanguage } from "./updateLanguage";
 import { updateGender } from "./updateGender";
-import { archiveAccount } from "./archiveAccount";
 import { UserNameUpdate } from "./UserNameUpdate/UserNameUpdate";
+import { DeleteAccountButton } from "./DeleteAccountButton/DeleteAccountButton";
 
 import "./EditSettings.css";
 
@@ -53,20 +48,6 @@ export const EditSettings = observer(() => {
     const value = parseInt(event.target.value);
     userStore.setGender(value);
     updateGender(value);
-  };
-
-  const deleteAccountHandler = (event) => {
-    archiveAccount(true);
-    notification.error({
-      message: (
-        <>
-          <b>Your account is now archived. </b>Login to reactivate it. If not,
-          it will be automatically deleted <b>in 30 days</b> from now.
-        </>
-      ),
-      placement: "bottomRight",
-    });
-    authStore.logout();
   };
 
   const resetPasswordLink = async () => {
@@ -218,18 +199,7 @@ export const EditSettings = observer(() => {
           <Divider orientation="left" plain>
             {t("profile.dangerZone")}
           </Divider>
-          <div className="EditSettings__singleSetting">
-            <Button
-              block
-              style={{ width: "250px" }}
-              icon={<DeleteOutlined />}
-              onClick={deleteAccountHandler}
-              type="primary"
-              danger
-            >
-              Delete account
-            </Button>
-          </div>
+          <DeleteAccountButton />
         </div>
         <div className="EditSettings__containerRight">{null}</div>
       </div>

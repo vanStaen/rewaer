@@ -19,7 +19,7 @@
   - [x] Select gender
   - [x] Trigger change password
   - [x] Archive/Delete account
-    - [ ] Confirm box showing for 5 seconds (see kinkograph)
+    - [x] Confirm box showing for 5 seconds
     - [x] Reloging reactivate account (Archived = false)
   - [x] Change username
   - [x] UX: Center column with Max width 
