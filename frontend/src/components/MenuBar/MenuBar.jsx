@@ -53,14 +53,19 @@ export const MenuBar = observer(() => {
             style={{ float: "right" }}
             key="profile"
             icon={
-              <Badge count={1} offset={[0, 5]}>
+              <Badge count={userStore.isLoading ? 0 : 1} offset={[0, 5]}>
                 <Avatar
                   src={userStore.avatar && userStore.avatar}
                   icon={
-                    !userStore.avatar && (
-                      <UserOutlined style={{ fontSize: "24px" }} />
+                    userStore.isLoading ? (
+                      <Spin size="small" />
+                    ) : (
+                      !userStore.avatar && (
+                        <UserOutlined style={{ fontSize: "22px" }} />
+                      )
                     )
                   }
+                  style={userStore.isLoading && { backgroundColor: "#FFF" }}
                   size={36}
                 />
               </Badge>

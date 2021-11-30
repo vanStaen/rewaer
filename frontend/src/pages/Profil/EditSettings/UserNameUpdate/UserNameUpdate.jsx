@@ -76,7 +76,7 @@ export const UserNameUpdate = () => {
 
   return (
     <div className="EditSettings__singleSetting">
-      {t("profile.changeUserName")}:{" "}
+      {t("profile.changeUserName")}:&nbsp;&nbsp;
       <Input
         placeholder={userStore.userName}
         style={{ width: "250px" }}
