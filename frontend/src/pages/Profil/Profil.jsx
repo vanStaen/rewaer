@@ -54,19 +54,24 @@ export const Profil = observer(() => {
         </div>
       ) : (
         <div className="profil__container">
-          <Avatar />
-          <div className="profil__hello">
-            {t("profile.hello")}
-            {userStore.firstName && " " + userStore.firstName},
-            <br />
-            {showLastSeenOnline && (
-              <div className="profil__lastSeenOnline">
-                {t("profile.lastSeenOnline")}{" "}
-                {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
-                {dateLastActive.toLocaleTimeString()}
-              </div>
-            )}
+          <div className="profil__containerLeft">
+            <Avatar />
           </div>
+          <div className="profil__containerCenter">
+            <div className="profil__hello">
+              {t("profile.hello")}
+              {userStore.firstName && " " + userStore.firstName},
+              <br />
+              {showLastSeenOnline && (
+                <div className="profil__lastSeenOnline">
+                  {t("profile.lastSeenOnline")}{" "}
+                  {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
+                  {dateLastActive.toLocaleTimeString()}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="profil__containerRight">{null}</div>
         </div>
       )}
     </div>

@@ -14,7 +14,7 @@
   - [ ] multiselect edits
 - [ ] Profile:
   - [ ] Show number of looks/items/friends in Profil
-  - [ ] UX: Center column with Max width 
+  - [x] UX: Center column with Max width 
 - [ ] Settings: 
   - [x] Select gender
   - [x] Trigger change password
@@ -22,7 +22,7 @@
     - [ ] Confirm box showing for 5 seconds (see kinkograph)
     - [x] Reloging reactivate account (Archived = false)
   - [x] Change username
-  - [ ] UX: Center column with Max width 
+  - [x] UX: Center column with Max width 
 - [ ] Use custom image component for images
 - [ ] Create own Card component
   - [ ] picture cover, not stretched

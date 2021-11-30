@@ -7,8 +7,34 @@
 .EditSettings__container {
   margin: 40px 4vw;
   width: calc(100vw - 8vw);
-  display: inline-block;
+  text-align: center;
 }
+
+.EditSettings__containerRight {
+  display: inline-block;
+  vertical-align:top;
+  width: 50px;
+  /*border: 1px solid blue;*/
+  text-align: left;
+}
+
+.EditSettings__containerCenter {
+  display: inline-block;
+  vertical-align:top;
+  width: calc(100vw - 220px);
+  max-width: 1200px;
+  /*border: 1px solid green;*/
+  text-align: left;
+}
+
+.EditSettings__containerLeft {
+  display: inline-block;
+  vertical-align:top;
+  width: 50px;
+  /*border: 1px solid red;*/
+  text-align: left;
+}
+
 
 .EditSettings__title {
   font-size: 22px;
