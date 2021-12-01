@@ -139,9 +139,13 @@
   },
   "items" : {
     "addItem" : "Ajoute une piéces",
-    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter."
+    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
+    "deletedSuccess" : "Piéces supprimé avec succès",
+    "deleteConfirm": "Êtes-vous sûr de supprimer cette piéces?"
   },
   "looks" : {
-    "addLook" : "Ajoute un look"
+    "addLook" : "Ajoute un look",
+    "deletedSuccess" : "Look supprimé avec succès",
+    "deleteConfirm": "Êtes-vous sûr de supprimer ce look?"
   }
 }
