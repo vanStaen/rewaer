@@ -81,7 +81,7 @@ export const Looks = observer(() => {
         <div ref={containerElement} className="looks__container">
           <div className="looks__toolbar">
             <div className="looks__toolbarLeft">
-              {looksStore.looks.length} looks
+              {looksStore.looks.length} {t("menu.looks")}
             </div>
             <div className="looks__toolbarRight">
               <ToolBar

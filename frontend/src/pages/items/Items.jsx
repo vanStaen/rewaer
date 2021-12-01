@@ -88,7 +88,7 @@ export const Items = observer(() => {
           <div ref={containerElement} className="items__container">
             <div className="items__toolbar">
               <div className="items__toolbarLeft">
-                {itemsStore.items.length} items
+                {itemsStore.items.length} {t("menu.items")}
               </div>
               <div className="items__toolbarRight">
                 <ToolBar
