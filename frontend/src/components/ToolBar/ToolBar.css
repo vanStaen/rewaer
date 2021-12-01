@@ -1,5 +1,6 @@
 
-.items__toolbarRight .ToolBar__toolbarIcon {
+.items__toolbarRight .ToolBar__toolbarIcon,
+.looks__toolbarRight .ToolBar__toolbarIcon {
     padding: 0 8px;
     color: #aaa;
     cursor: pointer;
