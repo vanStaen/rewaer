@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
-import { Col, Row, Spin, Tooltip } from "antd";
+import { Col, Row, Spin } from "antd";
 import { useTranslation } from "react-i18next";
-import { EditOutlined, FilterOutlined } from "@ant-design/icons";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
@@ -11,6 +10,7 @@ import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
 import { itemCategory } from "../../data/categories";
+import { ToolBar } from "../../components/ToolBar/ToolBar";
 
 import "./Items.css";
 
@@ -79,66 +79,36 @@ export const Items = observer(() => {
           <Spin size="large" />
         </div>
       ) : (
-            <>
-              <Banner
-                id="missingTag"
-                desc={t("items.missingTagsAlert")}
-                show={true}
-              />
-              <div ref={containerElement} className="items__container">
-                <div className="items__toolbar">
-                  <div className="items__toolbarLeft">
-                    {itemsStore.items.length} items
+        <>
+          <Banner
+            id="missingTag"
+            desc={t("items.missingTagsAlert")}
+            show={true}
+          />
+          <div ref={containerElement} className="items__container">
+            <div className="items__toolbar">
+              <div className="items__toolbarLeft">
+                {itemsStore.items.length} items
               </div>
-                  <div className="items__toolbarRight">
-                    <Tooltip
-                      placement="topRight"
-                      title={
-                        quickEdit
-                          ? t("main.hideQuickEdit")
-                          : t("main.showQuickEdit")
-                      }
-                    >
-                      <EditOutlined
-                        className={
-                          quickEdit
-                            ? "items__toolbarIcon items__toolbarIconActive"
-                            : "items__toolbarIcon"
-                        }
-                        onClick={() => {
-                          setQuickEdit(!quickEdit);
-                        }}
-                      />
-                    </Tooltip>
-                    <Tooltip
-                      placement="topRight"
-                      title={
-                        showFilter ? t("main.hideFilter") : t("main.showFilter")
-                      }
-                    >
-                      <FilterOutlined
-                        className={
-                          showFilter
-                            ? "items__toolbarIcon items__toolbarIconActive"
-                            : "items__toolbarIcon"
-                        }
-                        onClick={() => {
-                          setShowFilter(!showFilter);
-                        }}
-                      />
-                    </Tooltip>
-                  </div>
-                </div>
-                <Row justify={"space-around"}>
-                  <Col>
-                    <ItemForm />
-                  </Col>
-                  {itemList}
-                  <GhostCards />
-                </Row>
+              <div className="items__toolbarRight">
+                <ToolBar
+                  quickEdit={quickEdit}
+                  setQuickEdit={setQuickEdit}
+                  showFilter={showFilter}
+                  setShowFilter={setShowFilter}
+                />
               </div>
-            </>
-          )}
+            </div>
+            <Row justify={"space-around"}>
+              <Col>
+                <ItemForm />
+              </Col>
+              {itemList}
+              <GhostCards />
+            </Row>
+          </div>
+        </>
+      )}
     </div>
   );
 });

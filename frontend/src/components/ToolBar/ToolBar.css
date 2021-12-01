@@ -1,0 +1,16 @@
+
+.items__toolbarRight .ToolBar__toolbarIcon {
+    padding: 0 8px;
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+.items__toolbarRight .ToolBar__toolbarIcon:hover,
+.looks__toolbarRight .ToolBar__toolbarIcon:hover {
+    color: rgba(108, 145, 125, .5);
+  }
+
+.items__toolbarRight .ToolBar__toolbarIconActive,
+.looks__toolbarRight .ToolBar__toolbarIconActive {
+    color: #6C917D;
+  }
