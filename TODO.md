@@ -24,16 +24,15 @@
   - [x] Change username
   - [x] UX: Center column with Max width 
 - [ ] Use custom image component for images
+- [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
   - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
-- [ ] infinite scrolling + lazy loading
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
-- [ ] Allow multi-upload and dragdrop (take from kinkograph)
 - [ ] when scrolled down, show floating add items button
 - [ ] shared items are possible (between friends)
 - [ ] When items are missing basic tags info :
@@ -125,3 +124,4 @@
 - [x] Empty cards to align last row of cards to the left 
 - [x] Bug fix: Email should be not be case sensitive 
 - [x] Account creation: check that username is not an email
+- [x] Items/looks : Allow multi-upload and dragdrop

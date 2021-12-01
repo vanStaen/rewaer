@@ -10,7 +10,9 @@
     "showQuickEdit": "Quick edits einblenden",
     "hideFilter": "Filterpanel ausblenden",
     "showFilter": "Filterpanel einblenden",
-    "clickHere": "hier klicken"
+    "clickHere": "hier klicken",
+    "dragDropMultiple": "Dateien hier dropen. Mehrere Dateien unterstützt!",
+    "of": "von"
   },
   "login": {
     "newHere": "Erstes mal hier",

@@ -10,7 +10,9 @@
     "showQuickEdit": "Afficher le panel d'édition rapide",
     "hideFilter": "Masquer les filtres",
     "showFilter": "Afficher les filtres",
-    "clickHere": "cliquer ici"
+    "clickHere": "cliquer ici",
+    "dragDropMultiple": "Déposez vos fichiers ici!",
+    "of": "sur"
   },
   "login": {
     "newHere": "Premiére fois",
