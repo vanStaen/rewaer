@@ -24,7 +24,7 @@ export const LookCard = (props) => {
     deleteLook(props.look._id)
       .then(() => {
         notification.success({
-          message: t("look.deletedSuccess"),
+          message: t("looks.deletedSuccess"),
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
@@ -61,7 +61,7 @@ export const LookCard = (props) => {
               type={"look"}
             />
             <Popconfirm
-              title={t("look.deleteConfirm")}
+              title={t("looks.deleteConfirm")}
               onConfirm={handleDelete}
               okText="Delete"
               cancelText="Cancel"

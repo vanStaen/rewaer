@@ -24,7 +24,7 @@ export const ItemCard = (props) => {
     deleteItem(props.item._id)
       .then(() => {
         notification.success({
-          message: t("item.deletedSuccess"),
+          message: t("items.deletedSuccess"),
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
@@ -61,7 +61,7 @@ export const ItemCard = (props) => {
               type={"item"}
             />
             <Popconfirm
-              title={t("item.deleteConfirm")}
+              title={t("items.deleteConfirm")}
               onConfirm={handleDelete}
               okText="Delete"
               cancelText="Cancel"

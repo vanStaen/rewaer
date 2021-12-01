@@ -140,12 +140,12 @@
   "items" : {
     "addItem" : "Add Item",
     "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
-    "deletedSuccess" : "Item deleted successfully",
+    "deletedSuccess" : "Item deleted successfully!",
     "deleteConfirm": "Are you sure to delete this item?"
   },
   "looks" : {
     "addLook" : "Add Looks",
-    "deletedSuccess" : "Look deleted successfully",
+    "deletedSuccess" : "Look deleted successfully!",
     "deleteConfirm": "Are you sure to delete this look?"
   }
 }

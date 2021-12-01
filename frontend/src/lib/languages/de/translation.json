@@ -139,12 +139,12 @@
   "items" : {
     "addItem" : "Item hinzufügen",
     "missingTagsAlert" : "Bei einigen Artikeln fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
-    "deletedSuccess" : "Item erfolgreich gelöscht",
+    "deletedSuccess" : "Item erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?"
   },
   "looks" : {
     "addLook" : "Look hinzufügen",
-    "deletedSuccess" : "Look erfolgreich gelöscht",
+    "deletedSuccess" : "Look erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?"
   }
 }
