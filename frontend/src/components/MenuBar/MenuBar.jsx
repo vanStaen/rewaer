@@ -49,9 +49,47 @@ export const MenuBar = observer(() => {
             Rewaer, {t("main.motto")}
           </span>
 
+          <Menu.Item
+            key="looks"
+            icon={<CameraOutlined />}
+            style={{ float: "left" }}
+          >
+            <NavLink to="/looks"> {t("menu.looks")}</NavLink>
+          </Menu.Item>
+
+          <Menu.Item
+            key="items"
+            icon={<SkinOutlined />}
+            style={{ float: "left" }}
+          >
+            <NavLink to="/items"> {t("menu.items")}</NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="mail"
+            icon={<MailOutlined />}
+            disabled
+            style={{ float: "left" }}
+          >
+            <NavLink to="/mail"> {t("menu.mail")}</NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="friends"
+            icon={<TeamOutlined />}
+            disabled
+            style={{ float: "left" }}
+          >
+            <NavLink to="/friends"> {t("menu.friends")}</NavLink>
+          </Menu.Item>
+          <Menu.Item key="info" style={{ float: "left" }}>
+            <NavLink to="/info">
+              &nbsp;&nbsp;
+              <QuestionOutlined />
+            </NavLink>
+          </Menu.Item>
+
           <SubMenu
             style={{ float: "right" }}
-            key="profile"
+            key="profileSubMenu"
             icon={
               <Badge count={userStore.isLoading ? 0 : 1} offset={[0, 5]}>
                 <Avatar
@@ -99,44 +137,6 @@ export const MenuBar = observer(() => {
               </>
             )}
           </SubMenu>
-
-          <Menu.Item
-            key="looks"
-            icon={<CameraOutlined />}
-            style={{ float: "left" }}
-          >
-            <NavLink to="/looks"> {t("menu.looks")}</NavLink>
-          </Menu.Item>
-
-          <Menu.Item
-            key="items"
-            icon={<SkinOutlined />}
-            style={{ float: "left" }}
-          >
-            <NavLink to="/items"> {t("menu.items")}</NavLink>
-          </Menu.Item>
-          <Menu.Item
-            key="mail"
-            icon={<MailOutlined />}
-            disabled
-            style={{ float: "left" }}
-          >
-            <NavLink to="/mail"> {t("menu.mail")}</NavLink>
-          </Menu.Item>
-          <Menu.Item
-            key="friends"
-            icon={<TeamOutlined />}
-            disabled
-            style={{ float: "left" }}
-          >
-            <NavLink to="/friends"> {t("menu.friends")}</NavLink>
-          </Menu.Item>
-          <Menu.Item key="info" style={{ float: "left" }}>
-            <NavLink to="/info">
-              &nbsp;&nbsp;
-              <QuestionOutlined />
-            </NavLink>
-          </Menu.Item>
         </Menu>
       </div>
     </>
