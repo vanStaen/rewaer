@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  Switch,
   Route,
   Redirect,
-  Switch,
 } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
@@ -43,7 +43,7 @@ const App = observer(() => {
   }, [userStore.language]);
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <Switch>
           <Route path="/recoverpwd/:key" component={NewPassword} />
@@ -57,13 +57,13 @@ const App = observer(() => {
           {authStore.hasAccess && (
             <Route path="/editsettings" component={EditSettings} />
           )}
-          <Route path="/" exact>
+          <Route path="/">
             {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
           </Route>
           <Redirect to="/" />
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 });
 
