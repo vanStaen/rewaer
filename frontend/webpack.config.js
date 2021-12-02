@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
-const prod = process.env.NODE_ENV === 'development';
 
 module.exports = {
   devtool: "source-map",
@@ -16,9 +15,9 @@ module.exports = {
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),      
-      "process.env.API_URL": prod ? JSON.stringify("https://rewaer.com"): JSON.stringify("http://localhost:5000"),
-      "process.env.DEBUG": JSON.stringify(process.env.DEBUG),
+      "process.env.API_URL": process.env.NODE_ENV !== "development"
+        ? JSON.stringify("https://rewaer.com")
+        : JSON.stringify("http://localhost:5000"),
     }),
   ],
   resolve: {

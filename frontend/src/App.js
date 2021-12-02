@@ -24,6 +24,9 @@ import "../src/lib/i18n";
 import "./App.css";
 import "./style/rewaer-antd.css";
 
+console.log("Env", process.env.NODE_ENV);
+console.log("Api", process.env.API_URL);
+
 const App = observer(() => {
   const { i18n } = useTranslation();
 
