@@ -43,7 +43,7 @@ export async function patchTitle(title, id, type) {
   }
 
   const response = await axios({
-    url: process.env.REACT_APP_API_URL,
+    url: process.env.API_URL,
     method: "POST",
     data: requestBody,
   });
