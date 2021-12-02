@@ -24,7 +24,7 @@ export const getUserInfo = async () => {
   };
 
   const response = await axios({
-    url: process.env.REACT_APP_API_URL + `/graphql`,
+    url: process.env.API_URL + `/graphql`,
     method: "POST",
     data: requestBody,
   });
