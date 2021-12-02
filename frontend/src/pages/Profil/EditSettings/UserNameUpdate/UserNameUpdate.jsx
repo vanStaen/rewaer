@@ -26,6 +26,7 @@ export const UserNameUpdate = () => {
   const onInputUsernameHandler = async (event) => {
     setUserNameIsValidating(true);
     const usernameTemp = event.target.value;
+    //eslint-disable-next-line
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (usernameTemp) {
       if (usernameTemp.includes(" ")) {

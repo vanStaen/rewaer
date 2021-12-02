@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import { Divider, Switch, Radio, Tooltip, notification } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
