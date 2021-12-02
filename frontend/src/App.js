@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
@@ -44,24 +39,23 @@ const App = observer(() => {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/recoverpwd/:key" component={NewPassword} />
-          <Route path="/emailverify/:verifyCode" component={EmailVerified} />
-          <Route path="/service">"service page"</Route>
-          <Route path="/privacy">"privacy page"</Route>
-          <Route path="/info" component={Info} />
-          {authStore.hasAccess && <Route path="/looks" component={Looks} />}
-          {authStore.hasAccess && <Route path="/items" component={Items} />}
-          {authStore.hasAccess && <Route path="/profil" component={Profil} />}
+      <div className="App">Info
+        <Routes>
+          <Route path="/recoverpwd/:key" element={<NewPassword/>} />
+          <Route path="/emailverify/:verifyCode" element={<EmailVerified/>} />
+          <Route path="/info" element={<Info/>} />
+          {authStore.hasAccess && <Route path="/looks" element={<Looks/>} />}
+          {authStore.hasAccess && <Route path="/items" element={<Items/>} />}
+          {authStore.hasAccess && <Route path="/profil" element={<Profil/>} />}
           {authStore.hasAccess && (
-            <Route path="/editsettings" component={EditSettings} />
+            <Route path="/editsettings" element={<EditSettings/>} />
           )}
-          <Route path="/">
-            {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
-          </Route>
-          <Redirect to="/" />
-        </Switch>
+          {authStore.hasAccess ? (
+            <Route path="/" element={<Profil/>} />
+          ) : (
+            <Route path="/" element={<Welcome showLogin={true}/>} />
+          )}
+        </Routes>
       </div>
     </BrowserRouter>
   );

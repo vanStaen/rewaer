@@ -8,7 +8,7 @@ import { LanguageDropDown } from "../../components/LanguageDropDown/LanguageDrop
 import "./Welcome.css";
 
 export const Welcome = (props) => {
-  const [showLogin, setShowLogin] = useState(props.showLogin);
+  const [showLogin, setShowLogin] = useState(props.showLogin ?? true);
 
   return (
     <div>
