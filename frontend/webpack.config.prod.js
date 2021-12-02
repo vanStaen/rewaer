@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = {
   devtool: "source-map",
   entry: "./src/index.js",
-  mode: "development",
+  mode: "production",
   output: {
     filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, "build"),
@@ -15,9 +15,7 @@ module.exports = {
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.API_URL": process.env.NODE_ENV !== "development"
-        ? JSON.stringify("https://rewaer.com")
-        : JSON.stringify("http://localhost:5000"),
+      "process.env.API_URL": JSON.stringify('https://rewaer.com'),
     }),
   ],
   resolve: {
