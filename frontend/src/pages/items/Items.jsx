@@ -11,12 +11,13 @@ import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
 import { itemCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
+import { GhostCards } from "../../components/Cards/GhostCards/GhostCards";
 
 import "./Items.css";
 
 export const Items = observer(() => {
   const containerElement = useRef(null);
-  const missingCardForFullRow = useRef(0);
+  const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const { t } = useTranslation();
@@ -25,10 +26,15 @@ export const Items = observer(() => {
     itemsStore.loadItems();
     console.log(itemCategory);
     calculateMissingCardsForFullRow();
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+    };
   }, [
     itemsStore.isOutOfDate,
     containerElement.current,
-    missingCardForFullRow.current,
+    missingCardForFullRow,
+    calculateMissingCardsForFullRow,
   ]);
 
   const calculateMissingCardsForFullRow = useCallback(() => {
@@ -40,8 +46,9 @@ export const Items = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = itemsStore.items.length + 1; // +1 for the form
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
-    missingCardForFullRow.current =
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+    setMissingCardForFullRow(
+      numberPerRow - (numberLooks - numberFullRow * numberPerRow)
+    );
   }, [containerElement.current]);
 
   const itemList = itemsStore.items.map((item) => {
@@ -51,18 +58,6 @@ export const Items = observer(() => {
       </Col>
     );
   });
-
-  const GhostCards = () => {
-    let ghost = [];
-    for (let i = 0; i < missingCardForFullRow.current; i++) {
-      ghost.push(
-        <Col key={"ghost" + i}>
-          <div className="items__ghostCard"></div>
-        </Col>
-      );
-    }
-    return ghost;
-  };
 
   return (
     <div className="items__main">
@@ -104,7 +99,7 @@ export const Items = observer(() => {
                 <ItemForm />
               </Col>
               {itemList}
-              <GhostCards />
+              <GhostCards numberOfCards={missingCardForFullRow} />
             </Row>
           </div>
         </>

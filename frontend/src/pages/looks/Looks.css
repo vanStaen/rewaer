@@ -24,9 +24,3 @@
   width: 50%;
   text-align: right;
 }
-
-.looks__ghostCard {
-  border: 1px solid transparent;
-  width: 240px;
-  height: 385px;
-}

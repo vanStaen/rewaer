@@ -10,12 +10,13 @@ import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { lookCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
+import { GhostCards } from "../../components/Cards/GhostCards/GhostCards";
 
 import "./Looks.css";
 
 export const Looks = observer(() => {
   const containerElement = useRef(null);
-  const missingCardForFullRow = useRef(0);
+  const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const { t } = useTranslation();
@@ -24,10 +25,15 @@ export const Looks = observer(() => {
     looksStore.loadLooks();
     console.log(lookCategory);
     calculateMissingCardsForFullRow();
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+    };
   }, [
     looksStore.isOutOfDate,
     containerElement.current,
-    missingCardForFullRow.current,
+    missingCardForFullRow,
+    calculateMissingCardsForFullRow,
   ]);
 
   const calculateMissingCardsForFullRow = useCallback(() => {
@@ -39,8 +45,9 @@ export const Looks = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = looksStore.looks.length + 1; // +1 for the form
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
-    missingCardForFullRow.current =
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+    setMissingCardForFullRow(
+      numberPerRow - (numberLooks - numberFullRow * numberPerRow)
+    );
   }, [containerElement.current]);
 
   const lookList = looksStore.looks.map((look) => {
@@ -50,18 +57,6 @@ export const Looks = observer(() => {
       </Col>
     );
   });
-
-  const GhostCards = () => {
-    let ghost = [];
-    for (let i = 0; i < missingCardForFullRow.current; i++) {
-      ghost.push(
-        <Col key={"ghost" + i}>
-          <div className="looks__ghostCard"></div>
-        </Col>
-      );
-    }
-    return ghost;
-  };
 
   return (
     <div className="looks__main">
@@ -97,7 +92,7 @@ export const Looks = observer(() => {
               <LookForm />
             </Col>
             {lookList}
-            <GhostCards />
+            <GhostCards numberOfCards={missingCardForFullRow} />
           </Row>
         </div>
       )}
