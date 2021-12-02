@@ -28,7 +28,7 @@ export async function postNewItem(
           },
   };
   const response = await axios({
-    url: process.env.REACT_APP_API_URL + `/graphql`,
+    url: process.env.API_URL + `/graphql`,
     method: "POST",
     data: requestBody,
   });

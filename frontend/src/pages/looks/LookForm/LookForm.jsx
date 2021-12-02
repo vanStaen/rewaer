@@ -25,10 +25,7 @@ export const LookForm = (props) => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await axios.post(
-        process.env.REACT_APP_API_URL + `/upload`,
-        formData
-      );
+      const res = await axios.post(process.env.API_URL + `/upload`, formData);
       if (res.data) {
         // Create Look entry
         const mediaUrl = res.data.imageUrl;
