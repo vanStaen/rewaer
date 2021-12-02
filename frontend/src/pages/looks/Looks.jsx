@@ -47,7 +47,7 @@ export const Looks = observer(() => {
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
-    setMissingCardForFullRow(missingCards === numberFullRow ? 0 : missingCards);
+    setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
   }, [containerElement.current]);
 
   const lookList = looksStore.looks.map((look) => {
