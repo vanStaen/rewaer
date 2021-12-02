@@ -12,7 +12,7 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "antd": "^4.15.6",
+    "antd": "^4.17.2",
     "axios": "^0.21.1",
     "i18next": "^20.4.0",
     "i18next-browser-languagedetector": "^6.1.2",
