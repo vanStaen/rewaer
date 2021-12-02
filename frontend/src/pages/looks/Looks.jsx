@@ -45,9 +45,9 @@ export const Looks = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = looksStore.looks.length + 1; // +1 for the form
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
-    setMissingCardForFullRow(
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow)
-    );
+    const missingCards =
+      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+    setMissingCardForFullRow(missingCards === numberFullRow ? 0 : missingCards);
   }, [containerElement.current]);
 
   const lookList = looksStore.looks.map((look) => {

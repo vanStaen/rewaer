@@ -46,9 +46,9 @@ export const Items = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = itemsStore.items.length + 1; // +1 for the form
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
-    setMissingCardForFullRow(
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow)
-    );
+    const missingCards =
+      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+    setMissingCardForFullRow(missingCards === numberFullRow ? 0 : missingCards);
   }, [containerElement.current]);
 
   const itemList = itemsStore.items.map((item) => {
