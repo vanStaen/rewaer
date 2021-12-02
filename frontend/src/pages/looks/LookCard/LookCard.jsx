@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
@@ -11,6 +12,7 @@ import "./LookCard.css";
 const { Meta } = Card;
 
 export const LookCard = (props) => {
+  const { t } = useTranslation();
   const spinnerFormated = (
     <div className="card__spinner">
       <Spin size="middle" />
@@ -22,7 +24,7 @@ export const LookCard = (props) => {
     deleteLook(props.look._id)
       .then(() => {
         notification.success({
-          message: `Look deleted successfully.`,
+          message: t("looks.deletedSuccess"),
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
@@ -59,7 +61,7 @@ export const LookCard = (props) => {
               type={"look"}
             />
             <Popconfirm
-              title="Are you sure to delete this look?"
+              title={t("looks.deleteConfirm")}
               onConfirm={handleDelete}
               okText="Delete"
               cancelText="Cancel"

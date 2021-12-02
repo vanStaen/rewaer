@@ -40,6 +40,7 @@ export const SignUpForm = (props) => {
           setIsValidUsername("error");
           setErrorMsgUsername(t("login.spacesinUsername"));
         } else {
+          //eslint-disable-next-line
           const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
           if (username.match(regexEmail)) {
             setIsValidUsername("error");

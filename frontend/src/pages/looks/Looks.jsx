@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
-import { Col, Row, Spin, Tooltip } from "antd";
+import { Col, Row, Spin } from "antd";
 import { useTranslation } from "react-i18next";
-import { EditOutlined, FilterOutlined } from "@ant-design/icons";
 import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
@@ -10,6 +9,7 @@ import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { lookCategory } from "../../data/categories";
+import { ToolBar } from "../../components/ToolBar/ToolBar";
 
 import "./Looks.css";
 
@@ -78,55 +78,29 @@ export const Looks = observer(() => {
           <Spin size="large" />
         </div>
       ) : (
-            <div ref={containerElement} className="looks__container">
-              <div className="looks__toolbar">
-                <div className="looks__toolbarLeft">
-                  {looksStore.looks.length} looks
+        <div ref={containerElement} className="looks__container">
+          <div className="looks__toolbar">
+            <div className="looks__toolbarLeft">
+              {looksStore.looks.length} {t("menu.looks")}
             </div>
-                <div className="looks__toolbarRight">
-                  <Tooltip
-                    placement="topRight"
-                    title={
-                      quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
-                    }
-                  >
-                    <EditOutlined
-                      className={
-                        quickEdit
-                          ? "looks__toolbarIcon looks__toolbarIconActive"
-                          : "looks__toolbarIcon"
-                      }
-                      onClick={() => {
-                        setQuickEdit(!quickEdit);
-                      }}
-                    />
-                  </Tooltip>
-                  <Tooltip
-                    placement="topRight"
-                    title={showFilter ? t("main.hideFilter") : t("main.showFilter")}
-                  >
-                    <FilterOutlined
-                      className={
-                        showFilter
-                          ? "looks__toolbarIcon looks__toolbarIconActive"
-                          : "looks__toolbarIcon"
-                      }
-                      onClick={() => {
-                        setShowFilter(!showFilter);
-                      }}
-                    />
-                  </Tooltip>
-                </div>
-              </div>
-              <Row justify={"space-around"}>
-                <Col>
-                  <LookForm />
-                </Col>
-                {lookList}
-                <GhostCards />
-              </Row>
+            <div className="looks__toolbarRight">
+              <ToolBar
+                quickEdit={quickEdit}
+                setQuickEdit={setQuickEdit}
+                showFilter={showFilter}
+                setShowFilter={setShowFilter}
+              />
             </div>
-          )}
+          </div>
+          <Row justify={"space-around"}>
+            <Col>
+              <LookForm />
+            </Col>
+            {lookList}
+            <GhostCards />
+          </Row>
+        </div>
+      )}
     </div>
   );
 });

@@ -10,7 +10,9 @@
     "showQuickEdit": "Show quick edits",
     "hideFilter": "Hide filter panel",
     "showFilter": "Show filter panel",
-    "clickHere": "click here"
+    "clickHere": "click here",
+    "dragDropMultiple": "Drop your files here. Multiple files supported!",
+    "of": "of"
   },
   "login": {
     "newHere": "New here",
@@ -127,13 +129,23 @@
     "changesLeft": "changes still left",
     "changeUserName": "Change your username",
     "yourNewUserName": "Your new username",
-    "hasBeenSaved": "has been saved"
+    "hasBeenSaved": "has been saved",
+    "deleteAccount": "Delete account",
+    "areYouSure": "Are you sure?",
+    "willBeArchived": "Your account is now archived.",
+    "loggingToReactivate": "Login to reactivate it. If not, it will be automatically deleted in 30 days from now.",
+    "accountReactivated" : "Your account is now reactivated.",
+    "gladToHaveYouBack": "Glad to have you back!"
   },
   "items" : {
     "addItem" : "Add Item",
-    "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those."
+    "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
+    "deletedSuccess" : "Item deleted successfully!",
+    "deleteConfirm": "Are you sure to delete this item?"
   },
   "looks" : {
-    "addLook" : "Add Looks"
+    "addLook" : "Add Looks",
+    "deletedSuccess" : "Look deleted successfully!",
+    "deleteConfirm": "Are you sure to delete this look?"
   }
 }

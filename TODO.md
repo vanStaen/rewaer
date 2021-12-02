@@ -14,26 +14,18 @@
   - [ ] multiselect edits
 - [ ] Profile:
   - [ ] Show number of looks/items/friends in Profil
-  - [ ] UX: Center column with Max width 
-- [ ] Settings: 
-  - [x] Select gender
-  - [x] Trigger change password
-  - [x] Archive/Delete account
-    - [ ] Confirm box showing for 5 seconds (see kinkograph)
-    - [x] Reloging reactivate account (Archived = false)
-  - [x] Change username
-  - [ ] UX: Center column with Max width 
+  - [x] UX: Center column with Max width 
 - [ ] Use custom image component for images
+- [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
   - [ ] picture cover, not stretched
   - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
-- [ ] infinite scrolling + lazy loading
+  - [ ] Show tag favorite
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
-- [ ] Allow multi-upload and dragdrop (take from kinkograph)
 - [ ] when scrolled down, show floating add items button
 - [ ] shared items are possible (between friends)
 - [ ] When items are missing basic tags info :
@@ -125,3 +117,12 @@
 - [x] Empty cards to align last row of cards to the left 
 - [x] Bug fix: Email should be not be case sensitive 
 - [x] Account creation: check that username is not an email
+- [x] Settings: 
+  - [x] Select gender
+  - [x] Trigger change password
+  - [x] Archive/Delete account
+    - [x] Confirm box showing for 5 seconds
+    - [x] Reloging reactivate account (Archived = false)
+  - [x] Change username
+  - [x] UX: Center column with Max width 
+- [x] Items/looks : Allow multi-upload and dragdrop

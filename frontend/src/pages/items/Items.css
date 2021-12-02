@@ -25,20 +25,6 @@
   text-align: right;
 }
 
-.items__toolbarRight .items__toolbarIcon {
-  padding: 0 8px;
-  color: #aaa;
-  cursor: pointer;
-}
-
-.items__toolbarRight .items__toolbarIcon:hover {
-  color: rgba(108, 145, 125, .5);
-}
-
-.items__toolbarRight .items__toolbarIconActive {
-  color: #6C917D;
-}
-
 .items__ghostCard {
   border: 1px solid transparent;
   width: 240px;

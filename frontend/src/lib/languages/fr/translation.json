@@ -10,7 +10,9 @@
     "showQuickEdit": "Afficher le panel d'édition rapide",
     "hideFilter": "Masquer les filtres",
     "showFilter": "Afficher les filtres",
-    "clickHere": "cliquer ici"
+    "clickHere": "cliquer ici",
+    "dragDropMultiple": "Déposez vos fichiers ici!",
+    "of": "sur"
   },
   "login": {
     "newHere": "Premiére fois",
@@ -127,13 +129,23 @@
     "changesLeft": "changement encore possible",
     "changeUserName": "Changement du nom d'utilisateur",
     "yourNewUserName": "Le nouveau nom d'utilisateur",
-    "hasBeenSaved": "a été sauvegardé"
+    "hasBeenSaved": "a été sauvegardé",
+    "deleteAccount": "Supprimer le compte? ",
+    "areYouSure": "Sure?",
+    "willBeArchived": "Votre compte est maintenant archivé.",
+    "loggingToReactivate": "Connectez-vous pour le réactiver. Sinon, il sera automatiquement supprimé dans 30 jours.",
+    "accountReactivated" : "Votre compte est réactivé.",
+    "gladToHaveYouBack": "Content de vous revoir!"
   },
   "items" : {
     "addItem" : "Ajoute une piéces",
-    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter."
+    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
+    "deletedSuccess" : "Piéces supprimé avec succès!",
+    "deleteConfirm": "Êtes-vous sûr de supprimer cette piéces?"
   },
   "looks" : {
-    "addLook" : "Ajoute un look"
+    "addLook" : "Ajoute un look",
+    "deletedSuccess" : "Look supprimé avec succès!",
+    "deleteConfirm": "Êtes-vous sûr de supprimer ce look?"
   }
 }

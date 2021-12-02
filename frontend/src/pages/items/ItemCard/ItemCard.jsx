@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Card, notification, Spin, Popconfirm } from "antd";
 import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
@@ -11,6 +12,7 @@ import "./ItemCard.css";
 const { Meta } = Card;
 
 export const ItemCard = (props) => {
+  const { t } = useTranslation();
   const spinnerFormated = (
     <div className="card__spinner">
       <Spin size="middle" />
@@ -22,7 +24,7 @@ export const ItemCard = (props) => {
     deleteItem(props.item._id)
       .then(() => {
         notification.success({
-          message: `Item deleted successfully.`,
+          message: t("items.deletedSuccess"),
           placement: "bottomRight",
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
@@ -59,7 +61,7 @@ export const ItemCard = (props) => {
               type={"item"}
             />
             <Popconfirm
-              title="Are you sure to delete this item?"
+              title={t("items.deleteConfirm")}
               onConfirm={handleDelete}
               okText="Delete"
               cancelText="Cancel"

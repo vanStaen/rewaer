@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { notification, Spin } from "antd";
-import { SkinOutlined } from "@ant-design/icons";
+import { SkinOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import moment from "moment";
@@ -13,6 +13,8 @@ import "./ItemForm.css";
 export const ItemForm = (props) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
+  const [isDragDroping, setIsDragDroping] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState([0, 0]);
 
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -30,7 +32,7 @@ export const ItemForm = (props) => {
         const mediaUrlThumb = res.data.thumbUrl;
         const mediaUrlMedium = res.data.mediumUrl;
         const title = moment().format("DD.MM.YYYY");
-        // post new Look
+        // post new Item
         postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
           .then(() => {
             notification.success({
@@ -60,9 +62,51 @@ export const ItemForm = (props) => {
     }
   };
 
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragDroping(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragDroping(false);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const objectOfFiles = e.dataTransfer.files;
+    const numberOfFiles = objectOfFiles.length;
+    setUploadProgress([0, numberOfFiles]);
+    for (let i = 0; i < numberOfFiles; i++) {
+      setIsUploading(true);
+      setUploadProgress([i, numberOfFiles]);
+      if (objectOfFiles[i]) {
+        const file = objectOfFiles[i];
+        await submitHandler(file);
+      }
+    }
+    setUploadProgress([0, 0]);
+    setIsUploading(false);
+  };
+
   return (
     <Fragment>
-      <form onSubmit={submitHandler} style={{ marginBottom: "30px" }}>
+      <form
+        onSubmit={submitHandler}
+        style={
+          isDragDroping
+            ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
+            : { marginBottom: "30px" }
+        }
+      >
         <input
           type="file"
           className="inputfile"
@@ -73,16 +117,30 @@ export const ItemForm = (props) => {
         {isUploading ? (
           <label htmlFor="file">
             <Spin size="large" />
+            {uploadProgress[1] && (
+              <p className="form-upload-text" style={{ color: "#999" }}>
+                <br />
+                {uploadProgress[0] + 1} {t("main.of")} {uploadProgress[1]}
+              </p>
+            )}
           </label>
         ) : (
-          <label htmlFor="file">
+          <label
+            htmlFor="file"
+            onDrop={handleDrop}
+            onDragOver={(e) => handleDragOver(e)}
+            onDragEnter={(e) => handleDragEnter(e)}
+            onDragLeave={(e) => handleDragLeave(e)}
+          >
             <p className="form-upload-drag-icon">
-              <SkinOutlined />
+              {isDragDroping ? <FileAddOutlined /> : <SkinOutlined />}
             </p>
             <p className="form-upload-text">{t("items.addItem")}</p>
             <p className="form-upload-hint">
               {t("main.startWithPhoto")} <br />
-              {t("main.clickDragFile")}
+              {!isDragDroping
+                ? t("main.clickDragFile")
+                : t("main.dragDropMultiple")}
             </p>
           </label>
         )}
