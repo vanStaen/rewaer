@@ -4,6 +4,9 @@ const path = require("path");
 
 module.exports = {
   devtool: "source-map",
+  devServer: {
+    historyApiFallback: true,
+  },
   entry: "./src/index.js",
   mode: "production",
   output: {

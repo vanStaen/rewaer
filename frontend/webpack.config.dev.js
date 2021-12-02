@@ -4,6 +4,9 @@ const path = require("path");
 
 module.exports = {
   devtool: "source-map",
+  devServer: {
+    historyApiFallback: true,
+  },
   entry: "./src/index.js",
   mode: "development",
   output: {
@@ -15,7 +18,7 @@ module.exports = {
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify('http://localhost:5000'),
+      "process.env.API_URL": JSON.stringify("http://localhost:5000"),
     }),
   ],
   resolve: {

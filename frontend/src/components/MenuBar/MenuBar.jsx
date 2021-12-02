@@ -57,6 +57,9 @@ export const MenuBar = observer(() => {
             <NavLink to="/looks"> {t("menu.looks")}</NavLink>
           </Menu.Item>
 
+          {/* Temp, to be abke to work on it :'( */}
+          <NavLink to="/looks"> {t("menu.looks")}</NavLink>
+
           <Menu.Item
             key="items"
             icon={<SkinOutlined />}
@@ -122,9 +125,7 @@ export const MenuBar = observer(() => {
                   <NavLink to="/profile">{t("menu.profile")}</NavLink>
                 </Menu.Item>
                 <Menu.Item key="settings" icon={<SettingOutlined />}>
-                  <NavLink to="/edit_settings/">
-                    {t("menu.editSetting")}
-                  </NavLink>
+                  <NavLink to="/editsettings/">{t("menu.editSetting")}</NavLink>
                 </Menu.Item>
                 <div className="menu__customDivider"></div>
                 <Menu.Item

@@ -50,13 +50,12 @@ const App = observer(() => {
           <Route path="/emailverify/:verifyCode" component={EmailVerified} />
           <Route path="/service">"service page"</Route>
           <Route path="/privacy">"privacy page"</Route>
-          <Route path="/settings">"settings page"</Route>
           <Route path="/info" component={Info} />
           {authStore.hasAccess && <Route path="/looks" component={Looks} />}
           {authStore.hasAccess && <Route path="/items" component={Items} />}
           {authStore.hasAccess && <Route path="/profil" component={Profil} />}
           {authStore.hasAccess && (
-            <Route path="/edit_settings" component={EditSettings} />
+            <Route path="/editsettings" component={EditSettings} />
           )}
           <Route path="/" exact>
             {authStore.hasAccess ? <Profil /> : <Welcome showLogin={true} />}
