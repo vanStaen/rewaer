@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 import { Menu, Avatar, Badge, Spin } from "antd";
@@ -54,18 +54,18 @@ export const MenuBar = observer(() => {
             icon={<CameraOutlined />}
             style={{ float: "left" }}
           >
-            <NavLink to="/looks"> {t("menu.looks")}</NavLink>
+            <Link to="/looks"> {t("menu.looks")}</Link>
           </Menu.Item>
 
           {/* Temp, to be abke to work on it :'( */}
-          <NavLink to="/looks"> {t("menu.looks")}</NavLink>
+          <Link to="/looks"> {t("menu.looks")}</Link>
 
           <Menu.Item
             key="items"
             icon={<SkinOutlined />}
             style={{ float: "left" }}
           >
-            <NavLink to="/items"> {t("menu.items")}</NavLink>
+            <Link to="/items"> {t("menu.items")}</Link>
           </Menu.Item>
           <Menu.Item
             key="mail"
@@ -73,7 +73,7 @@ export const MenuBar = observer(() => {
             disabled
             style={{ float: "left" }}
           >
-            <NavLink to="/mail"> {t("menu.mail")}</NavLink>
+            <Link to="/mail"> {t("menu.mail")}</Link>
           </Menu.Item>
           <Menu.Item
             key="friends"
@@ -81,13 +81,13 @@ export const MenuBar = observer(() => {
             disabled
             style={{ float: "left" }}
           >
-            <NavLink to="/friends"> {t("menu.friends")}</NavLink>
+            <Link to="/friends"> {t("menu.friends")}</Link>
           </Menu.Item>
           <Menu.Item key="info" style={{ float: "left" }}>
-            <NavLink to="/info">
+            <Link to="/info">
               &nbsp;&nbsp;
               <QuestionOutlined />
-            </NavLink>
+            </Link>
           </Menu.Item>
 
           <SubMenu
@@ -122,10 +122,10 @@ export const MenuBar = observer(() => {
             ) : (
               <>
                 <Menu.Item key="profile" icon={<UserOutlined />}>
-                  <NavLink to="/profile">{t("menu.profile")}</NavLink>
+                  <Link to="/profile">{t("menu.profile")}</Link>
                 </Menu.Item>
                 <Menu.Item key="settings" icon={<SettingOutlined />}>
-                  <NavLink to="/editsettings/">{t("menu.editSetting")}</NavLink>
+                  <Link to="/editsettings/">{t("menu.editSetting")}</Link>
                 </Menu.Item>
                 <div className="menu__customDivider"></div>
                 <Menu.Item
