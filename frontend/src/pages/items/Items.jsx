@@ -11,7 +11,7 @@ import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
 import { itemCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
-import { GhostCards } from "../../components/Cards/GhostCards/GhostCards";
+import { GhostCard } from "../../components/GhostCard/GhostCard";
 
 import "./Items.css";
 
@@ -99,7 +99,7 @@ export const Items = observer(() => {
                 <ItemForm />
               </Col>
               {itemList}
-              <GhostCards numberOfCards={missingCardForFullRow} />
+              <GhostCard numberOfCards={missingCardForFullRow} />
             </Row>
           </div>
         </>

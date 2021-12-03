@@ -38,40 +38,35 @@ export const LookCard = (props) => {
   };
 
   return (
-    <Card
-      hoverable
-      bordered
-      style={{ width: 240, marginBottom: 30, height: 385 }}
-      cover={
-        <Image
-          alt={props.look.title}
-          src={props.look.mediaUrlMedium}
-          placeholder={spinnerFormated}
-          width={240}
-          height={320}
-        />
-      }
-    >
-      <Meta
-        title={
-          <div>
-            <EditableTitle
-              title={props.look.title}
-              id={props.look._id}
-              type={"look"}
-            />
-            <Popconfirm
-              title={t("looks.deleteConfirm")}
-              onConfirm={handleDelete}
-              okText="Delete"
-              cancelText="Cancel"
-              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-            >
-              <DeleteOutlined />
-            </Popconfirm>
-          </div>
-        }
-      />
-    </Card>
+    <>
+      <div className="lookcard__container">
+        <div
+          className="lookcard__picture"
+          //placeholder={spinnerFormated}
+          style={{
+            background: `url(${props.look.mediaUrlMedium})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div className="lookcard__meta">
+          <EditableTitle
+            title={props.look.title}
+            id={props.look._id}
+            type={"look"}
+          />
+          <Popconfirm
+            title={t("looks.deleteConfirm")}
+            onConfirm={handleDelete}
+            okText="Delete"
+            cancelText="Cancel"
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+          >
+            <DeleteOutlined />
+          </Popconfirm>
+        </div>
+      </div>
+    </>
   );
 };

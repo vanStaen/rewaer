@@ -1,9 +1,9 @@
 import React from "react";
 import { Col } from "antd";
 
-import "./GhostCards.css";
+import "./GhostCard.css";
 
-export const GhostCards = (props) => {
+export const GhostCard = (props) => {
   let ghost = [];
   for (let i = 0; i < props.numberOfCards; i++) {
     ghost.push(

@@ -10,7 +10,7 @@ import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { lookCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
-import { GhostCards } from "../../components/Cards/GhostCards/GhostCards";
+import { GhostCard } from "../../components/GhostCard/GhostCard";
 
 import "./Looks.css";
 
@@ -92,7 +92,7 @@ export const Looks = observer(() => {
               <LookForm />
             </Col>
             {lookList}
-            <GhostCards numberOfCards={missingCardForFullRow} />
+            <GhostCard numberOfCards={missingCardForFullRow} />
           </Row>
         </div>
       )}
