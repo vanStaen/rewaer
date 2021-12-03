@@ -57,7 +57,7 @@ export const MenuBar = observer(() => {
             <Link to="/looks"> {t("menu.looks")}</Link>
           </Menu.Item>
 
-          {/* Temp, to be abke to work on it :'( */}
+          {/* Temp, to be able to work on it :'( */}
           <Link to="/looks"> {t("menu.looks")}</Link>
 
           <Menu.Item
