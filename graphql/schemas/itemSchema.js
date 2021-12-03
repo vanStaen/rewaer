@@ -12,8 +12,8 @@ type Item {
     brand: String
     active: Boolean!
     favorite: Boolean!
-    createdAt: String!
-    udpatedAt: String!
+    createdAt: Float!
+    udpatedAt: Float!
     user: User
 }`;
 

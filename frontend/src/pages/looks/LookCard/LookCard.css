@@ -24,9 +24,27 @@
   opacity: 1;
 }
 
+.lookcard__actions {
+  border: 1px solid transparent;
+  position: absolute;
+  top: 0px;
+  right: -1px;
+  width: calc(20px + 14px + 2px);
+  text-align: center;
+  font-size: 17px;
+  padding: 5px 7px;
+  background-color: rgba(255,255,255, .75);
+}
+
 .lookcard__meta {
   width: 240px;
   height: calc(385px - 320px);
+  padding: 10px 15px;
+}
+
+.lookcard__meta .lookcard__date {
+  font-size: 12px;
+  color: #999;
 }
 
 .card__spinner {

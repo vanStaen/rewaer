@@ -1,6 +1,11 @@
 import React from "react";
-import { Image, Card, notification, Spin, Popconfirm } from "antd";
-import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { notification, Spin, Popconfirm } from "antd";
+import {
+  DeleteOutlined,
+  QuestionCircleOutlined,
+  HeartOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
@@ -8,8 +13,6 @@ import { looksStore } from "../looksStore";
 import { deleteLook } from "./deleteLook";
 
 import "./LookCard.css";
-
-const { Meta } = Card;
 
 export const LookCard = (props) => {
   const { t } = useTranslation();
@@ -20,7 +23,6 @@ export const LookCard = (props) => {
   );
 
   const handleDelete = () => {
-    // delete Look
     deleteLook(props.look._id)
       .then(() => {
         notification.success({
@@ -37,6 +39,8 @@ export const LookCard = (props) => {
       });
   };
 
+  const createdDate = new Date(props.look.createdAt);
+
   return (
     <>
       <div className="lookcard__container">
@@ -50,12 +54,9 @@ export const LookCard = (props) => {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
-        <div className="lookcard__meta">
-          <EditableTitle
-            title={props.look.title}
-            id={props.look._id}
-            type={"look"}
-          />
+        <div className="lookcard__actions">
+          <HeartOutlined />
+          <EditOutlined />
           <Popconfirm
             title={t("looks.deleteConfirm")}
             onConfirm={handleDelete}
@@ -65,6 +66,16 @@ export const LookCard = (props) => {
           >
             <DeleteOutlined />
           </Popconfirm>
+        </div>
+        <div className="lookcard__meta">
+          <EditableTitle
+            title={props.look.title}
+            id={props.look._id}
+            type={"look"}
+          />
+          <div className="lookcard__date">
+            {createdDate.toLocaleDateString()}
+          </div>
         </div>
       </div>
     </>
