@@ -1,14 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { Input, notification } from "antd";
+import { useTranslation } from "react-i18next";
+
 import { patchTitle } from "./patchTitle";
 import "./EditableTitle.css";
 
 export const EditableTitle = (props) => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState(
-    props.title.replace(/ /g, "").length > 23
-      ? `${props.title.replace("-", "/").replace(/ /g, "").slice(0, 23)}...`
-      : props.title.replace("-", "/").replace(/ /g, "")
+    props.title.replace(/ /g, "_").length > 20
+      ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
+      : props.title.replace("-", "/").replace(/ /g, "_")
   );
   const [isEditMode, setIsEditmode] = useState(false);
   const [editInputValue, setEditInputValue] = useState(
@@ -17,10 +20,17 @@ export const EditableTitle = (props) => {
 
   const patchTitleInDB = (title) => {
     // fetch Entries
-    patchTitle(title, props.id, props.type).catch((error) => {
-      notification.error({ description: `Unauthorized! Please login.` });
-      console.log("error", error.message);
-    });
+    patchTitle(title, props.id, props.type)
+      .then(() => {
+        notification.success({
+          message: t("main.changeSaved"),
+          placement: "bottomRight",
+        });
+      })
+      .catch((error) => {
+        notification.error({ description: `Unauthorized! Please login.` });
+        console.log("error", error.message);
+      });
   };
 
   const handleEditChange = (e) => {
@@ -36,12 +46,12 @@ export const EditableTitle = (props) => {
   const handleEditConfirm = () => {
     patchTitleInDB(editInputValue.replace("/", "-"));
     setTitle(
-      editInputValue.replace(/ /g, "").length > 23
+      editInputValue.replace(/ /g, "_").length > 23
         ? `${editInputValue
             .replace("-", "/")
-            .replace(/ /g, "")
+            .replace(/ /g, "_")
             .slice(0, 23)}...`
-        : editInputValue.replace("-", "/").replace(/ /g, "")
+        : editInputValue.replace("-", "/").replace(/ /g, "_")
     );
     setIsEditmode(false);
   };

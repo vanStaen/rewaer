@@ -12,7 +12,8 @@
     "showFilter": "Afficher les filtres",
     "clickHere": "cliquer ici",
     "dragDropMultiple": "Déposez vos fichiers ici!",
-    "of": "sur"
+    "of": "sur",
+    "changeSaved": "Modification enregistré avec succès"
   },
   "login": {
     "newHere": "Premiére fois",

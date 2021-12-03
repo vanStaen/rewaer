@@ -7,7 +7,7 @@ export async function patchTitle(title, id, type) {
   if (type === "look") {
     requestBody = {
       query: `
-                mutation ($id: Int, $title: String) {
+                mutation ($id: ID!, $title: String) {
                     updateLook(
                         lookId: $id
                         lookInput: { title: $title }
@@ -24,7 +24,7 @@ export async function patchTitle(title, id, type) {
   } else if (type === "item") {
     requestBody = {
       query: `
-                mutation ($id: Int, $title: String) {
+                mutation ($id: ID!, $title: String) {
                     updateItem(
                         itemId: $id
                         itemInput: { title: $title }
@@ -34,8 +34,8 @@ export async function patchTitle(title, id, type) {
                 }
                 `,
       variables: {
-        id: id,
-        title: title,
+        id,
+        title,
       },
     };
   } else {
@@ -43,7 +43,7 @@ export async function patchTitle(title, id, type) {
   }
 
   const response = await axios({
-    url: process.env.API_URL,
+    url: process.env.API_URL + `/graphql/`,
     method: "POST",
     data: requestBody,
   });

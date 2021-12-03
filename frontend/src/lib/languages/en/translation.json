@@ -12,7 +12,8 @@
     "showFilter": "Show filter panel",
     "clickHere": "click here",
     "dragDropMultiple": "Drop your files here. Multiple files supported!",
-    "of": "of"
+    "of": "of",
+    "changeSaved": "Change successfully saved"
   },
   "login": {
     "newHere": "New here",

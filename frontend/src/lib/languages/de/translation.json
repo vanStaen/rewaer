@@ -12,7 +12,8 @@
     "showFilter": "Filterpanel einblenden",
     "clickHere": "hier klicken",
     "dragDropMultiple": "Dateien hier dropen. Mehrere Dateien unterstützt!",
-    "of": "von"
+    "of": "von",
+    "changeSaved": "Anderung erfolgreich gespeichert"
   },
   "login": {
     "newHere": "Erstes mal hier",
