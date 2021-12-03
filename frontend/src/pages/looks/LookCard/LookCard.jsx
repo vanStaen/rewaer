@@ -1,11 +1,12 @@
 import React from "react";
-import { notification, Spin, Popconfirm } from "antd";
+import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
-  QuestionCircleOutlined,
+  ExclamationCircleOutlined,
   HeartOutlined,
   EditOutlined,
   EyeOutlined,
+  StarOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -40,30 +41,38 @@ export const LookCard = (props) => {
       });
   };
 
+  const elementPicture = document.getElementById(
+    `card_look_picture_${props.look._id}`
+  );
+
+  const elementLogoOver = document.getElementById(
+    `card_look_logoover_${props.look._id}`
+  );
+
+  const elementActionsContainer = document.getElementById(
+    `card_look_actionsContainer_${props.look._id}`
+  );
+
+  const elementActionsLogo = document.getElementById(
+    `card_look_actionsLogo_${props.look._id}`
+  );
+
   const onMouseEnterHandler = () => {
-    document.getElementById(
-      `card_look_picture_${props.look._id}`
-    ).style.filter = "brightness(50%)";
-    document.getElementById(
-      `card_look_logoover_${props.look._id}`
-    ).style.display = "block";
-    setTimeout(() => {
-      document.getElementById(
-        `card_look_actions_${props.look._id}`
-      ).style.display = "block";
-    }, 300);
+    elementPicture.style.filter = "brightness(50%)";
+    elementLogoOver.style.display = "block";
+    elementActionsContainer.style.width = "34px";
+    elementActionsContainer.style.opacity = ".85";
+    elementActionsLogo.style.display = "block";
   };
 
   const onMouseLeaveHandler = () => {
-    document.getElementById(
-      `card_look_actions_${props.look._id}`
-    ).style.display = "none";
-    document.getElementById(
-      `card_look_picture_${props.look._id}`
-    ).style.filter = "brightness(100%)";
-    document.getElementById(
-      `card_look_logoover_${props.look._id}`
-    ).style.display = "none";
+    elementPicture.style.filter = "brightness(100%)";
+    elementLogoOver.style.display = "none";
+    elementActionsContainer.style.width = "0px";
+    setTimeout(() => {
+      elementActionsLogo.style.display = "none";
+      elementActionsContainer.style.opacity = "0";
+    }, 100);
   };
 
   const createdDate = new Date(props.look.createdAt);
@@ -94,20 +103,31 @@ export const LookCard = (props) => {
           <div style={{ fontSize: "12px" }}>Detail View</div>
         </div>
         <div
-          className="lookcard__actions"
-          id={`card_look_actions_${props.look._id}`}
+          className="lookcard__actionsContainer"
+          id={`card_look_actionsContainer_${props.look._id}`}
         >
-          <HeartOutlined />
-          <EditOutlined />
-          <Popconfirm
-            title={t("looks.deleteConfirm")}
-            onConfirm={handleDelete}
-            okText="Delete"
-            cancelText="Cancel"
-            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+          <div
+            className="lookcard__actionsLogo"
+            id={`card_look_actionsLogo_${props.look._id}`}
           >
-            <DeleteOutlined />
-          </Popconfirm>
+            <Tooltip placement="left" title="Mark as favorite">
+              <StarOutlined className="iconGold" />
+            </Tooltip>
+            <Tooltip placement="left" title="Edit this Look">
+              <EditOutlined className="iconGreen" />
+            </Tooltip>
+            <Tooltip placement="left" title="Delete this Look">
+              <Popconfirm
+                title={t("looks.deleteConfirm")}
+                onConfirm={handleDelete}
+                okText="Delete"
+                cancelText="Cancel"
+                icon={<ExclamationCircleOutlined style={{ color: "black" }} />}
+              >
+                <DeleteOutlined className="iconRed" />
+              </Popconfirm>
+            </Tooltip>
+          </div>
         </div>
         <div className="lookcard__meta">
           <EditableTitle

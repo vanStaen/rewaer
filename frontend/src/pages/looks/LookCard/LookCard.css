@@ -21,6 +21,7 @@
   width: 240px;
   height: 320px;
   opacity: 1;
+  transition: filter .5s;
 }
 
 .lookcard__logoover {
@@ -35,17 +36,20 @@
   display: none;
 }
 
-.lookcard__actions {
+.lookcard__actionsContainer {
   border: 1px solid transparent;
   position: absolute;
   top: 0px;
   right: -1px;
-  width: calc(20px + 14px + 2px);
+  width: 0px;
   text-align: center;
   font-size: 17px;
   padding: 5px 7px;
-  background-color: rgba(255,255,255, .85);
-  display: none;
+  background-color: rgb(255,255,255);
+  opacity: 0;
+  transition: width 0.3s;
+  display: block;
+  border-bottom-left-radius: 2px;
 }
 
 .lookcard__meta {
@@ -65,4 +69,20 @@
   padding-top: 160px;
   width: 240px;
   height: 385px;
+}
+
+.lookcard__actionsLogo {
+  display: none; 
+}
+
+.lookcard__actionsContainer .iconRed:hover {
+  color: rgba(180, 0, 0, 1);;
+}
+
+.lookcard__actionsContainer .iconGold:hover {
+  color: rgba(241, 196, 15, 1);;
+}
+
+.lookcard__actionsContainer .iconGreen:hover {
+  color: #6C917D;
 }

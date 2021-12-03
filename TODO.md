@@ -18,9 +18,10 @@
 - [ ] Use custom image component for images
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
-  - [ ] picture cover, not stretched
+  - [x] picture cover, not stretched
   - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
   - [ ] Show tag favorite
+  - [ ] Show like-counter 
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
@@ -37,6 +38,7 @@
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
 - [ ] BE: update lastSeenOnline with every request 
+- [ ] Drag and Drop to sort Looks and Items
 
 ## Completed ✓
 
