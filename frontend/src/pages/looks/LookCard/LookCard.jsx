@@ -5,6 +5,7 @@ import {
   QuestionCircleOutlined,
   HeartOutlined,
   EditOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -39,13 +40,44 @@ export const LookCard = (props) => {
       });
   };
 
+  const onMouseEnterHandler = () => {
+    document.getElementById(
+      `card_look_picture_${props.look._id}`
+    ).style.filter = "brightness(50%)";
+    document.getElementById(
+      `card_look_logoover_${props.look._id}`
+    ).style.display = "block";
+    setTimeout(() => {
+      document.getElementById(
+        `card_look_actions_${props.look._id}`
+      ).style.display = "block";
+    }, 300);
+  };
+
+  const onMouseLeaveHandler = () => {
+    document.getElementById(
+      `card_look_actions_${props.look._id}`
+    ).style.display = "none";
+    document.getElementById(
+      `card_look_picture_${props.look._id}`
+    ).style.filter = "brightness(100%)";
+    document.getElementById(
+      `card_look_logoover_${props.look._id}`
+    ).style.display = "none";
+  };
+
   const createdDate = new Date(props.look.createdAt);
 
   return (
     <>
-      <div className="lookcard__container">
+      <div
+        className="lookcard__container"
+        onMouseEnter={onMouseEnterHandler}
+        onMouseLeave={onMouseLeaveHandler}
+      >
         <div
           className="lookcard__picture"
+          id={`card_look_picture_${props.look._id}`}
           //placeholder={spinnerFormated}
           style={{
             background: `url(${props.look.mediaUrlMedium})`,
@@ -54,7 +86,17 @@ export const LookCard = (props) => {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
-        <div className="lookcard__actions">
+        <div
+          className="lookcard__logoover"
+          id={`card_look_logoover_${props.look._id}`}
+        >
+          <EyeOutlined />
+          <div style={{ fontSize: "12px" }}>Detail View</div>
+        </div>
+        <div
+          className="lookcard__actions"
+          id={`card_look_actions_${props.look._id}`}
+        >
           <HeartOutlined />
           <EditOutlined />
           <Popconfirm

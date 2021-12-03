@@ -11,7 +11,6 @@
   box-sizing: border-box;
   transition: box-shadow 0.3s, border-color 0.3s;
   cursor: pointer;
-  /*background-color: black;*/
 }
 
 .lookcard__container:hover {  
@@ -24,6 +23,18 @@
   opacity: 1;
 }
 
+.lookcard__logoover {
+  width: 240px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f0f0f0;
+  text-align: center; 
+  padding-top: 120px;
+  font-size: 27px;
+  display: none;
+}
+
 .lookcard__actions {
   border: 1px solid transparent;
   position: absolute;
@@ -33,7 +44,8 @@
   text-align: center;
   font-size: 17px;
   padding: 5px 7px;
-  background-color: rgba(255,255,255, .75);
+  background-color: rgba(255,255,255, .85);
+  display: none;
 }
 
 .lookcard__meta {
