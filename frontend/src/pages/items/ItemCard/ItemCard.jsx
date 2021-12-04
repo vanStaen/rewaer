@@ -42,19 +42,19 @@ export const ItemCard = (props) => {
       });
   };
   const elementPicture = document.getElementById(
-    `item_look_picture_${props.item._id}`
+    `item_card_picture_${props.item._id}`
   );
 
   const elementLogoOver = document.getElementById(
-    `item_look_logoover_${props.item._id}`
+    `item_card_logoover_${props.item._id}`
   );
 
   const elementActionsContainer = document.getElementById(
-    `item_look_actionsContainer_${props.item._id}`
+    `item_card_actionsContainer_${props.item._id}`
   );
 
   const elementActionsLogo = document.getElementById(
-    `item_look_actionsLogo_${props.item._id}`
+    `item_card_actionsLogo_${props.item._id}`
   );
 
   const onMouseEnterHandler = () => {
@@ -86,7 +86,7 @@ export const ItemCard = (props) => {
       >
         <div
           className="itemcard__picture"
-          id={`item_look_picture_${props.item._id}`}
+          id={`item_card_picture_${props.item._id}`}
           //placeholder={spinnerFormated}
           style={{
             background: `url(${props.item.mediaUrlMedium})`,
@@ -97,30 +97,29 @@ export const ItemCard = (props) => {
         ></div>
         <div
           className="itemcard__logoover"
-          id={`item_look_logoover_${props.item._id}`}
+          id={`item_card_logoover_${props.item._id}`}
         >
           <EyeOutlined />
           <div style={{ fontSize: "12px" }}>Detail View</div>
         </div>
         <div
           className="itemcard__actionsContainer"
-          id={`item_look_actionsContainer_${props.item._id}`}
+          id={`item_card_actionsContainer_${props.item._id}`}
         >
           <div
             className="itemcard__actionsLogo"
-            id={`item_look_actionsLogo_${props.item._id}`}
+            id={`item_card_actionsLogo_${props.item._id}`}
           >
-            <Tooltip placement="left" title="Mark as favorite">
+            <Tooltip placement="left" title={t("main.markAsFAvorite")}>
               <StarOutlined className="iconGold" />
             </Tooltip>
-            <Tooltip placement="left" title="Edit this Look">
+            <Tooltip placement="left" title={t("main.edit")}>
               <EditOutlined className="iconGreen" />
             </Tooltip>
-            <Tooltip placement="left" title="Delete this Look">
+            <Tooltip placement="left" title={t("main.delete")}>
               <Popconfirm
-                title={t("looks.deleteConfirm")}
+                title={t("items.deleteConfirm")}
                 onConfirm={handleDelete}
-                okText="Delete"
                 cancelText="Cancel"
                 icon={<ExclamationCircleOutlined style={{ color: "black" }} />}
               >
@@ -133,7 +132,7 @@ export const ItemCard = (props) => {
           <EditableTitle
             title={props.item.title}
             id={props.item._id}
-            type={"look"}
+            type={"item"}
           />
           <div className="itemcard__date">
             {createdDate.toLocaleDateString()}

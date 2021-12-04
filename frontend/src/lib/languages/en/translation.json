@@ -13,7 +13,10 @@
     "clickHere": "click here",
     "dragDropMultiple": "Drop your files here. Multiple files supported!",
     "of": "of",
-    "changeSaved": "Change successfully saved"
+    "changeSaved": "Change successfully saved",
+    "markAsFavorite": "Mark as favorite",
+    "delete": "Delete",
+    "edit": "Edit"
   },
   "login": {
     "newHere": "New here",

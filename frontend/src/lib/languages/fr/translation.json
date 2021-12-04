@@ -13,7 +13,10 @@
     "clickHere": "cliquer ici",
     "dragDropMultiple": "Déposez vos fichiers ici!",
     "of": "sur",
-    "changeSaved": "Modification enregistré avec succès"
+    "changeSaved": "Modification enregistré avec succès",
+    "markAsFavorite": "Marquer coomme favoris",
+    "delete": "Supprimer",
+    "edit": "Editer"
   },
   "login": {
     "newHere": "Premiére fois",

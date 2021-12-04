@@ -110,13 +110,13 @@ export const LookCard = (props) => {
             className="lookcard__actionsLogo"
             id={`card_look_actionsLogo_${props.look._id}`}
           >
-            <Tooltip placement="left" title="Mark as favorite">
+            <Tooltip placement="left" title={t("main.markAsFAvorite")}>
               <StarOutlined className="iconGold" />
             </Tooltip>
-            <Tooltip placement="left" title="Edit this Look">
+            <Tooltip placement="left" title={t("main.edit")}>
               <EditOutlined className="iconGreen" />
             </Tooltip>
-            <Tooltip placement="left" title="Delete this Look">
+            <Tooltip placement="left" title={t("main.delete")}>
               <Popconfirm
                 title={t("looks.deleteConfirm")}
                 onConfirm={handleDelete}
