@@ -110,7 +110,7 @@ export const LookCard = (props) => {
             className="lookcard__actionsLogo"
             id={`card_look_actionsLogo_${props.look._id}`}
           >
-            <Tooltip placement="left" title={t("main.markAsFAvorite")}>
+            <Tooltip placement="left" title={t("main.markAsFavorite")}>
               <StarOutlined className="iconGold" />
             </Tooltip>
             <Tooltip placement="left" title={t("main.edit")}>

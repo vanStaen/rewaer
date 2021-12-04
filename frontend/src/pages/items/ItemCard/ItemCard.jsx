@@ -110,7 +110,7 @@ export const ItemCard = (props) => {
             className="itemcard__actionsLogo"
             id={`item_card_actionsLogo_${props.item._id}`}
           >
-            <Tooltip placement="left" title={t("main.markAsFAvorite")}>
+            <Tooltip placement="left" title={t("main.markAsFavorite")}>
               <StarOutlined className="iconGold" />
             </Tooltip>
             <Tooltip placement="left" title={t("main.edit")}>

@@ -19,8 +19,11 @@
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
   - [x] picture cover, not stretched
-  - [ ] Show <ExclamationCircleOutlined /> on items not fully taged
-  - [ ] Show tag favorite
+  - [x] Editable title
+  - [x] Tool panel
+  - [x] Link zu detail view
+  - [ ] <ExclamationCircleOutlined /> on items not fully taged
+  - [ ] Tag as favorite
   - [ ] Show like-counter 
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
