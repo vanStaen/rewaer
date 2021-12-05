@@ -7,12 +7,14 @@ import {
   EditOutlined,
   EyeOutlined,
   StarOutlined,
+  StarFilled,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
-import { deleteLook } from "./deleteLook";
+import { deleteLook } from "../actions/deleteLook";
+import { updateFavorite } from "../actions/updateFavorite";
 
 import "./LookCard.css";
 
@@ -75,6 +77,10 @@ export const LookCard = (props) => {
     }, 100);
   };
 
+  const favoriteHandler = () => {
+    updateFavorite(props.look._id, !props.look.favorite);
+  };
+
   const createdDate = new Date(props.look.createdAt);
 
   return (
@@ -111,7 +117,11 @@ export const LookCard = (props) => {
             id={`card_look_actionsLogo_${props.look._id}`}
           >
             <Tooltip placement="left" title={t("main.markAsFavorite")}>
-              <StarOutlined className="iconGold" />
+              {props.look.favorite ? (
+                <StarFilled className="iconGold" onClick={favoriteHandler} />
+              ) : (
+                <StarOutlined className="iconGold" onClick={favoriteHandler} />
+              )}
             </Tooltip>
             <Tooltip placement="left" title={t("main.edit")}>
               <EditOutlined className="iconGreen" />
