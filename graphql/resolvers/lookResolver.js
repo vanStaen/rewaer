@@ -18,6 +18,9 @@ exports.lookResolver = {
     return await Look.findAll({
       where: { userId: req.userId },
       include: User,
+      order: [
+        ['favorite', 'DESC'],
+    ],
     });
   },
 

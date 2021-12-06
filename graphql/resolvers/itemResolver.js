@@ -18,6 +18,9 @@ exports.itemResolver = {
     return await Item.findAll({
       where: { userId: req.userId },
       include: User,
+      order: [
+        ['favorite', 'DESC'],
+    ],
     });
   },
 
