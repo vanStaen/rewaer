@@ -32,23 +32,23 @@ export const MenuBar = observer(() => {
     <>
       <div className="menu__spacer"></div>
       <div className="menu__main">
+        <span
+          className="menu__RewaerMotto"
+          style={{
+            color: "#6C917D",
+            float: "left",
+            margin: "0px 20px 0px 20px",
+          }}
+        >
+          Rewaer, {t("main.motto")}
+        </span>
+
         <Menu
           onClick={handleClick}
           selectedKeys={[menuSelected]}
           mode="horizontal"
           style={{ margin: "5px 0 0 0" }}
         >
-          <span
-            className="menu__RewaerMotto"
-            style={{
-              color: "#6C917D",
-              float: "left",
-              margin: "0px 20px 0px 20px",
-            }}
-          >
-            Rewaer, {t("main.motto")}
-          </span>
-
           <Menu.Item
             key="looks"
             icon={<CameraOutlined />}
@@ -57,8 +57,8 @@ export const MenuBar = observer(() => {
             <Link to="/looks"> {t("menu.looks")}</Link>
           </Menu.Item>
 
-          {/* Temp, to be able to work on it :'( */}
-          <Link to="/looks"> {t("menu.looks")}</Link>
+          {/* Temp, to be able to work on it :'(
+          <Link to="/looks"> {t("menu.looks")}</Link> */}
 
           <Menu.Item
             key="items"
@@ -67,6 +67,7 @@ export const MenuBar = observer(() => {
           >
             <Link to="/items"> {t("menu.items")}</Link>
           </Menu.Item>
+
           <Menu.Item
             key="mail"
             icon={<MailOutlined />}
@@ -75,6 +76,7 @@ export const MenuBar = observer(() => {
           >
             <Link to="/mail"> {t("menu.mail")}</Link>
           </Menu.Item>
+
           <Menu.Item
             key="friends"
             icon={<TeamOutlined />}
@@ -83,6 +85,7 @@ export const MenuBar = observer(() => {
           >
             <Link to="/friends"> {t("menu.friends")}</Link>
           </Menu.Item>
+
           <Menu.Item key="info" style={{ float: "left" }}>
             <Link to="/info">
               &nbsp;&nbsp;
@@ -124,9 +127,11 @@ export const MenuBar = observer(() => {
                 <Menu.Item key="profile" icon={<UserOutlined />}>
                   <Link to="/profile">{t("menu.profile")}</Link>
                 </Menu.Item>
+
                 <Menu.Item key="settings" icon={<SettingOutlined />}>
                   <Link to="/editsettings/">{t("menu.editSetting")}</Link>
                 </Menu.Item>
+
                 <div className="menu__customDivider"></div>
                 <Menu.Item
                   key="logout"

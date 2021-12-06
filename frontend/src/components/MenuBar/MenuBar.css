@@ -12,6 +12,10 @@
     background-color: #fff;
 }
 
+.menu__RewaerMotto {
+    padding-top: 17px;
+}
+
 .menu__customDivider {
     border-bottom: 1px solid #f0f0f0;
     margin: 10px;
