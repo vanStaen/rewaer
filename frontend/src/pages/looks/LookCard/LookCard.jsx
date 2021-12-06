@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -14,12 +14,13 @@ import { useTranslation } from "react-i18next";
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
 import { deleteLook } from "../actions/deleteLook";
-import { updateFavorite } from "../actions/updateFavorite";
+import { updateFavoriteLook } from "../actions/updateFavoriteLook";
 
 import "./LookCard.css";
 
 export const LookCard = (props) => {
   const { t } = useTranslation();
+  const [isFavorited, setIsFavorited] = useState(props.look.favorite);
   const spinnerFormated = (
     <div className="card__spinner">
       <Spin size="middle" />
@@ -78,7 +79,8 @@ export const LookCard = (props) => {
   };
 
   const favoriteHandler = () => {
-    updateFavorite(props.look._id, !props.look.favorite);
+    updateFavoriteLook(props.look._id, !isFavorited);
+    setIsFavorited(!isFavorited);
   };
 
   const createdDate = new Date(props.look.createdAt);
@@ -101,6 +103,14 @@ export const LookCard = (props) => {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
+        {isFavorited && (
+          <div
+            className="lookcard__favorite"
+            id={`card_look_favorite_${props.look._id}`}
+          >
+            <StarFilled onClick={favoriteHandler} />
+          </div>
+        )}
         <div
           className="lookcard__logoover"
           id={`card_look_logoover_${props.look._id}`}
@@ -117,7 +127,7 @@ export const LookCard = (props) => {
             id={`card_look_actionsLogo_${props.look._id}`}
           >
             <Tooltip placement="left" title={t("main.markAsFavorite")}>
-              {props.look.favorite ? (
+              {isFavorited ? (
                 <StarFilled className="iconGold" onClick={favoriteHandler} />
               ) : (
                 <StarOutlined className="iconGold" onClick={favoriteHandler} />

@@ -75,14 +75,22 @@
   display: none; 
 }
 
-.lookcard__actionsContainer .iconRed:hover {
+.lookcard__favorite { 
+  position: absolute;
+  font-size: 19px;
+  top: 4px;
+  right: 7px;
+  color: rgba(241, 196, 15, 1);
+}
+
+.lookcard__container .iconRed:hover {
   color: rgba(180, 0, 0, 1);;
 }
 
-.lookcard__actionsContainer .iconGold:hover {
-  color: rgba(241, 196, 15, 1);;
+.lookcard__container .iconGold:hover {
+  color: rgba(241, 196, 15, 1);
 }
 
-.lookcard__actionsContainer .iconGreen:hover {
+.lookcard__container .iconGreen:hover {
   color: #6C917D;
 }

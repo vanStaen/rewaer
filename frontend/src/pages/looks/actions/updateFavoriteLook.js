@@ -1,15 +1,16 @@
 import axios from "axios";
 
-export async function updateFavorite(id, favorite) {
+export async function updateFavoriteLook(id, favorite) {
   const requestBody = {
     query: `
             mutation ($id: ID!, $favorite: Boolean) {
-              updateItem(
-                itemId: $id,
-                itemInput: { 
+              updateLook(
+                lookId: $id,
+                lookInput: { 
                       favorite: $favorite 
                       }
               ) {
+                _id,
                 favorite
               }
             }
