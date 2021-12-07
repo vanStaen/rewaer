@@ -21,8 +21,6 @@ export async function updateFavoriteLook(id, favorite) {
     },
   };
 
-  console.log(requestBody);
-
   const response = await axios({
     url: process.env.API_URL + `/graphql`,
     method: "POST",

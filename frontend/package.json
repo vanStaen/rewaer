@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "jest": "^27.4.3"
   }
 }
