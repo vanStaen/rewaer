@@ -19,6 +19,7 @@ exports.lookResolver = {
       where: { userId: req.userId },
       include: User,
       order: [
+        ['active', 'DESC'],
         ['favorite', 'DESC'],
     ],
     });

@@ -133,8 +133,13 @@ export const ItemCard = (props) => {
             title={props.item.title}
             id={props.item._id}
             type={"item"}
+            active={props.item.active}
           />
-          <div className="itemcard__date">
+          <div
+            className={
+              props.item.active ? "itemcard__date" : "itemcard__date striked"
+            }
+          >
             {createdDate.toLocaleDateString()}
           </div>
         </div>

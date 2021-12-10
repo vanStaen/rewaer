@@ -4,7 +4,6 @@ import { Input, notification } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { patchTitle } from "./patchTitle";
-import "./EditableTitle.css";
 
 export const EditableTitle = (props) => {
   const { t } = useTranslation();
@@ -70,9 +69,9 @@ export const EditableTitle = (props) => {
         />
       ) : (
         <div
-          className="Page__title"
+          className={props.active ? "Page__title" : "Page__title striked"}
           onDoubleClick={() => {
-            setIsEditmode(true);
+            props.active && setIsEditmode(true);
           }}
         >
           {title}
