@@ -1,16 +1,27 @@
 import axios from "axios";
 
-export async function deleteLook(id) {
+export async function archiveLook(id, active) {
   const requestBody = {
     query: `
-            mutation ($id: ID!) {
-                deleteLook(lookId: $id) 
+            mutation ($id: ID!, $active: Boolean) {
+              updateLook(
+                lookId: $id,
+                lookInput: { 
+                      active: $active 
+                      }
+              ) {
+                _id,
+                active
+              }
             }
             `,
     variables: {
       id,
+      active,
     },
   };
+
+  console.log(requestBody);
 
   const response = await axios({
     url: process.env.API_URL + `/graphql`,

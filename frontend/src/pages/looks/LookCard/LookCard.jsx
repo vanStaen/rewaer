@@ -4,6 +4,7 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   HeartOutlined,
+  StopOutlined,
   EditOutlined,
   EyeOutlined,
   StarOutlined,
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
+import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
 
@@ -26,6 +28,22 @@ export const LookCard = (props) => {
       <Spin size="middle" />
     </div>
   );
+
+  const handleArchive = (value) => {
+    archiveLook(props.look._id, value)
+      .then(() => {
+        notification.success({
+          message: t("looks.archiveSuccess"),
+          placement: "bottomRight",
+          icon: <StopOutlined style={{ color: "green" }} />,
+        });
+        looksStore.setIsOutOfDate(true);
+      })
+      .catch((error) => {
+        notification.error({ message: `Error!`, placement: "bottomRight" });
+        console.log(error.message);
+      });
+  };
 
   const handleDelete = () => {
     deleteLook(props.look._id)
@@ -136,15 +154,15 @@ export const LookCard = (props) => {
             <Tooltip placement="left" title={t("main.edit")}>
               <EditOutlined className="iconGreen" />
             </Tooltip>
-            <Tooltip placement="left" title={t("main.delete")}>
+            <Tooltip placement="left" title={t("main.archive")}>
               <Popconfirm
-                title={t("looks.deleteConfirm")}
-                onConfirm={handleDelete}
-                okText="Delete"
-                cancelText="Cancel"
+                title={t("looks.archiveConfirm")}
+                onConfirm={() => handleArchive(false)}
+                okText={t("main.archive")}
+                cancelText={t("main.cancel")}
                 icon={<ExclamationCircleOutlined style={{ color: "black" }} />}
               >
-                <DeleteOutlined className="iconRed" />
+                <StopOutlined className="iconRed" />
               </Popconfirm>
             </Tooltip>
           </div>

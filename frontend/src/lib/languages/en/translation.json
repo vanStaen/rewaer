@@ -16,7 +16,9 @@
     "changeSaved": "Change successfully saved",
     "markAsFavorite": "Mark as favorite",
     "delete": "Delete",
-    "edit": "Edit"
+    "archive": "Archive",
+    "edit": "Edit",
+    "cancel": "Cancel"
   },
   "login": {
     "newHere": "New here",
@@ -145,11 +147,15 @@
     "addItem" : "Add Item",
     "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
     "deletedSuccess" : "Item deleted successfully!",
-    "deleteConfirm": "Are you sure to delete this item?"
+    "deleteConfirm": "Delete this item forever?",
+    "archiveSuccess" : "Item archived successfully!",
+    "archiveConfirm": "You want to archive this item?"
   },
   "looks" : {
     "addLook" : "Add Looks",
     "deletedSuccess" : "Look deleted successfully!",
-    "deleteConfirm": "Are you sure to delete this look?"
+    "deleteConfirm": "Delete this look forever?",
+    "archiveSuccess" : "Look archived successfully!",
+    "archiveConfirm": "You want to archive this look?"
   }
 }
