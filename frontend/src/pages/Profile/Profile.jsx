@@ -10,9 +10,9 @@ import { userStore } from "../../stores/userStore/userStore";
 import { Avatar } from "./Avatar/Avatar";
 import { archiveAccount } from "./EditSettings/DeleteAccountButton/archiveAccount";
 
-import "./Profil.css";
+import "./Profile.css";
 
-export const Profil = observer(() => {
+export const Profile = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {

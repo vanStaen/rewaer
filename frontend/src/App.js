@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import { Looks } from "./pages/Looks/Looks";
 import { Items } from "./pages/Items/Items";
 import { Info } from "./pages/Info/Info";
-import { Profil } from "./pages/Profil/Profil";
-import { EditSettings } from "./pages/Profil/EditSettings/EditSettings";
+import { Profile } from "./pages/Profile/Profile";
+import { EditSettings } from "./pages/Profile/EditSettings/EditSettings";
 import { Welcome } from "./pages/Welcome/Welcome";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
@@ -46,12 +46,12 @@ const App = observer(() => {
           <Route path="/info" element={<Info/>} />
           {authStore.hasAccess && <Route path="/looks" element={<Looks/>} />}
           {authStore.hasAccess && <Route path="/items" element={<Items/>} />}
-          {authStore.hasAccess && <Route path="/profil" element={<Profil/>} />}
+          {authStore.hasAccess && <Route path="/profile" element={<Profile/>} />}
           {authStore.hasAccess && (
             <Route path="/editsettings" element={<EditSettings/>} />
           )}
           {authStore.hasAccess ? (
-            <Route path="/" element={<Profil/>} />
+            <Route path="/" element={<Profile/>} />
           ) : (
             <Route path="/" element={<Welcome showLogin={true}/>} />
           )}

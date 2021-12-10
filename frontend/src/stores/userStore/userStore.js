@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserInfo } from "./getUserInfo";
-import { updateSettings } from "../../pages/Profil/EditSettings/updateSettings";
+import { updateSettings } from "../../pages/Profile/EditSettings/updateSettings";
 
 export class UserStore {
   isLoading = true;

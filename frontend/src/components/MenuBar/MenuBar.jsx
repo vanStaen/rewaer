@@ -57,9 +57,6 @@ export const MenuBar = observer(() => {
             <Link to="/looks"> {t("menu.looks")}</Link>
           </Menu.Item>
 
-          {/* Temp, to be able to work on it :'(
-          <Link to="/looks"> {t("menu.looks")}</Link> */}
-
           <Menu.Item
             key="items"
             icon={<SkinOutlined />}
