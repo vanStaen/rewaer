@@ -18,7 +18,8 @@
     "delete": "Delete",
     "archive": "Archive",
     "edit": "Edit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "restore": "Restore"
   },
   "login": {
     "newHere": "New here",
@@ -149,13 +150,17 @@
     "deletedSuccess" : "Item deleted successfully!",
     "deleteConfirm": "Delete this item forever?",
     "archiveSuccess" : "Item archived successfully!",
-    "archiveConfirm": "You want to archive this item?"
+    "archiveConfirm": "You want to archive this item?",
+    "restoreSuccess" : "Item restored successfully!",
+    "restoreConfirm": "Restore this item?"
   },
   "looks" : {
     "addLook" : "Add Looks",
     "deletedSuccess" : "Look deleted successfully!",
     "deleteConfirm": "Delete this look forever?",
     "archiveSuccess" : "Look archived successfully!",
-    "archiveConfirm": "You want to archive this look?"
+    "archiveConfirm": "You want to archive this look?",
+    "restoreSuccess" : "Look restored successfully!",
+    "restoreConfirm": "Restore this look?"
   }
 }

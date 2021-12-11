@@ -16,7 +16,10 @@
     "changeSaved": "Modification enregistré avec succès",
     "markAsFavorite": "Marquer coomme favoris",
     "delete": "Supprimer",
-    "edit": "Editer"
+    "edit": "Editer",
+    "archive": "Archiver",
+    "cancel": "Annuler",
+    "restore": "Restaurer"
   },
   "login": {
     "newHere": "Premiére fois",
@@ -145,11 +148,19 @@
     "addItem" : "Ajoute une piéces",
     "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
     "deletedSuccess" : "Piéces supprimé avec succès!",
-    "deleteConfirm": "Êtes-vous sûr de supprimer cette piéces?"
+    "deleteConfirm": "Êtes-vous sûr de supprimer cette piéce?",
+    "archiveSuccess" : "Item archivé avec succès!",
+    "archiveConfirm": "Souhaitez-vous archiver cette piéce?",
+    "restoreSuccess" : "Piéce restauré avec succès!",
+    "restoreConfirm": "Souhaitez-vous restaurer cette piéce?"
   },
   "looks" : {
     "addLook" : "Ajoute un look",
     "deletedSuccess" : "Look supprimé avec succès!",
-    "deleteConfirm": "Êtes-vous sûr de supprimer ce look?"
+    "deleteConfirm": "Êtes-vous sûr de supprimer ce look?",
+    "archiveSuccess" : "Look archivé avec succès!",
+    "archiveConfirm": "Souhaitez-vous archiver ce look?",
+    "restoreSuccess" : "Look restauré avec succès!",
+    "restoreConfirm": "Souhaitez-vous restaurer ce look?"
   }
 }

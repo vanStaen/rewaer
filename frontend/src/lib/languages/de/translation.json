@@ -16,7 +16,10 @@
     "changeSaved": "Anderung erfolgreich gespeichert",
     "markAsFavorite": "Als Favorite merken",
     "delete": "Löschen",
-    "edit": "Editieren"
+    "edit": "Editieren",
+    "archive": "Archivieren",
+    "cancel": "Abbrechen",
+    "restore": "Wiederherstellen"
   },
   "login": {
     "newHere": "Erstes mal hier",
@@ -142,13 +145,21 @@
   },
   "items" : {
     "addItem" : "Item hinzufügen",
-    "missingTagsAlert" : "Bei einigen Artikeln fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
+    "missingTagsAlert" : "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
     "deletedSuccess" : "Item erfolgreich gelöscht!",
-    "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?"
+    "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?",
+    "archiveSuccess" : "Item erfolgreich archiviert!",
+    "archiveConfirm": "Möchten Sie diesen Item archivieren?",
+    "restoreSuccess" : "Item erfolgreich weiderhergestellt!",
+    "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?"
   },
   "looks" : {
     "addLook" : "Look hinzufügen",
     "deletedSuccess" : "Look erfolgreich gelöscht!",
-    "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?"
+    "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?",
+    "archiveSuccess" : "Look erfolgreich archiviert!",
+    "archiveConfirm": "Möchten Sie diesen Look archivieren?",
+    "restoreSuccess" : "Look erfolgreich weiderhergestellt!",
+    "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?"
   }
 }
