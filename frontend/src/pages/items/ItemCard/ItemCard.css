@@ -37,6 +37,20 @@
   display: none;
 }
 
+.itemcard__archived{
+  width: 240px;
+  height: 320px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f0f0f0;
+  text-align: center; 
+  padding-top: 125px;
+  font-size: 27px;
+  background-color: rgba(109, 145, 126, .5);
+  display: block;
+}
+
 .itemcard__actionsContainer {
   border: 1px solid transparent;
   position: absolute;

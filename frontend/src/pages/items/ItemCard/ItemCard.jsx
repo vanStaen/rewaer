@@ -1,31 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   HeartOutlined,
+  UndoOutlined,
+  StopOutlined,
   EditOutlined,
   EyeOutlined,
   StarOutlined,
+  StarFilled,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
-import { deleteItem } from "./deleteItem";
+import { archiveItem } from "../actions/archiveItem";
+import { deleteItem } from "../actions/deleteItem";
+import { updateFavoriteItem } from "../actions/updateFavoriteItem";
 
 import "./ItemCard.css";
 
 export const ItemCard = (props) => {
   const { t } = useTranslation();
+  const [isFavorited, setIsFavorited] = useState(props.item.favorite);
   const spinnerFormated = (
     <div className="item__spinner">
       <Spin size="middle" />
     </div>
   );
+  const handleArchive = (value) => {
+    archiveItem(props.item._id, value)
+      .then(() => {
+        notification.success({
+          message: value
+            ? t("items.restoreSuccess")
+            : t("items.archiveSuccess"),
+          placement: "bottomRight",
+          icon: value ? (
+            <UndoOutlined style={{ color: "green" }} />
+          ) : (
+            <StopOutlined style={{ color: "green" }} />
+          ),
+        });
+        itemsStore.setIsOutOfDate(true);
+      })
+      .catch((error) => {
+        notification.error({ message: `Error!`, placement: "bottomRight" });
+        console.log(error.message);
+      });
+  };
 
   const handleDelete = () => {
-    // delete Item
     deleteItem(props.item._id)
       .then(() => {
         notification.success({
@@ -41,20 +67,21 @@ export const ItemCard = (props) => {
         console.log(error.message);
       });
   };
+
   const elementPicture = document.getElementById(
-    `item_card_picture_${props.item._id}`
+    `card_item_picture_${props.item._id}`
   );
 
   const elementLogoOver = document.getElementById(
-    `item_card_logoover_${props.item._id}`
+    `card_item_logoover_${props.item._id}`
   );
 
   const elementActionsContainer = document.getElementById(
-    `item_card_actionsContainer_${props.item._id}`
+    `card_item_actionsContainer_${props.item._id}`
   );
 
   const elementActionsLogo = document.getElementById(
-    `item_card_actionsLogo_${props.item._id}`
+    `card_item_actionsLogo_${props.item._id}`
   );
 
   const onMouseEnterHandler = () => {
@@ -66,13 +93,26 @@ export const ItemCard = (props) => {
   };
 
   const onMouseLeaveHandler = () => {
-    elementPicture.style.filter = "brightness(100%)";
-    elementLogoOver.style.display = "none";
-    elementActionsContainer.style.width = "0px";
-    setTimeout(() => {
-      elementActionsLogo.style.display = "none";
-      elementActionsContainer.style.opacity = "0";
-    }, 100);
+    if (props.item.active) {
+      elementPicture.style.filter = "brightness(100%)";
+      elementLogoOver.style.display = "none";
+      elementActionsContainer.style.width = "0px";
+      setTimeout(() => {
+        elementActionsLogo.style.display = "none";
+        elementActionsContainer.style.opacity = "0";
+      }, 100);
+    } else {
+      elementActionsContainer.style.width = "0px";
+      setTimeout(() => {
+        elementActionsLogo.style.display = "none";
+        elementActionsContainer.style.opacity = "0";
+      }, 100);
+    }
+  };
+
+  const favoriteHandler = () => {
+    updateFavoriteItem(props.item._id, !isFavorited);
+    setIsFavorited(!isFavorited);
   };
 
   const createdDate = new Date(props.item.createdAt);
@@ -86,7 +126,7 @@ export const ItemCard = (props) => {
       >
         <div
           className="itemcard__picture"
-          id={`item_card_picture_${props.item._id}`}
+          id={`card_item_picture_${props.item._id}`}
           //placeholder={spinnerFormated}
           style={{
             background: `url(${props.item.mediaUrlMedium})`,
@@ -95,37 +135,102 @@ export const ItemCard = (props) => {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
-        <div
-          className="itemcard__logoover"
-          id={`item_card_logoover_${props.item._id}`}
-        >
-          <EyeOutlined />
-          <div style={{ fontSize: "12px" }}>Detail View</div>
-        </div>
+        {isFavorited && props.item.active && (
+          <div
+            className="itemcard__favorite"
+            id={`card_item_favorite_${props.item._id}`}
+          >
+            <StarFilled onClick={favoriteHandler} />
+          </div>
+        )}
+        {props.item.active ? (
+          <div
+            className="itemcard__logoover"
+            id={`card_item_logoover_${props.item._id}`}
+          >
+            <EyeOutlined />
+            <div style={{ fontSize: "12px" }}>Detail View</div>
+          </div>
+        ) : (
+          <div
+            className="itemcard__archived"
+            id={`card_item_logoover_${props.item._id}`}
+          >
+            <StopOutlined />
+            <div style={{ fontSize: "12px" }}>Archived</div>
+          </div>
+        )}
+
         <div
           className="itemcard__actionsContainer"
-          id={`item_card_actionsContainer_${props.item._id}`}
+          id={`card_item_actionsContainer_${props.item._id}`}
         >
           <div
             className="itemcard__actionsLogo"
-            id={`item_card_actionsLogo_${props.item._id}`}
+            id={`card_item_actionsLogo_${props.item._id}`}
           >
-            <Tooltip placement="left" title={t("main.markAsFavorite")}>
-              <StarOutlined className="iconGold" />
-            </Tooltip>
-            <Tooltip placement="left" title={t("main.edit")}>
-              <EditOutlined className="iconGreen" />
-            </Tooltip>
-            <Tooltip placement="left" title={t("main.delete")}>
-              <Popconfirm
-                title={t("items.deleteConfirm")}
-                onConfirm={handleDelete}
-                cancelText="Cancel"
-                icon={<ExclamationCircleOutlined style={{ color: "black" }} />}
-              >
-                <DeleteOutlined className="iconRed" />
-              </Popconfirm>
-            </Tooltip>
+            {props.item.active ? (
+              <>
+                <Tooltip placement="left" title={t("main.markAsFavorite")}>
+                  {isFavorited ? (
+                    <StarFilled
+                      className="iconGold"
+                      onClick={favoriteHandler}
+                    />
+                  ) : (
+                    <StarOutlined
+                      className="iconGold"
+                      onClick={favoriteHandler}
+                    />
+                  )}
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.edit")}>
+                  <EditOutlined className="iconGreen" />
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.archive")}>
+                  <Popconfirm
+                    title={t("items.archiveConfirm")}
+                    onConfirm={() => handleArchive(false)}
+                    okText={t("main.archive")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <StopOutlined className="iconRed" />
+                  </Popconfirm>
+                </Tooltip>
+              </>
+            ) : (
+              <>
+                <Tooltip placement="left" title={t("main.restore")}>
+                  <Popconfirm
+                    title={t("items.restoreConfirm")}
+                    onConfirm={() => handleArchive(true)}
+                    okText={t("main.restore")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <UndoOutlined className="iconGreen" />
+                  </Popconfirm>
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.delete")}>
+                  <Popconfirm
+                    title={t("items.deleteConfirm")}
+                    onConfirm={handleDelete}
+                    okText={t("main.delete")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <DeleteOutlined className="iconRed" />
+                  </Popconfirm>
+                </Tooltip>
+              </>
+            )}
           </div>
         </div>
         <div className="itemcard__meta">

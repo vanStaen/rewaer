@@ -1,23 +1,23 @@
 import axios from "axios";
 
-export async function archiveLook(id, active) {
+export async function updateFavoriteItem(id, favorite) {
   const requestBody = {
     query: `
-            mutation ($id: ID!, $active: Boolean) {
-              updateLook(
-                lookId: $id,
-                lookInput: { 
-                      active: $active 
+            mutation ($id: ID!, $favorite: Boolean) {
+              updateItem(
+                itemId: $id,
+                itemInput: { 
+                      favorite: $favorite 
                       }
               ) {
                 _id,
-                active
+                favorite
               }
             }
             `,
     variables: {
       id,
-      active,
+      favorite,
     },
   };
 

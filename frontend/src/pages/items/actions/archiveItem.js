@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export async function archiveLook(id, active) {
+export async function archiveItem(id, active) {
   const requestBody = {
     query: `
             mutation ($id: ID!, $active: Boolean) {
-              updateLook(
-                lookId: $id,
-                lookInput: { 
+              updateItem(
+                itemId: $id,
+                itemInput: { 
                       active: $active 
                       }
               ) {
