@@ -24,7 +24,11 @@
   - [x] Link zu detail view
   - [ ] <ExclamationCircleOutlined /> on items not fully taged
   - [ ] Tag as favorite
+    - [ ] Use a heart icon instead of star
+  - [x] archive/restore feature
   - [ ] Show like-counter 
+    - [ ] Use Thumbs up for like
+    - [ ] Use Thumb down for dislike
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
@@ -42,6 +46,7 @@
   - [ ] fashion revolution
 - [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
+- [ ] Settings: Show archived items/looks
 
 ## Completed ✓
 
