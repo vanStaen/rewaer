@@ -37,6 +37,14 @@
   display: none;
 }
 
+.itemcard__favorite { 
+  position: absolute;
+  font-size: 19px;
+  top: 4px;
+  right: 7px;
+  color: rgba(191, 64, 64, .75);
+}
+
 .itemcard__archived{
   width: 240px;
   height: 320px;
@@ -91,11 +99,11 @@
 }
 
 .itemcard__actionsContainer .iconRed:hover {
-  color: rgba(180, 0, 0, 1);;
+  color: rgba(180, 0, 0, 1);
 }
 
 .itemcard__actionsContainer .iconGold:hover {
-  color: rgba(241, 196, 15, 1);;
+  color: rgba(241, 196, 15, 1);
 }
 
 .itemcard__actionsContainer .iconGreen:hover {

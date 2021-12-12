@@ -3,13 +3,13 @@ import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
-  HeartOutlined,
   UndoOutlined,
   StopOutlined,
   EditOutlined,
   EyeOutlined,
-  StarOutlined,
-  StarFilled,
+  HeartOutlined,
+  HeartFilled,
+  HeartTwoTone,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -140,7 +140,7 @@ export const ItemCard = (props) => {
             className="itemcard__favorite"
             id={`card_item_favorite_${props.item._id}`}
           >
-            <StarFilled onClick={favoriteHandler} />
+            <HeartTwoTone twoToneColor="#B20000" />
           </div>
         )}
         {props.item.active ? (
@@ -173,13 +173,13 @@ export const ItemCard = (props) => {
               <>
                 <Tooltip placement="left" title={t("main.markAsFavorite")}>
                   {isFavorited ? (
-                    <StarFilled
-                      className="iconGold"
+                    <HeartFilled
+                      className="iconRed"
                       onClick={favoriteHandler}
                     />
                   ) : (
-                    <StarOutlined
-                      className="iconGold"
+                    <HeartOutlined
+                      className="iconRed"
                       onClick={favoriteHandler}
                     />
                   )}

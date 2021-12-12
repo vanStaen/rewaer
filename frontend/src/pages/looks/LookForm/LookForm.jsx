@@ -117,12 +117,10 @@ export const LookForm = (props) => {
         {isUploading ? (
           <label htmlFor="file">
             <Spin size="large" />
-            {uploadProgress[1] && (
-              <p className="form-upload-text" style={{ color: "#999" }}>
-                <br />
-                {uploadProgress[0] + 1} {t("main.of")} {uploadProgress[1]}
-              </p>
-            )}
+            <p className="form-upload-text" style={{ color: "#999" }}>
+              <br />
+              {uploadProgress[0] + 1} {t("main.of")} {uploadProgress[1]}
+            </p>
           </label>
         ) : (
           <label

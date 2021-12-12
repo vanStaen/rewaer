@@ -94,11 +94,11 @@
   font-size: 19px;
   top: 4px;
   right: 7px;
-  color: rgba(241, 196, 15, 1);
+  color: rgba(191, 64, 64, .75);
 }
 
 .lookcard__container .iconRed:hover {
-  color: rgba(180, 0, 0, 1);;
+  color: rgba(180, 0, 0, 1);
 }
 
 .lookcard__container .iconGold:hover {

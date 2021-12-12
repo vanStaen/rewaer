@@ -23,8 +23,7 @@
   - [x] Tool panel
   - [x] Link zu detail view
   - [ ] <ExclamationCircleOutlined /> on items not fully taged
-  - [ ] Tag as favorite
-    - [ ] Use a heart icon instead of star
+  - [x] Tag as favorite (heart icon)
   - [x] archive/restore feature
   - [ ] Show like-counter 
     - [ ] Use Thumbs up for like
