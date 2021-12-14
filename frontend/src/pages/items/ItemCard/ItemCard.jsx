@@ -140,7 +140,7 @@ export const ItemCard = (props) => {
             className="itemcard__favorite"
             id={`card_item_favorite_${props.item._id}`}
           >
-            <HeartTwoTone twoToneColor="#B20000" />
+            <HeartFilled className="iconRed" />
           </div>
         )}
         {props.item.active ? (

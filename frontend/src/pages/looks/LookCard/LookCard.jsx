@@ -5,7 +5,6 @@ import {
   ExclamationCircleOutlined,
   HeartFilled,
   HeartOutlined,
-  HeartTwoTone,
   UndoOutlined,
   StopOutlined,
   EditOutlined,
@@ -141,7 +140,7 @@ export const LookCard = (props) => {
             className="lookcard__favorite"
             id={`card_look_favorite_${props.look._id}`}
           >
-            <HeartTwoTone twoToneColor="#B20000" />
+            <HeartFilled className="iconRed" />
           </div>
         )}
         {props.look.active ? (
