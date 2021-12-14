@@ -157,7 +157,7 @@ export const ItemCard = (props) => {
             id={`card_item_logoover_${props.item._id}`}
           >
             <StopOutlined />
-            <div style={{ fontSize: "12px" }}>Archived</div>
+            <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
           </div>
         )}
 

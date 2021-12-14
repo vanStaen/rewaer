@@ -18,6 +18,7 @@
     "delete": "Löschen",
     "edit": "Editieren",
     "archive": "Archivieren",
+    "archived": "Archiviert",
     "cancel": "Abbrechen",
     "restore": "Wiederherstellen"
   },
@@ -160,6 +161,7 @@
     "archiveSuccess" : "Look erfolgreich archiviert!",
     "archiveConfirm": "Möchten Sie diesen Look archivieren?",
     "restoreSuccess" : "Look erfolgreich weiderhergestellt!",
-    "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?"
+    "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?",
+    "detailView": "Detail Ansicht"
   }
 }

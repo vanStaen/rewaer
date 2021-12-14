@@ -17,6 +17,7 @@
     "markAsFavorite": "Mark as favorite",
     "delete": "Delete",
     "archive": "Archive",
+    "archived": "Archived",
     "edit": "Edit",
     "cancel": "Cancel",
     "restore": "Restore"
@@ -161,6 +162,7 @@
     "archiveSuccess" : "Look archived successfully!",
     "archiveConfirm": "You want to archive this look?",
     "restoreSuccess" : "Look restored successfully!",
-    "restoreConfirm": "Restore this look?"
+    "restoreConfirm": "Restore this look?",
+    "detailView": "Detail view"
   }
 }

@@ -18,6 +18,7 @@
     "delete": "Supprimer",
     "edit": "Editer",
     "archive": "Archiver",
+    "archived": "Archivé",
     "cancel": "Annuler",
     "restore": "Restaurer"
   },
@@ -161,6 +162,7 @@
     "archiveSuccess" : "Look archivé avec succès!",
     "archiveConfirm": "Souhaitez-vous archiver ce look?",
     "restoreSuccess" : "Look restauré avec succès!",
-    "restoreConfirm": "Souhaitez-vous restaurer ce look?"
+    "restoreConfirm": "Souhaitez-vous restaurer ce look?",
+    "detailView": "Vue detailée"
   }
 }

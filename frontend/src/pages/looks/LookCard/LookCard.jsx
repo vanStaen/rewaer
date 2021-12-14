@@ -149,7 +149,7 @@ export const LookCard = (props) => {
             id={`card_look_logoover_${props.look._id}`}
           >
             <EyeOutlined />
-            <div style={{ fontSize: "12px" }}>Detail View</div>
+            <div style={{ fontSize: "12px" }}>{t("looks.detailView")}</div>
           </div>
         ) : (
           <div
@@ -157,7 +157,7 @@ export const LookCard = (props) => {
             id={`card_look_logoover_${props.look._id}`}
           >
             <StopOutlined />
-            <div style={{ fontSize: "12px" }}>Archived</div>
+            <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
           </div>
         )}
 
