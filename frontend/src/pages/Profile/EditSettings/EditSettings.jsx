@@ -4,7 +4,6 @@ import { Divider, Switch, Radio, Tooltip, notification } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { MenuBar } from "../../../components/MenuBar/MenuBar";
 import { postSendRecoverLink } from "../../../components/PasswordRecover/postSendRecoverLink";
 import { userStore } from "../../../stores/userStore/userStore";
 import { updateSettings } from "./updateSettings";
@@ -67,7 +66,6 @@ export const EditSettings = observer(() => {
 
   return (
     <div className="EditSettings__main">
-      <MenuBar />
       <div className="EditSettings__container">
         <div className="EditSettings__containerLeft">{null}</div>
         <div className="EditSettings__containerCenter">

@@ -13,6 +13,7 @@ import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
 import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
+import { MenuBar } from "./components/MenuBar/MenuBar";
 
 import "../src/lib/i18n";
 
@@ -40,20 +41,23 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
+        <MenuBar />
         <Routes>
-          <Route path="/recoverpwd/:key" element={<NewPassword/>} />
-          <Route path="/emailverify/:verifyCode" element={<EmailVerified/>} />
-          <Route path="/info" element={<Info/>} />
-          {authStore.hasAccess && <Route path="/looks" element={<Looks/>} />}
-          {authStore.hasAccess && <Route path="/items" element={<Items/>} />}
-          {authStore.hasAccess && <Route path="/profile" element={<Profile/>} />}
+          <Route path="/recoverpwd/:key" element={<NewPassword />} />
+          <Route path="/emailverify/:verifyCode" element={<EmailVerified />} />
+          <Route path="/info" element={<Info />} />
+          {authStore.hasAccess && <Route path="/looks" element={<Looks />} />}
+          {authStore.hasAccess && <Route path="/items" element={<Items />} />}
           {authStore.hasAccess && (
-            <Route path="/editsettings" element={<EditSettings/>} />
+            <Route path="/profile" element={<Profile />} />
+          )}
+          {authStore.hasAccess && (
+            <Route path="/editsettings" element={<EditSettings />} />
           )}
           {authStore.hasAccess ? (
-            <Route path="/" element={<Profile/>} />
+            <Route path="/" element={<Profile />} />
           ) : (
-            <Route path="/" element={<Welcome showLogin={true}/>} />
+            <Route path="/" element={<Welcome showLogin={true} />} />
           )}
         </Routes>
       </div>

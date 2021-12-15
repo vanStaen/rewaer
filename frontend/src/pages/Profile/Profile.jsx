@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Spin, notification } from "antd";
 import { MehOutlined } from "@ant-design/icons";
-
 import { useTranslation } from "react-i18next";
 
-import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { userStore } from "../../stores/userStore/userStore";
 import { Avatar } from "./Avatar/Avatar";
 import { archiveAccount } from "./EditSettings/DeleteAccountButton/archiveAccount";
@@ -40,7 +38,6 @@ export const Profile = observer(() => {
 
   return (
     <div className="profil__main">
-      <MenuBar />
       {userStore.isLoading ? (
         <div className="spinner">
           <Spin size="large" />

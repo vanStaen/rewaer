@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
-import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
@@ -61,7 +60,6 @@ export const Items = observer(() => {
 
   return (
     <div className="items__main">
-      <MenuBar />
       {itemsStore.error !== null ? (
         <div className="spinner">
           {itemsStore.error}
