@@ -69,23 +69,19 @@ export const LookCard = (props) => {
       });
   };
 
-  const elementPicture = document.getElementById(
-    `card_look_picture_${props.look._id}`
-  );
-
-  const elementLogoOver = document.getElementById(
-    `card_look_logoover_${props.look._id}`
-  );
-
-  const elementActionsContainer = document.getElementById(
-    `card_look_actionsContainer_${props.look._id}`
-  );
-
-  const elementActionsLogo = document.getElementById(
-    `card_look_actionsLogo_${props.look._id}`
-  );
-
   const onMouseEnterHandler = () => {
+    const elementPicture = document.getElementById(
+      `card_look_picture_${props.look._id}`
+    );
+    const elementLogoOver = document.getElementById(
+      `card_look_logoover_${props.look._id}`
+    );
+    const elementActionsContainer = document.getElementById(
+      `card_look_actionsContainer_${props.look._id}`
+    );
+    const elementActionsLogo = document.getElementById(
+      `card_look_actionsLogo_${props.look._id}`
+    );
     elementPicture.style.filter = "brightness(50%)";
     elementLogoOver.style.display = "block";
     elementActionsContainer.style.width = "34px";
@@ -94,6 +90,18 @@ export const LookCard = (props) => {
   };
 
   const onMouseLeaveHandler = () => {
+    const elementPicture = document.getElementById(
+      `card_look_picture_${props.look._id}`
+    );
+    const elementLogoOver = document.getElementById(
+      `card_look_logoover_${props.look._id}`
+    );
+    const elementActionsContainer = document.getElementById(
+      `card_look_actionsContainer_${props.look._id}`
+    );
+    const elementActionsLogo = document.getElementById(
+      `card_look_actionsLogo_${props.look._id}`
+    );
     if (props.look.active) {
       elementPicture.style.filter = "brightness(100%)";
       elementLogoOver.style.display = "none";
@@ -149,7 +157,8 @@ export const LookCard = (props) => {
             className="lookcard__logoover"
             id={`card_look_logoover_${props.look._id}`}
             onClick={() => {
-              props.setSelectedLookId(props.look._id);
+              onMouseLeaveHandler();
+              props.setSelectedLook(props.look);
             }}
           >
             <EyeOutlined />

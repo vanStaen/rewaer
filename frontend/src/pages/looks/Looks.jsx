@@ -19,7 +19,7 @@ export const Looks = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [selectedLookId, setSelectedLookId] = useState(null);
+  const [selectedLook, setSelectedLook] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const Looks = observer(() => {
   const lookList = looksStore.looks.map((look) => {
     return (
       <Col key={look._id}>
-        <LookCard look={look} setSelectedLookId={setSelectedLookId} />
+        <LookCard look={look} setSelectedLook={setSelectedLook} />
       </Col>
     );
   });
@@ -72,8 +72,13 @@ export const Looks = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : selectedLookId ? (
-        <LookDetail setSelectedLookId={setSelectedLookId} />
+      ) : selectedLook ? (
+        <div ref={containerElement} className="looks__container">
+          <LookDetail
+            selectedLook={selectedLook}
+            setSelectedLook={setSelectedLook}
+          />
+        </div>
       ) : (
         <div ref={containerElement} className="looks__container">
           <div className="looks__toolbar">
