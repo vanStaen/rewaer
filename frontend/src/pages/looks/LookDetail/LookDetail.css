@@ -1,9 +1,29 @@
-.lookdetail__picture {
+.lookdetail__imageWrap {
+    position: relative;
+    overflow: hidden;
     margin-left: 72px;
+    width: 480px;
+    height: 640px;  
+    border-radius: 2px;
+    border: 1px solid #f0f0f0; 
+}
+
+.lookdetail__imageWrap .lookdetail__picture {
+    z-index: 10;
     width: 480px;
     height: 640px;
     opacity: 1;
-    transition: filter .5s;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.lookdetail__imageWrap .lookdetail__pictureBlur{
+    position: absolute;
+    z-index: -10;
+    width: 480px;
+    height: 640px;
+    filter: blur(10px);
 }
 
 .lookdetail__header {
@@ -17,7 +37,7 @@
 }
 
 .lookdetail__headerTitleId {
-    color: #C0C0C0;
+    color: #c0c0c0;
 }
 
 .lookdetail__arrowIcon {

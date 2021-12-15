@@ -32,16 +32,25 @@ export const LookDetail = (props) => {
         </div>
       </div>
 
-      <div
-        className="lookdetail__picture"
-        id={`selected_look_picture_${props.selectedLook._id}`}
-        style={{
-          background: `url(${props.selectedLook.mediaUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      ></div>
+      <div class="lookdetail__imageWrap">
+        <div
+          className="lookdetail__pictureBlur"
+          id={`selected_look_picture_${props.selectedLook._id}`}
+          style={{
+            background: `url(${props.selectedLook.mediaUrlMedium})`,
+          }}
+        ></div>
+        <div
+          className="lookdetail__picture"
+          id={`selected_look_picture_${props.selectedLook._id}`}
+          style={{
+            background: `url(${props.selectedLook.mediaUrlMedium})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+      </div>
     </>
   );
 };
