@@ -147,6 +147,7 @@
     "gladToHaveYouBack": "Content de vous revoir!"
   },
   "items" : {
+    "item": "piéce",
     "addItem" : "Ajoute une piéces",
     "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
     "deletedSuccess" : "Piéces supprimé avec succès!",
@@ -157,6 +158,7 @@
     "restoreConfirm": "Souhaitez-vous restaurer cette piéce?"
   },
   "looks" : {
+    "look": "look",
     "addLook" : "Ajoute un look",
     "deletedSuccess" : "Look supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer ce look?",

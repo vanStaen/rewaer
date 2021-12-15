@@ -146,6 +146,7 @@
     "gladToHaveYouBack": "Schön, dass Sie wieder da sind!"
   },
   "items" : {
+    "item": "item",
     "addItem" : "Item hinzufügen",
     "missingTagsAlert" : "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
     "deletedSuccess" : "Item erfolgreich gelöscht!",
@@ -156,6 +157,7 @@
     "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?"
   },
   "looks" : {
+    "look": "look",
     "addLook" : "Look hinzufügen",
     "deletedSuccess" : "Look erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?",

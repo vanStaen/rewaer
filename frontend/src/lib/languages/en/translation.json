@@ -147,6 +147,7 @@
     "gladToHaveYouBack": "Glad to have you back!"
   },
   "items" : {
+    "item": "item",
     "addItem" : "Add Item",
     "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
     "deletedSuccess" : "Item deleted successfully!",
@@ -157,6 +158,7 @@
     "restoreConfirm": "Restore this item?"
   },
   "looks" : {
+    "look": "look",
     "addLook" : "Add Looks",
     "deletedSuccess" : "Look deleted successfully!",
     "deleteConfirm": "Delete this look forever?",

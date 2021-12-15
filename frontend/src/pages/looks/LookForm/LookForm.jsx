@@ -119,7 +119,8 @@ export const LookForm = (props) => {
             <Spin size="large" />
             <p className="form-upload-text" style={{ color: "#999" }}>
               <br />
-              {uploadProgress[0] + 1} {t("main.of")} {uploadProgress[1]}
+              {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
+              {uploadProgress[1]}
             </p>
           </label>
         ) : (

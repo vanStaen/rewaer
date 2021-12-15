@@ -73,7 +73,7 @@ export const EditableTitle = (props) => {
         <div
           className={props.active ? "Page__title" : "Page__title striked"}
           onDoubleClick={() => {
-            props.active && setIsEditmode(true);
+            setIsEditmode(true);
           }}
         >
           {title}
