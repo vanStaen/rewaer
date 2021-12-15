@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
-import { MenuBar } from "../../components/MenuBar/MenuBar";
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { lookCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 import { GhostCard } from "../../components/GhostCard/GhostCard";
+import { LookDetail } from "./LookDetail/LookDetail";
 
 import "./Looks.css";
 
@@ -19,6 +19,7 @@ export const Looks = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
+  const [selectedLookId, setSelectedLookId] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -53,14 +54,13 @@ export const Looks = observer(() => {
   const lookList = looksStore.looks.map((look) => {
     return (
       <Col key={look._id}>
-        <LookCard look={look} />
+        <LookCard look={look} setSelectedLookId={setSelectedLookId} />
       </Col>
     );
   });
 
   return (
     <div className="looks__main">
-      <MenuBar />
       {looksStore.error !== null ? (
         <div className="spinner">
           {looksStore.error}
@@ -72,6 +72,8 @@ export const Looks = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
+      ) : selectedLookId ? (
+        <LookDetail setSelectedLookId={setSelectedLookId} />
       ) : (
         <div ref={containerElement} className="looks__container">
           <div className="looks__toolbar">

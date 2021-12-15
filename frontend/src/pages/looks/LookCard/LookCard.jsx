@@ -23,6 +23,7 @@ import "./LookCard.css";
 export const LookCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
+
   const spinnerFormated = (
     <div className="card__spinner">
       <Spin size="middle" />
@@ -147,6 +148,9 @@ export const LookCard = (props) => {
           <div
             className="lookcard__logoover"
             id={`card_look_logoover_${props.look._id}`}
+            onClick={() => {
+              props.setSelectedLookId(props.look._id);
+            }}
           >
             <EyeOutlined />
             <div style={{ fontSize: "12px" }}>{t("looks.detailView")}</div>
