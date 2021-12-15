@@ -20,7 +20,8 @@
     "archive": "Archivieren",
     "archived": "Archiviert",
     "cancel": "Abbrechen",
-    "restore": "Wiederherstellen"
+    "restore": "Wiederherstellen",
+    "back": "Zurück"
   },
   "login": {
     "newHere": "Erstes mal hier",

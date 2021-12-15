@@ -12,12 +12,14 @@ export const LookDetail = (props) => {
   return (
     <>
       <div className="lookdetail__header">
-        <ArrowLeftOutlined
-          className="lookdetail__arrowIcon"
-          onClick={() => {
-            props.setSelectedLook(null);
-          }}
-        />
+        <Tooltip placement="bottomRight" title={t("main.back")}>
+          <ArrowLeftOutlined
+            className="lookdetail__arrowIcon"
+            onClick={() => {
+              props.setSelectedLook(null);
+            }}
+          />
+        </Tooltip>
         <div className="lookdetail__headerTitle">
           <span className="lookdetail__headerTitleId">
             {props.selectedLook._id}
