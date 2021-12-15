@@ -47,7 +47,6 @@
 - [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Settings: Show archived items/looks
-- [ ] If old Title = new Title, then no udpate
 - [ ] Detail View Item
 - [ ] Detail View Looks
 
@@ -139,3 +138,4 @@
   - [x] Change username
   - [x] UX: Center column with Max width 
 - [x] Items/looks : Allow multi-upload and dragdrop
+- [x] BugFix: If old Title = new Title, then no update

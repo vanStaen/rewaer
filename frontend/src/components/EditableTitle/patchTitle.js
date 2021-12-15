@@ -56,7 +56,6 @@ export async function patchTitle(title, id, type) {
     throw new Error("Unauthenticated!");
   }
 
-  console.log(response);
-
+  //console.log(response);
   return response;
 }

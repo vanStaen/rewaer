@@ -9,6 +9,7 @@ import "./EditableTitle.css";
 
 export const EditableTitle = (props) => {
   const { t } = useTranslation();
+  const [originalTitle, setOriginalTitle] = useState(props.title);
   const [title, setTitle] = useState(
     props.title.replace(/ /g, "_").length > 20
       ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
@@ -20,18 +21,20 @@ export const EditableTitle = (props) => {
   );
 
   const patchTitleInDB = (title) => {
-    // fetch Entries
-    patchTitle(title, props.id, props.type)
-      .then(() => {
-        notification.success({
-          message: t("main.changeSaved"),
-          placement: "bottomRight",
+    if (title !== originalTitle) {
+      patchTitle(title, props.id, props.type)
+        .then(() => {
+          notification.success({
+            message: t("main.changeSaved"),
+            placement: "bottomRight",
+          });
+          setOriginalTitle(title);
+        })
+        .catch((error) => {
+          notification.error({ description: `Unauthorized! Please login.` });
+          console.log("error", error.message);
         });
-      })
-      .catch((error) => {
-        notification.error({ description: `Unauthorized! Please login.` });
-        console.log("error", error.message);
-      });
+    }
   };
 
   const handleEditChange = (e) => {
@@ -41,7 +44,6 @@ export const EditableTitle = (props) => {
   const handleEditCancel = () => {
     setIsEditmode(false);
     setEditInputValue(props.title.replace("-", "/"));
-    console.log("cancel");
   };
 
   const handleEditConfirm = () => {
