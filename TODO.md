@@ -13,8 +13,9 @@
   - [ ] Filtering
   - [ ] multiselect edits
 - [ ] Profile:
-  - [ ] Show number of looks/items/friends in Profil
   - [x] UX: Center column with Max width 
+  - [ ] Subpage with headers showing Looks and Items
+    - [ ] simplified version of cards, with comment and liking function
 - [ ] Use custom image component for images
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
@@ -47,6 +48,8 @@
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Settings: Show archived items/looks
 - [ ] If old Title = new Title, then no udpate
+- [ ] Detail View Item
+- [ ] Detail View Looks
 
 ## Completed ✓
 
