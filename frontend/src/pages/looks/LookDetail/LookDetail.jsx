@@ -3,6 +3,8 @@ import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
+import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
+
 import "./LookDetail.css";
 
 export const LookDetail = (props) => {
@@ -11,13 +13,22 @@ export const LookDetail = (props) => {
     <>
       <div className="lookdetail__header">
         <ArrowLeftOutlined
-          style={{ fontSize: "30px" }}
+          className="lookdetail__arrowIcon"
           onClick={() => {
             props.setSelectedLook(null);
           }}
         />
         <div className="lookdetail__headerTitle">
-          {props.selectedLook._id} - {props.selectedLook.title}
+          <span className="lookdetail__headerTitleId">
+            {props.selectedLook._id}
+          </span>
+          &nbsp;
+          <EditableTitle
+            title={props.selectedLook.title}
+            id={props.selectedLook._id}
+            type={"look"}
+            active={props.selectedLook.active}
+          />
         </div>
       </div>
 

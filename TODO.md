@@ -46,6 +46,7 @@
 - [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Settings: Show archived items/looks
+- [ ] If old Title = new Title, then no udpate
 
 ## Completed ✓
 

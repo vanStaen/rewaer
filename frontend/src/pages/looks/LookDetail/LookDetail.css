@@ -1,5 +1,5 @@
 .lookdetail__picture {
-    margin-left: 50px;
+    margin-left: 72px;
     width: 480px;
     height: 640px;
     opacity: 1;
@@ -11,8 +11,20 @@
 }
 
 .lookdetail__headerTitle {
-    padding: 2px 0 0 12px;
+    padding: 8px 0 0 18px;
     display: inline-block;
     vertical-align: top;
+}
 
+.lookdetail__headerTitleId {
+    color: #C0C0C0;
+}
+
+.lookdetail__arrowIcon {
+    font-size: 42px;  
+    color: rgba(0, 0, 0, 1)
+}
+
+.lookdetail__arrowIcon:hover {  
+    color: rgba(109, 145, 126, 1);
 }

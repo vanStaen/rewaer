@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { patchTitle } from "./patchTitle";
 
+import "./EditableTitle.css";
+
 export const EditableTitle = (props) => {
   const { t } = useTranslation();
   const [title, setTitle] = useState(
@@ -56,7 +58,7 @@ export const EditableTitle = (props) => {
   };
 
   return (
-    <div>
+    <div className="title__container">
       {isEditMode ? (
         <Input
           key={`title_input_${props.id}`}
