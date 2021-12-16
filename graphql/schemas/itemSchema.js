@@ -13,6 +13,7 @@ type Item {
     active: Boolean!
     status: Int
     favorite: Boolean!
+    private: Boolean!
     createdAt: Float!
     udpatedAt: Float!
     user: User
@@ -31,6 +32,7 @@ input ItemInputData {
     active: Boolean
     status: Int
     favorite: Boolean
+    private: Boolean
 }`;
 
 exports.ItemQueries = `

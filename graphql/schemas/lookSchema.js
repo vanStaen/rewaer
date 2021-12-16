@@ -10,6 +10,7 @@ type Look {
     items: [String]
     active: Boolean!
     favorite: Boolean!
+    private: Boolean!
     createdAt: Float!
     udpatedAt: Float!
     user: User
@@ -25,6 +26,7 @@ input LookInputData {
     items: [String]
     active: Boolean
     favorite: Boolean
+    private: Boolean
 }`;
 
 exports.LookQueries = `

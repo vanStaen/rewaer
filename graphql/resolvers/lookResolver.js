@@ -34,7 +34,7 @@ exports.lookResolver = {
         mediaUrlThumb: args.lookInput.mediaUrlThumb,
         mediaUrlMedium: args.lookInput.mediaUrlMedium,
         category: args.lookInput.category,
-        items: args.lookInput.items,
+        private: args.lookInput.private,
         userId: req.userId,
       });
       return await look.save();
@@ -54,6 +54,7 @@ exports.lookResolver = {
       "category",
       "items",
       "active",
+      "private",
       "favorite",
     ];
     updatableFields.forEach((field) => {
