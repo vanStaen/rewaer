@@ -21,7 +21,10 @@
     "edit": "Edit",
     "cancel": "Cancel",
     "restore": "Restore",
-    "back": "Previous"
+    "back": "Previous",
+    "makePrivate" : "Make private",
+    "makePublic" : "Make public",
+    "isPrivate" : "Only you can see this"
   },
   "login": {
     "newHere": "New here",

@@ -13,6 +13,7 @@ export async function fetchItems() {
           brand,
           active,
           favorite,
+          private,
           createdAt,
           mediaUrl,
           mediaUrlMedium,

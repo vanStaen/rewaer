@@ -5,7 +5,8 @@ import {
   ExclamationCircleOutlined,
   UndoOutlined,
   StopOutlined,
-  EditOutlined,
+  TagOutlined,
+  EyeInvisibleOutlined,
   EyeOutlined,
   HeartOutlined,
   HeartFilled,
@@ -17,6 +18,8 @@ import { itemsStore } from "../itemsStore";
 import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
+import { updatePrivateItem } from "../actions/updatePrivateItem";
+
 import { loadImage } from "../../../helpers/loadImage";
 
 import "./ItemCard.css";
@@ -24,6 +27,7 @@ import "./ItemCard.css";
 export const ItemCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.item.favorite);
+  const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
 
   const spinnerFormated = (
@@ -33,7 +37,7 @@ export const ItemCard = (props) => {
   );
 
   const imageLoadingHander = async () => {
-    const response = await loadImage(props.item.mediaUrlMedium);
+    await loadImage(props.item.mediaUrlMedium);
     setIsLoading(false);
   };
 
@@ -135,6 +139,11 @@ export const ItemCard = (props) => {
     setIsFavorited(!isFavorited);
   };
 
+  const privateHandler = () => {
+    updatePrivateItem(props.item._id, !isPrivate);
+    setIsPrivate(!isPrivate);
+  };
+
   const createdDate = new Date(props.item.createdAt);
 
   return (
@@ -172,7 +181,7 @@ export const ItemCard = (props) => {
             className="itemcard__logoover"
             id={`card_item_logoover_${props.item._id}`}
           >
-            <EyeOutlined />
+            <TagOutlined />
             <div style={{ fontSize: "12px" }}>Detail View</div>
           </div>
         ) : (
@@ -208,9 +217,21 @@ export const ItemCard = (props) => {
                     />
                   )}
                 </Tooltip>
-                <Tooltip placement="left" title={t("main.edit")}>
-                  <EditOutlined className="iconGreen" />
-                </Tooltip>
+                {isPrivate ? (
+                  <Tooltip placement="left" title={t("main.makePublic")}>
+                    <EyeInvisibleOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip placement="left" title={t("main.makePrivate")}>
+                    <EyeOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                )}
                 <Tooltip placement="left" title={t("main.archive")}>
                   <Popconfirm
                     title={t("items.archiveConfirm")}
@@ -264,6 +285,13 @@ export const ItemCard = (props) => {
             type={"item"}
             active={props.item.active}
           />
+          {isPrivate && (
+            <Tooltip placement="bottom" title={t("main.isPrivate")}>
+              <div className="itemcard__private">
+                <EyeInvisibleOutlined />
+              </div>
+            </Tooltip>
+          )}
           <div
             className={
               props.item.active ? "itemcard__date" : "itemcard__date striked"

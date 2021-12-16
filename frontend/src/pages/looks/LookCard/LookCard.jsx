@@ -7,8 +7,9 @@ import {
   HeartOutlined,
   UndoOutlined,
   StopOutlined,
-  EditOutlined,
+  TagOutlined,
   EyeOutlined,
+  EyeInvisibleOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -17,6 +18,7 @@ import { looksStore } from "../looksStore";
 import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
+import { updatePrivateLook } from "../actions/updatePrivateLook";
 import { loadImage } from "../../../helpers/loadImage";
 
 import "./LookCard.css";
@@ -24,6 +26,7 @@ import "./LookCard.css";
 export const LookCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
+  const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [isLoading, setIsLoading] = useState(true);
 
   const spinnerFormated = (
@@ -40,7 +43,7 @@ export const LookCard = (props) => {
   );
 
   const imageLoadingHander = async () => {
-    const response = await loadImage(props.look.mediaUrlMedium);
+    await loadImage(props.look.mediaUrlMedium);
     setIsLoading(false);
   };
 
@@ -142,6 +145,11 @@ export const LookCard = (props) => {
     setIsFavorited(!isFavorited);
   };
 
+  const privateHandler = () => {
+    updatePrivateLook(props.look._id, !isPrivate);
+    setIsPrivate(!isPrivate);
+  };
+
   const createdDate = new Date(props.look.createdAt);
 
   return (
@@ -183,7 +191,7 @@ export const LookCard = (props) => {
               props.setSelectedLook(props.look);
             }}
           >
-            <EyeOutlined />
+            <TagOutlined />
             <div style={{ fontSize: "12px" }}>{t("looks.detailView")}</div>
           </div>
         ) : (
@@ -219,9 +227,21 @@ export const LookCard = (props) => {
                     />
                   )}
                 </Tooltip>
-                <Tooltip placement="left" title={t("main.edit")}>
-                  <EditOutlined className="iconGreen" />
-                </Tooltip>
+                {isPrivate ? (
+                  <Tooltip placement="left" title={t("main.makePublic")}>
+                    <EyeInvisibleOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip placement="left" title={t("main.makePrivate")}>
+                    <EyeOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                )}
                 <Tooltip placement="left" title={t("main.archive")}>
                   <Popconfirm
                     title={t("looks.archiveConfirm")}
@@ -275,6 +295,13 @@ export const LookCard = (props) => {
             type={"look"}
             active={props.look.active}
           />
+          {isPrivate && (
+            <Tooltip placement="bottom" title={t("main.isPrivate")}>
+              <div className="lookcard__private">
+                <EyeInvisibleOutlined />
+              </div>
+            </Tooltip>
+          )}
           <div
             className={
               props.look.active ? "lookcard__date" : "lookcard__date striked"

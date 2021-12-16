@@ -13,7 +13,7 @@ type Item {
     active: Boolean!
     status: Int
     favorite: Boolean!
-    private: Boolean!
+    private: Boolean
     createdAt: Float!
     udpatedAt: Float!
     user: User

@@ -10,7 +10,7 @@ type Look {
     items: [String]
     active: Boolean!
     favorite: Boolean!
-    private: Boolean!
+    private: Boolean
     createdAt: Float!
     udpatedAt: Float!
     user: User

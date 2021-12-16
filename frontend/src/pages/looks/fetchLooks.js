@@ -9,6 +9,7 @@ export async function fetchLooks() {
           title,
           active,
           favorite,
+          private,
           createdAt,
           mediaUrl,
           mediaUrlMedium,

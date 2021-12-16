@@ -21,7 +21,10 @@
     "archived": "Archivé",
     "cancel": "Annuler",
     "restore": "Restaurer",
-    "back": "Retour"
+    "back": "Retour",
+    "makePrivate" : "Rendre privé",
+    "makePublic" : "Rendre publique",
+    "isPrivate" : "Que toi peux le voir"
   },
   "login": {
     "newHere": "Premiére fois",

@@ -77,6 +77,7 @@
 
 .itemcard__meta {
   width: 240px;
+  position: absolute;
   height: calc(385px - 320px);
   padding: 10px 15px;
 }
@@ -84,6 +85,16 @@
 .itemcard__meta .itemcard__date {
   font-size: 12px;
   color: #999;
+}
+
+.itemcard__meta .itemcard__private {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  margin-top: 15px;
+  font-size: 24px;
+  color: rgba(109, 145, 126, 1);
 }
 
 .item__spinner {
@@ -109,4 +120,3 @@
 .itemcard__actionsContainer .iconGreen:hover {
   color: #6C917D;
 }
-
