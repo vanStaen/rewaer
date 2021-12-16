@@ -10,6 +10,8 @@ import {
   TagOutlined,
   EyeOutlined,
   EyeInvisibleOutlined,
+  LikeOutlined,
+  DislikeOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -295,12 +297,25 @@ export const LookCard = (props) => {
             type={"look"}
             active={props.look.active}
           />
-          {isPrivate && (
+          {isPrivate ? (
             <Tooltip placement="bottom" title={t("main.isPrivate")}>
               <div className="lookcard__private">
                 <EyeInvisibleOutlined />
               </div>
             </Tooltip>
+          ) : (
+            <>
+              <div className="lookcard__likeContainer">
+                <div className="lookcard__like iconGreen">
+                  <LikeOutlined />
+                  <div className="lookcard__likeCount">12</div>
+                </div>
+                <div className="lookcard__like iconRed">
+                  <DislikeOutlined />
+                  <div className="lookcard__likeCount">5</div>
+                </div>
+              </div>
+            </>
           )}
           <div
             className={
