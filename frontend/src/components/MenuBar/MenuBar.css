@@ -30,6 +30,10 @@
     border: 1px solid transparent;
 }
 
+.menu__notification:hover {
+    background-color: rgba(109, 145, 126, .1);
+}
+
 .menu__notificationUser {
     color: rgba(109, 145, 126, 1);
 }
