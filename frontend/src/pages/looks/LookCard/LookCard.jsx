@@ -310,18 +310,20 @@ export const LookCard = (props) => {
               </div>
             </Tooltip>
           ) : (
-            <>
-              <div className="lookcard__likeContainer">
-                <div className="lookcard__like iconGreen">
-                  <LikeOutlined />
-                  <div className="lookcard__likeCount">12</div>
+            props.look.active && (
+              <>
+                <div className="lookcard__likeContainer">
+                  <div className="lookcard__like iconGreen">
+                    <LikeOutlined />
+                    <div className="lookcard__likeCount">12</div>
+                  </div>
+                  <div className="lookcard__like iconRed">
+                    <DislikeOutlined />
+                    <div className="lookcard__likeCount">5</div>
+                  </div>
                 </div>
-                <div className="lookcard__like iconRed">
-                  <DislikeOutlined />
-                  <div className="lookcard__likeCount">5</div>
-                </div>
-              </div>
-            </>
+              </>
+            )
           )}
           <div
             className={
