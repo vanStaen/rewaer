@@ -50,6 +50,7 @@
 - [ ] Settings: Show archived items/looks
 - [ ] Detail View Item
 - [ ] Detail View Looks
+- [ ] Bug: SubMenu alays stays shown, won't hide
 
 ## Completed ✓
 

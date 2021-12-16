@@ -54,6 +54,7 @@ exports.lookResolver = {
       "category",
       "items",
       "active",
+      "status",
       "favorite",
     ];
     updatableFields.forEach((field) => {

@@ -9,6 +9,7 @@ type Look {
     category: [String]
     items: [String]
     active: Boolean!
+    status: Int
     favorite: Boolean!
     createdAt: Float!
     udpatedAt: Float!
@@ -24,6 +25,7 @@ input LookInputData {
     category: [String]
     items: [String]
     active: Boolean
+    status: Int
     favorite: Boolean
 }`;
 

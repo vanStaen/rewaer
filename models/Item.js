@@ -44,6 +44,10 @@ const Item = sequelize.define("item", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  status: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
   favorite: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,

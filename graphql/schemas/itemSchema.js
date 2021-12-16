@@ -11,6 +11,7 @@ type Item {
     colors: [String]
     brand: String
     active: Boolean!
+    status: Int
     favorite: Boolean!
     createdAt: Float!
     udpatedAt: Float!
@@ -28,6 +29,7 @@ input ItemInputData {
     colors: [String]
     brand: String
     active: Boolean
+    status: Int
     favorite: Boolean
 }`;
 

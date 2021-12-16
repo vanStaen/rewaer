@@ -41,7 +41,7 @@ See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4)
 
 ### Upload
 
-The object file are saved in an AWS S3 bucket. Used is `multer` as a library to upload those. A file size limit is fixed at 10M. 
+The object file are saved in an AWS S3 bucket. Used is `multer` as a library to upload those.
 
 ### Manipulation
 

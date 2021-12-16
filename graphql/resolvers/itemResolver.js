@@ -60,6 +60,7 @@ exports.itemResolver = {
       "colors",
       "brand",
       "active",
+      "status",
       "favorite",
     ];
     updatableFields.forEach((field) => {
