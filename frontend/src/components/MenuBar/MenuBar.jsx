@@ -94,7 +94,7 @@ export const MenuBar = observer(() => {
             style={{ float: "right" }}
             key="profileSubMenu"
             icon={
-              <Badge count={userStore.isLoading ? 0 : 1} offset={[0, 5]}>
+              <Badge count={userStore.isLoading ? 0 : 3} offset={[0, 5]}>
                 <Avatar
                   src={userStore.avatar && userStore.avatar}
                   icon={
@@ -124,9 +124,34 @@ export const MenuBar = observer(() => {
                 <Menu.Item key="profile" icon={<UserOutlined />}>
                   <Link to="/profile">{t("menu.profile")}</Link>
                 </Menu.Item>
-
                 <Menu.Item key="settings" icon={<SettingOutlined />}>
                   <Link to="/editsettings/">{t("menu.editSetting")}</Link>
+                </Menu.Item>
+
+                <div className="menu__customDivider"></div>
+                <Menu.Item
+                  key="notification1"
+                  icon={<SkinOutlined />}
+                  className="menu__notification"
+                >
+                  <span className="menu__notificationUser">blablabla</span>{" "}
+                  added a new item
+                </Menu.Item>
+                <Menu.Item
+                  key="notification2"
+                  icon={<CameraOutlined />}
+                  className="menu__notification"
+                >
+                  <span className="menu__notificationUser">dude123</span>{" "}
+                  commented your look
+                </Menu.Item>
+                <Menu.Item
+                  key="notification3"
+                  icon={<MailOutlined />}
+                  className="menu__notification"
+                >
+                  <span className="menu__notificationUser">baby__girl</span>{" "}
+                  sent you a message
                 </Menu.Item>
 
                 <div className="menu__customDivider"></div>
