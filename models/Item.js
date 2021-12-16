@@ -45,6 +45,7 @@ const Item = sequelize.define("item", {
     defaultValue: true,
   },
   status: {
+    // 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },

@@ -154,7 +154,7 @@ export const MenuBar = observer(() => {
                   sent you a message
                 </Menu.Item>
                 <Menu.Item
-                  key="notification3"
+                  key="notification4"
                   icon={<TeamOutlined />}
                   className="menu__notification"
                 >

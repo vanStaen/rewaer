@@ -36,10 +36,6 @@ const Look = sequelize.define("look", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
-  status: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-  },
   favorite: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
