@@ -290,7 +290,13 @@ export const LookCard = (props) => {
             )}
           </div>
         </div>
-        <div className="lookcard__meta">
+        <div
+          className={
+            isPrivate
+              ? "lookcard__meta lookcard__metaPrivate"
+              : "lookcard__meta"
+          }
+        >
           <EditableTitle
             title={props.look.title}
             id={props.look._id}

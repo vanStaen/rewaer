@@ -280,7 +280,13 @@ export const ItemCard = (props) => {
             )}
           </div>
         </div>
-        <div className="itemcard__meta">
+        <div
+          className={
+            isPrivate
+              ? "itemcard__meta itemcard__metaPrivate"
+              : "itemcard__meta"
+          }
+        >
           <EditableTitle
             title={props.item.title}
             id={props.item._id}

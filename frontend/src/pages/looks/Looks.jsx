@@ -19,6 +19,7 @@ export const Looks = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
+  const [showPrivate, setShowPrivate] = useState(false);
   const [selectedLook, setSelectedLook] = useState(null);
   const { t } = useTranslation();
 
@@ -52,11 +53,14 @@ export const Looks = observer(() => {
   }, [containerElement.current]);
 
   const lookList = looksStore.looks.map((look) => {
-    return (
-      <Col key={look._id}>
-        <LookCard look={look} setSelectedLook={setSelectedLook} />
-      </Col>
-    );
+    if (!look.private || showPrivate) {
+      return (
+        <Col key={look._id}>
+          <LookCard look={look} setSelectedLook={setSelectedLook} />
+        </Col>
+      );
+    }
+    return null;
   });
 
   return (
@@ -83,7 +87,15 @@ export const Looks = observer(() => {
         <div ref={containerElement} className="looks__container">
           <div className="looks__toolbar">
             <div className="looks__toolbarLeft">
-              {looksStore.looks.length} {t("menu.looks")}
+              {looksStore.looks.length} {t("menu.looks")} | 
+              <span
+                className="link"
+                onClick={() => {
+                  setShowPrivate(!showPrivate);
+                }}
+              >
+                {showPrivate ? "Hide Private looks" : "Show Private looks"}
+              </span>
             </div>
             <div className="looks__toolbarRight">
               <ToolBar

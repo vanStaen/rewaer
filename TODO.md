@@ -51,6 +51,7 @@
 - [ ] Detail View Item
 - [ ] Detail View Looks
 - [ ] Bug: SubMenu alays stays shown, won't hide
+- [ ] count how many items are private and act accordingly
 
 ## Completed ✓
 

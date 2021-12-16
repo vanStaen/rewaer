@@ -74,6 +74,10 @@
   padding: 10px 15px;
 }
 
+.lookcard__metaPrivate {
+  background-color: #f0f0f0; 
+}
+
 .lookcard__meta .lookcard__date {
   font-size: 12px;
   color: #999;
@@ -86,7 +90,7 @@
   width: 45px;
   margin-top: 15px;
   font-size: 24px;
-  color: rgba(109, 145, 126, 1);
+  color: rgba(191, 64, 64, .75);
 }
 
 .lookcard__meta .lookcard__likeContainer {

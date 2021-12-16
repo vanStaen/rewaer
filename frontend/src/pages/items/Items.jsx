@@ -19,6 +19,7 @@ export const Items = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
+  const [showPrivate, setShowPrivate] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -51,11 +52,14 @@ export const Items = observer(() => {
   }, [containerElement.current]);
 
   const itemList = itemsStore.items.map((item) => {
-    return (
-      <Col key={item._id}>
-        <ItemCard item={item} />
-      </Col>
-    );
+    if (!item.private || showPrivate) {
+      return (
+        <Col key={item._id}>
+          <ItemCard item={item} />
+        </Col>
+      );
+    }
+    return null;
   });
 
   return (
@@ -81,7 +85,15 @@ export const Items = observer(() => {
           <div ref={containerElement} className="items__container">
             <div className="items__toolbar">
               <div className="items__toolbarLeft">
-                {itemsStore.items.length} {t("menu.items")}
+                {itemsStore.items.length} {t("menu.items")} | 
+                <span
+                  className="link"
+                  onClick={() => {
+                    setShowPrivate(!showPrivate);
+                  }}
+                >
+                  {showPrivate ? "Hide Private items" : "Show Private items"}
+                </span>
               </div>
               <div className="items__toolbarRight">
                 <ToolBar
