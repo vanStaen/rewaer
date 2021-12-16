@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -17,18 +17,36 @@ import { looksStore } from "../looksStore";
 import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
+import { loadImage } from "../../../helpers/loadImage";
 
 import "./LookCard.css";
 
 export const LookCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
+  const [isLoading, setIsLoading] = useState(true);
 
   const spinnerFormated = (
-    <div className="card__spinner">
+    <div
+      className="look__spinner"
+      onClick={() => {
+        if (props.look.active) {
+          props.setSelectedLook(props.look);
+        }
+      }}
+    >
       <Spin size="middle" />
     </div>
   );
+
+  const imageLoadingHander = async () => {
+    const response = await loadImage(props.look.mediaUrlMedium);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    imageLoadingHander();
+  }, []);
 
   const handleArchive = (value) => {
     archiveLook(props.look._id, value)
@@ -133,17 +151,21 @@ export const LookCard = (props) => {
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <div
-          className="lookcard__picture"
-          id={`card_look_picture_${props.look._id}`}
-          //placeholder={spinnerFormated}
-          style={{
-            background: `url(${props.look.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
+        {isLoading ? (
+          spinnerFormated
+        ) : (
+          <div
+            className="lookcard__picture"
+            id={`card_look_picture_${props.look._id}`}
+            //placeholder={spinnerFormated}
+            style={{
+              background: `url(${props.look.mediaUrlMedium})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        )}
         {isFavorited && props.look.active && (
           <div
             className="lookcard__favorite"

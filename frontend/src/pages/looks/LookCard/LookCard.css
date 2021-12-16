@@ -78,12 +78,12 @@
   color: #999;
 }
 
-.card__spinner {
+.look__spinner {
   text-align: center;
   border-radius: 4px;
   padding-top: 160px;
   width: 240px;
-  height: 385px;
+  height: 320px;
 }
 
 .lookcard__actionsLogo {

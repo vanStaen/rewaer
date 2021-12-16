@@ -16,6 +16,7 @@
   - [x] UX: Center column with Max width 
   - [ ] Subpage with headers showing Looks and Items
     - [ ] simplified version of cards, with comment and liking function
+    - [ ] Friend can propose Look name
 - [ ] Use custom image component for images
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
@@ -139,3 +140,4 @@
   - [x] UX: Center column with Max width 
 - [x] Items/looks : Allow multi-upload and dragdrop
 - [x] BugFix: If old Title = new Title, then no update
+- [x] LoadImage helper function + spinner on load

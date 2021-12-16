@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -9,7 +9,6 @@ import {
   EyeOutlined,
   HeartOutlined,
   HeartFilled,
-  HeartTwoTone,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -18,17 +17,30 @@ import { itemsStore } from "../itemsStore";
 import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
+import { loadImage } from "../../../helpers/loadImage";
 
 import "./ItemCard.css";
 
 export const ItemCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.item.favorite);
+  const [isLoading, setIsLoading] = useState(true);
+
   const spinnerFormated = (
     <div className="item__spinner">
       <Spin size="middle" />
     </div>
   );
+
+  const imageLoadingHander = async () => {
+    const response = await loadImage(props.item.mediaUrlMedium);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    imageLoadingHander();
+  }, []);
+
   const handleArchive = (value) => {
     archiveItem(props.item._id, value)
       .then(() => {
@@ -68,23 +80,19 @@ export const ItemCard = (props) => {
       });
   };
 
-  const elementPicture = document.getElementById(
-    `card_item_picture_${props.item._id}`
-  );
-
-  const elementLogoOver = document.getElementById(
-    `card_item_logoover_${props.item._id}`
-  );
-
-  const elementActionsContainer = document.getElementById(
-    `card_item_actionsContainer_${props.item._id}`
-  );
-
-  const elementActionsLogo = document.getElementById(
-    `card_item_actionsLogo_${props.item._id}`
-  );
-
   const onMouseEnterHandler = () => {
+    const elementPicture = document.getElementById(
+      `card_item_picture_${props.item._id}`
+    );
+    const elementLogoOver = document.getElementById(
+      `card_item_logoover_${props.item._id}`
+    );
+    const elementActionsContainer = document.getElementById(
+      `card_item_actionsContainer_${props.item._id}`
+    );
+    const elementActionsLogo = document.getElementById(
+      `card_item_actionsLogo_${props.item._id}`
+    );
     elementPicture.style.filter = "brightness(50%)";
     elementLogoOver.style.display = "block";
     elementActionsContainer.style.width = "34px";
@@ -93,6 +101,18 @@ export const ItemCard = (props) => {
   };
 
   const onMouseLeaveHandler = () => {
+    const elementPicture = document.getElementById(
+      `card_item_picture_${props.item._id}`
+    );
+    const elementLogoOver = document.getElementById(
+      `card_item_logoover_${props.item._id}`
+    );
+    const elementActionsContainer = document.getElementById(
+      `card_item_actionsContainer_${props.item._id}`
+    );
+    const elementActionsLogo = document.getElementById(
+      `card_item_actionsLogo_${props.item._id}`
+    );
     if (props.item.active) {
       elementPicture.style.filter = "brightness(100%)";
       elementLogoOver.style.display = "none";
@@ -124,17 +144,21 @@ export const ItemCard = (props) => {
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
-        <div
-          className="itemcard__picture"
-          id={`card_item_picture_${props.item._id}`}
-          //placeholder={spinnerFormated}
-          style={{
-            background: `url(${props.item.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
+        {isLoading ? (
+          spinnerFormated
+        ) : (
+          <div
+            className="itemcard__picture"
+            id={`card_item_picture_${props.item._id}`}
+            //placeholder={spinnerFormated}
+            style={{
+              background: `url(${props.item.mediaUrlMedium})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        )}
         {isFavorited && props.item.active && (
           <div
             className="itemcard__favorite"
