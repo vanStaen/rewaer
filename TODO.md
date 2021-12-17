@@ -17,6 +17,7 @@
   - [ ] Subpage with headers showing Looks and Items
     - [ ] simplified version of cards, with comment and liking function
     - [ ] Friend can propose Look name
+    - [ ] ofc, private item/look are hidden
 - [ ] Use custom image component for images
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
@@ -48,10 +49,11 @@
 - [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Settings: Show archived items/looks
+- [ ] Settings: per defaut show or hide Private
 - [ ] Detail View Item
 - [ ] Detail View Looks
 - [ ] Bug: SubMenu alays stays shown, won't hide
-- [ ] count how many items are private and act accordingly
+- [ ] Count how many items are private and act accordingly
 
 ## Completed ✓
 
@@ -143,3 +145,4 @@
 - [x] Items/looks : Allow multi-upload and dragdrop
 - [x] BugFix: If old Title = new Title, then no update
 - [x] LoadImage helper function + spinner on load
+- [x] Bug: Private update should reflect in store

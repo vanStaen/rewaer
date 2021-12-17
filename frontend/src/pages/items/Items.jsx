@@ -24,14 +24,17 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
-    console.log(itemCategory);
+  }, [
+    itemsStore.isOutOfDate,
+  ]);
+
+  useEffect(() => {
     calculateMissingCardsForFullRow();
     window.addEventListener("resize", calculateMissingCardsForFullRow);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
     };
   }, [
-    itemsStore.isOutOfDate,
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
@@ -76,44 +79,44 @@ export const Items = observer(() => {
           <Spin size="large" />
         </div>
       ) : (
-        <>
-          <Banner
-            id="missingTag"
-            desc={t("items.missingTagsAlert")}
-            show={true}
-          />
-          <div ref={containerElement} className="items__container">
-            <div className="items__toolbar">
-              <div className="items__toolbarLeft">
-                {itemsStore.items.length} {t("menu.items")} | 
+            <>
+              <Banner
+                id="missingTag"
+                desc={t("items.missingTagsAlert")}
+                show={true}
+              />
+              <div ref={containerElement} className="items__container">
+                <div className="items__toolbar">
+                  <div className="items__toolbarLeft">
+                    {itemsStore.items.length} {t("menu.items")} |
                 <span
-                  className="link"
-                  onClick={() => {
-                    setShowPrivate(!showPrivate);
-                  }}
-                >
-                  {showPrivate ? "Hide Private items" : "Show Private items"}
-                </span>
+                      className="link"
+                      onClick={() => {
+                        setShowPrivate(!showPrivate);
+                      }}
+                    >&nbsp;
+                      {showPrivate ? "Hide Private items" : "Show Private items"}
+                    </span>
+                  </div>
+                  <div className="items__toolbarRight">
+                    <ToolBar
+                      quickEdit={quickEdit}
+                      setQuickEdit={setQuickEdit}
+                      showFilter={showFilter}
+                      setShowFilter={setShowFilter}
+                    />
+                  </div>
+                </div>
+                <Row justify={"space-around"}>
+                  <Col>
+                    <ItemForm />
+                  </Col>
+                  {itemList}
+                  <GhostCard numberOfCards={missingCardForFullRow} />
+                </Row>
               </div>
-              <div className="items__toolbarRight">
-                <ToolBar
-                  quickEdit={quickEdit}
-                  setQuickEdit={setQuickEdit}
-                  showFilter={showFilter}
-                  setShowFilter={setShowFilter}
-                />
-              </div>
-            </div>
-            <Row justify={"space-around"}>
-              <Col>
-                <ItemForm />
-              </Col>
-              {itemList}
-              <GhostCard numberOfCards={missingCardForFullRow} />
-            </Row>
-          </div>
-        </>
-      )}
+            </>
+          )}
     </div>
   );
 });

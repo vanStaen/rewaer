@@ -25,18 +25,22 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     looksStore.loadLooks();
-    console.log(lookCategory);
+  }, [
+    looksStore.isOutOfDate,
+  ]);
+
+  useEffect(() => {
     calculateMissingCardsForFullRow();
     window.addEventListener("resize", calculateMissingCardsForFullRow);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
     };
   }, [
-    looksStore.isOutOfDate,
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
   ]);
+
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const containerWidth =
@@ -84,37 +88,37 @@ export const Looks = observer(() => {
           />
         </div>
       ) : (
-        <div ref={containerElement} className="looks__container">
-          <div className="looks__toolbar">
-            <div className="looks__toolbarLeft">
-              {looksStore.looks.length} {t("menu.looks")} | 
+              <div ref={containerElement} className="looks__container">
+                <div className="looks__toolbar">
+                  <div className="looks__toolbarLeft">
+                    {looksStore.looks.length} {t("menu.looks")} |
               <span
-                className="link"
-                onClick={() => {
-                  setShowPrivate(!showPrivate);
-                }}
-              >
-                {showPrivate ? "Hide Private looks" : "Show Private looks"}
-              </span>
-            </div>
-            <div className="looks__toolbarRight">
-              <ToolBar
-                quickEdit={quickEdit}
-                setQuickEdit={setQuickEdit}
-                showFilter={showFilter}
-                setShowFilter={setShowFilter}
-              />
-            </div>
-          </div>
-          <Row justify={"space-around"}>
-            <Col>
-              <LookForm />
-            </Col>
-            {lookList}
-            <GhostCard numberOfCards={missingCardForFullRow} />
-          </Row>
-        </div>
-      )}
+                      className="link"
+                      onClick={() => {
+                        setShowPrivate(!showPrivate);
+                      }}
+                    >&nbsp;
+                      {showPrivate ? "Hide Private looks" : "Show Private looks"}
+                    </span>
+                  </div>
+                  <div className="looks__toolbarRight">
+                    <ToolBar
+                      quickEdit={quickEdit}
+                      setQuickEdit={setQuickEdit}
+                      showFilter={showFilter}
+                      setShowFilter={setShowFilter}
+                    />
+                  </div>
+                </div>
+                <Row justify={"space-around"}>
+                  <Col>
+                    <LookForm />
+                  </Col>
+                  {lookList}
+                  <GhostCard numberOfCards={missingCardForFullRow} />
+                </Row>
+              </div>
+            )}
     </div>
   );
 });
