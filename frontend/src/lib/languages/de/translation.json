@@ -124,6 +124,7 @@
     "settingKeepMeInformedAboutRewaer" : "Mich über alle Änderungen bei Rewaer auf dem Laufenden halten",
     "changeAvatar": "Profilbild andern",
     "avatarUpdateSuccess": "Avatar würde erfolgreich hochgeladet",
+    "settingShowArchived": "Archiviert looks und items anzeigen (Archives werden nie in deinem Profile erschienen)",
     "avatarUpdateFail": "File upload fehlgeschlagen",
     "men": "Herren",
     "women": "Damen",

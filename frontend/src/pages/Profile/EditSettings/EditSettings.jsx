@@ -115,6 +115,20 @@ export const EditSettings = observer(() => {
               <Radio.Button value="de">Deutsch</Radio.Button>
             </Radio.Group>
           </div>
+          <div className="EditSettings__singleSetting">
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={() => {
+                changeProfilSettingsHandler(
+                  "displayArchived",
+                  !userStore.profilSettings.displayArchived
+                );
+              }}
+              checked={userStore.profilSettings.displayArchived}
+            />{" "}
+            {t("profile.settingShowArchived")}
+          </div>
           <br />
           <Divider orientation="left" plain>
             {t("profile.profileSettings")}

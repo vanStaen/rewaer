@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
+import { userStore } from "../../stores/userStore/userStore"
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
@@ -40,6 +41,7 @@ export const Items = observer(() => {
     calculateMissingCardsForFullRow,
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
+    userStore.profilSettings.displayArchived,
     showPrivate
   ]);
 
@@ -50,7 +52,17 @@ export const Items = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberItems = showPrivate ? itemsStore.items.length + 1 : itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem;
+    const numberItems =
+      showPrivate ?
+        userStore.profilSettings.displayArchived ?
+          itemsStore.items.length + 1
+          :
+          itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
+        :
+        userStore.profilSettings.displayArchived ?
+          itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
+          :
+          itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem - itemsStore.numberOfArchivedItem
     const numberFullRow = Math.floor(numberItems / numberPerRow);
     const missingCards =
       numberPerRow - (numberItems - numberFullRow * numberPerRow);
@@ -59,11 +71,15 @@ export const Items = observer(() => {
 
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || showPrivate) {
-      return (
-        <Col key={item._id}>
-          <ItemCard item={item} />
-        </Col>
-      );
+      if (!item.active && !userStore.profilSettings.displayArchived) {
+        return null;
+      } else {
+        return (
+          <Col key={item._id}>
+            <ItemCard item={item} />
+          </Col>
+        );
+      }
     }
     return null;
   });

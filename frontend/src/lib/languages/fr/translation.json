@@ -123,6 +123,7 @@
     "settingSendEmailOnFriendRequest": "Prévenir par mail lorsque je reçois une demande d'ami",
     "settingSendEmailWhenNewMessage": "Prévenir par mail lorsque je reçois un nouveau message",
     "settingKeepMeInformedAboutRewaer" : "Me tenir au courant de tous les changements qui se passe sur Rewaer",
+    "settingShowArchived": "Afficher les pieces et looks archivés (Archives m'apparaissent pas dans ton Profile)",
     "changeAvatar": "Changer d'avatar",
     "avatarUpdateSuccess": "Nouvel avatar uploadé avec succés!",
     "avatarUpdateFail": "L'upload a échoué",

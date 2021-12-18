@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
+import { userStore } from "../../stores/userStore/userStore"
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { lookCategory } from "../../data/categories";
@@ -52,7 +53,17 @@ export const Looks = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks = showPrivate ? looksStore.looks.length + 1 : looksStore.looks.length + 1 - looksStore.numberOfPrivateLook; // +1 for the form
+    const numberLooks =
+      showPrivate ?
+        userStore.profilSettings.displayArchived ?
+          looksStore.looks.length + 1
+          :
+          looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
+        :
+        userStore.profilSettings.displayArchived ?
+          looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
+          :
+          looksStore.looks.length + 1 - looksStore.numberOfPrivateLook - looksStore.numberOfArchivedLook
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
@@ -61,11 +72,15 @@ export const Looks = observer(() => {
 
   const lookList = looksStore.looks.map((look) => {
     if (!look.private || showPrivate) {
-      return (
-        <Col key={look._id}>
-          <LookCard look={look} setSelectedLook={setSelectedLook} />
-        </Col>
-      );
+      if (!look.active && !userStore.profilSettings.displayArchived) {
+        return null;
+      } else {
+        return (
+          <Col key={look._id}>
+            <LookCard look={look} setSelectedLook={setSelectedLook} />
+          </Col>
+        );
+      }
     }
     return null;
   });
