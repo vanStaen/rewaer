@@ -10,8 +10,8 @@ import "./LookDetail.css";
 export const LookDetail = (props) => {
   const { t } = useTranslation();
   return (
-    <>
-      <div className="lookdetail__header">
+    <div className="lookdetail__container">
+      <div className="lookdetail__backArrow">
         <Tooltip placement="bottomRight" title={t("main.back")}>
           <ArrowLeftOutlined
             className="lookdetail__arrowIcon"
@@ -20,6 +20,9 @@ export const LookDetail = (props) => {
             }}
           />
         </Tooltip>
+      </div>
+
+      <div className="lookdetail__header">
         <div className="lookdetail__headerTitle">
           <span className="lookdetail__headerTitleId">
             {props.selectedLook._id}
@@ -34,6 +37,7 @@ export const LookDetail = (props) => {
         </div>
       </div>
 
+      <div className="lookdetail__spacer"></div>
       <div class="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"
@@ -53,6 +57,6 @@ export const LookDetail = (props) => {
           }}
         ></div>
       </div>
-    </>
+    </div>
   );
 };
