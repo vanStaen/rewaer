@@ -4,6 +4,7 @@
     transition: border-color 0.3s;
     width: 240px;
     height: 385px;
+    cursor: pointer;
   }
 
 .ghostCard:hover {
