@@ -7,7 +7,9 @@ export class LooksStore {
   looks = [];
   isLoading = true;
   isOutOfDate = true;
-  error= null; 
+  error = null;
+  numberOfArchivedLook = 0;
+  numberOfPrivateLook = 0;
 
   constructor() {
     makeObservable(this, {
@@ -17,6 +19,10 @@ export class LooksStore {
       setIsLoading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
+      numberOfArchivedLook: observable,
+      setNumberOfArchivedLook: action,
+      numberOfPrivateLook: observable,
+      setNumberOfPrivateLook: action,
       error: observable,
       setError: action,
       loadLooks: action,
@@ -35,6 +41,14 @@ export class LooksStore {
     this.isOutOfDate = isOutOfDate;
   };
 
+  setNumberOfArchivedLook = (numberOfArchivedLook) => {
+    this.numberOfArchivedLook = numberOfArchivedLook;
+  };
+
+  setNumberOfPrivateLook = (numberOfPrivateLook) => {
+    this.numberOfPrivateLook = numberOfPrivateLook;
+  };
+
   setError = (error) => {
     this.error = error;
   };
@@ -42,7 +56,13 @@ export class LooksStore {
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
+
+      const archivedLooks = looks.filter(look => look.active === false);
+      const privateLooks = looks.filter(look => look.private);
+
       this.setLooks(looks);
+      this.setNumberOfArchivedLook(archivedLooks.length);
+      this.setNumberOfPrivateLook(privateLooks.length);
       this.setIsLoading(false);
       this.setIsOutOfDate(false);
     } catch (error) {

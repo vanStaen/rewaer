@@ -38,6 +38,9 @@ export const Items = observer(() => {
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
+    itemsStore.numberOfPrivateItem,
+    itemsStore.numberOfArchivedItem,
+    showPrivate
   ]);
 
   const calculateMissingCardsForFullRow = useCallback(() => {
@@ -47,12 +50,12 @@ export const Items = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks = itemsStore.items.length + 1; // +1 for the form
-    const numberFullRow = Math.floor(numberLooks / numberPerRow);
+    const numberItems = showPrivate ? itemsStore.items.length + 1 : itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem;
+    const numberFullRow = Math.floor(numberItems / numberPerRow);
     const missingCards =
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
+      numberPerRow - (numberItems - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current]);
+  }, [containerElement.current, showPrivate]);
 
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || showPrivate) {

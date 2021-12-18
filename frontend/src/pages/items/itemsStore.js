@@ -7,7 +7,9 @@ export class ItemsStore {
   items = [];
   isLoading = true;
   isOutOfDate = true;
-  error= null; 
+  numberOfArchivedItem = 0;
+  numberOfPrivateItem = 0;
+  error = null;
 
   constructor() {
     makeObservable(this, {
@@ -17,6 +19,10 @@ export class ItemsStore {
       setIsLoading: action,
       isOutOfDate: observable,
       setIsOutOfDate: action,
+      numberOfArchivedItem: observable,
+      setNumberOfArchivedItem: action,
+      numberOfPrivateItem: observable,
+      setNumberOfPrivateItem: action,
       error: observable,
       setError: action,
       loadItems: action,
@@ -35,6 +41,14 @@ export class ItemsStore {
     this.isOutOfDate = isOutOfDate;
   };
 
+  setNumberOfArchivedItem = (numberOfArchivedItem) => {
+    this.numberOfArchivedItem = numberOfArchivedItem;
+  };
+
+  setNumberOfPrivateItem = (numberOfPrivateItem) => {
+    this.numberOfPrivateItem = numberOfPrivateItem;
+  };
+
   setError = (error) => {
     this.error = error;
   };
@@ -42,7 +56,13 @@ export class ItemsStore {
   loadItems = async () => {
     try {
       const items = await fetchItems();
+
+      const archivedItems = items.filter(item => item.active === false);
+      const privateItems = items.filter(item => item.private);
+
       this.setItems(items);
+      this.setNumberOfArchivedItem(archivedItems.length);
+      this.setNumberOfPrivateItem(privateItems.length);
       this.setIsLoading(false);
       this.setIsOutOfDate(false);
     } catch (error) {

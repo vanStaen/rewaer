@@ -39,6 +39,9 @@ export const Looks = observer(() => {
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
+    looksStore.numberOfPrivateLook,
+    looksStore.numberOfArchivedLook,
+    showPrivate
   ]);
 
 
@@ -49,12 +52,12 @@ export const Looks = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks = looksStore.looks.length + 1; // +1 for the form
+    const numberLooks = showPrivate ? looksStore.looks.length + 1 : looksStore.looks.length + 1 - looksStore.numberOfPrivateLook; // +1 for the form
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current]);
+  }, [containerElement.current, showPrivate]);
 
   const lookList = looksStore.looks.map((look) => {
     if (!look.private || showPrivate) {
