@@ -1,5 +1,5 @@
 .lookdetail__container {
-    height: calc(100vh - 60px - 50px)
+    height: calc(100vh - 60px - 50px);
 }
 
 .lookdetail__backArrow {
@@ -20,6 +20,7 @@
 .lookdetail__spacer {
     width: 50px;
     height: calc(100% - 40px);
+    max-height: 70vh;
     display: inline-block;
 }
 
@@ -70,4 +71,39 @@
 
 .lookdetail__headerTitleId {
     color: #c0c0c0;
+    font-weight: 200;
 }
+
+.lookdetail__headerSelectCategory {
+    color: #c0c0c0;
+    font-weight: 300;
+    cursor: pointer; 
+}
+
+.lookdetail__headerCategory {
+    color: #000;
+} 
+
+.lookDetail__itemContainer {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - min(53vh, 480px) - 100px);
+    height: min(70vh, 640px);
+    margin-left: 10px;
+}   
+
+.lookDetail__item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px 10px;
+    width: 120px;
+    height: 163px;
+} 
+
+.lookDetail__spinner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} 

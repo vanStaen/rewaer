@@ -8,7 +8,6 @@ import { looksStore } from "./looksStore";
 import { userStore } from "../../stores/userStore/userStore"
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
-import { lookCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 import { GhostCard } from "../../components/GhostCard/GhostCard";
 import { LookDetail } from "./LookDetail/LookDetail";

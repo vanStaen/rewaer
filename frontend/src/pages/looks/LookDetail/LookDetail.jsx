@@ -1,14 +1,46 @@
-import React, { useState } from "react";
-import { notification, Spin, Popconfirm, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
+import { notification, Spin, Popconfirm, Tooltip, Dropdown, Menu } from "antd";
+import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
+import { itemsStore } from "../../Items/itemsStore";
+import { lookCategory } from "../../../data/categories";
 
 import "./LookDetail.css";
 
-export const LookDetail = (props) => {
+export const LookDetail = observer((props) => {
+  const [category, setCategory] = useState(props.selectedLook.category)
   const { t } = useTranslation();
+
+  useEffect(() => {
+    itemsStore.loadItems();
+    console.log(lookCategory);
+  }, [
+    itemsStore.isOutOfDate,
+  ]);
+
+  const CategoryDropDown = lookCategory.map((category) => {
+    return (
+      <Menu.Item onClick={() => { setCategory(category.en) }}>
+        {category.en}
+      </Menu.Item>);
+  });
+
+  const itemList = itemsStore.items.map((item) => {
+    return (
+      <div className="lookDetail__item"
+        style={{
+          background: `url(${item.mediaUrlMedium})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}>
+      </div>
+    );
+  });
+
   return (
     <div className="lookdetail__container">
       <div className="lookdetail__backArrow">
@@ -27,13 +59,21 @@ export const LookDetail = (props) => {
           <span className="lookdetail__headerTitleId">
             {props.selectedLook._id}
           </span>
-          &nbsp;
+          &nbsp;|&nbsp;
           <EditableTitle
             title={props.selectedLook.title}
             id={props.selectedLook._id}
             type={"look"}
             active={props.selectedLook.active}
           />
+          &nbsp;|&nbsp;
+          <Dropdown overlay={<Menu>{CategoryDropDown}</Menu>} placement="bottomLeft">
+            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+              {category ?
+                <span className="lookdetail__headerCategory">{category}</span>
+                : <span className="lookdetail__headerSelectCategory">Select a category</span>}
+            </a>
+          </Dropdown>
         </div>
       </div>
 
@@ -57,6 +97,19 @@ export const LookDetail = (props) => {
           }}
         ></div>
       </div>
-    </div>
+
+      {
+        itemsStore.isLoading ?
+          <div className="lookDetail__itemContainer">
+            <div className="lookDetail__spinner">
+              <Spin size="large" />
+            </div>
+          </div>
+          :
+          <div className="lookDetail__itemContainer">
+            {itemList}
+          </div>
+      }
+    </div >
   );
-};
+});
