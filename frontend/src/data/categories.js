@@ -53,10 +53,17 @@ export const lookCategory = [
     de: "Minimalistisch",
     fr: "Minimaliste ",
   },
+  {
+    code: "L10",
+    en: "Arty",
+    de: "Arty",
+    fr: "Arty ",
+  },
 ];
 
 export const itemCategory = [
-  { men: [
+  {
+    men: [
       {
         code: "IM1",
         en: "Shoes",
@@ -101,7 +108,8 @@ export const itemCategory = [
       },
     ],
   },
-  { women: [
+  {
+    women: [
       {
         code: "IW1",
         en: "Shoes",

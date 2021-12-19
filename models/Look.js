@@ -25,8 +25,8 @@ const Look = sequelize.define("look", {
     required: true,
   },
   category: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    defaultValue: [],
+    type: DataTypes.STRING,
+    defaultValue: null,
   },
   items: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),

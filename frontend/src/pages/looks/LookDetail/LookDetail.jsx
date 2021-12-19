@@ -5,7 +5,9 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
+import { updateCategoryLook } from "../actions/updateCategoryLook";
 import { itemsStore } from "../../Items/itemsStore";
+import { looksStore } from "../looksStore";
 import { lookCategory } from "../../../data/categories";
 
 import "./LookDetail.css";
@@ -16,14 +18,18 @@ export const LookDetail = observer((props) => {
 
   useEffect(() => {
     itemsStore.loadItems();
-    console.log(lookCategory);
   }, [
     itemsStore.isOutOfDate,
   ]);
 
+  const categoryChangeHandler = (value) => {
+    updateCategoryLook(props.selectedLook._id, value);
+    looksStore.setIsOutOfDate(true);
+  }
+
   const CategoryDropDown = lookCategory.map((category) => {
     return (
-      <Menu.Item onClick={() => { setCategory(category.en) }}>
+      <Menu.Item onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
         {category.en}
       </Menu.Item>);
   });

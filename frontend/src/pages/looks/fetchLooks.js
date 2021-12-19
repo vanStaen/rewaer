@@ -7,6 +7,7 @@ export async function fetchLooks() {
         getLooks {
           _id,
           title,
+          category,
           active,
           favorite,
           private,
@@ -21,7 +22,7 @@ export async function fetchLooks() {
       }
       `,
   };
-  
+
   const response = await axios({
     url: process.env.API_URL + `/graphql/`,
     method: "POST",
