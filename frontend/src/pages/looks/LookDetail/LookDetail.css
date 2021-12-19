@@ -87,7 +87,7 @@
 .lookDetail__itemContainer {
     display: inline-block;
     vertical-align: top;
-    width: calc(100% - min(53vh, 480px) - 100px);
+    width: calc(100% - min(53vh, 480px) - 60px);
     height: min(70vh, 640px);
     margin-left: 10px;
 }   
