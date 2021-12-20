@@ -41,6 +41,7 @@ export const Looks = observer(() => {
     calculateMissingCardsForFullRow,
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
+    userStore.profilSettings,
     showPrivate
   ]);
 

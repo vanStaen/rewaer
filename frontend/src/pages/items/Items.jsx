@@ -41,7 +41,7 @@ export const Items = observer(() => {
     calculateMissingCardsForFullRow,
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
-    userStore.profilSettings.displayArchived,
+    userStore.profilSettings,
     showPrivate
   ]);
 
