@@ -135,7 +135,9 @@ export const LookDetail = observer((props) => {
           {selectedItems.length > 0 && (
             <>
               <div className="lookdetail__headerPoints">&#9679;</div>
-              {selectedItems.length} {t("main.item")}{selectedItems.length > 1 && "s"}
+              <div className="lookdetail__headerItemCount">
+                {selectedItems.length} {t("main.item")}{selectedItems.length > 1 && "s"}
+              </div>
             </>
           )}
 
