@@ -176,6 +176,7 @@
     "restoreConfirm": "Restore this look?",
     "detailView": "Detail view",
     "showPrivateLooks": "Show Private looks",
-    "hidePrivateLooks": "Hide Private looks"
+    "hidePrivateLooks": "Hide Private looks",
+    "backToLooks": "Back to all Looks"
   }
 }

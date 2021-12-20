@@ -101,7 +101,7 @@ export const LookDetail = observer((props) => {
   return (
     <div className="lookdetail__container">
       <div className="lookdetail__backArrow">
-        <Tooltip placement="bottomRight" title={t("main.back")}>
+        <Tooltip placement="bottomRight" title={t("looks.backToLooks")}>
           <ArrowLeftOutlined
             className="lookdetail__arrowIcon"
             onClick={() => {

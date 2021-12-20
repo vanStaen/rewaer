@@ -176,6 +176,7 @@
     "restoreConfirm": "Souhaitez-vous restaurer ce look?",
     "detailView": "Vue detailée",
     "showPrivateLooks": "Afficher les looks privés",
-    "hidePrivateLooks": "Cacher les looks privés"
+    "hidePrivateLooks": "Cacher les looks privés",
+    "backToLooks": "Retourner aux Looks"
   }
 }
