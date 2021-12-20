@@ -24,7 +24,9 @@
     "back": "Retour",
     "makePrivate" : "Rendre privé",
     "makePublic" : "Rendre publique",
-    "isPrivate" : "Que toi peux le voir"
+    "isPrivate" : "Que toi peux le voir",
+    "item": "piéce",
+    "look": "look"
   },
   "login": {
     "newHere": "Premiére fois",

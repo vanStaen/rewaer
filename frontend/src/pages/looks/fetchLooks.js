@@ -8,6 +8,7 @@ export async function fetchLooks() {
           _id,
           title,
           category,
+          items,
           active,
           favorite,
           private,

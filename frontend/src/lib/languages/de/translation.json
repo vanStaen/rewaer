@@ -24,7 +24,9 @@
     "back": "Zurück",
     "makePrivate" : "Private machen",
     "makePublic" : "Öffentlich machen",
-    "isPrivate" : "Nur du kannst es sehen"
+    "isPrivate" : "Nur du kannst es sehen",
+    "item": "item",
+    "look": "look"
   },
   "login": {
     "newHere": "Erstes mal hier",

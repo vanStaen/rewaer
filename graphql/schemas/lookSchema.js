@@ -7,7 +7,7 @@ type Look {
     mediaUrlThumb: String!
     mediaUrlMedium: String!
     category: String
-    items: [String]
+    items: [Int]
     active: Boolean!
     favorite: Boolean!
     private: Boolean
@@ -23,7 +23,7 @@ input LookInputData {
     mediaUrlThumb: String
     mediaUrlMedium: String
     category: String
-    items: [String]
+    items: [Int]
     active: Boolean
     favorite: Boolean
     private: Boolean

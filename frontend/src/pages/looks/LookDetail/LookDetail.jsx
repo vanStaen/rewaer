@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { updateCategoryLook } from "../actions/updateCategoryLook";
+import { updateItemsLook } from "../actions/updateItemsLook";
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { lookCategory } from "../../../data/categories";
@@ -14,6 +15,7 @@ import "./LookDetail.css";
 
 export const LookDetail = observer((props) => {
   const [category, setCategory] = useState(props.selectedLook.category)
+  const [selectedItems, setSelectedItems] = useState(props.selectedLook.items ? props.selectedLook.items : [])
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -27,24 +29,62 @@ export const LookDetail = observer((props) => {
     looksStore.setIsOutOfDate(true);
   }
 
+  const itemClickHandler = (value) => {
+    const valueAsInt = parseInt(value);
+    const indexOfValue = selectedItems.indexOf(valueAsInt);
+    if (indexOfValue < 0) {
+      setSelectedItems([...selectedItems, valueAsInt]);
+      updateItemsLook(props.selectedLook._id, [...selectedItems, valueAsInt]);
+    } else {
+      setSelectedItems(selectedItems.filter(itemId => itemId !== valueAsInt))
+      updateItemsLook(props.selectedLook._id, selectedItems.filter(itemId => itemId !== valueAsInt));
+    }
+    looksStore.setIsOutOfDate(true);
+  }
+
   const CategoryDropDown = lookCategory.map((category) => {
     return (
-      <Menu.Item onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
+      <Menu.Item key={category.code} onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
         {category.en}
       </Menu.Item>);
   });
 
   const itemList = itemsStore.items.map((item) => {
-    return (
-      <div className="lookDetail__item"
-        style={{
-          background: `url(${item.mediaUrlMedium})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}>
-      </div>
-    );
+    const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
+    if (!isSelected) {
+      return (
+        <div className={"lookDetail__item"}
+          onClick={() => itemClickHandler(item._id)}
+          key={item._id}
+          style={{
+            background: `url(${item.mediaUrlMedium})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}>
+        </div>
+      );
+    }
+    return null;
+  });
+
+  const selectedItemList = itemsStore.items.map((item) => {
+    const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
+    if (isSelected) {
+      return (
+        <div className={"lookDetail__itemSelected"}
+          onClick={() => itemClickHandler(item._id)}
+          key={item._id}
+          style={{
+            background: `url(${item.mediaUrlMedium})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}>
+        </div>
+      );
+    }
+    return null;
   });
 
   return (
@@ -65,14 +105,14 @@ export const LookDetail = observer((props) => {
           <span className="lookdetail__headerTitleId">
             {props.selectedLook._id}
           </span>
-          &nbsp;|&nbsp;
+          <div className="lookdetail__headerPoints">&#9679;</div>
           <EditableTitle
             title={props.selectedLook.title}
             id={props.selectedLook._id}
             type={"look"}
             active={props.selectedLook.active}
           />
-          &nbsp;|&nbsp;
+          <div className="lookdetail__headerPoints">&#9679;</div>
           <Dropdown overlay={<Menu>{CategoryDropDown}</Menu>} placement="bottomLeft">
             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
               {category ?
@@ -80,11 +120,19 @@ export const LookDetail = observer((props) => {
                 : <span className="lookdetail__headerSelectCategory">Select a category</span>}
             </a>
           </Dropdown>
+
+          {selectedItems.length > 0 && (
+            <>
+              <div className="lookdetail__headerPoints">&#9679;</div>
+              {selectedItems.length} {t("main.item")}{selectedItems.length > 1 && "s"}
+            </>
+          )}
+
         </div>
       </div>
 
       <div className="lookdetail__spacer"></div>
-      <div class="lookdetail__imageWrap">
+      <div className="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"
           id={`selected_look_picture_${props.selectedLook._id}`}
@@ -113,6 +161,7 @@ export const LookDetail = observer((props) => {
           </div>
           :
           <div className="lookDetail__itemContainer">
+            {selectedItemList}
             {itemList}
           </div>
       }
