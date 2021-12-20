@@ -89,6 +89,22 @@ export const Looks = observer(() => {
     return null;
   });
 
+  const totalLooks = () => {
+    if (userStore.profilSettings.displayArchived) {
+      if (showPrivate) {
+        return looksStore.looks.length;
+      } else {
+        return looksStore.looks.length - looksStore.numberOfPrivateLook;
+      }
+    } else {
+      if (showPrivate) {
+        return looksStore.looks.length - looksStore.numberOfArchivedLook;
+      } else {
+        return looksStore.looks.length - looksStore.numberOfArchivedLook - looksStore.numberOfPrivateLook;
+      }
+    }
+  }
+
   return (
     <div className="looks__main">
       {looksStore.error !== null ? (
@@ -113,7 +129,8 @@ export const Looks = observer(() => {
               <div ref={containerElement} className="looks__container">
                 <div className="looks__toolbar">
                   <div className="looks__toolbarLeft">
-                    {looksStore.looks.length} {t("menu.looks")}
+                    {totalLooks()}&nbsp;
+                    {t("menu.looks")}
                     {numberOfPrivateLooks > 0 && (
                       <> | &nbsp;
                         <span

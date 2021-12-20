@@ -89,6 +89,22 @@ export const Items = observer(() => {
     return null;
   });
 
+  const totalItems = () => {
+    if (userStore.profilSettings.displayArchived) {
+      if (showPrivate) {
+        return itemsStore.items.length;
+      } else {
+        return itemsStore.items.length - itemsStore.numberOfPrivateItem;
+      }
+    } else {
+      if (showPrivate) {
+        return itemsStore.items.length - itemsStore.numberOfArchivedItem;
+      } else {
+        return itemsStore.items.length - itemsStore.numberOfArchivedItem - itemsStore.numberOfPrivateItem;
+      }
+    }
+  }
+
   return (
     <div className="items__main">
       {itemsStore.error !== null ? (
@@ -112,7 +128,7 @@ export const Items = observer(() => {
               <div ref={containerElement} className="items__container">
                 <div className="items__toolbar">
                   <div className="items__toolbarLeft">
-                    {itemsStore.items.length} {t("menu.items")}
+                    {totalItems()}&nbsp; {t("menu.items")}
                     {numberOfPrivateItems > 0 && (
                       <>  |
                       <span
