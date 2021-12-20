@@ -48,12 +48,11 @@
   - [ ] fashion revolution
 - [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
-- [ ] Settings: Show archived items/looks
 - [ ] Settings: per defaut show or hide Private
 - [ ] Detail View Item
-- [ ] Detail View Looks
 - [ ] Bug: SubMenu alays stays shown, won't hide
 - [ ] Count how many items are private and act accordingly
+- [ ] When archiving anything, had a undo feature in the notification
 
 ## Completed ✓
 
@@ -146,3 +145,5 @@
 - [x] BugFix: If old Title = new Title, then no update
 - [x] LoadImage helper function + spinner on load
 - [x] Bug: Private update should reflect in store
+- [x] Detail View Looks
+- [x] Settings: Show archived items/looks
