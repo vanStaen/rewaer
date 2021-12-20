@@ -129,6 +129,20 @@ export const EditSettings = observer(() => {
             />{" "}
             {t("profile.settingShowArchived")}
           </div>
+          <div className="EditSettings__singleSetting">
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={() => {
+                changeProfilSettingsHandler(
+                  "displayPrivate",
+                  !userStore.profilSettings.displayPrivate
+                );
+              }}
+              checked={userStore.profilSettings.displayPrivate}
+            />{" "}
+            {t("profile.settingDisplayPrivate")}
+          </div>
           <br />
           <Divider orientation="left" plain>
             {t("profile.profileSettings")}

@@ -25,8 +25,10 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     looksStore.loadLooks();
+    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [
     looksStore.isOutOfDate,
+    userStore.profilSettings
   ]);
 
   useEffect(() => {

@@ -25,8 +25,10 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
+    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [
     itemsStore.isOutOfDate,
+    userStore.profilSettings
   ]);
 
   useEffect(() => {

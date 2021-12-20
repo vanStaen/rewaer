@@ -1,5 +1,6 @@
 {
   "showLastSeenOnline": true,
   "hideProfilToStrangers": false,
-  "displayArchived": true
+  "displayArchived": true,
+  "displayPrivate": false
 }

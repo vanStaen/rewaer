@@ -22,8 +22,10 @@ export const LookDetail = observer((props) => {
 
   useEffect(() => {
     itemsStore.loadItems();
+    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [
     itemsStore.isOutOfDate,
+    userStore.profilSettings
   ]);
 
   const categoryChangeHandler = (value) => {

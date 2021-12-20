@@ -28,9 +28,9 @@
   - [ ] <ExclamationCircleOutlined /> on items not fully taged
   - [x] Tag as favorite (heart icon)
   - [x] archive/restore feature
-  - [ ] Show like-counter 
-    - [ ] Use Thumbs up for like
-    - [ ] Use Thumb down for dislike
+  - [x] Show like-counter (placeholder) 
+    - [x] Use Thumbs up for like
+    - [x] Use Thumb down for dislike
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
@@ -46,11 +46,9 @@
 - [ ] Redo info page, 
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
-- [ ] BE: update lastSeenOnline with every request 
 - [ ] Drag and Drop to sort Looks and Items
-- [ ] Settings: per defaut show or hide Private
 - [ ] Detail View Item
-- [ ] Bug: SubMenu alays stays shown, won't hide
+- [ ] Bug: SubMenu always stays shown, won't hide
 - [ ] When archiving anything, had a undo feature in the notification
 
 ## Completed ✓
@@ -147,3 +145,4 @@
 - [x] Detail View Looks
 - [x] Settings: Show archived items/looks
 - [x] Count how many items are private and act accordingly
+- [x] Settings: per defaut show or hide Private
