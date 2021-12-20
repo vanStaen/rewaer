@@ -46,6 +46,7 @@ export const Items = observer(() => {
   ]);
 
   const calculateMissingCardsForFullRow = useCallback(() => {
+    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
     const containerWidth =
       containerElement.current === null
         ? 0
@@ -54,12 +55,12 @@ export const Items = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberItems =
       showPrivate ?
-        userStore.profilSettings.displayArchived ?
+        displayArchived ?
           itemsStore.items.length + 1
           :
           itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
         :
-        userStore.profilSettings.displayArchived ?
+        displayArchived ?
           itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
           :
           itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem - itemsStore.numberOfArchivedItem
@@ -67,7 +68,7 @@ export const Items = observer(() => {
     const missingCards =
       numberPerRow - (numberItems - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current, showPrivate]);
+  }, [containerElement.current, showPrivate, userStore.profilSettings]);
 
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || showPrivate) {
@@ -93,7 +94,7 @@ export const Items = observer(() => {
           <br />
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
         </div>
-      ) : itemsStore.isLoading ? (
+      ) : itemsStore.isLoading || userStore.isLoading ? (
         <div className="spinner">
           <Spin size="large" />
         </div>

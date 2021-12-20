@@ -46,6 +46,7 @@ export const Looks = observer(() => {
 
 
   const calculateMissingCardsForFullRow = useCallback(() => {
+    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
     const containerWidth =
       containerElement.current === null
         ? 0
@@ -54,12 +55,12 @@ export const Looks = observer(() => {
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks =
       showPrivate ?
-        userStore.profilSettings.displayArchived ?
+        displayArchived ?
           looksStore.looks.length + 1
           :
           looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
         :
-        userStore.profilSettings.displayArchived ?
+        displayArchived ?
           looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
           :
           looksStore.looks.length + 1 - looksStore.numberOfPrivateLook - looksStore.numberOfArchivedLook
@@ -67,7 +68,7 @@ export const Looks = observer(() => {
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current, showPrivate]);
+  }, [containerElement.current, showPrivate, userStore.profilSettings]);
 
   const lookList = looksStore.looks.map((look) => {
     if (!look.private || showPrivate) {
@@ -93,7 +94,7 @@ export const Looks = observer(() => {
           <br />
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
         </div>
-      ) : looksStore.isLoading ? (
+      ) : looksStore.isLoading || userStore.isLoading ? (
         <div className="spinner">
           <Spin size="large" />
         </div>

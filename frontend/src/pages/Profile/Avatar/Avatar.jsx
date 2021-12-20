@@ -53,10 +53,6 @@ export const Avatar = observer(() => {
     }
   };
 
-  useEffect(() => {
-    userStore.fetchuserData();
-  }, []);
-
   return (
     <Fragment>
       {isUploading ? (
@@ -66,39 +62,39 @@ export const Avatar = observer(() => {
           </div>
         </div>
       ) : (
-        <div
-          className="avatar__avatar"
-          style={
-            userStore.avatar && {
-              backgroundImage: "url(" + userStore.avatar + ")",
+          <div
+            className="avatar__avatar"
+            style={
+              userStore.avatar && {
+                backgroundImage: "url(" + userStore.avatar + ")",
+              }
             }
-          }
-        >
-          {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
-          <div className="avatar__editAvatar">
-            <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
-              <form
-                onSubmit={changeAvatarSubmitHandler}
-                style={{
-                  width: "25px",
-                  marginLeft: "175px",
-                }}
-              >
-                <input
-                  type="file"
-                  className="avatar__inputfile"
-                  name="inputfile"
-                  id="file"
-                  onChange={fileSelectHandler}
-                />
-                <label htmlFor="file">
-                  <EditOutlined />
-                </label>
-              </form>
-            </Tooltip>
+          >
+            {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
+            <div className="avatar__editAvatar">
+              <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
+                <form
+                  onSubmit={changeAvatarSubmitHandler}
+                  style={{
+                    width: "25px",
+                    marginLeft: "175px",
+                  }}
+                >
+                  <input
+                    type="file"
+                    className="avatar__inputfile"
+                    name="inputfile"
+                    id="file"
+                    onChange={fileSelectHandler}
+                  />
+                  <label htmlFor="file">
+                    <EditOutlined />
+                  </label>
+                </form>
+              </Tooltip>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </Fragment>
   );
 });
