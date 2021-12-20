@@ -51,7 +51,6 @@
 - [ ] Settings: per defaut show or hide Private
 - [ ] Detail View Item
 - [ ] Bug: SubMenu alays stays shown, won't hide
-- [ ] Count how many items are private and act accordingly
 - [ ] When archiving anything, had a undo feature in the notification
 
 ## Completed ✓
@@ -147,3 +146,4 @@
 - [x] Bug: Private update should reflect in store
 - [x] Detail View Looks
 - [x] Settings: Show archived items/looks
+- [x] Count how many items are private and act accordingly

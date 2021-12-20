@@ -31,6 +31,8 @@ export const LookDetail = observer((props) => {
     looksStore.setIsOutOfDate(true);
   }
 
+  const numberOfPrivateItems = itemsStore.items.filter(item => item.private).length;
+
   const itemClickHandler = (value) => {
     const valueAsInt = parseInt(value);
     const indexOfValue = selectedItems.indexOf(valueAsInt);
@@ -141,14 +143,15 @@ export const LookDetail = observer((props) => {
             </>
           )}
 
-          <span
-            className="lookdetail__headerShowPrivate link"
-            onClick={() => {
-              setShowPrivate(!showPrivate);
-            }}
-          >
-            {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
-          </span>
+          {numberOfPrivateItems > 0 &&
+            (<span
+              className="lookdetail__headerShowPrivate link"
+              onClick={() => {
+                setShowPrivate(!showPrivate);
+              }}
+            >
+              {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
+            </span>)}
 
         </div>
       </div>

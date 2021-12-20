@@ -45,6 +45,8 @@ export const Items = observer(() => {
     showPrivate
   ]);
 
+  const numberOfPrivateItems = itemsStore.items.filter(item => item.private).length;
+
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
     const containerWidth =
@@ -108,15 +110,18 @@ export const Items = observer(() => {
               <div ref={containerElement} className="items__container">
                 <div className="items__toolbar">
                   <div className="items__toolbarLeft">
-                    {itemsStore.items.length} {t("menu.items")} |
-                <span
-                      className="link"
-                      onClick={() => {
-                        setShowPrivate(!showPrivate);
-                      }}
-                    >&nbsp;
-                      {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
-                    </span>
+                    {itemsStore.items.length} {t("menu.items")}
+                    {numberOfPrivateItems > 0 && (
+                      <>  |
+                      <span
+                          className="link"
+                          onClick={() => {
+                            setShowPrivate(!showPrivate);
+                          }}
+                        >&nbsp;
+                        {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
+                        </span>
+                      </>)}
                   </div>
                   <div className="items__toolbarRight">
                     <ToolBar

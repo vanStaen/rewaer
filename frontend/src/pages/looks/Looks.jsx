@@ -45,6 +45,7 @@ export const Looks = observer(() => {
     showPrivate
   ]);
 
+  const numberOfPrivateLooks = looksStore.looks.filter(look => look.private).length;
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
@@ -110,15 +111,18 @@ export const Looks = observer(() => {
               <div ref={containerElement} className="looks__container">
                 <div className="looks__toolbar">
                   <div className="looks__toolbarLeft">
-                    {looksStore.looks.length} {t("menu.looks")} |&nbsp;
-                    <span
-                      className="link"
-                      onClick={() => {
-                        setShowPrivate(!showPrivate);
-                      }}
-                    >
-                      {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
-                    </span>
+                    {looksStore.looks.length} {t("menu.looks")}
+                    {numberOfPrivateLooks > 0 && (
+                      <> | &nbsp;
+                        <span
+                          className="link"
+                          onClick={() => {
+                            setShowPrivate(!showPrivate);
+                          }}
+                        >
+                          {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
+                        </span>
+                      </>)}
                   </div>
                   <div className="looks__toolbarRight">
                     <ToolBar
