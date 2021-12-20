@@ -161,7 +161,9 @@
     "archiveSuccess" : "Item archived successfully!",
     "archiveConfirm": "You want to archive this item?",
     "restoreSuccess" : "Item restored successfully!",
-    "restoreConfirm": "Restore this item?"
+    "restoreConfirm": "Restore this item?",
+    "showPrivateItems": "Show Private items",
+    "hidePrivateItems": "Hide Private items"
   },
   "looks" : {
     "look": "look",
@@ -172,6 +174,8 @@
     "archiveConfirm": "You want to archive this look?",
     "restoreSuccess" : "Look restored successfully!",
     "restoreConfirm": "Restore this look?",
-    "detailView": "Detail view"
+    "detailView": "Detail view",
+    "showPrivateLooks": "Show Private looks",
+    "hidePrivateLooks": "Hide Private looks"
   }
 }

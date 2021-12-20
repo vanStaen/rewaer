@@ -109,14 +109,14 @@ export const Looks = observer(() => {
               <div ref={containerElement} className="looks__container">
                 <div className="looks__toolbar">
                   <div className="looks__toolbarLeft">
-                    {looksStore.looks.length} {t("menu.looks")} |
-              <span
+                    {looksStore.looks.length} {t("menu.looks")} |&nbsp;
+                    <span
                       className="link"
                       onClick={() => {
                         setShowPrivate(!showPrivate);
                       }}
-                    >&nbsp;
-                      {showPrivate ? "Hide Private looks" : "Show Private looks"}
+                    >
+                      {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
                     </span>
                   </div>
                   <div className="looks__toolbarRight">

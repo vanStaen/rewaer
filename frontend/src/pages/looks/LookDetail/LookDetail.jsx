@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { notification, Spin, Popconfirm, Tooltip, Dropdown, Menu } from "antd";
+import { Spin, Tooltip, Dropdown, Menu, Image } from "antd";
 import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import { updateCategoryLook } from "../actions/updateCategoryLook";
 import { updateItemsLook } from "../actions/updateItemsLook";
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
+import { userStore } from "../../../stores/userStore/userStore";
 import { lookCategory } from "../../../data/categories";
 
 import "./LookDetail.css";
@@ -16,6 +17,7 @@ import "./LookDetail.css";
 export const LookDetail = observer((props) => {
   const [category, setCategory] = useState(props.selectedLook.category)
   const [selectedItems, setSelectedItems] = useState(props.selectedLook.items ? props.selectedLook.items : [])
+  const [showPrivate, setShowPrivate] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -50,20 +52,29 @@ export const LookDetail = observer((props) => {
   });
 
   const itemList = itemsStore.items.map((item) => {
+    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
     const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
     if (!isSelected) {
-      return (
-        <div className={"lookDetail__item"}
-          onClick={() => itemClickHandler(item._id)}
-          key={item._id}
-          style={{
-            background: `url(${item.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}>
-        </div>
-      );
+      if (!item.active && !displayArchived) {
+        return null;
+      } else {
+        if (item.private && !showPrivate) {
+          return null;
+        } else {
+          return (
+            <div className={"lookDetail__item"}
+              onClick={() => itemClickHandler(item._id)}
+              key={item._id}
+              style={{
+                background: `url(${item.mediaUrlMedium})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}>
+            </div>
+          );
+        }
+      }
     }
     return null;
   });
@@ -128,6 +139,15 @@ export const LookDetail = observer((props) => {
             </>
           )}
 
+          <span
+            className="lookdetail__headerShowPrivate link"
+            onClick={() => {
+              setShowPrivate(!showPrivate);
+            }}
+          >
+            {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
+          </span>
+
         </div>
       </div>
 
@@ -138,6 +158,9 @@ export const LookDetail = observer((props) => {
           id={`selected_look_picture_${props.selectedLook._id}`}
           style={{
             background: `url(${props.selectedLook.mediaUrlMedium})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         ></div>
         <div

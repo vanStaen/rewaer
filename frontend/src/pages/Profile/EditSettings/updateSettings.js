@@ -21,9 +21,6 @@ export async function updateSettings(emailSettings, profilSettings) {
     },
   };
 
-  console.log("emailSettings", JSON.stringify(emailSettings));
-  console.log("profilSettings", JSON.stringify(profilSettings));
-
   const response = await axios({
     url: process.env.API_URL + `/graphql`,
     method: "POST",

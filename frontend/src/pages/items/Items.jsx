@@ -115,7 +115,7 @@ export const Items = observer(() => {
                         setShowPrivate(!showPrivate);
                       }}
                     >&nbsp;
-                      {showPrivate ? "Hide Private items" : "Show Private items"}
+                      {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
                     </span>
                   </div>
                   <div className="items__toolbarRight">

@@ -160,7 +160,9 @@
     "archiveSuccess" : "Item erfolgreich archiviert!",
     "archiveConfirm": "Möchten Sie diesen Item archivieren?",
     "restoreSuccess" : "Item erfolgreich weiderhergestellt!",
-    "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?"
+    "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?",
+    "showPrivateLooks": "Private items anzeigen",
+    "hidePrivateLooks": "Private items verstecken"
   },
   "looks" : {
     "look": "look",
@@ -171,6 +173,8 @@
     "archiveConfirm": "Möchten Sie diesen Look archivieren?",
     "restoreSuccess" : "Look erfolgreich weiderhergestellt!",
     "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?",
-    "detailView": "Detail Ansicht"
+    "detailView": "Detail Ansicht",
+    "showPrivateLooks": "Private looks anzeigen",
+    "hidePrivateLooks": "Private looks verstecken"
   }
 }

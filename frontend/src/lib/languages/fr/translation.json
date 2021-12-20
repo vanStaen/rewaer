@@ -161,7 +161,9 @@
     "archiveSuccess" : "Item archivé avec succès!",
     "archiveConfirm": "Souhaitez-vous archiver cette piéce?",
     "restoreSuccess" : "Piéce restauré avec succès!",
-    "restoreConfirm": "Souhaitez-vous restaurer cette piéce?"
+    "restoreConfirm": "Souhaitez-vous restaurer cette piéce?",
+    "showPrivateItems": "Afficher les piéces privées",
+    "hidePrivateItems": "Cacher les piéces privées"
   },
   "looks" : {
     "look": "look",
@@ -172,6 +174,8 @@
     "archiveConfirm": "Souhaitez-vous archiver ce look?",
     "restoreSuccess" : "Look restauré avec succès!",
     "restoreConfirm": "Souhaitez-vous restaurer ce look?",
-    "detailView": "Vue detailée"
+    "detailView": "Vue detailée",
+    "showPrivateLooks": "Afficher les looks privés",
+    "hidePrivateLooks": "Cacher les looks privés"
   }
 }
