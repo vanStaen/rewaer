@@ -23,14 +23,18 @@ export const Profile = observer(() => {
   const params = useParams();
   const { t } = useTranslation();
   const [contentToDisplay, setContentToDisplay] = useState("looks");
+  const [showLastSeenOnline, setShowLastSeenOnline] = useState(false);
 
   useEffect(() => {
     const username = params.username ? params.username : userStore.userName;
     profileStore.fetchProfileData(username);
   }, [userStore.isLoading])
 
-  const showLastSeenOnline = true;
-  // userStore.profilSettings ? userStore.profilSettings.showLastSeenOnline : false;
+  useEffect(() => {
+    if (!profileStore.isLoading) {
+      setShowLastSeenOnline(profileStore.profilSettings.showLastSeenOnline);
+    }
+  }, [profileStore.isLoading])
 
   const dateLastActive = new Date(profileStore.lastActive);
 

@@ -10,6 +10,7 @@ export const getProfileInfo = async (username) => {
               gender,
               friends,
               lastActive,
+              profilSettings,
               items {
                 _id,
                 title,

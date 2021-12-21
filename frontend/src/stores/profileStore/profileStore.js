@@ -11,6 +11,7 @@ export class ProfileStore {
   gender = null;
   friends = [];
   lastActive = null;
+  profilSettings = null;
 
   constructor() {
     makeObservable(this, {
@@ -22,6 +23,7 @@ export class ProfileStore {
       gender: observable,
       friends: observable,
       lastActive: observable,
+      profilSettings: observable,
       setIsLoading: action,
       setError: action,
       setUserName: action,
@@ -30,6 +32,7 @@ export class ProfileStore {
       setGender: action,
       setFriends: action,
       setLastActive: action,
+      setProfilSettings: action,
       fetchProfileData: action,
     });
   }
@@ -66,6 +69,10 @@ export class ProfileStore {
     this.lastActive = lastActive;
   };
 
+  setProfilSettings = (profilSettings) => {
+    this.profilSettings = profilSettings;
+  };
+
   fetchProfileData = async (userName) => {
     try {
       this.setUserName(userName);
@@ -75,6 +82,7 @@ export class ProfileStore {
         this.setFirstName(profileData.firstName);
         this.setFriends(profileData.friends);
         this.setLastActive(profileData.lastActive);
+        this.setProfilSettings(JSON.parse(profileData.profilSettings));
       }
       this.setIsLoading(false);
     } catch (error) {
