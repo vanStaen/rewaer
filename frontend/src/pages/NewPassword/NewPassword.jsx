@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Form, Input, Button, notification } from "antd";
+import { useParams } from "react-router-dom";
 import { LockOutlined, SyncOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -8,12 +9,13 @@ import { postChangePassword } from "./postChangePassword";
 
 import "./NewPassword.css";
 
-export const NewPassword = (props) => {
+export const NewPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const { t } = useTranslation();
+  const params = useParams();
 
-  const token = props.match.params.key;
+  const token = params.key;
 
   const submitHandler = async (value) => {
     setIsLoading(true);
@@ -129,8 +131,8 @@ export const NewPassword = (props) => {
                 ) : isValid ? (
                   t("login.updatePassword")
                 ) : (
-                  t("login.linkNotValidAnymore")
-                )}
+                      t("login.linkNotValidAnymore")
+                    )}
               </Button>
             </Form.Item>
           </Form>

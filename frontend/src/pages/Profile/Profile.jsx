@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import {
   CameraOutlined,
   SkinOutlined,
-  TeamOutlined,
   MailOutlined,
   UserAddOutlined,
   EyeOutlined,
