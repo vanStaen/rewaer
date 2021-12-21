@@ -66,18 +66,18 @@ const App = observer(() => {
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
           <Route path="info/" element={<Info />} />
-          {authStore.hasAccess && <Route path="looks/" element={<Looks />} />}
-          {authStore.hasAccess && <Route path="items/" element={<Items />} />}
-          {authStore.hasAccess && (
-            <Route path="profile/" element={<Profile />}>
-              <Route path=":username/" element={<Profile />} />
-            </Route>
-          )}
-          {authStore.hasAccess && (
-            <Route path="editsettings" element={<EditSettings />} />
-          )}
+          {authStore.hasAccess &&
+            (<>
+              <Route path="looks/" element={<Looks />} />
+              <Route path="items/" element={<Items />} />
+              <Route path="profile/" element={<Profile />} />
+              <Route path="editsettings/" element={<EditSettings />} />
+            </>)}
           {authStore.hasAccess ? (
-            <Route path="/" element={<Profile />} />
+            <>
+              <Route path="/" element={<Profile />} />
+              <Route path="/:username" element={<Profile />} />
+            </>
           ) : (
               <Route path="/" element={<Welcome showLogin={true} />} />
             )}
