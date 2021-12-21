@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
@@ -14,17 +14,20 @@ import {
 } from "@ant-design/icons";
 
 import { userStore } from "../../stores/userStore/userStore";
+import { profileStore } from "../../stores/profileStore/profileStore";
 import { Avatar } from "./Avatar/Avatar";
 
 import "./Profile.css";
 
 export const Profile = observer(() => {
+  const params = useParams();
   const { t } = useTranslation();
   const [contentToDisplay, setContentToDisplay] = useState("looks");
 
-  let params = useParams();
-  const username = params ? params.username : null;
-  console.log("username", username);
+  useEffect(() => {
+    const username = params.username ? params.username : userStore.userName;
+    profileStore.fetchProfileData(username);
+  }, [userStore.isLoading])
 
   const showLastSeenOnline = userStore.profilSettings
     ? userStore.profilSettings.showLastSeenOnline
