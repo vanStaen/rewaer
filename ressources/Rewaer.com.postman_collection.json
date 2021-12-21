@@ -400,7 +400,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n     updateUser(\n       userInput: {          \n       emailSettings: \"{\\\"sendEmailFriendRequest\\\":true,\\\"sendEmailNewMessage\\\":true,\\\"sendEmailMarketing\\\":false}\",\n       profilSettings: \"{\\\"showLastSeenOnline\\\":true,\\\"hideProfilToStrangers\\\":false}\",\n       }\n     ) {\n       emailSettings,\n       profilSettings\n     }\n   }",
+						"query": "mutation {\n     updateUser(\n       userInput: {          \n       userName:\"test\",\n       }\n     ) {\n       userName\n     }\n   }",
 						"variables": ""
 					}
 				},
@@ -741,6 +741,38 @@
 					]
 				},
 				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
+			},
+			"response": []
+		},
+		{
+			"name": "GraphQL Querry: getProfile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjdiNmViMjY3YmMzZDgwY2QxOTNkMGUiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA1MTkzMDMyLCJleHAiOjE2MDUxOTM5MzJ9.AyoSirRre9Y7Oojc2Cf9orma46CNnfBOAexNj7Spxt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getProfile (userName: \"ttlykke\") {\n    firstName,\n    avatar,\n    gender,\n    friends,\n    lastActive,\n    items {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    },\n    looks {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					]
+				}
 			},
 			"response": []
 		}

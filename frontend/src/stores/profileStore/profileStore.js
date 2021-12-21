@@ -1,4 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
+
 import { getProfileInfo } from "./getProfileInfo";
 
 export class ProfileStore {
@@ -65,11 +66,11 @@ export class ProfileStore {
     this.lastActive = lastActive;
   };
 
-  fetchProfileData = async (username) => {
+  fetchProfileData = async (userName) => {
     try {
-      const profileData = await getProfileInfo(username);
+      this.setUserName(userName);
+      const profileData = await getProfileInfo(userName);
       if (profileData) {
-        this.setUserName(userName);
         this.setAvatar(profileData.avatar);
         this.setFirstName(profileData.firstName);
         this.setFriends(profileData.friends);

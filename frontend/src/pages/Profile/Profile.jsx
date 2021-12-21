@@ -29,19 +29,18 @@ export const Profile = observer(() => {
     profileStore.fetchProfileData(username);
   }, [userStore.isLoading])
 
-  const showLastSeenOnline = userStore.profilSettings
-    ? userStore.profilSettings.showLastSeenOnline
-    : false;
+  const showLastSeenOnline = true;
+  // userStore.profilSettings ? userStore.profilSettings.showLastSeenOnline : false;
 
-  const dateLastActive = new Date(userStore.lastActive);
+  const dateLastActive = new Date(profileStore.lastActive);
 
   return (
     <div className="profil__main">
-      {userStore.isLoading ? (
+      {profileStore.isLoading ? (
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : userStore.error ? (
+      ) : profileStore.error ? (
         <div className="spinner">
           Connection error!
           <br />
@@ -53,8 +52,8 @@ export const Profile = observer(() => {
               <div className="profil__containerLeft">
                 <Avatar />
                 <div className="profil__hello">
-                  <div>{userStore.firstName}</div>
-                  <div className="profil__username">@{userStore.userName}</div>
+                  <div>{profileStore.firstName}</div>
+                  <div className="profil__username">@{profileStore.userName}</div>
                   {showLastSeenOnline && (
                     <div className="profil__lastSeenOnline">
                       {t("profile.lastSeenOnline")}{" "}
@@ -65,7 +64,7 @@ export const Profile = observer(() => {
                   <br />
                   <div className="profil__action"><MailOutlined /> Send message</div>
                   <div className="profil__action"><UserAddOutlined /> Friend Request</div>
-                  <div className="profil__action"><EyeOutlined /> Follow {userStore.firstName}</div>
+                  <div className="profil__action"><EyeOutlined /> Follow {profileStore.firstName}</div>
                 </div>
               </div>
               <div className="profil__containerCenter">
@@ -81,12 +80,6 @@ export const Profile = observer(() => {
                     onClick={() => { setContentToDisplay("items") }}
                   >
                     <SkinOutlined />
-                  </div>
-                  <div
-                    className={`profil__subMenuItem ${contentToDisplay === "friends" && "profil__subMenuItemSelected"}`}
-                    onClick={() => { setContentToDisplay("friends") }}
-                  >
-                    <TeamOutlined />
                   </div>
                 </div>
                 <div className="profil__containerCenterContent">

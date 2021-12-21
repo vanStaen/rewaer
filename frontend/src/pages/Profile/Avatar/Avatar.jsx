@@ -9,10 +9,12 @@ import { userStore } from "../../../stores/userStore/userStore";
 import { updateAvatar } from "./updateAvatar";
 
 import "./Avatar.css";
+import { profileStore } from "../../../stores/profileStore/profileStore";
 
 export const Avatar = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
+  const isStranger = userStore.userName === profileStore.userName ? false : true;
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
     changeAvatarSubmitHandler(event.target.files[0]);
@@ -65,13 +67,17 @@ export const Avatar = observer(() => {
           <div
             className="avatar__avatar"
             style={
-              userStore.avatar && {
-                backgroundImage: "url(" + userStore.avatar + ")",
-              }
+              isStranger ?
+                profileStore.avatar && {
+                  backgroundImage: "url(" + profileStore.avatar + ")",
+                } :
+                userStore.avatar && {
+                  backgroundImage: "url(" + userStore.avatar + ")",
+                }
             }
           >
             {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
-            <div className="avatar__editAvatar">
+            {!isStranger && <div className="avatar__editAvatar">
               <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
                 <form
                   onSubmit={changeAvatarSubmitHandler}
@@ -92,7 +98,7 @@ export const Avatar = observer(() => {
                   </label>
                 </form>
               </Tooltip>
-            </div>
+            </div>}
           </div>
         )}
     </Fragment>

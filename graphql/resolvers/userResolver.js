@@ -37,7 +37,6 @@ exports.userResolver = {
           model: Look,
           where: {
             active: true,
-            status: 0,
             private: {
               [Op.or]: [false, null]
             }

@@ -4,6 +4,7 @@
   height: 200px;
   border-radius: 100px;
   display: inline-block;
+  position: relative;
   vertical-align: top;
   background-position: center;
   background-size: cover;
@@ -20,14 +21,13 @@
 }
 
 .avatar__editAvatar {
-  display: table-cell;
-  text-align: right;
-  vertical-align: bottom;
+  position: absolute;
+  bottom: 0px;
   font-size: 22px;
   color: #aaaaaa;
-  width: 195px;
-  height: 195px;
+  width: 200px;
   cursor: pointer;
+  text-align: right;
 }
 
 .avatar__editAvatar:hover {
@@ -40,7 +40,7 @@
 	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
-	position: absolute;
+  position: absolute;
 	z-index: -1;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .avatar__avatar .avatar__noAvatar {
-  position: absolute;
+  position: relative;
   padding: 50px;
   font-size: 100px;
   color: rgba(109, 145, 126, .25);
