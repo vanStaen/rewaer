@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Spin, notification } from "antd";
-import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import {
   CameraOutlined,
@@ -9,7 +8,8 @@ import {
   TeamOutlined,
   MailOutlined,
   UserAddOutlined,
-  EyeOutlined
+  EyeOutlined,
+  MehOutlined,
 } from "@ant-design/icons";
 
 import { userStore } from "../../stores/userStore/userStore";
@@ -103,7 +103,9 @@ export const Profile = observer(() => {
                   {contentToDisplay}
                 </div>
               </div>
-              <div className="profil__containerRight">{null}</div>
+              <div className="profil__containerRight">
+                {null}
+              </div>
             </div>
           )}
     </div>
