@@ -76,7 +76,9 @@ export const Avatar = observer(() => {
                 }
             }
           >
-            {!userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
+            {isStranger ?
+              !profileStore.avatar && <UserOutlined className="avatar__noAvatar" /> :
+              !userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
             {!isStranger && <div className="avatar__editAvatar">
               <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
                 <form
