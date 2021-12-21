@@ -314,11 +314,11 @@ export const LookCard = (props) => {
               props.look.active && (
                 <>
                   <div className="lookcard__likeContainer">
-                    <div className="lookcard__like iconGreen">
+                    <div className="lookcard__like iconGreen greyed">
                       <LikeOutlined />
                       <div className="lookcard__likeCount">12</div>
                     </div>
-                    <div className="lookcard__like iconRed">
+                    <div className="lookcard__like iconRed greyed">
                       <DislikeOutlined />
                       <div className="lookcard__likeCount">5</div>
                     </div>

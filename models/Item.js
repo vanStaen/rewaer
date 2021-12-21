@@ -57,6 +57,16 @@ const Item = sequelize.define("item", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  likes: {
+    //array of user id
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
+  },
+  dislikes: {
+    //array of user id
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
+  },
 });
 
 User.hasMany(Item);

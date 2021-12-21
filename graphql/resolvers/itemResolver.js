@@ -21,7 +21,7 @@ exports.itemResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
-    ],
+      ],
     });
   },
 
@@ -64,6 +64,8 @@ exports.itemResolver = {
       "private",
       "status",
       "favorite",
+      "like",
+      "dislike",
     ];
     updatableFields.forEach((field) => {
       if (field in args.itemInput) {
@@ -110,9 +112,9 @@ exports.itemResolver = {
         Key: "m_" + itemId,
       };
       await Promise.all([
-        s3.deleteObject(params, function (err, data) {}),
-        s3.deleteObject(paramsThumb, function (err, data) {}),
-        s3.deleteObject(paramsMedium, function (err, data) {}),
+        s3.deleteObject(params, function (err, data) { }),
+        s3.deleteObject(paramsThumb, function (err, data) { }),
+        s3.deleteObject(paramsMedium, function (err, data) { }),
       ]);
       await Item.destroy({
         where: {

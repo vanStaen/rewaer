@@ -21,7 +21,7 @@ exports.lookResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
-    ],
+      ],
     });
   },
 
@@ -56,6 +56,8 @@ exports.lookResolver = {
       "active",
       "private",
       "favorite",
+      "like",
+      "dislike",
     ];
     updatableFields.forEach((field) => {
       if (field in args.lookInput) {
@@ -102,9 +104,9 @@ exports.lookResolver = {
         Key: "m_" + lookId,
       };
       await Promise.all([
-        s3.deleteObject(params, function (err, data) {}),
-        s3.deleteObject(paramsThumb, function (err, data) {}),
-        s3.deleteObject(paramsMedium, function (err, data) {}),
+        s3.deleteObject(params, function (err, data) { }),
+        s3.deleteObject(paramsThumb, function (err, data) { }),
+        s3.deleteObject(paramsMedium, function (err, data) { }),
       ]);
       await Look.destroy({
         where: {

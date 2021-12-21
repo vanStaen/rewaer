@@ -6,7 +6,7 @@ type Item {
     mediaUrl: String!
     mediaUrlThumb: String!
     mediaUrlMedium: String!
-    category: [String]
+    category: String
     desc: String
     colors: [String]
     brand: String
@@ -14,6 +14,8 @@ type Item {
     status: Int
     favorite: Boolean!
     private: Boolean
+    likes: [Int]
+    dislikes: [Int]
     createdAt: Float!
     udpatedAt: Float!
     user: User
@@ -25,7 +27,7 @@ input ItemInputData {
     mediaUrl: String
     mediaUrlThumb: String
     mediaUrlMedium: String
-    category: [String]
+    category: String
     desc: String
     colors: [String]
     brand: String
@@ -33,6 +35,8 @@ input ItemInputData {
     status: Int
     favorite: Boolean
     private: Boolean
+    likes: [Int]
+    dislikes: [Int]
 }`;
 
 exports.ItemQueries = `
