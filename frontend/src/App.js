@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { notification } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
@@ -14,6 +15,7 @@ import { authStore } from "./stores/authStore/authStore";
 import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { MenuBar } from "./components/MenuBar/MenuBar";
+import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
 
 import "../src/lib/i18n";
 
@@ -24,6 +26,7 @@ import "./style/rewaer-antd.css";
 //console.log("Api", process.env.API_URL);
 
 const App = observer(() => {
+  const { t } = useTranslation();
   const { i18n } = useTranslation();
 
   useEffect(() => {
@@ -38,27 +41,46 @@ const App = observer(() => {
     }
   }, [userStore.language]);
 
+  useEffect(() => {
+    // Check if account was archived
+    if (userStore.archived) {
+      archiveAccount(false);
+      notification.success({
+        message: (
+          <>
+            <b>{t("profile.accountReactivated")}</b>
+            <br />
+            {t("profile.gladToHaveYouBack")}
+          </>
+        ),
+        placement: "bottomRight",
+      });
+    }
+  }, [userStore.archived]);
+
   return (
     <BrowserRouter>
       <div className="App">
         <MenuBar />
         <Routes>
-          <Route path="/recoverpwd/:key" element={<NewPassword />} />
-          <Route path="/emailverify/:verifyCode" element={<EmailVerified />} />
-          <Route path="/info" element={<Info />} />
-          {authStore.hasAccess && <Route path="/looks" element={<Looks />} />}
-          {authStore.hasAccess && <Route path="/items" element={<Items />} />}
+          <Route path="recoverpwd/:key" element={<NewPassword />} />
+          <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
+          <Route path="info/" element={<Info />} />
+          {authStore.hasAccess && <Route path="looks/" element={<Looks />} />}
+          {authStore.hasAccess && <Route path="items/" element={<Items />} />}
           {authStore.hasAccess && (
-            <Route path="/profile" element={<Profile />} />
+            <Route path="profile/" element={<Profile />}>
+              <Route path=":username/" element={<Profile />} />
+            </Route>
           )}
           {authStore.hasAccess && (
-            <Route path="/editsettings" element={<EditSettings />} />
+            <Route path="editsettings" element={<EditSettings />} />
           )}
           {authStore.hasAccess ? (
             <Route path="/" element={<Profile />} />
           ) : (
-            <Route path="/" element={<Welcome showLogin={true} />} />
-          )}
+              <Route path="/" element={<Welcome showLogin={true} />} />
+            )}
         </Routes>
       </div>
     </BrowserRouter>

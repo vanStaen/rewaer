@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
-import { Spin, notification } from "antd";
+import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import {
   CameraOutlined,
@@ -14,7 +15,6 @@ import {
 
 import { userStore } from "../../stores/userStore/userStore";
 import { Avatar } from "./Avatar/Avatar";
-import { archiveAccount } from "./EditSettings/DeleteAccountButton/archiveAccount";
 
 import "./Profile.css";
 
@@ -22,22 +22,9 @@ export const Profile = observer(() => {
   const { t } = useTranslation();
   const [contentToDisplay, setContentToDisplay] = useState("looks");
 
-  useEffect(() => {
-    // Check if account was archived
-    if (userStore.archived) {
-      archiveAccount(false);
-      notification.success({
-        message: (
-          <>
-            <b>{t("profile.accountReactivated")}</b>
-            <br />
-            {t("profile.gladToHaveYouBack")}
-          </>
-        ),
-        placement: "bottomRight",
-      });
-    }
-  }, [userStore.archived]);
+  let params = useParams();
+  const username = params ? params.username : null;
+  console.log("username", username);
 
   const showLastSeenOnline = userStore.profilSettings
     ? userStore.profilSettings.showLastSeenOnline
@@ -63,8 +50,8 @@ export const Profile = observer(() => {
               <div className="profil__containerLeft">
                 <Avatar />
                 <div className="profil__hello">
-                  {userStore.firstName && userStore.firstName}
-                  <br />
+                  <div>{userStore.firstName}</div>
+                  <div className="profil__username">@{userStore.userName}</div>
                   {showLastSeenOnline && (
                     <div className="profil__lastSeenOnline">
                       {t("profile.lastSeenOnline")}{" "}

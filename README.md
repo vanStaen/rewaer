@@ -67,3 +67,8 @@ AntD comes with a standart babyBlue custom color scheme: One can overwrite and c
 
 4. Run `lessc -js src/style/rewaer-antd.less src/style/rewaer-antd.css`.
 5. Link the new generated CSS file with your app! 
+
+### Debug React-Router-Dom vs Webpack
+
+The routes with parameters, and input a URL manually were leading to problems.
+Here was the solution (incl explainations): https://newbedev.com/using-webpack-with-react-router-bundle-js-not-found
