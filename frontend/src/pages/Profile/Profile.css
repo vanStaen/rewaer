@@ -48,7 +48,7 @@
  
 .profil__subMenuItemSelected {
   color: rgba(109, 145, 126, 1);
-  border-bottom: 2px solid rgba(109, 145, 126, 1);;
+  border-bottom: 2px solid rgba(109, 145, 126, 1);
 }
 
 .profil__containerCenterContent{
@@ -85,4 +85,24 @@
 
 .profil__action:hover {
   color: rgba(109, 145, 126, 1);
+}
+
+.profil__friendsfollowersContainer {
+  font-weight: 300;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.profil__friendsfollowersTitle {
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 5px;
+}
+
+.profil__friendsfollowersAvatar {
+  border: 1px solid #f0f0f0;
+  width: 46px;
+  height: 46px;
+  margin: 2px;
+  display: inline-block;
+  vertical-align: top;
 }

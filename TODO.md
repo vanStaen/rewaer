@@ -50,6 +50,7 @@
 - [ ] Detail View Item
 - [ ] Bug: SubMenu always stays shown, won't hide
 - [ ] When archiving anything, had a undo feature in the notification
+- [ ] Settings: Show last name in profil?
 
 ## Completed ✓
 

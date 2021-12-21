@@ -31,10 +31,10 @@ export const Profile = observer(() => {
   }, [userStore.isLoading])
 
   useEffect(() => {
-    if (!profileStore.isLoading) {
+    if (!profileStore.isLoading && profileStore.profilSettings) {
       setShowLastSeenOnline(profileStore.profilSettings.showLastSeenOnline);
     }
-  }, [profileStore.isLoading])
+  }, [profileStore.isLoading, profileStore.profilSettings])
 
   const dateLastActive = new Date(profileStore.lastActive);
 
@@ -67,7 +67,7 @@ export const Profile = observer(() => {
                   )}
                   <br />
                   <div className="profil__action"><MailOutlined /> Send message</div>
-                  <div className="profil__action"><UserAddOutlined /> Friend Request</div>
+                  <div className="profil__action"><UserAddOutlined /> Send friend Request</div>
                   <div className="profil__action"><EyeOutlined /> Follow {profileStore.firstName}</div>
                 </div>
               </div>
@@ -91,7 +91,38 @@ export const Profile = observer(() => {
                 </div>
               </div>
               <div className="profil__containerRight">
-                {null}
+                <div className="profil__friendsfollowersContainer">
+                  <div className="profil__friendsfollowersTitle">
+                    Friends (5)
+                  </div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                </div>
+                <div className="profil__friendsfollowersContainer">
+                  <div className="profil__friendsfollowersTitle">
+                    Followers (3)
+                  </div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                </div>
+                <div className="profil__friendsfollowersContainer">
+                  <div className="profil__friendsfollowersTitle">
+                    Following (9)
+                  </div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                  <div className="profil__friendsfollowersAvatar"></div>
+                </div>
               </div>
             </div>
           )}
