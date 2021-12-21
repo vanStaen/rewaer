@@ -304,11 +304,11 @@ export const ItemCard = (props) => {
               props.item.active && (
                 <>
                   <div className="itemcard__likeContainer">
-                    <div className="itemcard__like iconGreen">
+                    <div className="itemcard__like iconGreen greyed">
                       <LikeOutlined />
                       <div className="itemcard__likeCount">12</div>
                     </div>
-                    <div className="itemcard__like iconRed">
+                    <div className="itemcard__like iconRed greyed">
                       <DislikeOutlined />
                       <div className="itemcard__likeCount">5</div>
                     </div>

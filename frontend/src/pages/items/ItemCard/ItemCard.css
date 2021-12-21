@@ -147,3 +147,7 @@
 .itemcard__actionsContainer .iconGreen:hover {
   color: #6C917D;
 }
+
+.greyed {
+  color: #ccc;
+}
