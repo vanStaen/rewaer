@@ -6,11 +6,24 @@ export const getProfileInfo = async (username) => {
         {
             getProfile {
               firstName,
-              userName,
               avatar,
               gender,
               friends,
               lastActive,
+              items {
+                _id,
+                title,
+                mediaUrlMedium,
+                like, 
+                dislike,
+              },
+              looks {
+                  _id,
+                  title,
+                  mediaUrlMedium,
+                  like, 
+                  dislike,
+              }
             }
           }
           `,

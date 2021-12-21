@@ -69,7 +69,7 @@ export class ProfileStore {
     try {
       const profileData = await getProfileInfo(username);
       if (profileData) {
-        this.setUserName(profileData.userName);
+        this.setUserName(userName);
         this.setAvatar(profileData.avatar);
         this.setFirstName(profileData.firstName);
         this.setFriends(profileData.friends);

@@ -39,6 +39,7 @@ input UserInputData {
 
 exports.UserQueries = `
     getUser: User
+    getProfile(userName: String): User
 `;
 
 exports.UserMutations = `    

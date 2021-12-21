@@ -1,4 +1,6 @@
 const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
+
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
 const { Look } = require("../../models/Look");
@@ -11,6 +13,37 @@ exports.userResolver = {
     return await User.findOne({
       where: { _id: req.userId },
       include: [Item, Look],
+    });
+  },
+
+  async getProfile(args, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await User.findOne({
+      where: { userName: args.userName },
+      include: [
+        {
+          model: Item,
+          where: {
+            active: true,
+            status: 0,
+            private: {
+              [Op.or]: [false, null]
+            }
+          },
+        },
+        {
+          model: Look,
+          where: {
+            active: true,
+            status: 0,
+            private: {
+              [Op.or]: [false, null]
+            }
+          },
+        }
+      ],
     });
   },
 
