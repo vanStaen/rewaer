@@ -4,9 +4,10 @@
 }
 
 .profil__container {
-  margin: 40px 4vw;
+  margin: 20px 4vw;
   width: calc(100vw - 8vw);
   text-align: center;
+  border: 1px solid transparent; 
 }
 
 .profil__containerRight {
@@ -52,7 +53,7 @@
 }
 
 .profil__containerCenterContent{
-  margin: 20px 0 0 0;
+  margin: 15px 0 0 0;
 }
 
 .profil__containerLeft {

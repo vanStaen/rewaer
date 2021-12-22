@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 import { Col, Row } from "antd";
+import { useTranslation } from "react-i18next";
 
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
@@ -8,6 +9,7 @@ import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import "./ProfileItems.css";
 
 export const ProfileItems = observer(() => {
+    const { t } = useTranslation();
     const containerElement = useRef(null);
     const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
 
@@ -61,6 +63,9 @@ export const ProfileItems = observer(() => {
 
     return <>
         <div className="ProfileItem__container" ref={containerElement}>
+            <div className="ProfileItem__titleContainer">
+                {profileStore.items.length}&nbsp;{t("menu.items")}
+            </div>
             <Row justify={"space-around"}>
                 {items}
                 <GhostCard numberOfCards={missingCardForFullRow} width="120px" height="160px" />
