@@ -157,7 +157,7 @@ export const Looks = observer(() => {
                     <LookForm />
                   </Col>
                   {lookList}
-                  <GhostCard numberOfCards={missingCardForFullRow} />
+                  <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
                 </Row>
               </div>
             )}

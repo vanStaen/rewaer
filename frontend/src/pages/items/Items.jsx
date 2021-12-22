@@ -155,7 +155,7 @@ export const Items = observer(() => {
                     <ItemForm />
                   </Col>
                   {itemList}
-                  <GhostCard numberOfCards={missingCardForFullRow} />
+                  <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
                 </Row>
               </div>
             </>

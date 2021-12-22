@@ -8,7 +8,11 @@ export const GhostCard = (props) => {
   for (let i = 0; i < props.numberOfCards; i++) {
     ghost.push(
       <Col key={"ghost" + i}>
-        <div className="ghostCard"></div>
+        <div className="ghostCard"
+          style={{
+            width: props.width,
+            height: props.height,
+          }}></div>
       </Col>
     );
   }
