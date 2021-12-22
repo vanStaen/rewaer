@@ -61,7 +61,7 @@ export const ProfileLooks = observer(() => {
     return <>
         <div className="ProfileLook__container" ref={containerElement}>
             <div className="ProfileLook__titleContainer">
-                {profileStore.looks.length}&nbsp;{t("menu.looks")}
+                {profileStore.looks && profileStore.looks.length}&nbsp;{t("menu.looks")}
             </div>
             <Row justify={"space-around"}>
                 {looks}

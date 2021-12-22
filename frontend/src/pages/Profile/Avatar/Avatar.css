@@ -8,7 +8,6 @@
   vertical-align: top;
   background-position: center;
   background-size: cover;
-  cursor: pointer;
 }
 
 .avatar__avatarLoading {
@@ -26,14 +25,12 @@
   font-size: 22px;
   color: #aaaaaa;
   width: 200px;
-  cursor: pointer;
   text-align: right;
 }
 
 .avatar__editAvatar:hover {
     color: #6d917e;
   }
-
 
 .avatar__inputfile {
 	width: 0.1px;
