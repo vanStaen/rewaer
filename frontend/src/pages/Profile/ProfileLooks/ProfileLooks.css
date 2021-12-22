@@ -9,4 +9,9 @@
 .ProfileLook__picture {
     width: 120px;
     height: 160px;
+    cursor: pointer;
   }
+
+.ProfileLook__picture:hover {
+    opacity: .75;
+}

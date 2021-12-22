@@ -9,4 +9,9 @@
 .ProfileItem__picture {
     width: 120px;
     height: 160px;
+    cursor: pointer;
   }
+
+.ProfileItem__picture:hover {
+    opacity: .75;
+}
