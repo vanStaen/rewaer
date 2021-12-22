@@ -1,0 +1,12 @@
+.ProfileLook__container {
+    border: 1px solid transparent;
+}
+
+.ProfileLook__lookContainer {
+    margin: 0px 5px 20px 5px;
+}
+
+.ProfileLook__picture {
+    width: 120px;
+    height: 160px;
+  }

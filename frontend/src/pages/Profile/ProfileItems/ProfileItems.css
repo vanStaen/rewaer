@@ -1,0 +1,12 @@
+.ProfileItem__container {
+    border: 1px solid transparent;
+}
+
+.ProfileItem__itemContainer {
+    margin: 0px 5px 20px 5px;
+}
+
+.ProfileItem__picture {
+    width: 120px;
+    height: 160px;
+  }
