@@ -4,10 +4,10 @@
 }
 
 .profil__container {
-  margin: 20px 4vw;
-  width: calc(100vw - 8vw);
+  margin: 20px 2vw;
+  width: calc(100vw - 4vw);
   text-align: center;
-  border: 1px solid transparent; 
+  /*border: 1px solid goldenrod;*/
 }
 
 .profil__containerRight {
@@ -21,10 +21,10 @@
 .profil__containerCenter {
   display: inline-block;
   vertical-align:top;
-  width: calc(100vw - 50px - 50px - 200px - 200px - 20px - 60px);
+  width: calc(100vw - 50px - 50px - 200px - 200px);
   max-width: 1200px;
   text-align: left;
-  margin: 0 30px;
+  margin: 0 15px;
   /*border: 1px solid red;*/
 }
 
@@ -60,5 +60,5 @@
   display: inline-block;
   vertical-align:top;
   width: 200px;
-  /*border: 1px solid blue; */
+  /*border: 1px solid blue;*/
 }

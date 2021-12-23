@@ -3,7 +3,7 @@
 }
 
 .ProfileItem__itemContainer {
-    margin: 0px 5px 20px 5px;
+    margin: 0px 5px 10px 5px;
 }
 
 .ProfileItem__picture {
@@ -19,16 +19,23 @@
     margin: 0 15px 15px 15px ;
     font-weight: 300;
     font-size: 12px;
+    display: none;
 } 
 
 .ProfileItem__titleContainerLeft {
     text-align: left;
     display: inline-block;
-    width: 50%;
+    width: 30%;
 } 
 
 .ProfileItem__titleContainerRight {
     text-align: right;
     display: inline-block;
-    width: 50%;
+    width: 30%;
+} 
+
+.ProfileItem__titleContainerCenter {
+    text-align: center;
+    display: inline-block;
+    width: 40%;
 } 

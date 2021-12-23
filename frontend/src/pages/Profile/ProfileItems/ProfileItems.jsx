@@ -73,6 +73,7 @@ export const ProfileItems = observer(() => {
                 <div className="ProfileItem__titleContainerLeft">
                     {profileStore.items && profileStore.items.length}&nbsp;{t("menu.items")}
                 </div>
+                <div className="ProfileItem__titleContainerCenter"></div>
                 <div className="ProfileItem__titleContainerRight">
                     <ToolBar
                         showFilter={showFilter}

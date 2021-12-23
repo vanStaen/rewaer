@@ -67,10 +67,12 @@ export const ProfileLooks = observer(() => {
     return <>
         <div className="ProfileLook__container" ref={containerElement}>
             <div className="ProfileLook__titleContainer">
-                <div className="ProfileItem__titleContainerLeft">
+                <div className="ProfileLook__titleContainerLeft">
                     {profileStore.looks && profileStore.looks.length}&nbsp;{t("menu.looks")}
                 </div>
-                <div className="ProfileItem__titleContainerRight">
+                <div className="ProfileLook__titleContainerCenter">
+                </div>
+                <div className="ProfileLook__titleContainerRight">
                     <ToolBar
                         showFilter={showFilter}
                         setShowFilter={setShowFilter}
