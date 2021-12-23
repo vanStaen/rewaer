@@ -12,6 +12,7 @@ export const GhostCard = (props) => {
           style={{
             width: props.width,
             height: props.height,
+            margin: props.margin,
           }}></div>
       </Col>
     );

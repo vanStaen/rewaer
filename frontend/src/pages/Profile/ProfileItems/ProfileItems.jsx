@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
+import { ToolBar } from "../../../components/ToolBar/ToolBar";
+import { SIZE_WIDTH_THUMBNAIL_IN_PROFILE } from "../../../data/setup";
 
 import "./ProfileItems.css";
 
@@ -12,6 +14,7 @@ export const ProfileItems = observer(() => {
     const { t } = useTranslation();
     const containerElement = useRef(null);
     const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
+    const [showFilter, setShowFilter] = useState(false);
 
     useEffect(() => {
         calculateMissingCardsForFullRow();
@@ -20,6 +23,7 @@ export const ProfileItems = observer(() => {
             window.removeEventListener("resize", calculateMissingCardsForFullRow);
         };
     }, [
+        profileStore.items,
         containerElement.current,
         missingCardForFullRow,
         calculateMissingCardsForFullRow,
@@ -30,7 +34,7 @@ export const ProfileItems = observer(() => {
             containerElement.current === null
                 ? 0
                 : containerElement.current.offsetWidth;
-        const cardWidth = 120 + 5 + 5;
+        const cardWidth = SIZE_WIDTH_THUMBNAIL_IN_PROFILE + 5 + 5;
         const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
         const numberItems = profileStore.items && profileStore.items.length;
         const numberFullRow = Math.floor(numberItems / numberPerRow);
@@ -54,6 +58,8 @@ export const ProfileItems = observer(() => {
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
+                            width: `${SIZE_WIDTH_THUMBNAIL_IN_PROFILE}px`,
+                            height: `${SIZE_WIDTH_THUMBNAIL_IN_PROFILE * 1.33}px`,
                         }}
                     ></div>
                 </div>
@@ -64,11 +70,24 @@ export const ProfileItems = observer(() => {
     return <>
         <div className="ProfileItem__container" ref={containerElement}>
             <div className="ProfileItem__titleContainer">
-                {profileStore.items && profileStore.items.length}&nbsp;{t("menu.items")}
+                <div className="ProfileItem__titleContainerLeft">
+                    {profileStore.items && profileStore.items.length}&nbsp;{t("menu.items")}
+                </div>
+                <div className="ProfileItem__titleContainerRight">
+                    <ToolBar
+                        showFilter={showFilter}
+                        setShowFilter={setShowFilter}
+                        allowEdit={false}
+                    />
+                </div>
             </div>
             <Row justify={"space-around"}>
                 {items}
-                <GhostCard numberOfCards={missingCardForFullRow} width="120px" height="160px" />
+                <GhostCard
+                    numberOfCards={missingCardForFullRow}
+                    width={`${SIZE_WIDTH_THUMBNAIL_IN_PROFILE}px`}
+                    height={`${SIZE_WIDTH_THUMBNAIL_IN_PROFILE * 1.33}px`}
+                    margin={5} />
             </Row>
         </div>
     </>;

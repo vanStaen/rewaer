@@ -16,28 +16,29 @@ export const ToolBar = (props) => {
 
   return (
     <>
-      <Tooltip
-        placement="topRight"
-        title={
-          props.quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
-        }
-      >
-        {props.quickEdit ? (
-          <EditFilled
-            className="ToolBar__toolbarIcon ToolBar__toolbarIconActive"
-            onClick={() => {
-              props.setQuickEdit(!props.quickEdit);
-            }}
-          />
-        ) : (
-          <EditOutlined
-            className="ToolBar__toolbarIcon"
-            onClick={() => {
-              props.setQuickEdit(!props.quickEdit);
-            }}
-          />
-        )}
-      </Tooltip>
+      {props.allowEdit &&
+        (<Tooltip
+          placement="topRight"
+          title={
+            props.quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
+          }
+        >
+          {props.quickEdit ? (
+            <EditFilled
+              className="ToolBar__toolbarIcon ToolBar__toolbarIconActive"
+              onClick={() => {
+                props.setQuickEdit(!props.quickEdit);
+              }}
+            />
+          ) : (
+              <EditOutlined
+                className="ToolBar__toolbarIcon"
+                onClick={() => {
+                  props.setQuickEdit(!props.quickEdit);
+                }}
+              />
+            )}
+        </Tooltip>)}
       <Tooltip
         placement="topRight"
         title={props.showFilter ? t("main.hideFilter") : t("main.showFilter")}
@@ -50,13 +51,13 @@ export const ToolBar = (props) => {
             }}
           />
         ) : (
-          <FilterOutlined
-            className="ToolBar__toolbarIcon"
-            onClick={() => {
-              props.setShowFilter(!props.showFilter);
-            }}
-          />
-        )}
+            <FilterOutlined
+              className="ToolBar__toolbarIcon"
+              onClick={() => {
+                props.setShowFilter(!props.showFilter);
+              }}
+            />
+          )}
       </Tooltip>
     </>
   );

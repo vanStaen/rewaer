@@ -149,6 +149,7 @@ export const Looks = observer(() => {
                       setQuickEdit={setQuickEdit}
                       showFilter={showFilter}
                       setShowFilter={setShowFilter}
+                      allowEdit={true}
                     />
                   </div>
                 </div>

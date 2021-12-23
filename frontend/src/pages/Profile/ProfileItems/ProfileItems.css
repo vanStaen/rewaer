@@ -7,8 +7,6 @@
 }
 
 .ProfileItem__picture {
-    width: 120px;
-    height: 160px;
     cursor: pointer;
   }
 
@@ -21,4 +19,16 @@
     margin: 0 15px 15px 15px ;
     font-weight: 300;
     font-size: 12px;
+} 
+
+.ProfileItem__titleContainerLeft {
+    text-align: left;
+    display: inline-block;
+    width: 50%;
+} 
+
+.ProfileItem__titleContainerRight {
+    text-align: right;
+    display: inline-block;
+    width: 50%;
 } 
