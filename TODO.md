@@ -52,6 +52,8 @@
 - [ ] When archiving anything, had a undo feature in the notification
 - [ ] Settings: Show last name in profil?
 - [ ] Due to Url limitation, restrict some username, and characters
+- [ ] On detail view, scroll up after saving original Scroll position
+- [ ] On leave detail vew, scroll down to originql Scroll position
 
 ## Completed ✓
 

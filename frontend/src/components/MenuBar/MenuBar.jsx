@@ -7,10 +7,11 @@ import {
   UserOutlined,
   CameraOutlined,
   SkinOutlined,
-  TeamOutlined,
+  NotificationOutlined,
   MailOutlined,
   QuestionOutlined,
   LogoutOutlined,
+  TeamOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
@@ -75,12 +76,12 @@ export const MenuBar = observer(() => {
           </Menu.Item>
 
           <Menu.Item
-            key="friends"
-            icon={<TeamOutlined />}
+            key="notifications"
+            icon={<NotificationOutlined />}
             disabled
             style={{ float: "left" }}
           >
-            <Link to="/friends"> {t("menu.friends")}</Link>
+            <Link to="/friends"> {t("menu.notification")}</Link>
           </Menu.Item>
 
           <Menu.Item key="info" style={{ float: "left" }}>
@@ -101,10 +102,10 @@ export const MenuBar = observer(() => {
                     userStore.isLoading ? (
                       <Spin size="small" />
                     ) : (
-                      !userStore.avatar && (
-                        <UserOutlined style={{ fontSize: "22px" }} />
+                        !userStore.avatar && (
+                          <UserOutlined style={{ fontSize: "22px" }} />
+                        )
                       )
-                    )
                   }
                   style={userStore.isLoading && { backgroundColor: "#FFF" }}
                   size={36}
@@ -120,58 +121,58 @@ export const MenuBar = observer(() => {
                 />
               </Menu.Item>
             ) : (
-              <>
-                <Menu.Item key="profile" icon={<UserOutlined />}>
-                  <Link to="/profile">{t("menu.profile")}</Link>
-                </Menu.Item>
-                <Menu.Item key="settings" icon={<SettingOutlined />}>
-                  <Link to="/editsettings/">{t("menu.editSetting")}</Link>
-                </Menu.Item>
+                <>
+                  <Menu.Item key="profile" icon={<UserOutlined />}>
+                    <Link to="/profile">{t("menu.profile")}</Link>
+                  </Menu.Item>
+                  <Menu.Item key="settings" icon={<SettingOutlined />}>
+                    <Link to="/editsettings/">{t("menu.editSetting")}</Link>
+                  </Menu.Item>
 
-                <div className="menu__customDivider"></div>
-                <Menu.Item
-                  key="notification1"
-                  icon={<SkinOutlined />}
-                  className="menu__notification"
-                >
-                  <span className="menu__notificationUser">blablabla</span>{" "}
+                  <div className="menu__customDivider"></div>
+                  <Menu.Item
+                    key="notification1"
+                    icon={<SkinOutlined />}
+                    className="menu__notification"
+                  >
+                    <span className="menu__notificationUser">blablabla</span>{" "}
                   added a new item
                 </Menu.Item>
-                <Menu.Item
-                  key="notification2"
-                  icon={<CameraOutlined />}
-                  className="menu__notification"
-                >
-                  <span className="menu__notificationUser">dude123</span>{" "}
+                  <Menu.Item
+                    key="notification2"
+                    icon={<CameraOutlined />}
+                    className="menu__notification"
+                  >
+                    <span className="menu__notificationUser">dude123</span>{" "}
                   commented your look
                 </Menu.Item>
-                <Menu.Item
-                  key="notification3"
-                  icon={<MailOutlined />}
-                  className="menu__notification"
-                >
-                  <span className="menu__notificationUser">baby__girl</span>{" "}
+                  <Menu.Item
+                    key="notification3"
+                    icon={<MailOutlined />}
+                    className="menu__notification"
+                  >
+                    <span className="menu__notificationUser">baby__girl</span>{" "}
                   sent you a message
                 </Menu.Item>
-                <Menu.Item
-                  key="notification4"
-                  icon={<TeamOutlined />}
-                  className="menu__notification"
-                >
-                  <span className="menu__notificationUser">TheGreatBoy</span>{" "}
+                  <Menu.Item
+                    key="notification4"
+                    icon={<TeamOutlined />}
+                    className="menu__notification"
+                  >
+                    <span className="menu__notificationUser">TheGreatBoy</span>{" "}
                   want to be you friend
                 </Menu.Item>
 
-                <div className="menu__customDivider"></div>
-                <Menu.Item
-                  key="logout"
-                  icon={<LogoutOutlined />}
-                  onClick={authStore.logout}
-                >
-                  {t("menu.logout")}
-                </Menu.Item>
-              </>
-            )}
+                  <div className="menu__customDivider"></div>
+                  <Menu.Item
+                    key="logout"
+                    icon={<LogoutOutlined />}
+                    onClick={authStore.logout}
+                  >
+                    {t("menu.logout")}
+                  </Menu.Item>
+                </>
+              )}
           </SubMenu>
         </Menu>
       </div>

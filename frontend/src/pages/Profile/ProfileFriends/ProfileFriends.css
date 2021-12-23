@@ -12,9 +12,45 @@
 
 .profilFriends__followersAvatar {
     border: 1px solid #f0f0f0;
+    border-radius: 2px;
     width: 46px;
     height: 46px;
     margin: 2px;
     display: inline-block;
     vertical-align: top;
+    cursor: pointer;
+}
+
+.profilFriends__followersAvatar:hover {
+    opacity: .5;
+}
+
+.profilFriends__followersCounterContainer {
+    border: 1px dashed #f0f0f0;
+    background-color: #fafafa;
+    color: rgba(0,0,0,.5);
+    border-radius: 2px;
+    font-weight: 200;
+    font-size: 14px;
+    width: 46px;
+    height: 46px;
+    margin: 2px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.profilFriends__followersCounterContainer:hover {
+    border: 1px dashed rgba(109, 145, 126, .5);
+    color: rgba(109, 145, 126, 1);
+    font-weight: 300;
+}
+
+.profilFriends__followersCounter {
+    width: 46px;
+    height: 46px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
