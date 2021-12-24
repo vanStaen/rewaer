@@ -5,7 +5,7 @@ import "./ProfileFriends.css"
 
 export const ProfileFriends = observer(() => {
     return <>
-        <div className="profilFriends__followersContainer">
+        {/*<div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
                 People you may know
           </div>
@@ -13,7 +13,7 @@ export const ProfileFriends = observer(() => {
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
-        </div>
+        </div> */}
         <div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
                 Friends (5)

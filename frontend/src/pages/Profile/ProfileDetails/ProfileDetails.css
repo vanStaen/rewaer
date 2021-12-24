@@ -11,14 +11,3 @@
   font-weight: 300;
   font-size: 12px;
 }
-  
-.profil__action {
-  font-weight: 500;
-  font-size: 12px;
-  margin-bottom: 7px; 
-  cursor: pointer;
-}
-
-.profil__action:hover {
-  color: rgba(109, 145, 126, 1);
-}

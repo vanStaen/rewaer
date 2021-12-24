@@ -7,8 +7,6 @@ export const postVerifyEmailLink = async (email, language = "en") => {
         "language": language,
     };
 
-    //console.log(requestBody);
-
     const response = await axios({
         url: process.env.API_URL + `/mail/emailverify`,
         method: "POST",

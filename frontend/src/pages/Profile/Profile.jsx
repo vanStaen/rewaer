@@ -15,6 +15,7 @@ import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
 import { ProfileItems } from "./ProfileItems/ProfileItems";
 import { ProfileLooks } from "./ProfileLooks/ProfileLooks";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
+import { ProfileActions } from "./ProfileActions/ProfileActions";
 
 import "./Profile.css";
 
@@ -45,6 +46,7 @@ export const Profile = observer(() => {
               <div className="profil__containerLeft">
                 <Avatar />
                 <ProfileDetails />
+                <ProfileActions />
               </div>
               <div className="profil__containerCenter">
                 <div className="profil__subMenuContainer">

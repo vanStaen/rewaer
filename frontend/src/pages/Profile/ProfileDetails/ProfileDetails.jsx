@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
-import {
-    MailOutlined,
-    UserAddOutlined,
-    EyeOutlined,
-} from "@ant-design/icons";
 
 import { profileStore } from "../../../stores/profileStore/profileStore";
 
@@ -34,10 +29,6 @@ export const ProfileDetails = observer(() => {
                     {dateLastActive.toLocaleTimeString()}
                 </div>
             )}
-            <br />
-            <div className="profil__action"><MailOutlined /> Send message</div>
-            <div className="profil__action"><UserAddOutlined /> Send friend Request</div>
-            <div className="profil__action"><EyeOutlined /> Follow {profileStore.firstName}</div>
         </div>
     </>;
 });
