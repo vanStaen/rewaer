@@ -16,6 +16,7 @@ import { ProfileItems } from "./ProfileItems/ProfileItems";
 import { ProfileLooks } from "./ProfileLooks/ProfileLooks";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
+import { ProfileFilters } from "./ProfileFilters/ProfileFilters";
 
 import "./Profile.css";
 
@@ -69,6 +70,7 @@ export const Profile = observer(() => {
                 </div>
               </div>
               <div className="profil__containerRight">
+                <ProfileFilters contentToDisplay={contentToDisplay} />
                 <ProfileFriends />
               </div>
             </div>
