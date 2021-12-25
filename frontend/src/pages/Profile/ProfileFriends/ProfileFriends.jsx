@@ -1,9 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import "./ProfileFriends.css"
 
 export const ProfileFriends = observer(() => {
+    const { t } = useTranslation();
     return <>
         {/*<div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
@@ -16,8 +18,8 @@ export const ProfileFriends = observer(() => {
         </div> */}
         <div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
-                Friends (5)
-                  </div>
+                {t("profile.friends")} (5)
+            </div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
@@ -31,16 +33,16 @@ export const ProfileFriends = observer(() => {
         </div>
         <div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
-                Followers (3)
-                  </div>
+                {t("profile.followers")} (3)
+            </div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
         </div>
         <div className="profilFriends__followersContainer">
             <div className="profilFriends__followersTitle">
-                Following (9)
-                  </div>
+                {t("profile.following")} (9)
+            </div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>
             <div className="profilFriends__followersAvatar"></div>

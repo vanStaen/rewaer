@@ -110,7 +110,8 @@
     "looks": "Looks",
     "items": "Piéces",
     "mail": "Messages",
-    "friends": "Amis"
+    "friends": "Amis",
+    "notification": "Notifications"
   },
   "profile": {
     "hello": "Bonjour",
@@ -151,7 +152,17 @@
     "willBeArchived": "Votre compte est maintenant archivé.",
     "loggingToReactivate": "Connectez-vous pour le réactiver. Sinon, il sera automatiquement supprimé dans 30 jours.",
     "accountReactivated" : "Votre compte est réactivé.",
-    "gladToHaveYouBack": "Content de vous revoir!"
+    "gladToHaveYouBack": "Content de vous revoir!",
+    "sendMessage": "Send message",
+    "sendFriendRequest": "Send friend request",
+    "unFriend": "Unfriend",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "showFilterPanel": "Show filter panel",
+    "hideFilterPanel": "Hide filter panel",
+    "friends": "Amis",
+    "followers": "Followers",
+    "following": "Following" 
   },
   "items" : {
     "item": "piéce",
