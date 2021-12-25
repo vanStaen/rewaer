@@ -69,19 +69,6 @@ export const ProfileItems = observer(() => {
 
     return <>
         <div className="ProfileItem__container" ref={containerElement}>
-            <div className="ProfileItem__titleContainer">
-                <div className="ProfileItem__titleContainerLeft">
-                    {profileStore.items && profileStore.items.length}&nbsp;{t("menu.items")}
-                </div>
-                <div className="ProfileItem__titleContainerCenter"></div>
-                <div className="ProfileItem__titleContainerRight">
-                    <ToolBar
-                        showFilter={showFilter}
-                        setShowFilter={setShowFilter}
-                        allowEdit={false}
-                    />
-                </div>
-            </div>
             <Row justify={"space-around"}>
                 {items}
                 <GhostCard

@@ -14,28 +14,3 @@
     opacity: .75;
     border: 1px #d9d9d9;
 }
-
-.ProfileLook__titleContainer {
-    margin: 0 15px 15px 15px ;
-    font-weight: 300;
-    font-size: 12px;
-    display: none;
-} 
-
-.ProfileLook__titleContainerLeft {
-    text-align: left;
-    display: inline-block;
-    width: 30%;
-} 
-
-.ProfileLook__titleContainerRight {
-    text-align: right;
-    display: inline-block;
-    width: 30%;
-} 
-
-.ProfileLook__titleContainerCenter {
-    text-align: center;
-    display: inline-block;
-    width: 40%;
-} 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
 import {
@@ -22,6 +23,7 @@ import "./Profile.css";
 
 export const Profile = observer(() => {
   const params = useParams();
+  const { t } = useTranslation();
   const [contentToDisplay, setContentToDisplay] = useState("looks");
 
   useEffect(() => {
@@ -56,12 +58,18 @@ export const Profile = observer(() => {
                     onClick={() => { setContentToDisplay("looks") }}
                   >
                     <CameraOutlined />
+                    <span className="profil__counter">
+                      {profileStore.looks && profileStore.looks.length}&nbsp;{t("menu.looks")}
+                    </span>
                   </div>
                   <div
                     className={`profil__subMenuItem ${contentToDisplay === "items" && "profil__subMenuItemSelected"}`}
                     onClick={() => { setContentToDisplay("items") }}
                   >
                     <SkinOutlined />
+                    <span className="profil__counter">
+                      {profileStore.items && profileStore.items.length}&nbsp;{t("menu.items")}
+                    </span>
                   </div>
                 </div>
                 <div className="profil__containerCenterContent">

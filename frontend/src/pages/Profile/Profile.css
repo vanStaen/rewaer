@@ -60,5 +60,12 @@
   display: inline-block;
   vertical-align:top;
   width: 200px;
-  /*border: 1px solid blue;*/
 }
+
+.profil__counter {
+  font-weight: 300;
+  font-size: 12px;
+  margin: 3px 0 0 10px;
+  display: inline-block;
+  vertical-align:top;
+} 
