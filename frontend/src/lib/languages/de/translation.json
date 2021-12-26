@@ -157,8 +157,8 @@
     "unFriend": "Freundschaft löschen",
     "follow": "Folgen",
     "unfollow": "Unfolgen",
-    "showFilterPanel": "Filter panel einblenden",
-    "hideFilterPanel": "Filter panel ausblenden",
+    "showFilterPanel": "Filter einblenden",
+    "hideFilterPanel": "Filter ausblenden",
     "friends": "Freunden",
     "followers": "Followers",
     "following": "Following" 
