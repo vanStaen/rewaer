@@ -14,6 +14,7 @@ export class ProfileStore {
   looks = null;
   lastActive = null;
   profilSettings = null;
+  filterIsPopingUp = false;
 
   constructor() {
     makeObservable(this, {
@@ -28,6 +29,7 @@ export class ProfileStore {
       profilSettings: observable,
       items: observable,
       looks: observable,
+      filterIsPopingUp: observable,
       setIsLoading: action,
       setError: action,
       setUserName: action,
@@ -39,6 +41,7 @@ export class ProfileStore {
       setProfilSettings: action,
       setLooks: action,
       setItems: action,
+      setFilterIsPopingUp: action,
       fetchProfileData: action,
     });
   }
@@ -83,15 +86,19 @@ export class ProfileStore {
     this.items = items;
   };
 
+  setFilterIsPopingUp = (filterIsPopingUp) => {
+    this.filterIsPopingUp = filterIsPopingUp;
+  };
+
   setLooks = (looks) => {
     this.looks = looks;
   };
+
 
   fetchProfileData = async (userName) => {
     try {
       this.setUserName(userName);
       const profileData = await getProfileInfo(userName);
-      console.log("profileData", profileData);
       if (profileData) {
         this.setAvatar(profileData.avatar);
         this.setFirstName(profileData.firstName);

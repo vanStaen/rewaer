@@ -1,4 +1,15 @@
 .ProfileFilter__container {
-    border: 1px solid red;
-    margin-bottom: 15px;
+    border: 1px solid transparent;
+    margin: 5px 0 20px 5px;
+    font-weight: 300;
+    font-size: 12px;
+    cursor: pointer;
 }
+
+.ProfileFilter__filter {
+    transition: color .3s, font-weight .3s, font-size .3s, letterSpacing .3s;
+} 
+
+.ProfileFilter__element:hover {
+  color: rgba(109, 145, 126, 1);
+} 

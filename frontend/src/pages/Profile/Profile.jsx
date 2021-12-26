@@ -55,7 +55,10 @@ export const Profile = observer(() => {
                 <div className="profil__subMenuContainer">
                   <div
                     className={`profil__subMenuItem ${contentToDisplay === "looks" && "profil__subMenuItemSelected"}`}
-                    onClick={() => { setContentToDisplay("looks") }}
+                    onClick={() => {
+                      setContentToDisplay("looks");
+                      profileStore.setFilterIsPopingUp(true);
+                    }}
                   >
                     <CameraOutlined />
                     <span className="profil__counter">
@@ -64,7 +67,10 @@ export const Profile = observer(() => {
                   </div>
                   <div
                     className={`profil__subMenuItem ${contentToDisplay === "items" && "profil__subMenuItemSelected"}`}
-                    onClick={() => { setContentToDisplay("items") }}
+                    onClick={() => {
+                      setContentToDisplay("items");
+                      profileStore.setFilterIsPopingUp(true);
+                    }}
                   >
                     <SkinOutlined />
                     <span className="profil__counter">
