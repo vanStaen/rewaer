@@ -14,10 +14,10 @@ export const ProfileFilters = observer((props) => {
     useEffect(() => {
         if (profileStore.filterIsPopingUp) {
             document.getElementById("ProfileFilter__filter").style.fontWeight = "500";
-            document.getElementById("ProfileFilter__filter").style.fontSize = "12px";
+            document.getElementById("ProfileFilter__filter").style.textShadow = "#f0f0f0 1px 0 10px";
             setTimeout(() => {
                 document.getElementById("ProfileFilter__filter").style.fontWeight = "300";
-                document.getElementById("ProfileFilter__filter").style.fontSize = "12px";
+                document.getElementById("ProfileFilter__filter").style.textShadow = "none";
 
             }, 1000);
             profileStore.setFilterIsPopingUp(false);
@@ -26,7 +26,7 @@ export const ProfileFilters = observer((props) => {
 
     return <div className="ProfileFilter__container">
         <div className="ProfileFilter__filter ProfileFilter__element">
-            <SearchOutlined /> {t("profile.search")} in {props.contentToDisplay}
+            <SearchOutlined /> {t("profile.search")} {t(`menu.${props.contentToDisplay}`).toLowerCase()}
         </div>
         <div className="ProfileFilter__element" id="ProfileFilter__filter">
             <FilterOutlined /> {showFilterPanel ? t("profile.hideFilterPanel") : t("profile.showFilterPanel")}

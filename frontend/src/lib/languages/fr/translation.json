@@ -162,7 +162,8 @@
     "hideFilterPanel": "Cacher le filtre",
     "friends": "Amis",
     "followers": "Suivis par",
-    "following": "Suis" 
+    "following": "Suis",
+    "search": "Rechercher dans" 
   },
   "items" : {
     "item": "piéce",

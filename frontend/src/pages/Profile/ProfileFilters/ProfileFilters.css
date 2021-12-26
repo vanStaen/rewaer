@@ -7,7 +7,7 @@
 }
 
 .ProfileFilter__filter {
-    transition: color .3s, font-weight .3s, font-size .3s, letterSpacing .3s;
+    transition: text-shadow 5s, font-weight 5s;
 } 
 
 .ProfileFilter__element:hover {

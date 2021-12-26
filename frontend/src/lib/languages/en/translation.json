@@ -162,7 +162,8 @@
     "hideFilterPanel": "Hide filter panel",
     "friends": "Friends",
     "followers": "Followers",
-    "following": "Following" 
+    "following": "Following",
+    "search": "Search in" 
   },
   "items" : {
     "item": "item",
