@@ -21,7 +21,7 @@
 }
 
 .profilFriends__followersAvatar:hover {
-    opacity: .5;
+    filter: contrast(1.2) opacity(.95);
 }
 
 .profilFriends__followersCounterContainer {
