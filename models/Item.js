@@ -25,8 +25,8 @@ const Item = sequelize.define("item", {
     required: true,
   },
   category: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    defaultValue: [],
+    type: DataTypes.STRING,
+    defaultValue: null,
   },
   desc: {
     type: DataTypes.STRING,

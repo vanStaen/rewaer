@@ -19,8 +19,8 @@ export class UserStore {
   gender = null;
   friends = [];
   lastActive = null;
-  archived = null; 
-  usernameChange= null; 
+  archived = null;
+  usernameChange = null;
 
   constructor() {
     makeObservable(this, {

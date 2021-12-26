@@ -183,6 +183,10 @@ export const ItemCard = (props) => {
           <div
             className="itemcard__logoover"
             id={`card_item_logoover_${props.item._id}`}
+            onClick={() => {
+              onMouseLeaveHandler();
+              props.setSelectedItem(props.item);
+            }}
           >
             <TagOutlined />
             <div style={{ fontSize: "12px" }}>Detail View</div>

@@ -61,110 +61,112 @@ export const lookCategory = [
   },
 ];
 
-export const itemCategory = [
+export const itemCategoryMen = [
   {
-    men: [
-      {
-        code: "IM1",
-        en: "Shoes",
-        de: "Schuhe",
-        fr: "Chaussures",
-      },
-      {
-        code: "IM2",
-        en: "Shirt",
-        de: "Hemd",
-        fr: "Chemise",
-      },
-      {
-        code: "IM3",
-        en: "T-shirt",
-        de: "T-shirt",
-        fr: "T-shirt",
-      },
-      {
-        code: "IM4",
-        en: "Pullover",
-        de: "Pulli",
-        fr: "Pull",
-      },
-      {
-        code: "IM5",
-        en: "Pants",
-        de: "Hose",
-        fr: "Pantalon",
-      },
-      {
-        code: "IM6",
-        en: "Accessory",
-        de: "Accessoires",
-        fr: "Accessoires",
-      },
-      {
-        code: "IM7",
-        en: "Hat",
-        de: "Hut",
-        fr: "Chapeau",
-      },
-    ],
+    code: "IM1",
+    en: "Shoes",
+    de: "Schuhe",
+    fr: "Chaussures",
   },
   {
-    women: [
-      {
-        code: "IW1",
-        en: "Shoes",
-        de: "Schuhe",
-        fr: "Chaussures",
-      },
-      {
-        code: "IW2",
-        en: "Top",
-        de: "Oberteil",
-        fr: "Haut",
-      },
-      {
-        code: "IW3",
-        en: "Shirt",
-        de: "Bluse",
-        fr: "Chemisier",
-      },
-      {
-        code: "IW4",
-        en: "Pants",
-        de: "Hose",
-        fr: "Pantalon",
-      },
-      {
-        code: "IW5",
-        en: "Skirt",
-        de: "Rock",
-        fr: "Jupe",
-      },
-      {
-        code: "IW6",
-        en: "Dress",
-        de: "Kleid",
-        fr: "Robe",
-      },
-      {
-        code: "IW7",
-        en: "Lingerie",
-        de: "Wäsche",
-        fr: "Lingerie",
-      },
-      {
-        code: "IW8",
-        en: "Accessory",
-        de: "Accessoires",
-        fr: "Accessoires",
-      },
-      {
-        code: "IW9",
-        en: "Hat",
-        de: "Hut",
-        fr: "Chapeau",
-      },
-    ],
+    code: "IM2",
+    en: "Shirt",
+    de: "Hemd",
+    fr: "Chemise",
+  },
+  {
+    code: "IM3",
+    en: "T-shirt",
+    de: "T-shirt",
+    fr: "T-shirt",
+  },
+  {
+    code: "IM4",
+    en: "Pullover",
+    de: "Pulli",
+    fr: "Pull",
+  },
+  {
+    code: "IM5",
+    en: "Pants",
+    de: "Hose",
+    fr: "Pantalon",
+  },
+  {
+    code: "IM7",
+    en: "Jacket",
+    de: "Jacket",
+    fr: "Veste",
+  },
+  {
+    code: "IM6",
+    en: "Accessory",
+    de: "Accessoires",
+    fr: "Accessoires",
+  },
+  {
+    code: "IM7",
+    en: "Various",
+    de: "Rest",
+    fr: "Divers",
+  },
+]
+
+
+export const itemCategoryWomen = [
+  {
+    code: "IW1",
+    en: "Shoes",
+    de: "Schuhe",
+    fr: "Chaussures",
+  },
+  {
+    code: "IW2",
+    en: "Top",
+    de: "Oberteil",
+    fr: "Haut",
+  },
+  {
+    code: "IW3",
+    en: "Shirt",
+    de: "Bluse",
+    fr: "Chemisier",
+  },
+  {
+    code: "IW4",
+    en: "Pants",
+    de: "Hose",
+    fr: "Pantalon",
+  },
+  {
+    code: "IW5",
+    en: "Skirt",
+    de: "Rock",
+    fr: "Jupe",
+  },
+  {
+    code: "IW6",
+    en: "Dress",
+    de: "Kleid",
+    fr: "Robe",
+  },
+  {
+    code: "IW7",
+    en: "Lingerie",
+    de: "Wäsche",
+    fr: "Lingerie",
+  },
+  {
+    code: "IW8",
+    en: "Accessory",
+    de: "Accessoires",
+    fr: "Accessoires",
+  },
+  {
+    code: "IW9",
+    en: "Hat",
+    de: "Hut",
+    fr: "Chapeau",
   },
 ];
 

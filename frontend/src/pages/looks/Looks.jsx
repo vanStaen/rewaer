@@ -81,7 +81,9 @@ export const Looks = observer(() => {
       } else {
         return (
           <Col key={look._id}>
-            <LookCard look={look} setSelectedLook={setSelectedLook} />
+            <LookCard
+              look={look}
+              setSelectedLook={setSelectedLook} />
           </Col>
         );
       }
@@ -119,7 +121,7 @@ export const Looks = observer(() => {
           <Spin size="large" />
         </div>
       ) : selectedLook ? (
-        <div ref={containerElement} className="looks__container">
+        <div className="looks__container">
           <LookDetail
             selectedLook={selectedLook}
             setSelectedLook={setSelectedLook}

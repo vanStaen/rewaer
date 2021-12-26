@@ -9,9 +9,9 @@ import { userStore } from "../../stores/userStore/userStore"
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
-import { itemCategory } from "../../data/categories";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 import { GhostCard } from "../../components/GhostCard/GhostCard";
+import { ItemDetail } from "./ItemDetail/ItemDetail";
 
 import "./Items.css";
 
@@ -21,6 +21,7 @@ export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [showPrivate, setShowPrivate] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -81,7 +82,9 @@ export const Items = observer(() => {
       } else {
         return (
           <Col key={item._id}>
-            <ItemCard item={item} />
+            <ItemCard
+              item={item}
+              setSelectedItem={setSelectedItem} />
           </Col>
         );
       }
@@ -118,48 +121,55 @@ export const Items = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
+      ) : selectedItem ? (
+        <div className="looks__container">
+          <ItemDetail
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+          />
+        </div>
       ) : (
-            <>
-              <Banner
-                id="missingTag"
-                desc={t("items.missingTagsAlert")}
-                show={true}
-              />
-              <div ref={containerElement} className="items__container">
-                <div className="items__toolbar">
-                  <div className="items__toolbarLeft">
-                    {totalItems()}&nbsp; {t("menu.items")}
-                    {numberOfPrivateItems > 0 && (
-                      <>  |
+              <>
+                <Banner
+                  id="missingTag"
+                  desc={t("items.missingTagsAlert")}
+                  show={true}
+                />
+                <div ref={containerElement} className="items__container">
+                  <div className="items__toolbar">
+                    <div className="items__toolbarLeft">
+                      {totalItems()}&nbsp; {t("menu.items")}
+                      {numberOfPrivateItems > 0 && (
+                        <>  |
                       <span
-                          className="link"
-                          onClick={() => {
-                            setShowPrivate(!showPrivate);
-                          }}
-                        >&nbsp;
+                            className="link"
+                            onClick={() => {
+                              setShowPrivate(!showPrivate);
+                            }}
+                          >&nbsp;
                         {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
-                        </span>
-                      </>)}
+                          </span>
+                        </>)}
+                    </div>
+                    <div className="items__toolbarRight">
+                      <ToolBar
+                        quickEdit={quickEdit}
+                        setQuickEdit={setQuickEdit}
+                        showFilter={showFilter}
+                        setShowFilter={setShowFilter}
+                      />
+                    </div>
                   </div>
-                  <div className="items__toolbarRight">
-                    <ToolBar
-                      quickEdit={quickEdit}
-                      setQuickEdit={setQuickEdit}
-                      showFilter={showFilter}
-                      setShowFilter={setShowFilter}
-                    />
-                  </div>
+                  <Row justify={"space-around"}>
+                    <Col>
+                      <ItemForm />
+                    </Col>
+                    {itemList}
+                    <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
+                  </Row>
                 </div>
-                <Row justify={"space-around"}>
-                  <Col>
-                    <ItemForm />
-                  </Col>
-                  {itemList}
-                  <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
-                </Row>
-              </div>
-            </>
-          )}
+              </>
+            )}
     </div>
   );
 });

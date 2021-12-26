@@ -168,7 +168,6 @@ export const LookCard = (props) => {
             <div
               className="lookcard__picture"
               id={`card_look_picture_${props.look._id}`}
-              //placeholder={spinnerFormated}
               style={{
                 background: `url(${props.look.mediaUrlMedium})`,
                 backgroundSize: "cover",
