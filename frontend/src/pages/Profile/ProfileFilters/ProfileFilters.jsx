@@ -13,10 +13,10 @@ export const ProfileFilters = observer((props) => {
 
     useEffect(() => {
         if (profileStore.filterIsPopingUp) {
-            document.getElementById("ProfileFilter__filter").style.fontWeight = "500";
-            document.getElementById("ProfileFilter__filter").style.textShadow = "#909090 1px 0 10px";
+            document.getElementById("ProfileFilter__filter").style.color = "rgba(109, 145, 126, .7)";
+            document.getElementById("ProfileFilter__filter").style.textShadow = "rgba(109, 145, 126, .5) 1px 0 10px";
             setTimeout(() => {
-                document.getElementById("ProfileFilter__filter").style.fontWeight = "300";
+                document.getElementById("ProfileFilter__filter").style.color = "rgba(0, 0, 0, 1)";
                 document.getElementById("ProfileFilter__filter").style.textShadow = "none";
 
             }, 1000);
@@ -24,11 +24,11 @@ export const ProfileFilters = observer((props) => {
         }
     }, [profileStore.filterIsPopingUp])
 
-    return <div className="ProfileFilter__container">
-        <div className="ProfileFilter__filter ProfileFilter__element">
+    return <div className="ProfileFilter__container" id="ProfileFilter__filter">
+        <div className="ProfileFilter__element">
             <SearchOutlined /> {t("profile.search")} {t(`menu.${props.contentToDisplay}`).toLowerCase()}
         </div>
-        <div className="ProfileFilter__element" id="ProfileFilter__filter">
+        <div className="ProfileFilter__element">
             <FilterOutlined /> {showFilterPanel ? t("profile.hideFilterPanel") : t("profile.showFilterPanel")}
         </div>
     </div>

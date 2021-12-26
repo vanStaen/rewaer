@@ -6,12 +6,9 @@
     cursor: pointer;
 }
 
-.ProfileFilter__filter {
-    transition: text-shadow 5s, font-weight 5s;
-} 
-
 .ProfileFilter__element {
   margin-bottom: 7px; 
+  transition: color .5s, text-shadow .5s;
 }
 
 .ProfileFilter__element:hover {

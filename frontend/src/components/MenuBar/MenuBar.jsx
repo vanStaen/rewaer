@@ -129,7 +129,7 @@ export const MenuBar = observer(() => {
                     <Link to="/editsettings/">{t("menu.editSetting")}</Link>
                   </Menu.Item>
 
-                  <div className="menu__customDivider"></div>
+                  {/*<div className="menu__customDivider"></div>
                   <Menu.Item
                     key="notification1"
                     icon={<SkinOutlined />}
@@ -161,7 +161,7 @@ export const MenuBar = observer(() => {
                   >
                     <span className="menu__notificationUser">TheGreatBoy</span>{" "}
                   want to be you friend
-                </Menu.Item>
+                </Menu.Item> */}
 
                   <div className="menu__customDivider"></div>
                   <Menu.Item
