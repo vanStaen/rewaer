@@ -55,6 +55,7 @@
 - [ ] On detail view, scroll up after saving original Scroll position
 - [ ] On leave detail vew, scroll down to originql Scroll position
 - [ ] 404 for the win
+- [ ] Fix error when calling Items url directly
 
 ## Completed ✓
 
