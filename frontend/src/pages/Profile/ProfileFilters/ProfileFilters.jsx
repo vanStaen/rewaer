@@ -14,7 +14,7 @@ export const ProfileFilters = observer((props) => {
     useEffect(() => {
         if (profileStore.filterIsPopingUp) {
             document.getElementById("ProfileFilter__filter").style.fontWeight = "500";
-            document.getElementById("ProfileFilter__filter").style.textShadow = "#f0f0f0 1px 0 10px";
+            document.getElementById("ProfileFilter__filter").style.textShadow = "#909090 1px 0 10px";
             setTimeout(() => {
                 document.getElementById("ProfileFilter__filter").style.fontWeight = "300";
                 document.getElementById("ProfileFilter__filter").style.textShadow = "none";

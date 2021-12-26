@@ -1,6 +1,6 @@
 .ProfileFilter__container {
     border: 1px solid transparent;
-    margin: 5px 0 20px 5px;
+    margin: 5px 0 10px 5px;
     font-weight: 300;
     font-size: 12px;
     cursor: pointer;
@@ -9,6 +9,10 @@
 .ProfileFilter__filter {
     transition: text-shadow 5s, font-weight 5s;
 } 
+
+.ProfileFilter__element {
+  margin-bottom: 7px; 
+}
 
 .ProfileFilter__element:hover {
   color: rgba(109, 145, 126, 1);
