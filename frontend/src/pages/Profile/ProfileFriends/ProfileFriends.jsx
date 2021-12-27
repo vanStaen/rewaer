@@ -4,6 +4,8 @@ import { observer } from "mobx-react";
 import { Tooltip } from 'antd';
 import { useTranslation } from "react-i18next";
 
+import { profileStore } from "../../../stores/profileStore/profileStore"
+
 import "./ProfileFriends.css"
 
 export const ProfileFriends = observer(() => {
@@ -14,7 +16,7 @@ export const ProfileFriends = observer(() => {
                 {t("profile.friends")} (5)
             </div>
             <Tooltip title="ttlykke">
-                <Link to="/ttlykke">
+                <Link to="/ttlykke" onClick={() => { profileStore.fetchProfileData("ttlykke") }}>
                     <div
                         className="profilFriends__followersAvatar"
                         style={{
@@ -26,7 +28,7 @@ export const ProfileFriends = observer(() => {
                     </div>
                 </Link>
             </Tooltip>
-            <Tooltip title="clementvanstaen">
+            <Tooltip title="clementvanstaen" onClick={() => { profileStore.fetchProfileData("clementvanstaen") }}>
                 <Link to="/clementvanstaen">
                     <div
                         className="profilFriends__followersAvatar"

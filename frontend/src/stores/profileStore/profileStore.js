@@ -97,6 +97,7 @@ export class ProfileStore {
 
   fetchProfileData = async (userName) => {
     try {
+      this.setIsLoading(true);
       this.setUserName(userName);
       const profileData = await getProfileInfo(userName);
       if (profileData) {
