@@ -63,49 +63,49 @@ export const lookCategory = [
 
 export const itemCategoryMen = [
   {
-    code: "IM1",
+    code: "C1",
     en: "Shoes",
     de: "Schuhe",
     fr: "Chaussures",
   },
   {
-    code: "IM2",
+    code: "C2",
     en: "Shirt",
     de: "Hemd",
     fr: "Chemise",
   },
   {
-    code: "IM3",
+    code: "C3",
     en: "T-shirt",
     de: "T-shirt",
     fr: "T-shirt",
   },
   {
-    code: "IM4",
+    code: "C4",
     en: "Pullover",
     de: "Pulli",
     fr: "Pull",
   },
   {
-    code: "IM5",
+    code: "C5",
     en: "Pants",
     de: "Hose",
     fr: "Pantalon",
   },
   {
-    code: "IM7",
+    code: "C6",
     en: "Jacket",
     de: "Jacket",
     fr: "Veste",
   },
   {
-    code: "IM6",
+    code: "C7",
     en: "Accessory",
     de: "Accessoires",
     fr: "Accessoires",
   },
   {
-    code: "IM7",
+    code: "C8",
     en: "Various",
     de: "Rest",
     fr: "Divers",
@@ -115,60 +115,137 @@ export const itemCategoryMen = [
 
 export const itemCategoryWomen = [
   {
-    code: "IW1",
+    code: "C1",
     en: "Shoes",
     de: "Schuhe",
     fr: "Chaussures",
   },
   {
-    code: "IW2",
+    code: "C2",
     en: "Top",
     de: "Oberteil",
     fr: "Haut",
   },
   {
-    code: "IW3",
+    code: "C3",
     en: "Shirt",
     de: "Bluse",
     fr: "Chemisier",
   },
   {
-    code: "IW4",
+    code: "C4",
     en: "Pants",
     de: "Hose",
     fr: "Pantalon",
   },
   {
-    code: "IW5",
+    code: "C5",
     en: "Skirt",
     de: "Rock",
     fr: "Jupe",
   },
   {
-    code: "IW6",
+    code: "C6",
     en: "Dress",
     de: "Kleid",
     fr: "Robe",
   },
   {
-    code: "IW7",
+    code: "C7",
     en: "Lingerie",
     de: "Wäsche",
     fr: "Lingerie",
   },
   {
-    code: "IW8",
+    code: "C8",
     en: "Accessory",
     de: "Accessoires",
     fr: "Accessoires",
   },
   {
-    code: "IW9",
-    en: "Hat",
-    de: "Hut",
-    fr: "Chapeau",
+    code: "C9",
+    en: "Various",
+    de: "Rest",
+    fr: "Divers",
   },
 ];
+
+
+export const itemCategoryNB = [
+  {
+    code: "C1",
+    en: "Shoes",
+    de: "Schuhe",
+    fr: "Chaussures",
+  },
+  {
+    code: "C2",
+    en: "Shirt",
+    de: "Hemd",
+    fr: "Chemise",
+  },
+  {
+    code: "C3",
+    en: "T-shirt",
+    de: "T-shirt",
+    fr: "T-shirt",
+  },
+  {
+    code: "C4",
+    en: "Pullover",
+    de: "Pulli",
+    fr: "Pull",
+  },
+  {
+    code: "C5",
+    en: "Pants",
+    de: "Hose",
+    fr: "Pantalon",
+  },
+  {
+    code: "C6",
+    en: "Top",
+    de: "Oberteil",
+    fr: "Haut",
+  },
+  {
+    code: "C7",
+    en: "Shirt",
+    de: "Bluse",
+    fr: "Chemisier",
+  },
+  {
+    code: "C8",
+    en: "Skirt",
+    de: "Rock",
+    fr: "Jupe",
+  },
+  {
+    code: "C9",
+    en: "Dress",
+    de: "Kleid",
+    fr: "Robe",
+  },
+  {
+    code: "C10",
+    en: "Lingerie",
+    de: "Wäsche",
+    fr: "Lingerie",
+  },
+  {
+    code: "C11",
+    en: "Accessory",
+    de: "Accessoires",
+    fr: "Accessoires",
+  },
+  {
+    code: "C12",
+    en: "Various",
+    de: "Rest",
+    fr: "Divers",
+  },
+];
+
 
 export const season = [
   { code: "S1", en: "Summer", de: "Sommer", fr: "Été" },

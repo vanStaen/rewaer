@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
-import { itemCategoryMen, itemCategoryWomen } from "../../../data/categories";
+import { itemCategoryMen, itemCategoryWomen, itemCategoryNB } from "../../../data/categories";
 import { colors } from "../../../data/colors";
 import { pattern } from "../../../data/pattern";
 
@@ -17,52 +17,42 @@ export const ItemDetail = observer((props) => {
   const [category, setCategory] = useState(props.selectedItem.category)
   const { t } = useTranslation();
 
-  const CategoryDropDownTemp = () => {
-    if (userStore.gender === 1 || 3) {
-      itemCategory.men.map((category) => {
-        return (
-          <Menu.Item key={category.code} onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
-            {category.en}
-          </Menu.Item>);
-      });
-    }
-    if (userStore.gender === 2 || 3) {
-      itemCategory.women.map((category) => {
-        return (
-          <Menu.Item key={category.code} onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
-            {category.en}
-          </Menu.Item>);
-      });
-    }
-  }
 
-  let CategoryDropDown = null;
-  if (userStore.gender === 1) {
-    CategoryDropDown = itemCategoryMen.map((catItem) => {
-      return (
-        <Menu.Item
-          key={catItem.code}
-          onClick={() => {
-            categoryChangeHandler(catItem.en);
-            etCategory(catItem.en);
-          }}>
-          {catItem.en}
-        </Menu.Item>);
-    });
-  } else if (userStore.gender === 2) {
-    CategoryDropDown = itemCategoryWomen.map((catItem) => {
-      return (
-        <Menu.Item
-          key={catItem.code}
-          onClick={() => {
-            categoryChangeHandler(catItem.en);
-            etCategory(catItem.en);
-          }}>
-          {catItem.en}
-        </Menu.Item>);
-    });
-  }
+  const CategoryDropDownMen = itemCategoryMen.map((catItem) => {
+    return (
+      <Menu.Item
+        key={catItem.code}
+        onClick={() => {
+          categoryChangeHandler(catItem.en);
+          etCategory(catItem.en);
+        }}>
+        {catItem.en}
+      </Menu.Item>);
+  });
 
+  const CategoryDropDownWomen = itemCategoryWomen.map((catItem) => {
+    return (
+      <Menu.Item
+        key={catItem.code}
+        onClick={() => {
+          categoryChangeHandler(catItem.en);
+          etCategory(catItem.en);
+        }}>
+        {catItem.en}
+      </Menu.Item>);
+  });
+
+  const CategoryDropDownNB = itemCategoryNB.map((catItem) => {
+    return (
+      <Menu.Item
+        key={catItem.code}
+        onClick={() => {
+          categoryChangeHandler(catItem.en);
+          etCategory(catItem.en);
+        }}>
+        {catItem.en}
+      </Menu.Item>);
+  });
 
 
   return (
@@ -91,7 +81,17 @@ export const ItemDetail = observer((props) => {
             active={props.selectedItem.active}
           />
           <div className="itemdetail__headerPoints">&#9679;</div>
-          <Dropdown overlay={<Menu>{CategoryDropDown}</Menu>} placement="bottomLeft">
+          <Dropdown
+            overlay={
+              <Menu>
+                {userStore.gender === 1 ?
+                  CategoryDropDownMen :
+                  userStore.gender === 2 ?
+                    CategoryDropDownWomen :
+                    CategoryDropDownNB
+                }
+              </Menu>}
+            placement="bottomLeft">
             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
               {category ?
                 <span className="itemdetail__headerCategory">{category}</span>
