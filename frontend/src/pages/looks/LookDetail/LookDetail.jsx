@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Spin, Tooltip, Dropdown, Menu, Image } from "antd";
+import { Spin, Tooltip, Dropdown, Menu } from "antd";
 import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
