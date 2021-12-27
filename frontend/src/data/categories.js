@@ -121,49 +121,49 @@ export const itemCategoryWomen = [
     fr: "Chaussures",
   },
   {
-    code: "C2",
+    code: "C9",
     en: "Top",
     de: "Oberteil",
     fr: "Haut",
   },
   {
-    code: "C3",
+    code: "C2",
     en: "Shirt",
     de: "Bluse",
     fr: "Chemisier",
   },
   {
-    code: "C4",
+    code: "C5",
     en: "Pants",
     de: "Hose",
     fr: "Pantalon",
   },
   {
-    code: "C5",
+    code: "C10",
     en: "Skirt",
     de: "Rock",
     fr: "Jupe",
   },
   {
-    code: "C6",
+    code: "C11",
     en: "Dress",
     de: "Kleid",
     fr: "Robe",
   },
   {
-    code: "C7",
+    code: "C12",
     en: "Lingerie",
     de: "Wäsche",
     fr: "Lingerie",
   },
   {
-    code: "C8",
+    code: "C7",
     en: "Accessory",
     de: "Accessoires",
     fr: "Accessoires",
   },
   {
-    code: "C9",
+    code: "C8",
     en: "Various",
     de: "Rest",
     fr: "Divers",
@@ -172,6 +172,7 @@ export const itemCategoryWomen = [
 
 
 export const itemCategoryNB = [
+
   {
     code: "C1",
     en: "Shoes",
@@ -191,6 +192,12 @@ export const itemCategoryNB = [
     fr: "T-shirt",
   },
   {
+    code: "C9",
+    en: "Top",
+    de: "Oberteil",
+    fr: "Haut",
+  },
+  {
     code: "C4",
     en: "Pullover",
     de: "Pulli",
@@ -204,42 +211,36 @@ export const itemCategoryNB = [
   },
   {
     code: "C6",
-    en: "Top",
-    de: "Oberteil",
-    fr: "Haut",
+    en: "Jacket",
+    de: "Jacket",
+    fr: "Veste",
   },
   {
-    code: "C7",
-    en: "Shirt",
-    de: "Bluse",
-    fr: "Chemisier",
-  },
-  {
-    code: "C8",
+    code: "C10",
     en: "Skirt",
     de: "Rock",
     fr: "Jupe",
   },
   {
-    code: "C9",
+    code: "C11",
     en: "Dress",
     de: "Kleid",
     fr: "Robe",
   },
   {
-    code: "C10",
-    en: "Lingerie",
-    de: "Wäsche",
-    fr: "Lingerie",
-  },
-  {
-    code: "C11",
+    code: "C7",
     en: "Accessory",
     de: "Accessoires",
     fr: "Accessoires",
   },
   {
     code: "C12",
+    en: "Lingerie",
+    de: "Wäsche",
+    fr: "Lingerie",
+  },
+  {
+    code: "C8",
     en: "Various",
     de: "Rest",
     fr: "Divers",
