@@ -77,7 +77,7 @@ export const Items = observer(() => {
 
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || showPrivate) {
-      if (!item.active && !userStore.profilSettings.displayArchived) {
+      if (!item.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
         return (

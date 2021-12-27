@@ -76,7 +76,7 @@ export const Looks = observer(() => {
 
   const lookList = looksStore.looks.map((look) => {
     if (!look.private || showPrivate) {
-      if (!look.active && !userStore.profilSettings.displayArchived) {
+      if (!look.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
         return (

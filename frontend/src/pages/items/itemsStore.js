@@ -7,9 +7,9 @@ export class ItemsStore {
   items = [];
   isLoading = true;
   isOutOfDate = true;
+  error = null;
   numberOfArchivedItem = 0;
   numberOfPrivateItem = 0;
-  error = null;
 
   constructor() {
     makeObservable(this, {
