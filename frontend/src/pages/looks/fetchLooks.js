@@ -12,6 +12,8 @@ export async function fetchLooks() {
           active,
           favorite,
           private,
+          like,
+          dislike,
           createdAt,
           mediaUrl,
           mediaUrlMedium,
