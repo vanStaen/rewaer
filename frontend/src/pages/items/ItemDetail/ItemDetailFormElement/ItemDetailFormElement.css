@@ -1,0 +1,23 @@
+.ItemDetailFormElement__container {
+    margin-left: 10px;
+} 
+
+.ItemDetailFormElement__title {
+    display: inline-block;
+    text-transform:capitalize;
+} 
+
+.ItemDetailFormElement__dropdown {
+    display: inline-block;
+    margin-left: 10px;
+} 
+
+.ItemDetailFormElement__element {
+    color: #909090;
+} 
+
+.ItemDetailFormElement__selectElement {
+    color: #c0c0c0;
+    font-weight: 300;
+    cursor: pointer; 
+} 
