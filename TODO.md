@@ -56,6 +56,8 @@
 - [ ] On leave detail vew, scroll down to originql Scroll position
 - [ ] Leave item/lookdetailview with browser back function
 - [ ] 404 for the win
+- [ ] Darkmode
+
 
 ## Completed ✓
 

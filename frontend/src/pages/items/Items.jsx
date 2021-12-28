@@ -138,7 +138,7 @@ export const Items = observer(() => {
                 <div ref={containerElement} className="items__container">
                   <div className="items__toolbar">
                     <div className="items__toolbarLeft">
-                      {totalItems()}&nbsp; {t("menu.items")}
+                      {totalItems()}&nbsp;{t("menu.items")}
                       {numberOfPrivateItems > 0 && (
                         <>  |
                       <span

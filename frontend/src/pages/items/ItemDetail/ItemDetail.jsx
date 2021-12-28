@@ -70,7 +70,6 @@ export const ItemDetail = observer((props) => {
             favorite<br />
             private<br />
             status - 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost, 6: ForSale<br />
-            likes/dislikes<br />
           </div>
       }
     </div >
