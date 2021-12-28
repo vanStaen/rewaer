@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { EditableTitle } from "../../../../components/EditableTitle/EditableTitle";
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
@@ -15,5 +16,8 @@ export const ItemDetailFormStringElement = (props) => {
             type={"item"}
             active={props.selectedItem.active}
         />
+        <div className="ItemDetailFormElement__helpIcon">
+            <QuestionCircleOutlined />
+        </div>
     </div>;
 }

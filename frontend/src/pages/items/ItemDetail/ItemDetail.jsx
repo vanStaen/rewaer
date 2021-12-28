@@ -1,5 +1,5 @@
 import React from "react";
-import { Spin, Tooltip, Dropdown, Menu } from "antd";
+import { Spin, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -60,8 +60,17 @@ export const ItemDetail = observer((props) => {
           </div>
           :
           <div className="itemDetail__itemContainer">
+            id<br />
             <ItemDetailFormStringElement element="title" selectedItem={props.selectedItem} />
             <ItemDetailFormCategory selectedItem={props.selectedItem} />
+            desc<br />
+            colors<br />
+            brand<br />
+            active/archived<br />
+            favorite<br />
+            private<br />
+            status - 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost, 6: ForSale<br />
+            likes/dislikes<br />
           </div>
       }
     </div >

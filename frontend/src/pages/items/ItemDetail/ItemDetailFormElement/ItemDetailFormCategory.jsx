@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown, Menu } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { userStore } from "../../../../stores/userStore/userStore";
 import { itemCategoryMen, itemCategoryWomen, itemCategoryNB } from "../../../../data/categories";
@@ -69,5 +70,8 @@ export const ItemDetailFormCategory = (props) => {
                     : <span className="ItemDetailFormElement__selectElement">Select a category</span>}
             </a>
         </Dropdown>
+        <div className="ItemDetailFormElement__helpIcon">
+            <QuestionCircleOutlined />
+        </div>
     </div>;
 }
