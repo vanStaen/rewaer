@@ -111,7 +111,8 @@
     "items": "Items",
     "mail": "Mail",
     "friends": "Friends",
-    "notification": "Notifications"
+    "notification": "Notifications",
+    "search" : "Search"
   },
   "profile": {
     "hello": "Hello",

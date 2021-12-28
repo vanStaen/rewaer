@@ -11,7 +11,7 @@ import {
   MailOutlined,
   QuestionOutlined,
   LogoutOutlined,
-  TeamOutlined,
+  SearchOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
@@ -82,6 +82,15 @@ export const MenuBar = observer(() => {
             style={{ float: "left" }}
           >
             <Link to="/friends"> {t("menu.notification")}</Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key="search"
+            icon={<SearchOutlined />}
+            disabled
+            style={{ float: "left" }}
+          >
+            {t("menu.search")}
           </Menu.Item>
 
           <Menu.Item key="info" style={{ float: "left" }}>

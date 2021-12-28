@@ -110,7 +110,8 @@
     "items": "Items",
     "mail": "Nachrichten",
     "friends": "Freunde",
-    "notification": "Benachrichtungen"
+    "notification": "Benachrichtungen",
+    "search" : "Suchen"
   },
   "profile": {
     "hello": "Hallo",

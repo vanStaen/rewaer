@@ -111,7 +111,8 @@
     "items": "Piéces",
     "mail": "Messages",
     "friends": "Amis",
-    "notification": "Notifications"
+    "notification": "Notifications",
+    "search" : "Rechercher"
   },
   "profile": {
     "hello": "Bonjour",
