@@ -57,6 +57,11 @@ const Item = sequelize.define("item", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  sharedWith: {
+    //array of user id
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
+  },
   likes: {
     //array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),

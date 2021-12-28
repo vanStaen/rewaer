@@ -64,6 +64,7 @@ exports.itemResolver = {
       "private",
       "status",
       "favorite",
+      "shareWith",
       "like",
       "dislike",
     ];

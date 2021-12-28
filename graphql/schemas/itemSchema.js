@@ -14,6 +14,7 @@ type Item {
     status: Int
     favorite: Boolean!
     private: Boolean
+    sharedWith: [Int]
     likes: [Int]
     dislikes: [Int]
     createdAt: Float!
@@ -35,6 +36,7 @@ input ItemInputData {
     status: Int
     favorite: Boolean
     private: Boolean
+    sharedWith: [Int]
     likes: [Int]
     dislikes: [Int]
 }`;
