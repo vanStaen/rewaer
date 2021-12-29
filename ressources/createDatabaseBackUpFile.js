@@ -20,8 +20,8 @@ client.connect(err => {
 // Fetch content from db
 const fetchDatabaseContent = async () => {
     try {
-        const watchlist = await client.query('SELECT * FROM songbook;');
-        return watchlist.rows;
+        const result = await client.query('SELECT * FROM rewaer;');
+        return result.rows;
     } catch (err) {
         console.log({ error: `${err})`, });
     }
