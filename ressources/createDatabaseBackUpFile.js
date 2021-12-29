@@ -18,9 +18,9 @@ client.connect(err => {
 })
 
 // Fetch content from db
-const fetchDatabaseContent = async () => {
+const fetchDatabaseContent = async (value) => {
     try {
-        const result = await client.query('SELECT * FROM rewaer;');
+        const result = await client.query(`SELECT * FROM ${value};`);
         return result.rows;
     } catch (err) {
         console.log({ error: `${err})`, });
@@ -34,7 +34,9 @@ const writeBackupFile = async () => {
         const year = today.getFullYear();
         const month = today.getMonth() + 1; //Start from 0
         const day = today.getDate();
-        const databaseContent = await fetchDatabaseContent();
+        const databaseContentItems = await fetchDatabaseContent("items");
+        const databaseContentLooks = await fetchDatabaseContent("looks");
+        const databaseContentUsers = await fetchDatabaseContent("users");
         filename = `rewaer_db_${day}${month}${year}.json`;
         fs.writeFileSync(`./db_backups/${filename}`, JSON.stringify(databaseContent));
     } catch (err) {
