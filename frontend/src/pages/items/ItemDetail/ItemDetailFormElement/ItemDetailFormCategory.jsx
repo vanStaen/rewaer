@@ -1,73 +1,55 @@
 import React, { useState } from "react";
-import { Dropdown, Menu } from "antd";
+import { Dropdown, Menu, notification } from "antd";
+import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-import { userStore } from "../../../../stores/userStore/userStore";
-import { itemCategoryMen, itemCategoryWomen, itemCategoryNB } from "../../../../data/categories";
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 
 import "./ItemDetailFormElement.css";
 
 export const ItemDetailFormCategory = (props) => {
-    const [category, setCategory] = useState(props.selectedItem.category)
+    const { t } = useTranslation();
+    const [value, setValue] = useState(props.value)
 
-    const CategoryDropDownMen = itemCategoryMen.map((catItem) => {
+    const clickHandler = (newValue) => {
+        try {
+            updateGenericStringItem(props.selectedItem._id, props.element, newValue);
+            setValue(newValue);
+            notification.success({
+                message: t("main.changeSaved"),
+                placement: "bottomRight",
+            });
+            itemsStore.setIsOutOfDate(true);
+        } catch (e) {
+            notification.error({
+                message: e,
+                placement: "bottomRight",
+            });
+        }
+    }
+
+    const CategoryDropDown = props.data.map((item) => {
         return (
             <Menu.Item
-                key={catItem.code}
-                onClick={() => {
-                    updateGenericStringItem(props.selectedItem._id, "category", catItem.en);
-                    setCategory(catItem.en);
-                    itemsStore.setIsOutOfDate(true);
-                }}>
-                {catItem.en}
-            </Menu.Item>);
-    });
-
-    const CategoryDropDownWomen = itemCategoryWomen.map((catItem) => {
-        return (
-            <Menu.Item
-                key={catItem.code}
-                onClick={() => {
-                    updateGenericStringItem(props.selectedItem._id, "category", catItem.en);
-                    setCategory(catItem.en);
-                    itemsStore.setIsOutOfDate(true);
-                }}>
-                {catItem.en}
-            </Menu.Item>);
-    });
-
-    const CategoryDropDownNB = itemCategoryNB.map((catItem) => {
-        return (
-            <Menu.Item
-                key={catItem.code}
-                onClick={() => {
-                    updateGenericStringItem(props.selectedItem._id, "category", catItem.en);
-                    setCategory(catItem.en);
-                    itemsStore.setIsOutOfDate(true);
-                }}>
-                {catItem.en}
+                key={item.code}
+                onClick={() => { clickHandler(item.en) }}>
+                {item.en}
             </Menu.Item>);
     });
 
     return <div className="ItemDetailFormElement__container">
-        <div className="ItemDetailFormElement__title">Category:</div>
+        <div className="ItemDetailFormElement__title">{props.title}:</div>
         <Dropdown
             className="ItemDetailFormElement__dropdown"
             overlay={
                 <Menu>
-                    {userStore.gender === 1 ?
-                        CategoryDropDownMen :
-                        userStore.gender === 2 ?
-                            CategoryDropDownWomen :
-                            CategoryDropDownNB
-                    }
+                    {CategoryDropDown}
                 </Menu>}
             placement="bottomLeft">
             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                {category ?
-                    <span className="ItemDetailFormElement__element">{category}</span>
-                    : <span className="ItemDetailFormElement__selectElement">Select a category</span>}
+                {props.value ?
+                    <span className="ItemDetailFormElement__element">{value}</span>
+                    : <span className="ItemDetailFormElement__selectElement">Select a {props.title}</span>}
             </a>
         </Dropdown>
         <div className="ItemDetailFormElement__helpIcon">

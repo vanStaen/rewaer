@@ -1,4 +1,4 @@
-export const colors = [
+export const pattern = [
   {
     code: "P1",
     en: "Plain",

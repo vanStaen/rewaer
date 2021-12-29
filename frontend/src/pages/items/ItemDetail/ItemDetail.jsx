@@ -7,6 +7,13 @@ import { useTranslation } from "react-i18next";
 import { ItemDetailFormCategory } from "./ItemDetailFormElement/ItemDetailFormCategory";
 import { ItemDetailFormStringElement } from "./ItemDetailFormElement/ItemDetailFormStringElement";
 import { itemsStore } from "../itemsStore";
+import { userStore } from "../../../stores/userStore/userStore";
+import {
+  itemCategoryMen,
+  itemCategoryWomen,
+  itemCategoryNB
+} from "../../../data/categories";
+
 import { colors } from "../../../data/colors";
 import { pattern } from "../../../data/pattern";
 
@@ -60,11 +67,40 @@ export const ItemDetail = observer((props) => {
           </div>
           :
           <div className="itemDetail__itemContainer">
-            id<br />
-            <ItemDetailFormStringElement element="title" selectedItem={props.selectedItem} />
-            <ItemDetailFormCategory selectedItem={props.selectedItem} />
-            desc<br />
-            colors<br />
+            <ItemDetailFormStringElement
+              element="title"
+              title="title"
+              value={props.selectedItem.title}
+              selectedItem={props.selectedItem} />
+            <ItemDetailFormCategory
+              title="category"
+              element="category"
+              data={
+                userStore.gender === 1 ?
+                  itemCategoryMen :
+                  userStore.gender === 2 ?
+                    itemCategoryWomen :
+                    itemCategoryNB
+              }
+              value={props.selectedItem.category}
+              selectedItem={props.selectedItem} />
+            <ItemDetailFormStringElement
+              element="desc"
+              title="description"
+              value={props.selectedItem.desc}
+              selectedItem={props.selectedItem} />
+            <ItemDetailFormCategory
+              title="colors"
+              element="colors"
+              data={colors}
+              value={null}
+              selectedItem={props.selectedItem} />
+            <ItemDetailFormCategory
+              title="pattern"
+              element="pattern"
+              data={pattern}
+              value={null}
+              selectedItem={props.selectedItem} />
             brand<br />
             active/archived<br />
             favorite<br />
