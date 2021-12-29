@@ -15,7 +15,6 @@
     "log": "heroku logs --tail",
     "test": "cd frontend; jest; cd ../;",
     "backup": "cd ressources/; node createDatabaseBackUpFile.js; cd ../; git add -A; git commit -a -m \"database backup\"; git push;"
-
   },
   "repository": {
     "type": "git",
