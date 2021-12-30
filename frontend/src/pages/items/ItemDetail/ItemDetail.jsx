@@ -105,7 +105,7 @@ export const ItemDetail = observer((props) => {
             active/archived<br />
             favorite<br />
             private<br />
-            status - 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost, 6: ForSale<br />
+            status - 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost, 6: ForSale, 6: ForFree<br />
           </div>
       }
     </div >
