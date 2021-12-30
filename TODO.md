@@ -18,7 +18,6 @@
     - [ ] simplified version of cards, with comment and liking function
     - [ ] Friend can propose Look name
     - [ ] ofc, private item/look are hidden
-- [ ] Use custom image component for images
 - [ ] Infinite scrolling + lazy loading
 - [ ] Create own Card component
   - [x] picture cover, not stretched
@@ -37,7 +36,6 @@
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
 - [ ] when scrolled down, show floating add items button
-- [ ] shared items are possible (between friends)
 - [ ] When items are missing basic tags info :
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
@@ -57,6 +55,11 @@
 - [ ] Leave item/lookdetailview with browser back function
 - [ ] 404 for the win
 - [ ] Darkmode
+- [ ] Items Detail Page: 
+  - [ ] shared items are possible (between friends)
+  - [ ] add location
+  - [ ] rename desc to notes
+  - [ ] add pattern
 
 
 ## Completed ✓
