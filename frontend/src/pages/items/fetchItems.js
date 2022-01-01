@@ -7,9 +7,11 @@ export async function fetchItems() {
         getItems {
           _id,
           title,
-          desc,
+          notes,
+          location,
           category,
           colors,
+          pattern,
           brand,
           active,
           favorite,

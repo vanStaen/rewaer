@@ -28,13 +28,21 @@ const Item = sequelize.define("item", {
     type: DataTypes.STRING,
     defaultValue: null,
   },
-  desc: {
+  notes: {
+    type: DataTypes.STRING,
+    required: false,
+  },
+  location: {
     type: DataTypes.STRING,
     required: false,
   },
   colors: {
     type: DataTypes.ARRAY(DataTypes.STRING),
     defaultValue: [],
+  },
+  pattern: {
+    type: DataTypes.STRING,
+    required: false,
   },
   brand: {
     type: DataTypes.STRING,

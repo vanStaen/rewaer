@@ -57,8 +57,10 @@ exports.itemResolver = {
     const updatableFields = [
       "title",
       "category",
-      "desc",
+      "notes",
       "colors",
+      "pattern",
+      "location",
       "brand",
       "active",
       "private",

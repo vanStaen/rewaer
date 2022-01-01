@@ -58,7 +58,7 @@
 - [ ] Items Detail Page: 
   - [ ] shared items are possible (between friends)
   - [ ] add location
-  - [ ] rename desc to notes
+  - [x] rename desc to notes
   - [ ] add pattern
 
 

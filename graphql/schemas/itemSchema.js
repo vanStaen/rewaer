@@ -7,8 +7,10 @@ type Item {
     mediaUrlThumb: String!
     mediaUrlMedium: String!
     category: String
-    desc: String
+    notes: String
+    location: String
     colors: [String]
+    pattern: String
     brand: String
     active: Boolean!
     status: Int
@@ -29,8 +31,10 @@ input ItemInputData {
     mediaUrlThumb: String
     mediaUrlMedium: String
     category: String
-    desc: String
+    notes: String
+    location: String
     colors: [String]
+    pattern: String
     brand: String
     active: Boolean
     status: Int

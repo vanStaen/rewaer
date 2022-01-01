@@ -85,12 +85,6 @@ export const ItemDetail = observer((props) => {
             value={props.selectedItem.category}
             selectedItem={props.selectedItem}
           />
-          <ItemDetailFormStringElement
-            element="desc"
-            title="description"
-            value={props.selectedItem.desc}
-            selectedItem={props.selectedItem}
-          />
           <ItemDetailFormDropDown
             title="colors"
             element="colors"
@@ -105,7 +99,18 @@ export const ItemDetail = observer((props) => {
             value={null}
             selectedItem={props.selectedItem}
           />
-          brand
+          <ItemDetailFormStringElement
+            element="notes"
+            title="notes"
+            value={props.selectedItem.notes}
+            selectedItem={props.selectedItem}
+          />
+          <ItemDetailFormStringElement
+            element="brand"
+            title="brand"
+            value={props.selectedItem.brand}
+            selectedItem={props.selectedItem}
+          />
           <br />
           active/archived
           <br />
