@@ -66,6 +66,9 @@
   - [ ] Implement disabled
   - [ ] Implement space holder as props
 - [ ] Implement Season info for looks 
+- [ ] Tips popping up 
+  - [ ] Use backspace to return to main view
+  - [ ] use Arrow to naviguate through items/Looks
  
 
 ## Completed ✓
