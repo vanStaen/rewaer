@@ -16,6 +16,7 @@ import {
 
 import { colors } from "../../../data/colors";
 import { pattern } from "../../../data/pattern";
+import { itemStatus } from "../../../data/itemStatus";
 
 import "./ItemDetail.css";
 
@@ -71,6 +72,7 @@ export const ItemDetail = observer((props) => {
             title="title"
             value={props.selectedItem.title}
             selectedItem={props.selectedItem}
+            disabled={false}
           />
           <ItemDetailFormDropDown
             title="category"
@@ -84,13 +86,17 @@ export const ItemDetail = observer((props) => {
             }
             value={props.selectedItem.category}
             selectedItem={props.selectedItem}
+            multiSelect={false}
+            disabled={false}
           />
           <ItemDetailFormDropDown
             title="colors"
             element="colors"
             data={colors}
-            value={props.selectedItem.colors}
+            value={null}
             selectedItem={props.selectedItem}
+            multiSelect={true}
+            disabled={false}
           />
           <ItemDetailFormDropDown
             title="pattern"
@@ -98,18 +104,22 @@ export const ItemDetail = observer((props) => {
             data={pattern}
             value={props.selectedItem.pattern}
             selectedItem={props.selectedItem}
+            multiSelect={false}
+            disabled={false}
           />
           <ItemDetailFormStringElement
             element="notes"
             title="notes"
             value={props.selectedItem.notes}
             selectedItem={props.selectedItem}
+            disabled={false}
           />
           <ItemDetailFormStringElement
             element="brand"
             title="brand"
             value={props.selectedItem.brand}
             selectedItem={props.selectedItem}
+            disabled={false}
           />
           <br />
           active/archived
@@ -118,9 +128,15 @@ export const ItemDetail = observer((props) => {
           <br />
           private
           <br />
-          status - 0: There, 1: Sold, 2: Thrown, 3: GivenAway, 4: Lent, 5: Lost,
-          6: ForSale
-          <br />
+          <ItemDetailFormDropDown
+            title="status"
+            element="status"
+            data={itemStatus}
+            value={props.selectedItem.status}
+            selectedItem={props.selectedItem}
+            multiSelect={false}
+            disabled={false}
+          />
         </div>
       )}
     </div>

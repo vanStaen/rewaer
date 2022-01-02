@@ -13,7 +13,7 @@ type Item {
     pattern: String
     brand: String
     active: Boolean!
-    status: Int
+    status: String
     favorite: Boolean!
     private: Boolean
     sharedWith: [Int]
@@ -37,7 +37,7 @@ input ItemInputData {
     pattern: String
     brand: String
     active: Boolean
-    status: Int
+    status: String
     favorite: Boolean
     private: Boolean
     sharedWith: [Int]

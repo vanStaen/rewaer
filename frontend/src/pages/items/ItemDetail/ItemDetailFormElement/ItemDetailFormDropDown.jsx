@@ -12,22 +12,6 @@ export const ItemDetailFormDropDown = (props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
 
-  useEffect(() => {
-    props.value === null
-      ? setValue(props.value)
-      : !props.value.isArray
-      ? setValue(props.value)
-      : props.value.length === 0
-      ? setValue(null)
-      : setValue(props.value);
-
-    console.log("props.value.isArray", props.value.isArray);
-    console.log("props.value.length", props.value.length);
-    console.log("ran");
-  }, [props.value]);
-
-  console.log("value", value);
-
   const clickHandler = (newValue) => {
     try {
       updateGenericStringItem(props.selectedItem._id, props.element, newValue);
@@ -51,7 +35,7 @@ export const ItemDetailFormDropDown = (props) => {
         key={item.code}
         //style={{ backgroundColor: item.en }}
         onClick={() => {
-          clickHandler(item.en);
+          clickHandler(item.code);
         }}
       >
         {item.en}
