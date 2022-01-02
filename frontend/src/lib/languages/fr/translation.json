@@ -177,7 +177,8 @@
     "restoreSuccess" : "Piéce restauré avec succès!",
     "restoreConfirm": "Souhaitez-vous restaurer cette piéce?",
     "showPrivateItems": "Afficher les piéces privées",
-    "hidePrivateItems": "Cacher les piéces privées"
+    "hidePrivateItems": "Cacher les piéces privées",
+    "backToItems": "Retourner aux Piéces"
   },
   "looks" : {
     "look": "look",

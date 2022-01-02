@@ -177,7 +177,8 @@
     "restoreSuccess" : "Item restored successfully!",
     "restoreConfirm": "Restore this item?",
     "showPrivateItems": "Show Private items",
-    "hidePrivateItems": "Hide Private items"
+    "hidePrivateItems": "Hide Private items",
+    "backToItems": "Back to all Items"
   },
   "looks" : {
     "look": "look",

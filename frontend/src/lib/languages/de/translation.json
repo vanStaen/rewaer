@@ -176,7 +176,8 @@
     "restoreSuccess" : "Item erfolgreich weiderhergestellt!",
     "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?",
     "showPrivateLooks": "Private items anzeigen",
-    "hidePrivateLooks": "Private items verstecken"
+    "hidePrivateLooks": "Private items verstecken",
+    "backToItems": "Zurück zu alle Items"
   },
   "looks" : {
     "look": "look",

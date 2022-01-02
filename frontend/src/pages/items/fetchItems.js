@@ -18,6 +18,7 @@ export async function fetchItems() {
           private,
           sharedWith,
           likes,
+          status,
           dislikes,
           createdAt,
           mediaUrl,

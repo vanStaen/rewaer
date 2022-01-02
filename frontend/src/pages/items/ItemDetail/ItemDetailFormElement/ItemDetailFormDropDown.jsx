@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown, Menu, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { itemsStore } from "../../itemsStore";
 
 import "./ItemDetailFormElement.css";
 
 export const ItemDetailFormDropDown = (props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    props.value === null
+      ? setValue(props.value)
+      : !props.value.isArray
+      ? setValue(props.value)
+      : props.value.length === 0
+      ? setValue(null)
+      : setValue(props.value);
+
+    console.log("props.value.isArray", props.value.isArray);
+    console.log("props.value.length", props.value.length);
+    console.log("ran");
+  }, [props.value]);
+
+  console.log("value", value);
 
   const clickHandler = (newValue) => {
     try {
@@ -51,7 +68,7 @@ export const ItemDetailFormDropDown = (props) => {
         placement="bottomLeft"
       >
         <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-          {props.value ? (
+          {value ? (
             <span className="ItemDetailFormElement__element">{value}</span>
           ) : (
             <span className="ItemDetailFormElement__selectElement">

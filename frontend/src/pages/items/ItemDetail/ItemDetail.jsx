@@ -89,14 +89,14 @@ export const ItemDetail = observer((props) => {
             title="colors"
             element="colors"
             data={colors}
-            value={null}
+            value={props.selectedItem.colors}
             selectedItem={props.selectedItem}
           />
           <ItemDetailFormDropDown
             title="pattern"
             element="pattern"
             data={pattern}
-            value={null}
+            value={props.selectedItem.pattern}
             selectedItem={props.selectedItem}
           />
           <ItemDetailFormStringElement
