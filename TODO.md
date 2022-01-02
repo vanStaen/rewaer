@@ -62,6 +62,9 @@
   - [x] add pattern
   - [ ] convert code to string
   - [ ] Use right language
+  - [ ] Implement Multiselect
+  - [ ] Implement disabled
+  - [ ] Implement space holder as props
 - [ ] Implement Season info for looks 
  
 
