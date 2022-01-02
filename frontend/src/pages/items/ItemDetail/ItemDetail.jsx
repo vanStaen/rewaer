@@ -121,13 +121,6 @@ export const ItemDetail = observer((props) => {
             selectedItem={props.selectedItem}
             disabled={false}
           />
-          <br />
-          active/archived
-          <br />
-          favorite
-          <br />
-          private
-          <br />
           <ItemDetailFormDropDown
             title="status"
             element="status"
@@ -137,6 +130,13 @@ export const ItemDetail = observer((props) => {
             multiSelect={false}
             disabled={false}
           />
+          <br />
+          active/archived
+          <br />
+          favorite
+          <br />
+          private
+          <br />
         </div>
       )}
     </div>

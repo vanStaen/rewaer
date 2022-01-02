@@ -1,4 +1,4 @@
-export const season = [
+export const seasons = [
     { code: "S1", en: "Summer", de: "Sommer", fr: "Été" },
     { code: "S2", en: "Winter", de: "Winter", fr: "Hiver" },
     {

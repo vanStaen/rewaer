@@ -57,10 +57,13 @@
 - [ ] Darkmode
 - [ ] Items Detail Page: 
   - [ ] shared items are possible (between friends)
-  - [ ] add location
+  - [x] add location
   - [x] rename desc to notes
-  - [ ] add pattern
-
+  - [x] add pattern
+  - [ ] convert code to string
+  - [ ] Use right language
+- [ ] Implement Season info for looks 
+ 
 
 ## Completed ✓
 
