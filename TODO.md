@@ -69,6 +69,7 @@
 - [ ] Tips popping up 
   - [ ] Use backspace to return to main view
   - [ ] use Arrow to naviguate through items/Looks
+- [ ] Title editable : Input vs ContentEditable
  
 
 ## Completed ✓
