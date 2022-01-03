@@ -38,6 +38,7 @@ const Look = sequelize.define("look", {
   },
   private: {
     type: DataTypes.BOOLEAN,
+    defaultValue: false,
     required: true,
   },
   favorite: {

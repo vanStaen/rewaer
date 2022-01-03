@@ -58,8 +58,8 @@ export const ItemCard = (props) => {
           icon: value ? (
             <UndoOutlined style={{ color: "green" }} />
           ) : (
-              <StopOutlined style={{ color: "green" }} />
-            ),
+            <StopOutlined style={{ color: "green" }} />
+          ),
         });
         itemsStore.setIsOutOfDate(true);
       })
@@ -159,18 +159,18 @@ export const ItemCard = (props) => {
         {isLoading ? (
           spinnerFormated
         ) : (
-            <div
-              className="itemcard__picture"
-              id={`card_item_picture_${props.item._id}`}
-              //placeholder={spinnerFormated}
-              style={{
-                background: `url(${props.item.mediaUrlMedium})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-          )}
+          <div
+            className="itemcard__picture"
+            id={`card_item_picture_${props.item._id}`}
+            //placeholder={spinnerFormated}
+            style={{
+              background: `url(${props.item.mediaUrlMedium})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        )}
         {isFavorited && props.item.active && (
           <div
             className="itemcard__favorite"
@@ -192,14 +192,18 @@ export const ItemCard = (props) => {
             <div style={{ fontSize: "12px" }}>Detail View</div>
           </div>
         ) : (
-            <div
-              className="itemcard__archived"
-              id={`card_item_logoover_${props.item._id}`}
-            >
-              <StopOutlined />
-              <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
-            </div>
-          )}
+          <div
+            className="itemcard__archived"
+            id={`card_item_logoover_${props.item._id}`}
+            onClick={() => {
+              onMouseLeaveHandler();
+              props.setSelectedItem(props.item);
+            }}
+          >
+            <StopOutlined />
+            <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
+          </div>
+        )}
 
         <div
           className="itemcard__actionsContainer"
@@ -218,11 +222,11 @@ export const ItemCard = (props) => {
                       onClick={favoriteHandler}
                     />
                   ) : (
-                      <HeartOutlined
-                        className="iconRed"
-                        onClick={favoriteHandler}
-                      />
-                    )}
+                    <HeartOutlined
+                      className="iconRed"
+                      onClick={favoriteHandler}
+                    />
+                  )}
                 </Tooltip>
                 {isPrivate ? (
                   <Tooltip placement="left" title={t("main.makePublic")}>
@@ -232,13 +236,13 @@ export const ItemCard = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                    <Tooltip placement="left" title={t("main.makePrivate")}>
-                      <EyeOutlined
-                        className="iconGreen"
-                        onClick={privateHandler}
-                      />
-                    </Tooltip>
-                  )}
+                  <Tooltip placement="left" title={t("main.makePrivate")}>
+                    <EyeOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                )}
                 <Tooltip placement="left" title={t("main.archive")}>
                   <Popconfirm
                     title={t("items.archiveConfirm")}
@@ -254,35 +258,35 @@ export const ItemCard = (props) => {
                 </Tooltip>
               </>
             ) : (
-                <>
-                  <Tooltip placement="left" title={t("main.restore")}>
-                    <Popconfirm
-                      title={t("items.restoreConfirm")}
-                      onConfirm={() => handleArchive(true)}
-                      okText={t("main.restore")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <UndoOutlined className="iconGreen" />
-                    </Popconfirm>
-                  </Tooltip>
-                  <Tooltip placement="left" title={t("main.delete")}>
-                    <Popconfirm
-                      title={t("items.deleteConfirm")}
-                      onConfirm={handleDelete}
-                      okText={t("main.delete")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <DeleteOutlined className="iconRed" />
-                    </Popconfirm>
-                  </Tooltip>
-                </>
-              )}
+              <>
+                <Tooltip placement="left" title={t("main.restore")}>
+                  <Popconfirm
+                    title={t("items.restoreConfirm")}
+                    onConfirm={() => handleArchive(true)}
+                    okText={t("main.restore")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <UndoOutlined className="iconGreen" />
+                  </Popconfirm>
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.delete")}>
+                  <Popconfirm
+                    title={t("items.deleteConfirm")}
+                    onConfirm={handleDelete}
+                    okText={t("main.delete")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <DeleteOutlined className="iconRed" />
+                  </Popconfirm>
+                </Tooltip>
+              </>
+            )}
           </div>
         </div>
         <div
@@ -305,21 +309,21 @@ export const ItemCard = (props) => {
               </div>
             </Tooltip>
           ) : (
-              props.item.active && (
-                <>
-                  <div className="itemcard__likeContainer">
-                    <div className="itemcard__like iconGreen greyed">
-                      <LikeOutlined />
-                      <div className="itemcard__likeCount">12</div>
-                    </div>
-                    <div className="itemcard__like iconRed greyed">
-                      <DislikeOutlined />
-                      <div className="itemcard__likeCount">5</div>
-                    </div>
+            props.item.active && (
+              <>
+                <div className="itemcard__likeContainer">
+                  <div className="itemcard__like iconGreen greyed">
+                    <LikeOutlined />
+                    <div className="itemcard__likeCount">12</div>
                   </div>
-                </>
-              )
-            )}
+                  <div className="itemcard__like iconRed greyed">
+                    <DislikeOutlined />
+                    <div className="itemcard__likeCount">5</div>
+                  </div>
+                </div>
+              </>
+            )
+          )}
           <div
             className={
               props.item.active ? "itemcard__date" : "itemcard__date striked"

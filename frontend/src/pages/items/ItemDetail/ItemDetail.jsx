@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { ItemDetailFormDropDown } from "./ItemDetailFormElement/ItemDetailFormDropDown";
 import { ItemDetailFormStringElement } from "./ItemDetailFormElement/ItemDetailFormStringElement";
+import { ItemDetailFormRadio } from "./ItemDetailFormElement/ItemDetailFormRadio";
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import {
@@ -121,7 +122,7 @@ export const ItemDetail = observer((props) => {
             selectedItem={props.selectedItem}
             disabled={false}
           />
-          <ItemDetailFormDropDown
+          <ItemDetailFormRadio
             title="status"
             element="status"
             data={itemStatus}
@@ -130,12 +131,33 @@ export const ItemDetail = observer((props) => {
             multiSelect={false}
             disabled={false}
           />
-          <br />
-          active/archived
-          <br />
-          favorite
-          <br />
-          private
+          <ItemDetailFormRadio
+            title="active"
+            element="active"
+            data={[
+              { code: true, en: "Active" },
+              { code: false, en: "Archived" },
+            ]}
+            value={props.selectedItem.active}
+            selectedItem={props.selectedItem}
+            whatShouldBeRed={false}
+            multiSelect={false}
+            disabled={false}
+          />
+
+          <ItemDetailFormRadio
+            title="private"
+            element="private"
+            data={[
+              { code: false, en: "Public" },
+              { code: true, en: "Private" },
+            ]}
+            value={props.selectedItem.private}
+            selectedItem={props.selectedItem}
+            whatShouldBeRed={true}
+            multiSelect={false}
+            disabled={false}
+          />
           <br />
         </div>
       )}
