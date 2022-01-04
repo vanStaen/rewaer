@@ -65,12 +65,12 @@
   - [ ] Implement Multiselect
   - [ ] Implement disabled
   - [ ] Implement space holder as props
-- [ ] Implement Season info for looks 
 - [ ] Tips popping up 
   - [ ] Use backspace to return to main view
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
- 
+- [ ] Helper function to convert code to its full string value
+- [ ] Use the translated version of various datas
 
 ## Completed ✓
 
@@ -167,3 +167,4 @@
 - [x] Settings: Show archived items/looks
 - [x] Count how many items are private and act accordingly
 - [x] Settings: per defaut show or hide Private
+- [x] Implement Season info for looks 

@@ -66,7 +66,7 @@ export const LookDetail = observer((props) => {
       <Menu.Item
         key={category.code}
         onClick={() => {
-          categoryChangeHandler(category.en);
+          categoryChangeHandler(category.code);
           setCategory(category.en);
         }}
       >
