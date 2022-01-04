@@ -28,6 +28,10 @@ const Look = sequelize.define("look", {
     type: DataTypes.STRING,
     defaultValue: null,
   },
+  season: {
+    type: DataTypes.STRING,
+    defaultValue: null,
+  },
   items: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],

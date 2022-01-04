@@ -52,6 +52,7 @@ exports.lookResolver = {
     const updatableFields = [
       "title",
       "category",
+      "season",
       "items",
       "active",
       "private",

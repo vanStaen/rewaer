@@ -6,34 +6,44 @@ import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { updateCategoryLook } from "../actions/updateCategoryLook";
+import { updateSeasonLook } from "../actions/updateSeasonLook";
 import { updateItemsLook } from "../actions/updateItemsLook";
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { lookCategory } from "../../../data/categories";
+import { seasons } from "../../../data/seasons";
 
 import "./LookDetail.css";
 
 export const LookDetail = observer((props) => {
-  const [category, setCategory] = useState(props.selectedLook.category)
-  const [selectedItems, setSelectedItems] = useState(props.selectedLook.items ? props.selectedLook.items : [])
+  const [category, setCategory] = useState(props.selectedLook.category);
+  const [season, setSeason] = useState(props.selectedLook.season);
+  const [selectedItems, setSelectedItems] = useState(
+    props.selectedLook.items ? props.selectedLook.items : []
+  );
   const [showPrivate, setShowPrivate] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
     itemsStore.loadItems();
-    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
-  }, [
-    itemsStore.isOutOfDate,
-    userStore.profilSettings
-  ]);
+    userStore.profilSettings &&
+      setShowPrivate(userStore.profilSettings.displayPrivate);
+  }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   const categoryChangeHandler = (value) => {
     updateCategoryLook(props.selectedLook._id, value);
     looksStore.setIsOutOfDate(true);
-  }
+  };
 
-  const numberOfPrivateItems = itemsStore.items.filter(item => item.private).length;
+  const seasonChangeHandler = (value) => {
+    updateSeasonLook(props.selectedLook._id, value);
+    looksStore.setIsOutOfDate(true);
+  };
+
+  const numberOfPrivateItems = itemsStore.items.filter(
+    (item) => item.private
+  ).length;
 
   const itemClickHandler = (value) => {
     const valueAsInt = parseInt(value);
@@ -42,21 +52,47 @@ export const LookDetail = observer((props) => {
       setSelectedItems([...selectedItems, valueAsInt]);
       updateItemsLook(props.selectedLook._id, [...selectedItems, valueAsInt]);
     } else {
-      setSelectedItems(selectedItems.filter(itemId => itemId !== valueAsInt))
-      updateItemsLook(props.selectedLook._id, selectedItems.filter(itemId => itemId !== valueAsInt));
+      setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
+      updateItemsLook(
+        props.selectedLook._id,
+        selectedItems.filter((itemId) => itemId !== valueAsInt)
+      );
     }
     looksStore.setIsOutOfDate(true);
-  }
+  };
 
   const CategoryDropDown = lookCategory.map((category) => {
     return (
-      <Menu.Item key={category.code} onClick={() => { categoryChangeHandler(category.en); setCategory(category.en); }}>
+      <Menu.Item
+        key={category.code}
+        onClick={() => {
+          categoryChangeHandler(category.en);
+          setCategory(category.en);
+        }}
+      >
         {category.en}
-      </Menu.Item>);
+      </Menu.Item>
+    );
+  });
+
+  const SeasonsDropDown = seasons.map((season) => {
+    return (
+      <Menu.Item
+        key={season.code}
+        onClick={() => {
+          seasonChangeHandler(season.code);
+          setSeason(season.en);
+        }}
+      >
+        {season.en}
+      </Menu.Item>
+    );
   });
 
   const itemList = itemsStore.items.map((item) => {
-    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
+    const displayArchived = userStore.profilSettings
+      ? userStore.profilSettings.displayArchived
+      : false;
     const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
     if (!isSelected) {
       if (!item.active && !displayArchived) {
@@ -66,7 +102,8 @@ export const LookDetail = observer((props) => {
           return null;
         } else {
           return (
-            <div className={"lookDetail__item"}
+            <div
+              className={"lookDetail__item"}
               onClick={() => itemClickHandler(item._id)}
               key={item._id}
               style={{
@@ -74,8 +111,8 @@ export const LookDetail = observer((props) => {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-              }}>
-            </div>
+              }}
+            ></div>
           );
         }
       }
@@ -87,7 +124,8 @@ export const LookDetail = observer((props) => {
     const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
     if (isSelected) {
       return (
-        <div className={"lookDetail__itemSelected"}
+        <div
+          className={"lookDetail__itemSelected"}
           onClick={() => itemClickHandler(item._id)}
           key={item._id}
           style={{
@@ -95,8 +133,8 @@ export const LookDetail = observer((props) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-          }}>
-        </div>
+          }}
+        ></div>
       );
     }
     return null;
@@ -128,11 +166,40 @@ export const LookDetail = observer((props) => {
             active={props.selectedLook.active}
           />
           <div className="lookdetail__headerPoints">&#9679;</div>
-          <Dropdown overlay={<Menu>{CategoryDropDown}</Menu>} placement="bottomLeft">
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              {category ?
+          <Dropdown
+            overlay={<Menu>{CategoryDropDown}</Menu>}
+            placement="bottomLeft"
+          >
+            <a
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              {category ? (
                 <span className="lookdetail__headerCategory">{category}</span>
-                : <span className="lookdetail__headerSelectCategory">Select a category</span>}
+              ) : (
+                <span className="lookdetail__headerSelectCategory">
+                  Select a category
+                </span>
+              )}
+            </a>
+          </Dropdown>
+
+          <div className="lookdetail__headerPoints">&#9679;</div>
+          <Dropdown
+            overlay={<Menu>{SeasonsDropDown}</Menu>}
+            placement="bottomLeft"
+          >
+            <a
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              {season ? (
+                <span className="lookdetail__headerCategory">{season}</span>
+              ) : (
+                <span className="lookdetail__headerSelectCategory">
+                  Select a season
+                </span>
+              )}
             </a>
           </Dropdown>
 
@@ -140,21 +207,24 @@ export const LookDetail = observer((props) => {
             <>
               <div className="lookdetail__headerPoints">&#9679;</div>
               <div className="lookdetail__headerItemCount">
-                {selectedItems.length} {t("main.item")}{selectedItems.length > 1 && "s"}
+                {selectedItems.length} {t("main.item")}
+                {selectedItems.length > 1 && "s"}
               </div>
             </>
           )}
 
-          {numberOfPrivateItems > 0 &&
-            (<span
+          {numberOfPrivateItems > 0 && (
+            <span
               className="lookdetail__headerShowPrivate link"
               onClick={() => {
                 setShowPrivate(!showPrivate);
               }}
             >
-              {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
-            </span>)}
-
+              {showPrivate
+                ? t("items.hidePrivateItems")
+                : t("items.showPrivateItems")}
+            </span>
+          )}
         </div>
       </div>
 
@@ -182,19 +252,18 @@ export const LookDetail = observer((props) => {
         ></div>
       </div>
 
-      {
-        itemsStore.isLoading ?
-          <div className="lookDetail__itemContainer">
-            <div className="lookDetail__spinner">
-              <Spin size="large" />
-            </div>
+      {itemsStore.isLoading ? (
+        <div className="lookDetail__itemContainer">
+          <div className="lookDetail__spinner">
+            <Spin size="large" />
           </div>
-          :
-          <div className="lookDetail__itemContainer">
-            {selectedItemList}
-            {itemList}
-          </div>
-      }
-    </div >
+        </div>
+      ) : (
+        <div className="lookDetail__itemContainer">
+          {selectedItemList}
+          {itemList}
+        </div>
+      )}
+    </div>
   );
 });
