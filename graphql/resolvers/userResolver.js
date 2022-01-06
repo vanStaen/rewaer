@@ -27,7 +27,7 @@ exports.userResolver = {
           model: Item,
           where: {
             active: true,
-            status: 0,
+            status: "S0",
             private: {
               [Op.or]: [false, null]
             }
