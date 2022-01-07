@@ -13,6 +13,7 @@ import { looksStore } from "../looksStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { lookCategory } from "../../../data/categories";
 import { seasons } from "../../../data/seasons";
+import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
 
 import "./LookDetail.css";
 
@@ -175,7 +176,9 @@ export const LookDetail = observer((props) => {
               onClick={(e) => e.preventDefault()}
             >
               {category ? (
-                <span className="lookdetail__headerCategory">{category}</span>
+                <span className="lookdetail__headerCategory">
+                  {convertCodeToObjectString(category, lookCategory).en}
+                </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">
                   Select a category
@@ -194,7 +197,9 @@ export const LookDetail = observer((props) => {
               onClick={(e) => e.preventDefault()}
             >
               {season ? (
-                <span className="lookdetail__headerCategory">{season}</span>
+                <span className="lookdetail__headerCategory">
+                  {convertCodeToObjectString(season, seasons).en}
+                </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">
                   Select a season

@@ -60,7 +60,7 @@
   - [x] add location
   - [x] rename desc to notes
   - [x] add pattern
-  - [ ] convert code to string
+  - [x] convert code to string
   - [ ] Use right language
   - [ ] Implement Multiselect
   - [ ] Implement disabled
