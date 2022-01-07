@@ -5,6 +5,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericBooleanItem } from "../../actions/updateGenericBooleanItem";
 import { itemsStore } from "../../itemsStore";
+import { userStore } from "../../../../stores/userStore/userStore";
 
 import "./ItemDetailFormElement.css";
 
@@ -49,7 +50,7 @@ export const ItemDetailFormRadio = (props) => {
             "rgba(191, 64, 64, 1)",
         }}
       >
-        {item.en}
+        {item[userStore.language]}
       </Radio.Button>
     );
   });

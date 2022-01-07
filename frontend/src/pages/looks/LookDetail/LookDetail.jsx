@@ -68,10 +68,10 @@ export const LookDetail = observer((props) => {
         key={category.code}
         onClick={() => {
           categoryChangeHandler(category.code);
-          setCategory(category.en);
+          setCategory(category.code);
         }}
       >
-        {category.en}
+        {category[userStore.language]}
       </Menu.Item>
     );
   });
@@ -82,10 +82,10 @@ export const LookDetail = observer((props) => {
         key={season.code}
         onClick={() => {
           seasonChangeHandler(season.code);
-          setSeason(season.en);
+          setSeason(season.code);
         }}
       >
-        {season.en}
+        {season[userStore.language]}
       </Menu.Item>
     );
   });
@@ -175,9 +175,13 @@ export const LookDetail = observer((props) => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {category ? (
+              {category !== null ? (
                 <span className="lookdetail__headerCategory">
-                  {convertCodeToObjectString(category, lookCategory).en}
+                  {
+                    convertCodeToObjectString(category, lookCategory)[
+                      userStore.language
+                    ]
+                  }
                 </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">
@@ -196,11 +200,11 @@ export const LookDetail = observer((props) => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {season ? (
+              {season !== null ? (
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(season, seasons)[
-                      [userStore.language]
+                      userStore.language
                     ]
                   }
                 </span>

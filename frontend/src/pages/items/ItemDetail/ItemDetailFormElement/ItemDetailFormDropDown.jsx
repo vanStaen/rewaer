@@ -39,7 +39,7 @@ export const ItemDetailFormDropDown = (props) => {
           clickHandler(item.code);
         }}
       >
-        {item.en}
+        {item[userStore.language]}
       </Menu.Item>
     );
   });
