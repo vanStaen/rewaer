@@ -5,12 +5,14 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { itemsStore } from "../../itemsStore";
+import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 
 import "./ItemDetailFormElement.css";
 
 export const ItemDetailFormDropDown = (props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
+  const [data, setData] = useState(props.data);
 
   const clickHandler = (newValue) => {
     try {
@@ -53,7 +55,9 @@ export const ItemDetailFormDropDown = (props) => {
       >
         <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           {value ? (
-            <span className="ItemDetailFormElement__element">{value}</span>
+            <span className="ItemDetailFormElement__element">
+              {convertCodeToObjectString(value, props.data).en}
+            </span>
           ) : (
             <span className="ItemDetailFormElement__selectElement">
               Select a {props.title}
