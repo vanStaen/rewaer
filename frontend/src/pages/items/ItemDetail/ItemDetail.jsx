@@ -135,8 +135,8 @@ export const ItemDetail = observer((props) => {
             title="active"
             element="active"
             data={[
-              { code: true, en: "Active" },
-              { code: false, en: "Archived" },
+              { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
+              { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
             ]}
             value={props.selectedItem.active}
             selectedItem={props.selectedItem}
@@ -149,8 +149,8 @@ export const ItemDetail = observer((props) => {
             title="private"
             element="private"
             data={[
-              { code: false, en: "Public" },
-              { code: true, en: "Private" },
+              { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
+              { code: true, en: "Private", de: "Privat", fr: "Privé" },
             ]}
             value={props.selectedItem.private}
             selectedItem={props.selectedItem}
