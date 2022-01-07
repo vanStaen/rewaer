@@ -198,7 +198,11 @@ export const LookDetail = observer((props) => {
             >
               {season ? (
                 <span className="lookdetail__headerCategory">
-                  {convertCodeToObjectString(season, seasons).en}
+                  {
+                    convertCodeToObjectString(season, seasons)[
+                      [userStore.language]
+                    ]
+                  }
                 </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">

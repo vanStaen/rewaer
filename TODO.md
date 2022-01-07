@@ -61,7 +61,7 @@
   - [x] rename desc to notes
   - [x] add pattern
   - [x] convert code to string
-  - [ ] Use right language
+  - [x] Use right language
   - [ ] Implement Multiselect
   - [ ] Implement disabled
   - [ ] Implement space holder as props
