@@ -63,7 +63,7 @@
   - [x] convert code to string
   - [x] Use right language
   - [ ] Implement Multiselect
-  - [ ] Implement disabled
+  - [x] Implement disabled
   - [ ] Implement space holder as props
 - [ ] Tips popping up 
   - [ ] Use backspace to return to main view
