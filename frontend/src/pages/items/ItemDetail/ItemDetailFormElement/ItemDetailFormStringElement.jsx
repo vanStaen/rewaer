@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import { Input, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import {
@@ -10,7 +11,7 @@ import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 
 import "./ItemDetailFormElement.css";
 
-export const ItemDetailFormStringElement = (props) => {
+export const ItemDetailFormStringElement = observer((props) => {
   const { t } = useTranslation();
   const [originalValue, setOriginalValue] = useState(props.value);
   const [value, setValue] = useState(
@@ -66,17 +67,20 @@ export const ItemDetailFormStringElement = (props) => {
             onChange={handleEditChange}
             onBlur={handleEditCancel}
             onPressEnter={handleEditConfirm}
-            disabled={props.disabled}
           />
         ) : (
           <div
             className={
               value
-                ? "ItemDetailFormElement__element"
-                : "ItemDetailFormElement__selectElement"
+                ? `ItemDetailFormElement__element ${
+                    props.disabled && "striked"
+                  }`
+                : `ItemDetailFormElement__selectElement ${
+                    props.disabled && "striked"
+                  }`
             }
             onDoubleClick={() => {
-              setIsEditmode(true);
+              !props.disabled && setIsEditmode(true);
             }}
           >
             {value ? value : "Enter a value"}
@@ -93,4 +97,4 @@ export const ItemDetailFormStringElement = (props) => {
         */}
     </div>
   );
-};
+});

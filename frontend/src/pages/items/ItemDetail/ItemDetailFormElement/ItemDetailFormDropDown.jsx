@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import { Dropdown, Menu, notification } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -10,7 +11,7 @@ import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 
 import "./ItemDetailFormElement.css";
 
-export const ItemDetailFormDropDown = (props) => {
+export const ItemDetailFormDropDown = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
   const clickHandler = (newValue) => {
@@ -59,7 +60,11 @@ export const ItemDetailFormDropDown = (props) => {
               {convertCodeToObjectString(value, props.data)[userStore.language]}
             </span>
           ) : (
-            <span className="ItemDetailFormElement__selectElement">
+            <span
+              className={`ItemDetailFormElement__selectElement ${
+                props.disabled && "striked"
+              }`}
+            >
               Select a {props.title}
             </span>
           )}
@@ -70,4 +75,4 @@ export const ItemDetailFormDropDown = (props) => {
       </div>
     </div>
   );
-};
+});
