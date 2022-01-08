@@ -39,6 +39,7 @@ export const ItemDetailFormRadio = (props) => {
       <Radio.Button
         key={item.code}
         value={item.code}
+        disabled={props.disabled}
         style={{
           background:
             item.code === props.whatShouldBeRed &&

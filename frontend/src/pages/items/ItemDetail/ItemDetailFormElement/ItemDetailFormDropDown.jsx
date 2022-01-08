@@ -51,6 +51,7 @@ export const ItemDetailFormDropDown = (props) => {
         className="ItemDetailFormElement__dropdown"
         overlay={<Menu>{CategoryDropDown}</Menu>}
         placement="bottomLeft"
+        disabled={props.disabled}
       >
         <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           {value ? (

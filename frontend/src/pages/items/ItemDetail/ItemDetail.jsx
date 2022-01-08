@@ -73,7 +73,7 @@ export const ItemDetail = observer((props) => {
             title="title"
             value={props.selectedItem.title}
             selectedItem={props.selectedItem}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="category"
@@ -88,7 +88,7 @@ export const ItemDetail = observer((props) => {
             value={props.selectedItem.category}
             selectedItem={props.selectedItem}
             multiSelect={false}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="colors"
@@ -97,7 +97,7 @@ export const ItemDetail = observer((props) => {
             value={null}
             selectedItem={props.selectedItem}
             multiSelect={true}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="pattern"
@@ -106,21 +106,21 @@ export const ItemDetail = observer((props) => {
             value={props.selectedItem.pattern}
             selectedItem={props.selectedItem}
             multiSelect={false}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormStringElement
             element="notes"
             title="notes"
             value={props.selectedItem.notes}
             selectedItem={props.selectedItem}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormStringElement
             element="brand"
             title="brand"
             value={props.selectedItem.brand}
             selectedItem={props.selectedItem}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormRadio
             title="status"
@@ -129,7 +129,7 @@ export const ItemDetail = observer((props) => {
             value={props.selectedItem.status}
             selectedItem={props.selectedItem}
             multiSelect={false}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <ItemDetailFormRadio
             title="active"
@@ -156,7 +156,7 @@ export const ItemDetail = observer((props) => {
             selectedItem={props.selectedItem}
             whatShouldBeRed={true}
             multiSelect={false}
-            disabled={false}
+            disabled={!props.selectedItem.active}
           />
           <br />
         </div>
