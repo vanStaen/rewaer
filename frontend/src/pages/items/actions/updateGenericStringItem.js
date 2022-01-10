@@ -27,7 +27,7 @@ export async function updateGenericStringItem(id, field, value) {
     data: requestBody,
   });
 
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if ((response.status !== 200) && (response.status !== 201)) {
     throw new Error("Unauthenticated!");
   }
 }

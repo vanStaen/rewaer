@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { itemsStore } from "../../itemsStore";
 
 import "./ItemDetailFormElement.css";
 
@@ -22,20 +23,26 @@ export const ItemDetailFormStringElement = observer((props) => {
     props.value ? props.value.replace("-", "/") : null
   );
 
-  const patchTitleInDB = (newValue) => {
+  const changeHandler = async (newValue) => {
     if (newValue !== originalValue) {
-      updateGenericStringItem(props.selectedItem._id, props.element, newValue)
-        .then(() => {
-          notification.success({
-            message: t("main.changeSaved"),
-            placement: "bottomRight",
-          });
-          setOriginalValue(newValue);
-        })
-        .catch((error) => {
-          notification.error({ description: `Unauthorized! Please login.` });
-          console.log("error", error.message);
+      try {
+        await updateGenericStringItem(
+          props.selectedItem._id,
+          props.element,
+          newValue
+        );
+        setValue(newValue);
+        notification.success({
+          message: t("main.changeSaved"),
+          placement: "bottomRight",
         });
+        itemsStore.setIsOutOfDate(true);
+      } catch (error) {
+        notification.error({
+          message: error.message,
+          placement: "bottomRight",
+        });
+      }
     }
   };
 
@@ -49,7 +56,7 @@ export const ItemDetailFormStringElement = observer((props) => {
   };
 
   const handleEditConfirm = () => {
-    patchTitleInDB(editInputValue.replace("/", "-"));
+    changeHandler(editInputValue.replace("/", "-"));
     setValue(editInputValue.replace("-", "/"));
     setIsEditmode(false);
   };

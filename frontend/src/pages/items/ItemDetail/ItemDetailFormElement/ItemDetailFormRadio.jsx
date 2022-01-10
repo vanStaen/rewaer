@@ -14,9 +14,9 @@ export const ItemDetailFormRadio = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
 
-  const changeHandler = (event) => {
+  const changeHandler = async (event) => {
     try {
-      updateGenericBooleanItem(
+      await updateGenericBooleanItem(
         props.selectedItem._id,
         props.element,
         event.target.value
@@ -27,9 +27,9 @@ export const ItemDetailFormRadio = observer((props) => {
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);
-    } catch (e) {
+    } catch (error) {
       notification.error({
-        message: e,
+        message: error.message,
         placement: "bottomRight",
       });
     }

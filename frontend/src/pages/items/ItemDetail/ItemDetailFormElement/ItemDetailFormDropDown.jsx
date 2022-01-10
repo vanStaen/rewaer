@@ -14,18 +14,22 @@ import "./ItemDetailFormElement.css";
 export const ItemDetailFormDropDown = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
-  const clickHandler = (newValue) => {
+  const clickHandler = async (newValue) => {
     try {
-      updateGenericStringItem(props.selectedItem._id, props.element, newValue);
+      await updateGenericStringItem(
+        props.selectedItem._id,
+        props.element,
+        newValue
+      );
       setValue(newValue);
       notification.success({
         message: t("main.changeSaved"),
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);
-    } catch (e) {
+    } catch (error) {
       notification.error({
-        message: e,
+        message: error.message,
         placement: "bottomRight",
       });
     }
