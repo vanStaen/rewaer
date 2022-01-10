@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
-import { userStore } from "../../stores/userStore/userStore"
+import { userStore } from "../../stores/userStore/userStore";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { Banner } from "../../components/Banner/Banner";
@@ -21,16 +21,14 @@ export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [showPrivate, setShowPrivate] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
     itemsStore.loadItems();
-    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
-  }, [
-    itemsStore.isOutOfDate,
-    userStore.profilSettings
-  ]);
+    userStore.profilSettings &&
+      setShowPrivate(userStore.profilSettings.displayPrivate);
+  }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
@@ -45,30 +43,33 @@ export const Items = observer(() => {
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
     userStore.profilSettings,
-    showPrivate
+    showPrivate,
   ]);
 
-  const numberOfPrivateItems = itemsStore.items.filter(item => item.private).length;
+  const numberOfPrivateItems = itemsStore.items.filter(
+    (item) => item.private
+  ).length;
 
   const calculateMissingCardsForFullRow = useCallback(() => {
-    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
+    const displayArchived = userStore.profilSettings
+      ? userStore.profilSettings.displayArchived
+      : false;
     const containerWidth =
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberItems =
-      showPrivate ?
-        displayArchived ?
-          itemsStore.items.length + 1
-          :
-          itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
-        :
-        displayArchived ?
-          itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
-          :
-          itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem - itemsStore.numberOfArchivedItem
+    const numberItems = showPrivate
+      ? displayArchived
+        ? itemsStore.items.length + 1
+        : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
+      : displayArchived
+      ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
+      : itemsStore.items.length +
+        1 -
+        itemsStore.numberOfPrivateItem -
+        itemsStore.numberOfArchivedItem;
     const numberFullRow = Math.floor(numberItems / numberPerRow);
     const missingCards =
       numberPerRow - (numberItems - numberFullRow * numberPerRow);
@@ -82,9 +83,7 @@ export const Items = observer(() => {
       } else {
         return (
           <Col key={item._id}>
-            <ItemCard
-              item={item}
-              setSelectedItem={setSelectedItem} />
+            <ItemCard item={item} setSelectedItemId={setSelectedItemId} />
           </Col>
         );
       }
@@ -103,10 +102,14 @@ export const Items = observer(() => {
       if (showPrivate) {
         return itemsStore.items.length - itemsStore.numberOfArchivedItem;
       } else {
-        return itemsStore.items.length - itemsStore.numberOfArchivedItem - itemsStore.numberOfPrivateItem;
+        return (
+          itemsStore.items.length -
+          itemsStore.numberOfArchivedItem -
+          itemsStore.numberOfPrivateItem
+        );
       }
     }
-  }
+  };
 
   return (
     <div className="items__main">
@@ -121,55 +124,65 @@ export const Items = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : selectedItem ? (
+      ) : selectedItemId ? (
         <div className="looks__container">
           <ItemDetail
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
+            selectedItemId={selectedItemId}
+            setSelectedItemId={setSelectedItemId}
           />
         </div>
       ) : (
-              <>
-                <Banner
-                  id="missingTag"
-                  desc={t("items.missingTagsAlert")}
-                  show={true}
+        <>
+          <Banner
+            id="missingTag"
+            desc={t("items.missingTagsAlert")}
+            show={true}
+          />
+          <div ref={containerElement} className="items__container">
+            <div className="items__toolbar">
+              <div className="items__toolbarLeft">
+                {totalItems()}&nbsp;{t("menu.items")}
+                {numberOfPrivateItems > 0 && (
+                  <>
+                    {" "}
+                    |
+                    <span
+                      className="link"
+                      onClick={() => {
+                        setShowPrivate(!showPrivate);
+                      }}
+                    >
+                      &nbsp;
+                      {showPrivate
+                        ? t("items.hidePrivateItems")
+                        : t("items.showPrivateItems")}
+                    </span>
+                  </>
+                )}
+              </div>
+              <div className="items__toolbarRight">
+                <ToolBar
+                  quickEdit={quickEdit}
+                  setQuickEdit={setQuickEdit}
+                  showFilter={showFilter}
+                  setShowFilter={setShowFilter}
                 />
-                <div ref={containerElement} className="items__container">
-                  <div className="items__toolbar">
-                    <div className="items__toolbarLeft">
-                      {totalItems()}&nbsp;{t("menu.items")}
-                      {numberOfPrivateItems > 0 && (
-                        <>  |
-                      <span
-                            className="link"
-                            onClick={() => {
-                              setShowPrivate(!showPrivate);
-                            }}
-                          >&nbsp;
-                        {showPrivate ? t("items.hidePrivateItems") : t("items.showPrivateItems")}
-                          </span>
-                        </>)}
-                    </div>
-                    <div className="items__toolbarRight">
-                      <ToolBar
-                        quickEdit={quickEdit}
-                        setQuickEdit={setQuickEdit}
-                        showFilter={showFilter}
-                        setShowFilter={setShowFilter}
-                      />
-                    </div>
-                  </div>
-                  <Row justify={"space-around"}>
-                    <Col>
-                      <ItemForm />
-                    </Col>
-                    {itemList}
-                    <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
-                  </Row>
-                </div>
-              </>
-            )}
+              </div>
+            </div>
+            <Row justify={"space-around"}>
+              <Col>
+                <ItemForm />
+              </Col>
+              {itemList}
+              <GhostCard
+                numberOfCards={missingCardForFullRow}
+                width="240px"
+                height="385px"
+              />
+            </Row>
+          </div>
+        </>
+      )}
     </div>
   );
 });

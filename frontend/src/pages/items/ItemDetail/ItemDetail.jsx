@@ -24,6 +24,10 @@ import "./ItemDetail.css";
 export const ItemDetail = observer((props) => {
   const { t } = useTranslation();
 
+  const selectedItem = itemsStore.items.find(
+    (item) => item._id === props.selectedItemId
+  );
+
   return (
     <div className="itemdetail__container">
       <div className="itemdetail__backArrow">
@@ -31,7 +35,7 @@ export const ItemDetail = observer((props) => {
           <ArrowLeftOutlined
             className="itemdetail__arrowIcon"
             onClick={() => {
-              props.setSelectedItem(null);
+              props.setSelectedItemId(null);
             }}
           />
         </Tooltip>
@@ -40,9 +44,9 @@ export const ItemDetail = observer((props) => {
       <div className="itemdetail__imageWrap">
         <div
           className="itemdetail__pictureBlur"
-          id={`selected_item_picture_${props.selectedItem._id}`}
+          id={`selected_item_picture_${selectedItem._id}`}
           style={{
-            background: `url(${props.selectedItem.mediaUrlMedium})`,
+            background: `url(${selectedItem.mediaUrlMedium})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -50,9 +54,9 @@ export const ItemDetail = observer((props) => {
         ></div>
         <div
           className="itemdetail__picture"
-          id={`selected_item_picture_${props.selectedItem._id}`}
+          id={`selected_item_picture_${selectedItem._id}`}
           style={{
-            background: `url(${props.selectedItem.mediaUrlMedium})`,
+            background: `url(${selectedItem.mediaUrlMedium})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -71,9 +75,9 @@ export const ItemDetail = observer((props) => {
           <ItemDetailFormStringElement
             element="title"
             title="title"
-            value={props.selectedItem.title}
-            selectedItem={props.selectedItem}
-            disabled={!props.selectedItem.active}
+            value={selectedItem.title}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="category"
@@ -85,51 +89,51 @@ export const ItemDetail = observer((props) => {
                 ? itemCategoryWomen
                 : itemCategoryNB
             }
-            value={props.selectedItem.category}
-            selectedItem={props.selectedItem}
+            value={selectedItem.category}
+            selectedItem={selectedItem}
             multiSelect={false}
-            disabled={!props.selectedItem.active}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="colors"
             element="colors"
             data={colors}
             value={null}
-            selectedItem={props.selectedItem}
+            selectedItem={selectedItem}
             multiSelect={true}
-            disabled={!props.selectedItem.active}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="pattern"
             element="pattern"
             data={pattern}
-            value={props.selectedItem.pattern}
-            selectedItem={props.selectedItem}
+            value={selectedItem.pattern}
+            selectedItem={selectedItem}
             multiSelect={false}
-            disabled={!props.selectedItem.active}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormStringElement
             element="notes"
             title="notes"
-            value={props.selectedItem.notes}
-            selectedItem={props.selectedItem}
-            disabled={!props.selectedItem.active}
+            value={selectedItem.notes}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormStringElement
             element="brand"
             title="brand"
-            value={props.selectedItem.brand}
-            selectedItem={props.selectedItem}
-            disabled={!props.selectedItem.active}
+            value={selectedItem.brand}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormRadio
             title="status"
             element="status"
             data={itemStatus}
-            value={props.selectedItem.status}
-            selectedItem={props.selectedItem}
+            value={selectedItem.status}
+            selectedItem={selectedItem}
             multiSelect={false}
-            disabled={!props.selectedItem.active}
+            disabled={!selectedItem.active}
           />
           <ItemDetailFormRadio
             title="active"
@@ -138,8 +142,8 @@ export const ItemDetail = observer((props) => {
               { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
               { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
             ]}
-            value={props.selectedItem.active}
-            selectedItem={props.selectedItem}
+            value={selectedItem.active}
+            selectedItem={selectedItem}
             whatShouldBeRed={false}
             multiSelect={false}
             disabled={false}
@@ -152,11 +156,11 @@ export const ItemDetail = observer((props) => {
               { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
               { code: true, en: "Private", de: "Privat", fr: "Privé" },
             ]}
-            value={props.selectedItem.private}
-            selectedItem={props.selectedItem}
+            value={selectedItem.private}
+            selectedItem={selectedItem}
             whatShouldBeRed={true}
             multiSelect={false}
-            disabled={!props.selectedItem.active}
+            disabled={!selectedItem.active}
           />
           <br />
         </div>
