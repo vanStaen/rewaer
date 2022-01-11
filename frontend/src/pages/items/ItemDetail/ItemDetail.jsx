@@ -136,20 +136,6 @@ export const ItemDetail = observer((props) => {
             disabled={!selectedItem.active}
           />
           <ItemDetailFormRadio
-            title="active"
-            element="active"
-            data={[
-              { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
-              { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
-            ]}
-            value={selectedItem.active}
-            selectedItem={selectedItem}
-            whatShouldBeRed={false}
-            multiSelect={false}
-            disabled={false}
-          />
-
-          <ItemDetailFormRadio
             title="private"
             element="private"
             data={[
@@ -161,6 +147,19 @@ export const ItemDetail = observer((props) => {
             whatShouldBeRed={true}
             multiSelect={false}
             disabled={!selectedItem.active}
+          />
+          <ItemDetailFormRadio
+            title="active"
+            element="active"
+            data={[
+              { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
+              { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
+            ]}
+            value={selectedItem.active}
+            selectedItem={selectedItem}
+            whatShouldBeRed={false}
+            multiSelect={false}
+            disabled={false}
           />
           <br />
         </div>

@@ -14,6 +14,7 @@ import { userStore } from "../../../stores/userStore/userStore";
 import { lookCategory } from "../../../data/categories";
 import { seasons } from "../../../data/seasons";
 import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
+import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
 
 import "./LookDetail.css";
 
@@ -24,6 +25,8 @@ export const LookDetail = observer((props) => {
     props.selectedLook.items ? props.selectedLook.items : []
   );
   const [showPrivate, setShowPrivate] = useState(false);
+  const [isPrivate, setIsPrivate] = useState(props.selectedLook.private);
+  const [isActive, setIsActive] = useState(props.selectedLook.active);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -49,6 +52,9 @@ export const LookDetail = observer((props) => {
   const itemClickHandler = (value) => {
     const valueAsInt = parseInt(value);
     const indexOfValue = selectedItems.indexOf(valueAsInt);
+    if (!isActive) {
+      return null;
+    }
     if (indexOfValue < 0) {
       setSelectedItems([...selectedItems, valueAsInt]);
       updateItemsLook(props.selectedLook._id, [...selectedItems, valueAsInt]);
@@ -126,7 +132,9 @@ export const LookDetail = observer((props) => {
     if (isSelected) {
       return (
         <div
-          className={"lookDetail__itemSelected"}
+          className={
+            isActive ? "lookDetail__itemSelected" : "lookDetail__itemArchived"
+          }
           onClick={() => itemClickHandler(item._id)}
           key={item._id}
           style={{
@@ -274,9 +282,39 @@ export const LookDetail = observer((props) => {
       ) : (
         <div className="lookDetail__itemContainer">
           {selectedItemList}
-          {itemList}
+          {isActive && itemList}
         </div>
       )}
+      <div className="lookDetail__actionContainer">
+        <LookDetailFormRadio
+          title="private"
+          element="private"
+          data={[
+            { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
+            { code: true, en: "Private", de: "Privat", fr: "Privé" },
+          ]}
+          value={isPrivate}
+          flipValueTo={setIsPrivate}
+          selectedLook={props.selectedLook}
+          whatShouldBeRed={true}
+          multiSelect={false}
+          disabled={!props.selectedLook.active}
+        />
+        <LookDetailFormRadio
+          title="active"
+          element="active"
+          data={[
+            { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
+            { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
+          ]}
+          value={isActive}
+          flipValueTo={setIsActive}
+          selectedLook={props.selectedLook}
+          whatShouldBeRed={false}
+          multiSelect={false}
+          disabled={false}
+        />
+      </div>
     </div>
   );
 });
