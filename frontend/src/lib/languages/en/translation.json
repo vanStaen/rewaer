@@ -192,6 +192,8 @@
     "detailView": "Detail view",
     "showPrivateLooks": "Show Private looks",
     "hidePrivateLooks": "Hide Private looks",
+    "makePrivateLook": "Make this look private",
+    "archiveLook": "Archive this look",
     "backToLooks": "Back to all Looks"
   }
 }

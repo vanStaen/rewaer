@@ -178,6 +178,7 @@ export const LookDetail = observer((props) => {
           <Dropdown
             overlay={<Menu>{CategoryDropDown}</Menu>}
             placement="bottomLeft"
+            disabled={!isActive}
           >
             <a
               className="ant-dropdown-link"
@@ -203,6 +204,7 @@ export const LookDetail = observer((props) => {
           <Dropdown
             overlay={<Menu>{SeasonsDropDown}</Menu>}
             placement="bottomLeft"
+            disabled={!isActive}
           >
             <a
               className="ant-dropdown-link"
@@ -299,6 +301,7 @@ export const LookDetail = observer((props) => {
           whatShouldBeRed={true}
           multiSelect={false}
           disabled={!props.selectedLook.active}
+          tooltip={t("looks.makePrivateLook")}
         />
         <LookDetailFormRadio
           title="active"
@@ -313,6 +316,7 @@ export const LookDetail = observer((props) => {
           whatShouldBeRed={false}
           multiSelect={false}
           disabled={false}
+          tooltip={t("looks.archiveLook")}
         />
       </div>
     </div>

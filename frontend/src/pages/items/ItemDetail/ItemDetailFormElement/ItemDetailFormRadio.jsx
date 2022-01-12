@@ -66,6 +66,9 @@ export const ItemDetailFormRadio = observer((props) => {
       >
         {DataRadio}
       </Radio.Group>
+      <div className="ItemDetailFormElement__helpIcon">
+        <QuestionCircleOutlined />
+      </div>
     </div>
   );
 });

@@ -64,8 +64,8 @@ export const LookCard = (props) => {
           icon: value ? (
             <UndoOutlined style={{ color: "green" }} />
           ) : (
-              <StopOutlined style={{ color: "green" }} />
-            ),
+            <StopOutlined style={{ color: "green" }} />
+          ),
         });
         looksStore.setIsOutOfDate(true);
       })
@@ -165,17 +165,17 @@ export const LookCard = (props) => {
         {isLoading ? (
           spinnerFormated
         ) : (
-            <div
-              className="lookcard__picture"
-              id={`card_look_picture_${props.look._id}`}
-              style={{
-                background: `url(${props.look.mediaUrlMedium})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-          )}
+          <div
+            className="lookcard__picture"
+            id={`card_look_picture_${props.look._id}`}
+            style={{
+              background: `url(${props.look.mediaUrlMedium})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        )}
         {isFavorited && props.look.active && (
           <div
             className="lookcard__favorite"
@@ -197,14 +197,18 @@ export const LookCard = (props) => {
             <div style={{ fontSize: "12px" }}>{t("looks.detailView")}</div>
           </div>
         ) : (
-            <div
-              className="lookcard__archived"
-              id={`card_look_logoover_${props.look._id}`}
-            >
-              <StopOutlined />
-              <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
-            </div>
-          )}
+          <div
+            className="lookcard__archived"
+            id={`card_look_logoover_${props.look._id}`}
+            onClick={() => {
+              onMouseLeaveHandler();
+              props.setSelectedLook(props.look);
+            }}
+          >
+            <StopOutlined />
+            <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
+          </div>
+        )}
 
         <div
           className="lookcard__actionsContainer"
@@ -223,11 +227,11 @@ export const LookCard = (props) => {
                       onClick={favoriteHandler}
                     />
                   ) : (
-                      <HeartOutlined
-                        className="iconRed"
-                        onClick={favoriteHandler}
-                      />
-                    )}
+                    <HeartOutlined
+                      className="iconRed"
+                      onClick={favoriteHandler}
+                    />
+                  )}
                 </Tooltip>
                 {isPrivate ? (
                   <Tooltip placement="left" title={t("main.makePublic")}>
@@ -237,13 +241,13 @@ export const LookCard = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                    <Tooltip placement="left" title={t("main.makePrivate")}>
-                      <EyeOutlined
-                        className="iconGreen"
-                        onClick={privateHandler}
-                      />
-                    </Tooltip>
-                  )}
+                  <Tooltip placement="left" title={t("main.makePrivate")}>
+                    <EyeOutlined
+                      className="iconGreen"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                )}
                 <Tooltip placement="left" title={t("main.archive")}>
                   <Popconfirm
                     title={t("looks.archiveConfirm")}
@@ -259,35 +263,35 @@ export const LookCard = (props) => {
                 </Tooltip>
               </>
             ) : (
-                <>
-                  <Tooltip placement="left" title={t("main.restore")}>
-                    <Popconfirm
-                      title={t("looks.restoreConfirm")}
-                      onConfirm={() => handleArchive(true)}
-                      okText={t("main.restore")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <UndoOutlined className="iconGreen" />
-                    </Popconfirm>
-                  </Tooltip>
-                  <Tooltip placement="left" title={t("main.delete")}>
-                    <Popconfirm
-                      title={t("looks.deleteConfirm")}
-                      onConfirm={handleDelete}
-                      okText={t("main.delete")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <DeleteOutlined className="iconRed" />
-                    </Popconfirm>
-                  </Tooltip>
-                </>
-              )}
+              <>
+                <Tooltip placement="left" title={t("main.restore")}>
+                  <Popconfirm
+                    title={t("looks.restoreConfirm")}
+                    onConfirm={() => handleArchive(true)}
+                    okText={t("main.restore")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <UndoOutlined className="iconGreen" />
+                  </Popconfirm>
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.delete")}>
+                  <Popconfirm
+                    title={t("looks.deleteConfirm")}
+                    onConfirm={handleDelete}
+                    okText={t("main.delete")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <DeleteOutlined className="iconRed" />
+                  </Popconfirm>
+                </Tooltip>
+              </>
+            )}
           </div>
         </div>
         <div
@@ -310,21 +314,21 @@ export const LookCard = (props) => {
               </div>
             </Tooltip>
           ) : (
-              props.look.active && (
-                <>
-                  <div className="lookcard__likeContainer">
-                    <div className="lookcard__like iconGreen greyed">
-                      <LikeOutlined />
-                      <div className="lookcard__likeCount">12</div>
-                    </div>
-                    <div className="lookcard__like iconRed greyed">
-                      <DislikeOutlined />
-                      <div className="lookcard__likeCount">5</div>
-                    </div>
+            props.look.active && (
+              <>
+                <div className="lookcard__likeContainer">
+                  <div className="lookcard__like iconGreen greyed">
+                    <LikeOutlined />
+                    <div className="lookcard__likeCount">12</div>
                   </div>
-                </>
-              )
-            )}
+                  <div className="lookcard__like iconRed greyed">
+                    <DislikeOutlined />
+                    <div className="lookcard__likeCount">5</div>
+                  </div>
+                </div>
+              </>
+            )
+          )}
           <div
             className={
               props.look.active ? "lookcard__date" : "lookcard__date striked"

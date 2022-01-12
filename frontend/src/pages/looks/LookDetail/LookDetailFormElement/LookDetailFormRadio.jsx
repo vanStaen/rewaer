@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { notification, Radio } from "antd";
+import { notification, Radio, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericBooleanLook } from "../../actions/updateGenericBooleanLook";
 import { looksStore } from "../../looksStore";
@@ -66,6 +67,11 @@ export const LookDetailFormRadio = observer((props) => {
       >
         {DataRadio}
       </Radio.Group>
+      <div className="ItemDetailFormElement__helpIcon">
+        <Tooltip placement="right" title={props.tooltip}>
+          <QuestionCircleOutlined />
+        </Tooltip>
+      </div>
     </div>
   );
 });
