@@ -65,7 +65,7 @@
   - [ ] Implement Multiselect
   - [x] Implement disabled
   - [ ] Implement space holder as props
-  - [ ] Implement info/tooltip as props
+  - [x] Implement info/tooltip as props
 - [ ] Tips popping up 
   - [ ] Use backspace to return to main view
   - [ ] use Arrow to naviguate through items/Looks

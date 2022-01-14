@@ -178,7 +178,11 @@
     "restoreConfirm": "Restore this item?",
     "showPrivateItems": "Show Private items",
     "hidePrivateItems": "Hide Private items",
-    "backToItems": "Back to all Items"
+    "makePrivateItem": "Make this item private",
+    "archiveItem": "Archive this item",
+    "backToItems": "Back to all Items",
+    "statusTooltip": "How availaible is this items?",
+    "notesTooltip": "Add any extra information"
   },
   "looks" : {
     "look": "look",

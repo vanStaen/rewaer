@@ -177,6 +177,8 @@
     "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?",
     "showPrivateLooks": "Private items anzeigen",
     "hidePrivateLooks": "Private items verstecken",
+    "makePrivateItem": "Item private machen",
+    "archiveItem": "Item archiveren",
     "backToItems": "Zurück zu alle Items"
   },
   "looks" : {

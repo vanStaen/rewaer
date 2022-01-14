@@ -178,6 +178,8 @@
     "restoreConfirm": "Souhaitez-vous restaurer cette piéce?",
     "showPrivateItems": "Afficher les piéces privées",
     "hidePrivateItems": "Cacher les piéces privées",
+    "makePrivateItem": "Cacher cette piéce",
+    "archiveItem": "Archiver cettte piéce",
     "backToItems": "Retourner aux Piéces"
   },
   "looks" : {

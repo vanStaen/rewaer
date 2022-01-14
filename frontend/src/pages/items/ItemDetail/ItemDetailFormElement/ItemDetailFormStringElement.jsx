@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { Input, notification } from "antd";
+import { Input, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import {
   QuestionCircleOutlined,
@@ -94,9 +94,14 @@ export const ItemDetailFormStringElement = observer((props) => {
           </div>
         )}
       </div>
-      <div className="ItemDetailFormElement__helpIcon">
-        <QuestionCircleOutlined />
-      </div>
+
+      {props.tooltip && (
+        <div className="ItemDetailFormElement__helpIcon">
+          <Tooltip placement="right" title={props.tooltip}>
+            <QuestionCircleOutlined />
+          </Tooltip>
+        </div>
+      )}
       {/*
         <div className="ItemDetailFormElement__missingIcon">
             < ExclamationCircleOutlined />

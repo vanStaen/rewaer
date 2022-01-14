@@ -94,6 +94,13 @@ export const ItemDetail = observer((props) => {
             multiSelect={false}
             disabled={!selectedItem.active}
           />
+          <ItemDetailFormStringElement
+            element="brand"
+            title="brand"
+            value={selectedItem.brand}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
+          />
           <ItemDetailFormDropDown
             title="colors"
             element="colors"
@@ -112,20 +119,7 @@ export const ItemDetail = observer((props) => {
             multiSelect={false}
             disabled={!selectedItem.active}
           />
-          <ItemDetailFormStringElement
-            element="notes"
-            title="notes"
-            value={selectedItem.notes}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
-          />
-          <ItemDetailFormStringElement
-            element="brand"
-            title="brand"
-            value={selectedItem.brand}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
-          />
+          <br />
           <ItemDetailFormRadio
             title="status"
             element="status"
@@ -134,6 +128,7 @@ export const ItemDetail = observer((props) => {
             selectedItem={selectedItem}
             multiSelect={false}
             disabled={!selectedItem.active}
+            tooltip={t("items.statusTooltip")}
           />
           <ItemDetailFormRadio
             title="private"
@@ -147,6 +142,7 @@ export const ItemDetail = observer((props) => {
             whatShouldBeRed={true}
             multiSelect={false}
             disabled={!selectedItem.active}
+            tooltip={t("items.makePrivateItem")}
           />
           <ItemDetailFormRadio
             title="active"
@@ -160,8 +156,17 @@ export const ItemDetail = observer((props) => {
             whatShouldBeRed={false}
             multiSelect={false}
             disabled={false}
+            tooltip={t("items.archiveItem")}
           />
           <br />
+          <ItemDetailFormStringElement
+            element="notes"
+            title="notes"
+            value={selectedItem.notes}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
+            tooltip={t("items.notesTooltip")}
+          />
         </div>
       )}
     </div>
