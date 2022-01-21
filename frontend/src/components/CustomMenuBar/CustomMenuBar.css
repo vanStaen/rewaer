@@ -1,41 +1,50 @@
-.customMenu__main {   
-    position: fixed; 
-    top: 0;
-    width: 100vw;
-    z-index: 10;
-    background-color: #fff;
-    border-bottom: 1px solid #f0f0f0; 
+.customMenu__main {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .customMenu__element {
-    color: #6C917D;
-    margin: 0px 20px 0px 20px;
-    line-height: 46px;
-    border-bottom: 1px solid green; 
+  color: black !important;
+  margin: 0px 20px 0px 20px;
+  line-height: 48px;
+  cursor: pointer;
+  border-bottom: solid 1px #f0f0f0;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.customMenu__element:hover {
+  color: rgba(50, 143, 94, 0.7);
+  border-bottom: 2px solid rgba(109, 145, 126, 0.5);
 }
 
 .customMenu__RewaerMotto {
-    color: #6C917D;
+  margin: 0px 20px 0px 20px;
+  line-height: 46px;
+  color: #6c917d;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 .right {
-    float: left;
+  float: left;
 }
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
-    .menu__RewaerMotto { 
-        display: none;
-    }
+  .menu__RewaerMotto {
+    display: none;
+  }
 }
-  
-  /* Large screens */
+
+/* Large screens */
 @media only screen and (min-width: 600px) {
-    .menu__RewaerMotto { 
-        display: block;
-    }
+  .menu__RewaerMotto {
+    display: block;
+  }
 }

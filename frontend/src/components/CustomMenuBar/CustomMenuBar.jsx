@@ -24,14 +24,14 @@ export const CustomMenuBar = observer(() => {
   const { t } = useTranslation();
   const [menuSelected, setMenuSelected] = useState(null);
 
-  const handleClick = (event) => {
-    setMenuSelected(event.key);
+  const handleClick = (key) => {
+    setMenuSelected(key);
   };
 
   return (
     <>
       <div className="customMenu__main">
-        <span className="customMenu__RewaerMotto customMenu__element left">
+        <span className="customMenu__RewaerMotto left">
           Rewaer, {t("main.motto")}
         </span>
 
