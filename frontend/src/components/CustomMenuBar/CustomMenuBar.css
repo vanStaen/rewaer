@@ -8,7 +8,6 @@
 }
 
 .customMenu__element {
-  color: black !important;
   margin: 0px 20px 0px 20px;
   line-height: 48px;
   cursor: pointer;
@@ -22,9 +21,9 @@
 }
 
 .customMenu__RewaerMotto {
+  color: rgba(0, 0, 0, 0.85);
   margin: 0px 20px 0px 20px;
   line-height: 46px;
-  color: #6c917d;
 }
 
 .left {
