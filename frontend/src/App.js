@@ -15,6 +15,7 @@ import { authStore } from "./stores/authStore/authStore";
 import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { MenuBar } from "./components/MenuBar/MenuBar";
+import { CustomMenuBar } from "./components/CustomMenuBar/CustomMenuBar";
 import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
 
 import "../src/lib/i18n";
@@ -64,7 +65,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
-        <MenuBar />
+        <CustomMenuBar />
         <Routes>
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />

@@ -1,0 +1,41 @@
+.customMenu__main {   
+    position: fixed; 
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0; 
+}
+
+.customMenu__element {
+    color: #6C917D;
+    margin: 0px 20px 0px 20px;
+    line-height: 46px;
+    border-bottom: 1px solid green; 
+}
+
+.customMenu__RewaerMotto {
+    color: #6C917D;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: left;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+    .menu__RewaerMotto { 
+        display: none;
+    }
+}
+  
+  /* Large screens */
+@media only screen and (min-width: 600px) {
+    .menu__RewaerMotto { 
+        display: block;
+    }
+}
