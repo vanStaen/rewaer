@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
-import { userStore } from "../../stores/userStore/userStore"
+import { userStore } from "../../stores/userStore/userStore";
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
@@ -25,11 +25,10 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     looksStore.loadLooks();
-    userStore.profilSettings && setShowPrivate(userStore.profilSettings.displayPrivate);
-  }, [
-    looksStore.isOutOfDate,
-    userStore.profilSettings
-  ]);
+    userStore.setMenuSelected("looks");
+    userStore.profilSettings &&
+      setShowPrivate(userStore.profilSettings.displayPrivate);
+  }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
@@ -44,30 +43,33 @@ export const Looks = observer(() => {
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
     userStore.profilSettings,
-    showPrivate
+    showPrivate,
   ]);
 
-  const numberOfPrivateLooks = looksStore.looks.filter(look => look.private).length;
+  const numberOfPrivateLooks = looksStore.looks.filter(
+    (look) => look.private
+  ).length;
 
   const calculateMissingCardsForFullRow = useCallback(() => {
-    const displayArchived = userStore.profilSettings ? userStore.profilSettings.displayArchived : false;
+    const displayArchived = userStore.profilSettings
+      ? userStore.profilSettings.displayArchived
+      : false;
     const containerWidth =
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks =
-      showPrivate ?
-        displayArchived ?
-          looksStore.looks.length + 1
-          :
-          looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
-        :
-        displayArchived ?
-          looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
-          :
-          looksStore.looks.length + 1 - looksStore.numberOfPrivateLook - looksStore.numberOfArchivedLook
+    const numberLooks = showPrivate
+      ? displayArchived
+        ? looksStore.looks.length + 1
+        : looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
+      : displayArchived
+      ? looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
+      : looksStore.looks.length +
+        1 -
+        looksStore.numberOfPrivateLook -
+        looksStore.numberOfArchivedLook;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
@@ -81,9 +83,7 @@ export const Looks = observer(() => {
       } else {
         return (
           <Col key={look._id}>
-            <LookCard
-              look={look}
-              setSelectedLook={setSelectedLook} />
+            <LookCard look={look} setSelectedLook={setSelectedLook} />
           </Col>
         );
       }
@@ -102,10 +102,14 @@ export const Looks = observer(() => {
       if (showPrivate) {
         return looksStore.looks.length - looksStore.numberOfArchivedLook;
       } else {
-        return looksStore.looks.length - looksStore.numberOfArchivedLook - looksStore.numberOfPrivateLook;
+        return (
+          looksStore.looks.length -
+          looksStore.numberOfArchivedLook -
+          looksStore.numberOfPrivateLook
+        );
       }
     }
-  }
+  };
 
   return (
     <div className="looks__main">
@@ -128,42 +132,51 @@ export const Looks = observer(() => {
           />
         </div>
       ) : (
-              <div ref={containerElement} className="looks__container">
-                <div className="looks__toolbar">
-                  <div className="looks__toolbarLeft">
-                    {totalLooks()}&nbsp;
-                    {t("menu.looks")}
-                    {numberOfPrivateLooks > 0 && (
-                      <> | &nbsp;
-                        <span
-                          className="link"
-                          onClick={() => {
-                            setShowPrivate(!showPrivate);
-                          }}
-                        >
-                          {showPrivate ? t("looks.hidePrivateLooks") : t("looks.showPrivateLooks")}
-                        </span>
-                      </>)}
-                  </div>
-                  <div className="looks__toolbarRight">
-                    <ToolBar
-                      quickEdit={quickEdit}
-                      setQuickEdit={setQuickEdit}
-                      showFilter={showFilter}
-                      setShowFilter={setShowFilter}
-                      allowEdit={true}
-                    />
-                  </div>
-                </div>
-                <Row justify={"space-around"}>
-                  <Col>
-                    <LookForm />
-                  </Col>
-                  {lookList}
-                  <GhostCard numberOfCards={missingCardForFullRow} width="240px" height="385px" />
-                </Row>
-              </div>
-            )}
+        <div ref={containerElement} className="looks__container">
+          <div className="looks__toolbar">
+            <div className="looks__toolbarLeft">
+              {totalLooks()}&nbsp;
+              {t("menu.looks")}
+              {numberOfPrivateLooks > 0 && (
+                <>
+                  {" "}
+                  | &nbsp;
+                  <span
+                    className="link"
+                    onClick={() => {
+                      setShowPrivate(!showPrivate);
+                    }}
+                  >
+                    {showPrivate
+                      ? t("looks.hidePrivateLooks")
+                      : t("looks.showPrivateLooks")}
+                  </span>
+                </>
+              )}
+            </div>
+            <div className="looks__toolbarRight">
+              <ToolBar
+                quickEdit={quickEdit}
+                setQuickEdit={setQuickEdit}
+                showFilter={showFilter}
+                setShowFilter={setShowFilter}
+                allowEdit={true}
+              />
+            </div>
+          </div>
+          <Row justify={"space-around"}>
+            <Col>
+              <LookForm />
+            </Col>
+            {lookList}
+            <GhostCard
+              numberOfCards={missingCardForFullRow}
+              width="240px"
+              height="385px"
+            />
+          </Row>
+        </div>
+      )}
     </div>
   );
 });

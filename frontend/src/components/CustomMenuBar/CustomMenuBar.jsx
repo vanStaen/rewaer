@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
@@ -50,7 +50,6 @@ export const CustomMenuBar = observer(() => {
           className={`customMenu__element left ${
             userStore.menuSelected === "items" && "selected"
           }`}
-          className="customMenu__element left"
           onClick={() => {
             userStore.setMenuSelected("items");
           }}

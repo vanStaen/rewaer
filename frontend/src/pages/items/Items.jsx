@@ -26,6 +26,7 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
+    userStore.setMenuSelected("items");
     userStore.profilSettings &&
       setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
