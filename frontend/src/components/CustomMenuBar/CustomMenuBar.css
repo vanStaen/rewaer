@@ -2,10 +2,17 @@
   position: fixed;
   top: 0;
   width: 100vw;
+  height: 50px;
   z-index: 10;
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
 }
+
+.customMenu__spacer {
+    width: 100vw;
+    height: 50px;
+  }
 
 .customMenu__element {
   margin: 0px 20px 0px 20px;
@@ -13,17 +20,32 @@
   cursor: pointer;
   border-bottom: solid 1px #f0f0f0;
   transition: border-color 0.3s, color 0.3s;
+  color: rgba(109, 145, 126, .75);
 }
 
 .customMenu__element:hover {
-  color: rgba(50, 143, 94, 0.7);
+  color: rgba(50, 143, 94, 1);
   border-bottom: 2px solid rgba(109, 145, 126, 0.5);
 }
+
+.customMenu__elementDisabled {
+  margin: 0px 20px 0px 20px;
+  line-height: 48px;
+  cursor: not-allowed;
+  border-bottom: solid 1px #f0f0f0;
+  transition: border-color 0.3s, color 0.3s;
+  color: rgba(0, 0, 0, .25);
+}
+
+.selected {
+    color: rgba(50, 143, 94, 1);
+    border-bottom: 2px solid rgba(109, 145, 126, .7);
+  }
 
 .customMenu__RewaerMotto {
   color: rgba(0, 0, 0, 0.85);
   margin: 0px 20px 0px 20px;
-  line-height: 46px;
+  line-height: 48px;
 }
 
 .left {

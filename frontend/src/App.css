@@ -10,6 +10,7 @@
 }
 
 .App a:link, a:visited {
+  transition: color 0.3s;
   color: rgba(109, 145, 126, .75);
 }
 

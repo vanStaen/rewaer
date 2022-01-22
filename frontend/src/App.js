@@ -65,7 +65,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
-        <MenuBar />
+        <CustomMenuBar />
         <Routes>
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />

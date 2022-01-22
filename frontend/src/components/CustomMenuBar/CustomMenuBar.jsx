@@ -22,14 +22,10 @@ import "./CustomMenuBar.css";
 
 export const CustomMenuBar = observer(() => {
   const { t } = useTranslation();
-  const [menuSelected, setMenuSelected] = useState(null);
-
-  const handleClick = (key) => {
-    setMenuSelected(key);
-  };
 
   return (
     <>
+      <div className="customMenu__spacer"></div>
       <div className="customMenu__main">
         <span className="customMenu__RewaerMotto left">
           Rewaer, {t("main.motto")}
@@ -37,50 +33,83 @@ export const CustomMenuBar = observer(() => {
 
         <div
           key="looks"
-          className="customMenu__element left"
-          icon={<CameraOutlined />}
+          className={`customMenu__element left ${
+            userStore.menuSelected === "looks" && "selected"
+          }`}
+          onClick={() => {
+            userStore.setMenuSelected("looks");
+          }}
           style={{ float: "left" }}
         >
+          <CameraOutlined style={{ marginRight: "5px" }} />
           <Link to="/looks"> {t("menu.looks")}</Link>
         </div>
 
         <div
           key="items"
+          className={`customMenu__element left ${
+            userStore.menuSelected === "items" && "selected"
+          }`}
           className="customMenu__element left"
-          icon={<SkinOutlined />}
+          onClick={() => {
+            userStore.setMenuSelected("items");
+          }}
           style={{ float: "left" }}
         >
+          <SkinOutlined style={{ marginRight: "5px" }} />
           <Link to="/items"> {t("menu.items")}</Link>
         </div>
 
         <div
           key="mail"
-          className="customMenu__element left"
-          icon={<MailOutlined />}
-          disabled
+          className={`customMenu__elementDisabled left ${
+            userStore.menuSelected === "mail" && "selected"
+          }`}
+          onClick={() => {
+            userStore.setMenuSelected("mail");
+          }}
         >
-          <Link to="/mail"> {t("menu.mail")}</Link>
+          <MailOutlined style={{ marginRight: "10px" }} />
+          {/* <Link to="/mail"> {t("menu.mail")}</Link>*/}
+          {t("menu.mail")}
         </div>
 
         <div
           key="notifications"
-          className="customMenu__element left"
-          icon={<NotificationOutlined />}
-          disabled
+          className={`customMenu__elementDisabled left ${
+            userStore.menuSelected === "notifications" && "selected"
+          }`}
+          onClick={() => {
+            userStore.setMenuSelected("notifications");
+          }}
         >
-          <Link to="/friends"> {t("menu.notification")}</Link>
+          <NotificationOutlined style={{ marginRight: "10px" }} />
+          {/*<Link to="/notifications"> {t("menu.notification")}</Link>*/}
+          {t("menu.notification")}
         </div>
 
         <div
           key="search"
-          className="customMenu__element left"
-          icon={<SearchOutlined />}
-          disabled
+          className={`customMenu__elementDisabled left ${
+            userStore.menuSelected === "search" && "selected"
+          }`}
+          onClick={() => {
+            userStore.setMenuSelected("search");
+          }}
         >
+          <SearchOutlined style={{ marginRight: "8px" }} />
           {t("menu.search")}
         </div>
 
-        <div key="info" className="customMenu__element left">
+        <div
+          key="info"
+          className={`customMenu__element left ${
+            userStore.menuSelected === "info" && "selected"
+          }`}
+          onClick={() => {
+            userStore.setMenuSelected("info");
+          }}
+        >
           <Link to="/info">
             &nbsp;&nbsp;
             <QuestionOutlined />
