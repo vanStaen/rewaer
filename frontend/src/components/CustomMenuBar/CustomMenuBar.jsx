@@ -31,33 +31,37 @@ export const CustomMenuBar = observer(() => {
           Rewaer, {t("main.motto")}
         </span>
 
-        <div
-          key="looks"
-          className={`customMenu__element left ${
-            userStore.menuSelected === "looks" && "selected"
-          }`}
-          onClick={() => {
-            userStore.setMenuSelected("looks");
-          }}
-          style={{ float: "left" }}
-        >
-          <CameraOutlined style={{ marginRight: "5px" }} />
-          <Link to="/looks"> {t("menu.looks")}</Link>
-        </div>
+        <Link to="/looks">
+          <div
+            key="looks"
+            className={`customMenu__element left ${
+              userStore.menuSelected === "looks" && "selected"
+            }`}
+            onClick={() => {
+              userStore.setMenuSelected("looks");
+            }}
+            style={{ float: "left" }}
+          >
+            <CameraOutlined style={{ marginRight: "10px" }} />
+            {t("menu.looks")}
+          </div>
+        </Link>
 
-        <div
-          key="items"
-          className={`customMenu__element left ${
-            userStore.menuSelected === "items" && "selected"
-          }`}
-          onClick={() => {
-            userStore.setMenuSelected("items");
-          }}
-          style={{ float: "left" }}
-        >
-          <SkinOutlined style={{ marginRight: "5px" }} />
-          <Link to="/items"> {t("menu.items")}</Link>
-        </div>
+        <Link to="/items">
+          <div
+            key="items"
+            className={`customMenu__element left ${
+              userStore.menuSelected === "items" && "selected"
+            }`}
+            onClick={() => {
+              userStore.setMenuSelected("items");
+            }}
+            style={{ float: "left" }}
+          >
+            <SkinOutlined style={{ marginRight: "10px" }} />
+            {t("menu.items")}
+          </div>
+        </Link>
 
         <div
           key="mail"
@@ -69,7 +73,6 @@ export const CustomMenuBar = observer(() => {
           }}
         >
           <MailOutlined style={{ marginRight: "10px" }} />
-          {/* <Link to="/mail"> {t("menu.mail")}</Link>*/}
           {t("menu.mail")}
         </div>
 
@@ -83,7 +86,6 @@ export const CustomMenuBar = observer(() => {
           }}
         >
           <NotificationOutlined style={{ marginRight: "10px" }} />
-          {/*<Link to="/notifications"> {t("menu.notification")}</Link>*/}
           {t("menu.notification")}
         </div>
 
@@ -96,25 +98,25 @@ export const CustomMenuBar = observer(() => {
             userStore.setMenuSelected("search");
           }}
         >
-          <SearchOutlined style={{ marginRight: "8px" }} />
+          <SearchOutlined style={{ marginRight: "10px" }} />
           {t("menu.search")}
         </div>
 
-        <div
-          key="info"
-          className={`customMenu__element left ${
-            userStore.menuSelected === "info" && "selected"
-          }`}
-          onClick={() => {
-            userStore.setMenuSelected("info");
-          }}
-        >
-          <Link to="/info">
+        <Link to="/info">
+          <div
+            key="info"
+            className={`customMenu__element left ${
+              userStore.menuSelected === "info" && "selected"
+            }`}
+            onClick={() => {
+              userStore.setMenuSelected("info");
+            }}
+          >
             &nbsp;&nbsp;
             <QuestionOutlined />
             &nbsp;&nbsp;
-          </Link>
-        </div>
+          </div>
+        </Link>
 
         {/* 
           <div style={{ float: "right" }} key="profileSubMenu">
