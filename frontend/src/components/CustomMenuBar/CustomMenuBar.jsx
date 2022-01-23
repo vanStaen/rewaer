@@ -187,14 +187,16 @@ export const CustomMenuBar = observer(() => {
 
                 <div className="customMenu__customDivider"></div>
 
-                <div
-                  key="logout"
-                  className="customSubMenu__element"
-                  onClick={authStore.logout}
-                >
-                  <LogoutOutlined style={{ marginRight: "10px" }} />
-                  {t("menu.logout")}
-                </div>
+                <Link to="/">
+                  <div
+                    key="logout"
+                    className="customSubMenu__element"
+                    onClick={authStore.logout}
+                  >
+                    <LogoutOutlined style={{ marginRight: "10px" }} />
+                    {t("menu.logout")}
+                  </div>
+                </Link>
               </>
             )}
           </div>
