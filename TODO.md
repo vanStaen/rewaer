@@ -14,22 +14,12 @@
   - [ ] multiselect edits
 - [ ] Profile:
   - [x] UX: Center column with Max width 
-  - [ ] Subpage with headers showing Looks and Items
-    - [ ] simplified version of cards, with comment and liking function
+  - [x] Subpage with headers showing Looks and Items
+    - [x] simplified version of cards, with comment and liking function
     - [ ] Friend can propose Look name
-    - [ ] ofc, private item/look are hidden
+    - [x] ofc, private item/look are hidden
+    - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
-- [ ] Create own Card component
-  - [x] picture cover, not stretched
-  - [x] Editable title
-  - [x] Tool panel
-  - [x] Link zu detail view
-  - [ ] <ExclamationCircleOutlined /> on items not fully taged
-  - [x] Tag as favorite (heart icon)
-  - [x] archive/restore feature
-  - [x] Show like-counter (placeholder) 
-    - [x] Use Thumbs up for like
-    - [x] Use Thumb down for dislike
 - [ ] On no-file select, do not create item/look
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
@@ -72,7 +62,7 @@
 - [ ] Title editable : Input vs ContentEditable
 - [ ] Helper function to convert code to its full string value
 - [ ] Use the translated version of various datas
-- [ ] 404
+- [ ] <ExclamationCircleOutlined /> on items not fully taged
 
 ## Completed ✓
 
@@ -170,3 +160,13 @@
 - [x] Count how many items are private and act accordingly
 - [x] Settings: per defaut show or hide Private
 - [x] Implement Season info for looks 
+- [x] Create own Card component
+  - [x] picture cover, not stretched
+  - [x] Editable title
+  - [x] Tool panel
+  - [x] Link zu detail view
+  - [x] Tag as favorite (heart icon)
+  - [x] archive/restore feature
+  - [x] Show like-counter (placeholder) 
+    - [x] Use Thumbs up for like
+    - [x] Use Thumb down for dislike
