@@ -23,6 +23,14 @@ import "./CustomMenuBar.css";
 export const CustomMenuBar = observer(() => {
   const { t } = useTranslation();
 
+  const handlerShowSubMenu = () => {
+    document.getElementById("profile").style.display = "block";
+  };
+
+  const handlerHideSubMenu = () => {
+    document.getElementById("profile").style.display = "none";
+  };
+
   return (
     <>
       <div className="customMenu__spacer"></div>
@@ -118,24 +126,31 @@ export const CustomMenuBar = observer(() => {
           </div>
         </Link>
 
-        {/* 
-          <div style={{ float: "right" }} key="profileSubMenu">
-            <Badge count={userStore.isLoading ? 0 : 4} offset={[0, 5]}>
-              <Avatar
-                src={userStore.avatar && userStore.avatar}
-                icon={
-                  userStore.isLoading ? (
-                    <Spin size="small" />
-                  ) : (
-                    !userStore.avatar && (
-                      <UserOutlined style={{ fontSize: "22px" }} />
-                    )
+        <div
+          key="profile"
+          className={`customMenu__element right ${
+            userStore.menuSelected === "profile" && "selected"
+          }`}
+          onMouseEnter={handlerShowSubMenu}
+          onMouseLeave={handlerHideSubMenu}
+        >
+          <Badge count={userStore.isLoading ? 0 : 4} offset={[0, 5]}>
+            <Avatar
+              src={userStore.avatar && userStore.avatar}
+              icon={
+                userStore.isLoading ? (
+                  <Spin size="small" />
+                ) : (
+                  !userStore.avatar && (
+                    <UserOutlined style={{ fontSize: "22px" }} />
                   )
-                }
-                style={userStore.isLoading && { backgroundColor: "#FFF" }}
-                size={36}
-              />
-            </Badge>
+                )
+              }
+              style={userStore.isLoading && { backgroundColor: "#FFF" }}
+              size={36}
+            />
+          </Badge>
+          <div className="customSubMenu__container" id="profile">
             {userStore.isLoading ? (
               <div key="spinner" disabled>
                 <Spin
@@ -145,24 +160,45 @@ export const CustomMenuBar = observer(() => {
               </div>
             ) : (
               <>
-                <div key="profile" icon={<UserOutlined />}>
-                  <Link to="/profile">{t("menu.profile")}</Link>
-                </div>
-                <div key="settings" icon={<SettingOutlined />}>
-                  <Link to="/editsettings/">{t("menu.editSetting")}</Link>
-                </div>
+                <Link to="/profile">
+                  <div
+                    key="profile"
+                    onClick={() => {
+                      userStore.setMenuSelected("profile");
+                    }}
+                    className="customSubMenu__element"
+                  >
+                    <UserOutlined style={{ marginRight: "10px" }} />
+                    {t("menu.profile")}
+                  </div>
+                </Link>
+                <Link to="/editsettings/">
+                  <div
+                    key="settings"
+                    onClick={() => {
+                      userStore.setMenuSelected("profile");
+                    }}
+                    className="customSubMenu__element"
+                  >
+                    <SettingOutlined style={{ marginRight: "10px" }} />
+                    {t("menu.editSetting")}
+                  </div>
+                </Link>
 
-                <div className="menu__customDivider"></div>
+                <div className="customMenu__customDivider"></div>
+
                 <div
                   key="logout"
-                  icon={<LogoutOutlined />}
+                  className="customSubMenu__element"
                   onClick={authStore.logout}
                 >
+                  <LogoutOutlined style={{ marginRight: "10px" }} />
                   {t("menu.logout")}
                 </div>
               </>
             )}
-            </div>*/}
+          </div>
+        </div>
       </div>
     </>
   );

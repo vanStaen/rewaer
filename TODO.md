@@ -72,6 +72,7 @@
 - [ ] Title editable : Input vs ContentEditable
 - [ ] Helper function to convert code to its full string value
 - [ ] Use the translated version of various datas
+- [ ] 404
 
 ## Completed ✓
 
