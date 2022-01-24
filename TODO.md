@@ -63,6 +63,7 @@
 - [ ] Helper function to convert code to its full string value
 - [ ] Use the translated version of various datas
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
+- [ ] footer to make it look pro
 
 ## Completed ✓
 
