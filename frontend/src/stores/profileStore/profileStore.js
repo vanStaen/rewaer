@@ -98,19 +98,21 @@ export class ProfileStore {
   fetchProfileData = async (userName) => {
     try {
       this.setIsLoading(true);
-      this.setUserName(userName);
-      const profileData = await getProfileInfo(userName);
-      if (profileData) {
-        this.setAvatar(profileData.avatar);
-        this.setFirstName(profileData.firstName);
-        this.setFriends(profileData.friends);
-        this.setGender(profileData.gender);
-        this.setLooks(profileData.looks);
-        this.setItems(profileData.items);
-        this.setLastActive(profileData.lastActive);
-        this.setProfilSettings(JSON.parse(profileData.profilSettings));
+      if (userName) {
+        this.setUserName(userName);
+        const profileData = await getProfileInfo(userName);
+        if (profileData) {
+          this.setAvatar(profileData.avatar);
+          this.setFirstName(profileData.firstName);
+          this.setFriends(profileData.friends);
+          this.setGender(profileData.gender);
+          this.setLooks(profileData.looks);
+          this.setItems(profileData.items);
+          this.setLastActive(profileData.lastActive);
+          this.setProfilSettings(JSON.parse(profileData.profilSettings));
+        }
+        this.setIsLoading(false);
       }
-      this.setIsLoading(false);
     } catch (error) {
       this.setError(error);
     }

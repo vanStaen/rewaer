@@ -57,7 +57,7 @@ export class UserStore {
       setArchived: action,
       setUsernameChange: action,
       setMenuSelected: action,
-      fetchuserData: action,
+      fetchUserData: action,
     });
   }
 
@@ -125,8 +125,7 @@ export class UserStore {
     this.menuSelected = menuSelected;
   };
 
-
-  fetchuserData = async () => {
+  fetchUserData = async () => {
     try {
 
       const userData = await getUserInfo();

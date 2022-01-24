@@ -24,9 +24,8 @@ export const Profile = observer(() => {
 
   useEffect(() => {
     const username = params.username ? params.username : userStore.userName;
-    console.log("username", username);
     profileStore.fetchProfileData(username);
-  }, [userStore.isLoading]);
+  }, [userStore.isLoading, userStore.userName]);
 
   return (
     <div className="profil__main">

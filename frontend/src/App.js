@@ -31,8 +31,12 @@ const App = observer(() => {
 
   useEffect(() => {
     authStore.checkAccess();
-    userStore.fetchuserData();
+    userStore.fetchUserData();
   }, []);
+
+  useEffect(() => {
+    userStore.fetchUserData();
+  }, [authStore.hasAccess]);
 
   useEffect(() => {
     if (userStore.language === "en") {
@@ -64,26 +68,27 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
-      {authStore.hasAccess &&<CustomMenuBar />}
-        <Routes> 
+        {authStore.hasAccess && <CustomMenuBar />}
+        <Routes>
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
           <Route path="info/" element={<Info />} />
-          {authStore.hasAccess &&
-            (<>
+          {authStore.hasAccess && (
+            <>
               <Route path="looks/" element={<Looks />} />
               <Route path="items/" element={<Items />} />
               <Route path="profile/" element={<Profile />} />
               <Route path="editsettings/" element={<EditSettings />} />
-            </>)}
+            </>
+          )}
           {authStore.hasAccess ? (
             <>
               <Route path="/" element={<Profile />} />
               <Route path="/:username" element={<Profile />} />
             </>
           ) : (
-              <Route path="/" element={<Welcome showLogin={true} />} />
-            )}
+            <Route path="/" element={<Welcome showLogin={true} />} />
+          )}
         </Routes>
       </div>
     </BrowserRouter>
