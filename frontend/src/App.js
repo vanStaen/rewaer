@@ -35,8 +35,6 @@ const App = observer(() => {
   }, []);
 
   useEffect(() => {
-    console.log("authStore.hasAccess", "changed");
-    console.log("authStore.hasAccess", authStore.hasAccess);
     userStore.fetchUserData();
   }, [authStore.hasAccess]);
 
