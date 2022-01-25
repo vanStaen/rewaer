@@ -4,8 +4,8 @@
   width: 100vw;
   font-size: 16px;
   background-color: #b5c8be;
-  transition: max-height .5s linear;
-
+  transition: max-height 0.5s linear;
+  visibility: hidden;
 }
 
 .banner__desc {
