@@ -1,6 +1,7 @@
 .profil__main {
   width: 100vw;
   height: auto;
+  min-height: calc(100vh - 50px - 200px);
 }
 
 .profil__container {
@@ -12,7 +13,7 @@
 
 .profil__containerRight {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
   width: 200px;
   text-align: left;
   /*border: 1px solid green;*/
@@ -20,7 +21,7 @@
 
 .profil__containerCenter {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
   width: calc(100vw - 50px - 50px - 200px - 200px);
   max-width: 1200px;
   text-align: left;
@@ -28,12 +29,12 @@
   /*border: 1px solid red;*/
 }
 
-.profil__subMenuContainer{
+.profil__subMenuContainer {
   display: flex;
   font-size: 16px;
 }
 
-.profil__subMenuItem{
+.profil__subMenuItem {
   width: 100%;
   height: 35px;
   text-align: center;
@@ -43,22 +44,22 @@
 }
 
 .profil__subMenuItem:hover {
-  color: rgba(109, 145, 126, .7);
-  border-bottom: 2px solid rgba(109, 145, 126, .5);;
+  color: rgba(109, 145, 126, 0.7);
+  border-bottom: 2px solid rgba(109, 145, 126, 0.5);
 }
- 
+
 .profil__subMenuItemSelected {
   color: rgba(109, 145, 126, 1);
   border-bottom: 2px solid rgba(109, 145, 126, 1);
 }
 
-.profil__containerCenterContent{
+.profil__containerCenterContent {
   margin: 15px 0 0 0;
 }
 
 .profil__containerLeft {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
   width: 200px;
 }
 
@@ -67,5 +68,5 @@
   font-size: 12px;
   margin: 3px 0 0 10px;
   display: inline-block;
-  vertical-align:top;
-} 
+  vertical-align: top;
+}

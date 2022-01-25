@@ -65,8 +65,8 @@
 }
 
 .customSubMenu__element {
-  margin: 10px 0;
-  padding: 0 15px 0 15px;
+  margin: 5px 0;
+  padding: 5px 15px 5px 15px;
   line-height: 30px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.75);
@@ -75,7 +75,7 @@
 
 .customSubMenu__element:hover {
   color: rgba(255, 255, 255, 1);
-  background-color: rgba(109, 145, 126, 0.75);
+  background-color: rgba(109, 145, 126, 0.5);
 }
 
 .left {

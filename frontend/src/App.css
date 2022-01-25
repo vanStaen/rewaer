@@ -33,7 +33,7 @@
 
 .App .spinner {
   width: 100vw;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 50px - 200px);
   display: flex;
   flex-direction: column;
   align-items: center;
