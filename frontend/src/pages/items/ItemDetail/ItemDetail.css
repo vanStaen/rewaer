@@ -1,5 +1,6 @@
 .itemdetail__container {
     height: calc(100vh - 60px - 50px - 200px);
+    min-height: min(640px, 70vh);
 }
 
 .itemdetail__backArrow {

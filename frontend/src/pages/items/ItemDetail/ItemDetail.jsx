@@ -105,7 +105,7 @@ export const ItemDetail = observer((props) => {
             title="colors"
             element="colors"
             data={colors}
-            value={null}
+            value={selectedItem.colors[0]}
             selectedItem={selectedItem}
             multiSelect={true}
             disabled={!selectedItem.active}

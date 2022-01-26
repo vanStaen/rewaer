@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
 import { itemsStore } from "../../itemsStore";
 import { userStore } from "../../../../stores/userStore/userStore";
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
@@ -14,13 +15,23 @@ import "./ItemDetailFormElement.css";
 export const ItemDetailFormDropDown = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
+
   const clickHandler = async (newValue) => {
     try {
-      await updateGenericStringItem(
-        props.selectedItem._id,
-        props.element,
-        newValue
-      );
+      if (props.multiSelect) {
+        await updateGenericArrayStringItem(
+          props.selectedItem._id,
+          props.element,
+          [newValue]
+        );
+      } else {
+        await updateGenericStringItem(
+          props.selectedItem._id,
+          props.element,
+          newValue
+        );
+      }
+
       setValue(newValue);
       notification.success({
         message: t("main.changeSaved"),
@@ -35,11 +46,16 @@ export const ItemDetailFormDropDown = observer((props) => {
     }
   };
 
-  const CategoryDropDown = props.data.map((item) => {
+  const DataDropDown = props.data.map((item) => {
+    let isSelected = false;
+    if (item.code === value) {
+      isSelected = true;
+    }
+
     return (
       <Menu.Item
         key={item.code}
-        //style={{ backgroundColor: item.en }}
+        style={isSelected && { backgroundColor: "fcfcfc" }}
         onClick={() => {
           clickHandler(item.code);
         }}
@@ -54,7 +70,7 @@ export const ItemDetailFormDropDown = observer((props) => {
       <div className="ItemDetailFormElement__title">{props.title}:</div>
       <Dropdown
         className="ItemDetailFormElement__dropdown"
-        overlay={<Menu>{CategoryDropDown}</Menu>}
+        overlay={<Menu>{DataDropDown}</Menu>}
         placement="bottomLeft"
         disabled={props.disabled}
       >
