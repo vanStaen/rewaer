@@ -82,7 +82,7 @@ export const ItemDetailFormStringElement = observer((props) => {
                 ? `ItemDetailFormElement__element ${
                     props.disabled && "striked"
                   }`
-                : `ItemDetailFormElement__selectElement ${
+                : `ItemDetailFormElement__selectElement textCursor ${
                     props.disabled && "striked"
                   }`
             }

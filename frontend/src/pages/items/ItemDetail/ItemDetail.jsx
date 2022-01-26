@@ -160,6 +160,14 @@ export const ItemDetail = observer((props) => {
           />
           <br />
           <ItemDetailFormStringElement
+            element="location"
+            title="location"
+            value={selectedItem.location}
+            selectedItem={selectedItem}
+            disabled={!selectedItem.active}
+            tooltip={t("items.notesTooltip")}
+          />
+          <ItemDetailFormStringElement
             element="notes"
             title="notes"
             value={selectedItem.notes}
