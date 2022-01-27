@@ -14,7 +14,9 @@ export const getUserInfo = async () => {
               profilSettings,
               language,
               gender,
-              friends,
+              friends {
+                avatar
+              },
               lastActive,
               archived,
               usernameChange,

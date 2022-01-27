@@ -177,7 +177,6 @@ export const ItemDetail = observer((props) => {
           />
           List of user friends:
           {userStore.friends.length}
-          {userStore.friends}
         </div>
       )}
     </div>
