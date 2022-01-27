@@ -175,6 +175,9 @@ export const ItemDetail = observer((props) => {
             disabled={!selectedItem.active}
             tooltip={t("items.notesTooltip")}
           />
+          List of user friends:
+          {userStore.friends.length}
+          {userStore.friends}
         </div>
       )}
     </div>

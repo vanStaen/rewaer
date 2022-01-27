@@ -12,7 +12,7 @@ exports.userResolver = {
     }
     return await User.findOne({
       where: { _id: req.userId },
-      include: [Item, Look],
+      include: [Item, Look, 'friends',],
     });
   },
 
@@ -29,8 +29,8 @@ exports.userResolver = {
             active: true,
             status: "S0",
             private: {
-              [Op.or]: [false, null]
-            }
+              [Op.or]: [false, null],
+            },
           },
         },
         {
@@ -38,10 +38,10 @@ exports.userResolver = {
           where: {
             active: true,
             private: {
-              [Op.or]: [false, null]
-            }
+              [Op.or]: [false, null],
+            },
           },
-        }
+        },
       ],
     });
   },
@@ -94,7 +94,6 @@ exports.userResolver = {
       "profilSettings",
       "language",
       "gender",
-      "friends",
       "archived",
       "usernameChange",
     ];

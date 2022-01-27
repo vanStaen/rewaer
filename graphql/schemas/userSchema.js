@@ -10,7 +10,6 @@ type User {
     profilSettings: String!
     language: String!
     gender: Int!
-    friends: [ID]
     archived: Boolean
     usernameChange: Int
     lastActive: Float!
@@ -18,6 +17,7 @@ type User {
     udpatedAt: Float!
     items: [Item]
     looks: [Look]
+    friends: [User]
 }`;
 
 exports.UserInputData = `
@@ -32,13 +32,13 @@ input UserInputData {
     profilSettings: String
     language: String
     gender: Int
-    friends: [ID]
     archived: Boolean
     usernameChange: Int
 }`;
 
 exports.UserQueries = `
     getUser: User
+    getFriends: User
     getProfile(userName: String): User
 `;
 

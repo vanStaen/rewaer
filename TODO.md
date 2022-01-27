@@ -64,6 +64,8 @@
 - [ ] Use the translated version of various datas
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
 - [ ] footer to make it look pro
+- [ ] get only friends in getUser which are not pending
+- [ ] create resolver for UserFriends (to manage pending requests)
 
 ## Completed ✓
 
