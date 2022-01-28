@@ -11,8 +11,8 @@ import { updateItemsLook } from "../actions/updateItemsLook";
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { userStore } from "../../../stores/userStore/userStore";
-import { lookCategory } from "../../../data/categories";
-import { seasons } from "../../../data/seasons";
+import { lookCategory } from "../../../lib/data/categories";
+import { seasons } from "../../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
 import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
 

@@ -14,10 +14,10 @@ import {
   itemCategoryMen,
   itemCategoryWomen,
   itemCategoryNB,
-} from "../../../data/categories";
-import { colors } from "../../../data/colors";
-import { pattern } from "../../../data/pattern";
-import { itemStatus } from "../../../data/itemStatus";
+} from "../../../lib/data/categories";
+import { colors } from "../../../lib/data/colors";
+import { pattern } from "../../../lib/data/pattern";
+import { itemStatus } from "../../../lib/data/itemStatus";
 
 import "./ItemDetail.css";
 

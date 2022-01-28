@@ -10,7 +10,7 @@ import {
 import { userStore } from "../../../../stores/userStore/userStore";
 import { updateUserName } from "./updateUserName";
 import { postUsernameTaken } from "../../../../components/SignUpForm/postUsernameTaken";
-import { MAX_USERNAME_CHANGE_ALLOWED } from "../../../../data/setup";
+import { MAX_USERNAME_CHANGE_ALLOWED } from "../../../../lib/data/setup";
 
 export const UserNameUpdate = () => {
   const { t } = useTranslation();

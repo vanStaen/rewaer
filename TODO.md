@@ -66,6 +66,7 @@
 - [ ] footer to make it look pro
 - [ ] get only friends in getUser which are not pending
 - [ ] create resolver for UserFriends (to manage pending requests)
+- [ ] do same as friends, but for follower
 
 ## Completed ✓
 
