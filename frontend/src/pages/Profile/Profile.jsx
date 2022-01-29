@@ -7,6 +7,7 @@ import { CameraOutlined, SkinOutlined, MehOutlined } from "@ant-design/icons";
 
 import { userStore } from "../../stores/userStore/userStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
+import { authStore } from "../../stores/authStore/authStore";
 import { Avatar } from "./Avatar/Avatar";
 import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
 import { ProfileItems } from "./ProfileItems/ProfileItems";
@@ -14,6 +15,7 @@ import { ProfileLooks } from "./ProfileLooks/ProfileLooks";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
 import { ProfileFilters } from "./ProfileFilters/ProfileFilters";
+import { CustomMenuBar } from "../../components/CustomMenuBar/CustomMenuBar";
 
 import "./Profile.css";
 
@@ -28,69 +30,74 @@ export const Profile = observer(() => {
   }, [userStore.isLoading, userStore.userName]);
 
   return (
-    <div className="profil__main">
-      {profileStore.isLoading ? (
-        <div className="spinner">
-          <Spin size="large" />
-        </div>
-      ) : profileStore.error ? (
-        <div className="spinner">
-          Connection error!
-          <br />
-          <br />
-          <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
-        </div>
-      ) : (
-        <div className="profil__container">
-          <div className="profil__containerLeft">
-            <Avatar />
-            <ProfileDetails />
-            <ProfileActions />
+    <>
+      {!authStore.hasAccess && <CustomMenuBar visitor={true} />}
+      <div className="profil__main">
+        {profileStore.isLoading ? (
+          <div className="spinner">
+            <Spin size="large" />
           </div>
-          <div className="profil__containerCenter">
-            <div className="profil__subMenuContainer">
-              <div
-                className={`profil__subMenuItem ${
-                  contentToDisplay === "looks" && "profil__subMenuItemSelected"
-                }`}
-                onClick={() => {
-                  setContentToDisplay("looks");
-                  profileStore.setFilterIsPopingUp(true);
-                }}
-              >
-                <CameraOutlined />
-                <span className="profil__counter">
-                  {profileStore.looks && profileStore.looks.length}&nbsp;
-                  {t("menu.looks")}
-                </span>
+        ) : profileStore.error ? (
+          <div className="spinner">
+            Connection error!
+            <br />
+            <br />
+            <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+          </div>
+        ) : (
+          <div className="profil__container">
+            <div className="profil__containerLeft">
+              <Avatar />
+              <ProfileDetails />
+              <ProfileActions />
+            </div>
+            <div className="profil__containerCenter">
+              <div className="profil__subMenuContainer">
+                <div
+                  className={`profil__subMenuItem ${
+                    contentToDisplay === "looks" &&
+                    "profil__subMenuItemSelected"
+                  }`}
+                  onClick={() => {
+                    setContentToDisplay("looks");
+                    profileStore.setFilterIsPopingUp(true);
+                  }}
+                >
+                  <CameraOutlined />
+                  <span className="profil__counter">
+                    {profileStore.looks && profileStore.looks.length}&nbsp;
+                    {t("menu.looks")}
+                  </span>
+                </div>
+                <div
+                  className={`profil__subMenuItem ${
+                    contentToDisplay === "items" &&
+                    "profil__subMenuItemSelected"
+                  }`}
+                  onClick={() => {
+                    setContentToDisplay("items");
+                    profileStore.setFilterIsPopingUp(true);
+                  }}
+                >
+                  <SkinOutlined />
+                  <span className="profil__counter">
+                    {profileStore.items && profileStore.items.length}&nbsp;
+                    {t("menu.items")}
+                  </span>
+                </div>
               </div>
-              <div
-                className={`profil__subMenuItem ${
-                  contentToDisplay === "items" && "profil__subMenuItemSelected"
-                }`}
-                onClick={() => {
-                  setContentToDisplay("items");
-                  profileStore.setFilterIsPopingUp(true);
-                }}
-              >
-                <SkinOutlined />
-                <span className="profil__counter">
-                  {profileStore.items && profileStore.items.length}&nbsp;
-                  {t("menu.items")}
-                </span>
+              <div className="profil__containerCenterContent">
+                {contentToDisplay === "items" && <ProfileItems />}
+                {contentToDisplay === "looks" && <ProfileLooks />}
               </div>
             </div>
-            <div className="profil__containerCenterContent">
-              {contentToDisplay === "items" && <ProfileItems />}
-              {contentToDisplay === "looks" && <ProfileLooks />}
+            <div className="profil__containerRight">
+              <ProfileFilters contentToDisplay={contentToDisplay} />
+              <ProfileFriends />
             </div>
           </div>
-          <div className="profil__containerRight">
-            <ProfileFilters contentToDisplay={contentToDisplay} />
-            <ProfileFriends />
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 });

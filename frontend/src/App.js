@@ -82,10 +82,10 @@ const App = observer(() => {
               <Route path="editsettings/" element={<EditSettings />} />
             </>
           )}
+          <Route path="/:username" element={<Profile />} />
           {authStore.hasAccess ? (
             <>
               <Route path="/" element={<Profile />} />
-              <Route path="/:username" element={<Profile />} />
             </>
           ) : (
             <Route path="/" element={<Welcome showLogin={true} />} />

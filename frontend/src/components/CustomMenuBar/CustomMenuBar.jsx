@@ -20,7 +20,7 @@ import { userStore } from "../../stores/userStore/userStore";
 
 import "./CustomMenuBar.css";
 
-export const CustomMenuBar = observer(() => {
+export const CustomMenuBar = observer((props) => {
   const { t } = useTranslation();
 
   const handlerShowSubMenu = () => {
@@ -42,11 +42,15 @@ export const CustomMenuBar = observer(() => {
         <Link to="/looks">
           <div
             key="looks"
-            className={`customMenu__element left ${
-              userStore.menuSelected === "looks" && "selected"
+            className={`left 
+            ${userStore.menuSelected === "looks" && "selected"}
+            ${
+              props.visitor
+                ? "customMenu__elementDisabled"
+                : "customMenu__element"
             }`}
             onClick={() => {
-              userStore.setMenuSelected("looks");
+              !props.visitor && userStore.setMenuSelected("looks");
             }}
             style={{ float: "left" }}
           >
@@ -58,11 +62,15 @@ export const CustomMenuBar = observer(() => {
         <Link to="/items">
           <div
             key="items"
-            className={`customMenu__element left ${
-              userStore.menuSelected === "items" && "selected"
+            className={`left 
+            ${userStore.menuSelected === "looks" && "selected"}
+            ${
+              props.visitor
+                ? "customMenu__elementDisabled"
+                : "customMenu__element"
             }`}
             onClick={() => {
-              userStore.setMenuSelected("items");
+              !props.visitor && userStore.setMenuSelected("items");
             }}
             style={{ float: "left" }}
           >
