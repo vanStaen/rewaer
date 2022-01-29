@@ -12,7 +12,7 @@ exports.userResolver = {
     }
     return await User.findOne({
       where: { _id: req.userId },
-      include: [Item, Look, 'friends',],
+      include: [Item, Look, "friends", "followers", "followed"],
     });
   },
 

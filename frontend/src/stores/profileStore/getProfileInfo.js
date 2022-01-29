@@ -8,7 +8,18 @@ export const getProfileInfo = async (username) => {
               firstName,
               avatar,
               gender,
-              friends,
+              friends {
+                userName,
+                avatar,
+              },
+              followers {
+                userName,
+                avatar,
+              },
+              followed {
+                userName,
+                avatar,
+              },
               lastActive,
               profilSettings,
               items {

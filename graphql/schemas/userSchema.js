@@ -18,6 +18,8 @@ type User {
     items: [Item]
     looks: [Look]
     friends: [User]
+    followers: [User]
+    followed: [User]
 }`;
 
 exports.UserInputData = `
@@ -38,7 +40,9 @@ input UserInputData {
 
 exports.UserQueries = `
     getUser: User
-    getFriends: User
+    getFriends: [User]
+    getFollowers: [User]
+    getFollowed: [User]
     getProfile(userName: String): User
 `;
 

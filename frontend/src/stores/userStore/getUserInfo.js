@@ -15,7 +15,16 @@ export const getUserInfo = async () => {
               language,
               gender,
               friends {
-                avatar
+                userName,
+                avatar,
+              },
+              followers {
+                userName,
+                avatar,
+              },
+              followed {
+                userName,
+                avatar,
               },
               lastActive,
               archived,

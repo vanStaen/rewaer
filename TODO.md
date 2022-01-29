@@ -66,7 +66,6 @@
 - [ ] footer to make it look pro
 - [ ] get only friends in getUser which are not pending
 - [ ] create resolver for UserFriends (to manage pending requests)
-- [ ] do same as friends, but for follower
 
 ## Completed ✓
 
@@ -174,3 +173,4 @@
   - [x] Show like-counter (placeholder) 
     - [x] Use Thumbs up for like
     - [x] Use Thumb down for dislike
+- [x] create friends and follower Model/table and linked those to the USer model (graphQL/sequelize endpoint)
