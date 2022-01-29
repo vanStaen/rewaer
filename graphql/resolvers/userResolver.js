@@ -17,9 +17,6 @@ exports.userResolver = {
   },
 
   async getProfile(args, req) {
-    if (!req.isAuth) {
-      throw new Error("Unauthorized!");
-    }
     return await User.findOne({
       where: { userName: args.userName },
       include: [
