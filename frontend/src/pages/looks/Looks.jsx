@@ -32,19 +32,23 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    return () => {
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-    };
   }, [
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
+    looksStore.looks,
     userStore.profilSettings,
     showPrivate,
   ]);
+
+  useEffect(() => {
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+    };
+  }, []);
 
   const numberOfPrivateLooks = looksStore.looks.filter(
     (look) => look.private

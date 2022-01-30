@@ -33,19 +33,23 @@ export const Items = observer(() => {
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    return () => {
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-    };
   }, [
     containerElement.current,
     missingCardForFullRow,
     calculateMissingCardsForFullRow,
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
+    itemsStore.items,
     userStore.profilSettings,
     showPrivate,
   ]);
+
+  useEffect(() => {
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+    };
+  }, []);
 
   const numberOfPrivateItems = itemsStore.items.filter(
     (item) => item.private
