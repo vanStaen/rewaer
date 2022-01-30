@@ -63,7 +63,7 @@ export const CustomMenuBar = observer((props) => {
           <div
             key="items"
             className={`left 
-            ${userStore.menuSelected === "looks" && "selected"}
+            ${userStore.menuSelected === "items" && "selected"}
             ${
               props.visitor
                 ? "customMenu__elementDisabled"

@@ -69,7 +69,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
-        {authStore.hasAccess && <CustomMenuBar />}
+        {authStore.hasAccess && <CustomMenuBar visitor={false} />}
         <Routes>
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
