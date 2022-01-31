@@ -22,6 +22,7 @@ exports.userResolver = {
       include: [
         {
           model: Item,
+          required: false,
           where: {
             active: true,
             status: "S0",
@@ -32,6 +33,7 @@ exports.userResolver = {
         },
         {
           model: Look,
+          required: false,
           where: {
             active: true,
             private: {
@@ -39,6 +41,9 @@ exports.userResolver = {
             },
           },
         },
+        "friends",
+        "followers",
+        "followed",
       ],
     });
   },
