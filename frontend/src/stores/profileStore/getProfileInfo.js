@@ -6,6 +6,7 @@ export const getProfileInfo = async (username) => {
         {
             getProfile (userName: "${username}"){
               firstName,
+              lastName,
               avatar,
               gender,
               friends {
