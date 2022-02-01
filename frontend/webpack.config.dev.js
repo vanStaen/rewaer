@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
@@ -20,6 +21,11 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify("http://localhost:5000"),
+    }),
+    new CopyPlugin({
+      patterns: [
+        path.resolve(__dirname, "public", "icon.png"),
+      ],
     }),
   ],
   resolve: {
