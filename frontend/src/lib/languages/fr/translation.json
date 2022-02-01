@@ -45,6 +45,8 @@
     "logintoAfter": "",
     "password": "Mot de passe",
     "pleaseInputEmail": "Entrez votre email",
+    "pleaseInputEmailOrUsername": "Entrez votre email ou nom d'utilisateur.",
+    "emailOrUsername": "Email ou nom d'utilisateur",
     "pleaseInputPassword": "Saisissez votre password!",
     "rememberMe": "Rester connecté",
     "logMeIn": "Connection",

@@ -1,24 +1,31 @@
 const { User } = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
+const sequelize = require("sequelize");
 
 exports.authService = {
   async login(req, email, username, password, remindMe) {
     if (username) {
       foundUser = await User.findOne({
-        where: { userName: username },
+        where: 
+          sequelize.where(
+            sequelize.fn('lower', sequelize.col('userName')), 
+            sequelize.fn('lower', username)
+          ),
       });
     } else {
       foundUser = await User.findOne({
         where: { email: email },
       });
     }
+
     if (!foundUser) {
+      console.log("User does not exist!");
       throw new Error("User does not exist!");
     } else {
-      
       const isValid = await bcrypt.compare(password, foundUser.password);
       if (!isValid) {
+        console.log("Password is incorrect!");
         throw new Error("Password is incorrect!");
       }
 
@@ -48,6 +55,7 @@ exports.authService = {
 
       // check if user has validated his email
       if (foundUser.verifiedEmail === false) {
+        console.log("Email is not verified!");
         throw new Error("Email is not verified!");
       }
 

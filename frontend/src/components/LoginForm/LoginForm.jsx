@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Form, Input, Button, Checkbox, notification } from "antd";
 import {
-  MailOutlined,
+  UserOutlined,
   LockOutlined,
   SyncOutlined,
   LinkOutlined,
@@ -12,6 +12,7 @@ import { AlreadyMember } from "../SignUpForm/AlreadyMember";
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
 import { authStore } from "../../stores/authStore/authStore";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
+import { validateEmail } from "../../helpers/validateEmail";
 
 import "./LoginForm.css";
 
@@ -23,12 +24,30 @@ export const LoginForm = () => {
 
   const submitHandler = async (values) => {
     setIsLoading(true);
-    const email = values.email.toLowerCase();
-    isEmail.current = email;
+    const emailOrUsername = values.emailOrUsername;
+    const isValidEmail = validateEmail(emailOrUsername);
+    if (isValidEmail) {
+      isEmail.current = email.toLowerCase();
+    }
     const password = values.password;
     const remember = values.remember;
     try {
-      const error = await authStore.login(email, null, password, remember);
+      let error = null;
+      if (isValidEmail) {
+        error = await authStore.login(
+          emailOrUsername,
+          null,
+          password,
+          remember
+        );
+      } else {
+        error = await authStore.login(
+          null,
+          emailOrUsername,
+          password,
+          remember
+        );
+      }
       if (error) {
         if (error === "Error: Email is not verified!") {
           const errorMessage = (
@@ -103,18 +122,17 @@ export const LoginForm = () => {
         onFinish={submitHandler}
       >
         <Form.Item
-          name="email"
+          name="emailOrUsername"
           rules={[
             {
-              type: "email",
               required: true,
-              message: t("login.pleaseInputEmail"),
+              message: t("login.pleaseInputEmailorUsername"),
             },
           ]}
         >
           <Input
-            prefix={<MailOutlined className="site-form-item-icon" />}
-            placeholder="Email"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder={t("login.emailOrUsername")}
           />
         </Form.Item>
 

@@ -45,6 +45,8 @@
     "logintoAfter": "ein",
     "password": "Passwort",
     "pleaseInputEmail": "Bitte gebe dein Email ein.",
+    "pleaseInputEmailOrUsername": "Bitte gebe dein Email oder Benutzername ein.",
+    "emailOrUsername": "Email oder Benutzername",
     "pleaseInputPassword": "Bitte gebe dein Passwort ein!",
     "rememberMe": "Eingeloggt bleiben",
     "logMeIn": "Einloggen",
