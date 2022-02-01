@@ -5,6 +5,7 @@
   font-size: 18px;
   font-weight: 500;
   padding: 20px 0 0 0;
+  width: 100%;
 }
   
 .profil__lastSeenOnline, .profil__username {
