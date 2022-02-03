@@ -132,6 +132,7 @@
     "avatarUpdateSuccess": "Avatar würde erfolgreich hochgeladet",
     "settingShowArchived": "Archiviert looks und items anzeigen (Archives werden nie in deinem Profile erschienen)",
     "settingDisplayPrivate": "Private looks und items per default anzeigen (kannst du später die noch ausblenden)",
+    "settingShowLastName": "Nachname in deinem Profile anzeigen",
     "avatarUpdateFail": "File upload fehlgeschlagen",
     "men": "Herren",
     "women": "Damen",

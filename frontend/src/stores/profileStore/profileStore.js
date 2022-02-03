@@ -8,6 +8,7 @@ export class ProfileStore {
   userName = null;
   avatar = null;
   firstName = null;
+  lastName = null;
   gender = null;
   friends = null;
   items = null;
@@ -23,6 +24,7 @@ export class ProfileStore {
       userName: observable,
       avatar: observable,
       firstName: observable,
+      lastName: observable,
       gender: observable,
       friends: observable,
       lastActive: observable,
@@ -35,6 +37,7 @@ export class ProfileStore {
       setUserName: action,
       setAvatar: action,
       setFirstName: action,
+      setLastName: action,
       setGender: action,
       setFriends: action,
       setLastActive: action,
@@ -64,6 +67,10 @@ export class ProfileStore {
 
   setFirstName = (firstName) => {
     this.firstName = firstName;
+  };
+
+  setLastName = (lastName) => {
+    this.lastName = lastName;
   };
 
   setGender = (gender) => {
@@ -104,6 +111,7 @@ export class ProfileStore {
         if (profileData) {
           this.setAvatar(profileData.avatar);
           this.setFirstName(profileData.firstName);
+          this.setLastName(profileData.lastName);
           this.setFriends(profileData.friends);
           this.setGender(profileData.gender);
           this.setLooks(profileData.looks);

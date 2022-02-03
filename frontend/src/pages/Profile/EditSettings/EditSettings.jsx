@@ -175,6 +175,20 @@ export const EditSettings = observer(() => {
             />{" "}
             {t("profile.settingHideAccount")}
           </div>
+          <div className="EditSettings__singleSetting">
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={() => {
+                changeProfilSettingsHandler(
+                  "showLastName",
+                  !userStore.profilSettings.showLastName
+                );
+              }}
+              checked={userStore.profilSettings.showLastName}
+            />{" "}
+            {t("profile.settingShowLastName")}
+          </div>
           <br />
           <Divider orientation="left" plain>
             {t("profile.emailSettings")}

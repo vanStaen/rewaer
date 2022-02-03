@@ -131,6 +131,7 @@
     "settingKeepMeInformedAboutRewaer" : "Keep me informed about all changes happening with Rewaer",
     "settingShowArchived": "Display archived looks and items (Archive will never show up in your profile)",
     "settingDisplayPrivate": "Display private looks and items per default (you can still hide them later)",
+    "settingShowLastName": "Display your lastname in your Profile",
     "changeAvatar": "Change your avatar",
     "avatarUpdateSuccess": "Avatar updated successfully",
     "avatarUpdateFail": "File upload failed",
