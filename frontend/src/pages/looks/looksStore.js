@@ -1,15 +1,16 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { fetchLooks } from "./fetchLooks";
+import { userStore } from "../../stores/userStore/userStore";
 
 export class LooksStore {
-
   looks = [];
   isLoading = true;
   isOutOfDate = true;
   error = null;
   numberOfArchivedLook = 0;
   numberOfPrivateLook = 0;
+  showPrivate = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -23,6 +24,8 @@ export class LooksStore {
       setNumberOfArchivedLook: action,
       numberOfPrivateLook: observable,
       setNumberOfPrivateLook: action,
+      showPrivate: observable,
+      setShowPrivate: action,
       error: observable,
       setError: action,
       loadLooks: action,
@@ -53,12 +56,16 @@ export class LooksStore {
     this.error = error;
   };
 
+  setShowPrivate = (showPrivate) => {
+    this.showPrivate = showPrivate;
+  };
+
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
 
-      const archivedLooks = looks.filter(look => look.active === false);
-      const privateLooks = looks.filter(look => look.private);
+      const archivedLooks = looks.filter((look) => look.active === false);
+      const privateLooks = looks.filter((look) => look.private);
 
       this.setLooks(looks);
       this.setNumberOfArchivedLook(archivedLooks.length);

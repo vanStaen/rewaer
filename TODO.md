@@ -67,8 +67,7 @@
 - [ ] get only friends in getUser which are not pending
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
-- [ ] Bug: manking something private, unhide all private items
-- [ ] Title update should not generate an update
+- [ ] Bug: making something private, unhide all private items
 - [ ] webpack config file > add "copy webpack plugin" with content from public (except index.html)
 
 ## Completed ✓

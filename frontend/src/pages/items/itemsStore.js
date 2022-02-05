@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { fetchItems } from "./fetchItems";
+import { userStore } from "../../stores/userStore/userStore";
 
 export class ItemsStore {
 
@@ -10,6 +11,7 @@ export class ItemsStore {
   error = null;
   numberOfArchivedItem = 0;
   numberOfPrivateItem = 0;
+  showPrivate = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -23,6 +25,8 @@ export class ItemsStore {
       setNumberOfArchivedItem: action,
       numberOfPrivateItem: observable,
       setNumberOfPrivateItem: action,
+      showPrivate: observable,
+      setShowPrivate: action,
       error: observable,
       setError: action,
       loadItems: action,
@@ -51,6 +55,10 @@ export class ItemsStore {
 
   setError = (error) => {
     this.error = error;
+  };
+
+  setShowPrivate = (showPrivate) => {
+    this.showPrivate = showPrivate;
   };
 
   loadItems = async () => {
