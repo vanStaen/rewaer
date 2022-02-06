@@ -67,7 +67,7 @@ export const LookCard = (props) => {
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        //looksStore.setIsOutOfDate(true);
+        looksStore.setIsOutOfDate(true);
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
