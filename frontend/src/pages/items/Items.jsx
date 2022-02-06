@@ -20,7 +20,6 @@ export const Items = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [showPrivate, setShowPrivate] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const { t } = useTranslation();
 
@@ -28,7 +27,7 @@ export const Items = observer(() => {
     itemsStore.loadItems();
     userStore.setMenuSelected("items");
     userStore.profilSettings &&
-      setShowPrivate(userStore.profilSettings.displayPrivate);
+      itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
@@ -40,8 +39,8 @@ export const Items = observer(() => {
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
     itemsStore.items,
+    itemsStore.showPrivate,
     userStore.profilSettings,
-    showPrivate,
   ]);
 
   useEffect(() => {
@@ -50,10 +49,6 @@ export const Items = observer(() => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
     };
   }, []);
-
-  const numberOfPrivateItems = itemsStore.items.filter(
-    (item) => item.private
-  ).length;
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -65,7 +60,7 @@ export const Items = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberItems = showPrivate
+    const numberItems = itemsStore.showPrivate
       ? displayArchived
         ? itemsStore.items.length + 1
         : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
@@ -79,10 +74,14 @@ export const Items = observer(() => {
     const missingCards =
       numberPerRow - (numberItems - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current, showPrivate, userStore.profilSettings]);
+  }, [
+    containerElement.current,
+    itemsStore.showPrivate,
+    userStore.profilSettings,
+  ]);
 
   const itemList = itemsStore.items.map((item) => {
-    if (!item.private || showPrivate) {
+    if (!item.private || itemsStore.showPrivate) {
       if (!item.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
@@ -98,13 +97,13 @@ export const Items = observer(() => {
 
   const totalItems = () => {
     if (userStore.profilSettings.displayArchived) {
-      if (showPrivate) {
+      if (itemsStore.showPrivate) {
         return itemsStore.items.length;
       } else {
         return itemsStore.items.length - itemsStore.numberOfPrivateItem;
       }
     } else {
-      if (showPrivate) {
+      if (itemsStore.showPrivate) {
         return itemsStore.items.length - itemsStore.numberOfArchivedItem;
       } else {
         return (
@@ -147,18 +146,18 @@ export const Items = observer(() => {
             <div className="items__toolbar">
               <div className="items__toolbarLeft">
                 {totalItems()}&nbsp;{t("menu.items")}
-                {numberOfPrivateItems > 0 && (
+                {itemsStore.numberOfPrivateItem > 0 && (
                   <>
                     {" "}
                     |
                     <span
                       className="link"
                       onClick={() => {
-                        setShowPrivate(!showPrivate);
+                        itemsStore.setShowPrivate(!itemsStore.showPrivate);
                       }}
                     >
                       &nbsp;
-                      {showPrivate
+                      {itemsStore.showPrivate
                         ? t("items.hidePrivateItems")
                         : t("items.showPrivateItems")}
                     </span>

@@ -142,8 +142,12 @@ export const ItemCard = (props) => {
   };
 
   const privateHandler = () => {
+    if (isPrivate) {
+      itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem - 1);
+    } else {
+      itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem + 1);
+    }
     updatePrivateItem(props.item._id, !isPrivate);
-    itemsStore.setIsOutOfDate(true);
     setIsPrivate(!isPrivate);
   };
 

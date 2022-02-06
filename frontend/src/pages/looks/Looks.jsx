@@ -19,7 +19,6 @@ export const Looks = observer(() => {
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [showPrivate, setShowPrivate] = useState(false);
   const [selectedLook, setSelectedLook] = useState(null);
   const { t } = useTranslation();
 
@@ -27,7 +26,7 @@ export const Looks = observer(() => {
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
     userStore.profilSettings &&
-      setShowPrivate(userStore.profilSettings.displayPrivate);
+      looksStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
@@ -38,9 +37,9 @@ export const Looks = observer(() => {
     calculateMissingCardsForFullRow,
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
+    looksStore.showPrivate,
     looksStore.looks,
     userStore.profilSettings,
-    showPrivate,
   ]);
 
   useEffect(() => {
@@ -49,10 +48,6 @@ export const Looks = observer(() => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
     };
   }, []);
-
-  const numberOfPrivateLooks = looksStore.looks.filter(
-    (look) => look.private
-  ).length;
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -64,7 +59,7 @@ export const Looks = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks = showPrivate
+    const numberLooks = looksStore.showPrivate
       ? displayArchived
         ? looksStore.looks.length + 1
         : looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
@@ -78,10 +73,14 @@ export const Looks = observer(() => {
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
-  }, [containerElement.current, showPrivate, userStore.profilSettings]);
+  }, [
+    containerElement.current,
+    looksStore.showPrivate,
+    userStore.profilSettings,
+  ]);
 
   const lookList = looksStore.looks.map((look) => {
-    if (!look.private || showPrivate) {
+    if (!look.private || looksStore.showPrivate) {
       if (!look.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
@@ -97,13 +96,13 @@ export const Looks = observer(() => {
 
   const totalLooks = () => {
     if (userStore.profilSettings.displayArchived) {
-      if (showPrivate) {
+      if (looksStore.showPrivate) {
         return looksStore.looks.length;
       } else {
         return looksStore.looks.length - looksStore.numberOfPrivateLook;
       }
     } else {
-      if (showPrivate) {
+      if (looksStore.showPrivate) {
         return looksStore.looks.length - looksStore.numberOfArchivedLook;
       } else {
         return (
@@ -141,17 +140,17 @@ export const Looks = observer(() => {
             <div className="looks__toolbarLeft">
               {totalLooks()}&nbsp;
               {t("menu.looks")}
-              {numberOfPrivateLooks > 0 && (
+              {looksStore.numberOfPrivateLook > 0 && (
                 <>
                   {" "}
                   | &nbsp;
                   <span
                     className="link"
                     onClick={() => {
-                      setShowPrivate(!showPrivate);
+                      looksStore.setShowPrivate(!looksStore.showPrivate);
                     }}
                   >
-                    {showPrivate
+                    {looksStore.showPrivate
                       ? t("looks.hidePrivateLooks")
                       : t("looks.showPrivateLooks")}
                   </span>

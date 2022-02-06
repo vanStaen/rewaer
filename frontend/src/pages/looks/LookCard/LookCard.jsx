@@ -67,7 +67,7 @@ export const LookCard = (props) => {
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        looksStore.setIsOutOfDate(true);
+        //looksStore.setIsOutOfDate(true);
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
@@ -148,9 +148,13 @@ export const LookCard = (props) => {
   };
 
   const privateHandler = () => {
+    if (isPrivate) {
+      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook - 1);
+    } else {
+      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook + 1);
+    }
     updatePrivateLook(props.look._id, !isPrivate);
     setIsPrivate(!isPrivate);
-    looksStore.setIsOutOfDate(true);
   };
 
   const createdDate = new Date(props.look.createdAt);

@@ -45,11 +45,11 @@ export class LooksStore {
   };
 
   setNumberOfArchivedLook = (numberOfArchivedLook) => {
-    this.numberOfArchivedLook = numberOfArchivedLook;
+    this.numberOfArchivedLook = parseInt(numberOfArchivedLook);
   };
 
   setNumberOfPrivateLook = (numberOfPrivateLook) => {
-    this.numberOfPrivateLook = numberOfPrivateLook;
+    this.numberOfPrivateLook = parseInt(numberOfPrivateLook);
   };
 
   setError = (error) => {

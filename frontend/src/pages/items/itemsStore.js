@@ -46,11 +46,11 @@ export class ItemsStore {
   };
 
   setNumberOfArchivedItem = (numberOfArchivedItem) => {
-    this.numberOfArchivedItem = numberOfArchivedItem;
+    this.numberOfArchivedItem = parseInt(numberOfArchivedItem);
   };
 
   setNumberOfPrivateItem = (numberOfPrivateItem) => {
-    this.numberOfPrivateItem = numberOfPrivateItem;
+    this.numberOfPrivateItem = parseInt(numberOfPrivateItem);
   };
 
   setError = (error) => {
