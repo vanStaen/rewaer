@@ -16,17 +16,18 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({ 
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify('https://rewaer.com'),
     }),
-    /*new CopyPlugin({
+    /* new CopyPlugin({
       patterns: [
-        path.resolve(__dirname, "public", "icon.png"),
+        { from: "public/icon.png", 
+        to: "build" },        
       ],
-    }),*/
+    }), */
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
