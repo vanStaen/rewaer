@@ -20,12 +20,14 @@
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
-- [ ] On no-file select, do not create item/look
+- [ ] Items and Look should always come sorted the same from BE
+- [ ] On no-file select, do not create item/look (QA)
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
   - [ ] Crop an image
 - [ ] when scrolled down, show floating add items button
+- [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
@@ -35,13 +37,10 @@
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
 - [ ] Drag and Drop to sort Looks and Items
-- [ ] Detail View Item
-- [ ] Bug: SubMenu always stays shown, won't hide
 - [ ] When archiving anything, had a undo feature in the notification
-- [ ] Settings: Show last name in profil?
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] On detail view, scroll up after saving original Scroll position
-- [ ] On leave detail vew, scroll down to originql Scroll position
+- [ ] On leave detail vew, scroll down to original Scroll position
 - [ ] Leave item/lookdetailview with browser back function
 - [ ] 404 for the win
 - [ ] Darkmode
@@ -60,8 +59,6 @@
   - [ ] Use backspace to return to main view
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
-- [ ] Helper function to convert code to its full string value
-- [ ] Use the translated version of various datas
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
 - [ ] footer to make it look pro
 - [ ] get only friends in getUser which are not pending
@@ -177,3 +174,7 @@
     - [x] Use Thumb down for dislike
 - [x] create friends and follower Model/table and linked those to the USer model (graphQL/sequelize endpoint)
 - [x] Bug: making something private, unhide all private items
+- [x] Helper function to convert code to its full string value
+- [x] Detail View Item
+- [x] Bug: SubMenu always stays shown, won't hide
+- [x] Settings: Show last name in profil?
