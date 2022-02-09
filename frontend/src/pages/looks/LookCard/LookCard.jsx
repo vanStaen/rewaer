@@ -194,7 +194,7 @@ export const LookCard = (props) => {
             id={`card_look_logoover_${props.look._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.setSelectedLook(props.look);
+              props.showDetailView(props.look);
             }}
           >
             <TagOutlined />
@@ -206,7 +206,7 @@ export const LookCard = (props) => {
             id={`card_look_logoover_${props.look._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.setSelectedLook(props.look);
+              props.showDetailView(props.look);
             }}
           >
             <StopOutlined />

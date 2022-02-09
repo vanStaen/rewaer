@@ -156,7 +156,7 @@ export const LookDetail = observer((props) => {
           <ArrowLeftOutlined
             className="lookdetail__arrowIcon"
             onClick={() => {
-              props.setSelectedLook(null);
+              props.hideDetailView();
             }}
           />
         </Tooltip>

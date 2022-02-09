@@ -20,6 +20,8 @@ export const Looks = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedLook, setSelectedLook] = useState(null);
+  const [originalScrollPosition, setOriginalScrollPosition] = useState(null);
+  const [lastKnownScrollPosition, setLastKnownScrollPosition] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -44,10 +46,38 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     window.addEventListener("resize", calculateMissingCardsForFullRow);
+    window.removeEventListener("scroll", scrollEventHandler);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
+      window.removeEventListener("scroll", scrollEventHandler);
     };
   }, []);
+
+  const showDetailView = (id) => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+    setSelectedLook(id);
+    setOriginalScrollPosition(lastKnownScrollPosition);
+    console.log("originalScrollPosition", originalScrollPosition);
+  };
+
+  const hideDetailView = () => {
+    window.scroll({
+      top: originalScrollPosition,
+      left: 0,
+      behavior: "smooth",
+    });
+    setSelectedLook(null);
+  };
+
+  const scrollEventHandler = () => {
+    setLastKnownScrollPosition(window.scrollY);
+    console.log("scrollPosition", window.scrollY);
+    console.log("lastKnownScrollPosition", lastKnownScrollPosition);
+  };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -86,7 +116,7 @@ export const Looks = observer(() => {
       } else {
         return (
           <Col key={look._id}>
-            <LookCard look={look} setSelectedLook={setSelectedLook} />
+            <LookCard look={look} showDetailView={showDetailView} />
           </Col>
         );
       }
@@ -131,7 +161,7 @@ export const Looks = observer(() => {
         <div className="looks__container">
           <LookDetail
             selectedLook={selectedLook}
-            setSelectedLook={setSelectedLook}
+            hideDetailView={hideDetailView}
           />
         </div>
       ) : (

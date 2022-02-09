@@ -35,7 +35,7 @@ export const ItemDetail = observer((props) => {
           <ArrowLeftOutlined
             className="itemdetail__arrowIcon"
             onClick={() => {
-              props.setSelectedItemId(null);
+              props.hideDetailView();
             }}
           />
         </Tooltip>

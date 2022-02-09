@@ -189,7 +189,7 @@ export const ItemCard = (props) => {
             id={`card_item_logoover_${props.item._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.setSelectedItemId(props.item._id);
+              props.showDetailView(props.item._id);
             }}
           >
             <TagOutlined />
@@ -201,7 +201,7 @@ export const ItemCard = (props) => {
             id={`card_item_logoover_${props.item._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.setSelectedItemId(props.item._id);
+              props.showDetailView(props.item._id);
             }}
           >
             <StopOutlined />

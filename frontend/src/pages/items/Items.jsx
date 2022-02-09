@@ -21,6 +21,8 @@ export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [originalScrollPosition, setOriginalScrollPosition] = useState(null);
+  const [lastKnownScrollPosition, setLastKnownScrollPosition] = useState(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -45,10 +47,38 @@ export const Items = observer(() => {
 
   useEffect(() => {
     window.addEventListener("resize", calculateMissingCardsForFullRow);
+    window.addEventListener("scroll", scrollEventHandler);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
+      window.removeEventListener("scroll", scrollEventHandler);
     };
   }, []);
+
+  const showDetailView = (id) => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+    setSelectedItemId(id);
+    setOriginalScrollPosition(lastKnownScrollPosition);
+    console.log("originalScrollPosition", originalScrollPosition);
+  };
+
+  const hideDetailView = () => {
+    window.scroll({
+      top: originalScrollPosition,
+      left: 0,
+      behavior: "smooth",
+    });
+    setSelectedItemId(null);
+  };
+
+  const scrollEventHandler = () => {
+    setLastKnownScrollPosition(window.scrollY);
+    console.log("scrollPosition", window.scrollY);
+    console.log("lastKnownScrollPosition", lastKnownScrollPosition);
+  };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -87,7 +117,7 @@ export const Items = observer(() => {
       } else {
         return (
           <Col key={item._id}>
-            <ItemCard item={item} setSelectedItemId={setSelectedItemId} />
+            <ItemCard item={item} showDetailView={showDetailView} />
           </Col>
         );
       }
@@ -132,7 +162,7 @@ export const Items = observer(() => {
         <div className="looks__container">
           <ItemDetail
             selectedItemId={selectedItemId}
-            setSelectedItemId={setSelectedItemId}
+            hideDetailView={hideDetailView}
           />
         </div>
       ) : (
