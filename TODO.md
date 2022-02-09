@@ -39,8 +39,6 @@
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] When archiving anything, had a undo feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
-- [ ] On detail view, scroll up after saving original Scroll position
-- [ ] On leave detail vew, scroll down to original Scroll position
 - [ ] Leave item/lookdetailview with browser back function
 - [ ] 404 for the win
 - [ ] Darkmode
@@ -55,6 +53,8 @@
   - [x] Implement disabled
   - [ ] Implement space holder as props
   - [x] Implement info/tooltip as props
+- [ ] Add friends feature
+- [ ] Follow someone feature
 - [ ] Tips popping up 
   - [ ] Use backspace to return to main view
   - [ ] use Arrow to naviguate through items/Looks
@@ -65,6 +65,10 @@
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] webpack config file > add "copy webpack plugin" with content from public (except index.html)
+
+Mentoring: 
+- [ ] On detail view, scroll up after saving original Scroll position
+- [ ] On leave detail vew, scroll down to original Scroll position
 
 ## Completed ✓
 
