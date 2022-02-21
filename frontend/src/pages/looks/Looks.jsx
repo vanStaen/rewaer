@@ -20,8 +20,8 @@ export const Looks = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedLook, setSelectedLook] = useState(null);
-  const [originalScrollPosition, setOriginalScrollPosition] = useState(null);
-  const [lastKnownScrollPosition, setLastKnownScrollPosition] = useState(null);
+  const originalScrollPosition = useRef(null);
+  const lastKnownScrollPosition = useRef(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -45,6 +45,22 @@ export const Looks = observer(() => {
   ]);
 
   useEffect(() => {
+    if (!selectedLook) {
+      window.scroll({
+        top: originalScrollPosition.current,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [selectedLook]);
+
+  useEffect(() => {
     window.addEventListener("resize", calculateMissingCardsForFullRow);
     window.removeEventListener("scroll", scrollEventHandler);
     return () => {
@@ -54,29 +70,18 @@ export const Looks = observer(() => {
   }, []);
 
   const showDetailView = (id) => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "auto",
-    });
     setSelectedLook(id);
-    setOriginalScrollPosition(lastKnownScrollPosition);
-    console.log("originalScrollPosition", originalScrollPosition);
+    originalScrollPosition.current = lastKnownScrollPosition.current;
   };
 
   const hideDetailView = () => {
-    window.scroll({
-      top: originalScrollPosition,
-      left: 0,
-      behavior: "smooth",
-    });
     setSelectedLook(null);
   };
 
   const scrollEventHandler = () => {
-    setLastKnownScrollPosition(window.scrollY);
-    console.log("scrollPosition", window.scrollY);
-    console.log("lastKnownScrollPosition", lastKnownScrollPosition);
+    lastKnownScrollPosition.current = window.scrollY;
+    console.log("originalScrollPosition", originalScrollPosition.current);
+    console.log("lastKnownScrollPosition", lastKnownScrollPosition.current);
   };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
