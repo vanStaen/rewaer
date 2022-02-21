@@ -65,12 +65,6 @@
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 
-
-Mentoring: 
-- [ ] On detail view, scroll up after saving original Scroll position
-- [ ] On leave detail view, scroll down to original Scroll position
-- [ ] webpack config file > add "copy webpack plugin" with content from public (except index.html)
-
 ## Completed ✓
 
 - [x] Set up route for User + database handling
@@ -183,3 +177,6 @@ Mentoring:
 - [x] Detail View Item
 - [x] Bug: SubMenu always stays shown, won't hide
 - [x] Settings: Show last name in profil?
+- [x] On detail view, scroll up after saving original Scroll position
+- [x] On leave detail view, scroll down to original Scroll position
+- [x] webpack config file > add "copy webpack plugin" with content from public (except index.html)
