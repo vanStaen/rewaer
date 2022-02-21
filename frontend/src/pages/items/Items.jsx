@@ -21,8 +21,8 @@ export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
-  const [originalScrollPosition, setOriginalScrollPosition] = useState(null);
-  const [lastKnownScrollPosition, setLastKnownScrollPosition] = useState(null);
+  const originalScrollPosition = useRef(null);
+  const lastKnownScrollPosition = useRef(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -31,6 +31,22 @@ export const Items = observer(() => {
     userStore.profilSettings &&
       itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
+
+  useEffect(() => {
+    if (!selectedItemId) {
+      window.scroll({
+        top: originalScrollPosition.current,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [selectedItemId]);
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
@@ -55,29 +71,16 @@ export const Items = observer(() => {
   }, []);
 
   const showDetailView = (id) => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "auto",
-    });
     setSelectedItemId(id);
-    setOriginalScrollPosition(lastKnownScrollPosition);
-    console.log("originalScrollPosition", originalScrollPosition);
+    originalScrollPosition.current = lastKnownScrollPosition.current;
   };
 
   const hideDetailView = () => {
-    window.scroll({
-      top: originalScrollPosition,
-      left: 0,
-      behavior: "smooth",
-    });
     setSelectedItemId(null);
   };
 
   const scrollEventHandler = () => {
-    setLastKnownScrollPosition(window.scrollY);
-    console.log("scrollPosition", window.scrollY);
-    console.log("lastKnownScrollPosition", lastKnownScrollPosition);
+    lastKnownScrollPosition.current = window.scrollY;
   };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
