@@ -64,6 +64,7 @@
 - [ ] get only friends in getUser which are not pending
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
+  
 - [ ] Mentoring: scrollEventHandler does not work in Looks.jsx
 
 ## Completed ✓

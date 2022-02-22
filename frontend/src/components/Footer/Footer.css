@@ -6,6 +6,7 @@
     align-items: center;
     background-color: #fcfcfc;
     border-top: solid 1px #f0f0f0;
+    z-index: 2;
 }
 
 .footerSubContainer {
