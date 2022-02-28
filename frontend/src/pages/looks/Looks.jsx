@@ -62,7 +62,7 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     window.addEventListener("resize", calculateMissingCardsForFullRow);
-    window.removeEventListener("scroll", scrollEventHandler);
+    window.addEventListener("scroll", scrollEventHandler);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
       window.removeEventListener("scroll", scrollEventHandler);
@@ -80,8 +80,6 @@ export const Looks = observer(() => {
 
   const scrollEventHandler = () => {
     lastKnownScrollPosition.current = window.scrollY;
-    console.log("originalScrollPosition", originalScrollPosition.current);
-    console.log("lastKnownScrollPosition", lastKnownScrollPosition.current);
   };
 
   const calculateMissingCardsForFullRow = useCallback(() => {

@@ -22,12 +22,12 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify("http://localhost:5000"),
     }),
-    /* new CopyPlugin({
+    new CopyPlugin({
       patterns: [
         { from: "public/icon.png", 
         to: "build" },        
       ],
-    }), */
+    }),
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],

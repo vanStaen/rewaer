@@ -22,12 +22,12 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify('https://rewaer.com'),
     }),
-    /* new CopyPlugin({
+    new CopyPlugin({
       patterns: [
         { from: "public/icon.png", 
         to: "build" },        
       ],
-    }), */
+    }),
   ],
   resolve: {
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
