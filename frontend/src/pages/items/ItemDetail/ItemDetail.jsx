@@ -179,8 +179,8 @@ export const ItemDetail = observer((props) => {
           />
           List of user friends:
           {userStore.friends.length}
-          {userStore.friends.forEach((friend) => {
-            <>name: {friend.userName}</>;
+          {userStore.friends.map((friend) => {
+            return <>name: {friend.userName}</>;
           })}
         </div>
       )}
