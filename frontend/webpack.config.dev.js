@@ -24,8 +24,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: "public/icon.png", 
-        to: "build" },        
+        { from: "public/icon.png" },        
       ],
     }),
   ],
