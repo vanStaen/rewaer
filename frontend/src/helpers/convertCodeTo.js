@@ -9,4 +9,3 @@ export const convertCodeToObjectString = (searchForCode, searchInObject) => {
       return { en: "not found", de: "not found", fr: "not found"}
     }
  };
- 
