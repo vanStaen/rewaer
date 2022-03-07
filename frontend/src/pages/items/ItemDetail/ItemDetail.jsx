@@ -28,6 +28,8 @@ export const ItemDetail = observer((props) => {
     (item) => item._id === props.selectedItemId
   );
 
+  console.log(userStore.friends);
+
   return (
     <div className="itemdetail__container">
       <div className="itemdetail__backArrow">
@@ -177,6 +179,9 @@ export const ItemDetail = observer((props) => {
           />
           List of user friends:
           {userStore.friends.length}
+          {userStore.friends.forEach((friend) => {
+            <>name: {friend.userName}</>;
+          })}
         </div>
       )}
     </div>
