@@ -62,8 +62,8 @@ router.post(
           // If file, upload to S3
           try {
             const [thumbBufferLocal, mediumBufferLocal] = await Promise.all([
-              resizeImage(imageUrl, nameImageThumb, 240, 60),
-              resizeImage(imageUrl, nameImageMedium, 750, 60),
+              resizeImage(imageUrl, 240),
+              resizeImage(imageUrl, 750),
             ]);
             console.log("thumbBufferLocal", thumbBufferLocal);
             console.log("mediumBufferLocal", mediumBufferLocal);
