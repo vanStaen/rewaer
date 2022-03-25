@@ -302,6 +302,8 @@ export const LookCard = (props) => {
           className={
             isPrivate
               ? "lookcard__meta lookcard__metaPrivate"
+              : isFavorited
+              ? "lookcard__meta lookcard__metaFavorite"
               : "lookcard__meta"
           }
         >

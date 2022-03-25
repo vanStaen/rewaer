@@ -297,6 +297,8 @@ export const ItemCard = (props) => {
           className={
             isPrivate
               ? "itemcard__meta itemcard__metaPrivate"
+              : isFavorited
+              ? "itemcard__meta itemcard__metaFavorite"
               : "itemcard__meta"
           }
         >

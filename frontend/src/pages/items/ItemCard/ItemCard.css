@@ -86,6 +86,10 @@
   background-color: #f0f0f0; 
 }
 
+.litemcard__metaFavorite {
+  background-color: rgb(254, 244, 244); 
+}
+
 .itemcard__meta .itemcard__date {
   font-size: 12px;
   color: #999;
