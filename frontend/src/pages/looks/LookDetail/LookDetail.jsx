@@ -283,8 +283,11 @@ export const LookDetail = observer((props) => {
         </div>
       ) : (
         <div className="lookDetail__itemContainer">
-          {selectedItemList}
-          {isActive && itemList}
+          {selectedItems.length > 0 && <div>{selectedItemList}</div>}
+          {selectedItems.length > 0 && (
+            <div className="lookDetail__itemContainerDivisor"></div>
+          )}
+          <div>{isActive && itemList}</div>
         </div>
       )}
       <div className="lookDetail__actionContainer">

@@ -65,7 +65,6 @@
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] On Logout, empty Store
-- [ ] Looks details: separate slected and other, and get rid on filter on images
   
 
 ## Completed ✓
