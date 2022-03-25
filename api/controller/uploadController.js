@@ -4,9 +4,8 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 const router = express.Router();
 
-const resizeImage = require("../../lib/resizeImage");
-const uploadFileFromUrlToS3 = require("../../lib/uploadFileFromUrlToS3");
-const deleteLocalFile = require("../../lib/deleteLocalFile");
+const resizeImage = require("../../lib/resizeImageSharp");
+const uploadFileFromBufferToS3 = require("../../lib/uploadFileFromBufferToS3");
 
 // Limits size of 10MB
 const sizeLimits = { fileSize: 1024 * 1024 * 10 };
@@ -62,18 +61,15 @@ router.post(
           const nameImageMedium = "m_" + req.file.key;
           // If file, upload to S3
           try {
-            const [thumbUrlLocal, mediumUrlLocal] = await Promise.all([
+            const [thumbBufferLocal, mediumBufferLocal] = await Promise.all([
               resizeImage(imageUrl, nameImageThumb, 240, 60),
               resizeImage(imageUrl, nameImageMedium, 750, 60),
             ]);
+            console.log("thumbBufferLocal", thumbBufferLocal);
+            console.log("mediumBufferLocal", mediumBufferLocal);
             const [UrlThumbS3, UrlMediumbS3] = await Promise.all([
-              uploadFileFromUrlToS3(thumbUrlLocal, nameImageThumb),
-              uploadFileFromUrlToS3(mediumUrlLocal, nameImageMedium),
-            ]);
-            // Delete locally stored files
-            await Promise.all([
-              deleteLocalFile(nameImageMedium),
-              deleteLocalFile(nameImageThumb),
+              uploadFileFromBufferToS3(thumbBufferLocal, nameImageThumb),
+              uploadFileFromBufferToS3(mediumBufferLocal, nameImageMedium),
             ]);
             // Return file name and file url to client
             return res.status(200).json({
@@ -86,7 +82,7 @@ router.post(
             });
           }
           catch (err) {
-            console.log(err);
+            console.log('upload controller:', err);
             return res.status(400).json({ error: err });
           };         
         }
