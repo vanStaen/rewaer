@@ -65,6 +65,7 @@
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] On Logout, empty Store
+- [ ] Looks details: separate slected and other, and get rid on filter on images
   
 
 ## Completed ✓
@@ -181,4 +182,6 @@
 - [x] Settings: Show last name in profil?
 - [x] On detail view, scroll up after saving original Scroll position
 - [x] On leave detail view, scroll down to original Scroll position
-- [x] webpack config file > add "copy webpack plugin" with content from public (except index.html)
+- [x] Webpack config file > add "copy webpack plugin" with content from public (except index.html)
+- [x] Use Sharp Library instead of Jimp
+- [x] Do not save temp img data on disc to fix memory leak  
