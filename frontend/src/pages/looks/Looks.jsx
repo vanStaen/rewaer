@@ -63,9 +63,11 @@ export const Looks = observer(() => {
   useEffect(() => {
     window.addEventListener("resize", calculateMissingCardsForFullRow);
     window.addEventListener("scroll", scrollEventHandler);
+    window.addEventListener("popstate", browserBackHandler);
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
       window.removeEventListener("scroll", scrollEventHandler);
+      window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
 
@@ -80,6 +82,13 @@ export const Looks = observer(() => {
 
   const scrollEventHandler = () => {
     lastKnownScrollPosition.current = window.scrollY;
+  };
+
+  const browserBackHandler = (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    history.go(1);
+    setSelectedLook(null);
   };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
