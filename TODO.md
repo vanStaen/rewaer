@@ -56,7 +56,7 @@
 - [ ] Add friends feature
 - [ ] Follow someone feature
 - [ ] Tips popping up 
-  - [ ] Use backspace to return to main view
+  - [ ] ~Use backspace to return to main view~
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
