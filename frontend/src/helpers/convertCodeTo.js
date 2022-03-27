@@ -4,8 +4,8 @@ export const convertCodeToObjectString = (searchForCode, searchInObject) => {
       return result
     }
     else {
-      console.log("searchForCode", searchForCode);
-      console.log("searchInObject", searchInObject);
+      //console.log("searchForCode", searchForCode);
+      //console.log("searchInObject", searchInObject);
       return { en: "not found", de: "not found", fr: "not found"}
     }
  };

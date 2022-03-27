@@ -28,7 +28,7 @@ export const ItemDetail = observer((props) => {
     (item) => item._id === props.selectedItemId
   );
 
-  console.log(userStore.friends);
+  //console.log(userStore.friends);
 
   return (
     <div className="itemdetail__container">
@@ -178,9 +178,8 @@ export const ItemDetail = observer((props) => {
             tooltip={t("items.notesTooltip")}
           />
           List of user friends:
-          {userStore.friends.length}
           {userStore.friends.map((friend) => {
-            return <>name: {friend.userName}</>;
+            return <>{friend.userName}</>;
           })}
         </div>
       )}

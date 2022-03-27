@@ -74,36 +74,44 @@ export const Items = observer(() => {
     };
   }, []);
 
-  const showDetailView = useCallback((id) => {
+  const showDetailView = (id) => {
     setSelectedItemId(id);
     originalScrollPosition.current = lastKnownScrollPosition.current;
-  });
+  };
 
-  const hideDetailView = useCallback(() => {
+  const hideDetailView = () => {
     setSelectedItemId(null);
-  });
+  };
 
-  const scrollEventHandler = useCallback(() => {
+  const scrollEventHandler = () => {
     lastKnownScrollPosition.current = window.scrollY;
-  });
+  };
 
-  const browserBackHandler = useCallback((e) => {
+  const browserBackHandler = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
     history.go(1);
-    setSelectedLook(null);
-  });
+    setSelectedItemId(null);
+  };
 
-  const keydownEventHandler = useCallback((event) => {
-    event.preventDefault();
-    const keyPressed = event.key.toLowerCase();
-    console.log("key was pressed: ", keyPressed)
-    if (keyPressed === "arrowleft") {
-      console.log("arrowleft")
-    } else if (keyPressed === "arrowright") {
-      console.log("arrowright")
-    }
-  });
+  const keydownEventHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+      const keyPressed = event.key.toLowerCase();
+      if (keyPressed === "arrowleft") {
+        console.log("arrowleft", selectedItemId);
+        if (itemsStore.items.length <= selectedItemId + 1) {
+          setSelectedItemId(selectedItemId + 1);
+        }
+      } else if (keyPressed === "arrowright") {
+        console.log("arrowright", selectedItemId);
+        if (selectedItemId - 1 >= 0) {
+          setSelectedItemId(selectedItemId - 1);
+        }
+      }
+    },
+    [selectedItemId]
+  );
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -120,8 +128,8 @@ export const Items = observer(() => {
         ? itemsStore.items.length + 1
         : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
       : displayArchived
-        ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
-        : itemsStore.items.length +
+      ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
+      : itemsStore.items.length +
         1 -
         itemsStore.numberOfPrivateItem -
         itemsStore.numberOfArchivedItem;
@@ -191,57 +199,57 @@ export const Items = observer(() => {
           />
         </div>
       ) : (
-              <>
-                <Banner
-                  id="missingTag"
-                  desc={t("items.missingTagsAlert")}
-                  show={true}
-                />
-                <div ref={containerElement} className="items__container">
-                  <div className="items__toolbar">
-                    <div className="items__toolbarLeft">
-                      {totalItems()}&nbsp;{t("menu.items")}
-                      {itemsStore.numberOfPrivateItem > 0 && (
-                        <>
-                          {" "}
+        <>
+          <Banner
+            id="missingTag"
+            desc={t("items.missingTagsAlert")}
+            show={true}
+          />
+          <div ref={containerElement} className="items__container">
+            <div className="items__toolbar">
+              <div className="items__toolbarLeft">
+                {totalItems()}&nbsp;{t("menu.items")}
+                {itemsStore.numberOfPrivateItem > 0 && (
+                  <>
+                    {" "}
                     |
                     <span
-                            className="link"
-                            onClick={() => {
-                              itemsStore.setShowPrivate(!itemsStore.showPrivate);
-                            }}
-                          >
-                            &nbsp;
+                      className="link"
+                      onClick={() => {
+                        itemsStore.setShowPrivate(!itemsStore.showPrivate);
+                      }}
+                    >
+                      &nbsp;
                       {itemsStore.showPrivate
-                              ? t("items.hidePrivateItems")
-                              : t("items.showPrivateItems")}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                    <div className="items__toolbarRight">
-                      <ToolBar
-                        quickEdit={quickEdit}
-                        setQuickEdit={setQuickEdit}
-                        showFilter={showFilter}
-                        setShowFilter={setShowFilter}
-                      />
-                    </div>
-                  </div>
-                  <Row justify={"space-around"}>
-                    <Col>
-                      <ItemForm />
-                    </Col>
-                    {itemList}
-                    <GhostCard
-                      numberOfCards={missingCardForFullRow}
-                      width="240px"
-                      height="385px"
-                    />
-                  </Row>
-                </div>
-              </>
-            )}
+                        ? t("items.hidePrivateItems")
+                        : t("items.showPrivateItems")}
+                    </span>
+                  </>
+                )}
+              </div>
+              <div className="items__toolbarRight">
+                <ToolBar
+                  quickEdit={quickEdit}
+                  setQuickEdit={setQuickEdit}
+                  showFilter={showFilter}
+                  setShowFilter={setShowFilter}
+                />
+              </div>
+            </div>
+            <Row justify={"space-around"}>
+              <Col>
+                <ItemForm />
+              </Col>
+              {itemList}
+              <GhostCard
+                numberOfCards={missingCardForFullRow}
+                width="240px"
+                height="385px"
+              />
+            </Row>
+          </div>
+        </>
+      )}
     </div>
   );
 });

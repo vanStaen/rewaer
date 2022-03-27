@@ -39,7 +39,8 @@
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] When archiving anything, had a undo feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
-- [?] Leave item/look -detailview with browser back function (mentoring)
+- [?] Leave item/look -detailview with browser back function 
+- [?] Naviagtion with Arrows in item/look -detailview
 - [ ] 404 for the win
 - [ ] Darkmode
 - [ ] Items Detail Page: 
