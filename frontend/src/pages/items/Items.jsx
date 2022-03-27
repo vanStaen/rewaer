@@ -98,7 +98,10 @@ export const Items = observer(() => {
     (event) => {
       event.preventDefault();
       const keyPressed = event.key.toLowerCase();
-      if (keyPressed === "arrowleft") {
+      console.log(keyPressed);
+      if (keyPressed === "escape") {
+        setSelectedItemId(null);
+      } else if (keyPressed === "arrowleft") {
         console.log("arrowleft", selectedItemId);
         if (itemsStore.items.length <= selectedItemId + 1) {
           setSelectedItemId(selectedItemId + 1);
