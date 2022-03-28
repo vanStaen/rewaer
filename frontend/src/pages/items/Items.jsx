@@ -96,12 +96,21 @@ export const Items = observer(() => {
 
   const keydownEventHandler = useCallback(
     (event) => {
+      /* 
+        // Use index of, to find position in array, and increment
+        //  decrement to the next items in array
+        // take in consideration private hidden or not.  
+        // itemsStore.showPrivate) 
+        const selectedItem = itemsStore.items.find(
+          (item) => item._id === props.selectedItemId
+        );
+      */
       event.preventDefault();
       const keyPressed = event.key.toLowerCase();
-      console.log(keyPressed);
       if (keyPressed === "escape") {
         setSelectedItemId(null);
       } else if (keyPressed === "arrowleft") {
+        debugger;
         console.log("arrowleft", selectedItemId);
         if (itemsStore.items.length <= selectedItemId + 1) {
           setSelectedItemId(selectedItemId + 1);
