@@ -175,14 +175,6 @@ export const ItemCard = (props) => {
             }}
           ></div>
         )}
-        {isFavorited && props.item.active && (
-          <div
-            className="itemcard__favorite"
-            id={`card_item_favorite_${props.item._id}`}
-          >
-            <HeartFilled className="iconRed" />
-          </div>
-        )}
         {props.item.active ? (
           <div
             className="itemcard__logoover"

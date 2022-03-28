@@ -37,14 +37,6 @@
   display: none;
 }
 
-.itemcard__favorite { 
-  position: absolute;
-  font-size: 19px;
-  top: 4px;
-  right: 7px;
-  color: rgba(191, 64, 64, .75);
-}
-
 .itemcard__archived{
   width: 240px;
   height: 320px;
@@ -87,7 +79,7 @@
 }
 
 .itemcard__metaFavorite {
-  background-color: rgb(254, 244, 244); 
+  background-color: rgba(254, 244, 244, .75); 
 }
 
 .itemcard__metaFavorite::before {
@@ -96,8 +88,9 @@
   left: 5px;
   content: "♥";
   font-size: 140px;
-  color: rgb(254, 230, 230); 
+  color: rgb(254, 200, 200); 
   clip-path: inset(0px 0px 80px 0px);
+  z-index: -1;
 }
 
 .itemcard__meta .itemcard__date {

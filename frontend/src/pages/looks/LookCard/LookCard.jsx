@@ -180,14 +180,6 @@ export const LookCard = (props) => {
             }}
           ></div>
         )}
-        {isFavorited && props.look.active && (
-          <div
-            className="lookcard__favorite"
-            id={`card_look_favorite_${props.look._id}`}
-          >
-            <HeartFilled className="iconRed" />
-          </div>
-        )}
         {props.look.active ? (
           <div
             className="lookcard__logoover"
