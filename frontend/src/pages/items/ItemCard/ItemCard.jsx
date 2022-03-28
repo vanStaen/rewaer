@@ -288,7 +288,9 @@ export const ItemCard = (props) => {
         <div
           className={
             isPrivate
-              ? "itemcard__meta itemcard__metaPrivate"
+              ? isFavorited
+                ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
+                : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
               ? "itemcard__meta itemcard__metaFavorite"
               : "itemcard__meta"

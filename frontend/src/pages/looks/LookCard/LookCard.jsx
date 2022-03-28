@@ -293,7 +293,9 @@ export const LookCard = (props) => {
         <div
           className={
             isPrivate
-              ? "lookcard__meta lookcard__metaPrivate"
+              ? isFavorited
+                ? "lookcard__meta lookcard__metaPrivate lookcard__metaPrivateFavorite"
+                : "lookcard__meta lookcard__metaPrivate"
               : isFavorited
               ? "lookcard__meta lookcard__metaFavorite"
               : "lookcard__meta"
