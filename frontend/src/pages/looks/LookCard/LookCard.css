@@ -84,12 +84,12 @@
 
 .lookcard__metaFavorite::before {
   position: absolute;
-  top: -75px;
+  top: -70px;
   left: 5px;
   content: "♥";
-  font-size: 140px;
+  font-size: 130px;
   color: rgb(254, 200, 200); 
-  clip-path: inset(0px 0px 80px 0px);
+  clip-path: inset(0px 0px 70px 0px);
   z-index: -1;
 }
 
@@ -110,12 +110,12 @@
 
 .lookcard__metaPrivateFavorite::before {
   position: absolute;
-  top: -75px;
+  top: -70px;
   left: 5px;
   content: "♥";
-  font-size: 140px;
+  font-size: 130px;
   color: rgba(100, 100, 100, .33); 
-  clip-path: inset(0px 0px 80px 0px);
+  clip-path: inset(0px 0px 70px 0px);
   z-index: -1;
 }
 
