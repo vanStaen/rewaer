@@ -197,6 +197,10 @@
     "detailView": "Vue detailée",
     "showPrivateLooks": "Afficher les looks privés",
     "hidePrivateLooks": "Cacher les looks privés",
-    "backToLooks": "Retourner aux Looks"
+    "backToLooks": "Retourner aux Looks",
+    "selectCategory": "Choisissez une category",
+    "Select a season": "Choisissez une saison",
+    "itemPartOfThisLook": "Piéces dans ce look",
+    "pickItemComposingThisLook": "Choisissez les piéces composant ce look"
   }
 }

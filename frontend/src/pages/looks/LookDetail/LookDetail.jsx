@@ -194,7 +194,7 @@ export const LookDetail = observer((props) => {
                 </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">
-                  Select a category
+                  {t("looks.selectCategory")}
                 </span>
               )}
             </a>
@@ -220,7 +220,7 @@ export const LookDetail = observer((props) => {
                 </span>
               ) : (
                 <span className="lookdetail__headerSelectCategory">
-                  Select a season
+                  {t("looks.selectSeason")}
                 </span>
               )}
             </a>
@@ -283,10 +283,20 @@ export const LookDetail = observer((props) => {
         </div>
       ) : (
         <div className="lookDetail__itemContainer">
-          {selectedItems.length > 0 && <div>{selectedItemList}</div>}
           {selectedItems.length > 0 && (
-            <div className="lookDetail__itemContainerDivisor"></div>
+            <div className="lookDetail__itemContainerDivisor">
+              {t("looks.itemPartOfThisLook")}
+            </div>
           )}
+          {selectedItems.length > 0 && (
+            <>
+              <div>{selectedItemList}</div>
+              <div className="lookDetail__itemSpacer"></div>
+            </>
+          )}
+          <div className="lookDetail__itemContainerDivisor">
+            {t("looks.pickItemComposingThisLook")}
+          </div>
           <div>{isActive && itemList}</div>
         </div>
       )}

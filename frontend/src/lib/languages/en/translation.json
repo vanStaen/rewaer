@@ -201,6 +201,10 @@
     "hidePrivateLooks": "Hide Private looks",
     "makePrivateLook": "Make this look private",
     "archiveLook": "Archive this look",
-    "backToLooks": "Back to all Looks"
+    "backToLooks": "Back to all Looks",
+    "selectCategory": "Select a category",
+    "Select a season": "Select a season",
+    "itemPartOfThisLook": "Items part of this look",
+    "pickItemComposingThisLook": "Pick the items composing this look"
   }
 }
