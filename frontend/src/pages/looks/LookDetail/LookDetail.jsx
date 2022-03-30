@@ -188,15 +188,15 @@ export const LookDetail = observer((props) => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(category, lookCategory)[
-                      userStore.language
+                    userStore.language
                     ]
                   }
                 </span>
               ) : (
-                <span className="lookdetail__headerSelectCategory">
-                  {t("looks.selectCategory")}
-                </span>
-              )}
+                  <span className="lookdetail__headerSelectCategory">
+                    {t("looks.selectCategory")}
+                  </span>
+                )}
             </a>
           </Dropdown>
 
@@ -214,15 +214,15 @@ export const LookDetail = observer((props) => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(season, seasons)[
-                      userStore.language
+                    userStore.language
                     ]
                   }
                 </span>
               ) : (
-                <span className="lookdetail__headerSelectCategory">
-                  {t("looks.selectSeason")}
-                </span>
-              )}
+                  <span className="lookdetail__headerSelectCategory">
+                    {t("looks.selectSeason")}
+                  </span>
+                )}
             </a>
           </Dropdown>
 
@@ -282,24 +282,27 @@ export const LookDetail = observer((props) => {
           </div>
         </div>
       ) : (
-        <div className="lookDetail__itemContainer">
-          {selectedItems.length > 0 && (
-            <div className="lookDetail__itemContainerDivisor">
-              {t("looks.itemPartOfThisLook")}
-            </div>
-          )}
-          {selectedItems.length > 0 && (
-            <>
-              <div>{selectedItemList}</div>
-              <div className="lookDetail__itemSpacer"></div>
-            </>
-          )}
-          <div className="lookDetail__itemContainerDivisor">
-            {t("looks.pickItemComposingThisLook")}
+          <div className="lookDetail__itemContainer">
+            {selectedItems.length > 0 && (
+              <div className="lookDetail__itemContainerDivisor">
+                {t("looks.itemPartOfThisLook")}
+              </div>
+            )}
+            {selectedItems.length > 0 && (
+              <>
+                <div>{selectedItemList}</div>
+                <div className="lookDetail__itemSpacer"></div>
+              </>
+            )}
+            { isActive && (
+              <>
+                <div className="lookDetail__itemContainerDivisor">
+                  {t("looks.pickItemComposingThisLook")}
+                </div>
+                <div>{itemList}</div>
+              </>)}
           </div>
-          <div>{isActive && itemList}</div>
-        </div>
-      )}
+        )}
       <div className="lookDetail__actionContainer">
         <LookDetailFormRadio
           title="private"
