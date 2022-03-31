@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .itemcard__container {
   width: 240px;
   height: 385px;
@@ -158,7 +157,7 @@
   display: none; 
 }
 
-.itemcard__actionsContainer .iconRed:hover {
+.itemcard__container .iconRed:hover {
   color: rgba(180, 0, 0, 1);
 }
 
@@ -166,7 +165,7 @@
   color: rgba(241, 196, 15, 1);
 }
 
-.itemcard__actionsContainer .iconGreen:hover {
+.itemcard__container .iconGreen:hover {
   color: #6C917D;
 }
 

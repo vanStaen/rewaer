@@ -31,6 +31,14 @@ export const ItemCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.item.favorite);
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
+  const [numberLikes, setNumberLikes] = useState(
+    props.item.likes ? props.item.likes.count : 0
+  );
+  const [numberDislikes, setNumberDislikes] = useState(
+    props.item.dislikes ? props.item.dislikes.count : 0
+  );
+  const [userHasLiked, setUserHasLiked] = useState(false);
+  const [userHasDisliked, setUserHasDisliked] = useState(false);
 
   const spinnerFormated = (
     <div className="item__spinner">
@@ -314,11 +322,11 @@ export const ItemCard = (props) => {
                 <div className="itemcard__likeContainer">
                   <div className="itemcard__like iconGreen greyed">
                     <LikeOutlined />
-                    <div className="itemcard__likeCount">12</div>
+                    <div className="itemcard__likeCount">{numberLikes}</div>
                   </div>
                   <div className="itemcard__like iconRed greyed">
                     <DislikeOutlined />
-                    <div className="itemcard__likeCount">5</div>
+                    <div className="itemcard__likeCount">{numberDislikes}</div>
                   </div>
                 </div>
               </>

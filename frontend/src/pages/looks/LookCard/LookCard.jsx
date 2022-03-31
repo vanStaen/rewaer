@@ -30,6 +30,17 @@ export const LookCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
   const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [isLoading, setIsLoading] = useState(true);
+  const [numberItems, setNumbertems] = useState(
+    props.look.items ? props.look.items.length : 0
+  );
+  const [numberLikes, setNumberLikes] = useState(
+    props.look.likes ? props.look.likes.length : 0
+  );
+  const [numberDislikes, setNumberDislikes] = useState(
+    props.look.dislikes ? props.look.dislikes.length : 0
+  );
+  const [userHasLiked, setUserHasLiked] = useState(false);
+  const [userHasDisliked, setUserHasDisliked] = useState(false);
 
   const spinnerFormated = (
     <div
@@ -319,11 +330,11 @@ export const LookCard = (props) => {
                 <div className="lookcard__likeContainer">
                   <div className="lookcard__like iconGreen greyed">
                     <LikeOutlined />
-                    <div className="lookcard__likeCount">12</div>
+                    <div className="lookcard__likeCount">{numberLikes}</div>
                   </div>
                   <div className="lookcard__like iconRed greyed">
                     <DislikeOutlined />
-                    <div className="lookcard__likeCount">5</div>
+                    <div className="lookcard__likeCount">{numberDislikes}</div>
                   </div>
                 </div>
               </>
@@ -334,7 +345,11 @@ export const LookCard = (props) => {
               props.look.active ? "lookcard__date" : "lookcard__date striked"
             }
           >
-            {createdDate.toLocaleDateString()}
+            {numberItems}{" "}
+            {numberItems > 1
+              ? t("menu.items").toLowerCase()
+              : t("menu.items").slice(0, -1).toLowerCase()}{" "}
+            | {createdDate.toLocaleDateString()}
           </div>
         </div>
       </div>
