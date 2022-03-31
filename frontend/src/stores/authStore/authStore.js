@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import { deleteLogout } from "./deleteLogout";
 import { postLogin } from "./postLogin";
 import { getHasAccess } from "./getHasAccess";
+import { userStore } from "../userStore/userStore";
 
 
 export class AuthStore {
@@ -37,6 +38,17 @@ export class AuthStore {
     const resultLogOut = await deleteLogout();
     if (resultLogOut) {
       this.setHasAccess(false);
+      userStore.setEmail(null);
+      userStore.setUserName(null);
+      userStore.setAvatar(null);
+      userStore.setFirstName(null);
+      userStore.setLastName(null);
+      userStore.setEmailSettings(null);
+      userStore.setProfilSettings(null);
+      userStore.setLanguage(null);
+      userStore.setGender(null);
+      userStore.setFriends([]);
+      userStore.setLastActive(null);
     }
   };
 
