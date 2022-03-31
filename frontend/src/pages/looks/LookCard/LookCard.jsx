@@ -65,6 +65,7 @@ export const LookCard = (props) => {
   }, []);
 
   const likeClickHandler = () => {
+    // TODO: store the new like count
     if (userHasDisliked) {
       setNumberDislikes(numberDislikes - 1);
       setUserHasDisliked(false);
@@ -72,10 +73,14 @@ export const LookCard = (props) => {
     if (!userHasLiked) {
       setNumberLikes(numberLikes + 1);
       setUserHasLiked(true);
+    } else {
+      setNumberLikes(numberLikes - 1);
+      setUserHasLiked(false);
     }
   };
 
   const dislikeClickHandler = () => {
+    // TODO: store the new dislike count
     if (userHasLiked) {
       setNumberLikes(numberLikes - 1);
       setUserHasLiked(false);
@@ -83,6 +88,9 @@ export const LookCard = (props) => {
     if (!userHasDisliked) {
       setNumberDislikes(numberDislikes + 1);
       setUserHasDisliked(true);
+    } else {
+      setNumberDislikes(numberDislikes - 1);
+      setUserHasDisliked(false);
     }
   };
 
