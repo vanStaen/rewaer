@@ -64,6 +64,28 @@ export const LookCard = (props) => {
     imageLoadingHander();
   }, []);
 
+  const likeClickHandler = () => {
+    if (userHasDisliked) {
+      setNumberDislikes(numberDislikes - 1);
+      setUserHasDisliked(false);
+    }
+    if (!userHasLiked) {
+      setNumberLikes(numberLikes + 1);
+      setUserHasLiked(true);
+    }
+  };
+
+  const dislikeClickHandler = () => {
+    if (userHasLiked) {
+      setNumberLikes(numberLikes - 1);
+      setUserHasLiked(false);
+    }
+    if (!userHasDisliked) {
+      setNumberDislikes(numberDislikes + 1);
+      setUserHasDisliked(true);
+    }
+  };
+
   const handleArchive = (value) => {
     archiveLook(props.look._id, value)
       .then(() => {
@@ -328,11 +350,21 @@ export const LookCard = (props) => {
             props.look.active && (
               <>
                 <div className="lookcard__likeContainer">
-                  <div className="lookcard__like iconGreen greyed">
+                  <div
+                    className={`lookcard__like ${
+                      userHasLiked ? "iconGreen" : "iconGreenHover"
+                    } greyed`}
+                    onClick={likeClickHandler}
+                  >
                     <LikeOutlined />
                     <div className="lookcard__likeCount">{numberLikes}</div>
                   </div>
-                  <div className="lookcard__like iconRed greyed">
+                  <div
+                    className={`lookcard__like ${
+                      userHasDisliked ? "iconRed" : "iconRedHover"
+                    } greyed`}
+                    onClick={dislikeClickHandler}
+                  >
                     <DislikeOutlined />
                     <div className="lookcard__likeCount">{numberDislikes}</div>
                   </div>

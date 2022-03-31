@@ -158,15 +158,23 @@
   display: none; 
 }
 
-.lookcard__container .iconRed:hover {
+.lookcard__container .iconRed {
   color: rgba(180, 0, 0, 1);
 }
 
-.lookcard__container .iconGold:hover {
+.lookcard__container .iconRedHover:hover {
+  color: rgba(180, 0, 0, 1);
+}
+
+.lookcard__container .iconGoldHover:hover {
   color: rgba(241, 196, 15, 1);
 }
 
-.lookcard__container .iconGreen:hover {
+.lookcard__container .iconGreen {
+  color: #6C917D;
+}
+
+.lookcard__container .iconGreenHover:hover {
   color: #6C917D;
 }
 
