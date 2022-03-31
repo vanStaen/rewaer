@@ -157,17 +157,27 @@
   display: none; 
 }
 
-.itemcard__container .iconRed:hover {
+
+.itemcard__container .iconRed {
   color: rgba(180, 0, 0, 1);
 }
 
-.itemcard__actionsContainer .iconGold:hover {
+.itemcard__container .iconRedHover:hover {
+  color: rgba(180, 0, 0, 1);
+}
+
+.itemcard__actionsContainer .iconGoldHover:hover {
   color: rgba(241, 196, 15, 1);
 }
 
-.itemcard__container .iconGreen:hover {
+.itemcard__container .iconGreen {
   color: #6C917D;
 }
+
+.itemcard__container .iconGreenHover:hover {
+  color: #6C917D;
+}
+
 
 .greyed {
   color: #ccc;

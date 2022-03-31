@@ -39,8 +39,8 @@ export const LookCard = (props) => {
   const [numberDislikes, setNumberDislikes] = useState(
     props.look.dislikes ? props.look.dislikes.length : 0
   );
-  const [userHasLiked, setUserHasLiked] = useState(false);
-  const [userHasDisliked, setUserHasDisliked] = useState(false);
+  const [userHasLiked, setUserHasLiked] = useState(false); //TODO check if user in array
+  const [userHasDisliked, setUserHasDisliked] = useState(false); //TODO check if user in array
 
   const spinnerFormated = (
     <div

@@ -32,13 +32,13 @@ export const ItemCard = (props) => {
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
   const [numberLikes, setNumberLikes] = useState(
-    props.item.likes ? props.item.likes.count : 0
+    props.item.likes ? props.item.likes.length : 0
   );
   const [numberDislikes, setNumberDislikes] = useState(
-    props.item.dislikes ? props.item.dislikes.count : 0
+    props.item.dislikes ? props.item.dislikes.length : 0
   );
-  const [userHasLiked, setUserHasLiked] = useState(false);
-  const [userHasDisliked, setUserHasDisliked] = useState(false);
+  const [userHasLiked, setUserHasLiked] = useState(false); //TODO check if user in array
+  const [userHasDisliked, setUserHasDisliked] = useState(false); //TODO check if user in array
 
   const spinnerFormated = (
     <div className="item__spinner">
@@ -54,6 +54,36 @@ export const ItemCard = (props) => {
   useEffect(() => {
     imageLoadingHander();
   }, []);
+
+  const likeClickHandler = () => {
+    // TODO: store the new like count
+    if (userHasDisliked) {
+      setNumberDislikes(numberDislikes - 1);
+      setUserHasDisliked(false);
+    }
+    if (!userHasLiked) {
+      setNumberLikes(numberLikes + 1);
+      setUserHasLiked(true);
+    } else {
+      setNumberLikes(numberLikes - 1);
+      setUserHasLiked(false);
+    }
+  };
+
+  const dislikeClickHandler = () => {
+    // TODO: store the new dislike count
+    if (userHasLiked) {
+      setNumberLikes(numberLikes - 1);
+      setUserHasLiked(false);
+    }
+    if (!userHasDisliked) {
+      setNumberDislikes(numberDislikes + 1);
+      setUserHasDisliked(true);
+    } else {
+      setNumberDislikes(numberDislikes - 1);
+      setUserHasDisliked(false);
+    }
+  };
 
   const handleArchive = (value) => {
     archiveItem(props.item._id, value)
@@ -320,11 +350,21 @@ export const ItemCard = (props) => {
             props.item.active && (
               <>
                 <div className="itemcard__likeContainer">
-                  <div className="itemcard__like iconGreen greyed">
+                  <div
+                    className={`itemcard__like ${
+                      userHasLiked ? "iconGreen" : "iconGreenHover"
+                    } greyed`}
+                    onClick={likeClickHandler}
+                  >
                     <LikeOutlined />
                     <div className="itemcard__likeCount">{numberLikes}</div>
                   </div>
-                  <div className="itemcard__like iconRed greyed">
+                  <div
+                    className={`itemcard__like ${
+                      userHasDisliked ? "iconRed" : "iconRedHover"
+                    } greyed`}
+                    onClick={dislikeClickHandler}
+                  >
                     <DislikeOutlined />
                     <div className="itemcard__likeCount">{numberDislikes}</div>
                   </div>
