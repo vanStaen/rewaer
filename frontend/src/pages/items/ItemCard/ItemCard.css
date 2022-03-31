@@ -84,12 +84,14 @@
 
 .itemcard__metaFavorite::before {
   position: absolute;
-  top: -70px;
+  top: -35px;
   left: 5px;
-  content: "♥";
-  font-size: 130px;
+  content: "♥";      
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 600;
+  font-size: 100px;
   color: rgb(254, 200, 200); 
-  clip-path: inset(0px 0px 70px 0px);
+  clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }
 
@@ -110,12 +112,14 @@
 
 .itemcard__metaPrivateFavorite::before {
   position: absolute;
-  top: -70px;
+  top: -35px;
   left: 5px;
-  content: "♥";
-  font-size: 130px;
+  content: "♥";      
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 600;
+  font-size: 100px;
   color: rgba(100, 100, 100, .33); 
-  clip-path: inset(0px 0px 70px 0px);
+  clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }
 
