@@ -167,7 +167,9 @@
     "friends": "Amis",
     "followers": "Suivis par",
     "following": "Suis",
-    "search": "Rechercher dans" 
+    "search": "Rechercher dans",
+    "hideLooksToStrangers": "Ne pas faire apparaitre mes looks lors d'une recherhe sur le site",
+    "hideItemsToStrangers": "Ne pas faire apparaitre mes piéces lors d'une recherhe sur le site"
   },
   "items" : {
     "item": "piéce",

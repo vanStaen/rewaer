@@ -65,7 +65,10 @@
 - [ ] get only friends in getUser which are not pending
 - [ ] create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
-- [ ] On Logout, empty Store
+- [ ] Implement the search function to find
+  - [ ] Friends (Settings make not findable)
+  - [ ] Looks (Settings make not findable)
+  - [ ] Items (Settings make not findable)
   
 
 ## Completed ✓
@@ -185,3 +188,4 @@
 - [x] Webpack config file > add "copy webpack plugin" with content from public (except index.html)
 - [x] Use Sharp Library instead of Jimp
 - [x] Do not save temp img data on disc to fix memory leak  
+- [x] On Logout, empty all Stores

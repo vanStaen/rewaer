@@ -181,6 +181,34 @@ export const EditSettings = observer(() => {
               unCheckedChildren={<CloseOutlined />}
               onChange={() => {
                 changeProfilSettingsHandler(
+                  "hideLooksToStrangers",
+                  !userStore.profilSettings.hideLooksToStrangers
+                );
+              }}
+              checked={userStore.profilSettings.hideLooksToStrangers}
+            />{" "}
+            {t("profile.hideLooksToStrangers")}
+          </div>
+          <div className="EditSettings__singleSetting">
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={() => {
+                changeProfilSettingsHandler(
+                  "hideItemsToStrangers",
+                  !userStore.profilSettings.hideItemsToStrangers
+                );
+              }}
+              checked={userStore.profilSettings.hideItemsToStrangers}
+            />{" "}
+            {t("profile.hideItemsToStrangers")}
+          </div>
+          <div className="EditSettings__singleSetting">
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={() => {
+                changeProfilSettingsHandler(
                   "showLastName",
                   !userStore.profilSettings.showLastName
                 );

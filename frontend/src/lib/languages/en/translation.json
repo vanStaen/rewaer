@@ -167,7 +167,9 @@
     "friends": "Friends",
     "followers": "Followers",
     "following": "Following",
-    "search": "Search in" 
+    "search": "Search in",
+    "hideLooksToStrangers": "Do no show my looks in any search result",
+    "hideItemsToStrangers": "Do no show my items in any search result"
   },
   "items" : {
     "item": "item",
