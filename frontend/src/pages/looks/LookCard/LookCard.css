@@ -84,12 +84,14 @@
 
 .lookcard__metaFavorite::before {
   position: absolute;
-  top: -50px;
+  top: -35px;
   left: 5px;
-  content: "♥";
-  font-size: 110px;
+  content: "♥";      
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 600;
+  font-size: 100px;
   color: rgb(254, 200, 200); 
-  clip-path: inset(0px 0px 60px 0px);
+  clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }
 
