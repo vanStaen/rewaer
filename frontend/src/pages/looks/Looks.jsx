@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { looksStore } from "./looksStore";
+import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
 import { LookCard } from "./LookCard/LookCard";
 import { LookForm } from "./LookForm/LookForm";
@@ -25,11 +26,19 @@ export const Looks = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    authStore.checkAccess();
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
     userStore.profilSettings &&
       looksStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
+
+  useEffect(() => {
+    if (!authStore.hasAccess) {
+      console.log("authStore.hasAccess:", authStore.hasAccess);
+      window.location.href = "../";
+    }
+  }, [authStore.hasAccess]);
 
   useEffect(() => {
     calculateMissingCardsForFullRow();

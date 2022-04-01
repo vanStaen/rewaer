@@ -189,3 +189,4 @@
 - [x] Use Sharp Library instead of Jimp
 - [x] Do not save temp img data on disc to fix memory leak  
 - [x] On Logout, empty all Stores
+- [x] Bug: Token expired should redirect to login

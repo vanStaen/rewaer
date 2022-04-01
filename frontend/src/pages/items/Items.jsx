@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
+import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
 import { ItemCard } from "./ItemCard/ItemCard";
 import { ItemForm } from "./ItemForm/ItemForm";
@@ -27,10 +28,18 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
+    authStore.checkAccess();
     userStore.setMenuSelected("items");
     userStore.profilSettings &&
       itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
+
+  useEffect(() => {
+    if (!authStore.hasAccess) {
+      console.log("authStore.hasAccess:", authStore.hasAccess);
+      window.location.href = "../";
+    }
+  }, [authStore.hasAccess]);
 
   useEffect(() => {
     if (!selectedItemId) {
