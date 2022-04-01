@@ -1,7 +1,7 @@
 .profil__main {
   width: 100vw;
   height: auto;
-  min-height: calc(100vh - 50px - 120px);
+  min-height: calc(100vh - 50px - 120px); /*50px menu, 120px footer*/
 }
 
 .profil__container {

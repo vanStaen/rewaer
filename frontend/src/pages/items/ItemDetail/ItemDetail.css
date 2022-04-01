@@ -1,5 +1,5 @@
 .itemdetail__container {
-    height: calc(100vh - 60px - 50px - 200px);
+    height: calc(100vh - 60px - 50px - 120px); /*50px menu, 120px footer*/
     min-height: min(640px, 70vh);
 }
 
