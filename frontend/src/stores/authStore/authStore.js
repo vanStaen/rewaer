@@ -58,7 +58,7 @@ export class AuthStore {
 
   checkAccess = async () => {
     const hasAccess = await getHasAccess();   
-    console.log("Check if user has valid credentials.")
+    //console.log("Check if user has valid credentials.")
     this.setHasAccess(hasAccess);
    }
 }
