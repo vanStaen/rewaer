@@ -57,8 +57,8 @@ exports.lookResolver = {
       "active",
       "private",
       "favorite",
-      "like",
-      "dislike",
+      "likes",
+      "dislikes",
     ];
     updatableFields.forEach((field) => {
       if (field in args.lookInput) {
@@ -69,6 +69,8 @@ exports.lookResolver = {
       updateFields.password = await bcrypt.hash(args.lookInput.password, 12);
     }
     try {
+      console.log("lookId", args.lookId);
+      console.log("updateFields", updateFields);
       const updatedLook = await Look.update(updateFields, {
         where: {
           _id: args.lookId,

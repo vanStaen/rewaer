@@ -21,6 +21,7 @@ import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
 import { updatePrivateLook } from "../actions/updatePrivateLook";
+import { updateLikeLook } from "../actions/updateLikeLook";
 import { loadImage } from "../../../helpers/loadImage";
 
 import "./LookCard.css";
@@ -30,7 +31,7 @@ export const LookCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
   const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [isLoading, setIsLoading] = useState(true);
-  const [numberItems, setNumbertems] = useState(
+  const [numberItems, setNumberItems] = useState(
     props.look.items ? props.look.items.length : 0
   );
   const [numberLikes, setNumberLikes] = useState(
@@ -39,8 +40,16 @@ export const LookCard = (props) => {
   const [numberDislikes, setNumberDislikes] = useState(
     props.look.dislikes ? props.look.dislikes.length : 0
   );
-  const [userHasLiked, setUserHasLiked] = useState(false); //TODO check if user in array
-  const [userHasDisliked, setUserHasDisliked] = useState(false); //TODO check if user in array
+  const [userHasLiked, setUserHasLiked] = useState(
+    props.look.likes ? (props.look.likes.indexOf(1) >= 0 ? true : false) : false
+  );
+  const [userHasDisliked, setUserHasDisliked] = useState(
+    props.look.dislikes
+      ? props.look.dislikes.indexOf(1) >= 0
+        ? true
+        : false
+      : false
+  );
 
   const spinnerFormated = (
     <div
@@ -65,31 +74,44 @@ export const LookCard = (props) => {
   }, []);
 
   const likeClickHandler = () => {
-    // TODO: store the new like count
     if (userHasDisliked) {
       setNumberDislikes(numberDislikes - 1);
+      const dislikes =
+        props.look.dislikes === null ? [] : props.look.dislikes.pop(2);
+      updateLikeLook(props.look._id, false, dislikes);
       setUserHasDisliked(false);
     }
     if (!userHasLiked) {
       setNumberLikes(numberLikes + 1);
+      const likes = props.look.likes === null ? [2] : props.look.likes.push(2);
+      updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(true);
     } else {
       setNumberLikes(numberLikes - 1);
+      const likes = props.look.likes.pop(2);
+      console.log("likes", likes);
+      updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(false);
     }
   };
 
   const dislikeClickHandler = () => {
-    // TODO: store the new dislike count
     if (userHasLiked) {
       setNumberLikes(numberLikes - 1);
+      const likes = props.look.likes === null ? [] : props.look.likes.pop(2);
+      updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(false);
     }
     if (!userHasDisliked) {
       setNumberDislikes(numberDislikes + 1);
+      const dislikes =
+        props.look.dislikes === null ? [2] : props.look.dislikes.push(2);
+      updateLikeLook(props.look._id, false, dislikes);
       setUserHasDisliked(true);
     } else {
       setNumberDislikes(numberDislikes - 1);
+      const dislikes = props.look.dislikes.pop(2);
+      updateLikeLook(props.look._id, false, dislikes);
       setUserHasDisliked(false);
     }
   };
@@ -105,8 +127,8 @@ export const LookCard = (props) => {
           icon: value ? (
             <UndoOutlined style={{ color: "green" }} />
           ) : (
-              <StopOutlined style={{ color: "green" }} />
-            ),
+            <StopOutlined style={{ color: "green" }} />
+          ),
         });
         looksStore.setIsOutOfDate(true);
       })
@@ -210,17 +232,17 @@ export const LookCard = (props) => {
         {isLoading ? (
           spinnerFormated
         ) : (
-            <div
-              className="lookcard__picture"
-              id={`card_look_picture_${props.look._id}`}
-              style={{
-                background: `url(${props.look.mediaUrlMedium})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-          )}
+          <div
+            className="lookcard__picture"
+            id={`card_look_picture_${props.look._id}`}
+            style={{
+              background: `url(${props.look.mediaUrlMedium})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        )}
         {props.look.active ? (
           <div
             className="lookcard__logoover"
@@ -234,18 +256,18 @@ export const LookCard = (props) => {
             <div style={{ fontSize: "12px" }}>{t("looks.detailView")}</div>
           </div>
         ) : (
-            <div
-              className="lookcard__archived"
-              id={`card_look_logoover_${props.look._id}`}
-              onClick={() => {
-                onMouseLeaveHandler();
-                props.showDetailView(props.look);
-              }}
-            >
-              <StopOutlined />
-              <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
-            </div>
-          )}
+          <div
+            className="lookcard__archived"
+            id={`card_look_logoover_${props.look._id}`}
+            onClick={() => {
+              onMouseLeaveHandler();
+              props.showDetailView(props.look);
+            }}
+          >
+            <StopOutlined />
+            <div style={{ fontSize: "12px" }}>{t("main.archived")}</div>
+          </div>
+        )}
 
         <div
           className="lookcard__actionsContainer"
@@ -264,11 +286,11 @@ export const LookCard = (props) => {
                       onClick={favoriteHandler}
                     />
                   ) : (
-                      <HeartOutlined
-                        className="iconRedHover"
-                        onClick={favoriteHandler}
-                      />
-                    )}
+                    <HeartOutlined
+                      className="iconRedHover"
+                      onClick={favoriteHandler}
+                    />
+                  )}
                 </Tooltip>
                 {isPrivate ? (
                   <Tooltip placement="left" title={t("main.makePublic")}>
@@ -278,13 +300,13 @@ export const LookCard = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                    <Tooltip placement="left" title={t("main.makePrivate")}>
-                      <EyeOutlined
-                        className="iconGreenHover"
-                        onClick={privateHandler}
-                      />
-                    </Tooltip>
-                  )}
+                  <Tooltip placement="left" title={t("main.makePrivate")}>
+                    <EyeOutlined
+                      className="iconGreenHover"
+                      onClick={privateHandler}
+                    />
+                  </Tooltip>
+                )}
                 <Tooltip placement="left" title={t("main.archive")}>
                   <Popconfirm
                     title={t("looks.archiveConfirm")}
@@ -300,35 +322,35 @@ export const LookCard = (props) => {
                 </Tooltip>
               </>
             ) : (
-                <>
-                  <Tooltip placement="left" title={t("main.restore")}>
-                    <Popconfirm
-                      title={t("looks.restoreConfirm")}
-                      onConfirm={() => handleArchive(true)}
-                      okText={t("main.restore")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <UndoOutlined className="iconGreenHover" />
-                    </Popconfirm>
-                  </Tooltip>
-                  <Tooltip placement="left" title={t("main.delete")}>
-                    <Popconfirm
-                      title={t("looks.deleteConfirm")}
-                      onConfirm={handleDelete}
-                      okText={t("main.delete")}
-                      cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
-                    >
-                      <DeleteOutlined className="iconRedHover" />
-                    </Popconfirm>
-                  </Tooltip>
-                </>
-              )}
+              <>
+                <Tooltip placement="left" title={t("main.restore")}>
+                  <Popconfirm
+                    title={t("looks.restoreConfirm")}
+                    onConfirm={() => handleArchive(true)}
+                    okText={t("main.restore")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <UndoOutlined className="iconGreenHover" />
+                  </Popconfirm>
+                </Tooltip>
+                <Tooltip placement="left" title={t("main.delete")}>
+                  <Popconfirm
+                    title={t("looks.deleteConfirm")}
+                    onConfirm={handleDelete}
+                    okText={t("main.delete")}
+                    cancelText={t("main.cancel")}
+                    icon={
+                      <ExclamationCircleOutlined style={{ color: "black" }} />
+                    }
+                  >
+                    <DeleteOutlined className="iconRedHover" />
+                  </Popconfirm>
+                </Tooltip>
+              </>
+            )}
           </div>
         </div>
         <div
@@ -338,8 +360,8 @@ export const LookCard = (props) => {
                 ? "lookcard__meta lookcard__metaPrivate lookcard__metaPrivateFavorite"
                 : "lookcard__meta lookcard__metaPrivate"
               : isFavorited
-                ? "lookcard__meta lookcard__metaFavorite"
-                : "lookcard__meta"
+              ? "lookcard__meta lookcard__metaFavorite"
+              : "lookcard__meta"
           }
         >
           <EditableTitle
@@ -355,29 +377,31 @@ export const LookCard = (props) => {
               </div>
             </Tooltip>
           ) : (
-              props.look.active && (
-                <>
-                  <div className="lookcard__likeContainer">
-                    <div
-                      className={`lookcard__like ${userHasLiked ? "iconGreen" : "iconGreenHover"
-                        } greyed`}
-                      onClick={likeClickHandler}
-                    >
-                      <LikeOutlined />
-                      <div className="lookcard__likeCount">{numberLikes}</div>
-                    </div>
-                    <div
-                      className={`lookcard__like ${userHasDisliked ? "iconRed" : "iconRedHover"
-                        } greyed`}
-                      onClick={dislikeClickHandler}
-                    >
-                      <DislikeOutlined />
-                      <div className="lookcard__likeCount">{numberDislikes}</div>
-                    </div>
+            props.look.active && (
+              <>
+                <div className="lookcard__likeContainer">
+                  <div
+                    className={`lookcard__like ${
+                      userHasLiked ? "iconGreen" : "iconGreenHover"
+                    } greyed`}
+                    onClick={likeClickHandler}
+                  >
+                    <LikeOutlined />
+                    <div className="lookcard__likeCount">{numberLikes}</div>
                   </div>
-                </>
-              )
-            )}
+                  <div
+                    className={`lookcard__like ${
+                      userHasDisliked ? "iconRed" : "iconRedHover"
+                    } greyed`}
+                    onClick={dislikeClickHandler}
+                  >
+                    <DislikeOutlined />
+                    <div className="lookcard__likeCount">{numberDislikes}</div>
+                  </div>
+                </div>
+              </>
+            )
+          )}
           <div
             className={
               props.look.active ? "lookcard__date" : "lookcard__date striked"
