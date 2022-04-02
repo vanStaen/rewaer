@@ -28,14 +28,13 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
-    authStore.checkAccess();
     userStore.setMenuSelected("items");
     userStore.profilSettings &&
       itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
-    if (!authStore.hasAccess) {
+    if (authStore.hasAccess === false) {
       console.log("authStore.hasAccess:", authStore.hasAccess);
       window.location.href = "../";
     }

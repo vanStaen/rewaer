@@ -25,13 +25,12 @@ export const Profile = observer(() => {
   const [contentToDisplay, setContentToDisplay] = useState("looks");
 
   useEffect(() => {
-    authStore.checkAccess();
     const username = params.username ? params.username : userStore.userName;
     profileStore.fetchProfileData(username);
   }, [userStore.isLoading, userStore.userName]);
 
   useEffect(() => {
-    if (!authStore.hasAccess) {
+    if (authStore.hasAccess === false) {
       console.log("authStore.hasAccess:", authStore.hasAccess);
       window.location.href = "../";
     }

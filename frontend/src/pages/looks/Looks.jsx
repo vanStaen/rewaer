@@ -26,7 +26,6 @@ export const Looks = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    authStore.checkAccess();
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
     userStore.profilSettings &&
@@ -34,7 +33,7 @@ export const Looks = observer(() => {
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
-    if (!authStore.hasAccess) {
+    if (authStore.hasAccess === false) {
       console.log("authStore.hasAccess:", authStore.hasAccess);
       window.location.href = "../";
     }
