@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -35,12 +35,6 @@ export const LookCard = (props) => {
   const [numberItems, setNumberItems] = useState(
     props.look.items ? props.look.items.length : 0
   );
-  const [numberLikes, setNumberLikes] = useState(
-    props.look.likes ? props.look.likes.length : 0
-  );
-  const [numberDislikes, setNumberDislikes] = useState(
-    props.look.dislikes ? props.look.dislikes.length : 0
-  );
   const [userHasLiked, setUserHasLiked] = useState(
     props.look.likes
       ? props.look.likes.indexOf(userStore._id) >= 0
@@ -55,6 +49,9 @@ export const LookCard = (props) => {
         : false
       : false
   );
+
+  const arrayLikes = useRef(props.look.likes);
+  const arrayDislikes = useRef(props.look.dislikes);
 
   const spinnerFormated = (
     <div
@@ -80,51 +77,50 @@ export const LookCard = (props) => {
 
   const likeClickHandler = () => {
     if (userHasDisliked) {
-      setNumberDislikes(numberDislikes - 1);
-      // replace pop with filter
-      const dislikes =
-        props.look.dislikes === null
-          ? []
-          : props.look.dislikes.pop(userStore._id);
-      updateLikeLook(props.look._id, false, dislikes);
+      const filteredArray = arrayDislikes.current.filter((id) => {
+        return id !== userStore._id;
+      });
+      updateLikeLook(props.look._id, false, filteredArray);
+      arrayDislikes.current = filteredArray;
       setUserHasDisliked(false);
     }
     if (!userHasLiked) {
-      setNumberLikes(numberLikes + 1);
-      const likes =
-        props.look.likes === null
-          ? [userStore._id]
-          : props.look.likes.push(userStore._id);
-      updateLikeLook(props.look._id, true, likes);
+      arrayLikes.current === null
+        ? (arrayLikes.current = [userStore._id])
+        : arrayLikes.current.push(userStore._id);
+      updateLikeLook(props.look._id, true, arrayLikes.current);
       setUserHasLiked(true);
     } else {
-      setNumberLikes(numberLikes - 1);
-      // replace pop with filter
-      const likes = props.look.likes.pop(userStore._id);
-      updateLikeLook(props.look._id, true, likes);
+      const filteredArray = arrayLikes.current.filter((id) => {
+        return id !== userStore._id;
+      });
+      updateLikeLook(props.look._id, true, filteredArray);
+      arrayLikes.current = filteredArray;
       setUserHasLiked(false);
     }
   };
 
   const dislikeClickHandler = () => {
     if (userHasLiked) {
-      setNumberLikes(numberLikes - 1);
-      // replace pop with filter
-      const likes = props.look.likes === null ? [] : props.look.likes.pop(2);
-      updateLikeLook(props.look._id, true, likes);
+      const filteredArray = arrayLikes.current.filter((id) => {
+        return id !== userStore._id;
+      });
+      updateLikeLook(props.look._id, true, filteredArray);
+      arrayLikes.current = filteredArray;
       setUserHasLiked(false);
     }
     if (!userHasDisliked) {
-      setNumberDislikes(numberDislikes + 1);
-      const dislikes =
-        props.look.dislikes === null ? [2] : props.look.dislikes.push(2);
-      updateLikeLook(props.look._id, false, dislikes);
+      arrayDislikes.current === null
+        ? (arrayDislikes.current = [userStore._id])
+        : arrayDislikes.current.push(userStore._id);
+      updateLikeLook(props.look._id, false, arrayDislikes.current);
       setUserHasDisliked(true);
     } else {
-      setNumberDislikes(numberDislikes - 1);
-      // replace pop with filter
-      const dislikes = props.look.dislikes.pop(2);
-      updateLikeLook(props.look._id, false, dislikes);
+      const filteredArray = arrayDislikes.current.filter((id) => {
+        return id !== userStore._id;
+      });
+      updateLikeLook(props.look._id, false, filteredArray);
+      arrayDislikes.current = filteredArray;
       setUserHasDisliked(false);
     }
   };
@@ -400,7 +396,11 @@ export const LookCard = (props) => {
                     onClick={likeClickHandler}
                   >
                     <LikeOutlined />
-                    <div className="lookcard__likeCount">{numberLikes}</div>
+                    <div className="lookcard__likeCount">
+                      {arrayLikes.current === null
+                        ? 0
+                        : arrayLikes.current.length}
+                    </div>
                   </div>
                   <div
                     className={`lookcard__like ${
@@ -409,7 +409,11 @@ export const LookCard = (props) => {
                     onClick={dislikeClickHandler}
                   >
                     <DislikeOutlined />
-                    <div className="lookcard__likeCount">{numberDislikes}</div>
+                    <div className="lookcard__likeCount">
+                      {arrayDislikes.current === null
+                        ? 0
+                        : arrayDislikes.current.length}
+                    </div>
                   </div>
                 </div>
               </>
