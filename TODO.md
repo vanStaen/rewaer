@@ -15,13 +15,12 @@
 - [ ] Profile:
   - [x] UX: Center column with Max width 
   - [x] Subpage with headers showing Looks and Items
-    - [x] simplified version of cards, with comment and liking function
+    - [ ] simplified version of cards, with comment and liking function
     - [ ] Friend can propose Look name
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
 - [ ] Items and Look should always come sorted the same from BE
-- [ ] On no-file select, do not create item/look (QA)
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
@@ -61,9 +60,9 @@
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
-- [ ] footer to make it look pro
-- [ ] get only friends in getUser which are not pending
-- [ ] create resolver for UserFriends (to manage pending requests)
+- [ ] Make nice Footer to make it look pro
+- [ ] Gget only friends in getUser which are not pending
+- [ ] Create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Implement the search function to find
   - [ ] Friends (Settings make not findable)
@@ -187,6 +186,7 @@
 - [x] On leave detail view, scroll down to original Scroll position
 - [x] Webpack config file > add "copy webpack plugin" with content from public (except index.html)
 - [x] Use Sharp Library instead of Jimp
-- [x] Do not save temp img data on disc to fix memory leak  
+- [x] BE: Do not save temp img data on disc to fix memory leak  
 - [x] On Logout, empty all Stores
 - [x] Bug: Token expired should redirect to login
+- [x] Like/Dislikes Item/Looks feature
