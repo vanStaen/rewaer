@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { looksStore } from "../looksStore";
+import { userStore } from "../../../stores/userStore/userStore";
 import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
@@ -41,11 +42,15 @@ export const LookCard = (props) => {
     props.look.dislikes ? props.look.dislikes.length : 0
   );
   const [userHasLiked, setUserHasLiked] = useState(
-    props.look.likes ? (props.look.likes.indexOf(1) >= 0 ? true : false) : false
+    props.look.likes
+      ? props.look.likes.indexOf(userStore._id) >= 0
+        ? true
+        : false
+      : false
   );
   const [userHasDisliked, setUserHasDisliked] = useState(
     props.look.dislikes
-      ? props.look.dislikes.indexOf(1) >= 0
+      ? props.look.dislikes.indexOf(userStore._id) >= 0
         ? true
         : false
       : false
@@ -76,20 +81,26 @@ export const LookCard = (props) => {
   const likeClickHandler = () => {
     if (userHasDisliked) {
       setNumberDislikes(numberDislikes - 1);
+      // replace pop with filter
       const dislikes =
-        props.look.dislikes === null ? [] : props.look.dislikes.pop(2);
+        props.look.dislikes === null
+          ? []
+          : props.look.dislikes.pop(userStore._id);
       updateLikeLook(props.look._id, false, dislikes);
       setUserHasDisliked(false);
     }
     if (!userHasLiked) {
       setNumberLikes(numberLikes + 1);
-      const likes = props.look.likes === null ? [2] : props.look.likes.push(2);
+      const likes =
+        props.look.likes === null
+          ? [userStore._id]
+          : props.look.likes.push(userStore._id);
       updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(true);
     } else {
       setNumberLikes(numberLikes - 1);
-      const likes = props.look.likes.pop(2);
-      console.log("likes", likes);
+      // replace pop with filter
+      const likes = props.look.likes.pop(userStore._id);
       updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(false);
     }
@@ -98,6 +109,7 @@ export const LookCard = (props) => {
   const dislikeClickHandler = () => {
     if (userHasLiked) {
       setNumberLikes(numberLikes - 1);
+      // replace pop with filter
       const likes = props.look.likes === null ? [] : props.look.likes.pop(2);
       updateLikeLook(props.look._id, true, likes);
       setUserHasLiked(false);
@@ -110,6 +122,7 @@ export const LookCard = (props) => {
       setUserHasDisliked(true);
     } else {
       setNumberDislikes(numberDislikes - 1);
+      // replace pop with filter
       const dislikes = props.look.dislikes.pop(2);
       updateLikeLook(props.look._id, false, dislikes);
       setUserHasDisliked(false);

@@ -8,6 +8,7 @@ import { updateSettings } from "../../pages/Profile/EditSettings/updateSettings"
 export class UserStore {
   isLoading = true;
   error = null;
+  _id = null;
   email = null;
   userName = null;
   avatar = null;
@@ -27,6 +28,7 @@ export class UserStore {
     makeObservable(this, {
       isLoading: observable,
       error: observable,
+      _id: observable,
       email: observable,
       userName: observable,
       avatar: observable,
@@ -43,6 +45,7 @@ export class UserStore {
       menuSelected: observable,
       setIsLoading: action,
       setError: action,
+      set_id: action,
       setEmail: action,
       setUserName: action,
       setAvatar: action,
@@ -69,6 +72,10 @@ export class UserStore {
     this.error = error;
   };
 
+  set_id = (_id) => {
+    this._id = _id;
+  };
+  
   setEmail = (email) => {
     this.email = email;
   };
@@ -131,6 +138,7 @@ export class UserStore {
       const userData = await getUserInfo();
 
       if (userData) {
+        this.set_id(parseInt(userData._id));
         this.setEmail(userData.email);
         this.setUserName(userData.userName);
         this.setAvatar(userData.avatar);

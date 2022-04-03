@@ -5,6 +5,7 @@ export const getUserInfo = async () => {
     query: `
         {
             getUser {
+              _id,
               firstName,
               lastName,
               userName,
