@@ -49,7 +49,6 @@ export const LookCard = (props) => {
         : false
       : false
   );
-
   const arrayLikes = useRef(props.look.likes);
   const arrayDislikes = useRef(props.look.dislikes);
 

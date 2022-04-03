@@ -66,8 +66,8 @@ exports.itemResolver = {
       "status",
       "favorite",
       "shareWith",
-      "like",
-      "dislike",
+      "likes",
+      "dislikes",
     ];
     updatableFields.forEach((field) => {
       if (field in args.itemInput) {

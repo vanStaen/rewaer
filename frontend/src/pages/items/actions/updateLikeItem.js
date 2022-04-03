@@ -1,14 +1,14 @@
 import axios from "axios";
 
-export async function updateLikeLook(lookId, isLike, valueArray) {
+export async function updateLikeItem(itemId, isLike, valueArray) {
   let requestBody;
   if (isLike) {
     requestBody = {
       query: `
-              mutation ($lookId: ID!, $valueArray: [Int]) {
-                updateLook(
-                  lookId: $lookId,
-                  lookInput: { 
+              mutation ($itemId: ID!, $valueArray: [Int]) {
+                updateItem(
+                  itemId: $itemId,
+                  itemInput: { 
                     likes: $valueArray 
                         }
                 ) {
@@ -18,17 +18,17 @@ export async function updateLikeLook(lookId, isLike, valueArray) {
               }
               `,
       variables: {
-        lookId,
+        itemId,
         valueArray,
       },
     };
   } else {
     requestBody = {
       query: `
-              mutation ($lookId: ID!, $valueArray: [Int]) {
-                updateLook(
-                  lookId: $lookId,
-                  lookInput: { 
+              mutation ($itemId: ID!, $valueArray: [Int]) {
+                updateItem(
+                  itemId: $itemId,
+                  itemInput: { 
                     dislikes: $valueArray 
                         }
                 ) {
@@ -38,7 +38,7 @@ export async function updateLikeLook(lookId, isLike, valueArray) {
               }
               `,
       variables: {
-        lookId,
+        itemId,
         valueArray,
       },
     };
