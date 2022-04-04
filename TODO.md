@@ -68,6 +68,9 @@
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
+- [ ] Refactoring 
+  - [ ] Create ItemList, and make Item lighter
+  - [ ] Create LookList, and make lookl lighter
   
 
 ## Completed ✓
