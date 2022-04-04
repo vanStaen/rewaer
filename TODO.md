@@ -66,8 +66,8 @@
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Implement the search function to find
   - [ ] Friends (Settings make not findable)
-  - [ ] Looks (Settings make not findable)
-  - [ ] Items (Settings make not findable)
+  - [ ] Looks (Settings: make not findable)
+  - [ ] Items (Settings: make not findable)
   
 
 ## Completed ✓

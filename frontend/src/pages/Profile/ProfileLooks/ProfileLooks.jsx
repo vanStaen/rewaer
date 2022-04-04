@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import { ToolBar } from "../../../components/ToolBar/ToolBar";
-import { SIZE_WIDTH_THUMBNAIL_IN_PROFILE } from "../../../lib/data/setup";
+import { SIZE_THUMBNAIL_IN_PROFILE } from "../../../lib/data/setup";
 
 import "./ProfileLooks.css";
 
@@ -34,7 +34,7 @@ export const ProfileLooks = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = SIZE_WIDTH_THUMBNAIL_IN_PROFILE + 5 + 5;
+    const cardWidth = SIZE_THUMBNAIL_IN_PROFILE + 5 + 5;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = profileStore.looks && profileStore.looks.length;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
@@ -56,8 +56,8 @@ export const ProfileLooks = observer(() => {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                width: `${SIZE_WIDTH_THUMBNAIL_IN_PROFILE}px`,
-                height: `${SIZE_WIDTH_THUMBNAIL_IN_PROFILE * 1.33}px`,
+                width: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
+                height: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
               }}
             ></div>
           </div>
@@ -68,12 +68,12 @@ export const ProfileLooks = observer(() => {
   return (
     <>
       <div className="ProfileLook__container" ref={containerElement}>
-        <Row justify={"space-around"}>
+        <Row justify={"center"}>
           {looks}
           <GhostCard
             numberOfCards={missingCardForFullRow}
-            width={`${SIZE_WIDTH_THUMBNAIL_IN_PROFILE}px`}
-            height={`${SIZE_WIDTH_THUMBNAIL_IN_PROFILE * 1.33}px`}
+            width={`${SIZE_THUMBNAIL_IN_PROFILE}px`}
+            height={`${SIZE_THUMBNAIL_IN_PROFILE}px`}
             margin={5}
           />
         </Row>
