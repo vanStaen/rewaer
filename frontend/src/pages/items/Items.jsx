@@ -80,7 +80,7 @@ export const Items = observer(() => {
       window.removeEventListener("keydown", keydownEventHandler);
       window.removeEventListener("popstate", browserBackHandler);
     };
-  }, []);
+  }, [selectedItemId]);
 
   const showDetailView = (id) => {
     setSelectedItemId(id);
@@ -98,40 +98,39 @@ export const Items = observer(() => {
   const browserBackHandler = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    history.go(1);
     setSelectedItemId(null);
   };
 
-  const keydownEventHandler = useCallback(
-    (event) => {
-      /* 
+  const keydownEventHandler = (event) => {
+    /* 
         // Use index of, to find position in array, and increment
         //  decrement to the next items in array
         // take in consideration private hidden or not.  
-        // itemsStore.showPrivate) 
+        // itemsStore.showPrivate)
         const selectedItem = itemsStore.items.find(
           (item) => item._id === props.selectedItemId
         );
       */
-      event.preventDefault();
-      const keyPressed = event.key.toLowerCase();
-      if (keyPressed === "escape") {
-        setSelectedItemId(null);
-      } else if (keyPressed === "arrowleft") {
-        debugger;
-        console.log("arrowleft", selectedItemId);
-        if (itemsStore.items.length <= selectedItemId + 1) {
-          setSelectedItemId(selectedItemId + 1);
-        }
-      } else if (keyPressed === "arrowright") {
-        console.log("arrowright", selectedItemId);
-        if (selectedItemId - 1 >= 0) {
-          setSelectedItemId(selectedItemId - 1);
-        }
-      }
-    },
-    [selectedItemId]
-  );
+    event.preventDefault();
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "escape") {
+      setSelectedItemId(null);
+    } else if (keyPressed === "arrowleft") {
+      const indexOfResult = itemsStore.items
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(selectedItemId);
+      setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
+    } else if (keyPressed === "arrowright") {
+      const indexOfResult = itemsStore.items
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(selectedItemId);
+      setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
+    }
+  };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings

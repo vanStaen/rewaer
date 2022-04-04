@@ -60,6 +60,7 @@ export const ProfileLooks = observer(() => {
                 height: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
               }}
             ></div>
+            <div className="ProfileLook__lookContainerMeta">{look.likes}</div>
           </div>
         </Col>
       );
