@@ -40,3 +40,26 @@
   justify-content: center;
 }
 
+.iconRed {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconRedHover:hover {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconGoldHover:hover {
+  color: rgba(241, 196, 15, 1);
+}
+
+.iconGreen {
+  color: #6C917D;
+}
+
+.iconGreenHover:hover {
+  color: #6C917D;
+}
+
+.greyed {
+  color: #ccc;
+}

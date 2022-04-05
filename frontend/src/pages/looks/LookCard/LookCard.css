@@ -123,29 +123,6 @@
   z-index: -1;
 }
 
-.lookcard__meta .lookcard__likeContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  margin-top: 5px;
-}
-
-.lookcard__meta .lookcard__like {
-  border: 1px solid transparent; 
-}
-
-.lookcard__meta .lookcard__likeCount {
-  display: inline-block;
-  position: relative;
-  top: -1px;
-  width: 20px;
-  text-align: right;
-  margin-right: 10px;
-  font-size: 14px;
-  letter-spacing: 0px;
-}
-
 .look__spinner {
   text-align: center;
   border-radius: 4px;
@@ -156,28 +133,4 @@
 
 .lookcard__actionsLogo {
   display: none; 
-}
-
-.lookcard__container .iconRed {
-  color: rgba(180, 0, 0, 1);
-}
-
-.lookcard__container .iconRedHover:hover {
-  color: rgba(180, 0, 0, 1);
-}
-
-.lookcard__container .iconGoldHover:hover {
-  color: rgba(241, 196, 15, 1);
-}
-
-.lookcard__container .iconGreen {
-  color: #6C917D;
-}
-
-.lookcard__container .iconGreenHover:hover {
-  color: #6C917D;
-}
-
-.greyed {
-  color: #ccc;
 }

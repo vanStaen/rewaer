@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -10,44 +10,25 @@ import {
   EyeOutlined,
   HeartOutlined,
   HeartFilled,
-  LikeOutlined,
-  DislikeOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
-import { userStore } from "../../../stores/userStore/userStore";
 import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
-import { updateLikeItem } from "../actions/updateLikeItem";
 import { updatePrivateItem } from "../actions/updatePrivateItem";
 import { loadImage } from "../../../helpers/loadImage";
 
 import "./ItemCard.css";
+import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 
 export const ItemCard = (props) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState(props.item.favorite);
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
-  const [userHasLiked, setUserHasLiked] = useState(
-    props.item.likes
-      ? props.item.likes.indexOf(userStore._id) >= 0
-        ? true
-        : false
-      : false
-  );
-  const [userHasDisliked, setUserHasDisliked] = useState(
-    props.item.dislikes
-      ? props.item.dislikes.indexOf(userStore._id) >= 0
-        ? true
-        : false
-      : false
-  );
-  const arrayLikes = useRef(props.item.likes);
-  const arrayDislikes = useRef(props.item.dislikes);
 
   const spinnerFormated = (
     <div className="item__spinner">
@@ -63,56 +44,6 @@ export const ItemCard = (props) => {
   useEffect(() => {
     imageLoadingHander();
   }, []);
-
-  const likeClickHandler = () => {
-    if (userHasDisliked) {
-      const filteredArray = arrayDislikes.current.filter((id) => {
-        return id !== userStore._id;
-      });
-      updateLikeItem(props.item._id, false, filteredArray);
-      arrayDislikes.current = filteredArray;
-      setUserHasDisliked(false);
-    }
-    if (!userHasLiked) {
-      arrayLikes.current === null
-        ? (arrayLikes.current = [userStore._id])
-        : arrayLikes.current.push(userStore._id);
-      updateLikeItem(props.item._id, true, arrayLikes.current);
-      setUserHasLiked(true);
-    } else {
-      const filteredArray = arrayLikes.current.filter((id) => {
-        return id !== userStore._id;
-      });
-      updateLikeItem(props.item._id, true, filteredArray);
-      arrayLikes.current = filteredArray;
-      setUserHasLiked(false);
-    }
-  };
-
-  const dislikeClickHandler = () => {
-    if (userHasLiked) {
-      const filteredArray = arrayLikes.current.filter((id) => {
-        return id !== userStore._id;
-      });
-      updateLikeItem(props.item._id, true, filteredArray);
-      arrayLikes.current = filteredArray;
-      setUserHasLiked(false);
-    }
-    if (!userHasDisliked) {
-      arrayDislikes.current === null
-        ? (arrayDislikes.current = [userStore._id])
-        : arrayDislikes.current.push(userStore._id);
-      updateLikeItem(props.item._id, false, arrayDislikes.current);
-      setUserHasDisliked(true);
-    } else {
-      const filteredArray = arrayDislikes.current.filter((id) => {
-        return id !== userStore._id;
-      });
-      updateLikeItem(props.item._id, false, filteredArray);
-      arrayDislikes.current = filteredArray;
-      setUserHasDisliked(false);
-    }
-  };
 
   const handleArchive = (value) => {
     archiveItem(props.item._id, value)
@@ -377,36 +308,12 @@ export const ItemCard = (props) => {
             </Tooltip>
           ) : (
             props.item.active && (
-              <>
-                <div className="itemcard__likeContainer">
-                  <div
-                    className={`itemcard__like ${
-                      userHasLiked ? "iconGreen" : "iconGreenHover"
-                    } greyed`}
-                    onClick={likeClickHandler}
-                  >
-                    <LikeOutlined />
-                    <div className="itemcard__likeCount">
-                      {arrayLikes.current === null
-                        ? 0
-                        : arrayLikes.current.length}
-                    </div>
-                  </div>
-                  <div
-                    className={`itemcard__like ${
-                      userHasDisliked ? "iconRed" : "iconRedHover"
-                    } greyed`}
-                    onClick={dislikeClickHandler}
-                  >
-                    <DislikeOutlined />
-                    <div className="itemcard__likeCount">
-                      {arrayDislikes.current === null
-                        ? 0
-                        : arrayDislikes.current.length}
-                    </div>
-                  </div>
-                </div>
-              </>
+              <LikeDislikeButton
+                _id={props.item._id}
+                arrayLikes={props.item.likes}
+                arrayDislikes={props.item.dislikes}
+                type="item"
+              />
             )
           )}
           <div
