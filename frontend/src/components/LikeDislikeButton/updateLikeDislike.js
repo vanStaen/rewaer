@@ -1,21 +1,21 @@
 import axios from "axios";
 
-export async function updateLikeDislike(itemId, type, isLike, valueArray) {
+export async function updateLikeDislike(id, type, isLike, valueArray) {
   let requestBody;
 
   if (type === "look") {
     if (isLike) {
       requestBody = {
         query: `
-              mutation ($lookId: ID!, $valueArray: [Int]) {
+              mutation ($id: ID!, $valueArray: [Int]) {
                 updateLook(
                   lookId: $lookId,
                   lookInput: { 
                     likes: $valueArray 
                         }
                 ) {
-                  _id,
-                  likes,
+                  id,
+                  valueArray,
                 }
               }
               `,
@@ -27,15 +27,15 @@ export async function updateLikeDislike(itemId, type, isLike, valueArray) {
     } else {
       requestBody = {
         query: `
-              mutation ($lookId: ID!, $valueArray: [Int]) {
+              mutation ($id: ID!, $valueArray: [Int]) {
                 updateLook(
                   lookId: $lookId,
                   lookInput: { 
                     dislikes: $valueArray 
                         }
                 ) {
-                  _id,
-                  dislikes,
+                  id,
+                  valueArray,
                 }
               }
               `,
@@ -49,15 +49,15 @@ export async function updateLikeDislike(itemId, type, isLike, valueArray) {
     if (isLike) {
       requestBody = {
         query: `
-              mutation ($itemId: ID!, $valueArray: [Int]) {
+              mutation ($id: ID!, $valueArray: [Int]) {
                 updateItem(
                   itemId: $itemId,
                   itemInput: { 
                     likes: $valueArray 
                         }
                 ) {
-                  _id,
-                  likes,
+                  id,
+                  valueArray,
                 }
               }
               `,
@@ -69,15 +69,15 @@ export async function updateLikeDislike(itemId, type, isLike, valueArray) {
     } else {
       requestBody = {
         query: `
-              mutation ($itemId: ID!, $valueArray: [Int]) {
+              mutation ($id: ID!, $valueArray: [Int]) {
                 updateItem(
                   itemId: $itemId,
                   itemInput: { 
                     dislikes: $valueArray 
                         }
                 ) {
-                  _id,
-                  dislikes,
+                  id,
+                  valueArray,
                 }
               }
               `,
