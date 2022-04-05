@@ -82,8 +82,8 @@ export const LikeDislikeButton = (props) => {
       >
         <div
           className={`like ${
-            userHasLiked ? "iconGreen" : "iconGreenHover"
-          } greyed`}
+            userHasLiked ? "iconGreen" : "iconGreenHover greyed"
+          }`}
           onClick={likeClickHandler}
         >
           <LikeOutlined />
@@ -93,8 +93,8 @@ export const LikeDislikeButton = (props) => {
         </div>
         <div
           className={`like ${
-            userHasDisliked ? "iconRed" : "iconRedHover"
-          } greyed`}
+            userHasDisliked ? "iconRed" : "iconRedHover greyed"
+          }`}
           onClick={dislikeClickHandler}
         >
           <DislikeOutlined />

@@ -19,12 +19,12 @@
   opacity: 0.75;
 }
 
-.ProfileLook__lookContainerMeta {
+.ProfileLook__containerMeta {
   height: 35px;
   padding: 5px;
   border: 1px solid #f0f0f0;
 }
 
-.ProfileLook__lookContainerLike {
+.ProfileLook__containerLike {
   position: relative;
 }

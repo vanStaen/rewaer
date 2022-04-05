@@ -60,8 +60,8 @@ export const ProfileLooks = observer(() => {
                 height: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
               }}
             ></div>
-            <div className="ProfileLook__lookContainerMeta">
-              <div className="ProfileLook__lookContainerLike">
+            <div className="ProfileLook__containerMeta">
+              <div className="ProfileLook__containerLike">
                 <LikeDislikeButton
                   _id={look._id}
                   arrayLikes={look.likes}

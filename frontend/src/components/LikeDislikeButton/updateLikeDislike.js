@@ -9,18 +9,18 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
         query: `
               mutation ($id: ID!, $valueArray: [Int]) {
                 updateLook(
-                  lookId: $lookId,
+                  lookId: $id,
                   lookInput: { 
                     likes: $valueArray 
                         }
                 ) {
-                  id,
-                  valueArray,
+                  _id,
+                  likes,
                 }
               }
               `,
         variables: {
-          lookId,
+          id,
           valueArray,
         },
       };
@@ -29,18 +29,18 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
         query: `
               mutation ($id: ID!, $valueArray: [Int]) {
                 updateLook(
-                  lookId: $lookId,
+                  lookId: $id,
                   lookInput: { 
                     dislikes: $valueArray 
                         }
                 ) {
-                  id,
-                  valueArray,
+                  _id,
+                  dislikes,
                 }
               }
               `,
         variables: {
-          lookId,
+          id,
           valueArray,
         },
       };
@@ -51,18 +51,18 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
         query: `
               mutation ($id: ID!, $valueArray: [Int]) {
                 updateItem(
-                  itemId: $itemId,
+                  itemId: $id,
                   itemInput: { 
                     likes: $valueArray 
                         }
                 ) {
-                  id,
-                  valueArray,
+                  _id,
+                  likes,
                 }
               }
               `,
         variables: {
-          itemId,
+          id,
           valueArray,
         },
       };
@@ -71,18 +71,18 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
         query: `
               mutation ($id: ID!, $valueArray: [Int]) {
                 updateItem(
-                  itemId: $itemId,
+                  itemId: $id,
                   itemInput: { 
                     dislikes: $valueArray 
                         }
                 ) {
-                  id,
-                  valueArray,
+                  _id,
+                  dislikes,
                 }
               }
               `,
         variables: {
-          itemId,
+          id,
           valueArray,
         },
       };

@@ -1,16 +1,31 @@
 .ProfileItem__container {
-    border: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .ProfileItem__itemContainer {
-    margin: 0px 5px 10px 5px;
+  margin: 0px 5px 10px 5px;
+}
+
+.ProfileItem__itemContainer:hover {
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
+    0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
 }
 
 .ProfileItem__picture {
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
 
 .ProfileItem__picture:hover {
-    opacity: .75;
-    border: 1px #d9d9d9;
+  opacity: 0.75;
+  border: 1px #d9d9d9;
+}
+
+.ProfileLook__containerMeta {
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #f0f0f0;
+}
+
+.ProfileLook__containerLike {
+  position: relative;
 }
