@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 import { userStore } from "../../stores/userStore/userStore";
 import { updateLikeDislike } from "./updateLikeDislike";
@@ -80,28 +81,46 @@ export const LikeDislikeButton = (props) => {
       <div
         className={props.profile ? "likeContainerProfile" : "likeContainerCard"}
       >
-        <div
-          className={`like ${
-            userHasLiked ? "iconGreen" : "iconGreenHover greyed"
-          }`}
-          onClick={likeClickHandler}
+        <Tooltip
+          title={
+            <div
+              className="likeAvatar"
+              style={{
+                background: `url("https://rewaer-static01.s3.eu-central-1.amazonaws.com/eecb1612b2940cf3476e5caaf06540bc")`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+          }
         >
-          <LikeOutlined />
-          <div className="likeCount">
-            {arrayLikes.current === null ? 0 : arrayLikes.current.length}
+          <div
+            className={`like ${
+              userHasLiked ? "iconGreen" : "iconGreenHover greyed"
+            }`}
+            onClick={likeClickHandler}
+          >
+            <LikeOutlined />
+            <div className="likeCount">
+              {arrayLikes.current === null ? 0 : arrayLikes.current.length}
+            </div>
           </div>
-        </div>
-        <div
-          className={`like ${
-            userHasDisliked ? "iconRed" : "iconRedHover greyed"
-          }`}
-          onClick={dislikeClickHandler}
-        >
-          <DislikeOutlined />
-          <div className="likeCount">
-            {arrayDislikes.current === null ? 0 : arrayDislikes.current.length}
+        </Tooltip>
+        <Tooltip title="Dislike">
+          <div
+            className={`like ${
+              userHasDisliked ? "iconRed" : "iconRedHover greyed"
+            }`}
+            onClick={dislikeClickHandler}
+          >
+            <DislikeOutlined />
+            <div className="likeCount">
+              {arrayDislikes.current === null
+                ? 0
+                : arrayDislikes.current.length}
+            </div>
           </div>
-        </div>
+        </Tooltip>
       </div>
     </>
   );
