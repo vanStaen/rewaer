@@ -20,6 +20,11 @@
 }
 
 .ProfileLook__lookContainerMeta {
+  height: 35px;
   padding: 5px;
   border: 1px solid #f0f0f0;
+}
+
+.ProfileLook__lookContainerLike {
+  position: relative;
 }

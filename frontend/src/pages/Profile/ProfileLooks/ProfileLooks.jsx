@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
-import { ToolBar } from "../../../components/ToolBar/ToolBar";
+import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 import { SIZE_THUMBNAIL_IN_PROFILE } from "../../../lib/data/setup";
 
 import "./ProfileLooks.css";
@@ -60,7 +60,17 @@ export const ProfileLooks = observer(() => {
                 height: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
               }}
             ></div>
-            <div className="ProfileLook__lookContainerMeta">{look.likes}</div>
+            <div className="ProfileLook__lookContainerMeta">
+              <div className="ProfileLook__lookContainerLike">
+                <LikeDislikeButton
+                  _id={look._id}
+                  arrayLikes={look.likes}
+                  arrayDislikes={look.dislikes}
+                  type="look"
+                  profile={true}
+                />
+              </div>
+            </div>
           </div>
         </Col>
       );

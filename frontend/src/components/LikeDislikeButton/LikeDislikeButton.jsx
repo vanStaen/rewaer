@@ -77,7 +77,9 @@ export const LikeDislikeButton = (props) => {
 
   return (
     <>
-      <div className="likeContainer">
+      <div
+        className={props.profile ? "likeContainerProfile" : "likeContainerCard"}
+      >
         <div
           className={`like ${
             userHasLiked ? "iconGreen" : "iconGreenHover"
