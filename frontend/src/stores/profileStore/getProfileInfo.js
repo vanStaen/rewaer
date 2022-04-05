@@ -4,7 +4,7 @@ export const getProfileInfo = async (username) => {
   const requestBody = {
     query: `
         {
-            getProfile (userName: "${username}"){
+            getProfileByName (userName: "${username}"){
               firstName,
               lastName,
               avatar,
@@ -52,5 +52,5 @@ export const getProfileInfo = async (username) => {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getProfile;
+  return response.data.data.getProfileByName;
 };

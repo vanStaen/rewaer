@@ -335,7 +335,71 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  getUser {\n    firstName,\n    lastName,\n    userName,\n    email,\n    avatar,\n    profilSettings,\n    emailSettings,\n    language,\n    gender,\n    archived,\n    items {\n        _id\n    },\n    looks {\n        _id\n    }\n  }\n}",
+						"query": "query {\n  getUser {\n      firstName,\n              lastName,\n              userName,\n              email,\n              avatar,\n              emailSettings,\n              profilSettings,\n              language,\n              gender,\n              friends {\n                userName,\n                avatar,\n              },\n              followers {\n                userName,\n                avatar,\n              },\n              followed {\n                userName,\n                avatar,\n              },\n              lastActive,\n              archived,\n              usernameChange,\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GraphQL Querry: getProfileByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjdiNmViMjY3YmMzZDgwY2QxOTNkMGUiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA1MTkzMDMyLCJleHAiOjE2MDUxOTM5MzJ9.AyoSirRre9Y7Oojc2Cf9orma46CNnfBOAexNj7Spxt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getProfileByName (userName: \"dieTruhe\") {\n    firstName,\n    avatar,\n    gender,\n    lastActive,\n    profilSettings,\n    items {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    },\n    looks {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    },\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GraphQL Querry: getProfileById",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjdiNmViMjY3YmMzZDgwY2QxOTNkMGUiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA1MTkzMDMyLCJleHAiOjE2MDUxOTM5MzJ9.AyoSirRre9Y7Oojc2Cf9orma46CNnfBOAexNj7Spxt4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  getProfileById (_id: 3) {\n    avatar,\n    userName,\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -472,7 +536,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getItems {\n    _id,\n    desc,\n    category,\n    colors,\n    brand,\n    active,\n    favorite,\n    createdAt,\n    user {\n        _id,\n    }\n  }\n}",
+						"query": "{\n  getItems {\n    _id,\n          title,\n          notes,\n          location,\n          category,\n          colors,\n          pattern,\n          brand,\n          active,\n          favorite,\n          private,\n          sharedWith,\n          likes,\n          status,\n          dislikes,\n          createdAt,\n          mediaUrl,\n          mediaUrlMedium,\n          mediaUrlThumb,\n    user {\n        _id,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -616,7 +680,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "{\n  getLooks {\n    _id,\n    title,\n    active,\n    favorite,\n    createdAt,\n    mediaUrl,\n    user {\n        _id,\n    }\n  }\n}",
+						"query": "{\n  getLooks {\n    _id,\n    title,\n    active,\n    favorite,\n    private\n    createdAt,\n    mediaUrl,\n    likes, \n    dislikes,\n    user {\n        _id,\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -687,7 +751,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "mutation {\n  updateLook(\n    lookId: 1\n    lookInput: { \n        favorite: false \n    }\n  ) {\n    _id\n    favorite\n  }\n}",
+						"query": "mutation {\n  updateLook(\n    lookId: 79\n    lookInput: { \n        likes: null,\n        dislikes: null\n    }\n  ) {\n    _id\n    favorite\n  }\n}",
 						"variables": ""
 					}
 				},
@@ -741,38 +805,6 @@
 					]
 				},
 				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
-			},
-			"response": []
-		},
-		{
-			"name": "GraphQL Querry: getProfile",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjdiNmViMjY3YmMzZDgwY2QxOTNkMGUiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjA1MTkzMDMyLCJleHAiOjE2MDUxOTM5MzJ9.AyoSirRre9Y7Oojc2Cf9orma46CNnfBOAexNj7Spxt4",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n  getProfile (userName: \"ttlykke\") {\n    firstName,\n    avatar,\n    gender,\n    friends,\n    lastActive,\n    items {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    },\n    looks {\n        _id,\n        title,\n        mediaUrlMedium,\n        likes, \n        dislikes,\n    }\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"graphql"
-					]
-				}
 			},
 			"response": []
 		}

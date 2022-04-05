@@ -43,7 +43,8 @@ exports.UserQueries = `
     getFriends: [User]
     getFollowers: [User]
     getFollowed: [User]
-    getProfile(userName: String): User
+    getProfileByName(userName: String): User
+    getProfileById(_id: ID!): User
 `;
 
 exports.UserMutations = `    

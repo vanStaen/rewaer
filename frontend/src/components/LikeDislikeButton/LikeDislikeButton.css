@@ -29,3 +29,13 @@
   font-size: 14px;
   letter-spacing: 0px;
 }
+
+.likeAvatar {
+  border: 1px solid #f0f0f0;
+  width: 25px;
+  height: 25px;
+  margin: 0px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+}

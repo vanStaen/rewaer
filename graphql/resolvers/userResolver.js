@@ -16,9 +16,41 @@ exports.userResolver = {
     });
   },
 
-  async getProfile(args, req) {
+  async getProfileByName(args, req) {
     return await User.findOne({
       where: { userName: args.userName },
+      include: [
+        {
+          model: Item,
+          required: false,
+          where: {
+            active: true,
+            status: "S0",
+            private: {
+              [Op.or]: [false, null],
+            },
+          },
+        },
+        {
+          model: Look,
+          required: false,
+          where: {
+            active: true,
+            private: {
+              [Op.or]: [false, null],
+            },
+          },
+        },
+        "friends",
+        "followers",
+        "followed",
+      ],
+    });
+  },
+
+  async getProfileById(args, req) {
+    return await User.findOne({
+      where: { _id: args._id },
       include: [
         {
           model: Item,
