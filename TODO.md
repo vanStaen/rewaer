@@ -54,6 +54,7 @@
   - [ ] Implement space holder as props
   - [x] Implement info/tooltip as props
 - [ ] Add friends feature
+- [ ] Settings: friends who are allowed to see you private stuff
 - [ ] Follow someone feature
 - [ ] Tips popping up 
   - [ ] ~Use backspace to return to main view~
