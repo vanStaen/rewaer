@@ -4,6 +4,7 @@ import { Tooltip } from "antd";
 
 import { userStore } from "../../stores/userStore/userStore";
 import { updateLikeDislike } from "./updateLikeDislike";
+import { TooltipLike } from "./ToolTipLike";
 
 import "./LikeDislikeButton.css";
 
@@ -83,16 +84,11 @@ export const LikeDislikeButton = (props) => {
       >
         <Tooltip
           title={
-            <div
-              className="likeAvatar"
-              style={{
-                background: `url("https://rewaer-static01.s3.eu-central-1.amazonaws.com/eecb1612b2940cf3476e5caaf06540bc")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
+            arrayLikes.current === null ? null : (
+              <TooltipLike arrayLikes={arrayLikes.current} />
+            )
           }
+          placement="bottom"
         >
           <div
             className={`like ${
@@ -106,7 +102,14 @@ export const LikeDislikeButton = (props) => {
             </div>
           </div>
         </Tooltip>
-        <Tooltip title="Dislike">
+        <Tooltip
+          title={
+            arrayDislikes.current === null ? null : (
+              <TooltipLike arrayLikes={arrayDislikes.current} />
+            )
+          }
+          placement="bottom"
+        >
           <div
             className={`like ${
               userHasDisliked ? "iconRed" : "iconRedHover greyed"

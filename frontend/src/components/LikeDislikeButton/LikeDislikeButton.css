@@ -11,7 +11,6 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-
 }
 
 .like {
@@ -31,11 +30,15 @@
 }
 
 .likeAvatar {
-  border: 1px solid #f0f0f0;
   width: 25px;
   height: 25px;
-  margin: 0px;
+  margin: 0;
   display: inline-block;
   vertical-align: top;
-  cursor: pointer;
+}
+
+.likeAvatarSpinner {
+  border: 1px solid transparent;
+  padding-top: 1px;
+  padding-left: 1px;
 }

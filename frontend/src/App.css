@@ -9,9 +9,10 @@
   letter-spacing: 1.5px;
 }
 
-.App a:link, a:visited {
+.App a:link,
+a:visited {
   transition: color 0.3s;
-  color: rgba(109, 145, 126, .75);
+  color: rgba(109, 145, 126, 0.75);
 }
 
 .App a:hover {
@@ -19,9 +20,9 @@
 }
 
 .link {
-  color: rgba(109, 145, 126, .75);
+  color: rgba(109, 145, 126, 0.75);
   cursor: pointer;
-} 
+}
 
 .striked {
   text-decoration: line-through;
@@ -29,6 +30,10 @@
 
 .link:hover {
   color: rgba(109, 145, 126, 1);
+}
+
+.pointerCursor {
+  cursor: pointer;
 }
 
 .App .spinner {
@@ -53,11 +58,11 @@
 }
 
 .iconGreen {
-  color: #6C917D;
+  color: #6c917d;
 }
 
 .iconGreenHover:hover {
-  color: #6C917D;
+  color: #6c917d;
 }
 
 .greyed {
