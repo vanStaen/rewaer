@@ -29,16 +29,21 @@
   letter-spacing: 0px;
 }
 
+.likeAvatarContainer {
+  display: flex;
+  gap: 5px;
+}
+
 .likeAvatar {
   width: 25px;
   height: 25px;
   margin: 0;
-  display: inline-block;
-  vertical-align: top;
 }
 
 .likeAvatarSpinner {
   border: 1px solid transparent;
+  width: 25px;
+  height: 25px;
   padding-top: 1px;
-  padding-left: 1px;
+  padding-left: 4px;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Spin } from "antd";
+import { Spin, Tooltip } from "antd";
 
 import { getUserAvatarFromId } from "./getUserAvatarFromId.js";
 
@@ -36,27 +36,28 @@ export const TooltipLike = (props) => {
 
     if (posInArr === -1) {
       return (
-        <div className="likeAvatar">
-          <div className="likeAvatarSpinner">
-            <Spin size="small" />
-          </div>
+        <div className="likeAvatarSpinner">
+          <Spin size="small" />
         </div>
       );
     } else {
       return (
-        <div
-          key={`avatar_${_id}`}
-          className="likeAvatar pointerCursor"
-          style={{
-            background: `url("${usersAvatarsState[posInArr].avatar}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
+        // Link to user profile page
+        <Tooltip title={usersAvatarsState[posInArr].username}>
+          <div
+            key={`avatar_${_id}`}
+            className="likeAvatar pointerCursor"
+            style={{
+              background: `url("${usersAvatarsState[posInArr].avatar}")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        </Tooltip>
       );
     }
   });
 
-  return <>{avatars}</>;
+  return <div className="likeAvatarContainer">{avatars}</div>;
 };
