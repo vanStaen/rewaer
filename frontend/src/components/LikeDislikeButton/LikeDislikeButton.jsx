@@ -93,7 +93,11 @@ export const LikeDislikeButton = (props) => {
         >
           <div
             className={`like ${
-              userHasLiked ? "iconGreen" : "iconGreenHover greyed"
+              userHasLiked
+                ? "iconGreen"
+                : arrayLikes.current === null || arrayLikes.current.length === 0
+                ? "iconGreenHover lightGreyed"
+                : "iconGreenHover greyed"
             }`}
             onClick={likeClickHandler}
           >
@@ -114,7 +118,12 @@ export const LikeDislikeButton = (props) => {
         >
           <div
             className={`like ${
-              userHasDisliked ? "iconRed" : "iconRedHover greyed"
+              userHasDisliked
+                ? "iconRed"
+                : arrayDislikes.current === null ||
+                  arrayDislikes.current.length === 0
+                ? "iconRedHover lightGreyed"
+                : "iconRedHover greyed"
             }`}
             onClick={dislikeClickHandler}
           >

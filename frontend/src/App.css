@@ -68,3 +68,7 @@ a:visited {
 .greyed {
   color: #aaa;
 }
+
+.lightGreyed {
+  color: #ddd;
+}
