@@ -72,6 +72,10 @@
 - [ ] Refactoring 
   - [ ] Create ItemList, and make Item lighter
   - [ ] Create LookList, and make lookl lighter
+
+
+manifest > seite als app anzeigen
+alternative zu react native > cordova (webkit)
   
 
 ## Completed ✓

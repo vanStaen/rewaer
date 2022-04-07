@@ -1,63 +1,57 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Spin, Tooltip } from "antd";
 
 import { getUserAvatarFromId } from "./getUserAvatarFromId.js";
 
 import "./LikeDislikeButton.css";
 
+const cachedUserAvatars = {};
+
 export const TooltipLike = (props) => {
-  // Save in a store
   const [usersAvatarsState, setUsersAvatarsState] = useState([]);
-  // Prepopulate with value from store
-  const usersAvatars = useRef([]);
 
   useEffect(() => {
-    props.arrayLikes.map(async (_id) => {
-      // Only if info not found in store
-      const fetched = await getUserAvatarFromId(_id);
-      usersAvatars.current.push({
-        _id: _id,
-        avatar: fetched.avatar,
-        username: fetched.userName,
-      });
-      console.log(usersAvatars.current);
-      setUsersAvatarsState(usersAvatars.current);
-    });
+    (async () => {
+      const userAvatars = [];
+      for (let id of props.userIds) {
+        if (id in cachedUserAvatars) {
+          userAvatars.push(cachedUserAvatars[id]);
+          continue;
+        }
+        const fetched = await getUserAvatarFromId(id);
+        cachedUserAvatars[id] = {
+          id: id,
+          avatar: fetched.avatar,
+          username: fetched.userName,
+        };
+        userAvatars.push(cachedUserAvatars[id]);
+      }
+      setUsersAvatarsState(userAvatars);
+    })();
   }, []);
 
-  const avatars = props.arrayLikes.map((_id) => {
-    const posInArr = usersAvatarsState
-      .map(function (e) {
-        return e._id;
-      })
-      .indexOf(_id);
-
-    console.log("usersAvatarsState", usersAvatarsState);
-
-    if (posInArr === -1) {
-      return (
-        <div className="likeAvatarSpinner">
-          <Spin size="small" />
-        </div>
-      );
-    } else {
-      return (
-        // Link to user profile page
-        <Tooltip title={usersAvatarsState[posInArr].username}>
-          <div
-            key={`avatar_${_id}`}
-            className="likeAvatar pointerCursor"
-            style={{
-              background: `url("${usersAvatarsState[posInArr].avatar}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-        </Tooltip>
-      );
-    }
+  const avatars = usersAvatarsState.map((user) => {
+    return (
+      // TODO: Link to user profile page
+      <Tooltip title={user.username} key={`avatar_${user.id}`}>
+        <div
+          className="likeAvatar pointerCursor"
+          style={{
+            background: `url("${user.avatar}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+      </Tooltip>
+    );
   });
 
-  return <div className="likeAvatarContainer">{avatars}</div>;
+  return usersAvatarsState.length === 0 ? (
+    <div className="likeAvatarSpinner">
+      <Spin size="small" />
+    </div>
+  ) : (
+    <div className="likeAvatarContainer">{avatars}</div>
+  );
 };

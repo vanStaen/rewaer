@@ -86,7 +86,7 @@ export const LikeDislikeButton = (props) => {
           title={
             arrayLikes.current === null ||
             arrayLikes.current.length === 0 ? null : (
-              <TooltipLike arrayLikes={arrayLikes.current} />
+              <TooltipLike userIds={arrayLikes.current} />
             )
           }
           placement="bottom"
@@ -107,7 +107,7 @@ export const LikeDislikeButton = (props) => {
           title={
             arrayDislikes.current === null ||
             arrayDislikes.current.length === 0 ? null : (
-              <TooltipLike arrayLikes={arrayDislikes.current} />
+              <TooltipLike userIds={arrayDislikes.current} />
             )
           }
           placement="bottom"
