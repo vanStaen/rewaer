@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Spin, Tooltip } from "antd";
 
 import { getUserAvatarFromId } from "./getUserAvatarFromId.js";
@@ -33,7 +34,14 @@ export const TooltipLike = (props) => {
   const avatars = usersAvatarsState.map((user) => {
     return (
       // TODO: Link to user profile page
-      <Tooltip title={user.username} key={`avatar_${user.id}`}>
+      <Tooltip
+        title={
+          <Link to={`/${user.username}`} className="linkAvatarUsername">
+            {user.username}
+          </Link>
+        }
+        key={`avatar_${user.id}`}
+      >
         <div
           className="likeAvatar pointerCursor"
           style={{
