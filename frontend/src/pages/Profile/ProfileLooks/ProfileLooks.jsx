@@ -34,7 +34,7 @@ export const ProfileLooks = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = SIZE_THUMBNAIL_IN_PROFILE + 5 + 5;
+    const cardWidth = SIZE_THUMBNAIL_IN_PROFILE + 7 + 7;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const numberLooks = profileStore.looks && profileStore.looks.length;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);

@@ -3,7 +3,7 @@
 }
 
 .ProfileItem__itemContainer {
-  margin: 0px 5px 10px 5px;
+  margin: 0px 7px 14px 7px;
 }
 
 .ProfileItem__itemContainer:hover {
@@ -23,6 +23,7 @@
 .ProfileLook__containerMeta {
   height: 35px;
   padding: 5px;
+  background-color: #fcfcfc;
   border: 1px solid #f0f0f0;
 }
 
