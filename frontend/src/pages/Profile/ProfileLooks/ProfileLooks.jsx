@@ -57,7 +57,7 @@ export const ProfileLooks = observer(() => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 width: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
-                height: `${SIZE_THUMBNAIL_IN_PROFILE}px`,
+                height: `${SIZE_THUMBNAIL_IN_PROFILE + 35}px`,
               }}
             ></div>
             <div className="ProfileLook__containerMeta">
@@ -84,7 +84,7 @@ export const ProfileLooks = observer(() => {
           <GhostCard
             numberOfCards={missingCardForFullRow}
             width={`${SIZE_THUMBNAIL_IN_PROFILE}px`}
-            height={`${SIZE_THUMBNAIL_IN_PROFILE + 35}px`}
+            height={`${SIZE_THUMBNAIL_IN_PROFILE + 35 + 35}px`}
             margin={[0, 5, 0, 5]}
           />
         </Row>
