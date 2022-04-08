@@ -33,7 +33,6 @@ export const TooltipLike = (props) => {
 
   const avatars = usersAvatarsState.map((user) => {
     return (
-      // TODO: Link to user profile page
       <Tooltip
         title={
           <Link to={`/${user.username}`} className="linkAvatarUsername">

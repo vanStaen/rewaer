@@ -62,7 +62,7 @@
 - [ ] Title editable : Input vs ContentEditable
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
 - [ ] Make nice Footer to make it look pro
-- [ ] Gget only friends in getUser which are not pending
+- [ ] Get only friends in getUser which are not pending
 - [ ] Create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Implement the search function to find
