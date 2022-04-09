@@ -102,7 +102,8 @@
     "passwordDoNotMatch": "Die Passwörter stimmen nicht überein!",
     "updatePassword": "Passwort aktualisieren",
     "linkNotValidAnymore": "Link ist nicht mehr gültig",
-    "usernameShouldNotBeAnEmail": "Der Benutzername darf kein email sein"
+    "usernameShouldNotBeAnEmail": "Der Benutzername darf kein email sein",
+    "forbiddenUsername": "Der Benutzername is nicht verfügbar"
   },
   "menu": {
     "profile": "Profile",

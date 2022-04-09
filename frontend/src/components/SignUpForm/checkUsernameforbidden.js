@@ -1,0 +1,8 @@
+import {forbiddenUsername} from "../../lib/data/forbiddenUsername";
+
+export const checkUsernameforbidden = async (username) => {
+  if (username in forbiddenUsername) {
+    return true;
+  }
+  return false;
+};

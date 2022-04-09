@@ -103,7 +103,8 @@
     "passwordDoNotMatch": "The passwords do not match!",
     "updatePassword": "Update password",
     "linkNotValidAnymore": "Link not valid anymore.",
-    "usernameShouldNotBeAnEmail": "Your username should not be an email"
+    "usernameShouldNotBeAnEmail": "Your username should not be an email",
+    "forbiddenUsername": "This username is not available"
   },
   "menu": {
     "profile": "Profile",

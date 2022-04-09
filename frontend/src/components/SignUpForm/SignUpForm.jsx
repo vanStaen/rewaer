@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { postUsernameTaken } from "./postUsernameTaken";
+import { postUsernameTaken } from "./checkUsernameforbidden";
 import { postVerifyEmailLink } from "../LoginForm/postVerifyEmailLink";
 import { postAddUser } from "./postAddUser";
 import { AlreadyMember } from "./AlreadyMember";
@@ -46,8 +46,14 @@ export const SignUpForm = (props) => {
             setIsValidUsername("error");
             setErrorMsgUsername(t("login.usernameShouldNotBeAnEmail"));
           } else {
-            setIsValidUsername("success");
-            setErrorMsgUsername(null);
+            const isUsernameForbidden = await checkUsernameforbidden(username);
+            if (isUsernameForbidden === true) {
+              setIsValidUsername("error");
+              setErrorMsgUsername(t("login.forbiddenUsername"));
+            } else {
+              setIsValidUsername("success");
+              setErrorMsgUsername(null);
+            }
           }
         }
       }
