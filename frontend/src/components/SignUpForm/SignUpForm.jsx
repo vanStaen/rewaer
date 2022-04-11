@@ -9,7 +9,8 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { postUsernameTaken } from "./checkUsernameforbidden";
+import { postUsernameTaken } from "./postUsernameTaken";
+import { checkUsernameforbidden } from "./checkUsernameforbidden";
 import { postVerifyEmailLink } from "../LoginForm/postVerifyEmailLink";
 import { postAddUser } from "./postAddUser";
 import { AlreadyMember } from "./AlreadyMember";
