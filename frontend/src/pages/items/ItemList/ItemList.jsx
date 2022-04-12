@@ -3,14 +3,13 @@ import { observer } from "mobx-react";
 import { Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { itemsStore } from "./itemsStore";
-import { ItemCard } from "./ItemCard/ItemCard";
-import { ItemForm } from "./ItemForm/ItemForm";
-import { GhostCard } from "../../components/GhostCard/GhostCard";
+import { itemsStore } from "../itemsStore";
+import { userStore } from "../../../stores/userStore/userStore";
+import { GhostCard } from "../../../components/GhostCard/GhostCard";
+import { ItemCard } from "../ItemCard/ItemCard";
+import { ItemForm } from "../ItemForm/ItemForm";
 
-import "./Items.css";
-
-export const ItemList = observer(() => {
+export const ItemList = observer((props) => {
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const { t } = useTranslation();
@@ -33,7 +32,7 @@ export const ItemList = observer(() => {
     return () => {
       window.removeEventListener("resize", calculateMissingCardsForFullRow);
     };
-  }, [selectedItemId]);
+  }, []);
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -72,7 +71,7 @@ export const ItemList = observer(() => {
       } else {
         return (
           <Col key={item._id}>
-            <ItemCard item={item} showDetailView={showDetailView} />
+            <ItemCard item={item} showDetailView={props.showDetailView} />
           </Col>
         );
       }
@@ -81,7 +80,7 @@ export const ItemList = observer(() => {
   });
 
   return (
-    <>
+    <div ref={containerElement}>
       <Row justify={"space-around"}>
         <Col>
           <ItemForm />
@@ -93,6 +92,6 @@ export const ItemList = observer(() => {
           height="385px"
         />
       </Row>
-    </>
+    </div>
   );
 });
