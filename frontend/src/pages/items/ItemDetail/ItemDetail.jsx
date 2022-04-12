@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Spin, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -28,7 +28,44 @@ export const ItemDetail = observer((props) => {
     (item) => item._id === props.selectedItemId
   );
 
-  //console.log(userStore.friends);
+  useEffect(() => {
+    window.addEventListener("keydown", keydownEventHandler);
+    return () => {
+      window.removeEventListener("keydown", keydownEventHandler);
+    };
+  }, []);
+
+  const keydownEventHandler = (event) => {
+    /* 
+        // Use index of, to find position in array, and increment
+        //  decrement to the next items in array
+        // take in consideration private hidden or not.  
+        // itemsStore.showPrivate)
+        const selectedItem = itemsStore.items.find(
+          (item) => item._id === props.selectedItemId
+        );
+      */
+    console.log(props.selectedItemId);
+    event.preventDefault();
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "escape") {
+      props.setSelectedItemId(null);
+    } else if (keyPressed === "arrowleft") {
+      const indexOfResult = itemsStore.items
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(props.selectedItemId);
+      props.setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
+    } else if (keyPressed === "arrowright") {
+      const indexOfResult = itemsStore.items
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(props.selectedItemId);
+      props.setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
+    }
+  };
 
   return (
     <div className="itemdetail__container">

@@ -54,11 +54,9 @@ export const Items = observer(() => {
 
   useEffect(() => {
     window.addEventListener("scroll", scrollEventHandler);
-    window.addEventListener("keydown", keydownEventHandler);
     window.addEventListener("popstate", browserBackHandler);
     return () => {
       window.removeEventListener("scroll", scrollEventHandler);
-      window.removeEventListener("keydown", keydownEventHandler);
       window.removeEventListener("popstate", browserBackHandler);
     };
   }, [selectedItemId]);
@@ -80,37 +78,6 @@ export const Items = observer(() => {
     e.preventDefault();
     e.stopImmediatePropagation();
     setSelectedItemId(null);
-  };
-
-  const keydownEventHandler = (event) => {
-    /* 
-        // Use index of, to find position in array, and increment
-        //  decrement to the next items in array
-        // take in consideration private hidden or not.  
-        // itemsStore.showPrivate)
-        const selectedItem = itemsStore.items.find(
-          (item) => item._id === props.selectedItemId
-        );
-      */
-    event.preventDefault();
-    const keyPressed = event.key.toLowerCase();
-    if (keyPressed === "escape") {
-      setSelectedItemId(null);
-    } else if (keyPressed === "arrowleft") {
-      const indexOfResult = itemsStore.items
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(selectedItemId);
-      setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
-    } else if (keyPressed === "arrowright") {
-      const indexOfResult = itemsStore.items
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(selectedItemId);
-      setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
-    }
   };
 
   const totalItems = () => {
@@ -150,6 +117,7 @@ export const Items = observer(() => {
         <div className="looks__container">
           <ItemDetail
             selectedItemId={selectedItemId}
+            setSelectedItemId={setSelectedItemId}
             hideDetailView={hideDetailView}
           />
         </div>
