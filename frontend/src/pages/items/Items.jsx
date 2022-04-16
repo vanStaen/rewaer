@@ -70,7 +70,7 @@ export const Items = observer(() => {
           <Spin size="large" />
         </div>
       ) : itemsStore.selectedItemId ? (
-        <div className="looks__container">
+        <div className="items__container">
           <ItemDetail />
         </div>
       ) : (

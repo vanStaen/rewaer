@@ -70,8 +70,8 @@
 - [ ] Refactoring 
 - [?] Leave item/look -detailview with browser back function 
 - [?] Naviagtion with Arrows in item/look -detailview
-  - [ ] Create ItemList, and make Item lighter
-  - [ ] Create LookList, and make lookl lighter
+  - [x] Create ItemList, and make Item lighter
+  - [ ] Create LookList, and make Look lighter
 
 
 manifest > seite als app anzeigen
