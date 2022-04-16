@@ -25,7 +25,7 @@ export const ItemDetail = observer((props) => {
   const { t } = useTranslation();
 
   const selectedItem = itemsStore.items.find(
-    (item) => item._id === props.selectedItemId
+    (item) => item._id === itemsStore.selectedItemId
   );
 
   useEffect(() => {
@@ -45,25 +45,25 @@ export const ItemDetail = observer((props) => {
           (item) => item._id === props.selectedItemId
         );
       */
-    console.log(props.selectedItemId);
+    console.log(itemsStore.selectedItemId);
     event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
-      props.setSelectedItemId(null);
+      itemsStore.setSelectedItemId(null);
     } else if (keyPressed === "arrowleft") {
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;
         })
-        .indexOf(props.selectedItemId);
-      props.setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
+        .indexOf(itemsStore.selectedItemId);
+      itemsStore.setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
     } else if (keyPressed === "arrowright") {
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;
         })
-        .indexOf(props.selectedItemId);
-      props.setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
+        .indexOf(itemsStore.selectedItemId);
+      itemsStore.setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
     }
   };
 

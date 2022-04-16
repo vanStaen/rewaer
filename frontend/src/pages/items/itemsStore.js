@@ -4,13 +4,13 @@ import { fetchItems } from "./fetchItems";
 import { userStore } from "../../stores/userStore/userStore";
 
 export class ItemsStore {
-
   items = [];
   isLoading = true;
   isOutOfDate = true;
   error = null;
   numberOfArchivedItem = 0;
   numberOfPrivateItem = 0;
+  selectedItemId = null;
   showPrivate = userStore.profilSettings?.displayPrivate;
 
   constructor() {
@@ -29,6 +29,8 @@ export class ItemsStore {
       setShowPrivate: action,
       error: observable,
       setError: action,
+      selectedItemId: observable,
+      setSelectedItemId: action,
       loadItems: action,
     });
   }
@@ -61,12 +63,16 @@ export class ItemsStore {
     this.showPrivate = showPrivate;
   };
 
+  setSelectedItemId = (selectedItemId) => {
+    this.selectedItemId = selectedItemId;
+  };
+
   loadItems = async () => {
     try {
       const items = await fetchItems();
 
-      const archivedItems = items.filter(item => item.active === false);
-      const privateItems = items.filter(item => item.private);
+      const archivedItems = items.filter((item) => item.active === false);
+      const privateItems = items.filter((item) => item.private);
 
       this.setItems(items);
       this.setNumberOfArchivedItem(archivedItems.length);

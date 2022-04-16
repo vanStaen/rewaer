@@ -17,7 +17,6 @@ import "./Items.css";
 export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [selectedItemId, setSelectedItemId] = useState(null);
   const originalScrollPosition = useRef(null);
   const lastKnownScrollPosition = useRef(null);
   const { t } = useTranslation();
@@ -37,7 +36,7 @@ export const Items = observer(() => {
   }, [authStore.hasAccess]);
 
   useEffect(() => {
-    if (!selectedItemId) {
+    if (!itemsStore.selectedItemId) {
       window.scroll({
         top: originalScrollPosition.current,
         left: 0,
@@ -50,7 +49,7 @@ export const Items = observer(() => {
         behavior: "smooth",
       });
     }
-  }, [selectedItemId]);
+  }, [itemsStore.selectedItemId]);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollEventHandler);
@@ -59,15 +58,15 @@ export const Items = observer(() => {
       window.removeEventListener("scroll", scrollEventHandler);
       window.removeEventListener("popstate", browserBackHandler);
     };
-  }, [selectedItemId]);
+  }, []);
 
   const showDetailView = (id) => {
-    setSelectedItemId(id);
+    itemsStore.setSelectedItemId(id);
     originalScrollPosition.current = lastKnownScrollPosition.current;
   };
 
   const hideDetailView = () => {
-    setSelectedItemId(null);
+    itemsStore.setSelectedItemId(null);
   };
 
   const scrollEventHandler = () => {
@@ -77,7 +76,7 @@ export const Items = observer(() => {
   const browserBackHandler = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    setSelectedItemId(null);
+    itemsStore.setSelectedItemId(null);
   };
 
   const totalItems = () => {
@@ -113,13 +112,9 @@ export const Items = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : selectedItemId ? (
+      ) : itemsStore.selectedItemId ? (
         <div className="looks__container">
-          <ItemDetail
-            selectedItemId={selectedItemId}
-            setSelectedItemId={setSelectedItemId}
-            hideDetailView={hideDetailView}
-          />
+          <ItemDetail hideDetailView={hideDetailView} />
         </div>
       ) : (
         <>
