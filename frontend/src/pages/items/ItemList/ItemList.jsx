@@ -8,11 +8,24 @@ import { userStore } from "../../../stores/userStore/userStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import { ItemCard } from "../ItemCard/ItemCard";
 import { ItemForm } from "../ItemForm/ItemForm";
+import { Banner } from "../../../components/Banner/Banner";
+import { ToolBar } from "../../../components/ToolBar/ToolBar";
 
-export const ItemList = observer((props) => {
+export const ItemList = observer(() => {
+  const [quickEdit, setQuickEdit] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollEventHandler);
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    return () => {
+      window.removeEventListener("scroll", scrollEventHandler);
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+    };
+  }, []);
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
@@ -27,12 +40,29 @@ export const ItemList = observer((props) => {
     userStore.profilSettings,
   ]);
 
-  useEffect(() => {
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    return () => {
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-    };
-  }, []);
+  const scrollEventHandler = () => {
+    itemsStore.setLastKnownScrollPosition(window.scrollY);
+  };
+
+  const totalItems = () => {
+    if (userStore.profilSettings.displayArchived) {
+      if (itemsStore.showPrivate) {
+        return itemsStore.items.length;
+      } else {
+        return itemsStore.items.length - itemsStore.numberOfPrivateItem;
+      }
+    } else {
+      if (itemsStore.showPrivate) {
+        return itemsStore.items.length - itemsStore.numberOfArchivedItem;
+      } else {
+        return (
+          itemsStore.items.length -
+          itemsStore.numberOfArchivedItem -
+          itemsStore.numberOfPrivateItem
+        );
+      }
+    }
+  };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
@@ -85,18 +115,53 @@ export const ItemList = observer((props) => {
   });
 
   return (
-    <div ref={containerElement}>
-      <Row justify={"space-around"}>
-        <Col>
-          <ItemForm />
-        </Col>
-        {itemList}
-        <GhostCard
-          numberOfCards={missingCardForFullRow}
-          width="240px"
-          height="385px"
-        />
-      </Row>
-    </div>
+    <>
+      <Banner id="missingTag" desc={t("items.missingTagsAlert")} show={true} />
+      <div className="items__container">
+        <div className="items__toolbar">
+          <div className="items__toolbarLeft">
+            {totalItems()}&nbsp;{t("menu.items")}
+            {itemsStore.numberOfPrivateItem > 0 && (
+              <>
+                {" "}
+                |
+                <span
+                  className="link"
+                  onClick={() => {
+                    itemsStore.setShowPrivate(!itemsStore.showPrivate);
+                  }}
+                >
+                  &nbsp;
+                  {itemsStore.showPrivate
+                    ? t("items.hidePrivateItems")
+                    : t("items.showPrivateItems")}
+                </span>
+              </>
+            )}
+          </div>
+          <div className="items__toolbarRight">
+            <ToolBar
+              quickEdit={quickEdit}
+              setQuickEdit={setQuickEdit}
+              showFilter={showFilter}
+              setShowFilter={setShowFilter}
+            />
+          </div>
+        </div>
+        <div ref={containerElement}>
+          <Row justify={"space-around"}>
+            <Col>
+              <ItemForm />
+            </Col>
+            {itemList}
+            <GhostCard
+              numberOfCards={missingCardForFullRow}
+              width="240px"
+              height="385px"
+            />
+          </Row>
+        </div>
+      </div>
+    </>
   );
 });
