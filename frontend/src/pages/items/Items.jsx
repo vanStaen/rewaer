@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
@@ -17,8 +17,6 @@ import "./Items.css";
 export const Items = observer(() => {
   const [quickEdit, setQuickEdit] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const originalScrollPosition = useRef(null);
-  const lastKnownScrollPosition = useRef(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -38,7 +36,7 @@ export const Items = observer(() => {
   useEffect(() => {
     if (!itemsStore.selectedItemId) {
       window.scroll({
-        top: originalScrollPosition.current,
+        top: itemsStore.originalScrollPosition,
         left: 0,
         behavior: "smooth",
       });
@@ -60,17 +58,8 @@ export const Items = observer(() => {
     };
   }, []);
 
-  const showDetailView = (id) => {
-    itemsStore.setSelectedItemId(id);
-    originalScrollPosition.current = lastKnownScrollPosition.current;
-  };
-
-  const hideDetailView = () => {
-    itemsStore.setSelectedItemId(null);
-  };
-
   const scrollEventHandler = () => {
-    lastKnownScrollPosition.current = window.scrollY;
+    itemsStore.setLastKnownScrollPosition(window.scrollY);
   };
 
   const browserBackHandler = (e) => {
@@ -114,7 +103,7 @@ export const Items = observer(() => {
         </div>
       ) : itemsStore.selectedItemId ? (
         <div className="looks__container">
-          <ItemDetail hideDetailView={hideDetailView} />
+          <ItemDetail />
         </div>
       ) : (
         <>
@@ -154,7 +143,7 @@ export const Items = observer(() => {
                 />
               </div>
             </div>
-            <ItemList showDetailView={showDetailView} />
+            <ItemList />
           </div>
         </>
       )}

@@ -64,6 +64,11 @@ export const ItemList = observer((props) => {
     userStore.profilSettings,
   ]);
 
+  const showDetailView = (id) => {
+    itemsStore.setSelectedItemId(id);
+    itemsStore.setOriginalScrollPosition(itemsStore.lastKnownScrollPosition);
+  };
+
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || itemsStore.showPrivate) {
       if (!item.active && !userStore.profilSettings?.displayArchived) {
@@ -71,7 +76,7 @@ export const ItemList = observer((props) => {
       } else {
         return (
           <Col key={item._id}>
-            <ItemCard item={item} showDetailView={props.showDetailView} />
+            <ItemCard item={item} showDetailView={showDetailView} />
           </Col>
         );
       }

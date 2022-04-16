@@ -11,6 +11,8 @@ export class ItemsStore {
   numberOfArchivedItem = 0;
   numberOfPrivateItem = 0;
   selectedItemId = null;
+  originalScrollPosition = null;
+  lastKnownScrollPosition = null;
   showPrivate = userStore.profilSettings?.displayPrivate;
 
   constructor() {
@@ -31,6 +33,10 @@ export class ItemsStore {
       setError: action,
       selectedItemId: observable,
       setSelectedItemId: action,
+      originalScrollPosition : observable,
+      setOriginalScrollPosition: action,
+      lastKnownScrollPosition: observable,
+      setLastKnownScrollPosition: action,
       loadItems: action,
     });
   }
@@ -65,6 +71,14 @@ export class ItemsStore {
 
   setSelectedItemId = (selectedItemId) => {
     this.selectedItemId = selectedItemId;
+  };
+
+  setOriginalScrollPosition= (originalScrollPosition) => {
+    this.originalScrollPosition = originalScrollPosition;
+  };
+
+  setLastKnownScrollPosition= (lastKnownScrollPosition) => {
+    this.lastKnownScrollPosition = lastKnownScrollPosition;
   };
 
   loadItems = async () => {
