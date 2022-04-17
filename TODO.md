@@ -68,8 +68,9 @@
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
 - [ ] Refactoring 
-- [?] Leave item/look -detailview with browser back function 
-- [?] Naviagtion with Arrows in item/look -detailview
+- [ ] Leave item detailview with browser back function 
+- [ ] Leave look detailview with browser back function 
+- [ ] Naviagtion with Arrows in item/look -detailview
   - [x] Create ItemList, and make Item lighter
   - [ ] Create LookList, and make Look lighter
 
