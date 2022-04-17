@@ -28,22 +28,6 @@ export const Items = observer(() => {
   }, [authStore.hasAccess]);
 
   useEffect(() => {
-    if (!itemsStore.selectedItemId) {
-      window.scroll({
-        top: itemsStore.originalScrollPosition,
-        left: 0,
-        behavior: "smooth",
-      });
-    } else {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [itemsStore.selectedItemId]);
-
-  useEffect(() => {
     window.addEventListener("popstate", browserBackHandler);
     return () => {
       window.removeEventListener("popstate", browserBackHandler);
@@ -51,6 +35,9 @@ export const Items = observer(() => {
   }, []);
 
   const browserBackHandler = (e) => {
+    //https://developer.mozilla.org/en-US/docs/Web/API/History/pushState#browser_compatibility
+    //https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
+    //https://developer.mozilla.org/en-US/docs/web/api/window/hashchange_event
     e.preventDefault();
     e.stopImmediatePropagation();
     itemsStore.setSelectedItemId(null);
