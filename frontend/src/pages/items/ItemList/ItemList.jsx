@@ -94,8 +94,8 @@ export const ItemList = observer(() => {
     userStore.profilSettings,
   ]);
 
-  const showDetailView = (id) => {
-    itemsStore.setSelectedItemId(id);
+  const showDetailView = (item) => {
+    itemsStore.setSelectedItem(item);
     itemsStore.setOriginalScrollPosition(itemsStore.lastKnownScrollPosition);
   };
 

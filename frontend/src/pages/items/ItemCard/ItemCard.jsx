@@ -179,7 +179,7 @@ export const ItemCard = (props) => {
             id={`card_item_logoover_${props.item._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.showDetailView(props.item._id);
+              props.showDetailView(props.item);
             }}
           >
             <TagOutlined />
@@ -191,7 +191,7 @@ export const ItemCard = (props) => {
             id={`card_item_logoover_${props.item._id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.showDetailView(props.item._id);
+              props.showDetailView(props.item);
             }}
           >
             <StopOutlined />

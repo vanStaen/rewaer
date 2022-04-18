@@ -27,7 +27,7 @@ export const Items = observer(() => {
   }, [authStore.hasAccess]);
 
   useEffect(() => {
-    if (!itemsStore.selectedItemId) {
+    if (!itemsStore.selectedItem) {
       window.scroll({
         top: itemsStore.originalScrollPosition,
         left: 0,
@@ -40,7 +40,7 @@ export const Items = observer(() => {
         behavior: "smooth",
       });
     }
-  }, [itemsStore.selectedItemId]);
+  }, [itemsStore.selectedItem]);
 
   return (
     <div className="items__main">
@@ -55,7 +55,7 @@ export const Items = observer(() => {
         <div className="spinner">
           <Spin size="large" />
         </div>
-      ) : itemsStore.selectedItemId ? (
+      ) : itemsStore.selectedItem ? (
         <div className="items__container">
           <ItemDetail />
         </div>

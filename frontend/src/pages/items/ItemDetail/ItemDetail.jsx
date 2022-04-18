@@ -23,12 +23,8 @@ import { itemStatus } from "../../../lib/data/itemStatus";
 
 import "./ItemDetail.css";
 
-export const ItemDetail = observer((props) => {
+export const ItemDetail = observer(() => {
   const { t } = useTranslation();
-
-  const selectedItem = itemsStore.items.find(
-    (item) => item._id === itemsStore.selectedItemId
-  );
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -44,7 +40,7 @@ export const ItemDetail = observer((props) => {
   const browserBackHandler = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    itemsStore.setSelectedItemId(null);
+    itemsStore.setSelectedItem(null);
   };
 
   const keydownEventHandler = (event) => {
@@ -57,25 +53,25 @@ export const ItemDetail = observer((props) => {
           (item) => item._id === props.selectedItemId
         );
       */
-    console.log(itemsStore.selectedItemId);
+    console.log("itemsStore.selectedItem", itemsStore.selectedItem._id);
     event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
-      itemsStore.setSelectedItemId(null);
+      itemsStore.setSelectedItem(null);
     } else if (keyPressed === "arrowleft") {
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;
         })
-        .indexOf(itemsStore.selectedItemId);
-      itemsStore.setSelectedItemId(itemsStore.items[indexOfResult - 1]._id);
+        .indexOf(itemsStore.selectedItem._id);
+      itemsStore.setSelectedItem(itemsStore.items[indexOfResult - 1]);
     } else if (keyPressed === "arrowright") {
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;
         })
-        .indexOf(itemsStore.selectedItemId);
-      itemsStore.setSelectedItemId(itemsStore.items[indexOfResult + 1]._id);
+        .indexOf(itemsStore.selectedItem._id);
+      itemsStore.setSelectedItem(itemsStore.items[indexOfResult + 1]);
     }
   };
 
@@ -86,7 +82,7 @@ export const ItemDetail = observer((props) => {
           <ArrowLeftOutlined
             className="itemdetail__arrowIcon"
             onClick={() => {
-              itemsStore.setSelectedItemId(null);
+              itemsStore.setSelectedItem(null);
             }}
           />
         </Tooltip>
@@ -95,16 +91,16 @@ export const ItemDetail = observer((props) => {
       <div className="itemdetail__imageWrap">
         <div
           className="itemdetail__pictureBlur"
-          id={`selected_item_picture_${selectedItem._id}`}
+          id={`selected_item_picture_${itemsStore.selectedItem._id}`}
           style={{
-            background: `url(${selectedItem.mediaUrlMedium})`,
+            background: `url(${itemsStore.selectedItem.mediaUrlMedium})`,
           }}
         ></div>
         <div
           className="itemdetail__picture"
-          id={`selected_item_picture_${selectedItem._id}`}
+          id={`selected_item_picture_${itemsStore.selectedItem._id}`}
           style={{
-            background: `url(${selectedItem.mediaUrlMedium})`,
+            background: `url(${itemsStore.selectedItem.mediaUrlMedium})`,
           }}
         ></div>
       </div>
@@ -123,9 +119,9 @@ export const ItemDetail = observer((props) => {
           <ItemDetailFormStringElement
             element="title"
             title="title"
-            value={selectedItem.title}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
+            value={itemsStore.selectedItem.title}
+            selectedItem={itemsStore.selectedItem}
+            disabled={!itemsStore.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="category"
@@ -137,35 +133,38 @@ export const ItemDetail = observer((props) => {
                 ? itemCategoryWomen
                 : itemCategoryNB
             }
-            value={selectedItem.category}
-            selectedItem={selectedItem}
+            value={itemsStore.selectedItem.category}
+            selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!selectedItem.active}
+            disabled={!itemsStore.selectedItem.active}
           />
           <ItemDetailFormStringElement
             element="brand"
             title="brand"
-            value={selectedItem.brand}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
+            value={itemsStore.selectedItem.brand}
+            selectedItem={itemsStore.selectedItem}
+            disabled={!itemsStore.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="colors"
             element="colors"
             data={colors}
-            value={selectedItem.colors[0]}
-            selectedItem={selectedItem}
+            value={
+              itemsStore.selectedItem.colors &&
+              itemsStore.selectedItem.colors[0]
+            }
+            selectedItem={itemsStore.selectedItem}
             multiSelect={true}
-            disabled={!selectedItem.active}
+            disabled={!itemsStore.selectedItem.active}
           />
           <ItemDetailFormDropDown
             title="pattern"
             element="pattern"
             data={pattern}
-            value={selectedItem.pattern}
-            selectedItem={selectedItem}
+            value={itemsStore.selectedItem.pattern}
+            selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!selectedItem.active}
+            disabled={!itemsStore.selectedItem.active}
           />
           <div className="itemDetail__itemContainerDivisor">
             The status of this item
@@ -174,10 +173,10 @@ export const ItemDetail = observer((props) => {
             title="status"
             element="status"
             data={itemStatus}
-            value={selectedItem.status}
-            selectedItem={selectedItem}
+            value={itemsStore.selectedItem.status}
+            selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!selectedItem.active}
+            disabled={!itemsStore.selectedItem.active}
             tooltip={t("items.statusTooltip")}
           />
           <ItemDetailFormRadio
@@ -187,11 +186,11 @@ export const ItemDetail = observer((props) => {
               { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
               { code: true, en: "Private", de: "Privat", fr: "Privé" },
             ]}
-            value={selectedItem.private}
-            selectedItem={selectedItem}
+            value={itemsStore.selectedItem.private}
+            selectedItem={itemsStore.selectedItem}
             whatShouldBeRed={true}
             multiSelect={false}
-            disabled={!selectedItem.active}
+            disabled={!itemsStore.selectedItem.active}
             tooltip={t("items.makePrivateItem")}
           />
           <ItemDetailFormRadio
@@ -201,8 +200,8 @@ export const ItemDetail = observer((props) => {
               { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
               { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
             ]}
-            value={selectedItem.active}
-            selectedItem={selectedItem}
+            value={itemsStore.selectedItem.active}
+            selectedItem={itemsStore.selectedItem}
             whatShouldBeRed={false}
             multiSelect={false}
             disabled={false}
@@ -214,17 +213,17 @@ export const ItemDetail = observer((props) => {
           <ItemDetailFormStringElement
             element="location"
             title="location"
-            value={selectedItem.location}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
+            value={itemsStore.selectedItem.location}
+            selectedItem={itemsStore.selectedItem}
+            disabled={!itemsStore.selectedItem.active}
             tooltip={t("items.notesTooltip")}
           />
           <ItemDetailFormStringElement
             element="notes"
             title="notes"
-            value={selectedItem.notes}
-            selectedItem={selectedItem}
-            disabled={!selectedItem.active}
+            value={itemsStore.selectedItem.notes}
+            selectedItem={itemsStore.selectedItem}
+            disabled={!itemsStore.selectedItem.active}
             tooltip={t("items.notesTooltip")}
           />
           <div className="itemDetail__itemContainerDivisor">

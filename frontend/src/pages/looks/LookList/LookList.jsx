@@ -80,8 +80,8 @@ export const LookList = observer(() => {
     userStore.profilSettings,
   ]);
 
-  const showDetailView = (id) => {
-    looksStore.setSelectedLook(id);
+  const showDetailView = (look) => {
+    looksStore.setSelectedLook(look);
     looksStore.setOriginalScrollPosition(looksStore.lastKnownScrollPosition);
   };
 

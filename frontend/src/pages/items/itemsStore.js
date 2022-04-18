@@ -10,7 +10,7 @@ export class ItemsStore {
   error = null;
   numberOfArchivedItem = 0;
   numberOfPrivateItem = 0;
-  selectedItemId = null;
+  selectedItem = null;
   originalScrollPosition = null;
   lastKnownScrollPosition = null;
   showPrivate = userStore.profilSettings?.displayPrivate;
@@ -31,8 +31,8 @@ export class ItemsStore {
       setShowPrivate: action,
       error: observable,
       setError: action,
-      selectedItemId: observable,
-      setSelectedItemId: action,
+      selectedItem: observable,
+      setSelectedItem: action,
       originalScrollPosition : observable,
       setOriginalScrollPosition: action,
       lastKnownScrollPosition: observable,
@@ -69,8 +69,8 @@ export class ItemsStore {
     this.showPrivate = showPrivate;
   };
 
-  setSelectedItemId = (selectedItemId) => {
-    this.selectedItemId = selectedItemId;
+  setSelectedItem = (selectedItem) => {
+    this.selectedItem = selectedItem;
   };
 
   setOriginalScrollPosition= (originalScrollPosition) => {
