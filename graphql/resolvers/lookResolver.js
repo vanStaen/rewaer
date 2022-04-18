@@ -21,6 +21,7 @@ exports.lookResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
+        ['_id', 'DESC'],
       ],
     });
   },

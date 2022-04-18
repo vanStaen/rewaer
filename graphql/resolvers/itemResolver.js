@@ -21,6 +21,7 @@ exports.itemResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
+        ['_id', 'DESC'],
       ],
     });
   },
