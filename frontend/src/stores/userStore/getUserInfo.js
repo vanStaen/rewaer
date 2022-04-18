@@ -16,6 +16,7 @@ export const getUserInfo = async () => {
               language,
               gender,
               friends {
+                _id,
                 userName,
                 avatar,
               },

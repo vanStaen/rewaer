@@ -234,12 +234,13 @@ export const LookDetail = observer(() => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {category !== null ? (
+              {looksStore.selectedLook.category !== null ? (
                 <span className="lookdetail__headerCategory">
                   {
-                    convertCodeToObjectString(category, lookCategory)[
-                      userStore.language
-                    ]
+                    convertCodeToObjectString(
+                      looksStore.selectedLook.category,
+                      lookCategory
+                    )[userStore.language]
                   }
                 </span>
               ) : (
@@ -249,7 +250,6 @@ export const LookDetail = observer(() => {
               )}
             </a>
           </Dropdown>
-
           <div className="lookdetail__headerPoints">&#9679;</div>
           <Dropdown
             overlay={<Menu>{SeasonsDropDown}</Menu>}
@@ -275,7 +275,6 @@ export const LookDetail = observer(() => {
               )}
             </a>
           </Dropdown>
-
           {selectedItems.length > 0 && (
             <>
               <div className="lookdetail__headerPoints">&#9679;</div>
@@ -285,7 +284,6 @@ export const LookDetail = observer(() => {
               </div>
             </>
           )}
-
           {numberOfPrivateItems > 0 && (
             <span
               className="lookdetail__headerShowPrivate link"
@@ -308,9 +306,6 @@ export const LookDetail = observer(() => {
           id={`selected_look_picture_${looksStore.selectedLook._id}`}
           style={{
             background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
         <div
@@ -318,9 +313,6 @@ export const LookDetail = observer(() => {
           id={`selected_look_picture_${looksStore.selectedLook._id}`}
           style={{
             background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
       </div>

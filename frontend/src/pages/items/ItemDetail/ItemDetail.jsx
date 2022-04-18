@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Spin, Tooltip } from "antd";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -9,6 +10,7 @@ import { ItemDetailFormStringElement } from "./ItemDetailFormElement/ItemDetailF
 import { ItemDetailFormRadio } from "./ItemDetailFormElement/ItemDetailFormRadio";
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
+import { ItemShareWithFriends } from "./ItemShareWithFriends/itemShareWithFriends";
 
 import {
   itemCategoryMen,
@@ -96,9 +98,6 @@ export const ItemDetail = observer((props) => {
           id={`selected_item_picture_${selectedItem._id}`}
           style={{
             background: `url(${selectedItem.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
         <div
@@ -106,9 +105,6 @@ export const ItemDetail = observer((props) => {
           id={`selected_item_picture_${selectedItem._id}`}
           style={{
             background: `url(${selectedItem.mediaUrlMedium})`,
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
       </div>
@@ -121,6 +117,9 @@ export const ItemDetail = observer((props) => {
         </div>
       ) : (
         <div className="itemDetail__itemContainer">
+          <div className="itemDetail__itemContainerDivisor">
+            Item's description and informations
+          </div>
           <ItemDetailFormStringElement
             element="title"
             title="title"
@@ -168,7 +167,9 @@ export const ItemDetail = observer((props) => {
             multiSelect={false}
             disabled={!selectedItem.active}
           />
-          <br />
+          <div className="itemDetail__itemContainerDivisor">
+            The status of this item
+          </div>
           <ItemDetailFormRadio
             title="status"
             element="status"
@@ -207,7 +208,9 @@ export const ItemDetail = observer((props) => {
             disabled={false}
             tooltip={t("items.archiveItem")}
           />
-          <br />
+          <div className="itemDetail__itemContainerDivisor">
+            Details on the where about of this item
+          </div>
           <ItemDetailFormStringElement
             element="location"
             title="location"
@@ -224,10 +227,10 @@ export const ItemDetail = observer((props) => {
             disabled={!selectedItem.active}
             tooltip={t("items.notesTooltip")}
           />
-          List of user friends:
-          {userStore.friends.map((friend) => {
-            return <>{friend.userName}</>;
-          })}
+          <div className="itemDetail__itemContainerDivisor">
+            Alow your friends to access this item
+          </div>
+          <ItemShareWithFriends />
         </div>
       )}
     </div>
