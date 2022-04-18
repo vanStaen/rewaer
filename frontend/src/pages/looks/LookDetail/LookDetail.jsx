@@ -35,6 +35,39 @@ export const LookDetail = observer(() => {
       setShowPrivate(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
+  useEffect(() => {
+    const url = new URL(window.location);
+    history.pushState({}, "", url);
+    window.addEventListener("keydown", keydownEventHandler);
+    window.addEventListener("popstate", browserBackHandler);
+    return () => {
+      window.removeEventListener("keydown", keydownEventHandler);
+      window.removeEventListener("popstate", browserBackHandler);
+    };
+  }, []);
+
+  const browserBackHandler = (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    looksStore.setSelectedLook(null);
+  };
+
+  const keydownEventHandler = (event) => {
+    /* 
+        // Use index of, to find position in array, and increment
+        //  decrement to the next items in array
+        // take in consideration private hidden or not.  
+        // itemsStore.showPrivate)
+        const selectedItem = itemsStore.items.find(
+          (item) => item._id === props.selectedItemId
+        );
+      */
+    event.preventDefault();
+    const keyPressed = event.key.toLowerCase();
+    if (keyPressed === "escape") {
+      looksStore.setSelectedLook(null);
+    }
+  };
   const categoryChangeHandler = (value) => {
     updateCategoryLook(looksStore.selectedLook._id, value);
     looksStore.setIsOutOfDate(true);
