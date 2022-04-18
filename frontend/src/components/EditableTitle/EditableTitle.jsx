@@ -53,9 +53,9 @@ export const EditableTitle = (props) => {
     setTitle(
       editInputValue.replace(/ /g, "_").length > 23
         ? `${editInputValue
-          .replace("-", "/")
-          .replace(/ /g, "_")
-          .slice(0, 23)}...`
+            .replace("-", "/")
+            .replace(/ /g, "_")
+            .slice(0, 23)}...`
         : editInputValue.replace("-", "/").replace(/ /g, "_")
     );
     setIsEditmode(false);
@@ -74,15 +74,15 @@ export const EditableTitle = (props) => {
           onPressEnter={handleEditConfirm}
         />
       ) : (
-          <div
-            className={props.active ? "Page__title" : "Page__title striked"}
-            onDoubleClick={() => {
-              setIsEditmode(true);
-            }}
-          >
-            {title}
-          </div>
-        )}
+        <div
+          className={props.active ? "Page__title" : "Page__title striked"}
+          onDoubleClick={() => {
+            setIsEditmode(true);
+          }}
+        >
+          {title}
+        </div>
+      )}
     </div>
   );
 };

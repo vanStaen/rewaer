@@ -66,6 +66,20 @@ export const LookDetail = observer(() => {
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
       looksStore.setSelectedLook(null);
+    } else if (keyPressed === "arrowleft") {
+      const indexOfResult = looksStore.looks
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(looksStore.selectedLook._id);
+      looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
+    } else if (keyPressed === "arrowright") {
+      const indexOfResult = looksStore.looks
+        .map(function (e) {
+          return e._id;
+        })
+        .indexOf(looksStore.selectedLook._id);
+      looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
     }
   };
   const categoryChangeHandler = (value) => {
