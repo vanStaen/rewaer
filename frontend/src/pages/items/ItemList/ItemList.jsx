@@ -28,22 +28,6 @@ export const ItemList = observer(() => {
   }, []);
 
   useEffect(() => {
-    if (!itemsStore.selectedItemId) {
-      window.scroll({
-        top: itemsStore.originalScrollPosition,
-        left: 0,
-        behavior: "smooth",
-      });
-    } else {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [itemsStore.selectedItemId]);
-
-  useEffect(() => {
     calculateMissingCardsForFullRow();
   }, [
     containerElement.current,

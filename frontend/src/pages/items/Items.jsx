@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
-import { useTranslation } from "react-i18next";
 import { MehOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "./itemsStore";
@@ -28,20 +27,20 @@ export const Items = observer(() => {
   }, [authStore.hasAccess]);
 
   useEffect(() => {
-    window.addEventListener("popstate", browserBackHandler);
-    return () => {
-      window.removeEventListener("popstate", browserBackHandler);
-    };
-  }, []);
-
-  const browserBackHandler = (e) => {
-    //https://developer.mozilla.org/en-US/docs/Web/API/History/pushState#browser_compatibility
-    //https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
-    //https://developer.mozilla.org/en-US/docs/web/api/window/hashchange_event
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    itemsStore.setSelectedItemId(null);
-  };
+    if (!itemsStore.selectedItemId) {
+      window.scroll({
+        top: itemsStore.originalScrollPosition,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [itemsStore.selectedItemId]);
 
   return (
     <div className="items__main">

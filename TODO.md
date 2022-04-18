@@ -68,11 +68,13 @@
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
 - [ ] Refactoring 
-- [ ] Leave item detailview with browser back function 
+- [x] Leave item detailview with browser back function 
 - [ ] Leave look detailview with browser back function 
 - [ ] Naviagtion with Arrows in item/look -detailview
   - [x] Create ItemList, and make Item lighter
-  - [ ] Create LookList, and make Look lighter
+  - [ ] item: Allow navigation from detail view
+  - [x] Create LookList, and make Look lighter
+  - [ ] look: Allow navigation from detail view
 
 
 manifest > seite als app anzeigen

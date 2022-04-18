@@ -18,15 +18,15 @@ import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio
 
 import "./LookDetail.css";
 
-export const LookDetail = observer((props) => {
-  const [category, setCategory] = useState(props.selectedLook.category);
-  const [season, setSeason] = useState(props.selectedLook.season);
+export const LookDetail = observer(() => {
+  const [category, setCategory] = useState(looksStore.selectedLook.category);
+  const [season, setSeason] = useState(looksStore.selectedLook.season);
   const [selectedItems, setSelectedItems] = useState(
-    props.selectedLook.items ? props.selectedLook.items : []
+    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
   );
   const [showPrivate, setShowPrivate] = useState(false);
-  const [isPrivate, setIsPrivate] = useState(props.selectedLook.private);
-  const [isActive, setIsActive] = useState(props.selectedLook.active);
+  const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
+  const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -36,12 +36,12 @@ export const LookDetail = observer((props) => {
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   const categoryChangeHandler = (value) => {
-    updateCategoryLook(props.selectedLook._id, value);
+    updateCategoryLook(looksStore.selectedLook._id, value);
     looksStore.setIsOutOfDate(true);
   };
 
   const seasonChangeHandler = (value) => {
-    updateSeasonLook(props.selectedLook._id, value);
+    updateSeasonLook(looksStore.selectedLook._id, value);
     looksStore.setIsOutOfDate(true);
   };
 
@@ -57,11 +57,14 @@ export const LookDetail = observer((props) => {
     }
     if (indexOfValue < 0) {
       setSelectedItems([...selectedItems, valueAsInt]);
-      updateItemsLook(props.selectedLook._id, [...selectedItems, valueAsInt]);
+      updateItemsLook(looksStore.selectedLook._id, [
+        ...selectedItems,
+        valueAsInt,
+      ]);
     } else {
       setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
       updateItemsLook(
-        props.selectedLook._id,
+        looksStore.selectedLook._id,
         selectedItems.filter((itemId) => itemId !== valueAsInt)
       );
     }
@@ -156,7 +159,7 @@ export const LookDetail = observer((props) => {
           <ArrowLeftOutlined
             className="lookdetail__arrowIcon"
             onClick={() => {
-              props.hideDetailView();
+              looksStore.setSelectedLook(null);
             }}
           />
         </Tooltip>
@@ -165,14 +168,14 @@ export const LookDetail = observer((props) => {
       <div className="lookdetail__header">
         <div className="lookdetail__headerTitle">
           <span className="lookdetail__headerTitleId">
-            {props.selectedLook._id}
+            {looksStore.selectedLook._id}
           </span>
           <div className="lookdetail__headerPoints">&#9679;</div>
           <EditableTitle
-            title={props.selectedLook.title}
-            id={props.selectedLook._id}
+            title={looksStore.selectedLook.title}
+            id={looksStore.selectedLook._id}
             type={"look"}
-            active={props.selectedLook.active}
+            active={looksStore.selectedLook.active}
           />
           <div className="lookdetail__headerPoints">&#9679;</div>
           <Dropdown
@@ -188,15 +191,15 @@ export const LookDetail = observer((props) => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(category, lookCategory)[
-                    userStore.language
+                      userStore.language
                     ]
                   }
                 </span>
               ) : (
-                  <span className="lookdetail__headerSelectCategory">
-                    {t("looks.selectCategory")}
-                  </span>
-                )}
+                <span className="lookdetail__headerSelectCategory">
+                  {t("looks.selectCategory")}
+                </span>
+              )}
             </a>
           </Dropdown>
 
@@ -214,15 +217,15 @@ export const LookDetail = observer((props) => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(season, seasons)[
-                    userStore.language
+                      userStore.language
                     ]
                   }
                 </span>
               ) : (
-                  <span className="lookdetail__headerSelectCategory">
-                    {t("looks.selectSeason")}
-                  </span>
-                )}
+                <span className="lookdetail__headerSelectCategory">
+                  {t("looks.selectSeason")}
+                </span>
+              )}
             </a>
           </Dropdown>
 
@@ -255,9 +258,9 @@ export const LookDetail = observer((props) => {
       <div className="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"
-          id={`selected_look_picture_${props.selectedLook._id}`}
+          id={`selected_look_picture_${looksStore.selectedLook._id}`}
           style={{
-            background: `url(${props.selectedLook.mediaUrlMedium})`,
+            background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -265,9 +268,9 @@ export const LookDetail = observer((props) => {
         ></div>
         <div
           className="lookdetail__picture"
-          id={`selected_look_picture_${props.selectedLook._id}`}
+          id={`selected_look_picture_${looksStore.selectedLook._id}`}
           style={{
-            background: `url(${props.selectedLook.mediaUrlMedium})`,
+            background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -282,27 +285,28 @@ export const LookDetail = observer((props) => {
           </div>
         </div>
       ) : (
-          <div className="lookDetail__itemContainer">
-            {selectedItems.length > 0 && (
+        <div className="lookDetail__itemContainer">
+          {selectedItems.length > 0 && (
+            <div className="lookDetail__itemContainerDivisor">
+              {t("looks.itemPartOfThisLook")}
+            </div>
+          )}
+          {selectedItems.length > 0 && (
+            <>
+              <div>{selectedItemList}</div>
+              <div className="lookDetail__itemSpacer"></div>
+            </>
+          )}
+          {isActive && (
+            <>
               <div className="lookDetail__itemContainerDivisor">
-                {t("looks.itemPartOfThisLook")}
+                {t("looks.pickItemComposingThisLook")}
               </div>
-            )}
-            {selectedItems.length > 0 && (
-              <>
-                <div>{selectedItemList}</div>
-                <div className="lookDetail__itemSpacer"></div>
-              </>
-            )}
-            { isActive && (
-              <>
-                <div className="lookDetail__itemContainerDivisor">
-                  {t("looks.pickItemComposingThisLook")}
-                </div>
-                <div>{itemList}</div>
-              </>)}
-          </div>
-        )}
+              <div>{itemList}</div>
+            </>
+          )}
+        </div>
+      )}
       <div className="lookDetail__actionContainer">
         <LookDetailFormRadio
           title="private"
@@ -313,10 +317,10 @@ export const LookDetail = observer((props) => {
           ]}
           value={isPrivate}
           flipValueTo={setIsPrivate}
-          selectedLook={props.selectedLook}
+          selectedLook={looksStore.selectedLook}
           whatShouldBeRed={true}
           multiSelect={false}
-          disabled={!props.selectedLook.active}
+          disabled={!looksStore.selectedLook.active}
           tooltip={t("looks.makePrivateLook")}
         />
         <LookDetailFormRadio
@@ -328,7 +332,7 @@ export const LookDetail = observer((props) => {
           ]}
           value={isActive}
           flipValueTo={setIsActive}
-          selectedLook={props.selectedLook}
+          selectedLook={looksStore.selectedLook}
           whatShouldBeRed={false}
           multiSelect={false}
           disabled={false}
