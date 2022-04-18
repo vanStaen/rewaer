@@ -67,9 +67,6 @@
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
-- [ ] Refactoring 
-- [x] Leave item detailview with browser back function 
-- [ ] Leave look detailview with browser back function 
 - [ ] Naviagtion with Arrows in item/look -detailview
   - [x] Create ItemList, and make Item lighter
   - [ ] item: Allow navigation from detail view
@@ -201,3 +198,5 @@ alternative zu react native > cordova (webkit)
 - [x] On Logout, empty all Stores
 - [x] Bug: Token expired should redirect to login
 - [x] Like/Dislikes Item/Looks feature
+- [x] Leave item detailview with browser back function 
+- [x] Leave look detailview with browser back function 
