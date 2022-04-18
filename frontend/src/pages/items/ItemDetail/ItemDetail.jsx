@@ -29,11 +29,21 @@ export const ItemDetail = observer((props) => {
   );
 
   useEffect(() => {
+    const url = new URL(window.location);
+    history.pushState({}, "", url);
     window.addEventListener("keydown", keydownEventHandler);
+    window.addEventListener("popstate", browserBackHandler);
     return () => {
       window.removeEventListener("keydown", keydownEventHandler);
+      window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
+
+  const browserBackHandler = (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    itemsStore.setSelectedItemId(null);
+  };
 
   const keydownEventHandler = (event) => {
     /* 
