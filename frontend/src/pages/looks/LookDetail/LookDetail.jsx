@@ -165,9 +165,6 @@ export const LookDetail = observer(() => {
               key={item._id}
               style={{
                 background: `url(${item.mediaUrlMedium})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
               }}
             ></div>
           );
@@ -189,9 +186,6 @@ export const LookDetail = observer(() => {
           key={item._id}
           style={{
             background: `url(${item.mediaUrlMedium})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         ></div>
       );
