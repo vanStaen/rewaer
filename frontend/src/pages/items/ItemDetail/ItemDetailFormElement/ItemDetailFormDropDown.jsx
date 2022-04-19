@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Dropdown, Menu, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,10 @@ import "./ItemDetailFormElement.css";
 export const ItemDetailFormDropDown = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
 
   const clickHandler = async (newValue) => {
     try {

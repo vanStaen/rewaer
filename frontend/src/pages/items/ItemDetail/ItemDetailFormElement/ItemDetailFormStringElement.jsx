@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react";
 import { Input, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ import "./ItemDetailFormElement.css";
 
 export const ItemDetailFormStringElement = observer((props) => {
   const { t } = useTranslation();
-  const [originalValue, setOriginalValue] = useState(props.value);
+  const originalValue = useRef(props.value);
   const [value, setValue] = useState(
     props.value ? props.value.replace("-", "/") : null
   );
@@ -23,8 +23,14 @@ export const ItemDetailFormStringElement = observer((props) => {
     props.value ? props.value.replace("-", "/") : null
   );
 
+  useEffect(() => {
+    setValue(props.value);
+    setEditInputValue(props.value);
+    originalValue.current = props.value;
+  }, [props.value]);
+
   const changeHandler = async (newValue) => {
-    if (newValue !== originalValue) {
+    if (newValue !== originalValue.current) {
       try {
         await updateGenericStringItem(
           props.selectedItem._id,
@@ -32,11 +38,11 @@ export const ItemDetailFormStringElement = observer((props) => {
           newValue
         );
         setValue(newValue);
+        itemsStore.setIsOutOfDate(true);
         notification.success({
           message: t("main.changeSaved"),
           placement: "bottomRight",
         });
-        itemsStore.setIsOutOfDate(true);
       } catch (error) {
         notification.error({
           message: error.message,

@@ -53,12 +53,12 @@ export const ItemDetail = observer(() => {
           (item) => item._id === props.selectedItemId
         );
       */
-    console.log("itemsStore.selectedItem", itemsStore.selectedItem._id);
-    event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
+      event.preventDefault();
       itemsStore.setSelectedItem(null);
     } else if (keyPressed === "arrowleft") {
+      event.preventDefault();
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;
@@ -66,6 +66,7 @@ export const ItemDetail = observer(() => {
         .indexOf(itemsStore.selectedItem._id);
       itemsStore.setSelectedItem(itemsStore.items[indexOfResult - 1]);
     } else if (keyPressed === "arrowright") {
+      event.preventDefault();
       const indexOfResult = itemsStore.items
         .map(function (e) {
           return e._id;

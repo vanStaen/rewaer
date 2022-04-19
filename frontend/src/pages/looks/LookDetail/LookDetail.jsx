@@ -30,6 +30,14 @@ export const LookDetail = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    setCategory(looksStore.selectedLook.category);
+    setSeason(looksStore.selectedLook.season);
+    setSelectedItems(looksStore.selectedLook.items);
+    setIsPrivate(looksStore.selectedLook.private);
+    setIsActive(looksStore.selectedLook.active);
+  }, [looksStore.selectedLook]);
+
+  useEffect(() => {
     itemsStore.loadItems();
     userStore.profilSettings &&
       setShowPrivate(userStore.profilSettings.displayPrivate);
@@ -228,13 +236,12 @@ export const LookDetail = observer(() => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {looksStore.selectedLook.category !== null ? (
+              {category !== null ? (
                 <span className="lookdetail__headerCategory">
                   {
-                    convertCodeToObjectString(
-                      looksStore.selectedLook.category,
-                      lookCategory
-                    )[userStore.language]
+                    convertCodeToObjectString(category, lookCategory)[
+                      userStore.language
+                    ]
                   }
                 </span>
               ) : (
