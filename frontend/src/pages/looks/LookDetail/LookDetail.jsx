@@ -80,14 +80,24 @@ export const LookDetail = observer(() => {
           return e._id;
         })
         .indexOf(looksStore.selectedLook._id);
-      looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
+      if (indexOfResult == 1) {
+        looksStore.setSelectedLook(
+          looksStore.looks[looksStore.looks.length - 1]
+        );
+      } else {
+        looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
+      }
     } else if (keyPressed === "arrowright") {
       const indexOfResult = looksStore.looks
         .map(function (e) {
           return e._id;
         })
         .indexOf(looksStore.selectedLook._id);
-      looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
+      if (indexOfResult === looksStore.looks.length - 1) {
+        looksStore.setSelectedLook(looksStore.looks[0]);
+      } else {
+        looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
+      }
     }
   };
   const categoryChangeHandler = (value) => {
