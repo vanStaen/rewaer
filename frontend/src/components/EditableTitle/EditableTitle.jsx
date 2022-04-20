@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, notification } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -20,6 +19,16 @@ export const EditableTitle = (props) => {
   const [editInputValue, setEditInputValue] = useState(
     props.title.replace("-", "/")
   );
+
+  useEffect(() => {
+    setTitle(
+      props.title.replace(/ /g, "_").length > 20
+        ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
+        : props.title.replace("-", "/").replace(/ /g, "_")
+    );
+    setEditInputValue(props.title.replace("-", "/"));
+    setOriginalTitle(props.value);
+  }, [props.title]);
 
   const patchTitleInDB = (title) => {
     if (title !== originalTitle) {
