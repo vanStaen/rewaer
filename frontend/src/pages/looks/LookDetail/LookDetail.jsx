@@ -170,7 +170,7 @@ export const LookDetail = observer(() => {
       : false;
     const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
     if (!isSelected) {
-      if (!item.active && !displayArchived) {
+      if (!item.active) {
         return null;
       } else {
         if (item.private && !showPrivate) {

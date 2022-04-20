@@ -143,7 +143,6 @@
 }
 
 .lookDetail__item:hover {
-  border: 1px solid rgb(100, 100, 100, 0.5);
   opacity: 0.75;
   box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
     0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
@@ -157,7 +156,6 @@
   height: 163px;
   cursor: pointer;
   opacity: 1;
-  border: 1px solid rgba(100,100,100,1);
   background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -180,7 +178,6 @@
 }
 
 .lookDetail__itemSelected:hover {
-  border: 1px solid rgb(100, 100, 100, 0.5);
   opacity: 0.75;
   box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
     0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
