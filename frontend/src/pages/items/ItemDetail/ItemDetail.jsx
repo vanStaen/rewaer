@@ -167,6 +167,7 @@ export const ItemDetail = observer(() => {
             multiSelect={false}
             disabled={!itemsStore.selectedItem.active}
           />
+          <br />
           <div className="itemDetail__itemContainerDivisor">
             The status of this item
           </div>
@@ -208,6 +209,7 @@ export const ItemDetail = observer(() => {
             disabled={false}
             tooltip={t("items.archiveItem")}
           />
+          <br />
           <div className="itemDetail__itemContainerDivisor">
             Details on the where about of this item
           </div>
@@ -227,8 +229,9 @@ export const ItemDetail = observer(() => {
             disabled={!itemsStore.selectedItem.active}
             tooltip={t("items.notesTooltip")}
           />
+          <br />
           <div className="itemDetail__itemContainerDivisor">
-            Alow your friends to access this item
+            Friends who can access this item
           </div>
           <ItemShareWithFriends />
         </div>
