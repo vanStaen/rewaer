@@ -310,84 +310,85 @@ export const LookDetail = observer(() => {
         </div>
       </div>
 
-      <div className="lookdetail__spacer"></div>
-      <div className="lookdetail__imageWrap">
-        <div
-          className="lookdetail__pictureBlur"
-          id={`selected_look_picture_${looksStore.selectedLook._id}`}
-          style={{
-            background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
-          }}
-        ></div>
-        <div
-          className="lookdetail__picture"
-          id={`selected_look_picture_${looksStore.selectedLook._id}`}
-          style={{
-            background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
-          }}
-        ></div>
+      <div className="lookDetail__rightContainer">
+        <div className="lookdetail__imageWrap">
+          <div
+            className="lookdetail__pictureBlur"
+            id={`selected_look_picture_${looksStore.selectedLook._id}`}
+            style={{
+              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+            }}
+          ></div>
+          <div
+            className="lookdetail__picture"
+            id={`selected_look_picture_${looksStore.selectedLook._id}`}
+            style={{
+              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+            }}
+          ></div>
+        </div>
+        <div className="lookDetail__actionContainer">
+          <LookDetailFormRadio
+            title="private"
+            element="private"
+            data={[
+              { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
+              { code: true, en: "Private", de: "Privat", fr: "Privé" },
+            ]}
+            value={isPrivate}
+            flipValueTo={setIsPrivate}
+            selectedLook={looksStore.selectedLook}
+            whatShouldBeRed={true}
+            multiSelect={false}
+            disabled={!looksStore.selectedLook.active}
+            tooltip={t("looks.makePrivateLook")}
+          />
+          <LookDetailFormRadio
+            title="active"
+            element="active"
+            data={[
+              { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
+              { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
+            ]}
+            value={isActive}
+            flipValueTo={setIsActive}
+            selectedLook={looksStore.selectedLook}
+            whatShouldBeRed={false}
+            multiSelect={false}
+            disabled={false}
+            tooltip={t("looks.archiveLook")}
+          />
+        </div>
       </div>
 
-      {itemsStore.isLoading ? (
-        <div className="lookDetail__itemContainer">
-          <div className="lookDetail__spinner">
-            <Spin size="large" />
-          </div>
-        </div>
-      ) : (
-        <div className="lookDetail__itemContainer">
-          {selectedItems.length > 0 && (
-            <div className="lookDetail__itemContainerDivisor">
-              {t("looks.itemPartOfThisLook")}
+      <div className="lookDetail__leftContainer">
+        {itemsStore.isLoading ? (
+          <div className="lookDetail__itemContainer">
+            <div className="lookDetail__spinner">
+              <Spin size="large" />
             </div>
-          )}
-          {selectedItems.length > 0 && (
-            <>
-              <div>{selectedItemList}</div>
-              <div className="lookDetail__itemSpacer"></div>
-            </>
-          )}
-          {isActive && (
-            <>
-              <div className="lookDetail__itemContainerDivisor">
-                {t("looks.pickItemComposingThisLook")}
+          </div>
+        ) : (
+          <div className="lookDetail__itemContainer">
+            {selectedItems.length > 0 && (
+              <div>
+                <div className="lookDetail__itemContainerDivisor">
+                  {t("looks.itemPartOfThisLook")}
+                </div>
+                <div>{selectedItemList}</div>
+                <div className="lookDetail__itemSpacer"></div>
               </div>
-              <div>{itemList}</div>
-            </>
-          )}
-        </div>
-      )}
-      <div className="lookDetail__actionContainer">
-        <LookDetailFormRadio
-          title="private"
-          element="private"
-          data={[
-            { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
-            { code: true, en: "Private", de: "Privat", fr: "Privé" },
-          ]}
-          value={isPrivate}
-          flipValueTo={setIsPrivate}
-          selectedLook={looksStore.selectedLook}
-          whatShouldBeRed={true}
-          multiSelect={false}
-          disabled={!looksStore.selectedLook.active}
-          tooltip={t("looks.makePrivateLook")}
-        />
-        <LookDetailFormRadio
-          title="active"
-          element="active"
-          data={[
-            { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
-            { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
-          ]}
-          value={isActive}
-          flipValueTo={setIsActive}
-          selectedLook={looksStore.selectedLook}
-          whatShouldBeRed={false}
-          multiSelect={false}
-          disabled={false}
-          tooltip={t("looks.archiveLook")}
-        />
+            )}
+            {isActive && (
+              <div>
+                <div className="lookDetail__itemContainerDivisor">
+                  {t("looks.yourItems")}
+                </div>
+                <div>{itemList}</div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

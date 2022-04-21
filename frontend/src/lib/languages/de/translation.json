@@ -1,9 +1,9 @@
 {
   "main": {
-    "motto": "die grüne Fashion-App", 
-    "preview" : "Vorschau",
+    "motto": "die grüne Fashion-App",
+    "preview": "Vorschau",
     "startWithPhoto": "Start mit einem Foto",
-    "clickDragFile": "Klicken, oder hier eine Datei ziehen",    
+    "clickDragFile": "Klicken, oder hier eine Datei ziehen",
     "uploadFail": "Datei upload fehlgeschlagen",
     "uploadSuccess": "Datei erfolgreich hochgeladet",
     "hideQuickEdit": "Quick edits ausblenden",
@@ -22,9 +22,9 @@
     "cancel": "Abbrechen",
     "restore": "Wiederherstellen",
     "back": "Zurück",
-    "makePrivate" : "Private machen",
-    "makePublic" : "Öffentlich machen",
-    "isPrivate" : "Nur du kannst es sehen",
+    "makePrivate": "Private machen",
+    "makePublic": "Öffentlich machen",
+    "isPrivate": "Nur du kannst es sehen",
     "item": "item",
     "look": "look"
   },
@@ -95,10 +95,10 @@
     "passwordReseted": "Dein Passwort wurde zurück gesetzt. Sie werden auf die Login-Seite weitergeleitet.",
     "passwordNotChanged": "Fehler! Das Passwort wurde nicht geändert: Bitte versuchen Sie es erneut.",
     "linkNotValid": "Dieser Link ist ungültig. Bitte starten Sie den Passwortwiederherstellungsprozess neu.",
-    "setNewPassword" : "Geben Sie Ihr neues Passwort ein",
+    "setNewPassword": "Geben Sie Ihr neues Passwort ein",
     "pleaseInputNewPassword": "Bitte geben Sie Ihr neues Passwort ein!",
     "chooseNewPassword": "Wählen Sie ein neues Passwort",
-    "pleaseConfirmNewPassword" : "Bitte bestätigen Sie Ihr neues Passwort!",
+    "pleaseConfirmNewPassword": "Bitte bestätigen Sie Ihr neues Passwort!",
     "passwordDoNotMatch": "Die Passwörter stimmen nicht überein!",
     "updatePassword": "Passwort aktualisieren",
     "linkNotValidAnymore": "Link ist nicht mehr gültig",
@@ -114,7 +114,7 @@
     "mail": "Nachrichten",
     "friends": "Freunde",
     "notification": "Benachrichtungen",
-    "search" : "Suchen"
+    "search": "Suchen"
   },
   "profile": {
     "hello": "Hallo",
@@ -128,7 +128,7 @@
     "settingHideAccount": "Verstecke mein Konto für jeden der nicht mein Freund ist",
     "settingSendEmailOnFriendRequest": "Per Mail bescheid geben, wenn ich eine Freundschaftsanfrage bekomme",
     "settingSendEmailWhenNewMessage": "Per Mail bescheid geben, wenn ich eine neue Nachricht bekomme",
-    "settingKeepMeInformedAboutRewaer" : "Mich über alle Änderungen bei Rewaer auf dem Laufenden halten",
+    "settingKeepMeInformedAboutRewaer": "Mich über alle Änderungen bei Rewaer auf dem Laufenden halten",
     "changeAvatar": "Profilbild andern",
     "avatarUpdateSuccess": "Avatar würde erfolgreich hochgeladet",
     "settingShowArchived": "Archiviert looks und items anzeigen (Archives werden nie in deinem Profile erschienen)",
@@ -140,10 +140,10 @@
     "nonbinary": "Nicht-binär",
     "male": "Männlich",
     "female": "Weiblich",
-    "genderBasedGarderobe" : "Basiert auf welcher Geschlecht ist eure Garderobe?",
+    "genderBasedGarderobe": "Basiert auf welcher Geschlecht ist eure Garderobe?",
     "displayLanguage": "In welche Sprache soll Rewaer sein?",
     "tooltipNB": "Alle Waregruppen werden angezeigt",
-    "accountSettings" : "Nutzerseinstellungen",
+    "accountSettings": "Nutzerseinstellungen",
     "dangerZone": "Gefahrenzone",
     "triggerPasswordReset": "Um der Passwort zu ändern",
     "MaxUserNameChange": "Benutzernamen kann nicht mehr geändert",
@@ -155,7 +155,7 @@
     "areYouSure": "Sicher?",
     "willBeArchived": "Diese Konto würde archiviert.",
     "loggingToReactivate": "Melden Sie sich an, um es zu reaktivieren. Wenn nicht, wird es in 30 Tagen automatisch gelöscht.",
-    "accountReactivated" : "Ihr Konto ist nun reaktiviert.",
+    "accountReactivated": "Ihr Konto ist nun reaktiviert.",
     "gladToHaveYouBack": "Schön, dass Sie wieder da sind!",
     "sendMessage": "Nachrichten schicken",
     "sendFriendRequest": "Freundchaft anbieten",
@@ -171,15 +171,15 @@
     "hideLooksToStrangers": "Meine Looks dürfen nicht in einem Suche erscheinen",
     "hideItemsToStrangers": "Meine Items dürfen nicht in einem Suche erscheinen"
   },
-  "items" : {
+  "items": {
     "item": "item",
-    "addItem" : "Item hinzufügen",
-    "missingTagsAlert" : "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
-    "deletedSuccess" : "Item erfolgreich gelöscht!",
+    "addItem": "Item hinzufügen",
+    "missingTagsAlert": "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
+    "deletedSuccess": "Item erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?",
-    "archiveSuccess" : "Item erfolgreich archiviert!",
+    "archiveSuccess": "Item erfolgreich archiviert!",
     "archiveConfirm": "Möchten Sie diesen Item archivieren?",
-    "restoreSuccess" : "Item erfolgreich weiderhergestellt!",
+    "restoreSuccess": "Item erfolgreich weiderhergestellt!",
     "restoreConfirm": "Möchten Sie diesen Item weiderherstellen?",
     "showPrivateLooks": "Private items anzeigen",
     "hidePrivateLooks": "Private items verstecken",
@@ -187,14 +187,14 @@
     "archiveItem": "Item archiveren",
     "backToItems": "Zurück zu alle Items"
   },
-  "looks" : {
+  "looks": {
     "look": "look",
-    "addLook" : "Look hinzufügen",
-    "deletedSuccess" : "Look erfolgreich gelöscht!",
+    "addLook": "Look hinzufügen",
+    "deletedSuccess": "Look erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?",
-    "archiveSuccess" : "Look erfolgreich archiviert!",
+    "archiveSuccess": "Look erfolgreich archiviert!",
     "archiveConfirm": "Möchten Sie diesen Look archivieren?",
-    "restoreSuccess" : "Look erfolgreich weiderhergestellt!",
+    "restoreSuccess": "Look erfolgreich weiderhergestellt!",
     "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?",
     "detailView": "Detail Ansicht",
     "showPrivateLooks": "Private looks anzeigen",
@@ -203,6 +203,7 @@
     "selectCategory": "Category auswahlen",
     "selectSeason": "Saison auswahlen",
     "itemPartOfThisLook": "Item in dieses look",
-    "pickItemComposingThisLook": "Suchen sie die Items aus, die diese Look ausmachen"
+    "yourItems": "Deine items",
+    "itemsShareWithYou": "Items mit dir geteilt"
   }
 }

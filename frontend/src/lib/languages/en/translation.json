@@ -208,6 +208,7 @@
     "selectCategory": "Select a category",
     "selectSeason": "Select a season",
     "itemPartOfThisLook": "Items part of this look",
-    "pickItemComposingThisLook": "Pick the items composing this look"
+    "yourItems": "Your items",
+    "itemsShareWithYou": "Items shared with you"
   }
 }

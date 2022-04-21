@@ -1,7 +1,7 @@
 {
   "main": {
-    "motto": "l'appli mode écolo", 
-    "preview" : "Aperçu",
+    "motto": "l'appli mode écolo",
+    "preview": "Aperçu",
     "startWithPhoto": "Commence avec une photo",
     "clickDragFile": "Clique, ou dépose un fichier ici",
     "uploadFail": "L'upload a échoué.",
@@ -22,9 +22,9 @@
     "cancel": "Annuler",
     "restore": "Restaurer",
     "back": "Retour",
-    "makePrivate" : "Rendre privé",
-    "makePublic" : "Rendre publique",
-    "isPrivate" : "Que toi peux le voir",
+    "makePrivate": "Rendre privé",
+    "makePublic": "Rendre publique",
+    "isPrivate": "Que toi peux le voir",
     "item": "piéce",
     "look": "look"
   },
@@ -96,10 +96,10 @@
     "passwordReseted": "Votre mot de passe a été réinitialisé. Vous serez redirigé vers la page de connexion.",
     "passwordNotChanged": "Erreur! Le mot de passe n'a pas été modifié: veuillez réessayer.",
     "linkNotValid": "Ce lien n'est pas valide. Veuillez redémarrer le processus de récupération du mot de passe.",
-    "setNewPassword" : "Définir un nouveau mot de passe",
+    "setNewPassword": "Définir un nouveau mot de passe",
     "pleaseInputNewPassword": "Veuillez saisir votre nouveau mot de passe!",
     "chooseNewPassword": "Choisissez un nouveau mot de passe",
-    "pleaseConfirmNewPassword" : "Veuillez confirmer votre nouveau mot de passe!",
+    "pleaseConfirmNewPassword": "Veuillez confirmer votre nouveau mot de passe!",
     "passwordDoNotMatch": "Les mots de passe ne correspondent pas!",
     "updatePassword": "Mettre à jour le mot de passe",
     "linkNotValidAnymore": "Le lien n'est plus valide",
@@ -115,7 +115,7 @@
     "mail": "Messages",
     "friends": "Amis",
     "notification": "Notifications",
-    "search" : "Rechercher"
+    "search": "Rechercher"
   },
   "profile": {
     "hello": "Bonjour",
@@ -129,7 +129,7 @@
     "settingHideAccount": "Cacher mon compte à toute personne qui n'est pas mon ami",
     "settingSendEmailOnFriendRequest": "Prévenir par mail lorsque je reçois une demande d'ami",
     "settingSendEmailWhenNewMessage": "Prévenir par mail lorsque je reçois un nouveau message",
-    "settingKeepMeInformedAboutRewaer" : "Me tenir au courant de tous les changements qui se passe sur Rewaer",
+    "settingKeepMeInformedAboutRewaer": "Me tenir au courant de tous les changements qui se passe sur Rewaer",
     "settingShowArchived": "Afficher les pieces et looks archivés (Archives m'apparaissent pas dans ton Profile)",
     "settingDisplayPrivate": "Afficher les looks et piéces privés par default (vous pouvez toujours les cacher sur les pages respectives)",
     "settingShowLastName": "Afficher votre nom de famille dans le profile",
@@ -141,10 +141,10 @@
     "nonbinary": "Non binaire",
     "male": "Homme",
     "female": "Femme",
-    "genderBasedGarderobe" : "Sur quel sexe est basé votre garderobe?",
+    "genderBasedGarderobe": "Sur quel sexe est basé votre garderobe?",
     "displayLanguage": "Dans quel langue Rewaer doit-il être?",
     "tooltipNB": "Affichera homme et femme",
-    "accountSettings" : "Compte d'utitisateur",
+    "accountSettings": "Compte d'utitisateur",
     "dangerZone": "Zone de danger",
     "triggerPasswordReset": "Pour changer de mot de passe",
     "MaxUserNameChange": "Un changement n'est plus possible",
@@ -156,7 +156,7 @@
     "areYouSure": "Sure?",
     "willBeArchived": "Votre compte est maintenant archivé.",
     "loggingToReactivate": "Connectez-vous pour le réactiver. Sinon, il sera automatiquement supprimé dans 30 jours.",
-    "accountReactivated" : "Votre compte est réactivé.",
+    "accountReactivated": "Votre compte est réactivé.",
     "gladToHaveYouBack": "Content de vous revoir!",
     "sendMessage": "Envoyer message",
     "sendFriendRequest": "Ajouter aux amis",
@@ -172,15 +172,15 @@
     "hideLooksToStrangers": "Ne pas faire apparaitre mes looks lors d'une recherhe sur le site",
     "hideItemsToStrangers": "Ne pas faire apparaitre mes piéces lors d'une recherhe sur le site"
   },
-  "items" : {
+  "items": {
     "item": "piéce",
-    "addItem" : "Ajoute une piéces",
-    "missingTagsAlert" : "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
-    "deletedSuccess" : "Piéces supprimé avec succès!",
+    "addItem": "Ajoute une piéces",
+    "missingTagsAlert": "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
+    "deletedSuccess": "Piéces supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer cette piéce?",
-    "archiveSuccess" : "Item archivé avec succès!",
+    "archiveSuccess": "Item archivé avec succès!",
     "archiveConfirm": "Souhaitez-vous archiver cette piéce?",
-    "restoreSuccess" : "Piéce restauré avec succès!",
+    "restoreSuccess": "Piéce restauré avec succès!",
     "restoreConfirm": "Souhaitez-vous restaurer cette piéce?",
     "showPrivateItems": "Afficher les piéces privées",
     "hidePrivateItems": "Cacher les piéces privées",
@@ -188,14 +188,14 @@
     "archiveItem": "Archiver cettte piéce",
     "backToItems": "Retourner aux Piéces"
   },
-  "looks" : {
+  "looks": {
     "look": "look",
-    "addLook" : "Ajoute un look",
-    "deletedSuccess" : "Look supprimé avec succès!",
+    "addLook": "Ajoute un look",
+    "deletedSuccess": "Look supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer ce look?",
-    "archiveSuccess" : "Look archivé avec succès!",
+    "archiveSuccess": "Look archivé avec succès!",
     "archiveConfirm": "Souhaitez-vous archiver ce look?",
-    "restoreSuccess" : "Look restauré avec succès!",
+    "restoreSuccess": "Look restauré avec succès!",
     "restoreConfirm": "Souhaitez-vous restaurer ce look?",
     "detailView": "Vue detailée",
     "showPrivateLooks": "Afficher les looks privés",
@@ -204,6 +204,7 @@
     "selectCategory": "Choisissez une category",
     "selectSeason": "Choisissez une saison",
     "itemPartOfThisLook": "Piéces dans ce look",
-    "pickItemComposingThisLook": "Choisissez les piéces composant ce look"
+    "yourItems": "Vos piéces",
+    "itemsShareWithYou": "Pieces partagées avec vous"
   }
 }
