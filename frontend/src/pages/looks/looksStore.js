@@ -66,6 +66,7 @@ export class LooksStore {
   };
 
   setShowPrivate = (showPrivate) => {
+    console.log("showPrivate", showPrivate)
     this.showPrivate = showPrivate;
   };
 

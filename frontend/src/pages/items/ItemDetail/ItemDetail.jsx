@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Spin, Tooltip } from "antd";
 import { observer } from "mobx-react";
-import { Link } from "react-router-dom";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +10,7 @@ import { ItemDetailFormRadio } from "./ItemDetailFormElement/ItemDetailFormRadio
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { ItemShareWithFriends } from "./ItemShareWithFriends/itemShareWithFriends";
+import { switchItem } from "./switchItem";
 
 import {
   itemCategoryMen,
@@ -25,6 +25,12 @@ import "./ItemDetail.css";
 
 export const ItemDetail = observer(() => {
   const { t } = useTranslation();
+  const [showPrivate, setShowPrivate] = useState(false);
+
+  useEffect(() => {
+    userStore.profilSettings &&
+      setShowPrivate(userStore.profilSettings.displayPrivate);
+  }, [userStore.profilSettings]);
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -37,6 +43,11 @@ export const ItemDetail = observer(() => {
     };
   }, []);
 
+  useEffect(() => {
+    userStore.profilSettings &&
+      itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
+  }, [userStore.profilSettings]);
+
   const browserBackHandler = (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -44,35 +55,16 @@ export const ItemDetail = observer(() => {
   };
 
   const keydownEventHandler = (event) => {
-    /* 
-        // Use index of, to find position in array, and increment
-        //  decrement to the next items in array
-        // take in consideration private hidden or not.  
-        // itemsStore.showPrivate)
-        const selectedItem = itemsStore.items.find(
-          (item) => item._id === props.selectedItemId
-        );
-      */
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
       event.preventDefault();
       itemsStore.setSelectedItem(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      const indexOfResult = itemsStore.items
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(itemsStore.selectedItem._id);
-      itemsStore.setSelectedItem(itemsStore.items[indexOfResult - 1]);
+      switchItem(false, showPrivate);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      const indexOfResult = itemsStore.items
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(itemsStore.selectedItem._id);
-      itemsStore.setSelectedItem(itemsStore.items[indexOfResult + 1]);
+      switchItem(true, showPrivate);
     }
   };
 

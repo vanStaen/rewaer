@@ -15,6 +15,7 @@ import { lookCategory } from "../../../lib/data/categories";
 import { seasons } from "../../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
 import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
+import { switchLook } from "./switchLook";
 
 import "./LookDetail.css";
 
@@ -61,45 +62,19 @@ export const LookDetail = observer(() => {
   };
 
   const keydownEventHandler = (event) => {
-    /* 
-        // Use index of, to find position in array, and increment
-        //  decrement to the next items in array
-        // take in consideration private hidden or not.  
-        // itemsStore.showPrivate)
-        const selectedItem = itemsStore.items.find(
-          (item) => item._id === props.selectedItemId
-        );
-      */
-    event.preventDefault();
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
+      event.preventDefault();
       looksStore.setSelectedLook(null);
     } else if (keyPressed === "arrowleft") {
-      const indexOfResult = looksStore.looks
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(looksStore.selectedLook._id);
-      if (indexOfResult == 1) {
-        looksStore.setSelectedLook(
-          looksStore.looks[looksStore.looks.length - 1]
-        );
-      } else {
-        looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
-      }
+      event.preventDefault();
+      switchLook(false, showPrivate);
     } else if (keyPressed === "arrowright") {
-      const indexOfResult = looksStore.looks
-        .map(function (e) {
-          return e._id;
-        })
-        .indexOf(looksStore.selectedLook._id);
-      if (indexOfResult === looksStore.looks.length - 1) {
-        looksStore.setSelectedLook(looksStore.looks[0]);
-      } else {
-        looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
-      }
+      event.preventDefault();
+      switchLook(true, showPrivate);
     }
   };
+
   const categoryChangeHandler = (value) => {
     updateCategoryLook(looksStore.selectedLook._id, value);
     looksStore.setIsOutOfDate(true);
