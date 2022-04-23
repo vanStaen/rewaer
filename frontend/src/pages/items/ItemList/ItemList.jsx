@@ -36,7 +36,7 @@ export const ItemList = observer(() => {
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
     itemsStore.items,
-    itemsStore.showPrivate,
+    itemsStore.showPrivateItems,
     userStore.profilSettings,
   ]);
 
@@ -46,13 +46,13 @@ export const ItemList = observer(() => {
 
   const totalItems = () => {
     if (userStore.profilSettings.displayArchived) {
-      if (itemsStore.showPrivate) {
+      if (itemsStore.showPrivateItems) {
         return itemsStore.items.length;
       } else {
         return itemsStore.items.length - itemsStore.numberOfPrivateItem;
       }
     } else {
-      if (itemsStore.showPrivate) {
+      if (itemsStore.showPrivateItems) {
         return itemsStore.items.length - itemsStore.numberOfArchivedItem;
       } else {
         return (
@@ -74,7 +74,7 @@ export const ItemList = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberItems = itemsStore.showPrivate
+    const numberItems = itemsStore.showPrivateItems
       ? displayArchived
         ? itemsStore.items.length + 1
         : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
@@ -90,7 +90,7 @@ export const ItemList = observer(() => {
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
   }, [
     containerElement.current,
-    itemsStore.showPrivate,
+    itemsStore.showPrivateItems,
     userStore.profilSettings,
   ]);
 
@@ -100,7 +100,7 @@ export const ItemList = observer(() => {
   };
 
   const itemList = itemsStore.items.map((item) => {
-    if (!item.private || itemsStore.showPrivate) {
+    if (!item.private || itemsStore.showPrivateItems) {
       if (!item.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
@@ -128,11 +128,13 @@ export const ItemList = observer(() => {
                 <span
                   className="link"
                   onClick={() => {
-                    itemsStore.setShowPrivate(!itemsStore.showPrivate);
+                    itemsStore.setShowPrivateItems(
+                      !itemsStore.showPrivateItems
+                    );
                   }}
                 >
                   &nbsp;
-                  {itemsStore.showPrivate
+                  {itemsStore.showPrivateItems
                     ? t("items.hidePrivateItems")
                     : t("items.showPrivateItems")}
                 </span>

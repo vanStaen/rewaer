@@ -25,12 +25,6 @@ import "./ItemDetail.css";
 
 export const ItemDetail = observer(() => {
   const { t } = useTranslation();
-  const [showPrivate, setShowPrivate] = useState(false);
-
-  useEffect(() => {
-    userStore.profilSettings &&
-      setShowPrivate(userStore.profilSettings.displayPrivate);
-  }, [userStore.profilSettings]);
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -42,11 +36,6 @@ export const ItemDetail = observer(() => {
       window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
-
-  useEffect(() => {
-    userStore.profilSettings &&
-      itemsStore.setShowPrivate(userStore.profilSettings.displayPrivate);
-  }, [userStore.profilSettings]);
 
   const browserBackHandler = (e) => {
     e.preventDefault();
@@ -61,10 +50,10 @@ export const ItemDetail = observer(() => {
       itemsStore.setSelectedItem(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchItem(false, showPrivate);
+      switchItem(false, itemsStore.showPrivateItems);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchItem(true, showPrivate);
+      switchItem(true, itemsStore.showPrivateItems);
     }
   };
 

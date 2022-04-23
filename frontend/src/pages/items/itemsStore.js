@@ -13,7 +13,7 @@ export class ItemsStore {
   selectedItem = null;
   originalScrollPosition = null;
   lastKnownScrollPosition = null;
-  showPrivate = userStore.profilSettings?.displayPrivate;
+  showPrivateItems = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -27,8 +27,8 @@ export class ItemsStore {
       setNumberOfArchivedItem: action,
       numberOfPrivateItem: observable,
       setNumberOfPrivateItem: action,
-      showPrivate: observable,
-      setShowPrivate: action,
+      showPrivateItems: observable,
+      setShowPrivateItems: action,
       error: observable,
       setError: action,
       selectedItem: observable,
@@ -65,8 +65,8 @@ export class ItemsStore {
     this.error = error;
   };
 
-  setShowPrivate = (showPrivate) => {
-    this.showPrivate = showPrivate;
+  setShowPrivateItems = (showPrivateItems) => {
+    this.showPrivateItems = showPrivateItems;
   };
 
   setSelectedItem = (selectedItem) => {

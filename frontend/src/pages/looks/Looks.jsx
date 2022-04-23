@@ -16,7 +16,7 @@ export const Looks = observer(() => {
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
     userStore.profilSettings &&
-      looksStore.setShowPrivate(userStore.profilSettings.displayPrivate);
+      looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {

@@ -1,9 +1,6 @@
 import { looksStore } from "../looksStore";
 
 export const switchLook = (next, showPrivate) => {
-
-  debugger;
-
     const indexOfResult = looksStore.looks
       .map(function (look) {
         return look._id;
@@ -17,7 +14,7 @@ export const switchLook = (next, showPrivate) => {
           if (indexOfResult === looksStore.looks.length - 1) {
             nextLookId = 0;
           } else {
-            nextLookId = indexOfResult + 1;
+            nextLookId = nextLookId + 1;
           }
         } while (!looksStore.looks[nextLookId].private);
         looksStore.setSelectedLook(looksStore.looks[nextLookId]);
@@ -26,7 +23,7 @@ export const switchLook = (next, showPrivate) => {
           if (indexOfResult === 0) {
             nextLookId = looksStore.looks.length - 1;
           } else {
-            nextLookId = indexOfResult - 1;
+            nextLookId = nextLookId - 1;
           }
         } while (!looksStore.looks[nextLookId].private);
         looksStore.setSelectedLook(looksStore.looks[nextLookId]);

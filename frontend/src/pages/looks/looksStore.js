@@ -13,7 +13,7 @@ export class LooksStore {
   selectedLook = null;
   originalScrollPosition = null;
   lastKnownScrollPosition = null;
-  showPrivate = userStore.profilSettings?.displayPrivate;
+  showPrivateLooks = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -27,8 +27,8 @@ export class LooksStore {
       setNumberOfArchivedLook: action,
       numberOfPrivateLook: observable,
       setNumberOfPrivateLook: action,
-      showPrivate: observable,
-      setShowPrivate: action,
+      showPrivateLooks: observable,
+      setShowPrivateLooks: action,
       selectedLook: observable,
       setSelectedLook: action,
       originalScrollPosition : observable,
@@ -65,9 +65,8 @@ export class LooksStore {
     this.error = error;
   };
 
-  setShowPrivate = (showPrivate) => {
-    console.log("showPrivate", showPrivate)
-    this.showPrivate = showPrivate;
+  setShowPrivateLooks = (showPrivateLooks) => {
+    this.showPrivateLooks = showPrivateLooks;
   };
 
   setSelectedLook = (selectedLook) => {

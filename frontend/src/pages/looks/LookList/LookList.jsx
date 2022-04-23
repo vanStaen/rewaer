@@ -21,7 +21,7 @@ export const LookList = observer(() => {
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
     userStore.profilSettings &&
-      looksStore.setShowPrivate(userStore.profilSettings.displayPrivate);
+      looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const LookList = observer(() => {
     calculateMissingCardsForFullRow,
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
-    looksStore.showPrivate,
+    looksStore.showPrivateLooks,
     looksStore.looks,
     userStore.profilSettings,
   ]);
@@ -60,7 +60,7 @@ export const LookList = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
-    const numberLooks = looksStore.showPrivate
+    const numberLooks = looksStore.showPrivateLooks
       ? displayArchived
         ? looksStore.looks.length + 1
         : looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
@@ -76,7 +76,7 @@ export const LookList = observer(() => {
     setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
   }, [
     containerElement.current,
-    looksStore.showPrivate,
+    looksStore.showPrivateLooks,
     userStore.profilSettings,
   ]);
 
@@ -86,7 +86,7 @@ export const LookList = observer(() => {
   };
 
   const lookList = looksStore.looks.map((look) => {
-    if (!look.private || looksStore.showPrivate) {
+    if (!look.private || looksStore.showPrivateLooks) {
       if (!look.active && !userStore.profilSettings?.displayArchived) {
         return null;
       } else {
@@ -102,13 +102,13 @@ export const LookList = observer(() => {
 
   const totalLooks = () => {
     if (userStore.profilSettings.displayArchived) {
-      if (looksStore.showPrivate) {
+      if (looksStore.showPrivateLooks) {
         return looksStore.looks.length;
       } else {
         return looksStore.looks.length - looksStore.numberOfPrivateLook;
       }
     } else {
-      if (looksStore.showPrivate) {
+      if (looksStore.showPrivateLooks) {
         return looksStore.looks.length - looksStore.numberOfArchivedLook;
       } else {
         return (
@@ -133,10 +133,10 @@ export const LookList = observer(() => {
               <span
                 className="link"
                 onClick={() => {
-                  looksStore.setShowPrivate(!looksStore.showPrivate);
+                  looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
                 }}
               >
-                {looksStore.showPrivate
+                {looksStore.showPrivateLooks
                   ? t("looks.hidePrivateLooks")
                   : t("looks.showPrivateLooks")}
               </span>

@@ -25,7 +25,6 @@ export const LookDetail = observer(() => {
   const [selectedItems, setSelectedItems] = useState(
     looksStore.selectedLook.items ? looksStore.selectedLook.items : []
   );
-  const [showPrivate, setShowPrivate] = useState(false);
   const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
   const { t } = useTranslation();
@@ -41,7 +40,7 @@ export const LookDetail = observer(() => {
   useEffect(() => {
     itemsStore.loadItems();
     userStore.profilSettings &&
-      setShowPrivate(userStore.profilSettings.displayPrivate);
+      looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
@@ -68,10 +67,10 @@ export const LookDetail = observer(() => {
       looksStore.setSelectedLook(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchLook(false, showPrivate);
+      switchLook(false, looksStore.showPrivateLooks);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchLook(true, showPrivate);
+      switchLook(true, looksStore.showPrivateLooks);
     }
   };
 
@@ -148,7 +147,7 @@ export const LookDetail = observer(() => {
       if (!item.active) {
         return null;
       } else {
-        if (item.private && !showPrivate) {
+        if (item.private && !looksStore.showPrivateLooks) {
           return null;
         } else {
           return (
@@ -274,10 +273,10 @@ export const LookDetail = observer(() => {
             <span
               className="lookdetail__headerShowPrivate link"
               onClick={() => {
-                setShowPrivate(!showPrivate);
+                looksStore.setShowPrivateItems(!looksStore.showPrivateLooks);
               }}
             >
-              {showPrivate
+              {looksStore.showPrivateLooks
                 ? t("items.hidePrivateItems")
                 : t("items.showPrivateItems")}
             </span>
