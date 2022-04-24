@@ -67,12 +67,6 @@
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
-- [ ] Naviagtion with Arrows in item/look -detailview
-  - [x] Create ItemList, and make Item lighter
-  - [ ] item: Allow navigation from detail view
-  - [x] Create LookList, and make Look lighter
-  - [ ] look: Allow navigation from detail view
-
 
 manifest > seite als app anzeigen
 alternative zu react native > cordova (webkit)
@@ -200,3 +194,4 @@ alternative zu react native > cordova (webkit)
 - [x] Like/Dislikes Item/Looks feature
 - [x] Leave item detailview with browser back function 
 - [x] Leave look detailview with browser back function 
+- [x] Navigation with Arrows in item/look -detailview

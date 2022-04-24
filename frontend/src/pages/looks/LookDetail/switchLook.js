@@ -1,48 +1,48 @@
 import { looksStore } from "../looksStore";
 
 export const switchLook = (next, showPrivate) => {
-    const indexOfResult = looksStore.looks
-      .map(function (look) {
-        return look._id;
-      })
-      .indexOf(looksStore.selectedLook._id);
+  const indexOfResult = looksStore.looks
+    .map(function (look) {
+      return look._id;
+    })
+    .indexOf(looksStore.selectedLook._id);
 
-    if (showPrivate) {
-      let nextLookId = indexOfResult;
-      if (next) {
-        do {
-          if (indexOfResult === looksStore.looks.length - 1) {
-            nextLookId = 0;
-          } else {
-            nextLookId = nextLookId + 1;
-          }
-        } while (!looksStore.looks[nextLookId].private);
-        looksStore.setSelectedLook(looksStore.looks[nextLookId]);
+  if (!showPrivate) {
+    let nextLookId = indexOfResult;
+    if (next) {
+      do {
+        if (indexOfResult === looksStore.looks.length - 1) {
+          nextLookId = 0;
+        } else {
+          nextLookId = nextLookId + 1;
+        }
+      } while (looksStore.looks[nextLookId].private);
+      looksStore.setSelectedLook(looksStore.looks[nextLookId]);
+    } else {
+      do {
+        if (indexOfResult === 0) {
+          nextLookId = looksStore.looks.length - 1;
+        } else {
+          nextLookId = nextLookId - 1;
+        }
+      } while (looksStore.looks[nextLookId].private);
+      looksStore.setSelectedLook(looksStore.looks[nextLookId]);
+    }
+  } else {
+    if (next) {
+      if (indexOfResult === looksStore.looks.length - 1) {
+        looksStore.setSelectedLook(looksStore.looks[0]);
       } else {
-        do {
-          if (indexOfResult === 0) {
-            nextLookId = looksStore.looks.length - 1;
-          } else {
-            nextLookId = nextLookId - 1;
-          }
-        } while (!looksStore.looks[nextLookId].private);
-        looksStore.setSelectedLook(looksStore.looks[nextLookId]);
+        looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
       }
     } else {
-      if (next) {
-        if (indexOfResult === looksStore.looks.length - 1) {
-          looksStore.setSelectedLook(looksStore.looks[0]);
-        } else {
-          looksStore.setSelectedLook(looksStore.looks[indexOfResult + 1]);
-        }
+      if (indexOfResult === 0) {
+        looksStore.setSelectedLook(
+          looksStore.looks[looksStore.looks.length - 1]
+        );
       } else {
-        if (indexOfResult === 0) {
-          looksStore.setSelectedLook(
-            looksStore.looks[looksStore.looks.length - 1]
-          );
-        } else {
-          looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
-        }
+        looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);
       }
     }
-  };
+  }
+};

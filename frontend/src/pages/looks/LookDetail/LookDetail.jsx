@@ -39,9 +39,7 @@ export const LookDetail = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
-    userStore.profilSettings &&
-      looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
-  }, [itemsStore.isOutOfDate, userStore.profilSettings]);
+  }, [itemsStore.isOutOfDate]);
 
   useEffect(() => {
     const url = new URL(window.location);

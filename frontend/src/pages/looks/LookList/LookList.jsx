@@ -18,13 +18,6 @@ export const LookList = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    looksStore.loadLooks();
-    userStore.setMenuSelected("looks");
-    userStore.profilSettings &&
-      looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
-  }, [looksStore.isOutOfDate, userStore.profilSettings]);
-
-  useEffect(() => {
     calculateMissingCardsForFullRow();
   }, [
     containerElement.current,
