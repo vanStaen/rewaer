@@ -10,7 +10,8 @@ module.exports = {
   },
   entry: { index: "./src/index.js", sw: "./src/sw.js" },
   mode: "development",
-  output: {
+  output: {    
+    filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, "build"),
     publicPath: '/',
   },
