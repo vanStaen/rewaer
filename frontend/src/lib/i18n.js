@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { KnownFragmentNamesRule } from 'graphql';
 
 const dataEn = require('./languages/en/translation.json');
 const dataDe = require('./languages/de/translation.json');
@@ -12,7 +11,7 @@ i18n
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: KnownFragmentNamesRule,
+    debug: false,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
