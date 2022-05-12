@@ -17,8 +17,25 @@
   background-color: white;
 }
 
-.welcome__alreadyMember{
-    position: absolute;
-    right: 1.5em;
-    font-size: 14px;
+.welcome__alreadyMember {
+  position: absolute;
+  right: 1.5em;
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .welcome__alreadyMember {
+    width: 40vw;
+    text-align: right;
+  }
+  .welcome__leftPanel {
+    width: 0vw;
+  }
+  .welcome__rightPanel {
+    width: 100%;
+    background-image: url("./../../img/clothes.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 }

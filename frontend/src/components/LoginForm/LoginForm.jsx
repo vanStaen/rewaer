@@ -156,6 +156,7 @@ export const LoginForm = () => {
           valuePropName="checked"
           style={{ display: "inline-block", width: "calc(50%)" }}
           defaultChecked={false}
+          className="login__checkBoxRemember"
         >
           <Checkbox className="login__remember">
             {t("login.rememberMe")}
@@ -164,6 +165,7 @@ export const LoginForm = () => {
 
         <Form.Item
           name="passwordRecover"
+          className="login__passwordRecover"
           style={{
             display: "inline-block",
             width: "calc(50%)",
