@@ -16,7 +16,6 @@
     padding: 10px;
 }
 
-.footerAddAsApp {
-    border: 1px solid red; 
+.footerAddAsApp {    
     cursor: pointer;
   }
