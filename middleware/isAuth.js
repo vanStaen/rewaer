@@ -7,7 +7,7 @@ const devMode = true;
 module.exports = async (req, res, next) => {
   // if in development mode
   if (devMode) {
-    if (req.get("host") === "localhost:5000") {
+    if (req.get("host") === "localhost:5001") {
       console.log(">>>> Developement Mode <<<<<");
       req.isAuth = true;
       req.userId = "1";

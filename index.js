@@ -12,7 +12,7 @@ const redirectTraffic = require("./middleware/redirectTraffic");
 
 require("dotenv/config");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Init Express
 const app = express();
@@ -34,7 +34,7 @@ app.use(isAuth);
 // Allow cross origin request
 app.use(function (req, res, next) {
   let corsOptions = {};
-  if ((req.get('host') === 'localhost:5000')) {
+  if ((req.get('host') === 'localhost:5001')) {
     corsOptions = {
       origin: 'http://localhost:8080',
       optionsSuccessStatus: 200

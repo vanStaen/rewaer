@@ -8,7 +8,7 @@ Run `npm install`tp fetch and install all dependencies listed in the `package.js
 
 ## ACCESS/DEPLOY
 
-The server can be access (after being started) on http://localhost:5000/ locally, or http://127.0.0.1:5000 on the local netwok.
+The server can be access (after being started) on http://localhost:5001/ locally, or http://127.0.0.1:5001 on the local netwok.
 
 You can access the deployed version under: https://rewaer.com/
 Here is a *curl* exemple to access the users endpoint:`curl --location --request GET 'https://rewaer.com/api/users'` (endpoint doesnt exist anymore, comment stays for documentation purpose).

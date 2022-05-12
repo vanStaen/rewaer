@@ -21,7 +21,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\",\n    \"subject\": \"this is a test subject\",\n    \"body\": \"this is the email body\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/mail",
+					"raw": "http://localhost:5001/mail",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,7 +50,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/mail/recover",
+					"raw": "http://localhost:5001/mail/recover",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,7 +80,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/mail/emailverify",
+					"raw": "http://localhost:5001/mail/emailverify",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +110,7 @@
 					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/user/email",
+					"raw": "http://localhost:5001/user/email",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -140,7 +140,7 @@
 					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/user/email",
+					"raw": "http://localhost:5001/user/email",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -170,7 +170,7 @@
 					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\",\n    \"password\": \"*****\",\n    \"remind\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/auth/login",
+					"raw": "http://localhost:5001/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -200,7 +200,7 @@
 					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\",\n    \"remind\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/auth/logout",
+					"raw": "http://localhost:5001/auth/logout",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -256,7 +256,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/upload",
+					"raw": "http://localhost:5001/upload",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -306,7 +306,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5000/upload/5e1ecd160a19c463dda0f8b3c33aa9d6",
+					"raw": "http://localhost:5001/upload/5e1ecd160a19c463dda0f8b3c33aa9d6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -340,7 +340,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -372,7 +372,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -404,7 +404,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -436,7 +436,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -469,7 +469,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -502,7 +502,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -541,7 +541,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -580,7 +580,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -613,7 +613,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -646,7 +646,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -685,7 +685,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -723,7 +723,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -756,7 +756,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -794,7 +794,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/graphql",
+					"raw": "http://localhost:5001/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
