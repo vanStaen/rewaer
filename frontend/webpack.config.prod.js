@@ -8,18 +8,20 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-  entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  //entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  entry: "./src/index.js",
   mode: "production",
   output: {
+    filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, "build"),
-    publicPath: '/',
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify('https://rewaer.com'),
+      "process.env.API_URL": JSON.stringify("https://rewaer.com"),
     }),
     new CopyPlugin({
       patterns: [
