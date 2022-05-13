@@ -39,7 +39,7 @@ export const EmailVerified = () => {
           {isLoading ? (
             <LoadingOutlined className="emailVerified__loader" />
           ) : isVerified ? (
-            <>
+            <div className="emailVerified__text">
               <strong>{t("login.emailVerified")}</strong> <br />
               {t("login.welcomeInOurCommunity")}!<br />
               {t("login.goAheadAndLogin")}.
@@ -58,29 +58,30 @@ export const EmailVerified = () => {
                 </span>
                 .
               </div>
-            </>
+            </div>
           ) : (
-                <>
-                  <strong>{t("login.emailNotVerified")}!</strong>
-                  <br />
-                  {t("login.somethingWrongEmail")}!
+            <div className="emailVerified__text">
+              <strong>{t("login.emailNotVerified")}!</strong>
               <br />
-                  <div className="emailVerified__link">
-                    {t("login.whatCanYouDo")}
-                    <span
-                      className="link"
-                      onClick={() => {
-                        document.location.href = "/";
-                      }}
-                    >
-                      {" "}
-                      {t("login.loginPage")}
-                    </span>
-                    {", "}
-                    {t("login.requestNewLink")}.
+              <br />
+              {t("login.somethingWrongEmail")}!
+              <br />
+              <div className="emailVerified__link">
+                {t("login.whatCanYouDo")}
+                <span
+                  className="link"
+                  onClick={() => {
+                    document.location.href = "/";
+                  }}
+                >
+                  {" "}
+                  {t("login.loginPage")}
+                </span>
+                {", "}
+                {t("login.requestNewLink")}.
               </div>
-                </>
-              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

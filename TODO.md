@@ -20,7 +20,6 @@
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
-- [ ] Items and Look should always come sorted the same from BE
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
@@ -31,7 +30,6 @@
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
-- [ ] Make site responsive! 
 - [ ] Redo info page, 
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
@@ -67,10 +65,14 @@
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
+- [ ] Make site responsive! 
+  - [x] Login + Pwd Recover
+  - [x] SignUp + Email Check
+  - [ ] MenuBar
+  - [ ] Profil
+  - [ ] Looks
+  - [ ] Items
 
-manifest > seite als app anzeigen
-alternative zu react native > cordova (webkit)
-  
 
 ## Completed ✓
 
@@ -195,3 +197,4 @@ alternative zu react native > cordova (webkit)
 - [x] Leave item detailview with browser back function 
 - [x] Leave look detailview with browser back function 
 - [x] Navigation with Arrows in item/look -detailview
+- [x] Include a manifest to use Page as an App
