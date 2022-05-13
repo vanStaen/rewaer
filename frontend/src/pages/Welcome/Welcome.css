@@ -23,9 +23,13 @@
   font-size: 14px;
 }
 
+.inlineBlock {
+  display: inline-block;
+}
+
 @media (max-width: 800px) {
   .welcome__alreadyMember {
-    width: 40vw;
+    width: 50vw;
     text-align: right;
   }
   .welcome__leftPanel {
@@ -37,5 +41,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+  .inlineBlock {
+    display: block;
   }
 }

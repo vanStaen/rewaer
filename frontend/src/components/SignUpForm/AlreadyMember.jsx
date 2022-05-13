@@ -8,23 +8,29 @@ export const AlreadyMember = (props) => {
     <div style={{ paddingTop: "15px" }}>
       {props.showLogin ? (
         <>
-          {t("login.newHere")}?{" "}
-          <span
-            className="link"
-            onClick={() => props.setShowLogin(!props.showLogin)}
-          >
-            {t("login.signUp")}
-          </span>
+          <div className="inlineBlock">{t("login.newHere")}?</div>
+          <div className="inlineBlock">
+            &nbsp;
+            <span
+              className="link"
+              onClick={() => props.setShowLogin(!props.showLogin)}
+            >
+              {t("login.signUp")}
+            </span>
+          </div>
         </>
       ) : (
         <>
-          {t("login.member")}?{" "}
-          <span
-            className="link"
-            onClick={() => props.setShowLogin(!props.showLogin)}
-          >
-            {t("login.login")}
-          </span>
+          <div className="inlineBlock">{t("login.member")}?</div>
+          <div className="inlineBlock">
+            &nbsp;
+            <span
+              className="link"
+              onClick={() => props.setShowLogin(!props.showLogin)}
+            >
+              {t("login.login")}
+            </span>
+          </div>
         </>
       )}
     </div>
