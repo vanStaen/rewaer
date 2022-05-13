@@ -1,0 +1,32 @@
+{
+  "short_name": "Rewaer",
+  "name": "Rewaer",
+  "description" : "Rewear | The green Fashion App",
+  "icons": [
+    {
+      "src": "rewaer_logo_24.png",
+      "type": "image/png",
+      "sizes": "24x24"
+    },
+    {
+      "src": "rewaer_logo_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "rewaer_logo_256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "rewaer_logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "https://rewaer.com",
+  "display": "fullscreen",
+  "background_color": "#6C917D",
+  "clipboardWrite": true
+}
+
