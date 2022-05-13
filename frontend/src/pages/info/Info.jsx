@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Typography, Divider } from "antd";
 
+import "./Info.css";
+
 const { Title, Paragraph, Text } = Typography;
 
 export class Info extends Component {
   render() {
     return (
-      <div>
-        <Title level={2}>Rewaer, the green Fashion App</Title>
+      <div className="info__container">
+        <Title level={3}>Rewaer, the green Fashion App</Title>
         <Paragraph>
           <Text type="secondary">
             The Fashion App for minimalistic and sustainable geniuses! <br />
@@ -32,7 +34,9 @@ export class Info extends Component {
           Please address any questions/comments to <b>admin@rewear.com.</b>
         </Paragraph>
 
-        <Divider plain>What is Rewaer?</Divider>
+        <Divider orientation="left" plain>
+          What is Rewaer?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           Rewaer is promoting green fashion based on the principle that{" "}
           <span style={{ background: "#C8D6CF" }}>
@@ -48,7 +52,9 @@ export class Info extends Component {
           items with your hand pick best friends.
         </Paragraph>
 
-        <Divider plain>Why do you need it?</Divider>
+        <Divider orientation="left" plain>
+          Why do you need it?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           <em>I don't know what to wear! Do I need new clothes?</em> Fashion
           accounts for around 10% of greenhouse gas emissions from human
@@ -71,11 +77,12 @@ export class Info extends Component {
           have the feeling of a brand new garderobe, without spending a cent!{" "}
         </Paragraph>
 
-        <Divider plain>How far are we?</Divider>
+        <Divider orientation="left" plain>
+          How far are we?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           We are still working on a first version including the minimum viables
-          features. The backend is done, and the first prototype will be ready
-          soon and open to any willing beta tester!{" "}
+          features.{" "}
           <span style={{ background: "#C8D6CF" }}>
             You can already create an account
           </span>
