@@ -20,7 +20,7 @@
 }
 
 .customMenu__element {
-  margin: 0px 20px 0px 20px;
+  margin: 0px 17px 0px 17px;
   line-height: 49px;
   cursor: pointer;
   border-bottom: solid 1px #f0f0f0;
@@ -31,6 +31,12 @@
 .customMenu__element:hover {
   color: rgba(109, 145, 126, 1);
   border-bottom: 1px solid rgba(109, 145, 126, 0.75);
+}
+
+.customMenu__elementName {
+  display: block;
+  float: right;
+  margin-left: 7px;
 }
 
 .customMenu__elementDisabled {
@@ -51,6 +57,7 @@
   color: rgba(109, 145, 126, 0.85);
   margin: 0px 20px 0px 20px;
   line-height: 48px;
+  display: block;
 }
 
 .customSubMenu__container {
@@ -87,15 +94,27 @@
 }
 
 /* Small screens */
-@media only screen and (max-width: 600px) {
+@media (max-width: 1000px) {
   .customMenu__RewaerMotto {
+    display: none;
+  }
+  .customMenu__elementName {
+    display: none;
+  }
+  .customMenu__element,
+  .customMenu__elementDisabled {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .info {
     display: none;
   }
 }
 
-/* Large screens */
-@media only screen and (min-width: 600px) {
-  .customMenu__RewaerMotto {
-    display: block;
+@media (max-width: 350px) {
+  .notifications {
+    display: none;
   }
 }

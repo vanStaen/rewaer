@@ -54,8 +54,8 @@ export const CustomMenuBar = observer((props) => {
             }}
             style={{ float: "left" }}
           >
-            <CameraOutlined style={{ marginRight: "10px" }} />
-            {t("menu.looks")}
+            <CameraOutlined />
+            <span className="customMenu__elementName">{t("menu.looks")}</span>
           </div>
         </Link>
 
@@ -74,8 +74,8 @@ export const CustomMenuBar = observer((props) => {
             }}
             style={{ float: "left" }}
           >
-            <SkinOutlined style={{ marginRight: "10px" }} />
-            {t("menu.items")}
+            <SkinOutlined />
+            <span className="customMenu__elementName">{t("menu.items")}</span>
           </div>
         </Link>
 
@@ -85,24 +85,26 @@ export const CustomMenuBar = observer((props) => {
             userStore.menuSelected === "mail" && "selected"
           }`}
           onClick={() => {
-            userStore.setMenuSelected("mail");
+            //userStore.setMenuSelected("mail");
           }}
         >
-          <MailOutlined style={{ marginRight: "10px" }} />
-          {t("menu.mail")}
+          <MailOutlined />
+          <span className="customMenu__elementName">{t("menu.mail")}</span>
         </div>
 
         <div
           key="notifications"
-          className={`customMenu__elementDisabled left ${
+          className={`notifications customMenu__elementDisabled left ${
             userStore.menuSelected === "notifications" && "selected"
           }`}
           onClick={() => {
-            userStore.setMenuSelected("notifications");
+            //userStore.setMenuSelected("notifications");
           }}
         >
-          <NotificationOutlined style={{ marginRight: "10px" }} />
-          {t("menu.notification")}
+          <NotificationOutlined />
+          <span className="customMenu__elementName">
+            {t("menu.notification")}
+          </span>
         </div>
 
         <div
@@ -111,26 +113,24 @@ export const CustomMenuBar = observer((props) => {
             userStore.menuSelected === "search" && "selected"
           }`}
           onClick={() => {
-            userStore.setMenuSelected("search");
+            //userStore.setMenuSelected("search");
           }}
         >
-          <SearchOutlined style={{ marginRight: "10px" }} />
-          {t("menu.search")}
+          <SearchOutlined />
+          <span className="customMenu__elementName">{t("menu.search")}</span>
         </div>
 
         <Link to="/info">
           <div
             key="info"
-            className={`customMenu__element left ${
+            className={`info customMenu__element left ${
               userStore.menuSelected === "info" && "selected"
             }`}
             onClick={() => {
               userStore.setMenuSelected("info");
             }}
           >
-            &nbsp;&nbsp;
             <QuestionOutlined />
-            &nbsp;&nbsp;
           </div>
         </Link>
 

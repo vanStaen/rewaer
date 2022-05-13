@@ -68,10 +68,13 @@
 - [ ] Make site responsive! 
   - [x] Login + Pwd Recover
   - [x] SignUp + Email Check
-  - [ ] MenuBar
+  - [x] MenuBar
   - [ ] Profil
   - [ ] Looks
   - [ ] Items
+- [ ] Service Worker
+  - [ ]  https://developer.chrome.com/docs/workbox/service-worker-overview/
+  - [ ]  https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
 
 
 ## Completed ✓
