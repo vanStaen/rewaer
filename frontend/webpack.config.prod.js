@@ -8,11 +8,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
-  //entry: { index: "./src/index.js", sw: "./src/sw.js" },
-  entry: "./src/index.js",
+  entry: { index: "./src/index.js", sw: "./src/sw.js" },
   mode: "production",
   output: {
-    filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
   },
