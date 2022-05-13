@@ -109,7 +109,7 @@ export const LoginForm = () => {
   ) : (
     <div className="login__full">
       <div className="login__header">
-        {t("login.loginto")} <b>rewaer TEST</b>
+        {t("login.loginto")} <b>rewaer</b>
         .com {t("login.logintoAfter")}
       </div>
 

@@ -9,8 +9,7 @@
 } 
 
 .login__full .login__form {
-  width: 330px;
-  max-width: 85%;
+  width: 400px;
 }
 
 .login__full .login__formbutton {
@@ -44,7 +43,7 @@
 }
 
 .login__full .login__header {
-  width: 330px;
+  width: 400px;
   font-weight: 200;
   font-size: 18px;
   text-align: left;
@@ -69,6 +68,7 @@
   .login__full .login__header {
     font-size: 14px;
     margin-left: 2vh;
+    width: 330px;
   }
   .login__checkBoxRemember span {
     background-color: rgba(255,255,255,.75);
@@ -79,4 +79,9 @@
     background-color: rgba(255,255,255,.75);
     padding: 3px 7px 3px 7px;
     font-size: 11px;
-  }}
+  }
+  .login__full .login__form {
+    width: 330px;
+    max-width: 85%;
+  }
+}
