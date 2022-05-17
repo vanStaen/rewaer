@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import "./AddToHomeScreen.css";
 
 export const AddToHomeScreen = (props) => {
   let deferredPrompt;
+  let a2hsButton;
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", installPromptHandler);
@@ -12,11 +13,15 @@ export const AddToHomeScreen = (props) => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    a2hsButton = document.getElementById("a2hsButton");
+  });
+
   const installPromptHandler = (e) => {
     e.preventDefault();
     deferredPrompt = e;
     console.log("A2HS prompt was prevented and stored!");
-    a2hs__button.style.display = "block";
+    a2hsButton.style.display = "block";
   };
 
   const addToHomeScreenClickHandler = () => {
@@ -33,7 +38,11 @@ export const AddToHomeScreen = (props) => {
   };
 
   return (
-    <div className="a2hs__button" onClick={addToHomeScreenClickHandler}>
+    <div
+      className="a2hs__button"
+      id="a2hsButton"
+      onClick={addToHomeScreenClickHandler}
+    >
       Add to home screen
     </div>
   );
