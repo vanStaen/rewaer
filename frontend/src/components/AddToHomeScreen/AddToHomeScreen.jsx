@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react";
+import { DownloadOutlined } from "@ant-design/icons";
 
 import "./AddToHomeScreen.css";
 
@@ -46,7 +47,7 @@ export const AddToHomeScreen = (props) => {
       id="a2hsButton"
       onClick={addToHomeScreenClickHandler}
     >
-      Add to home screen
+      <DownloadOutlined /> Add to home screen
     </div>
   );
 };
