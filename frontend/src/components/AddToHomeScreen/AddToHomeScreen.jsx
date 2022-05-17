@@ -20,6 +20,8 @@ export const AddToHomeScreen = (props) => {
   const installPromptHandler = (e) => {
     e.preventDefault();
     deferredPrompt = e;
+    console.log(e);
+    console.log(deferredPrompt);
     console.log("A2HS prompt was prevented and stored!");
     a2hsButton.style.display = "block";
   };
