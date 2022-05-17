@@ -135,3 +135,10 @@
 .lookcard__actionsLogo {
   display: none; 
 }
+
+@media (max-width: 1000px) {
+  .lookcard__container {
+    width: 240px;
+    height: 385px;
+  }
+}
