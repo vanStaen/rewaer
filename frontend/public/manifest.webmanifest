@@ -4,6 +4,11 @@
   "description" : "Rewear | The green Fashion App",
   "icons": [
     {
+      "src": "rewaer_logo_24.png",
+      "type": "image/png",
+      "sizes": "24x24"
+    },
+    {
       "src": "rewaer_logo_128.png",
       "type": "image/png",
       "sizes": "128x128"
