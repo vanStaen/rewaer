@@ -1,5 +1,21 @@
 .a2hs__button {
-    display: none;
-    border: 1px solid red;
-    cursor: pointer;
+  margin: 5px 0;
+  padding: 5px 15px 5px 15px;
+  line-height: 30px;
+  display: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.75);
+  transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+}
+
+.a2hs__button:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(109, 145, 126, 0.5);
+}
+
+.a2hs__buttonDisabled {
+  margin: 5px 0;
+  padding: 5px 15px 5px 15px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.25);
 }

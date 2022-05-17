@@ -17,6 +17,7 @@ import {
 
 import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
+import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
 
 import "./CustomMenuBar.css";
 
@@ -192,8 +193,11 @@ export const CustomMenuBar = observer((props) => {
                     {t("menu.editSetting")}
                   </div>
                 </Link>
-
                 <div className="customMenu__customDivider"></div>
+
+                <div key="logout" onClick={authStore.logout}>
+                  <AddToHomeScreen />
+                </div>
 
                 <Link to="/">
                   <div

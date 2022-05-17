@@ -1,9 +1,9 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DownloadOutlined, CheckOutlined } from "@ant-design/icons";
 
 import "./AddToHomeScreen.css";
 
-export const AddToHomeScreen = (props) => {
+export const AddToHomeScreen = () => {
   let deferredPrompt;
   let a2hsButton;
 
@@ -42,12 +42,20 @@ export const AddToHomeScreen = (props) => {
   };
 
   return (
-    <div
-      className="a2hs__button"
-      id="a2hsButton"
-      onClick={addToHomeScreenClickHandler}
-    >
-      <DownloadOutlined /> Add to home screen
-    </div>
+    <>
+      {window.matchMedia("(display-mode: standalone)").matches ? (
+        <div className="a2hs__buttonDisabled" id="a2hsButton">
+          <CheckOutlined /> App installed
+        </div>
+      ) : (
+        <div
+          className="a2hs__button"
+          id="a2hsButton"
+          onClick={addToHomeScreenClickHandler}
+        >
+          <DownloadOutlined /> Download App
+        </div>
+      )}
+    </>
   );
 };

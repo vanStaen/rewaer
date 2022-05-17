@@ -16,7 +16,6 @@ import { userStore } from "./stores/userStore/userStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { CustomMenuBar } from "./components/CustomMenuBar/CustomMenuBar";
 import { Footer } from "./components/Footer/Footer";
-import { AddToHomeScreen } from "./components/AddToHomeScreen/AddToHomeScreen";
 import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
 
 import "../src/lib/i18n";
@@ -93,7 +92,6 @@ const App = observer(() => {
           )}
         </Routes>
         {/* authStore.hasAccess && <Footer /> */}
-        <AddToHomeScreen/>
       </div>
     </BrowserRouter>
   );
