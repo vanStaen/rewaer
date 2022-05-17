@@ -24,9 +24,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "public/icon.png" },
-        { from: "public/rewaer_logo_24.png" },
         { from: "public/rewaer_logo_128.png" },
-        { from: "public/rewaer_logo_256.png" },
         { from: "public/rewaer_logo_512.png" },
         { from: "public/manifest.webmanifest" },
       ],
