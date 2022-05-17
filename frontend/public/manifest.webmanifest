@@ -15,7 +15,7 @@
     }
   ],
   "start_url": "https://rewaer.com",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#6C917D",
   "theme_color": "#6C917D",
   "clipboardWrite": true
