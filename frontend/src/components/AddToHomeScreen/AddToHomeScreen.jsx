@@ -31,10 +31,11 @@ export const AddToHomeScreen = () => {
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         //console.log("User accepted the A2HS prompt");
-        a2hs__button.style.display = "none";
+        a2hsButton.style.display = "none";
         deferredPrompt = null;
       } else {
         console.log("User dismissed the A2HS prompt");
+        a2hsButton.style.display = "block";
       }
     });
   };
