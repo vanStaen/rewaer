@@ -38,7 +38,7 @@ a:visited {
 
 .App .spinner {
   width: 100vw;
-  height: calc(100vh - 50px - 120px); /*50px menu, 120px footer*/
+  height: calc(100vh - 50px); /*50px menu, -(x)px footer*/
   display: flex;
   flex-direction: column;
   align-items: center;
