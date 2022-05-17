@@ -25,6 +25,7 @@ export const AddToHomeScreen = (props) => {
   };
 
   const addToHomeScreenClickHandler = () => {
+    console.log(deferredPrompt);
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {

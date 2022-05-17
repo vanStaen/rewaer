@@ -1,4 +1,5 @@
 .a2hs__button {
     display: none;
     border: 1px solid red;
+    cursor: pointer;
 }
