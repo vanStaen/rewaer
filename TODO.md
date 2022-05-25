@@ -23,7 +23,32 @@
 - [ ] Image reworking: 
   - [ ] Ligthen up an image (Dark-Light balance)
   - [ ] Whiten up an image (White balande)
+    - [ ] use tint() from sharp in the BE
+    - [ ] Simlate it with this in the frontend: 
+      ```
+        .image-holder {
+          height: 200px;
+          width: 200px;
+          position:relative; 
+        }    
+        .image-holder:before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0,255,255, 0.5);
+          transition: all .3s linear;
+        }
+        .image-holder:hover:before { 
+          background: none;
+        }
+      ```
   - [ ] Crop an image
+  - [ ] rotate an image
+  - [ ] flip an image
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
