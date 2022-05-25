@@ -21,7 +21,14 @@
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
 - [ ] Image reworking: 
+  - [ ] Create editImageBar Compoenent
+    - [ ] <BulbOutlined />
+    - [ ] <FormatPainterOutlined />
+    - [ ] <RedoOutlined />
+    - [ ] <VerticalAlignMiddleOutlined />
+      - [ ] transform: rotate(45deg); 
   - [ ] Ligthen up an image (Dark-Light balance)
+    - [ ] use tint() from sharp in the BE
   - [ ] Whiten up an image (White balande)
     - [ ] use tint() from sharp in the BE
     - [ ] Simlate it with this in the frontend: 
@@ -48,7 +55,9 @@
       ```
   - [ ] Crop an image
   - [ ] rotate an image
+    - [ ] image: transform: rotate(45deg);
   - [ ] flip an image
+    - [ ] image: transform: scaleX(-1);
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
