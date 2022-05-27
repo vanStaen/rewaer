@@ -16,6 +16,7 @@ import { seasons } from "../../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
 import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
 import { switchLook } from "./switchLook";
+import { LookImageEditBar } from "./LookImageEditBar/LookImageEditBar";
 
 import "./LookDetail.css";
 
@@ -284,9 +285,10 @@ export const LookDetail = observer(() => {
 
       <div className="lookDetail__rightContainer">
         <div className="lookdetail__imageWrap">
+          <LookImageEditBar id={looksStore.selectedLook._id} />
           <div
             className="lookdetail__pictureBlur"
-            id={`selected_look_picture_${looksStore.selectedLook._id}`}
+            id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
             style={{
               background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
             }}

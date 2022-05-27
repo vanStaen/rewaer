@@ -21,12 +21,12 @@
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
 - [ ] Image reworking: 
-  - [ ] Create editImageBar Compoenent
-    - [ ] <BulbOutlined />
-    - [ ] <FormatPainterOutlined />
-    - [ ] <RedoOutlined />
-    - [ ] <VerticalAlignMiddleOutlined />
-      - [ ] transform: rotate(45deg); 
+  - [x] Create editImageBar Component
+    - [x] <BulbOutlined />
+    - [x] <FormatPainterOutlined />
+    - [x] <RedoOutlined />
+    - [x] <VerticalAlignMiddleOutlined />
+      - [x] transform: rotate(45deg); 
   - [ ] Ligthen up an image (Dark-Light balance)
     - [ ] use tint() from sharp in the BE
   - [ ] Whiten up an image (White balande)
@@ -55,9 +55,9 @@
       ```
   - [ ] Crop an image
   - [ ] rotate an image
-    - [ ] image: transform: rotate(45deg);
+    - [!] image: transform: rotate(45deg);
   - [ ] flip an image
-    - [ ] image: transform: scaleX(-1);
+    - [!] image: transform: scaleX(-1);
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
@@ -67,7 +67,6 @@
 - [ ] Redo info page, 
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
-- [ ] Drag and Drop to sort Looks and Items
 - [ ] When archiving anything, had a undo feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
@@ -109,8 +108,13 @@
 - [ ] Service Worker
   - [ ]  https://developer.chrome.com/docs/workbox/service-worker-overview/
   - [ ]  https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
-  
 
+## v2
+- [ ] Garderobe analyzer 
+  - [ ] Items belonging to few or no Looks
+  - [ ] Favorite Styles/colors/brands
+- [ ] Drag and Drop to sort Looks and Items
+  
 ## Completed ✓
 
 - [x] Set up route for User + database handling
