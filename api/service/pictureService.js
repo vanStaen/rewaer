@@ -1,8 +1,14 @@
 exports.uploadService = {
-  async flipPicture (id) {
+
+  async flipPicture (url) {
     return true
   },
-  async rotatePicture (id, numberOfQuarterTurnToTheRight) {
+
+  async rotatePicture (url, numberOfQuarterTurnToTheRight) {
+    return true
+  },
+
+  async tintPicture (url, red, green, blue) {
     return true
   }
 }

@@ -7,13 +7,13 @@ router.post('/flip/', async (req, res) => {
     throw new Error('Unauthorized!')
   }
   try {
-    if (!req.body.id) {
-      throw new Error('Please provide a picture id!')
+    if (!req.body.url) {
+      throw new Error('Please provide a picture url!')
     }
-    const pitureId = req.body.id
-    const mailSent = await pictureService.flipPicture(id)
+    const url = req.body.url
+    newUrl = await pictureService.flipPicture(url)
     res.status(200).json({
-      sent: mailSent
+      newUrl: newUrl
     })
   } catch (err) {
     res.status(400).json({

@@ -26,6 +26,9 @@ export const LookDetail = observer(() => {
   const [selectedItems, setSelectedItems] = useState(
     looksStore.selectedLook.items ? looksStore.selectedLook.items : []
   );
+  const [displayPictureUrl, setDisplayPictureUrl] = useState(
+    looksStore.selectedLook.mediaUrlMedium
+  );
   const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
   const { t } = useTranslation();
@@ -36,6 +39,7 @@ export const LookDetail = observer(() => {
     setSelectedItems(looksStore.selectedLook.items);
     setIsPrivate(looksStore.selectedLook.private);
     setIsActive(looksStore.selectedLook.active);
+    setDisplayPictureUrl(looksStore.selectedLook.mediaUrlMedium);
   }, [looksStore.selectedLook]);
 
   useEffect(() => {
@@ -290,14 +294,14 @@ export const LookDetail = observer(() => {
             className="lookdetail__pictureBlur"
             id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
             style={{
-              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+              background: `url(${displayPictureUrl})`,
             }}
           ></div>
           <div
             className="lookdetail__picture"
             id={`selected_look_picture_${looksStore.selectedLook._id}`}
             style={{
-              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+              background: `url(${displayPictureUrl})`,
             }}
           ></div>
         </div>
