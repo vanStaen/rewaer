@@ -60,7 +60,7 @@ export const LoginForm = () => {
                   postVerifyEmailLink(isEmail.current);
                   notification.success({
                     duration: 0,
-                    message: t("login.recoverEmailSent"),
+                    message: t("login.checkPostBoxForVerificationLink"),
                     placement: "topLeft",
                   });
                 }}
@@ -107,89 +107,89 @@ export const LoginForm = () => {
   return isRecovery ? (
     <PasswordRecover setIsRecovery={setIsRecovery} email={isEmail.current} />
   ) : (
-    <div className="login__full">
-      <div className="login__header">
-        {t("login.loginto")} <b>rewaer</b>
+      <div className="login__full">
+        <div className="login__header">
+          {t("login.loginto")} <b>rewaer</b>
         .com {t("login.logintoAfter")}
-      </div>
+        </div>
 
-      <Form
-        name="form_login"
-        className="login__form"
-        initialValues={{
-          email: isEmail.current,
-        }}
-        onFinish={submitHandler}
-      >
-        <Form.Item
-          name="emailOrUsername"
-          rules={[
-            {
-              required: true,
-              message: t("login.pleaseInputEmailOrUsername"),
-            },
-          ]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder={t("login.emailOrUsername")}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: t("login.pleaseInputPassword"),
-            },
-          ]}
-        >
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder={t("login.password")}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          style={{ display: "inline-block", width: "calc(50%)" }}
-          defaultChecked={false}
-          className="login__checkBoxRemember"
-        >
-          <Checkbox className="login__remember">
-            {t("login.rememberMe")}
-          </Checkbox>
-        </Form.Item>
-
-        <Form.Item
-          name="passwordRecover"
-          className="login__passwordRecover"
-          style={{
-            display: "inline-block",
-            width: "calc(50%)",
-            textAlign: "right",
+        <Form
+          name="form_login"
+          className="login__form"
+          initialValues={{
+            email: isEmail.current,
           }}
+          onFinish={submitHandler}
         >
-          <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
-            {t("login.recoverPassword").replace(/^\w/, (c) => c.toUpperCase())}
-          </span>
-        </Form.Item>
-
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login__formbutton"
+          <Form.Item
+            name="emailOrUsername"
+            rules={[
+              {
+                required: true,
+                message: t("login.pleaseInputEmailOrUsername"),
+              },
+            ]}
           >
-            {isLoading ? <SyncOutlined spin /> : t("login.logMeIn")}
-          </Button>
-          <div className="login__showAlreadyMember">
-            <AlreadyMember />
-          </div>
-        </Form.Item>
-      </Form>
-    </div>
-  );
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder={t("login.emailOrUsername")}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: t("login.pleaseInputPassword"),
+              },
+            ]}
+          >
+            <Input.Password
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              placeholder={t("login.password")}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            style={{ display: "inline-block", width: "calc(50%)" }}
+            defaultChecked={false}
+            className="login__checkBoxRemember"
+          >
+            <Checkbox className="login__remember">
+              {t("login.rememberMe")}
+            </Checkbox>
+          </Form.Item>
+
+          <Form.Item
+            name="passwordRecover"
+            className="login__passwordRecover"
+            style={{
+              display: "inline-block",
+              width: "calc(50%)",
+              textAlign: "right",
+            }}
+          >
+            <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
+              {t("login.recoverPassword").replace(/^\w/, (c) => c.toUpperCase())}
+            </span>
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login__formbutton"
+            >
+              {isLoading ? <SyncOutlined spin /> : t("login.logMeIn")}
+            </Button>
+            <div className="login__showAlreadyMember">
+              <AlreadyMember />
+            </div>
+          </Form.Item>
+        </Form>
+      </div>
+    );
 };
