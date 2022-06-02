@@ -54,7 +54,6 @@ app.use(function (req, res, next) {
   cors(corsOptions)(req, res, next);
 })
 
-
 // Router to API endpoints
 app.use("/auth", require("./api/controller/authController"));
 app.use('/user', require('./api/controller/userController'))

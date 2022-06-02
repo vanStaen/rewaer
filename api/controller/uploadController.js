@@ -4,7 +4,7 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 const router = express.Router();
 
-const resizeImage = require("../../lib/resizeImageSharp");
+const { resizeImage } = require("../../lib/processImageSharp");
 const uploadFileFromBufferToS3 = require("../../lib/uploadFileFromBufferToS3");
 
 // Limits size of 10MB

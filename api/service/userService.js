@@ -1,6 +1,7 @@
 const { User } = require("../../models/User");
 const jsonwebtoken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { mailService } = require("./mailService");
 
 exports.userService = {
   async taken(username) {
@@ -78,10 +79,15 @@ exports.userService = {
           plain: true,
         }
       );
+      // Send a mail to admin
+      await mailService.mail(
+        process.env.ADMIN_EMAIL,
+        "Rewaer | New User's email validated!",
+        `The following email has just been validated: ${email}`
+      );
       return true;
     } catch (err) {
       return false;
     }
   },
-
 };

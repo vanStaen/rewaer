@@ -82,6 +82,7 @@ User.belongsToMany(User, {
   foreignKey: 'user_id',
   through: UsersFriends
 });
+
 User.belongsToMany(User, { 
   as: 'userFriends',
   foreignKey: 'friend_id',
@@ -93,6 +94,7 @@ User.belongsToMany(User, {
   foreignKey: 'follower_id',
   through: UsersFollowers
 });
+
 User.belongsToMany(User, { 
   as: 'followed',
   foreignKey: 'followed_id',

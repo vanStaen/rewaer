@@ -16,6 +16,7 @@ import { seasons } from "../../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../../helpers/convertCodeTo";
 import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
 import { switchLook } from "./switchLook";
+import { LookImageEditBar } from "./LookImageEditBar/LookImageEditBar";
 
 import "./LookDetail.css";
 
@@ -24,6 +25,9 @@ export const LookDetail = observer(() => {
   const [season, setSeason] = useState(looksStore.selectedLook.season);
   const [selectedItems, setSelectedItems] = useState(
     looksStore.selectedLook.items ? looksStore.selectedLook.items : []
+  );
+  const [displayPictureUrl, setDisplayPictureUrl] = useState(
+    looksStore.selectedLook.mediaUrlMedium
   );
   const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
@@ -35,6 +39,7 @@ export const LookDetail = observer(() => {
     setSelectedItems(looksStore.selectedLook.items);
     setIsPrivate(looksStore.selectedLook.private);
     setIsActive(looksStore.selectedLook.active);
+    setDisplayPictureUrl(looksStore.selectedLook.mediaUrlMedium);
   }, [looksStore.selectedLook]);
 
   useEffect(() => {
@@ -284,18 +289,19 @@ export const LookDetail = observer(() => {
 
       <div className="lookDetail__rightContainer">
         <div className="lookdetail__imageWrap">
+          <LookImageEditBar id={looksStore.selectedLook._id} />
           <div
             className="lookdetail__pictureBlur"
-            id={`selected_look_picture_${looksStore.selectedLook._id}`}
+            id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
             style={{
-              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+              background: `url(${displayPictureUrl})`,
             }}
           ></div>
           <div
             className="lookdetail__picture"
             id={`selected_look_picture_${looksStore.selectedLook._id}`}
             style={{
-              background: `url(${looksStore.selectedLook.mediaUrlMedium})`,
+              background: `url(${displayPictureUrl})`,
             }}
           ></div>
         </div>
