@@ -4,7 +4,7 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 const router = express.Router();
 
-const { resizeImage } = require("../../lib/processImageSharp");
+const { resizeImageFromUrl } = require("../../lib/processImageSharp");
 const uploadFileFromBufferToS3 = require("../../lib/uploadFileFromBufferToS3");
 
 // Limits size of 10MB
@@ -62,8 +62,8 @@ router.post(
           // If file, upload to S3
           try {
             const [thumbBufferLocal, mediumBufferLocal] = await Promise.all([
-              resizeImage(imageUrl, 240),
-              resizeImage(imageUrl, 750),
+              resizeImageFromUrl(imageUrl, 240),
+              resizeImageFromUrl(imageUrl, 750),
             ]);
             console.log("thumbBufferLocal", thumbBufferLocal);
             console.log("mediumBufferLocal", mediumBufferLocal);
@@ -84,7 +84,7 @@ router.post(
           catch (err) {
             console.log('upload controller:', err);
             return res.status(400).json({ error: err });
-          };         
+          };
         }
       }
     });
@@ -100,9 +100,9 @@ router.delete("/:id", async (req, res) => {
     return;
   }
   try {
-    const params = { 
-      Bucket: process.env.S3_BUCKET_ID, 
-      Key: req.params.id 
+    const params = {
+      Bucket: process.env.S3_BUCKET_ID,
+      Key: req.params.id
     };
     const paramsThumb = {
       Bucket: process.env.S3_BUCKET_ID,
@@ -112,10 +112,10 @@ router.delete("/:id", async (req, res) => {
       Bucket: process.env.S3_BUCKET_ID,
       Key: "m_" + req.params.id,
     };
-    await Promise.all([    
-      s3.deleteObject(params, function (err, data) {}),
-      s3.deleteObject(paramsThumb, function (err, data) {}),
-      s3.deleteObject(paramsMedium, function (err, data) {}),
+    await Promise.all([
+      s3.deleteObject(params, function (err, data) { }),
+      s3.deleteObject(paramsThumb, function (err, data) { }),
+      s3.deleteObject(paramsMedium, function (err, data) { }),
     ]);
     res.status(204).json({});
   } catch (err) {
