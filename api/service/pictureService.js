@@ -1,15 +1,32 @@
+const axios = require('axios');
+const AWS = require("aws-sdk");
+
 const { resizeImageFromBuffer, rotateImage, flipImage, tintImage } = require("../../lib/processImageSharp");
 const uploadFileFromBufferToS3 = require("../../lib/uploadFileFromBufferToS3");
 
-exports.uploadService = {
+// Setup the AWS
+AWS.config.region = "eu-west-1";
+AWS.config.signatureVersion = "v4";
 
+// Define s3 bucket login info
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_IAM_KEY,
+  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
+  Bucket: process.env.S3_BUCKET_ID,
+});
+
+exports.pictureService = {
   async flipPicture(url) {
     return true
   },
 
   async rotatePicture(url, numberOfQuarterTurnToTheRight) {
     const key = url.split('.com/')[1];
-    console.log("key", key);
+    // increment version counter
+    let version = 1;
+    if (key.includes("-")) {
+      version = key.split('-')[1];
+    }
     const nameImageThumb = "t_" + key;
     const nameImageMedium = "m_" + key;
     // download picture
@@ -47,9 +64,9 @@ exports.uploadService = {
     ]);
     // upload new pictures
     const [UrlOriginalS3, UrlThumbS3, UrlMediumbS3] = await Promise.all([
-      uploadFileFromBufferToS3(thumbBufferLocal, nameImageThumb),
-      uploadFileFromBufferToS3(thumbBufferLocal, nameImageThumb),
-      uploadFileFromBufferToS3(mediumBufferLocal, nameImageMedium),
+      uploadFileFromBufferToS3(rotatedImageBuffer, `${key}-${version}`),
+      uploadFileFromBufferToS3(thumbBufferLocal, `${nameImageThumb}-${version}`),
+      uploadFileFromBufferToS3(mediumBufferLocal, `${nameImageMedium}-${version}`),
     ]);
     // return new Picture Url
     return ({ UrlOriginalS3, UrlThumbS3, UrlMediumbS3 })

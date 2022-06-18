@@ -23,16 +23,16 @@ router.post('/flip/', async (req, res) => {
 })
 
 router.post('/rotate/', async (req, res) => {
-  if (!req.isAuth) {
-    throw new Error('Unauthorized!')
-  }
   try {
+    if (!req.isAuth) {
+      throw new Error('Unauthorized!')
+    }
     if (!req.body.url) {
       throw new Error('Please provide a picture url!')
     }
     const url = req.body.url;
     const numberOfQuarterTurnToTheRight = req.body.numberOfQuarterTurnToTheRight;
-    newUrl = await pictureService.rotatePicture(url, numberOfQuarterTurnToTheRight)
+    const newUrl = await pictureService.rotatePicture(url, numberOfQuarterTurnToTheRight);
     res.status(200).json({
       newUrl: newUrl
     })
