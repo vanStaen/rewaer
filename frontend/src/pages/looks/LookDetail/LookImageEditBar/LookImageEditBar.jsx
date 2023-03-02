@@ -7,6 +7,8 @@ import {
   VerticalAlignMiddleOutlined,
 } from "@ant-design/icons";
 
+import { pictureRotate } from "./pictureRotate";
+
 import "./LookImageEditBar.css";
 
 export const LookImageEditBar = (props) => {

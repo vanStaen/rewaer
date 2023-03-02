@@ -2,9 +2,42 @@
 	"info": {
 		"_postman_id": "db966e58-4da8-407a-aed9-51ee0abbe27c",
 		"name": "Rewaer.com",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9603966"
 	},
 	"item": [
+		{
+			"name": "REST API: healthcheck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\",\n    \"subject\": \"this is a test subject\",\n    \"body\": \"this is the email body\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5001/healthcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "REST API: mail",
 			"request": {
@@ -21,7 +54,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\",\n    \"subject\": \"this is a test subject\",\n    \"body\": \"this is the email body\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/mail",
+					"raw": "http://localhost:5000/mail",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,7 +83,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/mail/recover",
+					"raw": "http://localhost:5000/mail/recover",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -80,7 +113,7 @@
 					"raw": "{\n    \"sendto\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/mail/emailverify",
+					"raw": "http://localhost:5000/mail/emailverify",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +143,7 @@
 					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/user/email",
+					"raw": "http://localhost:5000/user/email",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -137,10 +170,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\"\n}"
+					"raw": "{\n    \"username\": \"clement.vanstaen@gmail.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/user/email",
+					"raw": "http://localhost:5000/user/taken",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -148,7 +181,37 @@
 					"port": "5000",
 					"path": [
 						"user",
-						"email"
+						"taken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REST API: user/validtoken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/user/validtoken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"validtoken"
 					]
 				}
 			},
@@ -170,7 +233,7 @@
 					"raw": "{\n    \"email\": \"clement.vanstaen@gmail.com\",\n    \"password\": \"*****\",\n    \"remind\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/auth/login",
+					"raw": "http://localhost:5000/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -200,7 +263,7 @@
 					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\",\n    \"remind\": true\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5001/auth/logout",
+					"raw": "http://localhost:5000/auth/logout",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -256,7 +319,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5001/upload",
+					"raw": "http://localhost:5000/upload",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -306,7 +369,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:5001/upload/5e1ecd160a19c463dda0f8b3c33aa9d6",
+					"raw": "http://localhost:5000/upload/5e1ecd160a19c463dda0f8b3c33aa9d6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -315,6 +378,51 @@
 					"path": [
 						"upload",
 						"5e1ecd160a19c463dda0f8b3c33aa9d6"
+					]
+				},
+				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
+			},
+			"response": []
+		},
+		{
+			"name": "REST API: picture/rotate",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmFkNThiMGM2YjgzYTc3MDQyZDZiM2EiLCJlbWFpbCI6ImNsZW1lbnQudmFuc3RhZW5AZ21haWwuY29tIiwiaWF0IjoxNjEzMjM5MjAzLCJleHAiOjE2MTMyNDAxMDN9.lwSfBllOk6-SEpy3ZIVH4jI51UuYHNgQ7kX3ck4OQ04",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://rewaer-static01.s3.eu-central-1.amazonaws.com/150ec5ef15cd4d40f5c6a5dcf4fbd282\",\n    \"numberOfQuarterTurnToTheRight\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/picture/rotate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"picture",
+						"rotate"
 					]
 				},
 				"description": "Post request : new user (format Json)\nTo localserver on port 5000"
@@ -340,7 +448,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -372,7 +480,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -404,7 +512,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -436,7 +544,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -469,7 +577,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -502,7 +610,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -541,7 +649,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -580,7 +688,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -613,7 +721,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -646,7 +754,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -685,7 +793,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -723,7 +831,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -756,7 +864,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -794,7 +902,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/graphql",
+					"raw": "http://localhost:5000/graphql",
 					"protocol": "http",
 					"host": [
 						"localhost"

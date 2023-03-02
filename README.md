@@ -1,6 +1,5 @@
 # REWAER
 
-
 ## INSTALL/RUN LOCALLY
 
 Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
@@ -11,7 +10,7 @@ Run `npm install`tp fetch and install all dependencies listed in the `package.js
 The server can be access (after being started) on http://localhost:5001/ locally, or http://127.0.0.1:5001 on the local netwok.
 
 You can access the deployed version under: https://rewaer.com/
-Here is a *curl* exemple to access the users endpoint:`curl --location --request GET 'https://rewaer.com/api/users'` (endpoint doesnt exist anymore, comment stays for documentation purpose).
+Here is a _curl_ exemple to access the users endpoint:`curl --location --request GET 'https://rewaer.com/api/users'` (endpoint doesnt exist anymore, comment stays for documentation purpose).
 
 ### Debug
 
@@ -29,13 +28,13 @@ Use `heroku login` to log to your account. Then `git push heroku master`, you ca
 Use the custom script `npm run deploy` to run all of the above commant at once.
 
 #### Heroku CLI slow?
+
 Delete the .netrc file in the home folder (and maybe restart your IDE).
 `cmd+shift+point` to show hidden files on mac.
 
 ### Alternative host for an older me
 
 See the last seconds of this video (https://www.youtube.com/watch?v=ENrzD9HAZK4) to know how to work and deploy on Google App Engine.
-
 
 ## IMAGES
 
@@ -46,7 +45,6 @@ The object file are saved in an AWS S3 bucket. Used is `multer` as a library to 
 ### Manipulation
 
 To generate the image's thumbnail the library _JIMP_ ("JavaScript Image Manipulation Program") s being used. It can also be used to crop, rotate, flip and mirror images. See documentation for more: https://www.npmjs.com/package/jimp.
-
 
 ## RESSOURCES
 
@@ -66,7 +64,7 @@ AntD comes with a standart babyBlue custom color scheme: One can overwrite and c
 ```
 
 4. Run `lessc -js src/style/rewaer-antd.less src/style/rewaer-antd.css`.
-5. Link the new generated CSS file with your app! 
+5. Link the new generated CSS file with your app!
 
 ### Debug React-Router-Dom vs Webpack
 

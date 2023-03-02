@@ -55,11 +55,12 @@ app.use(function (req, res, next) {
 })
 
 // Router to API endpoints
-app.use("/auth", require("./api/controller/authController"));
+app.use('/auth', require('./api/controller/authController'));
 app.use('/user', require('./api/controller/userController'));
 app.use('/mail', require('./api/controller/mailController'));
-app.use("/upload", require("./api/controller/uploadController"));
-app.use("/picture", require("./api/controller/pictureController"));
+app.use('/upload', require('./api/controller/uploadController'));
+app.use('/picture', require('./api/controller/pictureController'));
+app.use('/healthcheck', require('./api/healthcheck'));
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {
