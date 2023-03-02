@@ -55,11 +55,12 @@ app.use(function (req, res, next) {
 })
 
 // Router to API endpoints
-app.use("/auth", require("./api/controller/authController"));
+app.use('/auth', require('./api/controller/authController'));
 app.use('/user', require('./api/controller/userController'));
 app.use('/mail', require('./api/controller/mailController'));
-app.use("/upload", require("./api/controller/uploadController"));
-app.use("/picture", require("./api/controller/pictureController"));
+app.use('/upload', require('./api/controller/uploadController'));
+app.use('/picture', require('./api/controller/pictureController'));
+app.use('/healthcheck', require('./api/healthcheck'));
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {
@@ -82,11 +83,12 @@ db.sequelize.sync().then((req) => {
   );
 });
 
-// Set up for React
+/* Set up for React
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+ */
 
 // Listen on a port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
