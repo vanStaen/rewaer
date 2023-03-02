@@ -12,9 +12,9 @@ type User {
     gender: Int!
     archived: Boolean
     usernameChange: Int
-    lastActive: Float!
-    createdAt: Float!
-    udpatedAt: Float!
+    lastActive: String!
+    createdAt: String!
+    udpatedAt: String!
     items: [Item]
     looks: [Look]
     friends: [User]
