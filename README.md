@@ -19,12 +19,6 @@ The log's saved by the index.js page can be seen at https://rewaer.herokuapp.com
 
 ### Howto deploy
 
-#### Render
-
-https://dashboard.render.com/web/srv-cg09n2hmbg5ek4g422u0/deploys/dep-cg09n3hmbg5ek4g42qmg
-
-#### deprecated: Heroku
-
 To upload to heroku, use the CLI tool. To install it go `brew tap heroku/brew && brew install heroku` in the terminal. You can check you have it using `heroku --version`. You will need Git too (`git --version`)</br>
 
 Then, for existing repositories, simply add the heroku remote to git with `heroku git:remote -a rewaer`.
