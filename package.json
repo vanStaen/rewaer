@@ -13,7 +13,7 @@
     "deploy": "npm run buildfe; heroku git:remote -a rewaer; git push heroku master",
     "log": "heroku logs --tail",
     "test": "cd frontend; jest; cd ../;",
-    "backup": "cd ressources/; node createDatabaseBackUpFile.js; cd ../; git add -A; git commit -a -m \"database backup\"; git push;"
+    "backup": "cd ressources/; node createDatabaseBackUpFile.js; cd ../"
   },
   "repository": {
     "type": "git",

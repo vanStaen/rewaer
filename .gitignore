@@ -1,13 +1,5 @@
-# dependencies
 node_modules
-
-# logging
-public/log.txt
-*.log
-
-# developement
-*.env
-
-# production
+.env
 public/old
 public/uploads
+ressources/db_backup
