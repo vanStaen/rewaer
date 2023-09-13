@@ -35,14 +35,14 @@ const writeBackupFile = async () => {
         const month = today.getMonth() + 1; //Start from 0
         const day = today.getDate();
         const databaseContentItems = await fetchDatabaseContent("items");
-        filenameItems = `${day}${month}${year}_rewaer_items.json`;
-        fs.writeFileSync(`./db_backup/${filenameItems}`, JSON.stringify(databaseContentItems));
+        filenameItems = `${day}-${month}-${year}_rewaer_items.json`;
+        fs.writeFileSync(`../../database-backups/rewaer/${filenameItems}`, JSON.stringify(databaseContentItems));
         const databaseContentLooks = await fetchDatabaseContent("looks");
-        filenameLooks = `${day}${month}${year}_rewaer_looks.json`;
-        fs.writeFileSync(`./db_backup/${filenameLooks}`, JSON.stringify(databaseContentLooks));
+        filenameLooks = `${day}-${month}-${year}_rewaer_looks.json`;
+        fs.writeFileSync(`../../database-backups/rewaer/${filenameLooks}`, JSON.stringify(databaseContentLooks));
         const databaseContentUsers = await fetchDatabaseContent("users");
-        filenameUsers = `${day}${month}${year}_rewaer_users.json`;
-        fs.writeFileSync(`./db_backup/${filenameUsers}`, JSON.stringify(databaseContentUsers));
+        filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
+        fs.writeFileSync(`../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
     } catch (err) {
         console.log({ error: `${err})`, });
     }

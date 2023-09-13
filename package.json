@@ -13,7 +13,8 @@
     "deploy": "npm run buildfe; heroku git:remote -a rewaer; git push heroku master",
     "log": "heroku logs --tail",
     "test": "cd frontend; jest; cd ../;",
-    "backup": "cd ressources/; node createDatabaseBackUpFile.js; cd ../"
+    "backup": "cd ressources/; node createDatabaseBackUpFile.js; npm run pushbackup; cd ../",
+    "pushbackup": "cd ../database-backups; git pull; git add -A; git commit -m 'Rewaer - database backup files'; git push; cd ../rewaer.com" 
   },
   "repository": {
     "type": "git",
