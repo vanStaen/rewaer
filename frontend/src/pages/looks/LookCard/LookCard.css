@@ -79,10 +79,6 @@
   background-color: rgba(240, 240, 240, .75); 
 }
 
-.lookcard__metaFavorite {
-  background-color: rgba(254, 244, 244, .75); 
-}
-
 .lookcard__metaFavorite::before {
   position: absolute;
   top: -35px;
@@ -91,7 +87,7 @@
   font-family: "Font Awesome 5 Free"; 
   font-weight: 600;
   font-size: 100px;
-  color: rgb(254, 200, 200); 
+  color: rgba(254, 200, 200, .25); 
   clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }

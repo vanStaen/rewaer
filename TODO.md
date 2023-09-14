@@ -70,7 +70,9 @@
 - [ ] Redo info page, 
   - [ ] include https://wearme30times.com/  
   - [ ] fashion revolution
-- [ ] When archiving anything, had a undo feature in the notification
+- [ ] When archinving
+  - [ ] Had a undo feature in the notification
+  - [ ] Had a delete feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
 - [ ] Darkmode

@@ -104,7 +104,7 @@ export const CustomMenuBar = observer((props) => {
         >
           <NotificationOutlined />
           <span className="customMenu__elementName">
-            {t("menu.notification")}
+            {t("menu.notifications")}
           </span>
         </div>
 

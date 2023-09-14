@@ -3,7 +3,12 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
-import { CameraOutlined, SkinOutlined, MehOutlined } from "@ant-design/icons";
+import {
+  CameraOutlined,
+  SkinOutlined,
+  MehOutlined,
+  HistoryOutlined,
+} from "@ant-design/icons";
 
 import { userStore } from "../../stores/userStore/userStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
@@ -62,6 +67,22 @@ export const Profile = observer(() => {
               <div className="profil__subMenuContainer">
                 <div
                   className={`profil__subMenuItem ${
+                    contentToDisplay === "wall" && "profil__subMenuItemSelected"
+                  }`}
+                  onClick={() => {
+                    setContentToDisplay("wall");
+                    profileStore.setFilterIsPopingUp(true);
+                  }}
+                >
+                  <HistoryOutlined />
+                  <span className="profil__counter">
+                    {profileStore.notification &&
+                      profileStore.notifications.length}
+                    Timeline
+                  </span>
+                </div>
+                <div
+                  className={`profil__subMenuItem ${
                     contentToDisplay === "looks" &&
                     "profil__subMenuItemSelected"
                   }`}
@@ -96,6 +117,7 @@ export const Profile = observer(() => {
               <div className="profil__containerCenterContent">
                 {contentToDisplay === "items" && <ProfileItems />}
                 {contentToDisplay === "looks" && <ProfileLooks />}
+                {contentToDisplay === "wall" && <>Nothing here yet</>}
               </div>
             </div>
             <div className="profil__containerRight">
