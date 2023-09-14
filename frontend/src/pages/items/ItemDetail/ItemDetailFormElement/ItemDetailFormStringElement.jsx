@@ -92,7 +92,7 @@ export const ItemDetailFormStringElement = observer((props) => {
                     props.disabled && "striked"
                   }`
             }
-            onDoubleClick={() => {
+            onClick={() => {
               !props.disabled && setIsEditmode(true);
             }}
           >

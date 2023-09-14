@@ -7,12 +7,15 @@
 
 - [?] IDEA : All informations gets stored in an array, and nothing will get overwritten, only added to the array. 
  
+- [ ] refactor project to have only one package.json
+  - [ ] Backend goes into a server folder
 - [ ] Items/looks Toolbar:
   - [ ] Quick edits feature
   - [ ] With ctrl, multi select possible, and Quick edits opens
   - [ ] Filtering
   - [ ] multiselect edits
 - [ ] Profile:
+  - [ ] Profile is responsive
   - [x] UX: Center column with Max width 
   - [x] Subpage with headers showing Looks and Items
     - [ ] simplified version of cards, with comment and liking function
@@ -31,7 +34,7 @@
     - [ ] use tint() from sharp in the BE
   - [ ] Whiten up an image (White balande)
     - [ ] use tint() from sharp in the BE
-    - [ ] Simlate it with this in the frontend: 
+    - [ ] Simulate it with this in the frontend: 
       ```
         .image-holder {
           height: 200px;
@@ -114,6 +117,7 @@
   - [ ] Items belonging to few or no Looks
   - [ ] Favorite Styles/colors/brands
 - [ ] Drag and Drop to sort Looks and Items
+- [ ] Automatically detect items colors
   
 ## Completed ✓
 
