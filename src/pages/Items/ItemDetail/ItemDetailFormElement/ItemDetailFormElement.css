@@ -6,6 +6,7 @@
 .ItemDetailFormElement__title {
   display: inline-block;
   text-transform: capitalize;
+  margin-right: 5px;
 }
 
 .ItemDetailFormElement__input,
@@ -19,6 +20,7 @@
   border: 1px solid transparent !important;
   font-size: 16px !important;
   color: #909090 !important;
+  padding: 0 !important;
 }
 
 .ItemDetailFormElement__element {

@@ -107,32 +107,34 @@ export const ItemCard = (props) => {
   };
 
   const onMouseLeaveHandler = () => {
-    const elementPicture = document.getElementById(
-      `card_item_picture_${props.item._id}`
-    );
-    const elementLogoOver = document.getElementById(
-      `card_item_logoover_${props.item._id}`
-    );
-    const elementActionsContainer = document.getElementById(
-      `card_item_actionsContainer_${props.item._id}`
-    );
-    const elementActionsLogo = document.getElementById(
-      `card_item_actionsLogo_${props.item._id}`
-    );
-    if (props.item.active) {
-      elementPicture.style.filter = "brightness(100%)";
-      elementLogoOver.style.display = "none";
-      elementActionsContainer.style.width = "0px";
-      setTimeout(() => {
-        elementActionsLogo.style.display = "none";
-        elementActionsContainer.style.opacity = "0";
-      }, 100);
-    } else {
-      elementActionsContainer.style.width = "0px";
-      setTimeout(() => {
-        elementActionsLogo.style.display = "none";
-        elementActionsContainer.style.opacity = "0";
-      }, 100);
+    if (!isLoading) {
+      const elementPicture = document.getElementById(
+        `card_item_picture_${props.item._id}`
+      );
+      const elementLogoOver = document.getElementById(
+        `card_item_logoover_${props.item._id}`
+      );
+      const elementActionsContainer = document.getElementById(
+        `card_item_actionsContainer_${props.item._id}`
+      );
+      const elementActionsLogo = document.getElementById(
+        `card_item_actionsLogo_${props.item._id}`
+      );
+      if (props.item.active) {
+        elementPicture.style.filter = "brightness(100%)";
+        elementLogoOver.style.display = "none";
+        elementActionsContainer.style.width = "0px";
+        setTimeout(() => {
+          elementActionsLogo.style.display = "none";
+          elementActionsContainer.style.opacity = "0";
+        }, 100);
+      } else {
+        elementActionsContainer.style.width = "0px";
+        setTimeout(() => {
+          elementActionsLogo.style.display = "none";
+          elementActionsContainer.style.opacity = "0";
+        }, 100);
+      }
     }
   };
 
