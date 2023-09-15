@@ -14,6 +14,8 @@
   - [ ] With ctrl, multi select possible, and Quick edits opens
   - [ ] Filtering
   - [ ] multiselect edits
+  - [ ] Brand autocomplete
+  - [ ] Color multiselect
 - [ ] Profile:
   - [ ] Profile is responsive
   - [x] UX: Center column with Max width 

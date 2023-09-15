@@ -18,7 +18,7 @@ export const ItemDetailFormDropDown = observer((props) => {
 
   useEffect(() => {
     setValue(props.value);
-  }, [props.value]);
+  }, [props.value, itemsStore.selectedItem]);
 
   const clickHandler = async (newValue) => {
     try {
