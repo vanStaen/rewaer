@@ -9,7 +9,7 @@ import { ItemDetailFormStringElement } from "./ItemDetailFormElement/ItemDetailF
 import { ItemDetailFormRadio } from "./ItemDetailFormElement/ItemDetailFormRadio";
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
-import { ItemShareWithFriends } from "./ItemShareWithFriends/itemShareWithFriends";
+import { ItemShareWithFriends } from "./ItemShareWithFriends/ItemShareWithFriends";
 import { switchItem } from "./switchItem";
 
 import {
