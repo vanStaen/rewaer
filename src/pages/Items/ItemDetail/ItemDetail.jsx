@@ -133,7 +133,7 @@ export const ItemDetail = observer(() => {
             data={colors}
             value={
               itemsStore.selectedItem.colors &&
-              itemsStore.selectedItem.colors[0]
+              itemsStore.selectedItem.colors
             }
             selectedItem={itemsStore.selectedItem}
             multiSelect={true}

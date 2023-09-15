@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react";
-import { Dropdown, Menu, notification, Tooltip } from "antd";
+import { Select, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
@@ -14,19 +14,50 @@ import "./ItemDetailFormElement.css";
 
 export const ItemDetailFormDropDown = observer((props) => {
   const { t } = useTranslation();
-  const [value, setValue] = useState(props.value);
+  const [options, setOptions] = useState(null);
+  const [optionsSelected, setOptionsSelected] = useState(null);
 
   useEffect(() => {
-    setValue(props.value);
+    loadSelectedForSelect();
   }, [props.value, itemsStore.selectedItem]);
 
-  const clickHandler = async (newValue) => {
+  useEffect(() => {
+    loadOptionsForSelect();
+    loadSelectedForSelect();
+  }, []);
+
+  const loadOptionsForSelect = () => {
+    const optionsTemp = [];
+    props.data.map((item) => {
+      optionsTemp.push({
+        label: item[userStore.language],
+        value: item.code,
+      });
+    });
+    setOptions(optionsTemp);
+  }
+
+  const loadSelectedForSelect = () => {
+    const optionsSelectedTemp = [];
+    props.data.map((item) => {
+      if (props.value?.includes(item.code)) {
+        optionsSelectedTemp.push({
+          label: item[userStore.language],
+          value: item.code,
+        });
+      }
+    });
+    setOptionsSelected(optionsSelectedTemp);
+  }
+
+  const handleChange = async (newValue) => {
+    console.log('handleChange value', newValue);
     try {
       if (props.multiSelect) {
         await updateGenericArrayStringItem(
           props.selectedItem._id,
           props.element,
-          [newValue]
+          newValue
         );
       } else {
         await updateGenericStringItem(
@@ -35,10 +66,9 @@ export const ItemDetailFormDropDown = observer((props) => {
           newValue
         );
       }
-
-      setValue(newValue);
+      setOptionsSelected(newValue);
       notification.success({
-        message: t("main.changeSaved"),
+        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);
@@ -50,35 +80,31 @@ export const ItemDetailFormDropDown = observer((props) => {
     }
   };
 
-  const DataDropDown = props.data.map((item) => {
-    let isSelected = false;
-    if (item.code === value) {
-      isSelected = true;
-    }
-
-    return (
-      <Menu.Item
-        key={item.code}
-        style={isSelected && { backgroundColor: "fcfcfc" }}
-        onClick={() => {
-          clickHandler(item.code);
-        }}
-      >
-        {item[userStore.language]}
-      </Menu.Item>
-    );
-  });
-
   return (
     <div className="ItemDetailFormElement__container">
       <div className="ItemDetailFormElement__title">{props.title}:</div>
-      <Dropdown
-        className="ItemDetailFormElement__dropdown"
-        overlay={<Menu>{DataDropDown}</Menu>}
-        placement="bottomLeft"
+      <Select
+        className="ItemDetailFormElement__select"
+        mode={props.multiSelect ? "multiple" : "default"}
         disabled={props.disabled}
-      >
-        <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+        onChange={handleChange}
+        value={optionsSelected}
+        placeholder={`Select a ${props.title}`}
+        options={options}
+      />
+      {props.tooltip && (
+        <div className="ItemDetailFormElement__helpIcon">
+          <Tooltip placement="right" title={props.tooltip}>
+            <QuestionCircleOutlined />
+          </Tooltip>
+        </div>
+      )}
+    </div>
+  );
+});
+
+/*
+<a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           {value ? (
             <span className="ItemDetailFormElement__element">
               {convertCodeToObjectString(value, props.data)[userStore.language]}
@@ -93,14 +119,4 @@ export const ItemDetailFormDropDown = observer((props) => {
             </span>
           )}
         </a>
-      </Dropdown>
-      {props.tooltip && (
-        <div className="ItemDetailFormElement__helpIcon">
-          <Tooltip placement="right" title={props.tooltip}>
-            <QuestionCircleOutlined />
-          </Tooltip>
-        </div>
-      )}
-    </div>
-  );
-});
+        */
