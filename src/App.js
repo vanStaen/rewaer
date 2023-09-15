@@ -4,9 +4,9 @@ import { notification } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { Looks } from "./pages/Llooks/Looks";
-import { Items } from "./pages/Iitems/Items";
-import { Info } from "./pages/Iinfo/Info";
+import { Looks } from "./pages/Looks/Looks";
+import { Items } from "./pages/Items/Items";
+import { Info } from "./pages/Info/Info";
 import { Profile } from "./pages/Profile/Profile";
 import { EditSettings } from "./pages/Profile/EditSettings/EditSettings";
 import { Welcome } from "./pages/Welcome/Welcome";
