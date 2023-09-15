@@ -3,7 +3,7 @@ import { Input, notification } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { patchTitle } from "./patchTitle";
-import { itemsStore } from "../../pages/Items/itemsStore";
+import { itemsStore } from "../../pages/Iitems/itemsStore";
 
 import "./EditableTitle.css";
 

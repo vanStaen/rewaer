@@ -8,7 +8,7 @@ import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { updateCategoryLook } from "../actions/updateCategoryLook";
 import { updateSeasonLook } from "../actions/updateSeasonLook";
 import { updateItemsLook } from "../actions/updateItemsLook";
-import { itemsStore } from "../../Items/itemsStore";
+import { itemsStore } from "../../Iitems/itemsStore";
 import { looksStore } from "../looksStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { lookCategory } from "../../../lib/data/categories";
