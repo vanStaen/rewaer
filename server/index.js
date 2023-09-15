@@ -84,9 +84,9 @@ db.sequelize.sync().then((req) => {
 });
 
 // Set up for React
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "../build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
 
 // Listen on a port

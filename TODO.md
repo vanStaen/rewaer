@@ -1,14 +1,8 @@
 # Rewaer
 
 ## To-dos:
-
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
-
-- [?] IDEA : All informations gets stored in an array, and nothing will get overwritten, only added to the array. 
- 
-- [ ] refactor project to have only one package.json
-  - [ ] Backend goes into a server folder
 - [ ] Items/looks Toolbar:
   - [ ] Quick edits feature
   - [ ] With ctrl, multi select possible, and Quick edits opens
@@ -25,44 +19,6 @@
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item 
 - [ ] Infinite scrolling + lazy loading
-- [ ] Image reworking: 
-  - [x] Create editImageBar Component
-    - [x] <BulbOutlined />
-    - [x] <FormatPainterOutlined />
-    - [x] <RedoOutlined />
-    - [x] <VerticalAlignMiddleOutlined />
-      - [x] transform: rotate(45deg); 
-  - [ ] Ligthen up an image (Dark-Light balance)
-    - [ ] use tint() from sharp in the BE
-  - [ ] Whiten up an image (White balande)
-    - [ ] use tint() from sharp in the BE
-    - [ ] Simulate it with this in the frontend: 
-      ```
-        .image-holder {
-          height: 200px;
-          width: 200px;
-          position:relative; 
-        }    
-        .image-holder:before {
-          content: "";
-          display: block;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: rgba(0,255,255, 0.5);
-          transition: all .3s linear;
-        }
-        .image-holder:hover:before { 
-          background: none;
-        }
-      ```
-  - [ ] Crop an image
-  - [ ] rotate an image
-    - [!] image: transform: rotate(45deg);
-  - [ ] flip an image
-    - [!] image: transform: scaleX(-1);
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
@@ -122,6 +78,22 @@
   - [ ] Favorite Styles/colors/brands
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Automatically detect items colors
+- [ ] Image reworking: 
+  - [x] Create editImageBar Component
+    - [x] <BulbOutlined />
+    - [x] <FormatPainterOutlined />
+    - [x] <RedoOutlined />
+    - [x] <VerticalAlignMiddleOutlined />
+      - [x] transform: rotate(45deg); 
+  - [ ] Ligthen up an image (Dark-Light balance)
+    - [ ] use tint() from sharp in the BE
+  - [ ] Whiten up an image (White balande)
+    - [ ] use tint() from sharp in the BE
+  - [ ] Crop an image
+  - [ ] rotate an image
+    - [ ] image: transform: rotate(45deg);
+  - [ ] flip an image
+    - [ ] image: transform: scaleX(-1);
   
 ## Completed ✓
 
@@ -247,3 +219,4 @@
 - [x] Leave look detailview with browser back function 
 - [x] Navigation with Arrows in item/look -detailview
 - [x] Include a manifest to use Page as an App
+- [x] refactor project to have only one package.json

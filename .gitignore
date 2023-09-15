@@ -1,5 +1,4 @@
 node_modules
 .env
-public/old
-public/uploads
-ressources/db_backup
+server/public/old
+server/public/uploads
