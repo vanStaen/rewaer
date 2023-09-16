@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
 export class PageStore {
-  showFloatingForm = true;
+  showFloatingForm = null;
   windowInnerHeight = null;
   windowInnerWidth = null;
 

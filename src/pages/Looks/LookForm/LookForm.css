@@ -48,16 +48,17 @@
     font-size: 16px;
 }
 
-.floating-form {
+.look-floating-form {
     position: fixed;
     z-index: 3;
     bottom: 30px;
     right: 30px;
     cursor: pointer;
-    opacity: .8;
+    opacity: 0;
+    transition: opacity .5s;
 }
 
-.floating-form::before {
+.look-floating-form::before {
     content: "ADD";
     position: absolute;
     z-index: 4;
@@ -69,13 +70,12 @@
     text-align: center;
 }
 
-
-.floating-form:hover {
+.look-floating-form:hover {
     opacity: 1;
 }
 
 @media (max-width: 420px) {
-    .floating-form {
+    .look-floating-form {
         bottom: 15px;
         right: 15px;
         opacity: 1;

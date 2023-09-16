@@ -48,6 +48,11 @@ const App = observer(() => {
   };
 
   useEffect(() => {
+    //initialize variables
+    pageStore.setWindowInnerHeight(window.innerHeight);
+    pageStore.setWindowInnerWidth(window.innerWidth);
+    pageStore.setShowFloatingForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
+    //Event listener
     window.addEventListener("resize", resetWindowInners);
     return () => {
       window.removeEventListener("resize", resetWindowInners);

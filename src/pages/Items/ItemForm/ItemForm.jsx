@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, notification, Spin, Col } from "antd";
 import { SkinOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -99,9 +99,16 @@ export const ItemForm = observer(() => {
     setIsUploading(false);
   };
 
+  useEffect(() => {
+    if (pageStore.showFloatingForm) {
+      const element = document.getElementById("item-floating-form")
+      element.style.opacity = '.8';
+    }
+  }, [pageStore.showFloatingForm])
+
   return (
     pageStore.showFloatingForm ?
-      (<div className="floating-form">
+      (<div className="item-floating-form" id="item-floating-form">
         <form
           onSubmit={submitHandler}
         >

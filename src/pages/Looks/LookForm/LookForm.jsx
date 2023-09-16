@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { notification, Spin, Col, Avatar } from "antd";
 import { CameraOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -99,10 +99,17 @@ export const LookForm = observer(() => {
     setIsUploading(false);
   };
 
+  useEffect(() => {
+    if (pageStore.showFloatingForm) {
+      const element = document.getElementById("look-floating-form")
+      element.style.opacity = '.8';
+    }
+  }, [pageStore.showFloatingForm])
+
   return (
     <>
       {pageStore.showFloatingForm ? (
-        <div className="floating-form">
+        <div className="look-floating-form" id="look-floating-form">
           <form
             onSubmit={submitHandler}
           >
