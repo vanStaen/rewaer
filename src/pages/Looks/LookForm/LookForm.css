@@ -70,10 +70,6 @@
     text-align: center;
 }
 
-.look-floating-form:hover {
-    opacity: 1;
-}
-
 @media (max-width: 420px) {
     .look-floating-form {
         bottom: 15px;

@@ -61,10 +61,6 @@
     transition: opacity .5s;
 }
 
-.item-floating-form:hover {
-    opacity: 1;
-}
-
 .item-floating-form::before {
     content: "ADD";
     position: absolute;
