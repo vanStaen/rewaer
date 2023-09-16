@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { Client } = require("pg");
-require('dotenv').config({ path: __dirname + '/./../.env' })
+require('dotenv').config({ path: __dirname + '/./../../.env' })
 
 
 // init Postgres
@@ -36,13 +36,13 @@ const writeBackupFile = async () => {
         const day = today.getDate();
         const databaseContentItems = await fetchDatabaseContent("items");
         filenameItems = `${day}-${month}-${year}_rewaer_items.json`;
-        fs.writeFileSync(`../../database-backups/rewaer/${filenameItems}`, JSON.stringify(databaseContentItems));
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameItems}`, JSON.stringify(databaseContentItems));
         const databaseContentLooks = await fetchDatabaseContent("looks");
         filenameLooks = `${day}-${month}-${year}_rewaer_looks.json`;
-        fs.writeFileSync(`../../database-backups/rewaer/${filenameLooks}`, JSON.stringify(databaseContentLooks));
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameLooks}`, JSON.stringify(databaseContentLooks));
         const databaseContentUsers = await fetchDatabaseContent("users");
         filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
-        fs.writeFileSync(`../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
     } catch (err) {
         console.log({ error: `${err})`, });
     }
