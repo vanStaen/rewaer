@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { notification, Spin } from "antd";
 import { CameraOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -98,7 +98,7 @@ export const LookForm = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <form
         onSubmit={submitHandler}
         style={
@@ -144,6 +144,6 @@ export const LookForm = (props) => {
           </label>
         )}
       </form>
-    </Fragment>
+    </>
   );
 };
