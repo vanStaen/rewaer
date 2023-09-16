@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { notification, Spin } from "antd";
+import { notification, Spin, Col, Avatar } from "antd";
 import { CameraOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { observer } from "mobx-react";
 import axios from "axios";
 import moment from "moment";
 
 import { looksStore } from "../looksStore";
+import { pageStore } from "../../../stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
 
 import "./LookForm.css";
 
-export const LookForm = (props) => {
+export const LookForm = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const [isDragDroping, setIsDragDroping] = useState(false);
@@ -99,51 +101,82 @@ export const LookForm = (props) => {
 
   return (
     <>
-      <form
-        onSubmit={submitHandler}
-        style={
-          isDragDroping
-            ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
-            : { marginBottom: "30px" }
-        }
-      >
-        <input
-          type="file"
-          className="inputfile"
-          name="inputfile"
-          id="file"
-          onChange={fileSelectHandler}
-        />
-        {isUploading ? (
-          <label htmlFor="file">
-            <Spin size="large" />
-            <p className="form-upload-text" style={{ color: "#999" }}>
-              <br />
-              {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
-              {uploadProgress[1]}
-            </p>
-          </label>
-        ) : (
-          <label
-            htmlFor="file"
-            onDrop={handleDrop}
-            onDragOver={(e) => handleDragOver(e)}
-            onDragEnter={(e) => handleDragEnter(e)}
-            onDragLeave={(e) => handleDragLeave(e)}
+      {pageStore.showFloatingForm ? (
+        <div className="floating-form">
+          <form
+            onSubmit={submitHandler}
           >
-            <p className="form-upload-drag-icon">
-              {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
-            </p>
-            <p className="form-upload-text">{t("looks.addLook")}</p>
-            <p className="form-upload-hint">
-              {t("main.startWithPhoto")} <br />
-              {!isDragDroping
-                ? t("main.clickDragFile")
-                : t("main.dragDropMultiple")}
-            </p>
-          </label>
-        )}
-      </form>
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+            <label
+              htmlFor="file"
+              onDrop={handleDrop}
+              onDragOver={(e) => handleDragOver(e)}
+              onDragEnter={(e) => handleDragEnter(e)}
+              onDragLeave={(e) => handleDragLeave(e)}
+              style={{ cursor: 'pointer' }}
+            >
+              <Avatar
+                size={64}
+                icon={<CameraOutlined />}
+                style={{ backgroundColor: 'IndianRed' }}
+              />
+            </label>
+          </form>
+        </div>) :
+        <Col>
+          <form
+            onSubmit={submitHandler}
+            style={
+              isDragDroping
+                ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
+                : { marginBottom: "30px" }
+            }
+          >
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+            {isUploading ? (
+              <label htmlFor="file" className="look-form-label">
+                <Spin size="large" />
+                <p className="form-upload-text" style={{ color: "#999" }}>
+                  <br />
+                  {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
+                  {uploadProgress[1]}
+                </p>
+              </label>
+            ) : (
+              <label
+                htmlFor="file"
+                onDrop={handleDrop}
+                onDragOver={(e) => handleDragOver(e)}
+                onDragEnter={(e) => handleDragEnter(e)}
+                onDragLeave={(e) => handleDragLeave(e)}
+                className="look-form-label"
+              >
+                <p className="form-upload-drag-icon">
+                  {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
+                </p>
+                <p className="form-upload-text">{t("looks.addLook")}</p>
+                <p className="form-upload-hint">
+                  {t("main.startWithPhoto")} <br />
+                  {!isDragDroping
+                    ? t("main.clickDragFile")
+                    : t("main.dragDropMultiple")}
+                </p>
+              </label>
+            )}
+          </form>
+        </Col>}
     </>
   );
-};
+});

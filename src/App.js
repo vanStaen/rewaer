@@ -13,6 +13,7 @@ import { Welcome } from "./pages/Welcome/Welcome";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
 import { userStore } from "./stores/userStore/userStore";
+import { pageStore } from "./stores/pageStore/pageStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { CustomMenuBar } from "./components/CustomMenuBar/CustomMenuBar";
 import { Footer } from "./components/Footer/Footer";
@@ -23,6 +24,7 @@ import "../src/lib/i18n";
 import "./App.css";
 import "./style/rewaer-antd.css";
 
+const TRESHOLD_FLOATING_FORMS = 800;
 //console.log("Env", process.env.NODE_ENV);
 //console.log("Api", process.env.API_URL);
 
@@ -38,6 +40,19 @@ const App = observer(() => {
   useEffect(() => {
     userStore.fetchUserData();
   }, [authStore.hasAccess]);
+
+  const resetWindowInners = () => {
+    pageStore.setWindowInnerHeight(window.innerHeight);
+    pageStore.setWindowInnerWidth(window.innerWidth);
+    pageStore.setShowFloatingForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resetWindowInners);
+    return () => {
+      window.removeEventListener("resize", resetWindowInners);
+    };
+  }, [resetWindowInners]);
 
   useEffect(() => {
     if (userStore.language === "en") {

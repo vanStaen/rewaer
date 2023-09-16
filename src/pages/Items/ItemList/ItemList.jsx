@@ -79,8 +79,8 @@ export const ItemList = observer(() => {
         ? itemsStore.items.length + 1
         : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
       : displayArchived
-      ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
-      : itemsStore.items.length +
+        ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
+        : itemsStore.items.length +
         1 -
         itemsStore.numberOfPrivateItem -
         itemsStore.numberOfArchivedItem;
@@ -152,9 +152,7 @@ export const ItemList = observer(() => {
         </div>
         <div ref={containerElement}>
           <Row justify={"space-around"}>
-            <Col>
-              <ItemForm />
-            </Col>
+            <ItemForm />
             {itemList}
             <GhostCard
               numberOfCards={missingCardForFullRow}

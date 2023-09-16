@@ -58,8 +58,8 @@ export const LookList = observer(() => {
         ? looksStore.looks.length + 1
         : looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
       : displayArchived
-      ? looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
-      : looksStore.looks.length +
+        ? looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
+        : looksStore.looks.length +
         1 -
         looksStore.numberOfPrivateLook -
         looksStore.numberOfArchivedLook;
@@ -147,9 +147,7 @@ export const LookList = observer(() => {
         </div>
       </div>
       <Row justify={"space-around"}>
-        <Col>
-          <LookForm />
-        </Col>
+        <LookForm />
         {lookList}
         <GhostCard
           numberOfCards={missingCardForFullRow}
