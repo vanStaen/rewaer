@@ -38,7 +38,7 @@ export const ItemDetailFormRadio = observer((props) => {
 
       setValue(event.target.value);
       notification.success({
-        message: t("main.changeSaved"),
+        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);

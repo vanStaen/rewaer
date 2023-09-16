@@ -40,7 +40,7 @@ export const ItemDetailFormStringElement = observer((props) => {
         setValue(newValue);
         itemsStore.setIsOutOfDate(true);
         notification.success({
-          message: t("main.changeSaved"),
+          message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
           placement: "bottomRight",
         });
       } catch (error) {

@@ -24,7 +24,7 @@ export const LookDetailFormRadio = observer((props) => {
       setValue(event.target.value);
       props.flipValueTo(event.target.value);
       notification.success({
-        message: t("main.changeSaved"),
+        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
         placement: "bottomRight",
       });
       looksStore.setIsOutOfDate(true);

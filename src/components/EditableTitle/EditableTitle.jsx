@@ -35,7 +35,7 @@ export const EditableTitle = (props) => {
       patchTitle(title, props.id, props.type)
         .then(() => {
           notification.success({
-            message: t("main.changeSaved"),
+            message: `[TITLE] ${t("main.changeSaved")}`,
             placement: "bottomRight",
           });
           setOriginalTitle(title);

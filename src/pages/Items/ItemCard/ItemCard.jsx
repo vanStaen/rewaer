@@ -85,52 +85,56 @@ export const ItemCard = (props) => {
   };
 
   const onMouseEnterHandler = () => {
-    const elementPicture = document.getElementById(
-      `card_item_picture_${props.item._id}`
-    );
-    const elementLogoOver = document.getElementById(
-      `card_item_logoover_${props.item._id}`
-    );
-    const elementActionsContainer = document.getElementById(
-      `card_item_actionsContainer_${props.item._id}`
-    );
-    const elementActionsLogo = document.getElementById(
-      `card_item_actionsLogo_${props.item._id}`
-    );
-    elementPicture.style.filter = "brightness(50%)";
-    elementLogoOver.style.display = "block";
-    elementActionsContainer.style.width = "34px";
-    elementActionsContainer.style.opacity = ".85";
-    elementActionsLogo.style.display = "block";
+    if (!isLoading) {
+      const elementPicture = document.getElementById(
+        `card_item_picture_${props.item._id}`
+      );
+      const elementLogoOver = document.getElementById(
+        `card_item_logoover_${props.item._id}`
+      );
+      const elementActionsContainer = document.getElementById(
+        `card_item_actionsContainer_${props.item._id}`
+      );
+      const elementActionsLogo = document.getElementById(
+        `card_item_actionsLogo_${props.item._id}`
+      );
+      elementPicture.style.filter = "brightness(50%)";
+      elementLogoOver.style.display = "block";
+      elementActionsContainer.style.width = "34px";
+      elementActionsContainer.style.opacity = ".85";
+      elementActionsLogo.style.display = "block";
+    }
   };
 
   const onMouseLeaveHandler = () => {
-    const elementPicture = document.getElementById(
-      `card_item_picture_${props.item._id}`
-    );
-    const elementLogoOver = document.getElementById(
-      `card_item_logoover_${props.item._id}`
-    );
-    const elementActionsContainer = document.getElementById(
-      `card_item_actionsContainer_${props.item._id}`
-    );
-    const elementActionsLogo = document.getElementById(
-      `card_item_actionsLogo_${props.item._id}`
-    );
-    if (props.item.active) {
-      elementPicture.style.filter = "brightness(100%)";
-      elementLogoOver.style.display = "none";
-      elementActionsContainer.style.width = "0px";
-      setTimeout(() => {
-        elementActionsLogo.style.display = "none";
-        elementActionsContainer.style.opacity = "0";
-      }, 100);
-    } else {
-      elementActionsContainer.style.width = "0px";
-      setTimeout(() => {
-        elementActionsLogo.style.display = "none";
-        elementActionsContainer.style.opacity = "0";
-      }, 100);
+    if (!isLoading) {
+      const elementPicture = document.getElementById(
+        `card_item_picture_${props.item._id}`
+      );
+      const elementLogoOver = document.getElementById(
+        `card_item_logoover_${props.item._id}`
+      );
+      const elementActionsContainer = document.getElementById(
+        `card_item_actionsContainer_${props.item._id}`
+      );
+      const elementActionsLogo = document.getElementById(
+        `card_item_actionsLogo_${props.item._id}`
+      );
+      if (props.item.active) {
+        elementPicture.style.filter = "brightness(100%)";
+        elementLogoOver.style.display = "none";
+        elementActionsContainer.style.width = "0px";
+        setTimeout(() => {
+          elementActionsLogo.style.display = "none";
+          elementActionsContainer.style.opacity = "0";
+        }, 100);
+      } else {
+        elementActionsContainer.style.width = "0px";
+        setTimeout(() => {
+          elementActionsLogo.style.display = "none";
+          elementActionsContainer.style.opacity = "0";
+        }, 100);
+      }
     }
   };
 
@@ -290,8 +294,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-              ? "itemcard__meta itemcard__metaFavorite"
-              : "itemcard__meta"
+                ? "itemcard__meta itemcard__metaFavorite"
+                : "itemcard__meta"
           }
         >
           <EditableTitle
