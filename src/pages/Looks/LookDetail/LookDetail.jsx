@@ -227,7 +227,7 @@ export const LookDetail = observer(() => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(category, lookCategory)[
-                      userStore.language
+                    userStore.language
                     ]
                   }
                 </span>
@@ -252,7 +252,7 @@ export const LookDetail = observer(() => {
                 <span className="lookdetail__headerCategory">
                   {
                     convertCodeToObjectString(season, seasons)[
-                      userStore.language
+                    userStore.language
                     ]
                   }
                 </span>

@@ -24,8 +24,6 @@
   overflow: hidden;
   width: 480px;
   height: 640px;
-  max-width: 50vh;
-  max-height: 70vh;
   border-radius: 2px;
   border: 1px solid #f0f0f0;
   margin-left: 40px;
@@ -88,6 +86,7 @@
   height: calc(100% - 40px);
   width: 520px;
 }
+
 .lookDetail__leftContainer {
   display: inline-block;
   vertical-align: top;
