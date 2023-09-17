@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vanStaen/rewaer.com.git"
+    "url": "git+https://github.com/vanStaen/rewaer.git"
   },
   "keywords": [
     "rewear",
@@ -14,7 +14,7 @@
     "app"
   ],
   "author": "Clément van Staen",
-  "homepage": "https://github.com/vanStaen/rewaer.com#readme",
+  "homepage": "https://github.com/vanStaen/rewaer#readme",
   "scripts": {
     "start": "node server/index.js", 
     "devfr": "webpack serve --config webpack.config.dev.js --hot --open",
@@ -24,7 +24,7 @@
     "deploy": "npm i; heroku git:remote -a rewaer; git push heroku master; npm run backup;",
     "log": "heroku logs --tail",
     "backup": "cd server/lib/; node createDatabaseBackUpFile.js; npm run pushbackup; cd ../../",
-    "pushbackup": "cd ../database-backups; git pull; git add -A; git commit -m 'Rewaer - database backup files'; git push; cd ../rewaer.com" 
+    "pushbackup": "cd ../database-backups; git pull; git add -A; git commit -m 'Rewaer - database backup files'; git push; cd ../rewaer" 
   },
   "dependencies": {
     "@babel/core": "^7.14.6",
