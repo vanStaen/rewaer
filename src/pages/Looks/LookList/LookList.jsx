@@ -101,6 +101,3 @@ export const LookList = observer(() => {
     </div>
   );
 });
-
-/*
- */

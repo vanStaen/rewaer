@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
-import { Col, Row } from "antd";
-import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../itemsStore";
 import { pageStore } from "../../../stores/pageStore/pageStore";
@@ -9,13 +7,10 @@ import { userStore } from "../../../stores/userStore/userStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import { ItemCard } from "../ItemCard/ItemCard";
 import { UploadForm } from "../../../components/UploadForm/UploadForm";
-import { Banner } from "../../../components/Banner/Banner";
-import { ToolBar } from "../../../components/ToolBar/ToolBar";
 
 export const ItemList = observer(() => {
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
-  const { t } = useTranslation();
 
   useEffect(() => {
     window.addEventListener("scroll", scrollEventHandler);
@@ -41,26 +36,6 @@ export const ItemList = observer(() => {
 
   const scrollEventHandler = () => {
     itemsStore.setLastKnownScrollPosition(window.scrollY);
-  };
-
-  const totalItems = () => {
-    if (userStore.profilSettings.displayArchived) {
-      if (itemsStore.showPrivateItems) {
-        return itemsStore.items.length;
-      } else {
-        return itemsStore.items.length - itemsStore.numberOfPrivateItem;
-      }
-    } else {
-      if (itemsStore.showPrivateItems) {
-        return itemsStore.items.length - itemsStore.numberOfArchivedItem;
-      } else {
-        return (
-          itemsStore.items.length -
-          itemsStore.numberOfArchivedItem -
-          itemsStore.numberOfPrivateItem
-        );
-      }
-    }
   };
 
   const calculateMissingCardsForFullRow = useCallback(() => {
@@ -107,9 +82,9 @@ export const ItemList = observer(() => {
         return null;
       } else {
         return (
-          <Col key={item._id}>
+          <div>
             <ItemCard item={item} showDetailView={showDetailView} />
-          </Col>
+          </div>
         );
       }
     }
@@ -118,20 +93,14 @@ export const ItemList = observer(() => {
 
   return (
     <>
-      <Banner id="missingTag" desc={t("items.missingTagsAlert")} show={true} />
-      <div className="items__container">
-        <ToolBar total={totalItems()} page="items" />
-        <div ref={containerElement}>
-          <Row justify={"space-around"}>
-            <UploadForm page="items" />
-            {itemList}
-            <GhostCard
-              numberOfCards={missingCardForFullRow}
-              width="240px"
-              height="385px"
-            />
-          </Row>
-        </div>
+      <div ref={containerElement} className="items__container">
+        <UploadForm page="items" />
+        {itemList}
+        <GhostCard
+          numberOfCards={missingCardForFullRow}
+          width="240px"
+          height="385px"
+        />
       </div>
     </>
   );

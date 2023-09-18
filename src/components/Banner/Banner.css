@@ -1,5 +1,5 @@
 .banner__container {
-  position: absolute;
+  position: relative;
   z-index: 5;
   width: 100vw;
   font-size: 16px;
