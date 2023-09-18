@@ -3,7 +3,7 @@
   z-index: 5;
   width: 100vw;
   font-size: 16px;
-  background-color: #b5c8be;
+  background-color: rgba(218,133,133,1);
   transition: max-height 0.5s linear;
   visibility: hidden;
 }
@@ -13,12 +13,14 @@
   font-weight: 300;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 36px; /* width of close button */
   color: white;
   cursor: pointer;
 }
 
 .banner__desc:hover {
-  background-color: #a3baae;
+  background-color: rgba(205,92,92,1); /*IndianRed*/
 }
 
 .banner__close {
@@ -34,6 +36,6 @@
 }
 
 .banner__close:hover {
-  color: #6c917d;
+  color: firebrick;
   background-color: rgba(255, 255, 255, 0.25);
 }
