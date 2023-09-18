@@ -8,13 +8,11 @@ import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import { ItemCard } from "../ItemCard/ItemCard";
-import { ItemForm } from "../ItemForm/ItemForm";
+import { UploadForm } from "../../../components/UploadForm/UploadForm";
 import { Banner } from "../../../components/Banner/Banner";
 import { ToolBar } from "../../../components/ToolBar/ToolBar";
 
 export const ItemList = observer(() => {
-  const [quickEdit, setQuickEdit] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
   const { t } = useTranslation();
@@ -125,7 +123,7 @@ export const ItemList = observer(() => {
         <ToolBar total={totalItems()} page="items" />
         <div ref={containerElement}>
           <Row justify={"space-around"}>
-            <ItemForm />
+            <UploadForm page="items" />
             {itemList}
             <GhostCard
               numberOfCards={missingCardForFullRow}

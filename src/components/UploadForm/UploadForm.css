@@ -7,7 +7,7 @@
 	z-index: -1;
 }
 
-.look-form {
+.upload-form {
   width: 240px;
   height: 385px;
   border: 1px dashed #d9d9d9;
@@ -21,13 +21,13 @@
   transition: border-color .3s, background-color .3s;
 }
 
-.look-form:focus,
-.look-form:hover {
+.upload-form:focus,
+.upload-form:hover {
     border: 1px dashed #999;
     background-color: rgba(245,245,245,1);
 }
 
-.look-form-label {
+.upload-form-label {
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -52,7 +52,7 @@
     font-size: 16px;
 }
 
-.look-floating-form {
+.upload-floating-form {
     position: fixed;
     z-index: 3;
     bottom: 30px;
@@ -62,7 +62,7 @@
     transition: opacity .5s;
 }
 
-.look-floating-form::before {
+.upload-floating-form::before {
     content: "ADD";
     position: absolute;
     z-index: 4;
@@ -75,7 +75,7 @@
 }
 
 @media (max-width: 420px) {
-    .look-floating-form {
+    .upload-floating-form {
         bottom: 15px;
         right: 15px;
         opacity: 1;

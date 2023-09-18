@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { notification, Spin, Avatar } from "antd";
-import { CameraOutlined, FileAddOutlined } from "@ant-design/icons";
+import {
+  CameraOutlined,
+  FileAddOutlined,
+  SkinOutlined,
+} from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import axios from "axios";
 import moment from "moment";
 
-import { looksStore } from "../looksStore";
-import { pageStore } from "../../../stores/pageStore/pageStore";
+import { looksStore } from "../../pages/Looks/looksStore";
+import { itemsStore } from "../../pages/Items/itemsStore";
+import { pageStore } from "../../stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
-import { isElementVisible } from "../../../helpers/isElementVisible";
+import { postNewItem } from "./postNewItem";
+import { isElementVisible } from "../../helpers/isElementVisible";
 
-import "./LookForm.css";
+import "./UploadForm.css";
 
-export const LookForm = observer(() => {
+export const UploadForm = observer((props) => {
+  const { page } = props;
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const [isDragDroping, setIsDragDroping] = useState(false);
@@ -26,7 +33,7 @@ export const LookForm = observer(() => {
 
   const scrollhandler = () => {
     if (!pageStore.showOnlyFloatingForm) {
-      const elementForm = document.getElementById("look-form");
+      const elementForm = document.getElementById("upload-form");
       if (!isElementVisible(elementForm)) {
         pageStore.setShowFloatingForm(true);
       } else {
@@ -48,29 +55,49 @@ export const LookForm = observer(() => {
     try {
       const res = await axios.post(process.env.API_URL + `/upload`, formData);
       if (res.data) {
-        // Create Look entry
+        // Create Item/Look entry
         const mediaUrl = res.data.imageUrl;
         const mediaUrlThumb = res.data.thumbUrl;
         const mediaUrlMedium = res.data.mediumUrl;
         const title = moment().format("DD.MM.YYYY");
-        // post new Look
-        postNewLook(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
-          .then(() => {
-            notification.success({
-              message: t("main.uploadSuccess"),
-              placement: "bottomRight",
+        // post new Item/Look
+        if (page === "looks") {
+          postNewLook(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
+            .then(() => {
+              notification.success({
+                message: t("main.uploadSuccess"),
+                placement: "bottomRight",
+              });
+              // retrigger parent component rendering
+              looksStore.setIsOutOfDate(true);
+              console.log("Success!");
+            })
+            .catch((error) => {
+              notification.error({
+                message: t("main.uploadFail"),
+                placement: "bottomRight",
+              });
+              console.log(error.message);
             });
-            // retrigger parent component rendering
-            looksStore.setIsOutOfDate(true);
-            console.log("Success!");
-          })
-          .catch((error) => {
-            notification.error({
-              message: t("main.uploadFail"),
-              placement: "bottomRight",
+        } else if (page === "items") {
+          postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
+            .then(() => {
+              notification.success({
+                message: t("main.uploadSuccess"),
+                placement: "bottomRight",
+              });
+              // retrigger parent component rendering
+              itemsStore.setIsOutOfDate(true);
+              console.log("Success!");
+            })
+            .catch((error) => {
+              notification.error({
+                message: t("main.uploadFail"),
+                placement: "bottomRight",
+              });
+              console.log(error.message);
             });
-            console.log(error.message);
-          });
+        }
         setIsUploading(false);
       }
     } catch (err) {
@@ -120,7 +147,7 @@ export const LookForm = observer(() => {
 
   useEffect(() => {
     if (pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) {
-      const element = document.getElementById("look-floating-form");
+      const element = document.getElementById("upload-floating-form");
       element.style.opacity = ".8";
     }
   }, [pageStore.showFloatingForm, pageStore.showOnlyFloatingForm]);
@@ -128,7 +155,7 @@ export const LookForm = observer(() => {
   return (
     <>
       {(pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) && (
-        <div className="look-floating-form" id="look-floating-form">
+        <div className="upload-floating-form" id="upload-floating-form">
           <form onSubmit={submitHandler}>
             <input
               type="file"
@@ -158,8 +185,8 @@ export const LookForm = observer(() => {
         <div>
           <form
             onSubmit={submitHandler}
-            className="look-form"
-            id="look-form"
+            className="upload-form"
+            id="upload-form"
             style={
               isDragDroping
                 ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
@@ -174,12 +201,12 @@ export const LookForm = observer(() => {
               onChange={fileSelectHandler}
             />
             {isUploading ? (
-              <label htmlFor="file" className="look-form-label">
+              <label htmlFor="file" className="upload-form-label">
                 <Spin size="large" />
                 <p className="form-upload-text" style={{ color: "#999" }}>
                   <br />
-                  {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
-                  {uploadProgress[1]}
+                  {uploadProgress[0] + 1} {t(`${page}.${page.slice(0, -1)}`)}{" "}
+                  {t("main.of")} {uploadProgress[1]}
                 </p>
               </label>
             ) : (
@@ -189,12 +216,14 @@ export const LookForm = observer(() => {
                 onDragOver={(e) => handleDragOver(e)}
                 onDragEnter={(e) => handleDragEnter(e)}
                 onDragLeave={(e) => handleDragLeave(e)}
-                className="look-form-label"
+                className="upload-form-label"
               >
                 <p className="form-upload-drag-icon">
                   {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
                 </p>
-                <p className="form-upload-text">{t("looks.addLook")}</p>
+                <p className="form-upload-text">
+                  {t(`${page}.add${page.slice(0, -1)}`)}
+                </p>
                 <p className="form-upload-hint">
                   {t("main.startWithPhoto")} <br />
                   {!isDragDroping

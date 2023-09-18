@@ -5,7 +5,7 @@ import { looksStore } from "../looksStore";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { LookCard } from "../LookCard/LookCard";
-import { LookForm } from "../LookForm/LookForm";
+import { UploadForm } from "../../../components/UploadForm/UploadForm";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 
 export const LookList = observer(() => {
@@ -91,7 +91,7 @@ export const LookList = observer(() => {
 
   return (
     <div ref={containerElement} className="looks__container">
-      <LookForm />
+      <UploadForm page="looks" />
       {lookList}
       <GhostCard
         numberOfCards={missingCardForFullRow}
