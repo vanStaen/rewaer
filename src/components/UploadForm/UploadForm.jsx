@@ -16,6 +16,7 @@ import { pageStore } from "../../stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
 import { isElementVisible } from "../../helpers/isElementVisible";
+import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 
 import "./UploadForm.css";
 
@@ -174,7 +175,7 @@ export const UploadForm = observer((props) => {
             >
               <Avatar
                 size={64}
-                icon={<CameraOutlined />}
+                icon={page === "looks" ? <CameraOutlined /> : <SkinOutlined />}
                 style={{ backgroundColor: "IndianRed" }}
               />
             </label>
@@ -219,10 +220,16 @@ export const UploadForm = observer((props) => {
                 className="upload-form-label"
               >
                 <p className="form-upload-drag-icon">
-                  {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
+                  {isDragDroping ? (
+                    <FileAddOutlined />
+                  ) : page === "looks" ? (
+                    <CameraOutlined />
+                  ) : (
+                    <SkinOutlined />
+                  )}
                 </p>
                 <p className="form-upload-text">
-                  {t(`${page}.add${page.slice(0, -1)}`)}
+                  {t(`${page}.add${capitalizeFirstLetter(page.slice(0, -1))}`)}
                 </p>
                 <p className="form-upload-hint">
                   {t("main.startWithPhoto")} <br />
