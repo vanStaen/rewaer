@@ -80,7 +80,7 @@ export const Looks = observer(() => {
         <LookDetail />
       ) : (
         <>
-          <ToolBar total={totalItems()} page="looks" />
+          <ToolBar total={totalLooks()} page="looks" />
           <LookList />
         </>
       )}
