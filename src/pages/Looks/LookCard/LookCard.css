@@ -5,7 +5,6 @@
 .lookcard__container {
   width: 240px;
   height: 385px;
-  margin-bottom: 30px;
   border: 1px solid #f0f0f0; 
   background-color: rgba(100,100,100,.02);
   border-radius: 2px;
@@ -133,5 +132,8 @@
   .lookcard__container {
     width: 80vw;
     height: calc(80vw * 1.6);
+  }
+  .lookcard__meta {
+    width: 80vw;
   }
 }

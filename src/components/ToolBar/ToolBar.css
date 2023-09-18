@@ -4,7 +4,7 @@
   width: 100vw;
   z-index: 3;
   padding: 10px 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   background-color: rgba(255,255,255,.95);
   color: #aaa;
   transition: background-color .3s, color .3s; 

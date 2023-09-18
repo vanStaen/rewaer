@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { notification, Spin, Col, Avatar } from "antd";
+import { notification, Spin, Avatar } from "antd";
 import { CameraOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
@@ -155,9 +155,10 @@ export const LookForm = observer(() => {
         </div>
       )}
       {!pageStore.showOnlyFloatingForm && (
-        <Col>
+        <div>
           <form
             onSubmit={submitHandler}
+            className="look-form"
             id="look-form"
             style={
               isDragDroping
@@ -203,7 +204,7 @@ export const LookForm = observer(() => {
               </label>
             )}
           </form>
-        </Col>
+        </div>
       )}
     </>
   );

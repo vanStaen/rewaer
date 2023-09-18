@@ -1,6 +1,4 @@
 import React from "react";
-import { Col } from "antd";
-
 import "./GhostCard.css";
 
 export const GhostCard = (props) => {
@@ -8,19 +6,18 @@ export const GhostCard = (props) => {
   let ghost = [];
   for (let i = 0; i < props.numberOfCards; i++) {
     ghost.push(
-      <Col key={"ghost" + i}>
-        <div
-          className="ghostCard"
-          style={{
-            width: props.width,
-            height: props.height,
-            marginTop: margin[0],
-            marginRight: margin[1],
-            marginBottom: margin[2],
-            marginLeft: margin[3],
-          }}
-        ></div>
-      </Col>
+      <div
+        key={"ghost" + i}
+        className="ghostCard"
+        style={{
+          width: props.width,
+          height: props.height,
+          marginTop: margin[0],
+          marginRight: margin[1],
+          marginBottom: margin[2],
+          marginLeft: margin[3],
+        }}
+      ></div>
     );
   }
   return ghost;

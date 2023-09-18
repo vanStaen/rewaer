@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
-import { Col, Row } from "antd";
-import { useTranslation } from "react-i18next";
 
 import { looksStore } from "../looksStore";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { LookCard } from "../LookCard/LookCard";
 import { LookForm } from "../LookForm/LookForm";
-import { ToolBar } from "../../../components/ToolBar/ToolBar";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 
 export const LookList = observer(() => {
@@ -83,47 +80,27 @@ export const LookList = observer(() => {
         return null;
       } else {
         return (
-          <Col key={look._id}>
+          <div>
             <LookCard look={look} showDetailView={showDetailView} />
-          </Col>
+          </div>
         );
       }
     }
     return null;
   });
 
-  const totalLooks = () => {
-    if (userStore.profilSettings.displayArchived) {
-      if (looksStore.showPrivateLooks) {
-        return looksStore.looks.length;
-      } else {
-        return looksStore.looks.length - looksStore.numberOfPrivateLook;
-      }
-    } else {
-      if (looksStore.showPrivateLooks) {
-        return looksStore.looks.length - looksStore.numberOfArchivedLook;
-      } else {
-        return (
-          looksStore.looks.length -
-          looksStore.numberOfArchivedLook -
-          looksStore.numberOfPrivateLook
-        );
-      }
-    }
-  };
-
   return (
     <div ref={containerElement} className="looks__container">
-      <ToolBar total={totalLooks()} page="looks" />
-      <Row justify={"space-around"}>
-        <LookForm />
-        {lookList}
-        <GhostCard
-          numberOfCards={missingCardForFullRow}
-          width="240px"
-          height="385px"
-        />
-      </Row>
+      <LookForm />
+      {lookList}
+      <GhostCard
+        numberOfCards={missingCardForFullRow}
+        width="240px"
+        height="385px"
+      />
     </div>
   );
 });
+
+/*
+ */

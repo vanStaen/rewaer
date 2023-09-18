@@ -7,28 +7,32 @@
 	z-index: -1;
 }
 
+.look-form {
+  width: 240px;
+  height: 385px;
+  border: 1px dashed #d9d9d9;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #fafafa;
+  border-radius: 2px;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  transition: border-color .3s, background-color .3s;
+}
+
+.look-form:focus,
+.look-form:hover {
+    border: 1px dashed #999;
+    background-color: rgba(245,245,245,1);
+}
+
 .look-form-label {
-    color: rgba(0, 0, 0, 0.85);
-    background: #fafafa;
-    border: 1px dashed #d9d9d9;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: border-color 0.3s;
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
     font-feature-settings: 'tnum', "tnum";
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    width: 240px;
-    height: 385px;
-}
-
-.look-form-label:focus,
-.look-form-label:hover {
-    border: 1px dashed #999;
 }
 
 .form-upload-drag-icon {

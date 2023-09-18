@@ -8,6 +8,7 @@ import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
 import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
+import { ToolBar } from "../../components/ToolBar/ToolBar";
 
 import "./Looks.css";
 
@@ -42,6 +43,26 @@ export const Looks = observer(() => {
     }
   }, [looksStore.selectedLook]);
 
+  const totalLooks = () => {
+    if (userStore.profilSettings.displayArchived) {
+      if (looksStore.showPrivateLooks) {
+        return looksStore.looks.length;
+      } else {
+        return looksStore.looks.length - looksStore.numberOfPrivateLook;
+      }
+    } else {
+      if (looksStore.showPrivateLooks) {
+        return looksStore.looks.length - looksStore.numberOfArchivedLook;
+      } else {
+        return (
+          looksStore.looks.length -
+          looksStore.numberOfArchivedLook -
+          looksStore.numberOfPrivateLook
+        );
+      }
+    }
+  };
+
   return (
     <div className="looks__main">
       {looksStore.error !== null ? (
@@ -56,11 +77,12 @@ export const Looks = observer(() => {
           <Spin size="large" />
         </div>
       ) : looksStore.selectedLook ? (
-        <div className="looks__container">
-          <LookDetail />
-        </div>
+        <LookDetail />
       ) : (
-        <LookList />
+        <>
+          <ToolBar total={totalLooks()} page="looks" />
+          <LookList />
+        </>
       )}
     </div>
   );
