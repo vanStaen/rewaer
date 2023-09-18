@@ -4,6 +4,7 @@ import { Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../itemsStore";
+import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 import { ItemCard } from "../ItemCard/ItemCard";
@@ -74,14 +75,15 @@ export const ItemList = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
+    const countForm = pageStore.showOnlyFloatingForm ? 0 : 1;
     const numberItems = itemsStore.showPrivateItems
       ? displayArchived
-        ? itemsStore.items.length + 1
-        : itemsStore.items.length + 1 - itemsStore.numberOfArchivedItem
+        ? itemsStore.items.length + countForm
+        : itemsStore.items.length + countForm - itemsStore.numberOfArchivedItem
       : displayArchived
-        ? itemsStore.items.length + 1 - itemsStore.numberOfPrivateItem
-        : itemsStore.items.length +
-        1 -
+      ? itemsStore.items.length + countForm - itemsStore.numberOfPrivateItem
+      : itemsStore.items.length +
+        countForm -
         itemsStore.numberOfPrivateItem -
         itemsStore.numberOfArchivedItem;
     const numberFullRow = Math.floor(numberItems / numberPerRow);
@@ -92,6 +94,8 @@ export const ItemList = observer(() => {
     containerElement.current,
     itemsStore.showPrivateItems,
     userStore.profilSettings,
+    pageStore.showFloatingForm,
+    pageStore.showOnlyFloatingForm,
   ]);
 
   const showDetailView = (item) => {

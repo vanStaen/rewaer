@@ -33,7 +33,7 @@ export const ItemForm = observer(() => {
         pageStore.setShowFloatingForm(false);
       }
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", scrollhandler);
@@ -119,89 +119,92 @@ export const ItemForm = observer(() => {
   };
 
   useEffect(() => {
-    if (pageStore.showFloatingForm) {
-      const element = document.getElementById("item-floating-form")
-      element.style.opacity = '.8';
+    if (pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) {
+      const element = document.getElementById("item-floating-form");
+      element.style.opacity = ".8";
     }
-  }, [pageStore.showFloatingForm])
+  }, [pageStore.showFloatingForm, pageStore.showOnlyFloatingForm]);
 
-  return (<>
-    {(pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) &&
-      (<div className="item-floating-form" id="item-floating-form">
-        <form
-          onSubmit={submitHandler}
-        >
-          <input
-            type="file"
-            className="inputfile"
-            name="inputfile"
-            id="file"
-            onChange={fileSelectHandler}
-          />
-          <label
-            htmlFor="file"
-            onDrop={handleDrop}
-            onDragOver={(e) => handleDragOver(e)}
-            onDragEnter={(e) => handleDragEnter(e)}
-            onDragLeave={(e) => handleDragLeave(e)}
-            style={{ cursor: 'pointer' }}
-          >
-            <Avatar
-              size={64}
-              icon={<SkinOutlined />}
-              style={{ backgroundColor: 'IndianRed' }}
+  return (
+    <>
+      {(pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) && (
+        <div className="item-floating-form" id="item-floating-form">
+          <form onSubmit={submitHandler}>
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
             />
-          </label>
-        </form>
-      </div>)}
-    {!pageStore.showOnlyFloatingForm && <Col>
-      <form
-        onSubmit={submitHandler}
-        id="item-form"
-        style={
-          isDragDroping
-            ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
-            : { marginBottom: "30px" }
-        }
-      >
-        <input
-          type="file"
-          className="inputfile"
-          name="inputfile"
-          id="file"
-          onChange={fileSelectHandler}
-        />
-        {isUploading ? (
-          <label htmlFor="file" className="item-form-label">
-            <Spin size="large" />
-            <p className="form-upload-text" style={{ color: "#999" }}>
-              <br />
-              {uploadProgress[0] + 1} {t("items.item")} {t("main.of")}{" "}
-              {uploadProgress[1]}
-            </p>
-          </label>
-        ) : (
-          <label
-            htmlFor="file"
-            className="item-form-label"
-            onDrop={handleDrop}
-            onDragOver={(e) => handleDragOver(e)}
-            onDragEnter={(e) => handleDragEnter(e)}
-            onDragLeave={(e) => handleDragLeave(e)}
+            <label
+              htmlFor="file"
+              onDrop={handleDrop}
+              onDragOver={(e) => handleDragOver(e)}
+              onDragEnter={(e) => handleDragEnter(e)}
+              onDragLeave={(e) => handleDragLeave(e)}
+              style={{ cursor: "pointer" }}
+            >
+              <Avatar
+                size={64}
+                icon={<SkinOutlined />}
+                style={{ backgroundColor: "IndianRed" }}
+              />
+            </label>
+          </form>
+        </div>
+      )}
+      {!pageStore.showOnlyFloatingForm && (
+        <Col>
+          <form
+            onSubmit={submitHandler}
+            id="item-form"
+            style={
+              isDragDroping
+                ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
+                : { marginBottom: "30px" }
+            }
           >
-            <p className="form-upload-drag-icon">
-              {isDragDroping ? <FileAddOutlined /> : <SkinOutlined />}
-            </p>
-            <p className="form-upload-text">{t("items.addItem")}</p>
-            <p className="form-upload-hint">
-              {t("main.startWithPhoto")} <br />
-              {!isDragDroping
-                ? t("main.clickDragFile")
-                : t("main.dragDropMultiple")}
-            </p>
-          </label>
-        )}
-      </form>
-    </Col>}
-  </>);
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+            {isUploading ? (
+              <label htmlFor="file" className="item-form-label">
+                <Spin size="large" />
+                <p className="form-upload-text" style={{ color: "#999" }}>
+                  <br />
+                  {uploadProgress[0] + 1} {t("items.item")} {t("main.of")}{" "}
+                  {uploadProgress[1]}
+                </p>
+              </label>
+            ) : (
+              <label
+                htmlFor="file"
+                className="item-form-label"
+                onDrop={handleDrop}
+                onDragOver={(e) => handleDragOver(e)}
+                onDragEnter={(e) => handleDragEnter(e)}
+                onDragLeave={(e) => handleDragLeave(e)}
+              >
+                <p className="form-upload-drag-icon">
+                  {isDragDroping ? <FileAddOutlined /> : <SkinOutlined />}
+                </p>
+                <p className="form-upload-text">{t("items.addItem")}</p>
+                <p className="form-upload-hint">
+                  {t("main.startWithPhoto")} <br />
+                  {!isDragDroping
+                    ? t("main.clickDragFile")
+                    : t("main.dragDropMultiple")}
+                </p>
+              </label>
+            )}
+          </form>
+        </Col>
+      )}
+    </>
+  );
 });

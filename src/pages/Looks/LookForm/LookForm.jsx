@@ -33,7 +33,7 @@ export const LookForm = observer(() => {
         pageStore.setShowFloatingForm(false);
       }
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", scrollhandler);
@@ -119,19 +119,17 @@ export const LookForm = observer(() => {
   };
 
   useEffect(() => {
-    if (pageStore.showFloatingForm) {
-      const element = document.getElementById("look-floating-form")
-      element.style.opacity = '.8';
+    if (pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) {
+      const element = document.getElementById("look-floating-form");
+      element.style.opacity = ".8";
     }
-  }, [pageStore.showFloatingForm])
+  }, [pageStore.showFloatingForm, pageStore.showOnlyFloatingForm]);
 
   return (
     <>
       {(pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) && (
         <div className="look-floating-form" id="look-floating-form">
-          <form
-            onSubmit={submitHandler}
-          >
+          <form onSubmit={submitHandler}>
             <input
               type="file"
               className="inputfile"
@@ -145,65 +143,68 @@ export const LookForm = observer(() => {
               onDragOver={(e) => handleDragOver(e)}
               onDragEnter={(e) => handleDragEnter(e)}
               onDragLeave={(e) => handleDragLeave(e)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               <Avatar
                 size={64}
                 icon={<CameraOutlined />}
-                style={{ backgroundColor: 'IndianRed' }}
+                style={{ backgroundColor: "IndianRed" }}
               />
             </label>
           </form>
-        </div>)}
-      {!pageStore.showOnlyFloatingForm && (<Col>
-        <form
-          onSubmit={submitHandler}
-          id="look-form"
-          style={
-            isDragDroping
-              ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
-              : { marginBottom: "30px" }
-          }
-        >
-          <input
-            type="file"
-            className="inputfile"
-            name="inputfile"
-            id="file"
-            onChange={fileSelectHandler}
-          />
-          {isUploading ? (
-            <label htmlFor="file" className="look-form-label">
-              <Spin size="large" />
-              <p className="form-upload-text" style={{ color: "#999" }}>
-                <br />
-                {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
-                {uploadProgress[1]}
-              </p>
-            </label>
-          ) : (
-            <label
-              htmlFor="file"
-              onDrop={handleDrop}
-              onDragOver={(e) => handleDragOver(e)}
-              onDragEnter={(e) => handleDragEnter(e)}
-              onDragLeave={(e) => handleDragLeave(e)}
-              className="look-form-label"
-            >
-              <p className="form-upload-drag-icon">
-                {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
-              </p>
-              <p className="form-upload-text">{t("looks.addLook")}</p>
-              <p className="form-upload-hint">
-                {t("main.startWithPhoto")} <br />
-                {!isDragDroping
-                  ? t("main.clickDragFile")
-                  : t("main.dragDropMultiple")}
-              </p>
-            </label>
-          )}
-        </form>
-      </Col>)}
+        </div>
+      )}
+      {!pageStore.showOnlyFloatingForm && (
+        <Col>
+          <form
+            onSubmit={submitHandler}
+            id="look-form"
+            style={
+              isDragDroping
+                ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
+                : { marginBottom: "30px" }
+            }
+          >
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+            {isUploading ? (
+              <label htmlFor="file" className="look-form-label">
+                <Spin size="large" />
+                <p className="form-upload-text" style={{ color: "#999" }}>
+                  <br />
+                  {uploadProgress[0] + 1} {t("looks.look")} {t("main.of")}{" "}
+                  {uploadProgress[1]}
+                </p>
+              </label>
+            ) : (
+              <label
+                htmlFor="file"
+                onDrop={handleDrop}
+                onDragOver={(e) => handleDragOver(e)}
+                onDragEnter={(e) => handleDragEnter(e)}
+                onDragLeave={(e) => handleDragLeave(e)}
+                className="look-form-label"
+              >
+                <p className="form-upload-drag-icon">
+                  {isDragDroping ? <FileAddOutlined /> : <CameraOutlined />}
+                </p>
+                <p className="form-upload-text">{t("looks.addLook")}</p>
+                <p className="form-upload-hint">
+                  {t("main.startWithPhoto")} <br />
+                  {!isDragDroping
+                    ? t("main.clickDragFile")
+                    : t("main.dragDropMultiple")}
+                </p>
+              </label>
+            )}
+          </form>
+        </Col>
+      )}
     </>
   );
 });

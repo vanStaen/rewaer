@@ -4,6 +4,7 @@ import { Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { looksStore } from "../looksStore";
+import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { LookCard } from "../LookCard/LookCard";
 import { LookForm } from "../LookForm/LookForm";
@@ -53,14 +54,15 @@ export const LookList = observer(() => {
         : containerElement.current.offsetWidth;
     const cardWidth = 240;
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
+    const countForm = pageStore.showOnlyFloatingForm ? 0 : 1;
     const numberLooks = looksStore.showPrivateLooks
       ? displayArchived
-        ? looksStore.looks.length + 1
-        : looksStore.looks.length + 1 - looksStore.numberOfArchivedLook
+        ? looksStore.looks.length + countForm
+        : looksStore.looks.length + countForm - looksStore.numberOfArchivedLook
       : displayArchived
-        ? looksStore.looks.length + 1 - looksStore.numberOfPrivateLook
-        : looksStore.looks.length +
-        1 -
+      ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
+      : looksStore.looks.length +
+        countForm -
         looksStore.numberOfPrivateLook -
         looksStore.numberOfArchivedLook;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
