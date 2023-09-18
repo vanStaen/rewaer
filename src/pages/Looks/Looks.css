@@ -3,32 +3,6 @@
   font-size: 16px;
 }
 
-.looks__container {
-  margin: 20px 40px 40px 40px;
-}
-
-.looks__toolbar {
-  position: relative;
-  margin: 0 25px 20px 25px;
-}
-
-.looks__toolbarLeft {
-  display: inline-block;
-  color: #aaa;
-  font-size: 14px;
-}
-
-.looks__toolbarRight {
-  position: absolute;
-  right: 0;
-  display: inline-block;
-}
-
-@media (max-width: 1000px) {
-  .looks__container {
-    margin: 15px 15px 15px 15px;
-  }
-  .looks__toolbar {
-    margin: 0 0 15px 0;
-  }
+.looks__container {  
+  margin-top: 10px;
 }

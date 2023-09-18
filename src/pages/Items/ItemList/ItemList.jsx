@@ -122,38 +122,7 @@ export const ItemList = observer(() => {
     <>
       <Banner id="missingTag" desc={t("items.missingTagsAlert")} show={true} />
       <div className="items__container">
-        <div className="items__toolbar">
-          <div className="items__toolbarLeft">
-            {totalItems()}&nbsp;{t("menu.items")}
-            {itemsStore.numberOfPrivateItem > 0 && (
-              <>
-                {" "}
-                |
-                <span
-                  className="link"
-                  onClick={() => {
-                    itemsStore.setShowPrivateItems(
-                      !itemsStore.showPrivateItems
-                    );
-                  }}
-                >
-                  &nbsp;
-                  {itemsStore.showPrivateItems
-                    ? t("items.hidePrivateItems")
-                    : t("items.showPrivateItems")}
-                </span>
-              </>
-            )}
-          </div>
-          <div className="items__toolbarRight">
-            <ToolBar
-              quickEdit={quickEdit}
-              setQuickEdit={setQuickEdit}
-              showFilter={showFilter}
-              setShowFilter={setShowFilter}
-            />
-          </div>
-        </div>
+        <ToolBar total={totalItems()} page="items" />
         <div ref={containerElement}>
           <Row justify={"space-around"}>
             <ItemForm />

@@ -107,14 +107,13 @@
 
 .itemcard__metaPrivateFavorite::before {
   position: absolute;
-  top: -35px;
+  top: -25px;
   left: 5px;
   content: "♥";      
   font-family: "Font Awesome 5 Free"; 
   font-weight: 600;
-  font-size: 100px;
+  font-size: 75px;
   color: rgba(100, 100, 100, .33); 
-  clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }
 

@@ -5,6 +5,8 @@ export class PageStore {
   showOnlyFloatingForm = null;
   windowInnerHeight = null;
   windowInnerWidth = null;
+  quickEdit = false;
+  showFilter = false;
 
   constructor() {
     makeObservable(this, {
@@ -16,6 +18,10 @@ export class PageStore {
       setWindowInnerHeight: action,
       windowInnerWidth: observable,
       setWindowInnerWidth: action,
+      quickEdit: observable,
+      setQuickEdit: action,
+      showFilter: observable,
+      setShowFilter: action,
     });
   }
 
@@ -33,6 +39,14 @@ export class PageStore {
 
   setWindowInnerWidth = (windowInnerWidth) => {
     this.windowInnerWidth = windowInnerWidth;
+  };
+
+  setQuickEdit = (quickEdit) => {
+    this.quickEdit = quickEdit;
+  };
+
+  setShowFilter = (showFilter) => {
+    this.showFilter = showFilter;
   };
 }
 

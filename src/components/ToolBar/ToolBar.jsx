@@ -1,64 +1,83 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
-import {
-  EditOutlined,
-  EditFilled,
-  FilterOutlined,
-  FilterFilled,
-} from "@ant-design/icons";
+import { Edit } from "./Edit";
+import { Filter } from "./Filter";
+
+import { looksStore } from "../../pages/Looks/looksStore";
+import { itemsStore } from "../../pages/Items/itemsStore";
 
 import "./ToolBar.css";
 
+const TRESHOLD_SCROLL_TOOL_BAR_COLOR_CHANGE = 80;
+
 export const ToolBar = (props) => {
   const { t } = useTranslation();
+  const { page } = props;
+
+  const scrollhandler = () => {
+    const elementForm = document.getElementById("toolbar");
+    if (window.scrollY > TRESHOLD_SCROLL_TOOL_BAR_COLOR_CHANGE) {
+      elementForm.style.color = "white";
+      elementForm.style.backgroundColor = "rgba(181,200,190,.95)";
+    } else {
+      elementForm.style.color = "#aaa";
+      elementForm.style.backgroundColor = "rgba(255,255,255,.95)";
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollhandler);
+    return () => {
+      window.removeEventListener("scroll", scrollhandler);
+    };
+  }, [scrollhandler]);
 
   return (
     <>
-      {props.allowEdit &&
-        (<Tooltip
-          placement="topRight"
-          title={
-            props.quickEdit ? t("main.hideQuickEdit") : t("main.showQuickEdit")
-          }
-        >
-          {props.quickEdit ? (
-            <EditFilled
-              className="ToolBar__toolbarIcon ToolBar__toolbarIconActive"
-              onClick={() => {
-                props.setQuickEdit(!props.quickEdit);
-              }}
-            />
-          ) : (
-              <EditOutlined
-                className="ToolBar__toolbarIcon"
+      <div className="ToolBar__toolbar" id="toolbar">
+        <div className="ToolBar__toolbarLeft">
+          {props.total}&nbsp;
+          {t(`menu.${page}`)}
+          {page === "looks" && looksStore.numberOfPrivateLook > 0 && (
+            <>
+              {" "}
+              | &nbsp;
+              <span
+                className="link"
                 onClick={() => {
-                  props.setQuickEdit(!props.quickEdit);
+                  looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
                 }}
-              />
-            )}
-        </Tooltip>)}
-      <Tooltip
-        placement="topRight"
-        title={props.showFilter ? t("main.hideFilter") : t("main.showFilter")}
-      >
-        {props.showFilter ? (
-          <FilterFilled
-            className="ToolBar__toolbarIcon ToolBar__toolbarIconActive"
-            onClick={() => {
-              props.setShowFilter(!props.showFilter);
-            }}
-          />
-        ) : (
-            <FilterOutlined
-              className="ToolBar__toolbarIcon"
-              onClick={() => {
-                props.setShowFilter(!props.showFilter);
-              }}
-            />
+              >
+                {looksStore.showPrivateLooks
+                  ? t("looks.hidePrivateLooks")
+                  : t("looks.showPrivateLooks")}
+              </span>
+            </>
           )}
-      </Tooltip>
+          {page === "items" && itemsStore.numberOfPrivateItem > 0 && (
+            <>
+              {" "}
+              |
+              <span
+                className="link"
+                onClick={() => {
+                  itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
+                }}
+              >
+                &nbsp;
+                {itemsStore.showPrivateItems
+                  ? t("items.hidePrivateItems")
+                  : t("items.showPrivateItems")}
+              </span>
+            </>
+          )}
+        </div>
+        <div className="ToolBar__toolbarRight">
+          <Edit />
+          <Filter />
+        </div>
+      </div>
     </>
   );
 };

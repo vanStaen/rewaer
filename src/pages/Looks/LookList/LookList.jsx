@@ -14,9 +14,6 @@ import { GhostCard } from "../../../components/GhostCard/GhostCard";
 export const LookList = observer(() => {
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
-  const [quickEdit, setQuickEdit] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
-  const { t } = useTranslation();
 
   useEffect(() => {
     calculateMissingCardsForFullRow();
@@ -117,37 +114,7 @@ export const LookList = observer(() => {
 
   return (
     <div ref={containerElement} className="looks__container">
-      <div className="looks__toolbar">
-        <div className="looks__toolbarLeft">
-          {totalLooks()}&nbsp;
-          {t("menu.looks")}
-          {looksStore.numberOfPrivateLook > 0 && (
-            <>
-              {" "}
-              | &nbsp;
-              <span
-                className="link"
-                onClick={() => {
-                  looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
-                }}
-              >
-                {looksStore.showPrivateLooks
-                  ? t("looks.hidePrivateLooks")
-                  : t("looks.showPrivateLooks")}
-              </span>
-            </>
-          )}
-        </div>
-        <div className="looks__toolbarRight">
-          <ToolBar
-            quickEdit={quickEdit}
-            setQuickEdit={setQuickEdit}
-            showFilter={showFilter}
-            setShowFilter={setShowFilter}
-            allowEdit={true}
-          />
-        </div>
-      </div>
+      <ToolBar total={totalLooks()} page="looks" />
       <Row justify={"space-around"}>
         <LookForm />
         {lookList}

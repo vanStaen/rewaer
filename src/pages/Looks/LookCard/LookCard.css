@@ -19,28 +19,28 @@
 }
 
 .lookcard__picture {
-  width: 240px;
-  height: 320px;
+  width: 100%;
+  height: calc(100% - 65px);
   opacity: 1;
   transition: filter .5s;
 }
 
 .lookcard__logoover {
-  width: 240px;
-  height: 320px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   color: #f0f0f0;
   text-align: center; 
-  padding-top: 125px;
+  padding-top: 60%;
   font-size: 27px;
   display: none;
 }
 
 .lookcard__archived{
-  width: 240px;
-  height: 320px;
+  width: 100%;
+  height: calc(100% - 65px);
   position: absolute;
   top: 0;
   left: 0;
@@ -53,7 +53,6 @@
 }
 
 .lookcard__actionsContainer {
-  border: 1px solid transparent;
   position: absolute;
   top: 0px;
   right: -1px;
@@ -70,8 +69,8 @@
 
 .lookcard__meta {
   position: absolute;
-  width: 240px;
-  height: calc(385px - 320px);
+  width: 100%;
+  height: 65px;
   padding: 10px 15px;
 }
 
@@ -108,14 +107,13 @@
 
 .lookcard__metaPrivateFavorite::before {
   position: absolute;
-  top: -35px;
+  top: -25px;
   left: 5px;
   content: "♥";      
   font-family: "Font Awesome 5 Free"; 
   font-weight: 600;
-  font-size: 100px;
+  font-size: 75px;
   color: rgba(100, 100, 100, .33); 
-  clip-path: inset(0px 0px 58px 0px);
   z-index: -1;
 }
 
@@ -123,17 +121,17 @@
   text-align: center;
   border-radius: 4px;
   padding-top: 160px;
-  width: 240px;
-  height: 320px;
+  width: 100%;
+  height: calc(100% - 65px);
 }
 
 .lookcard__actionsLogo {
   display: none; 
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 510px) {
   .lookcard__container {
-    width: 240px;
-    height: 385px;
+    width: 80vw;
+    height: calc(80vw * 1.6);
   }
 }
