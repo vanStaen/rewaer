@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
+import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
 import { archiveItem } from "../actions/archiveItem";
@@ -22,7 +23,6 @@ import { updatePrivateItem } from "../actions/updatePrivateItem";
 import { loadImage } from "../../../helpers/loadImage";
 
 import "./ItemCard.css";
-import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 
 export const ItemCard = (props) => {
   const { t } = useTranslation();

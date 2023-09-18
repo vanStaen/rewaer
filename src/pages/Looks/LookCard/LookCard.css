@@ -128,7 +128,7 @@
   display: none; 
 }
 
-@media (max-width: 510px) {
+@media (max-width: 540px) {
   .lookcard__container {
     width: 80vw;
     height: calc(80vw * 1.6);

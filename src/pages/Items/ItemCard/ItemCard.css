@@ -29,7 +29,7 @@
   left: 0;
   color: #f0f0f0;
   text-align: center; 
-  padding-top: 125px;
+  padding-top: 60%;
   font-size: 27px;
   display: none;
 }
@@ -127,12 +127,20 @@
   display: none; 
 }
 
-@media (max-width: 510px) {
+@media (max-width: 540px) {
   .itemcard__container {
-    width: 80vw;
-    height: calc(80vw * 1.6);
+    width: 40vw;
+    height: calc(40vw * 1.6);
   }
   .itemcard__meta {
-    width: 80vw;
+    width: 40vw;
+    font-size: 12px;
+    padding: 10px;
+  }
+  .itemcard__date {
+    display: none;
+  }
+  .itemcard__logoover {
+    padding-top: 50%;
   }
 }
