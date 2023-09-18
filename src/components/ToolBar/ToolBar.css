@@ -3,17 +3,18 @@
   top: 50px;
   width: 100vw;
   z-index: 3;
-  padding: 10px 20px;
+  padding: 12px 20px;
   margin-bottom: 5px;
   background-color: rgba(255,255,255,.95);
   color: #aaa;
   transition: background-color .3s, color .3s; 
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .ToolBar__toolbarLeft {
   display: inline-block;
   padding-left: 10px;
-  font-size: 14px;
 }
 
 .ToolBar__toolbarRight {
@@ -25,6 +26,7 @@
 .ToolBar__toolbar .ToolBar__toolbarIcon {
   padding: 0 8px;
   cursor: pointer;
+  font-size: 18px;
 }
   
 .ToolBar__toolbar .ToolBar__toolbarIcon:hover {

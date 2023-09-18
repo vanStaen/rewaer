@@ -13,7 +13,7 @@ export const Edit = observer(() => {
   return (
     <>
       <Tooltip
-        placement="topRight"
+        placement="bottomRight"
         title={
           pageStore.quickEdit
             ? t("main.hideQuickEdit")

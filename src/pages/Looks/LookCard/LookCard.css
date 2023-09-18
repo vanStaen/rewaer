@@ -1,8 +1,6 @@
-.ant-card-meta {
-  text-align: center;
-}
 
 .lookcard__container {
+  position: relative;
   width: 240px;
   height: 385px;
   border: 1px solid #f0f0f0; 
@@ -53,8 +51,8 @@
 
 .lookcard__actionsContainer {
   position: absolute;
-  top: 0px;
-  right: -1px;
+  top: 0;
+  right: 0;
   width: 0px;
   text-align: center;
   font-size: 17px;
@@ -86,6 +84,7 @@
   font-weight: 600;
   font-size: 75px;
   color: rgba(254, 200, 200, .25); 
+  clip-path: inset(0 0 33px 0);
   z-index: -1;
 }
 
@@ -113,6 +112,7 @@
   font-weight: 600;
   font-size: 75px;
   color: rgba(100, 100, 100, .33); 
+  clip-path: inset(0 0 33px 0);
   z-index: -1;
 }
 

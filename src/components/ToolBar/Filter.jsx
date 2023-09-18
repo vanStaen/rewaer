@@ -13,7 +13,7 @@ export const Filter = observer(() => {
   return (
     <>
       <Tooltip
-        placement="topRight"
+        placement="bottomRight"
         title={
           pageStore.showFilter ? t("main.hideFilter") : t("main.showFilter")
         }
