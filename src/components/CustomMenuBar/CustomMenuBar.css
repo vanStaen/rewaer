@@ -94,7 +94,7 @@
 }
 
 /* Small screens */
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .customMenu__RewaerMotto {
     display: none;
   }

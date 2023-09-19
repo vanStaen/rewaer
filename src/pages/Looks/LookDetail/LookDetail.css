@@ -85,6 +85,7 @@
   vertical-align: top;
   height: calc(100% - 40px);
   width: 520px;
+  border: 1px solid red;
 }
 
 .lookDetail__leftContainer {
@@ -92,6 +93,7 @@
   vertical-align: top;
   height: calc(100% - 40px);
   width: calc(100% - 520px);
+  border: 5px solid blue;
 }
 
 .lookDetail__itemContainer {
@@ -100,6 +102,7 @@
   height: 100%;
   margin-left: 10px;
   overflow-y: scroll; 
+  border: 1px solid green;
 }
 
 .lookDetail__itemContainerDivisor {
@@ -228,4 +231,11 @@
   color: #c0c0c0;
   display: inline-block;
   font-weight: 300;
+}
+
+
+@media (max-width: 540px) {
+  .lookdetail__backArrow {
+    display: none;
+  }  
 }
