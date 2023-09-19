@@ -84,7 +84,7 @@
   font-weight: 600;
   font-size: 75px;
   color: rgba(254, 200, 200, .25); 
-  clip-path: inset(0 0 24px 0);
+  clip-path: inset(0 0 26px 0);
   z-index: -1;
 }
 
@@ -112,7 +112,7 @@
   font-weight: 600;
   font-size: 75px;
   color: rgba(100, 100, 100, .33); 
-  clip-path: inset(0 0 24px 0);
+  clip-path: inset(0 0 26px 0);
   z-index: -1;
 }
 
