@@ -176,7 +176,7 @@ export const UploadForm = observer((props) => {
               <Avatar
                 size={64}
                 icon={page === "looks" ? <CameraOutlined /> : <SkinOutlined />}
-                style={{ backgroundColor: "IndianRed" }}
+                style={{ backgroundColor: "#6C917D" }}
               />
             </label>
           </form>
