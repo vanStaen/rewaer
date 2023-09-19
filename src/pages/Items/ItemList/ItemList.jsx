@@ -46,19 +46,20 @@ export const ItemList = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = 240;
+    const cardWidth = 238 + 40; //row width + min gap
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const countForm = pageStore.showOnlyFloatingForm ? 0 : 1;
-    const numberItems = itemsStore.showPrivateItems
-      ? displayArchived
-        ? itemsStore.items.length + countForm
-        : itemsStore.items.length + countForm - itemsStore.numberOfArchivedItem
-      : displayArchived
-      ? itemsStore.items.length + countForm - itemsStore.numberOfPrivateItem
-      : itemsStore.items.length +
-        countForm -
-        itemsStore.numberOfPrivateItem -
-        itemsStore.numberOfArchivedItem;
+    const numberItemsArchived = displayArchived
+      ? 0
+      : itemsStore.numberOfArchivedItem;
+    const numberItemsPrivates = itemsStore.showPrivateItems
+      ? 0
+      : itemsStore.numberOfPrivateItem;
+    const numberItems =
+      itemsStore.items.length +
+      countForm -
+      numberItemsArchived -
+      numberItemsPrivates;
     const numberFullRow = Math.floor(numberItems / numberPerRow);
     const missingCards =
       numberPerRow - (numberItems - numberFullRow * numberPerRow);

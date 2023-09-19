@@ -46,7 +46,7 @@ export const LookList = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = 240;
+    const cardWidth = 238 + 40; //card width + min gap
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const countForm = pageStore.showOnlyFloatingForm ? 0 : 1;
     const numberLooks = looksStore.showPrivateLooks
