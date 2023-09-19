@@ -130,10 +130,10 @@
 
 @media (max-width: 540px) {
   .lookcard__container {
-    width: 80vw;
-    height: calc(80vw * 1.6);
+    width: 90vw;
+    height: calc(90vw * 1.6);
   }
   .lookcard__meta {
-    width: 80vw;
+    width: 90vw;
   }
 }
