@@ -17,12 +17,14 @@ export const ToolBar = (props) => {
 
   const scrollhandler = () => {
     const elementForm = document.getElementById("toolbar");
-    if (window.scrollY > TRESHOLD_SCROLL_TOOL_BAR_COLOR_CHANGE) {
-      elementForm.style.color = "white";
-      elementForm.style.backgroundColor = "rgba(181,200,190,.95)";
-    } else {
-      elementForm.style.color = "#aaa";
-      elementForm.style.backgroundColor = "rgba(255,255,255,.95)";
+    if (elementForm) {
+      if (window.scrollY > TRESHOLD_SCROLL_TOOL_BAR_COLOR_CHANGE) {
+        elementForm.style.color = "white";
+        elementForm.style.backgroundColor = "rgba(181,200,190,.95)";
+      } else {
+        elementForm.style.color = "#aaa";
+        elementForm.style.backgroundColor = "rgba(255,255,255,.95)";
+      }
     }
   };
 
