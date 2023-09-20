@@ -38,7 +38,7 @@ export const LookCard = (props) => {
       className="look__spinner"
       onClick={() => {
         if (props.look.active) {
-          props.setSelectedLook(props.look);
+          props.showDetailView(props.look);
         }
       }}
     >
@@ -171,6 +171,9 @@ export const LookCard = (props) => {
         className="lookcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
+        onClick={() => {
+          props.showDetailView(props.look);
+        }}
       >
         {isLoading ? (
           spinnerFormated
@@ -303,8 +306,8 @@ export const LookCard = (props) => {
                 ? "lookcard__meta lookcard__metaPrivate lookcard__metaPrivateFavorite"
                 : "lookcard__meta lookcard__metaPrivate"
               : isFavorited
-                ? "lookcard__meta lookcard__metaFavorite"
-                : "lookcard__meta"
+              ? "lookcard__meta lookcard__metaFavorite"
+              : "lookcard__meta"
           }
         >
           <EditableTitle

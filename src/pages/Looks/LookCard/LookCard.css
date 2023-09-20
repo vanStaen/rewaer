@@ -119,7 +119,7 @@
 .look__spinner {
   text-align: center;
   border-radius: 4px;
-  padding-top: 160px;
+  padding-top: 165px;
   width: 100%;
   height: calc(100% - 65px);
 }
@@ -138,5 +138,8 @@
   }
   .lookcard__metaFavorite::before {
   color: rgba(254, 200, 200, .05); 
+  }
+  .look__spinner {
+    padding-top: calc(90vw * 0.8 - 30px);
   }
 }

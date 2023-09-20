@@ -161,6 +161,9 @@ export const ItemCard = (props) => {
         className="itemcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
+        onClick={() => {
+          props.showDetailView(props.item);
+        }}
       >
         {isLoading ? (
           spinnerFormated
@@ -168,7 +171,6 @@ export const ItemCard = (props) => {
           <div
             className="itemcard__picture"
             id={`card_item_picture_${props.item._id}`}
-            //placeholder={spinnerFormated}
             style={{
               background: `url(${props.item.mediaUrlMedium})`,
               backgroundSize: "cover",
@@ -294,8 +296,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-                ? "itemcard__meta itemcard__metaFavorite"
-                : "itemcard__meta"
+              ? "itemcard__meta itemcard__metaFavorite"
+              : "itemcard__meta"
           }
         >
           <EditableTitle
