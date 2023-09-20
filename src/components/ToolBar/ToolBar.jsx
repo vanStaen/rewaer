@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import  { EyeInvisibleOutlined, EyeOutlined} from "@ant-design/icons";
 
 import { useTranslation } from "react-i18next";
 import { Edit } from "./Edit";
@@ -45,7 +46,7 @@ export const ToolBar = (props) => {
             {" "}
             | &nbsp;
             <span
-              className="link"
+              className="link ToolBar__SwitchPrivateText"
               onClick={() => {
                 looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
               }}
@@ -54,6 +55,16 @@ export const ToolBar = (props) => {
                 ? t("looks.hidePrivateLooks")
                 : t("looks.showPrivateLooks")}
             </span>
+            <span
+              className="link ToolBar__SwitchPrivateIcons"
+              onClick={() => {
+                looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
+              }}
+            >
+              {looksStore.showPrivateLooks
+                ? <EyeOutlined />
+                : <EyeInvisibleOutlined />}
+            </span>
           </>
         )}
         {page === "items" && itemsStore.numberOfPrivateItem > 0 && (
@@ -61,7 +72,7 @@ export const ToolBar = (props) => {
             {" "}
             |
             <span
-              className="link"
+              className="link ToolBar__SwitchPrivateText"
               onClick={() => {
                 itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
               }}
@@ -70,6 +81,16 @@ export const ToolBar = (props) => {
               {itemsStore.showPrivateItems
                 ? t("items.hidePrivateItems")
                 : t("items.showPrivateItems")}
+            </span>
+            <span
+              className="link ToolBar__SwitchPrivateIcons"
+              onClick={() => {
+                itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
+              }}
+            >
+              {looksStore.showPrivateLooks
+                ? <EyeOutlined />
+                : <EyeInvisibleOutlined />}
             </span>
           </>
         )}
