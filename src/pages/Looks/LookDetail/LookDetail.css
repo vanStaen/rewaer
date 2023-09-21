@@ -100,12 +100,6 @@
   padding: 0 10px;
 }
 
-.lookdetail__headerShowPrivate {
-  position: absolute;
-  right: 75px;
-  font-size: 14px;
-}
-
 .lookdetail__headerItemCount {
   color: #c0c0c0;
   display: inline-block;

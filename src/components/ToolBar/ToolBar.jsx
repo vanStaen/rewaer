@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import  { EyeInvisibleOutlined, EyeOutlined} from "@ant-design/icons";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
 import { useTranslation } from "react-i18next";
 import { Edit } from "./Edit";
@@ -44,13 +44,13 @@ export const ToolBar = (props) => {
         {page === "looks" && looksStore.numberOfPrivateLook > 0 && (
           <>
             {" "}
-            | &nbsp;
             <span
               className="link ToolBar__SwitchPrivateText"
               onClick={() => {
                 looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
               }}
             >
+              | &nbsp;
               {looksStore.showPrivateLooks
                 ? t("looks.hidePrivateLooks")
                 : t("looks.showPrivateLooks")}
@@ -61,23 +61,24 @@ export const ToolBar = (props) => {
                 looksStore.setShowPrivateLooks(!looksStore.showPrivateLooks);
               }}
             >
-              {looksStore.showPrivateLooks
-                ? <EyeOutlined />
-                : <EyeInvisibleOutlined />}
+              {looksStore.showPrivateLooks ? (
+                <EyeOutlined />
+              ) : (
+                <EyeInvisibleOutlined />
+              )}
             </span>
           </>
         )}
         {page === "items" && itemsStore.numberOfPrivateItem > 0 && (
           <>
             {" "}
-            |
             <span
               className="link ToolBar__SwitchPrivateText"
               onClick={() => {
                 itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
               }}
             >
-              &nbsp;
+              | &nbsp;
               {itemsStore.showPrivateItems
                 ? t("items.hidePrivateItems")
                 : t("items.showPrivateItems")}
@@ -88,9 +89,11 @@ export const ToolBar = (props) => {
                 itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
               }}
             >
-              {looksStore.showPrivateLooks
-                ? <EyeOutlined />
-                : <EyeInvisibleOutlined />}
+              {looksStore.showPrivateLooks ? (
+                <EyeOutlined />
+              ) : (
+                <EyeInvisibleOutlined />
+              )}
             </span>
           </>
         )}

@@ -86,10 +86,6 @@ export const LookDetail = observer(() => {
     looksStore.setIsOutOfDate(true);
   };
 
-  const numberOfPrivateItems = itemsStore.items.filter(
-    (item) => item.private
-  ).length;
-
   const CategoryDropDown = lookCategory.map((category) => {
     return (
       <Menu.Item
@@ -201,18 +197,6 @@ export const LookDetail = observer(() => {
                 {selectedItems.length > 1 && "s"}
               </div>
             </>
-          )}
-          {numberOfPrivateItems > 0 && (
-            <span
-              className="lookdetail__headerShowPrivate link"
-              onClick={() => {
-                looksStore.setShowPrivateItems(!looksStore.showPrivateLooks);
-              }}
-            >
-              {looksStore.showPrivateLooks
-                ? t("items.hidePrivateItems")
-                : t("items.showPrivateItems")}
-            </span>
           )}
         </div>
       </div>

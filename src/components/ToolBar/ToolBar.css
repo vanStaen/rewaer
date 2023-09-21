@@ -8,7 +8,6 @@
   background-color: rgba(255,255,255,.95);
   color: #aaa;
   transition: background-color .3s, color .3s; 
-  font-size: 16px;
   font-weight: 300;
 }
 
@@ -35,4 +34,25 @@
 
 .ToolBar__toolbar .ToolBar__toolbarIconActive {
   color: #6C917D;
+}
+
+.ToolBar__SwitchPrivateText {
+  display : inline-block;  
+}
+
+.ToolBar__SwitchPrivateIcons {
+  position: relative;
+  bottom: -1px;
+  margin-left: 5px;
+  font-size: 18px;
+  display : none;
+}
+
+@media (max-width: 540px) {
+  .ToolBar__SwitchPrivateText {
+    display : none;  
+  }  
+  .ToolBar__SwitchPrivateIcons {
+    display : inline-block;  
+  }
 }
