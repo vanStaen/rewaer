@@ -43,6 +43,7 @@ const writeBackupFile = async () => {
         const databaseContentUsers = await fetchDatabaseContent("users");
         filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
+        console.log("Backup Success!")
     } catch (err) {
         console.log({ error: `${err})`, });
     }
@@ -52,7 +53,6 @@ const writeBackupFile = async () => {
 const excecuteScript = async () => {
     try {
         await writeBackupFile();
-        console.log("Backup Success!")
         client.end();
     } catch (err) {
         console.log({ error: `${err})`, });
