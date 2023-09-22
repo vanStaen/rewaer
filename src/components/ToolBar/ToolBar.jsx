@@ -89,7 +89,7 @@ export const ToolBar = (props) => {
                 itemsStore.setShowPrivateItems(!itemsStore.showPrivateItems);
               }}
             >
-              {looksStore.showPrivateLooks ? (
+              {itemsStore.showPrivateItems ? (
                 <EyeOutlined />
               ) : (
                 <EyeInvisibleOutlined />
