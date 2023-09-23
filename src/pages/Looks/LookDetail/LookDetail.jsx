@@ -7,9 +7,6 @@ import { useTranslation } from "react-i18next";
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { userStore } from "../../../stores/userStore/userStore";
-import { lookCategory } from "../../../lib/data/categories";
-import { seasons } from "../../../lib/data/seasons";
-import { LookDetailFormRadio } from "./LookDetailFormElement/LookDetailFormRadio";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 
@@ -76,25 +73,25 @@ export const LookDetail = observer(() => {
         </Tooltip>
       </div>
 
-      <div className="lookDetail__rightContainer">
-        <div className="lookdetail__imageWrap">
-          <div
-            className="lookdetail__pictureBlur"
-            id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
-            style={{
-              background: `url(${displayPictureUrl})`,
-            }}
-          ></div>
-          <div
-            className="lookdetail__picture"
-            id={`selected_look_picture_${looksStore.selectedLook._id}`}
-            style={{
-              background: `url(${displayPictureUrl})`,
-            }}
-          ></div>
-        </div>
+      <div className="lookdetail__imageWrap">
+        <div
+          className="lookdetail__pictureBlur"
+          id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
+          style={{
+            background: `url(${displayPictureUrl})`,
+          }}
+        ></div>
+        <div
+          className="lookdetail__picture"
+          id={`selected_look_picture_${looksStore.selectedLook._id}`}
+          style={{
+            background: `url(${displayPictureUrl})`,
+          }}
+        ></div>
+      </div>
+      {/*
         <div className="lookDetail__actionContainer">
-          {/*<LookDetailFormRadio
+          <LookDetailFormRadio
             title="private"
             element="private"
             data={[
@@ -123,13 +120,13 @@ export const LookDetail = observer(() => {
             multiSelect={false}
             disabled={false}
             tooltip={t("looks.archiveLook")}
-          />*/}
+          />
         </div>
-      </div>
+        */}
 
       <ItemPicker
         selectedItems={selectedItems}
-        isActive={isActive}
+        isActive={looksStore.selectedLook.active}
         setSelectedItems={setSelectedItems}
       />
     </div>

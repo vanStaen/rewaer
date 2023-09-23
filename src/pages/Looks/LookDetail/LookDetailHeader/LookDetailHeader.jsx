@@ -6,6 +6,9 @@ import { EditableTitle } from "../../../../components/EditableTitle/EditableTitl
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 import { updateCategoryLook } from "../../actions/updateCategoryLook";
 import { updateSeasonLook } from "../../actions/updateSeasonLook";
+import { lookCategory } from "../../../../lib/data/categories";
+import { seasons } from "../../../../lib/data/seasons";
+import { LookDetailFormRadio } from "../LookDetailFormElement/LookDetailFormRadio";
 
 import "./LookDetailHeader.less";
 

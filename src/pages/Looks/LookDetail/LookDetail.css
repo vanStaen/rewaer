@@ -51,20 +51,7 @@
   background-repeat: no-repeat !important;
 }
 
-.lookdetail__headerTitleId {
-  color: #c0c0c0;
-  font-weight: 200;
-}
 
-.lookdetail__headerSelectCategory {
-  color: #c0c0c0;
-  font-weight: 300;
-  cursor: pointer;
-}
-
-.lookdetail__headerCategory {
-  color: #000;
-}
 
 .lookDetail__rightContainer {
   display: inline-block;
@@ -77,13 +64,6 @@
 .lookDetail__actionContainer {
   padding-left: 40px;
   margin-top: 20px;
-}
-
-.lookdetail__headerPoints {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 5px;
-  padding: 0 10px;
 }
 
 .lookdetail__headerItemCount {
