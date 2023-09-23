@@ -51,20 +51,6 @@
   background-repeat: no-repeat !important;
 }
 
-.lookdetail__header {
-  display: inline-block;
-  vertical-align: top;
-  width: calc(100% - 40px);
-  height: 45px;
-  font-size: 15px;
-}
-
-.lookdetail__headerTitle {
-  padding: 6px 0 0 12px;
-  display: inline-block;
-  vertical-align: top;
-}
-
 .lookdetail__headerTitleId {
   color: #c0c0c0;
   font-weight: 200;
