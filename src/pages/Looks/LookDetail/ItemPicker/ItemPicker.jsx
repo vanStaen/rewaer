@@ -94,7 +94,7 @@ export const ItemPicker = observer((props) => {
       ) : (
         <div className="itemPicker__itemContainer">
           {selectedItems.length > 0 && (
-            <div>
+            <div className="itemPicker__itemContainerSelected">
               <div className="itemPicker__itemContainerDivisor">
                 {t("looks.itemPartOfThisLook")}
               </div>
@@ -104,7 +104,7 @@ export const ItemPicker = observer((props) => {
           )}
           {isActive && (
             <div>
-              <div className="itemPicker__itemContainerDivisor">
+              <div className="itemPicker__itemContainerDivisorAllItems">
                 {t("looks.yourItems")}
               </div>
               <div>{itemList}</div>

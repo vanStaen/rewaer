@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
-import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
+import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
 
 import "./LookDetail.css";
 
 // the required distance between touchStart and touchEnd to be detected as a swipe
-const MIN_SWIPE_DISTANCE = 50;
+const MIN_SWIPE_DISTANCE = 100;
 
 export const LookDetail = observer(() => {
   const [displayPictureUrl, setDisplayPictureUrl] = useState(
@@ -80,6 +80,7 @@ export const LookDetail = observer(() => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
+      <LookDetailHeader />
       <div className="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown, Menu } from "antd";
 import { observer } from "mobx-react";
+import { useTranslation } from "react-i18next";
 
 import { looksStore } from "../../looksStore";
+import { userStore } from "../../../../stores/userStore/userStore";
 import { EditableTitle } from "../../../../components/EditableTitle/EditableTitle";
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 import { updateCategoryLook } from "../../actions/updateCategoryLook";
@@ -18,6 +20,10 @@ export const LookDetailHeader = observer(() => {
   const [season, setSeason] = useState(looksStore.selectedLook.season);
   const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
+  const [selectedItems, setSelectedItems] = useState(
+    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
+  );
+  const { t } = useTranslation();
 
   useEffect(() => {
     setCategory(looksStore.selectedLook.category);
@@ -88,7 +94,7 @@ export const LookDetailHeader = observer(() => {
             <span className="lookdetail__headerCategory">
               {
                 convertCodeToObjectString(category, lookCategory)[
-                  userStore.language
+                userStore.language
                 ]
               }
             </span>
