@@ -25,7 +25,7 @@ export const UploadForm = observer((props) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
   const [isDragDroping, setIsDragDroping] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState([0, 0]);
+  const [uploadProgress, setUploadProgress] = useState([0, 1]);
 
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -175,8 +175,16 @@ export const UploadForm = observer((props) => {
             >
               <Avatar
                 size={64}
-                icon={page === "looks" ? <CameraOutlined /> : <SkinOutlined />}
-                style={{ backgroundColor: "#6C917D" }}
+                icon={
+                  isUploading ? (
+                    <Spin size="large" />
+                  ) : page === "looks" ? (
+                    <CameraOutlined />
+                  ) : (
+                    <SkinOutlined />
+                  )
+                }
+                style={{ backgroundColor: isUploading ? "#FAFAFA" : "#6C917D" }}
               />
             </label>
           </form>
