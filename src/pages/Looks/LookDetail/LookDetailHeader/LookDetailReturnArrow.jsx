@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import { Tooltip } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 import { looksStore } from "../../looksStore";
 

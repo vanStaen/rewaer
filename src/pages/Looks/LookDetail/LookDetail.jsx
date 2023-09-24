@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
-import { Tooltip } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
-import { userStore } from "../../../stores/userStore/userStore";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 
 import "./LookDetail.css";
 
+// the required distance between touchStart and touchEnd to be detected as a swipe
+const MIN_SWIPE_DISTANCE = 50;
+
 export const LookDetail = observer(() => {
   const [displayPictureUrl, setDisplayPictureUrl] = useState(
     looksStore.selectedLook.mediaUrlMedium
   );
-  const { t } = useTranslation();
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const throttling = useRef(false);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
 
   useEffect(() => {
     setDisplayPictureUrl(looksStore.selectedLook.mediaUrlMedium);
@@ -26,6 +33,25 @@ export const LookDetail = observer(() => {
     itemsStore.loadItems();
   }, [itemsStore.isOutOfDate]);
 
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
+    const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
+    if (throttling.current === false) {
+      throttling.current = true;
+      if (isRightSwipe) {
+        switchLook(false, looksStore.showPrivateLooks);
+      } else if (isLeftSwipe) {
+        switchLook(true, looksStore.showPrivateLooks);
+      }
+      setTimeout(() => {
+        throttling.current = false;
+      }, 500);
+    }
+  };
   useEffect(() => {
     window.addEventListener("keydown", keydownEventHandler);
     return () => {
@@ -48,7 +74,12 @@ export const LookDetail = observer(() => {
   };
 
   return (
-    <div className="lookdetail__container">
+    <div
+      className="lookdetail__container"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       <div className="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"
