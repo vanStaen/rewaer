@@ -74,7 +74,7 @@ export const LookDetailHeader = observer(() => {
   return (
     <div className="lookdetail__header">
       <span className="lookdetail__headerTitleId">
-        {looksStore.selectedLook._id}
+        #{looksStore.selectedLook._id}
       </span>
       <div className="lookdetail__headerPoints">&#9679;</div>
       <EditableTitle
