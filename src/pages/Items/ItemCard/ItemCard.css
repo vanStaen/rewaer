@@ -126,6 +126,16 @@
   height: calc(100% - 65px);
 }
 
+.item__mehError {
+  font-size: 62px;
+  color: rgba(178, 34, 34, 0.25);
+  text-align: center;
+  border-radius: 4px;
+  padding-top: 105px;
+  width: 100%;
+  height: calc(100% - 65px);
+}
+
 .itemcard__actionsLogo {
   display: none; 
 }
@@ -151,5 +161,9 @@
   }
   .item__spinner {
     padding-top: 50%;
+  }
+  .item__mehError {
+    padding-top: 50%;
+    font-size: 33px;
   }
 }

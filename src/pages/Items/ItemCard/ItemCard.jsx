@@ -10,6 +10,7 @@ import {
   EyeOutlined,
   HeartOutlined,
   HeartFilled,
+  FileImageOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -29,16 +30,43 @@ export const ItemCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.item.favorite);
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingError, setLoadingError] = useState(false);
 
   const spinnerFormated = (
-    <div className="item__spinner">
+    <div
+      className="item__spinner"
+      onClick={() => {
+        if (props.item.active) {
+          props.showDetailView(props.item);
+        }
+      }}
+    >
       <Spin size="middle" />
     </div>
   );
 
+  const errorFormated = (
+    <div
+      className="item__mehError"
+      onClick={() => {
+        if (props.item.active) {
+          props.showDetailView(props.item);
+        }
+      }}
+    >
+      <FileImageOutlined />
+      <div style={{ fontSize: "15px" }}>File not found</div>
+    </div>
+  );
+
   const imageLoadingHander = async () => {
-    await loadImage(props.item.mediaUrlMedium);
-    setIsLoading(false);
+    try {
+      await loadImage(props.item.mediaUrlMedium);
+      setIsLoading(false);
+    } catch (e) {
+      setLoadingError(true);
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -162,10 +190,14 @@ export const ItemCard = (props) => {
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
         onClick={() => {
-          props.showDetailView(props.item);
+          if (props.item.active) {
+            props.showDetailView(props.item);
+          }
         }}
       >
-        {isLoading ? (
+        {loadingError ? (
+          errorFormated
+        ) : isLoading ? (
           spinnerFormated
         ) : (
           <div
@@ -184,8 +216,9 @@ export const ItemCard = (props) => {
             className="itemcard__logoover"
             id={`card_item_logoover_${props.item._id}`}
             onClick={() => {
-              onMouseLeaveHandler();
-              props.showDetailView(props.item);
+              if (props.item.active) {
+                props.showDetailView(props.item);
+              }
             }}
           >
             <TagOutlined />

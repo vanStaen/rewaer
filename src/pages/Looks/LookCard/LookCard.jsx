@@ -10,6 +10,7 @@ import {
   TagOutlined,
   EyeOutlined,
   EyeInvisibleOutlined,
+  FileImageOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -29,8 +30,23 @@ export const LookCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
   const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingError, setLoadingError] = useState(false);
   const [numberItems, setNumberItems] = useState(
     props.look.items ? props.look.items.length : 0
+  );
+
+  const errorFormated = (
+    <div
+      className="look__mehError"
+      onClick={() => {
+        if (props.look.active) {
+          props.showDetailView(props.look);
+        }
+      }}
+    >
+      <FileImageOutlined />
+      <div style={{ fontSize: "15px" }}>File not found</div>
+    </div>
   );
 
   const spinnerFormated = (
@@ -47,8 +63,13 @@ export const LookCard = (props) => {
   );
 
   const imageLoadingHander = async () => {
-    await loadImage(props.look.mediaUrlMedium);
-    setIsLoading(false);
+    try {
+      await loadImage(props.look.mediaUrlMedium);
+      setIsLoading(false);
+    } catch (e) {
+      setLoadingError(true);
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -175,7 +196,9 @@ export const LookCard = (props) => {
           props.showDetailView(props.look);
         }}
       >
-        {isLoading ? (
+        {loadingError ? (
+          errorFormated
+        ) : isLoading ? (
           spinnerFormated
         ) : (
           <div

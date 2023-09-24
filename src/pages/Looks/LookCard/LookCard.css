@@ -131,6 +131,16 @@
   display: none; 
 }
 
+.look__mehError {
+  font-size: 62px;
+  color: rgba(178, 34, 34, 0.25);
+  text-align: center;
+  border-radius: 4px;
+  padding-top: 105px;
+  width: 100%;
+  height: calc(100% - 65px);
+}
+
 @media (max-width: 540px) {
   .lookcard__container {
     width: 90vw;
@@ -144,5 +154,8 @@
   }
   .look__spinner {
     padding-top: calc(90vw * 0.8 - 30px);
+  }
+  .look__mehError {
+    padding-top: calc(90vw * 0.8 - 90px);
   }
 }
