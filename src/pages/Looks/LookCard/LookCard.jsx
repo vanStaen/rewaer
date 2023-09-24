@@ -192,9 +192,6 @@ export const LookCard = (props) => {
         className="lookcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
-        onClick={() => {
-          props.showDetailView(props.look);
-        }}
       >
         {loadingError ? (
           errorFormated

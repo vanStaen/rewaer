@@ -189,11 +189,6 @@ export const ItemCard = (props) => {
         className="itemcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
-        onClick={() => {
-          if (props.item.active) {
-            props.showDetailView(props.item);
-          }
-        }}
       >
         {loadingError ? (
           errorFormated
