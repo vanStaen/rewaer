@@ -38,6 +38,7 @@ export const LookCard = (props) => {
   const errorFormated = (
     <div
       className="look__mehError"
+      id={`card_look_picture_${props.look._id}`}
       onClick={() => {
         if (props.look.active) {
           props.showDetailView(props.look);
@@ -65,11 +66,11 @@ export const LookCard = (props) => {
   const imageLoadingHander = async () => {
     try {
       await loadImage(props.look.mediaUrlMedium);
-      setIsLoading(false);
     } catch (e) {
       setLoadingError(true);
       console.log(e);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -107,7 +108,6 @@ export const LookCard = (props) => {
           icon: <DeleteOutlined style={{ color: "green" }} />,
         });
         looksStore.setIsOutOfDate(true);
-        console.log("Success!");
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });

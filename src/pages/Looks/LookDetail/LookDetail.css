@@ -1,5 +1,5 @@
 .lookdetail__container {
-  height: calc(70vh + 130px);
+  height: calc(100vh - 50px);
 }
 
 .lookdetail__imageWrap {
@@ -11,8 +11,7 @@
   height: 640px;
   border-radius: 2px;
   border: 1px solid #f0f0f0;
-  margin-left: 40px;
-  border: 5px solid red;
+  margin: 10px;
 }
 
 .lookdetail__imageWrap .lookdetail__picture {
@@ -30,9 +29,9 @@
   z-index: -10;
   width: 100%;
   height: 100%;
-  filter: blur(15px);
-  opacity: 0.85;
-  background-size: contain !important;
+  filter: blur(5px);
+  opacity: 0.95;
+  background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
@@ -43,7 +42,9 @@
 }
 
 @media (max-width: 540px) {
-  .lookdetail__backArrow {
-    display: none;
-  }  
+  .lookdetail__imageWrap {
+    width: 90vw;
+    height: calc(90vw * 1.6);
+    margin: 5vw;
+  }
 }

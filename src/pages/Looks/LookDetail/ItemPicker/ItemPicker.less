@@ -2,9 +2,8 @@
   display: inline-block;
   vertical-align: top;
   height: 100%;
-  width: 100%;
-  min-width: 50vw;
-  border: 5px solid blue;
+  width: calc(100vw - 500px);
+  margin-top: 10px;
 
   .itemPicker__spinner {
     height: 100%;
@@ -18,9 +17,7 @@
     display: inline-block;
     vertical-align: top;
     height: 100%;
-    margin-left: 10px;
     overflow-y: scroll; 
-    border: 1px solid green;
 
     .itemPicker__itemContainerDivisor {
       margin: 0 20px 1em 10px;
@@ -103,4 +100,18 @@
       }  
     }
   }  
+}
+
+@media (max-width: 540px) {
+  .itemPicker__container {
+    width: 95vw;
+    height: auto;
+    margin: 0 2.5vw;
+    .itemPicker__itemContainer {
+      .itemPicker__item, .itemPicker__itemSelected {
+        width: calc((95vw - 30px) / 2);
+      }
+    }
+  }
+  
 }
