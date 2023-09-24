@@ -30,21 +30,11 @@ export const LookDetail = observer(() => {
   }, [itemsStore.isOutOfDate]);
 
   useEffect(() => {
-    const url = new URL(window.location);
-    history.pushState({}, "", url);
     window.addEventListener("keydown", keydownEventHandler);
-    window.addEventListener("popstate", browserBackHandler);
     return () => {
       window.removeEventListener("keydown", keydownEventHandler);
-      window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
-
-  const browserBackHandler = (e) => {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    looksStore.setSelectedLook(null);
-  };
 
   const keydownEventHandler = (event) => {
     const keyPressed = event.key.toLowerCase();
@@ -62,17 +52,6 @@ export const LookDetail = observer(() => {
 
   return (
     <div className="lookdetail__container">
-      <div className="lookdetail__backArrow">
-        <Tooltip placement="bottomRight" title={t("looks.backToLooks")}>
-          <ArrowLeftOutlined
-            className="lookdetail__arrowIcon"
-            onClick={() => {
-              looksStore.setSelectedLook(null);
-            }}
-          />
-        </Tooltip>
-      </div>
-
       <div className="lookdetail__imageWrap">
         <div
           className="lookdetail__pictureBlur"

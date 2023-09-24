@@ -1,5 +1,6 @@
 import React from "react";
 import { Dropdown, Menu } from "antd";
+import { observer } from "mobx-react";
 
 import { looksStore } from "../../looksStore";
 import { EditableTitle } from "../../../../components/EditableTitle/EditableTitle";

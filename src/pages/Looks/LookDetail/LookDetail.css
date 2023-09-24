@@ -2,21 +2,6 @@
   height: calc(70vh + 130px);
 }
 
-.lookdetail__backArrow {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-}
-
-.lookdetail__arrowIcon {
-  font-size: 36px;
-  color: rgba(0, 0, 0, 1);
-}
-
-.lookdetail__arrowIcon:hover {
-  color: rgba(109, 145, 126, 1);
-}
-
 .lookdetail__imageWrap {
   position: relative;
   display: inline-block;
@@ -27,6 +12,7 @@
   border-radius: 2px;
   border: 1px solid #f0f0f0;
   margin-left: 40px;
+  border: 5px solid red;
 }
 
 .lookdetail__imageWrap .lookdetail__picture {
@@ -51,27 +37,10 @@
   background-repeat: no-repeat !important;
 }
 
-
-
-.lookDetail__rightContainer {
-  display: inline-block;
-  vertical-align: top;
-  height: calc(100% - 40px);
-  width: 520px;
-  border: 1px solid red;
-}
-
 .lookDetail__actionContainer {
   padding-left: 40px;
   margin-top: 20px;
 }
-
-.lookdetail__headerItemCount {
-  color: #c0c0c0;
-  display: inline-block;
-  font-weight: 300;
-}
-
 
 @media (max-width: 540px) {
   .lookdetail__backArrow {
