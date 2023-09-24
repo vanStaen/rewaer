@@ -16,9 +16,6 @@ const s3 = new AWS.S3({
 });
 
 exports.pictureService = {
-  async flipPicture(url) {
-    return true
-  },
 
   async rotatePicture(url, numberOfQuarterTurnToTheRight) {
     const key = url.split('.com/')[1];
@@ -74,5 +71,10 @@ exports.pictureService = {
 
   async tintPicture(url, red, green, blue) {
     return true
-  }
+  },
+
+  async flipPicture(url) {
+    return true
+  },
+
 }

@@ -74,6 +74,15 @@
     text-align: center;
 }
 
+.uploadForm__avatar {
+    background-color: #6C917D;
+}
+
+.uploadForm__avatarIsUploading {
+    background-color: #FAFAFA !important;
+    border: 1px solid #F0F0F0 !important;
+}
+
 @media (max-width: 420px) {
     .upload-floating-form {
         bottom: 15px;

@@ -184,7 +184,11 @@ export const UploadForm = observer((props) => {
                     <SkinOutlined />
                   )
                 }
-                style={{ backgroundColor: isUploading ? "#FAFAFA" : "#6C917D" }}
+                className={
+                  isUploading
+                    ? "uploadForm__avatarIsUploading"
+                    : "uploadForm__avatar"
+                }
               />
             </label>
           </form>
