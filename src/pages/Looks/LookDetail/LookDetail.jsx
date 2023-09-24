@@ -13,9 +13,6 @@ import { ItemPicker } from "./ItemPicker/ItemPicker";
 import "./LookDetail.css";
 
 export const LookDetail = observer(() => {
-  const [selectedItems, setSelectedItems] = useState(
-    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
-  );
   const [displayPictureUrl, setDisplayPictureUrl] = useState(
     looksStore.selectedLook.mediaUrlMedium
   );
@@ -103,11 +100,7 @@ export const LookDetail = observer(() => {
         </div>
         */}
 
-      <ItemPicker
-        selectedItems={selectedItems}
-        isActive={looksStore.selectedLook.active}
-        setSelectedItems={setSelectedItems}
-      />
+      <ItemPicker />
     </div>
   );
 });

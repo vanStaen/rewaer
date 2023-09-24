@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,15 @@ import "./ItemPicker.less";
 
 export const ItemPicker = observer((props) => {
   const { t } = useTranslation();
-  const { selectedItems, isActive, setSelectedItems } = props;
+  const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
+  const [selectedItems, setSelectedItems] = useState(
+    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
+  );
+
+  useEffect(() => {
+    setIsActive(looksStore.selectedLook.active);
+    setSelectedItems(looksStore.selectedLook.items);
+  }, [looksStore.selectedLook]);
 
   const itemClickHandler = (value) => {
     const valueAsInt = parseInt(value);
