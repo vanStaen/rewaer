@@ -205,9 +205,6 @@ export const ItemCard = (props) => {
             id={`card_item_picture_${props.item._id}`}
             style={{
               background: `url(${props.item.mediaUrlMedium})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
             }}
           ></div>
         )}

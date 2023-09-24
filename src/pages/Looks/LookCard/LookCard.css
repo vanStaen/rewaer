@@ -20,9 +20,9 @@
   height: calc(100% - 65px);
   opacity: 1;
   transition: filter .5s;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 .lookcard__logoover {

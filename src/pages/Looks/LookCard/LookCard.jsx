@@ -206,9 +206,6 @@ export const LookCard = (props) => {
             id={`card_look_picture_${props.look._id}`}
             style={{
               background: `url(${props.look.mediaUrlMedium})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
             }}
           ></div>
         )}
