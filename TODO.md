@@ -1,6 +1,7 @@
 # Rewaer
 
 ## To-dos:
+
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
 - [ ] Items/looks Toolbar:
@@ -12,12 +13,12 @@
   - [ ] Color multiselect
 - [ ] Profile:
   - [ ] Profile is responsive
-  - [x] UX: Center column with Max width 
+  - [x] UX: Center column with Max width
   - [x] Subpage with headers showing Looks and Items
     - [ ] simplified version of cards, with comment and liking function
     - [ ] Friend can propose Look name
     - [x] ofc, private item/look are hidden
-    - [ ] Zoomed modus, focus on one look/item 
+    - [ ] Zoomed modus, focus on one look/item
 - [ ] Infinite scrolling + lazy loading
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
@@ -25,8 +26,8 @@
   - [ ] Banner calling for action
   - [ ] view of all article missing tag
   - [ ] Multi tagging of article
-- [ ] Redo info page, 
-  - [ ] include https://wearme30times.com/  
+- [ ] Redo info page,
+  - [ ] include https://wearme30times.com/
   - [ ] fashion revolution
 - [ ] When archinving
   - [ ] Had a undo feature in the notification
@@ -34,7 +35,7 @@
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
 - [ ] Darkmode
-- [ ] Items Detail Page: 
+- [ ] Items Detail Page:
   - [ ] shared items are possible (between friends)
   - [x] add location
   - [x] rename desc to notes
@@ -48,7 +49,7 @@
 - [ ] Add friends feature
 - [ ] Settings: friends who are allowed to see you private stuff
 - [ ] Follow someone feature
-- [ ] Tips popping up 
+- [ ] Tips popping up
   - [ ] ~Use backspace to return to main view~
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
@@ -61,7 +62,7 @@
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
-- [ ] Make site responsive! 
+- [ ] Make site responsive!
   - [x] Login + Pwd Recover
   - [x] SignUp + Email Check
   - [x] MenuBar
@@ -69,22 +70,23 @@
   - [ ] Looks
   - [ ] Items
 - [ ] Service Worker
-  - [ ]  https://developer.chrome.com/docs/workbox/service-worker-overview/
-  - [ ]  https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
+  - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
+  - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
 
 ## v2
-- [ ] Garderobe analyzer 
+
+- [ ] Garderobe analyzer
   - [ ] Items belonging to few or no Looks
   - [ ] Favorite Styles/colors/brands
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Automatically detect items colors
-- [ ] Image reworking: 
+- [ ] Image reworking:
   - [x] Create editImageBar Component
     - [x] <BulbOutlined />
     - [x] <FormatPainterOutlined />
     - [x] <RedoOutlined />
     - [x] <VerticalAlignMiddleOutlined />
-      - [x] transform: rotate(45deg); 
+              - [x] transform: rotate(45deg);
   - [ ] Ligthen up an image (Dark-Light balance)
     - [ ] use tint() from sharp in the BE
   - [ ] Whiten up an image (White balande)
@@ -94,7 +96,11 @@
     - [ ] image: transform: rotate(45deg);
   - [ ] flip an image
     - [ ] image: transform: scaleX(-1);
-  
+- [ ] Custom properties
+  - [ ] Custom Categories
+  - [ ] Custom Season
+  - [ ] Custom Colors
+
 ## Completed ✓
 
 - [x] Set up route for User + database handling
@@ -154,7 +160,7 @@
   - [x] Handling request in Backend
   - [x] Backend to AWS S3
   - [x] Create Thumbnail on upload
-- [X] On loading error, show error and redirect
+- [x] On loading error, show error and redirect
 - [x] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant
   - [x] as many stateless component as possible
@@ -164,24 +170,24 @@
   - [x] Implement MobX instead of using context
   - [x] Create an Authorisation Store to hanble token and login
   - [x] Create a store to handle profil data
-- [x] New Auth logic taken from merrier 
+- [x] New Auth logic taken from merrier
 - [x] Refactoring del la muerte:
   - [x] Kill Mongoose, use Sequelize
   - [x] Rewrite GraphQl Resolvers
   - [x] Rewrite Rest Controller
-  - [x] Rewrite all call from frontend    
+  - [x] Rewrite all call from frontend
 - [x] Loading State before everything is fetched
-- [x] Empty cards to align last row of cards to the left 
-- [x] Bug fix: Email should be not be case sensitive 
+- [x] Empty cards to align last row of cards to the left
+- [x] Bug fix: Email should be not be case sensitive
 - [x] Account creation: check that username is not an email
-- [x] Settings: 
+- [x] Settings:
   - [x] Select gender
   - [x] Trigger change password
   - [x] Archive/Delete account
     - [x] Confirm box showing for 5 seconds
     - [x] Reloging reactivate account (Archived = false)
   - [x] Change username
-  - [x] UX: Center column with Max width 
+  - [x] UX: Center column with Max width
 - [x] Items/looks : Allow multi-upload and dragdrop
 - [x] BugFix: If old Title = new Title, then no update
 - [x] LoadImage helper function + spinner on load
@@ -190,7 +196,7 @@
 - [x] Settings: Show archived items/looks
 - [x] Count how many items are private and act accordingly
 - [x] Settings: per defaut show or hide Private
-- [x] Implement Season info for looks 
+- [x] Implement Season info for looks
 - [x] Create own Card component
   - [x] picture cover, not stretched
   - [x] Editable title
@@ -198,7 +204,7 @@
   - [x] Link zu detail view
   - [x] Tag as favorite (heart icon)
   - [x] archive/restore feature
-  - [x] Show like-counter (placeholder) 
+  - [x] Show like-counter (placeholder)
     - [x] Use Thumbs up for like
     - [x] Use Thumb down for dislike
 - [x] create friends and follower Model/table and linked those to the USer model (graphQL/sequelize endpoint)
@@ -211,12 +217,12 @@
 - [x] On leave detail view, scroll down to original Scroll position
 - [x] Webpack config file > add "copy webpack plugin" with content from public (except index.html)
 - [x] Use Sharp Library instead of Jimp
-- [x] BE: Do not save temp img data on disc to fix memory leak  
+- [x] BE: Do not save temp img data on disc to fix memory leak
 - [x] On Logout, empty all Stores
 - [x] Bug: Token expired should redirect to login
 - [x] Like/Dislikes Item/Looks feature
-- [x] Leave item detailview with browser back function 
-- [x] Leave look detailview with browser back function 
+- [x] Leave item detailview with browser back function
+- [x] Leave look detailview with browser back function
 - [x] Navigation with Arrows in item/look -detailview
 - [x] Include a manifest to use Page as an App
 - [x] refactor project to have only one package.json
