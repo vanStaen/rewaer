@@ -20,6 +20,23 @@ export const LookDetail = observer(() => {
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
 
+  const browserBackHandler = (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    looksStore.setSelectedLook(null);
+  };
+
+  useEffect(() => {
+    const url = new URL(window.location);
+    history.pushState({}, "", url);
+    window.addEventListener("keydown", keydownEventHandler);
+    window.addEventListener("popstate", browserBackHandler);
+    return () => {
+      window.removeEventListener("popstate", browserBackHandler);
+      window.removeEventListener("keydown", keydownEventHandler);
+    };
+  }, []);
+
   const onTouchStart = (e) => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
     setTouchStart(e.targetTouches[0].clientX);
@@ -52,12 +69,6 @@ export const LookDetail = observer(() => {
       }, 500);
     }
   };
-  useEffect(() => {
-    window.addEventListener("keydown", keydownEventHandler);
-    return () => {
-      window.removeEventListener("keydown", keydownEventHandler);
-    };
-  }, []);
 
   const keydownEventHandler = (event) => {
     const keyPressed = event.key.toLowerCase();
