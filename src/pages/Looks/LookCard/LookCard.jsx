@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { notification, Spin, Popconfirm, Tooltip } from "antd";
+import { Spin, Tooltip } from "antd";
 import {
-  DeleteOutlined,
-  ExclamationCircleOutlined,
-  HeartFilled,
-  HeartOutlined,
-  UndoOutlined,
   StopOutlined,
   TagOutlined,
-  EyeOutlined,
   EyeInvisibleOutlined,
   FileImageOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
-import { looksStore } from "../looksStore";
-import { archiveLook } from "../actions/archiveLook";
-import { deleteLook } from "../actions/deleteLook";
-import { updateFavoriteLook } from "../actions/updateFavoriteLook";
-import { updatePrivateLook } from "../actions/updatePrivateLook";
 import { loadImage } from "../../../helpers/loadImage";
 import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
+import { LookCardActions } from "./LookCardActions";
 
 import "./LookCard.css";
 
 export const LookCard = (props) => {
   const { t } = useTranslation();
-  const [isFavorited, setIsFavorited] = useState(props.look.favorite);
-  const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(props.look.favorite);
+  const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [numberItems, setNumberItems] = useState(
     props.look.items ? props.look.items.length : 0
   );
+
+  useEffect(() => {
+    setIsFavorited(props.look.favorite);
+    setIsPrivate(props.look.private);
+    setNumberItems(props.look.items ? props.look.items.length : 0);
+  }, [props.look])
 
   const errorFormated = (
     <div
@@ -76,44 +72,6 @@ export const LookCard = (props) => {
   useEffect(() => {
     imageLoadingHander();
   }, []);
-
-  const handleArchive = (value) => {
-    archiveLook(props.look._id, value)
-      .then(() => {
-        notification.success({
-          message: value
-            ? t("looks.restoreSuccess")
-            : t("looks.archiveSuccess"),
-          placement: "bottomRight",
-          icon: value ? (
-            <UndoOutlined style={{ color: "green" }} />
-          ) : (
-            <StopOutlined style={{ color: "green" }} />
-          ),
-        });
-        looksStore.setIsOutOfDate(true);
-      })
-      .catch((error) => {
-        notification.error({ message: `Error!`, placement: "bottomRight" });
-        console.log(error.message);
-      });
-  };
-
-  const handleDelete = () => {
-    deleteLook(props.look._id)
-      .then(() => {
-        notification.success({
-          message: t("looks.deletedSuccess"),
-          placement: "bottomRight",
-          icon: <DeleteOutlined style={{ color: "green" }} />,
-        });
-        looksStore.setIsOutOfDate(true);
-      })
-      .catch((error) => {
-        notification.error({ message: `Error!`, placement: "bottomRight" });
-        console.log(error.message);
-      });
-  };
 
   const onMouseEnterHandler = () => {
     if (!isLoading) {
@@ -169,21 +127,6 @@ export const LookCard = (props) => {
     }
   };
 
-  const favoriteHandler = () => {
-    updateFavoriteLook(props.look._id, !isFavorited);
-    setIsFavorited(!isFavorited);
-  };
-
-  const privateHandler = () => {
-    if (isPrivate) {
-      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook - 1);
-    } else {
-      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook + 1);
-    }
-    updatePrivateLook(props.look._id, !isPrivate);
-    setIsPrivate(!isPrivate);
-  };
-
   const createdDate = new Date(props.look.createdAt);
 
   return (
@@ -237,90 +180,13 @@ export const LookCard = (props) => {
           </div>
         )}
 
-        <div
-          className="lookcard__actionsContainer"
-          id={`card_look_actionsContainer_${props.look._id}`}
-        >
-          <div
-            className="lookcard__actionsLogo"
-            id={`card_look_actionsLogo_${props.look._id}`}
-          >
-            {props.look.active ? (
-              <>
-                <Tooltip placement="left" title={t("main.markAsFavorite")}>
-                  {isFavorited ? (
-                    <HeartFilled
-                      className="iconRedHover"
-                      onClick={favoriteHandler}
-                    />
-                  ) : (
-                    <HeartOutlined
-                      className="iconRedHover"
-                      onClick={favoriteHandler}
-                    />
-                  )}
-                </Tooltip>
-                {isPrivate ? (
-                  <Tooltip placement="left" title={t("main.makePublic")}>
-                    <EyeInvisibleOutlined
-                      className="iconGreenHover"
-                      onClick={privateHandler}
-                    />
-                  </Tooltip>
-                ) : (
-                  <Tooltip placement="left" title={t("main.makePrivate")}>
-                    <EyeOutlined
-                      className="iconGreenHover"
-                      onClick={privateHandler}
-                    />
-                  </Tooltip>
-                )}
-                <Tooltip placement="left" title={t("main.archive")}>
-                  <Popconfirm
-                    title={t("looks.archiveConfirm")}
-                    onConfirm={() => handleArchive(false)}
-                    okText={t("main.archive")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <StopOutlined className="iconRedHover" />
-                  </Popconfirm>
-                </Tooltip>
-              </>
-            ) : (
-              <>
-                <Tooltip placement="left" title={t("main.restore")}>
-                  <Popconfirm
-                    title={t("looks.restoreConfirm")}
-                    onConfirm={() => handleArchive(true)}
-                    okText={t("main.restore")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <UndoOutlined className="iconGreenHover" />
-                  </Popconfirm>
-                </Tooltip>
-                <Tooltip placement="left" title={t("main.delete")}>
-                  <Popconfirm
-                    title={t("looks.deleteConfirm")}
-                    onConfirm={handleDelete}
-                    okText={t("main.delete")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <DeleteOutlined className="iconRedHover" />
-                  </Popconfirm>
-                </Tooltip>
-              </>
-            )}
-          </div>
-        </div>
+        <LookCardActions
+          look={props.look}
+          isFavorited={isFavorited}
+          setIsFavorited={setIsFavorited}
+          isPrivate={isPrivate}
+          setIsPrivate={setIsPrivate}
+        />
         <div
           className={
             isPrivate
