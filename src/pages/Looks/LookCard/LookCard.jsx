@@ -200,6 +200,11 @@ export const LookCard = (props) => {
         ) : (
           <div
             className="lookcard__picture"
+            onClick={() => {
+              if (props.look.active) {
+                props.showDetailView(props.look);
+              }
+            }}
             id={`card_look_picture_${props.look._id}`}
             style={{
               background: `url(${props.look.mediaUrlMedium})`,
@@ -323,8 +328,8 @@ export const LookCard = (props) => {
                 ? "lookcard__meta lookcard__metaPrivate lookcard__metaPrivateFavorite"
                 : "lookcard__meta lookcard__metaPrivate"
               : isFavorited
-              ? "lookcard__meta lookcard__metaFavorite"
-              : "lookcard__meta"
+                ? "lookcard__meta lookcard__metaFavorite"
+                : "lookcard__meta"
           }
         >
           <EditableTitle
