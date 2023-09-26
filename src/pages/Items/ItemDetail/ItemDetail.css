@@ -1,6 +1,6 @@
 .itemdetail__container {
-    height: calc(100vh - 60px - 50px - 120px); /*50px menu, 120px footer*/
-    min-height: min(640px, 70vh);
+    height: calc(100vh - 50px); /*50px menu */
+    border: 1px solid red;
 }
 
 .itemdetail__backArrow {
@@ -27,7 +27,7 @@
     width: 480px;
     height: 640px;
     border-radius: 2px;
-    /*border: 1px solid #f0f0f0;*/
+    border: 1px solid blue;
 }
 
 .itemdetail__imageWrap .itemdetail__picture {
@@ -45,9 +45,9 @@
     z-index: -10;
     width: 100%;
     height: 100%;
-    filter: blur(15px);
+    filter: blur(5px);
     opacity: .85;
-    background-size: contain !important;
+    background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
 }
@@ -58,6 +58,7 @@
     width: calc(100% - 540px);
     height: 640px;
     margin-left: 10px;
+    border: 1px solid green;
 }   
 
 .itemDetail__item {

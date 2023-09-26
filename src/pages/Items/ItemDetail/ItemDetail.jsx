@@ -11,6 +11,7 @@ import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { ItemShareWithFriends } from "./ItemShareWithFriends/ItemShareWithFriends";
 import { switchItem } from "./switchItem";
+import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
 
 import {
   itemCategoryMen,
@@ -59,16 +60,7 @@ export const ItemDetail = observer(() => {
 
   return (
     <div className="itemdetail__container">
-      <div className="itemdetail__backArrow">
-        <Tooltip placement="bottomRight" title={t("items.backToItems")}>
-          <ArrowLeftOutlined
-            className="itemdetail__arrowIcon"
-            onClick={() => {
-              itemsStore.setSelectedItem(null);
-            }}
-          />
-        </Tooltip>
-      </div>
+      <DetailReturnArrow page="item" />
 
       <div className="itemdetail__imageWrap">
         <div
@@ -132,8 +124,7 @@ export const ItemDetail = observer(() => {
             element="colors"
             data={colors}
             value={
-              itemsStore.selectedItem.colors &&
-              itemsStore.selectedItem.colors
+              itemsStore.selectedItem.colors && itemsStore.selectedItem.colors
             }
             selectedItem={itemsStore.selectedItem}
             multiSelect={true}

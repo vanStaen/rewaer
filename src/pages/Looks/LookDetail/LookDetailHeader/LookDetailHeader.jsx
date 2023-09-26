@@ -11,7 +11,7 @@ import { updateCategoryLook } from "../../actions/updateCategoryLook";
 import { updateSeasonLook } from "../../actions/updateSeasonLook";
 import { lookCategory } from "../../../../lib/data/categories";
 import { seasons } from "../../../../lib/data/seasons";
-import { LookDetailReturnArrow } from "./LookDetailReturnArrow";
+import { DetailReturnArrow } from "../../../../components/DetailReturnArrow/DetailReturnArrow";
 import { LookDetailFormRadio } from "../LookDetailFormElement/LookDetailFormRadio";
 
 import "./LookDetailHeader.less";
@@ -74,7 +74,7 @@ export const LookDetailHeader = observer(() => {
 
   return (
     <>
-      <LookDetailReturnArrow />
+      <DetailReturnArrow page="look" />
       <div className="lookdetail__header">
         <span className="lookdetail__headerTitleId">
           #{looksStore.selectedLook._id}
@@ -95,7 +95,11 @@ export const LookDetailHeader = observer(() => {
           type={"look"}
           active={looksStore.selectedLook.active}
         />
-        {window.innerWidth < 530 ? <br /> : <div className="lookdetail__headerPoints">&#9679;</div>}
+        {window.innerWidth < 530 ? (
+          <br />
+        ) : (
+          <div className="lookdetail__headerPoints">&#9679;</div>
+        )}
         <Dropdown
           overlay={<Menu>{CategoryDropDown}</Menu>}
           placement="bottomLeft"
@@ -106,7 +110,7 @@ export const LookDetailHeader = observer(() => {
               <span className="lookdetail__headerCategory">
                 {
                   convertCodeToObjectString(category, lookCategory)[
-                  userStore.language
+                    userStore.language
                   ]
                 }
               </span>
