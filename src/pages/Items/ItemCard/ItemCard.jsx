@@ -201,6 +201,11 @@ export const ItemCard = (props) => {
             style={{
               background: `url(${props.item.mediaUrlMedium})`,
             }}
+            onClick={() => {
+              if (props.item.active) {
+                props.showDetailView(props.item);
+              }
+            }}
           ></div>
         )}
         {props.item.active ? (
@@ -321,8 +326,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-              ? "itemcard__meta itemcard__metaFavorite"
-              : "itemcard__meta"
+                ? "itemcard__meta itemcard__metaFavorite"
+                : "itemcard__meta"
           }
         >
           <EditableTitle
