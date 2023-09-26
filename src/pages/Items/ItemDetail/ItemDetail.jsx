@@ -64,13 +64,6 @@ export const ItemDetail = observer(() => {
 
       <div className="itemdetail__imageWrap">
         <div
-          className="itemdetail__pictureBlur"
-          id={`selected_item_picture_${itemsStore.selectedItem._id}`}
-          style={{
-            background: `url(${itemsStore.selectedItem.mediaUrlMedium})`,
-          }}
-        ></div>
-        <div
           className="itemdetail__picture"
           id={`selected_item_picture_${itemsStore.selectedItem._id}`}
           style={{
