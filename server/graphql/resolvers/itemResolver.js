@@ -69,6 +69,9 @@ exports.itemResolver = {
       "shareWith",
       "likes",
       "dislikes",
+      "mediaUrl",
+      "mediaUrlThumb",
+      "mediaUrlMedium",
     ];
     updatableFields.forEach((field) => {
       if (field in args.itemInput) {

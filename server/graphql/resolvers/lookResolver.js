@@ -60,6 +60,9 @@ exports.lookResolver = {
       "favorite",
       "likes",
       "dislikes",
+      "mediaUrl",
+      "mediaUrlThumb",
+      "mediaUrlMedium",
     ];
     updatableFields.forEach((field) => {
       if (field in args.lookInput) {
