@@ -84,15 +84,19 @@ export class ItemsStore {
   loadItems = async () => {
     try {
       const items = await fetchItems();
-
       const archivedItems = items.filter((item) => item.active === false);
       const privateItems = items.filter((item) => item.private);
-
       this.setItems(items);
       this.setNumberOfArchivedItem(archivedItems.length);
       this.setNumberOfPrivateItem(privateItems.length);
       this.setIsLoading(false);
       this.setIsOutOfDate(false);
+      if (this.selectedItem) {
+        const udpateSelectedItem = items.filter(
+          (item) => item._id === this.selectedItem._id
+        );
+        this.setSelectedItem(udpateSelectedItem[0]);
+      }
     } catch (error) {
       console.log(error.message);
       this.setError(error.message);

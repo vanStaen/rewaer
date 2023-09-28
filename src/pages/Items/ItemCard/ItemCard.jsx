@@ -48,6 +48,7 @@ export const ItemCard = (props) => {
   const errorFormated = (
     <div
       className="item__mehError"
+      id={`card_item_picture_${props.item._id}`}
       onClick={() => {
         if (props.item.active) {
           props.showDetailView(props.item);
@@ -62,11 +63,11 @@ export const ItemCard = (props) => {
   const imageLoadingHander = async () => {
     try {
       await loadImage(props.item.mediaUrlMedium);
-      setIsLoading(false);
     } catch (e) {
       setLoadingError(true);
       console.log(e);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -326,8 +327,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-                ? "itemcard__meta itemcard__metaFavorite"
-                : "itemcard__meta"
+              ? "itemcard__meta itemcard__metaFavorite"
+              : "itemcard__meta"
           }
         >
           <EditableTitle

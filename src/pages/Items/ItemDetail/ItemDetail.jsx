@@ -12,6 +12,7 @@ import { userStore } from "../../../stores/userStore/userStore";
 import { ItemShareWithFriends } from "./ItemShareWithFriends/ItemShareWithFriends";
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
+import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
 
 import {
   itemCategoryMen,
@@ -63,6 +64,7 @@ export const ItemDetail = observer(() => {
       <DetailReturnArrow page="item" />
 
       <div className="itemdetail__imageWrap">
+        <ImageEditBar page="item" />
         <div
           className="itemdetail__picture"
           id={`selected_item_picture_${itemsStore.selectedItem._id}`}
