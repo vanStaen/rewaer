@@ -16,26 +16,28 @@ import { looksStore } from "../../looksStore";
 import "./LookImageEditBar.less";
 
 export const LookImageEditBar = observer(() => {
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const rotateHandler = async () => {
-    setIsLoading(true);
-    try {
-      const resultFiles = await pictureRotate(
-        looksStore.selectedLook.mediaUrl,
-        1
-      );
-      await updateMedienLook(
-        looksStore.selectedLook._id,
-        resultFiles.UrlOriginalS3,
-        resultFiles.UrlThumbS3,
-        resultFiles.UrlMediumbS3
-      );
-      looksStore.setIsOutOfDate(true);
-    } catch (e) {
-      console.log(e);
+    if (!isLoading) {
+      setIsLoading(true);
+      try {
+        const resultFiles = await pictureRotate(
+          looksStore.selectedLook.mediaUrl,
+          1
+        );
+        await updateMedienLook(
+          looksStore.selectedLook._id,
+          resultFiles.UrlOriginalS3,
+          resultFiles.UrlThumbS3,
+          resultFiles.UrlMediumbS3
+        );
+        looksStore.setIsOutOfDate(true);
+      } catch (e) {
+        console.log(e);
+      }
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -49,13 +51,9 @@ export const LookImageEditBar = observer(() => {
       {/* <Tooltip title="Flip">
         <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
       </Tooltip>*/}
-      <div className="imageEditBar__imageEditBarItem">
+      <div className="imageEditBar__imageEditBarItem" onClick={rotateHandler}>
         <Tooltip title="Rotate">
-          {isloading ? (
-            <LoadingOutlined />
-          ) : (
-            <RedoOutlined onClick={rotateHandler} />
-          )}
+          {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
         </Tooltip>
       </div>
     </div>

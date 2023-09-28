@@ -91,9 +91,14 @@ export class LooksStore {
       this.setNumberOfPrivateLook(privateLooks.length);
       this.setIsLoading(false);
       this.setIsOutOfDate(false);
+      if (this.selectedLook) {
+        const udpateSelectedLook = looks.filter(
+          (look) => look._id === this.selectedLook._id
+        );
+        this.setSelectedLook(udpateSelectedLook[0]);
+      }
     } catch (error) {
       console.log(error.message);
-      console.log("looks", looks);
       this.setError(error.message);
     }
   };

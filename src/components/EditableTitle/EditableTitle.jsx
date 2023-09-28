@@ -11,22 +11,29 @@ export const EditableTitle = (props) => {
   const { t } = useTranslation();
   const [originalTitle, setOriginalTitle] = useState(props.title);
   const [title, setTitle] = useState(
-    props.title.replace(/ /g, "_").length > 20
-      ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
-      : props.title.replace("-", "/").replace(/ /g, "_")
+    props.title
+      ? props.title.replace(/ /g, "_").length > 20
+        ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
+        : props.title.replace("-", "/").replace(/ /g, "_")
+      : null
   );
   const [isEditMode, setIsEditmode] = useState(false);
   const [editInputValue, setEditInputValue] = useState(
-    props.title.replace("-", "/")
+    props.title ? props.title.replace("-", "/") : null
   );
 
   useEffect(() => {
     setTitle(
-      props.title.replace(/ /g, "_").length > 20
-        ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
-        : props.title.replace("-", "/").replace(/ /g, "_")
+      props.title
+        ? props.title.replace(/ /g, "_").length > 20
+          ? `${props.title
+              .replace("-", "/")
+              .replace(/ /g, "_")
+              .slice(0, 20)}...`
+          : props.title.replace("-", "/").replace(/ /g, "_")
+        : null
     );
-    setEditInputValue(props.title.replace("-", "/"));
+    setEditInputValue(props.title ? props.title.replace("-", "/") : null);
     setOriginalTitle(props.value);
   }, [props.title]);
 
@@ -62,38 +69,40 @@ export const EditableTitle = (props) => {
     setTitle(
       editInputValue.replace(/ /g, "_").length > 23
         ? `${editInputValue
-          .replace("-", "/")
-          .replace(/ /g, "_")
-          .slice(0, 23)}...`
+            .replace("-", "/")
+            .replace(/ /g, "_")
+            .slice(0, 23)}...`
         : editInputValue.replace("-", "/").replace(/ /g, "_")
     );
     setIsEditmode(false);
   };
 
   return (
-    <div className={props.type === 'item' ? "title__containerItem" : "title__container"} >
-      {
-        isEditMode ? (
-          <Input
-            key={`title_input_${props.id}`}
-            size="small"
-            className="title__input"
-            value={editInputValue}
-            onChange={handleEditChange}
-            onBlur={handleEditCancel}
-            onPressEnter={handleEditConfirm}
-          />
-        ) : (
-          <div
-            className={props.active ? "Page__title" : "Page__title striked"}
-            onDoubleClick={() => {
-              setIsEditmode(true);
-            }}
-          >
-            {title}
-          </div>
-        )
+    <div
+      className={
+        props.type === "item" ? "title__containerItem" : "title__container"
       }
-    </div >
+    >
+      {isEditMode ? (
+        <Input
+          key={`title_input_${props.id}`}
+          size="small"
+          className="title__input"
+          value={editInputValue}
+          onChange={handleEditChange}
+          onBlur={handleEditCancel}
+          onPressEnter={handleEditConfirm}
+        />
+      ) : (
+        <div
+          className={props.active ? "Page__title" : "Page__title striked"}
+          onDoubleClick={() => {
+            setIsEditmode(true);
+          }}
+        >
+          {title}
+        </div>
+      )}
+    </div>
   );
 };

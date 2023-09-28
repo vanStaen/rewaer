@@ -21,8 +21,8 @@ exports.pictureService = {
     const key = url.split('.com/')[1];
     // increment version counter
     let version = 1;
-    if (key.includes("_")) {
-      version = key.split('_')[1];
+    if (key.includes("-")) {
+      version = parseInt(key.split('-')[1]) + 1;
     }
     const nameImageThumb = "t_" + key;
     const nameImageMedium = "m_" + key;
