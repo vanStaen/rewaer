@@ -38,11 +38,6 @@ export const LookDetail = observer(() => {
     };
   }, []);
 
-  const onTouchStart = (e) => {
-    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
   useEffect(() => {
     setDisplayPictureUrl(looksStore.selectedLook.mediaUrlMedium);
   }, [looksStore.selectedLook]);
@@ -52,6 +47,11 @@ export const LookDetail = observer(() => {
   }, [itemsStore.isOutOfDate]);
 
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;

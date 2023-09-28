@@ -45,7 +45,7 @@
 @media (max-width: 540px) {
   .lookdetail__imageWrap {
     width: 90vw;
-    height: calc(90vw * 1.6);
+    height: calc(90vw * 1.4);
     margin: 5vw;
   }
 }

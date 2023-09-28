@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Spin, Tooltip } from "antd";
+import React, { useEffect, useState, useRef } from "react";
+import { Spin } from "antd";
 import { observer } from "mobx-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -25,8 +25,14 @@ import { itemStatus } from "../../../lib/data/itemStatus";
 
 import "./ItemDetail.css";
 
+// the required distance between touchStart and touchEnd to be detected as a swipe
+const MIN_SWIPE_DISTANCE = 100;
+
 export const ItemDetail = observer(() => {
   const { t } = useTranslation();
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const throttling = useRef(false);
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -59,8 +65,38 @@ export const ItemDetail = observer(() => {
     }
   };
 
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
+    const isRightSwipe = distance < -MIN_SWIPE_DISTANCE;
+    if (throttling.current === false) {
+      throttling.current = true;
+      if (isRightSwipe) {
+        switchItem(false, itemsStore.showPrivateItems);
+      } else if (isLeftSwipe) {
+        switchItem(true, itemsStore.showPrivateItems);
+      }
+      setTimeout(() => {
+        throttling.current = false;
+      }, 500);
+    }
+  };
+
   return (
-    <div className="itemdetail__container">
+    <div
+      className="itemdetail__container"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       <DetailReturnArrow page="item" />
 
       <div className="itemdetail__imageWrap">
