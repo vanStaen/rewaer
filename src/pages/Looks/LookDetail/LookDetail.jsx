@@ -6,6 +6,7 @@ import { looksStore } from "../looksStore";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
+import { LookImageEditBar } from "./LookImageEditBar/LookImageEditBar";
 
 import "./LookDetail.css";
 
@@ -93,6 +94,7 @@ export const LookDetail = observer(() => {
     >
       <LookDetailHeader />
       <div className="lookdetail__imageWrap">
+        <LookImageEditBar />
         <div
           className="lookdetail__pictureBlur"
           id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}

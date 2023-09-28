@@ -15,4 +15,7 @@ export async function pictureRotate(url, numberOfQuarterTurnToTheRight) {
   if ((response.status !== 200) & (response.status !== 201)) {
     throw new Error("Unauthenticated!");
   }
+
+  console.log(response)
+  return response.data.newUrl;
 }

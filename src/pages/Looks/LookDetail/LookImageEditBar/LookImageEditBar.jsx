@@ -1,39 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tooltip } from "antd";
+import { observer } from "mobx-react";
 import {
   BulbOutlined,
   FormatPainterOutlined,
   RedoOutlined,
   VerticalAlignMiddleOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 
-import { pictureRotate } from "./pictureRotate";
+import { pictureRotate } from "../../actions/pictureRotate";
+import { updateMedienLook } from "../../actions/updateMedienLook";
+import { looksStore } from "../../looksStore";
 
-import "./LookImageEditBar.css";
+import "./LookImageEditBar.less";
 
-export const LookImageEditBar = (props) => {
-  const rotate = () => {
-    /* const image = document.getElementById(`selected_look_picture_${props.id}`);
-    image.style.transform = "rotate(90deg)"; */
+export const LookImageEditBar = observer(() => {
+  const [isloading, setIsLoading] = useState(false);
+
+  const rotateHandler = async () => {
+    setIsLoading(true);
+    try {
+      const resultFiles = await pictureRotate(
+        looksStore.selectedLook.mediaUrl,
+        1
+      );
+      await updateMedienLook(
+        looksStore.selectedLook._id,
+        resultFiles.UrlOriginalS3,
+        resultFiles.UrlThumbS3,
+        resultFiles.UrlMediumbS3
+      );
+      looksStore.setIsOutOfDate(true);
+    } catch (e) {
+      console.log(e);
+    }
+    setIsLoading(false);
   };
 
   return (
     <div className="imageEditBar__imageEditBar">
-      <Tooltip title="Change luminosity">
-        <BulbOutlined className="pointerCursor" />
-      </Tooltip>
-      &nbsp;
-      <Tooltip title="Change white balance">
-        <FormatPainterOutlined className="pointerCursor" />
-      </Tooltip>
-      &nbsp;
-      <Tooltip title="Rotate">
-        <RedoOutlined className="pointerCursor" onClick={rotate} />
-      </Tooltip>
-      &nbsp;
-      <Tooltip title="Flip">
-        <VerticalAlignMiddleOutlined className="pointerCursor imageEditBar__rotate90" />
-      </Tooltip>
+      {/* <Tooltip title="Change luminosity">
+        <BulbOutlined />
+      </Tooltip>*/}
+      {/* <Tooltip title="Change white balance">
+        <FormatPainterOutlined />
+      </Tooltip>*/}
+      {/* <Tooltip title="Flip">
+        <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
+      </Tooltip>*/}
+      <div className="imageEditBar__imageEditBarItem">
+        <Tooltip title="Rotate">
+          {isloading ? (
+            <LoadingOutlined />
+          ) : (
+            <RedoOutlined onClick={rotateHandler} />
+          )}
+        </Tooltip>
+      </div>
     </div>
   );
-};
+});
