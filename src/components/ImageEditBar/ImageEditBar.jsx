@@ -42,7 +42,7 @@ export const ImageEditBar = observer((props) => {
             1
           );
           await updateMedienItem(
-            itemStore.selectedItem._id,
+            itemsStore.selectedItem._id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3
