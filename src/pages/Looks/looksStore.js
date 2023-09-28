@@ -84,10 +84,8 @@ export class LooksStore {
   loadLooks = async () => {
     try {
       const looks = await fetchLooks();
-
       const archivedLooks = looks.filter((look) => look.active === false);
       const privateLooks = looks.filter((look) => look.private);
-
       this.setLooks(looks);
       this.setNumberOfArchivedLook(archivedLooks.length);
       this.setNumberOfPrivateLook(privateLooks.length);
@@ -95,6 +93,7 @@ export class LooksStore {
       this.setIsOutOfDate(false);
     } catch (error) {
       console.log(error.message);
+      console.log("looks", looks);
       this.setError(error.message);
     }
   };
