@@ -128,7 +128,9 @@ export const ItemCard = (props) => {
         `card_item_actionsLogo_${props.item._id}`
       );
       elementPicture.style.filter = "brightness(50%)";
-      elementLogoOver.style.display = "block";
+      if (!loadingError || !props.item.active) {
+        elementLogoOver.style.display = "block";
+      }
       elementActionsContainer.style.width = "34px";
       elementActionsContainer.style.opacity = ".85";
       elementActionsLogo.style.display = "block";
