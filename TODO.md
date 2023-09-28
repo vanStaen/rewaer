@@ -4,6 +4,20 @@
 
 - [!] ALWAYS : Translate in all three languages
 - [!] ALWAYS : Prepare events/notifications
+- [ ] Image reworking:
+  - [x] Create editImageBar Component
+    - [x] <BulbOutlined />
+    - [x] <FormatPainterOutlined />
+    - [x] <RedoOutlined />
+    - [x] <VerticalAlignMiddleOutlined />
+  - [ ] Ligthen up an image (Dark-Light balance)
+    - [ ] use tint() from sharp in the BE
+  - [ ] Whiten up an image (White balande)
+    - [ ] use tint() from sharp in the BE
+  - [ ] Crop an image
+  - [x] rotate an image
+  - [ ] flip an image
+    - [ ] image: transform: scaleX(-1);
 - [ ] Items/looks Toolbar:
   - [ ] Quick edits feature
   - [ ] With ctrl, multi select possible, and Quick edits opens
@@ -19,7 +33,6 @@
     - [ ] Friend can propose Look name
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item
-- [ ] Infinite scrolling + lazy loading
 - [ ] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
@@ -30,11 +43,10 @@
   - [ ] include https://wearme30times.com/
   - [ ] fashion revolution
 - [ ] When archinving
-  - [ ] Had a undo feature in the notification
-  - [ ] Had a delete feature in the notification
+  - [ ] Add a undo feature in the notification
+  - [ ] Add a delete feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
-- [ ] Darkmode
 - [ ] Items Detail Page:
   - [ ] shared items are possible (between friends)
   - [x] add location
@@ -49,7 +61,7 @@
 - [ ] Add friends feature
 - [ ] Settings: friends who are allowed to see you private stuff
 - [ ] Follow someone feature
-- [ ] Tips popping up
+- [ ] Tips in setting page?
   - [ ] ~Use backspace to return to main view~
   - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
@@ -67,8 +79,8 @@
   - [x] SignUp + Email Check
   - [x] MenuBar
   - [ ] Profil
-  - [ ] Looks
-  - [ ] Items
+  - [x] Looks
+  - [x] Items
 - [ ] Service Worker
   - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
   - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
@@ -80,26 +92,12 @@
   - [ ] Favorite Styles/colors/brands
 - [ ] Drag and Drop to sort Looks and Items
 - [ ] Automatically detect items colors
-- [ ] Image reworking:
-  - [x] Create editImageBar Component
-    - [x] <BulbOutlined />
-    - [x] <FormatPainterOutlined />
-    - [x] <RedoOutlined />
-    - [x] <VerticalAlignMiddleOutlined />
-              - [x] transform: rotate(45deg);
-  - [ ] Ligthen up an image (Dark-Light balance)
-    - [ ] use tint() from sharp in the BE
-  - [ ] Whiten up an image (White balande)
-    - [ ] use tint() from sharp in the BE
-  - [ ] Crop an image
-  - [ ] rotate an image
-    - [ ] image: transform: rotate(45deg);
-  - [ ] flip an image
-    - [ ] image: transform: scaleX(-1);
 - [ ] Custom properties
   - [ ] Custom Categories
   - [ ] Custom Season
   - [ ] Custom Colors
+- [ ] Infinite scrolling + lazy loading
+- [ ] Darkmode
 
 ## Completed ✓
 
