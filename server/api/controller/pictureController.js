@@ -11,7 +11,8 @@ router.post('/flip/', async (req, res) => {
       throw new Error('Please provide a picture url!')
     }
     const url = req.body.url
-    newUrl = await pictureService.flipPicture(url)
+    const isMirror = req.body.isMirror;
+    newUrl = await pictureService.flipPicture(url, isMirror)
     res.status(200).json({
       newUrl: newUrl
     })

@@ -56,6 +56,16 @@ module.exports = {
       })
   },
 
+  async mirrorImage(originalImageBuffer) {
+    return await sharp(originalImageBuffer)
+      .flop()
+      .toBuffer()
+      .then(data => data)
+      .catch(err => {
+        console.error('rotateImage :', err)
+      })
+  },
+
   async tintImage(originalImageBuffer, red, green, blue) {
     return await sharp(originalImageBuffer)
       .tint({ r: red, g: green, b: blue })

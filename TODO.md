@@ -12,12 +12,12 @@
     - [x] <VerticalAlignMiddleOutlined />
   - [ ] Ligthen up an image (Dark-Light balance)
     - [ ] use tint() from sharp in the BE
-  - [ ] Whiten up an image (White balande)
+  - [ ] Whiten up an image (White balance)
     - [ ] use tint() from sharp in the BE
   - [ ] Crop an image
   - [x] rotate an image
-  - [ ] flip an image
-    - [ ] image: transform: scaleX(-1);
+  - [x] flip an image
+  - [x] mirror an image
 - [ ] Items/looks Toolbar:
   - [ ] Quick edits feature
   - [ ] With ctrl, multi select possible, and Quick edits opens
