@@ -1,33 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
-import {
-  CameraOutlined,
-  SkinOutlined,
-  MehOutlined,
-  HistoryOutlined,
-} from "@ant-design/icons";
+import { MehOutlined } from "@ant-design/icons";
 
 import { userStore } from "../../stores/userStore/userStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
 import { authStore } from "../../stores/authStore/authStore";
 import { Avatar } from "./Avatar/Avatar";
 import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
-import { ProfileItems } from "./ProfileItems/ProfileItems";
-import { ProfileLooks } from "./ProfileLooks/ProfileLooks";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
 import { ProfileFilters } from "./ProfileFilters/ProfileFilters";
+import { ProfileMain } from "./ProfileMain/ProfileMain";
 import { CustomMenuBar } from "../../components/CustomMenuBar/CustomMenuBar";
 
 import "./Profile.css";
 
 export const Profile = observer(() => {
-  const params = useParams();
-  const { t } = useTranslation();
   const [contentToDisplay, setContentToDisplay] = useState("looks");
+  const params = useParams();
 
   useEffect(() => {
     const username = params.username ? params.username : userStore.userName;
@@ -57,74 +49,23 @@ export const Profile = observer(() => {
             <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
           </div>
         ) : (
-          <div className="profil__container">
+          <>
             <div className="profil__containerLeft">
               <Avatar />
               <ProfileDetails />
               <ProfileActions />
             </div>
             <div className="profil__containerCenter">
-              <div className="profil__subMenuContainer">
-                <div
-                  className={`profil__subMenuItem ${
-                    contentToDisplay === "wall" && "profil__subMenuItemSelected"
-                  }`}
-                  onClick={() => {
-                    setContentToDisplay("wall");
-                    profileStore.setFilterIsPopingUp(true);
-                  }}
-                >
-                  <HistoryOutlined />
-                  <span className="profil__counter">
-                    {profileStore.notification &&
-                      profileStore.notifications.length}
-                    Timeline
-                  </span>
-                </div>
-                <div
-                  className={`profil__subMenuItem ${
-                    contentToDisplay === "looks" &&
-                    "profil__subMenuItemSelected"
-                  }`}
-                  onClick={() => {
-                    setContentToDisplay("looks");
-                    profileStore.setFilterIsPopingUp(true);
-                  }}
-                >
-                  <CameraOutlined />
-                  <span className="profil__counter">
-                    {profileStore.looks && profileStore.looks.length}&nbsp;
-                    {t("menu.looks")}
-                  </span>
-                </div>
-                <div
-                  className={`profil__subMenuItem ${
-                    contentToDisplay === "items" &&
-                    "profil__subMenuItemSelected"
-                  }`}
-                  onClick={() => {
-                    setContentToDisplay("items");
-                    profileStore.setFilterIsPopingUp(true);
-                  }}
-                >
-                  <SkinOutlined />
-                  <span className="profil__counter">
-                    {profileStore.items && profileStore.items.length}&nbsp;
-                    {t("menu.items")}
-                  </span>
-                </div>
-              </div>
-              <div className="profil__containerCenterContent">
-                {contentToDisplay === "items" && <ProfileItems />}
-                {contentToDisplay === "looks" && <ProfileLooks />}
-                {contentToDisplay === "wall" && <>Nothing here yet</>}
-              </div>
+              <ProfileMain
+                contentToDisplay={contentToDisplay}
+                setContentToDisplay={setContentToDisplay}
+              />
             </div>
             <div className="profil__containerRight">
               <ProfileFilters contentToDisplay={contentToDisplay} />
               <ProfileFriends />
             </div>
-          </div>
+          </>
         )}
       </div>
     </>

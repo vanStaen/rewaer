@@ -2,13 +2,7 @@
   width: 100vw;
   height: auto;
   min-height: calc(100vh - 50px - 120px); /*50px menu, 120px footer*/
-}
-
-.profil__container {
-  margin: 20px 2vw;
-  width: calc(100vw - 4vw);
   text-align: center;
-  /*border: 1px solid goldenrod;*/
 }
 
 .profil__containerRight {
@@ -16,45 +10,14 @@
   vertical-align: top;
   width: 200px;
   text-align: left;
-  /*border: 1px solid green;*/
 }
 
 .profil__containerCenter {
   display: inline-block;
   vertical-align: top;
-  width: calc(100vw - 50px - 50px - 200px - 200px);
+  width: calc(100vw - 200px - 200px);
   max-width: 1200px;
   text-align: left;
-  margin: 0 15px;
-  /*border: 1px solid red;*/
-}
-
-.profil__subMenuContainer {
-  display: flex;
-  font-size: 16px;
-}
-
-.profil__subMenuItem {
-  width: 100%;
-  height: 35px;
-  text-align: center;
-  cursor: pointer;
-  border-bottom: solid 1px #f0f0f0;
-  transition: border-color 0.3s, color 0.3s;
-}
-
-.profil__subMenuItem:hover {
-  color: rgba(109, 145, 126, 0.7);
-  border-bottom: 2px solid rgba(109, 145, 126, 0.5);
-}
-
-.profil__subMenuItemSelected {
-  color: rgba(109, 145, 126, 1);
-  border-bottom: 2px solid rgba(109, 145, 126, 1);
-}
-
-.profil__containerCenterContent {
-  margin: 15px 0 0 0;
 }
 
 .profil__containerLeft {
@@ -63,16 +26,7 @@
   width: 200px;
 }
 
-.profil__counter {
-  font-weight: 300;
-  font-size: 12px;
-  margin: 3px 0 0 10px;
-  display: inline-block;
-  vertical-align: top;
-}
 
-@media (max-width: 1024px) {
-  .profil__counter {
-    display: none;
-  }
+.profil__containerCenterContent {
+  margin: 15px 0 0 0;
 }
