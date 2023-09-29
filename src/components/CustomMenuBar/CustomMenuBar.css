@@ -6,6 +6,7 @@
   z-index: 10;
   background-color: #fafafa;
   border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
 }
 
 .customMenu__spacer {
@@ -99,10 +100,6 @@
   }
   .customMenu__elementName {
     display: none;
-  }
-  .customMenu__element,
-  .customMenu__elementDisabled {
-    font-size: 18px;
   }
 }
 
