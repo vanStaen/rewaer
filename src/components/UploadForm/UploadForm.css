@@ -75,7 +75,7 @@
 }
 
 .uploadForm__avatar {
-    background-color: #6C917D;
+    background-color: #6C917D !important;
 }
 
 .uploadForm__avatarIsUploading {
