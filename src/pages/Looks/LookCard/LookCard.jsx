@@ -135,7 +135,6 @@ export const LookCard = (props) => {
         className="lookcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
-        onClick={onMouseEnterHandler}
       >
         {loadingError ? (
           errorFormated
@@ -144,6 +143,11 @@ export const LookCard = (props) => {
         ) : (
           <div
             className="lookcard__picture"
+            onClick={() => {
+              if (props.look.active) {
+                props.showDetailView(props.look);
+              }
+            }}
             id={`card_look_picture_${props.look._id}`}
             style={{
               background: `url(${props.look.mediaUrlMedium})`,
