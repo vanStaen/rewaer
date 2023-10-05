@@ -49,8 +49,4 @@
   .profil__containerRight {
     display: none;
   }
-  .profil__containerRightMobile {
-    display: block;
-    width: 100vw;
-  }
 }

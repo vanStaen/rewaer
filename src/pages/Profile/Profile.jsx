@@ -54,9 +54,6 @@ export const Profile = observer(() => {
               <ProfileDetails />
               <ProfileActions />
             </div>
-            <div className="profil__containerRightMobile">
-              <ProfileFriends />
-            </div>
             <div className="profil__containerCenter">
               <ProfileMain
                 contentToDisplay={contentToDisplay}
