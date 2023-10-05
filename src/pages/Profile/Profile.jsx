@@ -11,7 +11,6 @@ import { Avatar } from "./Avatar/Avatar";
 import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
-import { ProfileFilters } from "./ProfileFilters/ProfileFilters";
 import { ProfileMain } from "./ProfileMain/ProfileMain";
 import { CustomMenuBar } from "../../components/CustomMenuBar/CustomMenuBar";
 
@@ -55,6 +54,9 @@ export const Profile = observer(() => {
               <ProfileDetails />
               <ProfileActions />
             </div>
+            <div className="profil__containerRightMobile">
+              <ProfileFriends />
+            </div>
             <div className="profil__containerCenter">
               <ProfileMain
                 contentToDisplay={contentToDisplay}
@@ -62,7 +64,6 @@ export const Profile = observer(() => {
               />
             </div>
             <div className="profil__containerRight">
-              <ProfileFilters contentToDisplay={contentToDisplay} />
               <ProfileFriends />
             </div>
           </>

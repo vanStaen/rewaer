@@ -53,3 +53,30 @@
 	z-index: -1;
 }
 
+.avatar__form {
+  width: 25px;
+  margin-left: 175px;
+}
+
+
+@media (max-width: 800px) {
+  .avatar__container {
+    display: inline-block;
+    width: 30vw;
+    padding: 10px;
+  }
+  .avatar__avatar {
+    width: 30vw;
+    height: 30vw;
+  }
+  .avatar__avatarLoading {
+    width: 30vw;
+    height: 30vw;
+  }
+  .avatar__editAvatar {
+    width: 30vw;
+  }
+  .avatar__form {
+    margin-left: calc(30vw - 15px);
+  }
+}

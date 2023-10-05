@@ -21,7 +21,7 @@ export const ProfileDetails = observer(() => {
   const dateLastActive = new Date(profileStore.lastActive);
 
   return (
-    <>
+    <div className="profil__detailsContainer">
       <div className="profil__hello">
         <div>
           {profileStore.firstName}
@@ -35,6 +35,6 @@ export const ProfileDetails = observer(() => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 });

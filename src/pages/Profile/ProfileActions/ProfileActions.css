@@ -13,3 +13,11 @@
 .profil__action:hover {
   color: rgba(109, 145, 126, 1);
 }
+
+
+@media (max-width: 800px) {
+  .profil__actionContainer {
+    padding: 0 10px;
+    margin: 0;
+  }
+}

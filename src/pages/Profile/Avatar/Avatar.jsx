@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { Tooltip, notification, Spin } from "antd";
@@ -56,7 +56,7 @@ export const Avatar = observer(() => {
   };
 
   return (
-    <Fragment>
+    <div className="avatar__container">
       {isUploading ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading">
@@ -64,45 +64,42 @@ export const Avatar = observer(() => {
           </div>
         </div>
       ) : (
-          <div
-            className="avatar__avatar"
-            style={
-              isStranger ?
-                profileStore.avatar && {
-                  backgroundImage: "url(" + profileStore.avatar + ")",
-                } :
-                userStore.avatar && {
-                  backgroundImage: "url(" + userStore.avatar + ")",
-                }
-            }
-          >
-            {isStranger ?
-              !profileStore.avatar && <UserOutlined className="avatar__noAvatar" /> :
-              !userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
-            {!isStranger && <div className="avatar__editAvatar">
-              <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
-                <form
-                  onSubmit={changeAvatarSubmitHandler}
-                  style={{
-                    width: "25px",
-                    marginLeft: "175px",
-                  }}
-                >
-                  <input
-                    type="file"
-                    className="avatar__inputfile"
-                    name="inputfile"
-                    id="file"
-                    onChange={fileSelectHandler}
-                  />
-                  <label htmlFor="file">
-                    <EditOutlined />
-                  </label>
-                </form>
-              </Tooltip>
-            </div>}
-          </div>
-        )}
-    </Fragment>
+        <div
+          className="avatar__avatar"
+          style={
+            isStranger ?
+              profileStore.avatar && {
+                backgroundImage: "url(" + profileStore.avatar + ")",
+              } :
+              userStore.avatar && {
+                backgroundImage: "url(" + userStore.avatar + ")",
+              }
+          }
+        >
+          {isStranger ?
+            !profileStore.avatar && <UserOutlined className="avatar__noAvatar" /> :
+            !userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
+          {!isStranger && <div className="avatar__editAvatar">
+            <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
+              <form
+                onSubmit={changeAvatarSubmitHandler}
+                className="avatar__form"
+              >
+                <input
+                  type="file"
+                  className="avatar__inputfile"
+                  name="inputfile"
+                  id="file"
+                  onChange={fileSelectHandler}
+                />
+                <label htmlFor="file">
+                  <EditOutlined />
+                </label>
+              </form>
+            </Tooltip>
+          </div>}
+        </div>
+      )}
+    </div>
   );
 });

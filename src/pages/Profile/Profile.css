@@ -12,6 +12,12 @@
   text-align: left;
 }
 
+.profil__containerRightMobile {
+  display: none;
+  text-align: left;
+  padding: 10px;
+}
+
 .profil__containerCenter {
   display: inline-block;
   vertical-align: top;
@@ -26,7 +32,25 @@
   width: 200px;
 }
 
-
 .profil__containerCenterContent {
   margin: 15px 0 0 0;
+}
+
+
+@media (max-width: 800px) {
+  .profil__containerLeft {
+    display: block;
+    width: 100vw;
+  }
+  .profil__containerCenter {
+    display: block;
+    width: 100vw;
+  }
+  .profil__containerRight {
+    display: none;
+  }
+  .profil__containerRightMobile {
+    display: block;
+    width: 100vw;
+  }
 }
