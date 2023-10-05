@@ -63,7 +63,7 @@
   .avatar__container {
     display: inline-block;
     width: 30vw;
-    padding: 10px;
+    padding: 20px 0 0 20px;
   }
   .avatar__avatar {
     width: 30vw;
@@ -75,6 +75,10 @@
   }
   .avatar__editAvatar {
     width: 30vw;
+  }
+  .avatar__avatar .avatar__noAvatar {
+    padding: 20px;
+    font-size: 60px;
   }
   .avatar__form {
     margin-left: calc(30vw - 15px);

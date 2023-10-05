@@ -30,8 +30,9 @@ export const ProfileDetails = observer(() => {
         <div className="profil__username">@{profileStore.userName}</div>
         {showLastSeenOnline && (
           <div className="profil__lastSeenOnline">
-            {t("profile.lastSeenOnline")} {dateLastActive.toLocaleDateString()}{" "}
-            {t("profile.at")} {dateLastActive.toLocaleTimeString()}
+            {t("profile.lastSeenOnline")} <br />{" "}
+            {dateLastActive.toLocaleDateString()} {t("profile.at")}{" "}
+            {dateLastActive.toLocaleTimeString()}
           </div>
         )}
       </div>
