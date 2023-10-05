@@ -3,6 +3,10 @@
   text-align: right;
 }
 
+.profil__friendsActionContainer {
+  display: none;
+}
+
 .profil__action {
   font-weight: 500;
   font-size: 12px;
@@ -16,10 +20,20 @@
 
 
 @media (max-width: 800px) {
-  .profil__actionContainer {
+  .profil__friendsActionContainer {
+    display: inline-block;
     padding: 0 10px;
     margin: 0;
-    width: 50vw;
-    border: 1px solid red;
+    width: 45vw;
+  }
+  .profil__actionContainer {
+    display: inline-block;
+    padding: 0 10px;
+    margin: 0;
+    width: 55vw;
+  }
+  .profil__action {
+    font-size: 12px;
+    margin-bottom: 2px; 
   }
 }

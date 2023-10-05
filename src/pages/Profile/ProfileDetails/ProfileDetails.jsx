@@ -18,7 +18,7 @@ export const ProfileDetails = observer(() => {
     }
   }, [profileStore.isLoading, profileStore.profilSettings]);
 
-  const dateLastActive = new Date(profileStore.lastActive);
+  const dateLastActive = new Date(profileStore.lastActive * 1000);
 
   return (
     <div className="profil__detailsContainer">
