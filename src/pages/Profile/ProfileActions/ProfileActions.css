@@ -5,6 +5,8 @@
 
 .profil__friendsActionContainer {
   display: none;
+
+  text-align: left;
 }
 
 .profil__action {
@@ -18,13 +20,13 @@
   color: rgba(109, 145, 126, 1);
 }
 
-
 @media (max-width: 800px) {
   .profil__friendsActionContainer {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 0 0 20px;
     margin: 0;
     width: 45vw;
+    font-size: 12px;
   }
   .profil__actionContainer {
     display: inline-block;

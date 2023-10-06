@@ -47,3 +47,13 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 800px) {
+    .profilFriends__mainContainer {
+      text-align: left;
+      padding: 20px 20px 0 20px;
+    }
+    .profilFriends__followersContainer {
+      margin-bottom: 20px;
+    }
+  }
