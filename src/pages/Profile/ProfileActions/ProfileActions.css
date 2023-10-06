@@ -27,6 +27,7 @@
     margin: 0;
     width: 45vw;
     font-size: 12px;
+    cursor: pointer;
   }
   .profil__actionContainer {
     display: inline-block;

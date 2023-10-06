@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { Badge } from "antd";
 import { useTranslation } from "react-i18next";
@@ -9,13 +9,14 @@ import { ProfileFriends } from "../ProfileFriends/ProfileFriends";
 import "./ProfileActions.css";
 
 export const ProfileActions = observer(() => {
+  const [showProfileFriends, setShowProfileFriends] = useState(false);
   const { t } = useTranslation();
 
   return (
     <>
       <div
         className="profil__friendsActionContainer"
-        onClick={() => console.log("click")}
+        onClick={() => setShowProfileFriends(!showProfileFriends)}
       >
         <div>
           <Badge count={5} color="#8e9e95" /> {t("profile.friends")}
@@ -39,7 +40,7 @@ export const ProfileActions = observer(() => {
           {profileStore.firstName || "user"}
         </div>
       </div>
-      <ProfileFriends />
+      {showProfileFriends && <ProfileFriends />}
     </>
   );
 });
