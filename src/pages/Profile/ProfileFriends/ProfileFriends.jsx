@@ -81,27 +81,33 @@ export const ProfileFriends = observer(() => {
 
   return (
     <div className="profilFriends__mainContainer">
-      <div className="profilFriends__followersContainer">
-        <div className="profilFriends__followersTitle">
-          {t("profile.friends")} ({profileStore.friends.length})
-        </div>
-        {friendsFormatted}
-        {/*<div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
+      {!!profileStore.friends.length && (
+        <div className="profilFriends__followersContainer">
+          <div className="profilFriends__followersTitle">
+            {t("profile.friends")} ({profileStore.friends.length})
+          </div>
+          {friendsFormatted}
+          {/*<div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
           <div className="profilFriends__followersCounter"> +8</div>
         </div> */}
-      </div>
-      <div className="profilFriends__followersContainer">
-        <div className="profilFriends__followersTitle">
-          {t("profile.followers")} ({profileStore.followers.length})
         </div>
-        {friendsFollowers}
-      </div>
-      <div className="profilFriends__followersContainer">
-        <div className="profilFriends__followersTitle">
-          {t("profile.following")} ({profileStore.followed.length})
+      )}
+      {!!profileStore.followers.length && (
+        <div className="profilFriends__followersContainer">
+          <div className="profilFriends__followersTitle">
+            {t("profile.followers")} ({profileStore.followers.length})
+          </div>
+          {friendsFollowers}
         </div>
-        {friendsFollowed}
-      </div>
+      )}
+      {!!profileStore.followed.length && (
+        <div className="profilFriends__followersContainer">
+          <div className="profilFriends__followersTitle">
+            {t("profile.following")} ({profileStore.followed.length})
+          </div>
+          {friendsFollowed}
+        </div>
+      )}
     </div>
   );
 });
