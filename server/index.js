@@ -60,6 +60,7 @@ app.use('/user', require('./api/controller/userController'));
 app.use('/mail', require('./api/controller/mailController'));
 app.use('/upload', require('./api/controller/uploadController'));
 app.use('/picture', require('./api/controller/pictureController'));
+app.use('/social', require('./api/controller/socialController'));
 app.use('/healthcheck', require('./api/healthcheck'));
 
 // Start DB & use GraphQL
