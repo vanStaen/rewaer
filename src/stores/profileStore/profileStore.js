@@ -11,6 +11,8 @@ export class ProfileStore {
   lastName = null;
   gender = null;
   friends = null;
+  followers = null;
+  followed = null;
   items = null;
   looks = null;
   lastActive = null;
@@ -27,6 +29,8 @@ export class ProfileStore {
       lastName: observable,
       gender: observable,
       friends: observable,
+      followers: observable,
+      followed: observable,
       lastActive: observable,
       profilSettings: observable,
       items: observable,
@@ -40,6 +44,8 @@ export class ProfileStore {
       setLastName: action,
       setGender: action,
       setFriends: action,
+      setFollowers: action,
+      setFollowed: action,
       setLastActive: action,
       setProfilSettings: action,
       setLooks: action,
@@ -81,6 +87,14 @@ export class ProfileStore {
     this.friends = friends;
   };
 
+  setFollowers = (followers) => {
+    this.followers = followers;
+  };
+
+  setFollowed = (followed) => {
+    this.followed = followed;
+  };
+
   setLastActive = (lastActive) => {
     this.lastActive = lastActive;
   };
@@ -113,6 +127,8 @@ export class ProfileStore {
           this.setFirstName(profileData.firstName);
           this.setLastName(profileData.lastName);
           this.setFriends(profileData.friends);
+          this.setFollowers(profileData.followers);
+          this.setFollowed(profileData.followed);
           this.setGender(profileData.gender);
           this.setLooks(profileData.looks);
           this.setItems(profileData.items);

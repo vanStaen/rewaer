@@ -5,12 +5,16 @@ import { useTranslation } from "react-i18next";
 import { MailOutlined, UserAddOutlined, EyeOutlined } from "@ant-design/icons";
 
 import { profileStore } from "../../../stores/profileStore/profileStore";
+import { userStore } from "../../../stores/userStore/userStore";
 import { ProfileFriends } from "../ProfileFriends/ProfileFriends";
+
 import "./ProfileActions.css";
 
 export const ProfileActions = observer(() => {
   const [showProfileFriends, setShowProfileFriends] = useState(false);
   const { t } = useTranslation();
+
+  const thisIsMe = userStore.userName === profileStore.userName;
 
   return (
     <>
@@ -19,23 +23,34 @@ export const ProfileActions = observer(() => {
         onClick={() => setShowProfileFriends(!showProfileFriends)}
       >
         <div>
-          <Badge count={5} color="#8e9e95" /> {t("profile.friends")}
+          <Badge showZero count={profileStore.friends.length} color="#526d5f" />{" "}
+          {t("profile.friends")}
         </div>
         <div>
-          <Badge count={3} color="#92ad9e" /> {t("profile.followers")}
+          <Badge
+            showZero
+            count={profileStore.followers.length}
+            color="#7f9f8e"
+          />{" "}
+          {t("profile.followers")}
         </div>
         <div>
-          <Badge count={9} color="#a4baae" /> {t("profile.following")}
+          <Badge
+            showZero
+            count={profileStore.followed.length}
+            color="#b6c8bf"
+          />{" "}
+          {t("profile.following")}
         </div>
       </div>
       <div className="profil__actionContainer">
-        <div className="profil__action">
+        <div className={thisIsMe ? "profil__actionDisabled" : "profil__action"}>
           <MailOutlined /> {t("profile.sendMessage")}
         </div>
-        <div className="profil__action">
+        <div className={thisIsMe ? "profil__actionDisabled" : "profil__action"}>
           <UserAddOutlined /> {t("profile.sendFriendRequest")}
         </div>
-        <div className="profil__action">
+        <div className={thisIsMe ? "profil__actionDisabled" : "profil__action"}>
           <EyeOutlined /> {t("profile.follow")}{" "}
           {profileStore.firstName || "user"}
         </div>

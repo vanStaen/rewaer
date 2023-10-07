@@ -5,19 +5,30 @@
 
 .profil__friendsActionContainer {
   display: none;
-
   text-align: left;
 }
 
-.profil__action {
+.profil__action, .profil__actionDisabled {
   font-weight: 500;
   font-size: 12px;
-  margin-bottom: 7px; 
+  margin-bottom: 5px; 
+}
+
+.profil__action {
   cursor: pointer;
+}
+
+.profil__actionDisabled {
+  color: rgba(0, 0, 0, .1);
+  cursor: not-allowed;
 }
 
 .profil__action:hover {
   color: rgba(109, 145, 126, 1);
+}
+
+.profil__actionDisabled:hover {
+  text-decoration: line-through;
 }
 
 @media (max-width: 800px) {
@@ -35,7 +46,7 @@
     margin: 0;
     width: 55vw;
   }
-  .profil__action {
+  .profil__action, .profil__actionDisabled {
     font-size: 12px;
     margin-bottom: 2px; 
   }

@@ -14,7 +14,7 @@ export const ProfileFriends = observer(() => {
     <div className="profilFriends__mainContainer">
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
-          {t("profile.friends")} (5)
+          {t("profile.friends")} ({profileStore.friends.length})
         </div>
         <Tooltip title="ttlykke">
           <Link
@@ -63,7 +63,7 @@ export const ProfileFriends = observer(() => {
       </div>
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
-          {t("profile.followers")} (3)
+          {t("profile.followers")} ({profileStore.followers.length})
         </div>
         <div className="profilFriends__followersAvatar"></div>
         <div className="profilFriends__followersAvatar"></div>
@@ -71,7 +71,7 @@ export const ProfileFriends = observer(() => {
       </div>
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
-          {t("profile.following")} (9)
+          {t("profile.following")} ({profileStore.followed.length})
         </div>
         <div className="profilFriends__followersAvatar"></div>
         <div className="profilFriends__followersAvatar"></div>
