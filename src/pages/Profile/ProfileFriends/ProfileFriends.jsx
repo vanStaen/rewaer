@@ -10,78 +10,97 @@ import "./ProfileFriends.css";
 
 export const ProfileFriends = observer(() => {
   const { t } = useTranslation();
+
+  const friendsFormatted = profileStore.friends.map((friend) => {
+    return (
+      <Tooltip title={friend.userName}>
+        <Link
+          to={`/${friend.userName}`}
+          onClick={() => {
+            profileStore.fetchProfileData(friend.userName);
+          }}
+        >
+          <div
+            className="profilFriends__followersAvatar"
+            style={{
+              background: `url(${friend.avatar})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        </Link>
+      </Tooltip>
+    );
+  });
+
+  const friendsFollowers = profileStore.followers.map((follower) => {
+    return (
+      <Tooltip title={follower.userName}>
+        <Link
+          to={`/${follower.userName}`}
+          onClick={() => {
+            profileStore.fetchProfileData(follower.userName);
+          }}
+        >
+          <div
+            className="profilFriends__followersAvatar"
+            style={{
+              background: `url(${follower.avatar})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        </Link>
+      </Tooltip>
+    );
+  });
+  const friendsFollowed = profileStore.followed.map((followed) => {
+    return (
+      <Tooltip title={followed.userName}>
+        <Link
+          to={`/${followed.userName}`}
+          onClick={() => {
+            profileStore.fetchProfileData(followed.userName);
+          }}
+        >
+          <div
+            className="profilFriends__followersAvatar"
+            style={{
+              background: `url(${followed.avatar})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+        </Link>
+      </Tooltip>
+    );
+  });
+
   return (
     <div className="profilFriends__mainContainer">
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
           {t("profile.friends")} ({profileStore.friends.length})
         </div>
-        <Tooltip title="ttlykke">
-          <Link
-            to="/ttlykke"
-            onClick={() => {
-              profileStore.fetchProfileData("ttlykke");
-            }}
-          >
-            <div
-              className="profilFriends__followersAvatar"
-              style={{
-                background: `url("https://rewaer-static01.s3.eu-central-1.amazonaws.com/780633f0bea1fc82ad949d06a3be1811")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          title="clementvanstaen"
-          onClick={() => {
-            profileStore.fetchProfileData("clementvanstaen");
-          }}
-        >
-          <Link to="/clementvanstaen">
-            <div
-              className="profilFriends__followersAvatar"
-              style={{
-                background: `url("https://rewaer-static01.s3.eu-central-1.amazonaws.com/eecb1612b2940cf3476e5caaf06540bc")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-          </Link>
-        </Tooltip>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
+        {friendsFormatted}
+        {/*<div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
           <div className="profilFriends__followersCounter"> +8</div>
-        </div>
+        </div> */}
       </div>
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
           {t("profile.followers")} ({profileStore.followers.length})
         </div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
+        {friendsFollowers}
       </div>
       <div className="profilFriends__followersContainer">
         <div className="profilFriends__followersTitle">
           {t("profile.following")} ({profileStore.followed.length})
         </div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
-        <div className="profilFriends__followersAvatar"></div>
+        {friendsFollowed}
       </div>
     </div>
   );
