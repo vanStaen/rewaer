@@ -26,15 +26,22 @@ export const CustomMenuBar = observer((props) => {
   const { t } = useTranslation();
 
   const handlerShowSubMenu = () => {
-    document.getElementById("profile").style.display = "block";
+    document.getElementById("subMenu").style.display = "block";
+    document.getElementById("subMenuBackGround").style.display = "block";
   };
 
   const handlerHideSubMenu = () => {
-    document.getElementById("profile").style.display = "none";
+    document.getElementById("subMenu").style.display = "none";
+    document.getElementById("subMenuBackGround").style.display = "none";
   };
 
   return (
     <>
+      <div
+        className="customMenu__background"
+        onClick={handlerHideSubMenu}
+        id="subMenuBackGround"
+      ></div>
       <div className="customMenu__spacer"></div>
       <div className="customMenu__main">
         <span className="customMenu__RewaerMotto left">
@@ -160,7 +167,7 @@ export const CustomMenuBar = observer((props) => {
               size={36}
             />
           </Badge>
-          <div className="customSubMenu__container" id="profile">
+          <div className="customSubMenu__container" id="subMenu">
             {userStore.isLoading ? (
               <div key="spinner" disabled>
                 <Spin
