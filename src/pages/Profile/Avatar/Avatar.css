@@ -10,6 +10,10 @@
   background-size: cover;
 }
 
+.avatar__container {
+  text-align: right;
+}
+
 .avatar__avatarLoading {
   width: 200px;
   height: 200px;

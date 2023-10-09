@@ -8,8 +8,9 @@
 .profil__containerRight {
   display: inline-block;
   vertical-align: top;
-  width: 200px;
+  width: 220px;
   text-align: left;
+  margin-top: 30px;
 }
 
 .profil__containerRightMobile {
@@ -21,15 +22,17 @@
 .profil__containerCenter {
   display: inline-block;
   vertical-align: top;
-  width: calc(100vw - 200px - 200px);
+  width: calc(100vw - 440px);
   max-width: 1200px;
   text-align: left;
+  padding: 30px 30px;
 }
 
 .profil__containerLeft {
   display: inline-block;
   vertical-align: top;
-  width: 200px;
+  width: 220px;
+  margin-top: 30px;
 }
 
 .profil__containerCenterContent {
@@ -41,12 +44,15 @@
   .profil__containerLeft {
     display: block;
     width: 100vw;
+    margin-top: 0;
   }
   .profil__containerCenter {
     display: block;
     width: 100vw;
+    padding: 0;
   }
   .profil__containerRight {
     display: none;
+    margin-top: 0;
   }
 }
