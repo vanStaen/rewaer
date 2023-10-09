@@ -33,7 +33,6 @@ export const ProfileActions = observer(() => {
     ) < 0
       ? false
       : true;
-
   const { t } = useTranslation();
 
   const thisIsMe = userStore._id === profileStore._id;

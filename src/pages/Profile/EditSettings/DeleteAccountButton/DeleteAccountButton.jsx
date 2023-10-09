@@ -58,9 +58,9 @@ export const DeleteAccountButton = () => {
       >
         {t("profile.deleteAccount")}
       </Button>
-      {showAreYouSureButton && (
+      {!showAreYouSureButton && (
         <>
-          &nbsp; &nbsp;
+          <div className="deleteButtonSpacer"></div>
           <Button
             block
             className="deleteButton"

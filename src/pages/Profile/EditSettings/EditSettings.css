@@ -1,50 +1,24 @@
 .EditSettings__main {
   width: 100vw;
   height: auto;
-  font-size: 16px;
 }
 
 .EditSettings__container {
-  margin: 40px 4vw;
-  width: calc(100vw - 8vw);
-  text-align: center;
-}
-
-.EditSettings__containerRight {
-  display: inline-block;
-  vertical-align:top;
-  width: 50px;
-  /*border: 1px solid blue;*/
-  text-align: left;
-}
-
-.EditSettings__containerCenter {
-  display: inline-block;
-  vertical-align:top;
-  width: calc(100vw - 220px);
+  margin: 40px 8vw;
   max-width: 1200px;
-  /*border: 1px solid green;*/
   text-align: left;
-}
-
-.EditSettings__containerLeft {
-  display: inline-block;
   vertical-align:top;
-  width: 50px;
-  /*border: 1px solid red;*/
-  text-align: left;
+  font-size: 16px;
 }
-
 
 .EditSettings__title {
   font-size: 22px;
+  font-weight: 400;
   margin-bottom: 15px;
-
 }
+
 .EditSettings__singleSetting {
   font-size: 15px;
-  margin-bottom: 15px;
-
 }
 
 .EditSettings__singleSetting .EditSettings__link:hover {
@@ -53,4 +27,35 @@
 
 .EditSettings__singleSetting .EditSettings__link {
   color: #6C917D;
+}
+
+.EditSettings__Spacer {
+  margin-bottom: 15px;
+}
+
+.EditSettings__SpacerBeforeDivider {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 800px) {
+  .EditSettings__container {
+    margin: 10px 20px;
+    font-size: 16px;
+  }
+  .EditSettings__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .EditSettings__singleSetting {
+    font-size: 13px;
+    text-justify: inter-word;
+  }
+  .EditSettings__centerDiv {
+    width: 100%;
+    text-align: center;
+  }
+  .ant-divider-inner-text {
+    color: rgba(0, 0, 0, .25) !important;
+  }
 }
