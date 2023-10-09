@@ -20,13 +20,6 @@ import { postFollow } from "./postFollow";
 
 export const ProfileActions = observer(() => {
   const [showProfileFriends, setShowProfileFriends] = useState(false);
-  const [isFriend, setIsfriends] = useState(
-    userStore.friends.findIndex(
-      (friend) => parseInt(friend._id) === profileStore._id
-    ) < 0
-      ? false
-      : true
-  );
   const [isFollowed, setIsFollowed] = useState(
     userStore.followed.findIndex(
       (followed) => parseInt(followed._id) === profileStore._id
@@ -34,6 +27,13 @@ export const ProfileActions = observer(() => {
       ? false
       : true
   );
+  const isFriend =
+    userStore.friends.findIndex(
+      (friend) => parseInt(friend._id) === profileStore._id
+    ) < 0
+      ? false
+      : true;
+
   const { t } = useTranslation();
 
   const thisIsMe = userStore._id === profileStore._id;

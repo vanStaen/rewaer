@@ -17,6 +17,7 @@ import {
 
 import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
+import { profileStore } from "../../stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
 
 import "./CustomMenuBar.css";
@@ -174,6 +175,7 @@ export const CustomMenuBar = observer((props) => {
                     key="profile"
                     onClick={() => {
                       userStore.setMenuSelected("profile");
+                      profileStore.fetchProfileData(userStore.userName);
                     }}
                     className="customSubMenu__element"
                   >
@@ -182,13 +184,7 @@ export const CustomMenuBar = observer((props) => {
                   </div>
                 </Link>
                 <Link to="/editsettings/">
-                  <div
-                    key="settings"
-                    onClick={() => {
-                      userStore.setMenuSelected("profile");
-                    }}
-                    className="customSubMenu__element"
-                  >
+                  <div key="settings" className="customSubMenu__element">
                     <SettingOutlined style={{ marginRight: "10px" }} />
                     {t("menu.editSetting")}
                   </div>
