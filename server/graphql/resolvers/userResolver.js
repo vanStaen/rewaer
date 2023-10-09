@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
 const { Look } = require("../../models/Look");
+const { UsersFriends } = require("../../models/UsersFriends");
 
 exports.userResolver = {
   async getUser(args, req) {
@@ -12,7 +13,12 @@ exports.userResolver = {
     }
     return await User.findOne({
       where: { _id: req.userId },
-      include: [Item, Look, "friends", "followers", "followed"],
+      include: [
+        Item, 
+        Look, 
+        "friends",
+        "followers", 
+        "followed"],
     });
   },
 
@@ -73,7 +79,6 @@ exports.userResolver = {
             },
           },
         },
-        "friends",
         "followers",
         "followed",
       ],

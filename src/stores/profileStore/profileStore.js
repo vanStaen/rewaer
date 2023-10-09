@@ -5,14 +5,15 @@ import { getProfileInfo } from "./getProfileInfo";
 export class ProfileStore {
   isLoading = true;
   error = null;
+  _id = null;
   userName = null;
   avatar = null;
   firstName = null;
   lastName = null;
   gender = null;
-  friends = null;
-  followers = null;
-  followed = null;
+  friends = [];
+  followers = [];
+  followed = [];
   items = null;
   looks = null;
   lastActive = null;
@@ -23,6 +24,7 @@ export class ProfileStore {
     makeObservable(this, {
       isLoading: observable,
       error: observable,
+      _id: observable,
       userName: observable,
       avatar: observable,
       firstName: observable,
@@ -38,6 +40,7 @@ export class ProfileStore {
       filterIsPopingUp: observable,
       setIsLoading: action,
       setError: action,
+      set_id: action,
       setUserName: action,
       setAvatar: action,
       setFirstName: action,
@@ -61,6 +64,10 @@ export class ProfileStore {
 
   setError = (error) => {
     this.error = error;
+  };
+
+  set_id = (_id) => {
+    this._id = _id;
   };
 
   setUserName = (userName) => {
@@ -116,13 +123,16 @@ export class ProfileStore {
   };
 
 
-  fetchProfileData = async (userName) => {
+  fetchProfileData = async (userName, loader = true) => {
     try {
-      this.setIsLoading(true);
+      if (loader) {
+        this.setIsLoading(true)
+      };
       if (userName) {
         this.setUserName(userName);
         const profileData = await getProfileInfo(userName);
         if (profileData) {
+          this.set_id(parseInt(profileData._id));
           this.setAvatar(profileData.avatar);
           this.setFirstName(profileData.firstName);
           this.setLastName(profileData.lastName);

@@ -21,10 +21,12 @@ export const getUserInfo = async () => {
                 avatar,
               },
               followers {
+                _id,
                 userName,
                 avatar,
               },
               followed {
+                _id,
                 userName,
                 avatar,
               },

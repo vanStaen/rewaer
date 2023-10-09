@@ -5,19 +5,23 @@ export const getProfileInfo = async (username) => {
     query: `
         {
             getProfileByName (userName: "${username}"){
+              _id,
               firstName,
               lastName,
               avatar,
               gender,
               friends {
+                _id,
                 userName,
                 avatar,
               },
               followers {
+                _id,
                 userName,
                 avatar,
               },
               followed {
+                _id,
                 userName,
                 avatar,
               },

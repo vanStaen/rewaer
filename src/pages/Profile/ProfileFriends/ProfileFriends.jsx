@@ -56,6 +56,7 @@ export const ProfileFriends = observer(() => {
       </Tooltip>
     );
   });
+
   const friendsFollowed = profileStore.followed.map((followed) => {
     return (
       <Tooltip title={followed.userName}>

@@ -19,6 +19,8 @@ export class UserStore {
   language = null;
   gender = null;
   friends = [];
+  followers = [];
+  followed = [];
   lastActive = null;
   archived = null;
   usernameChange = null;
@@ -56,6 +58,8 @@ export class UserStore {
       setLanguage: action,
       setGender: action,
       setFriends: action,
+      setFollowers: action,
+      setFollowed: action,
       setLastActive: action,
       setArchived: action,
       setUsernameChange: action,
@@ -132,11 +136,17 @@ export class UserStore {
     this.menuSelected = menuSelected;
   };
 
+  setFollowers = (followers) => {
+    this.followers = followers;
+  };
+
+  setFollowed = (followed) => {
+    this.followed = followed;
+  };
+
   fetchUserData = async () => {
     try {
-
       const userData = await getUserInfo();
-
       if (userData) {
         this.set_id(parseInt(userData._id));
         this.setEmail(userData.email);
@@ -145,6 +155,8 @@ export class UserStore {
         this.setFirstName(userData.firstName);
         this.setLastName(userData.lastName);
         this.setFriends(userData.friends);
+        this.setFollowers(userData.followers);
+        this.setFollowed(userData.followed);
         this.setLastActive(userData.lastActive);
         this.setLanguage(userData.language);
         this.setGender(userData.gender);
