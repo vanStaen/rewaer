@@ -49,7 +49,7 @@
   .profil__containerCenter {
     display: block;
     width: 100vw;
-    padding: 0;
+    padding: 15px 0 0 0;
   }
   .profil__containerRight {
     display: none;

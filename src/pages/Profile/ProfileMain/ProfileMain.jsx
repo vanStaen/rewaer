@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import {
   CameraOutlined,
   SkinOutlined,
-  HistoryOutlined,
 } from "@ant-design/icons";
 
 import { ProfileItems } from "../ProfileItems/ProfileItems";
@@ -19,21 +18,6 @@ export const ProfileMain = observer((props) => {
   return (
     <>
       <div className="profil__subMenuContainer">
-        <div
-          className={`profil__subMenuItem ${
-            props.contentToDisplay === "wall" && "profil__subMenuItemSelected"
-          }`}
-          onClick={() => {
-            props.setContentToDisplay("wall");
-            profileStore.setFilterIsPopingUp(true);
-          }}
-        >
-          <HistoryOutlined />
-          <span className="profil__counter">
-            {profileStore.notification && profileStore.notifications.length}
-            Timeline
-          </span>
-        </div>
         <div
           className={`profil__subMenuItem ${
             props.contentToDisplay === "looks" && "profil__subMenuItemSelected"
