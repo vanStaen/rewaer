@@ -22,40 +22,34 @@ export const Notifications = () => {
 
   useEffect(() => {
     fetchNotifications();
+    //Fetch new notification every minutes
+    setTimeout(() => {
+      fetchNotifications();
+    }, 60000);
   }, []);
 
-  useEffect(() => {
-    console.log("notifications", notifications);
-  }, [notifications]);
-
   const notificationsFormated = notifications.map((notification) => {
-    const type = notification.type;
+    const { type, seen, title, createdAt, media_url } = notification;
 
     return (
-      <div>
+      <div className={seen ? "seen" : "new"}>
         <div
           style={{
             width: "50px",
             height: "50px",
-            background: `url(${notification.media_url})`,
+            background: `url(${media_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
         ></div>
-        {type === 1 && (
-          <div>{notification.title} sent you a friend request!</div>
-        )}
-        {type === 2 && <div>{notification.title} started following you!</div>}
-        {type === 3 && <div>You got mail from {notification.title}!</div>}
-        {type === 4 && (
-          <div>{notification.title} added a new item to the garderobe.</div>
-        )}
-        {type === 5 && (
-          <div>{notification.title} added a new look to the garderobe.</div>
-        )}
+        {type === 1 && <div>{title} sent you a friend request!</div>}
+        {type === 2 && <div>{title} started following you!</div>}
+        {type === 3 && <div>You got mail from {title}!</div>}
+        {type === 4 && <div>{title} added a new item to the garderobe.</div>}
+        {type === 5 && <div>{title} added a new look to the garderobe.</div>}
 
-        <div> createdAt : {notification.createdAt}</div>
+        <div> createdAt : {createdAt}</div>
       </div>
     );
   });
