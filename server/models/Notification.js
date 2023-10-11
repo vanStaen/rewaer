@@ -1,5 +1,4 @@
 const { sequelize, DataTypes } = require('../lib/sequelizedb');
-const { User } = require('./User');
 
 const Notification = sequelize.define("notification", {
   _id: {
@@ -39,7 +38,7 @@ const Notification = sequelize.define("notification", {
 });
 
 module.exports = {
-  Notification
+  Notification,
 };
 
 /*
@@ -48,7 +47,7 @@ types:
 1: Friend request
 2: New Follower
 3: New Messages
-4: New item from friendsfollowed
+4: New item from friends/followed
 5: New look from friend/followed
 6: Someone shared an item with you (theirs)
 7: Someone wants to share an item (yours)

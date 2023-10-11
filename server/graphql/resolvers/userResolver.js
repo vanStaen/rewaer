@@ -4,7 +4,6 @@ const { Op } = require("sequelize");
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
 const { Look } = require("../../models/Look");
-const { UsersFriends } = require("../../models/UsersFriends");
 
 exports.userResolver = {
   async getUser(args, req) {

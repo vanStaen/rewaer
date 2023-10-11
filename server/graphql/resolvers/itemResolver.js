@@ -1,7 +1,9 @@
 const bcrypt = require("bcryptjs");
 const AWS = require("aws-sdk");
+
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
+const { notificationService } = require("../../api/service/notificationService");
 
 // Define s3 bucket login info
 const s3 = new AWS.S3({
@@ -42,7 +44,13 @@ exports.itemResolver = {
         brand: args.itemInput.brand,
         userId: req.userId,
       });
-      return await item.save();
+      const newItem = await item.save();
+      await notificationService.createNotificationType4to7(
+        req.userId, 
+        args.itemInput.mediaUrlThumb, 
+        4,
+        newItem._id)
+      return newItem;
     } catch (err) {
       console.log(err);
     }
