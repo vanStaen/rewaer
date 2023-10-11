@@ -1,7 +1,9 @@
 const bcrypt = require("bcryptjs");
 const AWS = require("aws-sdk");
+
 const { User } = require("../../models/User");
 const { Look } = require("../../models/Look");
+const { notificationService } = require("../../api/service/notificationService");
 
 // Define s3 bucket login info
 const s3 = new AWS.S3({
@@ -38,7 +40,13 @@ exports.lookResolver = {
         private: args.lookInput.private,
         userId: req.userId,
       });
-      return await look.save();
+      const newLook = await look.save();
+      await notificationService.createNotificationType4to7(
+        req.userId, 
+        args.lookInput.mediaUrlThumb, 
+        5,
+        newLook._id)
+      return newLook;
     } catch (err) {
       console.log(err);
     }
@@ -80,6 +88,10 @@ exports.lookResolver = {
         returning: true,
         plain: true,
       });
+      //if look set to private, delete all notification about it
+      if (args.lookInput.private) {
+        await notificationService.deleteNotificationLook(args.lookId)
+      };
       // updatedLook[0]: number or row udpated
       // updatedLook[1]: rows updated
       return updatedLook[1];
@@ -118,6 +130,7 @@ exports.lookResolver = {
           _id: args.lookId,
         },
       });
+      await notificationService.deleteNotificationLook(args.lookId)
       return true;
     } catch (err) {
       return err;

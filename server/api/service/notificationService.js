@@ -1,5 +1,6 @@
 const { Notification } = require("../../models/Notification");
 const { User } = require("../../models/User");
+const { Op } = require("sequelize");
 
 exports.notificationService = {
 
@@ -40,4 +41,35 @@ exports.notificationService = {
       console.log(err);
     }
   },
+
+  async deleteNotificationItem(itemId) {
+    try {             
+      return await Notification.destroy({
+        where: {
+          action_data: itemId.toString(),
+          type: {
+            [Op.or]: [4, 6, 9, 10],
+          },
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async deleteNotificationLook(lookId) {
+    try {             
+      return await Notification.destroy({
+        where: {
+          action_data: lookId.toString(),
+          type: {
+            [Op.or]: [5],
+          },
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
 };

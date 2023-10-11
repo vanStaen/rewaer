@@ -97,6 +97,10 @@ exports.itemResolver = {
         returning: true,
         plain: true,
       });
+      //if item set to private, delete all notification about it
+      if (args.itemInput.private) {
+        await notificationService.deleteNotificationItem(args.itemId)
+      };
       // updatedItem[0]: number or row udpated
       // updatedItem[1]: rows updated
       return updatedItem[1];
@@ -135,6 +139,7 @@ exports.itemResolver = {
           _id: args.itemId,
         },
       });
+      await notificationService.deleteNotificationItem(args.itemId)
       return true;
     } catch (err) {
       return err;

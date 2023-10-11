@@ -52,4 +52,6 @@ types:
 6: Someone shared an item with you (theirs)
 7: Someone wants to share an item (yours)
 8: Someone made you a Look
+9: Someone has an Item for sale
+10: Someone has an Item to give away
 */
