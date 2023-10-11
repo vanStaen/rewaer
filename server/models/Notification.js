@@ -24,7 +24,7 @@ const Notification = sequelize.define("notification", {
     required: false,
   },
   action_data: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     required: false,
   },
   type: {

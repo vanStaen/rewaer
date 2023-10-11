@@ -1,4 +1,5 @@
 const { UsersFollowers } = require("../../models/UsersFollowers");
+const { notificationService } = require("./notificationService");
 
 exports.followerService = {
   async getFollower(userId) {
@@ -19,7 +20,9 @@ exports.followerService = {
         follower_id: follower,
         followed_id: followed,
       });
-      return await newFollow.save();
+      const newFollower = await newFollow.save();
+      await notificationService.createNotificationNewFollower(followed, follower);
+      return newFollower;
     } catch (err) {
       console.log(err);
     }

@@ -101,20 +101,22 @@ export const CustomMenuBar = observer((props) => {
           <span className="customMenu__elementName">{t("menu.mail")}</span>
         </div>
 
-        <div
-          key="notifications"
-          className={`notifications customMenu__elementDisabled left ${
-            userStore.menuSelected === "notifications" && "selected"
-          }`}
-          onClick={() => {
-            //userStore.setMenuSelected("notifications");
-          }}
-        >
-          <NotificationOutlined />
-          <span className="customMenu__elementName">
-            {t("menu.notifications")}
-          </span>
-        </div>
+        <Link to="/notifications">
+          <div
+            key="notifications"
+            className={`notifications customMenu__element left ${
+              userStore.menuSelected === "notifications" && "selected"
+            }`}
+            onClick={() => {
+              userStore.setMenuSelected("notifications");
+            }}
+          >
+            <NotificationOutlined />
+            <span className="customMenu__elementName">
+              {t("menu.notifications")}
+            </span>
+          </div>
+        </Link>
 
         <div
           key="search"

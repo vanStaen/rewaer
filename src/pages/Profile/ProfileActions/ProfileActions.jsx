@@ -38,7 +38,6 @@ export const ProfileActions = observer(() => {
   const thisIsMe = userStore._id === profileStore._id;
 
   const handleFollowClick = (action) => {
-    console.log("here", action);
     try {
       if (action === "follow") {
         postFollow(profileStore._id);

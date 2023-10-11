@@ -12,6 +12,35 @@ exports.notificationService = {
     }
   },
 
+  async getNotifications(userId) {
+    try {             
+      return await Notification.findAll({
+        where: { user_id: userId }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async createNotificationNewFollower(userId, followerId) {
+    try {
+      const follower = await User.findOne({
+        where: { _id: followerId }
+      });
+      const newNotification = new Notification({
+        user_id: userId,
+        media_url: follower.avatar,
+        title: follower.userName,
+        type: 2,
+        action_data: followerId
+      });
+      await newNotification.save();
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   async createNotificationType4to7(userId, mediaUrl, notificationType, actionData) {
     try {
       const user = await User.findOne({
@@ -28,7 +57,7 @@ exports.notificationService = {
       const listOfUniqueId = [...new Set(listOfFriendsAndFollowersId)];
       for (const id of listOfUniqueId) {
         const newNotification = new Notification({
-          user_id: id ,
+          user_id: id,
           media_url: mediaUrl,
           title: username,
           type: notificationType,
@@ -61,7 +90,7 @@ exports.notificationService = {
     try {             
       return await Notification.destroy({
         where: {
-          action_data: lookId.toString(),
+          action_data: lookId,
           type: {
             [Op.or]: [5],
           },
