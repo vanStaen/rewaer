@@ -6,7 +6,9 @@ exports.notificationService = {
 
   async getAllNotifications() {
     try {             
-      return await Notification.findAll();
+      return await Notification.findAll({
+        order: [['_id', 'DESC']]
+    });
     } catch (err) {
       console.log(err);
     }
@@ -15,6 +17,7 @@ exports.notificationService = {
   async getNotifications(userId) {
     try {             
       return await Notification.findAll({
+        order: [['_id', 'DESC']],
         where: { user_id: userId }
       });
     } catch (err) {
