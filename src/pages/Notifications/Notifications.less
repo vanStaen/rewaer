@@ -3,6 +3,12 @@
 
   .notifications__notification {
     margin-bottom: 20px;
+    background-color: rgba(#edf1ef, .5);
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(#edf1ef, .75);
+    }
 
     .notifications__leftSide {
       display: inline-block;
@@ -12,10 +18,12 @@
     }    
 
     .notifications__rightSide {
+      border-top: 1px solid rgba(0,0,0,.1);  
+      width: calc(100% - 50px);
       display: inline-block;
       vertical-align: top;
-      margin-left: 10px;
-      //border: 1px solid red;
+      padding-left: 10px;
+      padding-right: 10px;
 
       .notifications__date {
         font-size: 12px;
