@@ -34,6 +34,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/seen", async (req, res) => {
+  if (!req.isAuth) {1
+    throw new Error("Unauthorized!");
+  }
+  try {
+    await notificationService.markNotificationsAsSeen(req.userId);
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
 
 
 module.exports = router;

@@ -71,11 +71,25 @@ exports.notificationService = {
     }
   },
 
+  async markNotificationsAsSeen(userId){
+    try {             
+      return await Notification.update(
+      { seen: true }, 
+      {
+        where: {
+          user_id: userId,
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   async deleteNotificationItem(itemId) {
     try {             
       return await Notification.destroy({
         where: {
-          action_data: itemId.toString(),
+          action_data: itemId,
           type: {
             [Op.or]: [4, 6, 9, 10],
           },

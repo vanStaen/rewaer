@@ -54,4 +54,5 @@ types:
 8: Someone made you a Look
 9: Someone has an Item for sale
 10: Someone has an Item to give away
+10: Someone used your Item in a Look
 */

@@ -39,13 +39,13 @@ export const MenuBar = observer((props) => {
   return (
     <>
       <div
-        className="customMenu__background"
+        className="menu__background"
         onClick={handlerHideSubMenu}
         id="subMenuBackGround"
       ></div>
-      <div className="customMenu__spacer"></div>
-      <div className="customMenu__main">
-        <span className="customMenu__RewaerMotto left">
+      <div className="menu__spacer"></div>
+      <div className="menu__main">
+        <span className="menu__RewaerMotto left">
           Rewaer, {t("main.motto")}
         </span>
 
@@ -54,18 +54,14 @@ export const MenuBar = observer((props) => {
             key="looks"
             className={`left 
             ${userStore.menuSelected === "looks" && "selected"}
-            ${
-              props.visitor
-                ? "customMenu__elementDisabled"
-                : "customMenu__element"
-            }`}
+            ${props.visitor ? "menu__elementDisabled" : "menu__element"}`}
             onClick={() => {
               !props.visitor && userStore.setMenuSelected("looks");
             }}
             style={{ float: "left" }}
           >
             <CameraOutlined />
-            <span className="customMenu__elementName">{t("menu.looks")}</span>
+            <span className="menu__elementName">{t("menu.looks")}</span>
           </div>
         </Link>
 
@@ -74,24 +70,20 @@ export const MenuBar = observer((props) => {
             key="items"
             className={`left 
             ${userStore.menuSelected === "items" && "selected"}
-            ${
-              props.visitor
-                ? "customMenu__elementDisabled"
-                : "customMenu__element"
-            }`}
+            ${props.visitor ? "menu__elementDisabled" : "menu__element"}`}
             onClick={() => {
               !props.visitor && userStore.setMenuSelected("items");
             }}
             style={{ float: "left" }}
           >
             <SkinOutlined />
-            <span className="customMenu__elementName">{t("menu.items")}</span>
+            <span className="menu__elementName">{t("menu.items")}</span>
           </div>
         </Link>
 
         <div
           key="mail"
-          className={`customMenu__elementDisabled left ${
+          className={`menu__elementDisabled left ${
             userStore.menuSelected === "mail" && "selected"
           }`}
           onClick={() => {
@@ -99,13 +91,13 @@ export const MenuBar = observer((props) => {
           }}
         >
           <MailOutlined />
-          <span className="customMenu__elementName">{t("menu.mail")}</span>
+          <span className="menu__elementName">{t("menu.mail")}</span>
         </div>
 
         <Link to="/notifications">
           <div
             key="notifications"
-            className={`notifications customMenu__element left ${
+            className={`notifications menu__element left ${
               userStore.menuSelected === "notifications" && "selected"
             }`}
             onClick={() => {
@@ -118,7 +110,7 @@ export const MenuBar = observer((props) => {
               count={pageStore.unseenNotificationsCount}
               offset={[5, 0]}
             >
-              <span className="customMenu__elementName">
+              <span className="menu__elementNameWithBadge">
                 {t("menu.notifications")}
               </span>
             </Badge>
@@ -127,7 +119,7 @@ export const MenuBar = observer((props) => {
 
         <div
           key="search"
-          className={`customMenu__elementDisabled left ${
+          className={`menu__elementDisabled left ${
             userStore.menuSelected === "search" && "selected"
           }`}
           onClick={() => {
@@ -135,13 +127,13 @@ export const MenuBar = observer((props) => {
           }}
         >
           <SearchOutlined />
-          <span className="customMenu__elementName">{t("menu.search")}</span>
+          <span className="menu__elementName">{t("menu.search")}</span>
         </div>
 
         <Link to="/info">
           <div
             key="info"
-            className={`info customMenu__element left ${
+            className={`info menu__element left ${
               userStore.menuSelected === "info" && "selected"
             }`}
             onClick={() => {
@@ -154,7 +146,7 @@ export const MenuBar = observer((props) => {
 
         <div
           key="profile"
-          className={`customMenu__element right ${
+          className={`menu__element right ${
             userStore.menuSelected === "profile" && "selected"
           }`}
           onMouseEnter={handlerShowSubMenu}
@@ -203,7 +195,7 @@ export const MenuBar = observer((props) => {
                     {t("menu.editSetting")}
                   </div>
                 </Link>
-                <div className="customMenu__customDivider"></div>
+                <div className="menu__customDivider"></div>
 
                 <div key="logout" onClick={authStore.logout}>
                   <AddToHomeScreen />

@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 
 import { pageStore } from "../../stores/pageStore/pageStore";
+import { postNotificationsSeen } from "./postNotificationsSeen";
 
 import "./Notifications.css";
 
 export const Notifications = observer(() => {
+  useEffect(() => {
+    postNotificationsSeen();
+    pageStore.setUnseenNotificationsCount(0);
+  }, []);
+
   const notificationsFormated = pageStore.notifications.map((notification) => {
     const { type, seen, title, createdAt, media_url } = notification;
     return (
