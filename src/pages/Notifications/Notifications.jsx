@@ -1,36 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react";
+
+import { pageStore } from "../../stores/pageStore/pageStore";
 
 import "./Notifications.css";
-import { getNotifications } from "./getNotifications";
 
-export const Notifications = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [notifications, setNotifications] = useState([]);
-
-  const fetchNotifications = async () => {
-    setIsLoading(true);
-    try {
-      const result = await getNotifications();
-      setNotifications(result);
-    } catch (e) {
-      console.log("error", e);
-      setIsError(true);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchNotifications();
-    //Fetch new notification every minutes
-    setTimeout(() => {
-      fetchNotifications();
-    }, 60000);
-  }, []);
-
-  const notificationsFormated = notifications.map((notification) => {
+export const Notifications = observer(() => {
+  const notificationsFormated = pageStore.notifications.map((notification) => {
     const { type, seen, title, createdAt, media_url } = notification;
-
     return (
       <div className={seen ? "seen" : "new"}>
         <div
@@ -56,7 +33,9 @@ export const Notifications = () => {
 
   return (
     <div className="notifications__container">
-      {isError ? "Error" : isLoading ? "Loading" : notificationsFormated}
+      {pageStore.notifications.length === 0
+        ? "nothing here yet"
+        : notificationsFormated}
     </div>
   );
-};
+});

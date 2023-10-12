@@ -17,12 +17,13 @@ import {
 
 import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";
+import { pageStore } from "../../stores/pageStore/pageStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
 
-import "./CustomMenuBar.css";
+import "./MenuBar.css";
 
-export const CustomMenuBar = observer((props) => {
+export const MenuBar = observer((props) => {
   const { t } = useTranslation();
 
   const handlerShowSubMenu = () => {
@@ -53,10 +54,11 @@ export const CustomMenuBar = observer((props) => {
             key="looks"
             className={`left 
             ${userStore.menuSelected === "looks" && "selected"}
-            ${props.visitor
+            ${
+              props.visitor
                 ? "customMenu__elementDisabled"
                 : "customMenu__element"
-              }`}
+            }`}
             onClick={() => {
               !props.visitor && userStore.setMenuSelected("looks");
             }}
@@ -72,10 +74,11 @@ export const CustomMenuBar = observer((props) => {
             key="items"
             className={`left 
             ${userStore.menuSelected === "items" && "selected"}
-            ${props.visitor
+            ${
+              props.visitor
                 ? "customMenu__elementDisabled"
                 : "customMenu__element"
-              }`}
+            }`}
             onClick={() => {
               !props.visitor && userStore.setMenuSelected("items");
             }}
@@ -88,8 +91,9 @@ export const CustomMenuBar = observer((props) => {
 
         <div
           key="mail"
-          className={`customMenu__elementDisabled left ${userStore.menuSelected === "mail" && "selected"
-            }`}
+          className={`customMenu__elementDisabled left ${
+            userStore.menuSelected === "mail" && "selected"
+          }`}
           onClick={() => {
             //userStore.setMenuSelected("mail");
           }}
@@ -98,30 +102,34 @@ export const CustomMenuBar = observer((props) => {
           <span className="customMenu__elementName">{t("menu.mail")}</span>
         </div>
 
-
-
         <Link to="/notifications">
           <div
             key="notifications"
-            className={`notifications customMenu__element left ${userStore.menuSelected === "notifications" && "selected"
-              }`}
+            className={`notifications customMenu__element left ${
+              userStore.menuSelected === "notifications" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("notifications");
             }}
           >
             <NotificationOutlined />
-            <Badge dot count={userStore.isLoading ? 0 : 0} offset={[5, 0]}>
+            <Badge
+              dot
+              count={pageStore.unseenNotificationsCount}
+              offset={[5, 0]}
+            >
               <span className="customMenu__elementName">
                 {t("menu.notifications")}
               </span>
             </Badge>
           </div>
-        </Link >
+        </Link>
 
         <div
           key="search"
-          className={`customMenu__elementDisabled left ${userStore.menuSelected === "search" && "selected"
-            }`}
+          className={`customMenu__elementDisabled left ${
+            userStore.menuSelected === "search" && "selected"
+          }`}
           onClick={() => {
             //userStore.setMenuSelected("search");
           }}
@@ -133,8 +141,9 @@ export const CustomMenuBar = observer((props) => {
         <Link to="/info">
           <div
             key="info"
-            className={`info customMenu__element left ${userStore.menuSelected === "info" && "selected"
-              }`}
+            className={`info customMenu__element left ${
+              userStore.menuSelected === "info" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("info");
             }}
@@ -145,8 +154,9 @@ export const CustomMenuBar = observer((props) => {
 
         <div
           key="profile"
-          className={`customMenu__element right ${userStore.menuSelected === "profile" && "selected"
-            }`}
+          className={`customMenu__element right ${
+            userStore.menuSelected === "profile" && "selected"
+          }`}
           onMouseEnter={handlerShowSubMenu}
           onMouseLeave={handlerHideSubMenu}
         >
@@ -213,7 +223,7 @@ export const CustomMenuBar = observer((props) => {
             )}
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 });

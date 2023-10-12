@@ -1,4 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
+import { getNotifications } from "./getNotifications";
 
 export class PageStore {
   showFloatingUploadForm = null;
@@ -9,6 +10,7 @@ export class PageStore {
   showFilter = false;
   notifications = [];
   messages = [];
+  unseenNotificationsCount = 0;
 
   constructor() {
     makeObservable(this, {
@@ -28,6 +30,8 @@ export class PageStore {
       setNotifications: action,
       messages: observable,
       setMessages: action,
+      unseenNotificationsCount: observable,
+      setUnseenNotificationsCount: action,
     });
   }
 
@@ -54,6 +58,30 @@ export class PageStore {
   setShowFilter = (showFilter) => {
     this.showFilter = showFilter;
   };
+
+  setNotifications = (notifications) => {
+    this.notifications = notifications;
+  };
+
+  setMessages = (messages) => {
+    this.messages = messages;
+  };
+
+  setUnseenNotificationsCount = (unseenNotificationsCount) => {
+    this.unseenNotificationsCount = unseenNotificationsCount;
+  };
+
+  fetchNotifications = async () => {
+    try {
+      const result = await getNotifications();
+      this.setNotifications(result);
+      const unSeenCount = result.filter(notif => notif.seen === false).length;
+      this.setUnseenNotificationsCount(unSeenCount);
+    } catch (e) {
+      console.log("error loading notification: ", e);
+    }
+  };
+
 }
 
 export const pageStore = new PageStore();

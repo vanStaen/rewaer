@@ -12,7 +12,7 @@ import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
 import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
 import { ProfileMain } from "./ProfileMain/ProfileMain";
-import { CustomMenuBar } from "../../components/CustomMenuBar/CustomMenuBar";
+import { MenuBar } from "../../components/MenuBar/MenuBar";
 
 import "./Profile.css";
 
@@ -34,7 +34,7 @@ export const Profile = observer(() => {
 
   return (
     <>
-      {!authStore.hasAccess && <CustomMenuBar visitor={true} />}
+      {!authStore.hasAccess && <MenuBar visitor={true} />}
       <div className="profil__main">
         {profileStore.isLoading ? (
           <div className="spinner">

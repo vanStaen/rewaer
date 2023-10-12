@@ -15,7 +15,7 @@ import { authStore } from "./stores/authStore/authStore";
 import { userStore } from "./stores/userStore/userStore";
 import { pageStore } from "./stores/pageStore/pageStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
-import { CustomMenuBar } from "./components/CustomMenuBar/CustomMenuBar";
+import { MenuBar } from "./components/MenuBar/MenuBar";
 import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
 import { Footer } from "./components/Footer/Footer";
@@ -41,6 +41,15 @@ const App = observer(() => {
   useEffect(() => {
     userStore.fetchUserData();
   }, [authStore.hasAccess]);
+
+  useEffect(() => {
+    pageStore.fetchNotifications();
+    //Fetch new notification every minutes
+    setTimeout(() => {
+      pageStore.fetchNotifications();
+      console.log("Notifications were fetched again!");
+    }, 60000);
+  }, []);
 
   const resetWindowInners = () => {
     pageStore.setWindowInnerHeight(window.innerHeight);
@@ -90,7 +99,7 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <div className="App">
-        {authStore.hasAccess && <CustomMenuBar visitor={false} />}
+        {authStore.hasAccess && <MenuBar visitor={false} />}
         <Routes>
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
