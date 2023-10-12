@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { notificationService } = require("../service/notificationService");
 
-/* get all notification (Debugging)
+/* get all notification (Debugging)*/
 router.get("/all", async (req, res) => {
   try {
     const notifications = await notificationService.getAllNotifications();
@@ -13,7 +13,7 @@ router.get("/all", async (req, res) => {
       error: `${err}`,
     });
   }
-}); */
+});
 
 router.get("/", async (req, res) => {
   if (!req.isAuth) {
@@ -32,7 +32,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/seen", async (req, res) => {
-  if (!req.isAuth) {1
+  if (!req.isAuth) {
+    1
     throw new Error("Unauthorized!");
   }
   try {
