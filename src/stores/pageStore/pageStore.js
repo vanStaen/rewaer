@@ -1,8 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 
 export class PageStore {
-  showFloatingForm = null;
-  showOnlyFloatingForm = null;
+  showFloatingUploadForm = null;
+  showOnlyFloatingUploadForm = null;
   windowInnerHeight = null;
   windowInnerWidth = null;
   quickEdit = false;
@@ -10,10 +10,10 @@ export class PageStore {
 
   constructor() {
     makeObservable(this, {
-      showFloatingForm: observable,
-      setShowFloatingForm: action,
-      showOnlyFloatingForm: observable,
-      setShowOnlyFloatingForm: action,
+      showFloatingUploadForm: observable,
+      setShowFloatingUploadForm: action,
+      showOnlyFloatingUploadForm: observable,
+      setShowOnlyFloatingUploadForm: action,
       windowInnerHeight: observable,
       setWindowInnerHeight: action,
       windowInnerWidth: observable,
@@ -25,12 +25,12 @@ export class PageStore {
     });
   }
 
-  setShowFloatingForm = (showFloatingForm) => {
-    this.showFloatingForm = showFloatingForm;
+  setShowFloatingUploadForm = (showFloatingUploadForm) => {
+    this.showFloatingUploadForm = showFloatingUploadForm;
   };
 
-  setShowOnlyFloatingForm = (showOnlyFloatingForm) => {
-    this.showOnlyFloatingForm = showOnlyFloatingForm;
+  setShowOnlyFloatingUploadForm = (showOnlyFloatingUploadForm) => {
+    this.showOnlyFloatingUploadForm = showOnlyFloatingUploadForm;
   };
 
   setWindowInnerHeight = (windowInnerHeight) => {

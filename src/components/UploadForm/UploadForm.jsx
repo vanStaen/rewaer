@@ -33,12 +33,12 @@ export const UploadForm = observer((props) => {
   };
 
   const scrollhandler = () => {
-    if (!pageStore.showOnlyFloatingForm) {
+    if (!pageStore.showOnlyFloatingUploadForm) {
       const elementForm = document.getElementById("upload-form");
       if (!isElementVisible(elementForm)) {
-        pageStore.setShowFloatingForm(true);
+        pageStore.setShowFloatingUploadForm(true);
       } else {
-        pageStore.setShowFloatingForm(false);
+        pageStore.setShowFloatingUploadForm(false);
       }
     }
   };
@@ -147,15 +147,15 @@ export const UploadForm = observer((props) => {
   };
 
   useEffect(() => {
-    if (pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) {
+    if (pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm) {
       const element = document.getElementById("upload-floating-form");
       element.style.opacity = ".8";
     }
-  }, [pageStore.showFloatingForm, pageStore.showOnlyFloatingForm]);
+  }, [pageStore.showFloatingUploadForm, pageStore.showOnlyFloatingUploadForm]);
 
   return (
     <>
-      {(pageStore.showFloatingForm || pageStore.showOnlyFloatingForm) && (
+      {(pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm) && (
         <div className="upload-floating-form" id="upload-floating-form">
           <form onSubmit={submitHandler}>
             <input
@@ -194,7 +194,7 @@ export const UploadForm = observer((props) => {
           </form>
         </div>
       )}
-      {!pageStore.showOnlyFloatingForm && (
+      {!pageStore.showOnlyFloatingUploadForm && (
         <div>
           <form
             onSubmit={submitHandler}

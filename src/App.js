@@ -45,14 +45,14 @@ const App = observer(() => {
   const resetWindowInners = () => {
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
+    pageStore.setShowOnlyFloatingUploadForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
   };
 
   useEffect(() => {
     //initialize variables
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
+    pageStore.setShowOnlyFloatingUploadForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
     //Event listener
     window.addEventListener("resize", resetWindowInners);
     return () => {
