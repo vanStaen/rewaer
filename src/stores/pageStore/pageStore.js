@@ -7,6 +7,8 @@ export class PageStore {
   windowInnerWidth = null;
   quickEdit = false;
   showFilter = false;
+  notifications = [];
+  messages = [];
 
   constructor() {
     makeObservable(this, {
@@ -22,6 +24,10 @@ export class PageStore {
       setQuickEdit: action,
       showFilter: observable,
       setShowFilter: action,
+      notifications: observable,
+      setNotifications: action,
+      messages: observable,
+      setMessages: action,
     });
   }
 
