@@ -112,10 +112,9 @@
 
 /* Small screens */
 @media (max-width: 1024px) {
-  .menu__RewaerMotto {
-    display: none;
-  }
-  .menu__elementName {
+  .menu__RewaerMotto,
+  .menu__elementName, 
+  .menu__elementNameWithBadge  {
     display: none;
   }
 }

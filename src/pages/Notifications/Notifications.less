@@ -7,13 +7,14 @@
     .notifications__leftSide {
       display: inline-block;
       vertical-align: top;
+      width: 50px;
+      height: 50px;
     }    
 
     .notifications__rightSide {
       display: inline-block;
       vertical-align: top;
       margin-left: 10px;
-      margin-top: 3px;
       //border: 1px solid red;
 
       .notifications__date {
@@ -23,4 +24,17 @@
     }
 
   }  
+}
+
+
+@media (max-width: 800px) {
+  .notifications__container {
+    margin: 15px 15px;
+    .notifications__notification {
+      .notifications__rightSide {
+        display: inline-block;
+        width: calc(100% - 60px);
+      }    
+    }
+  }
 }

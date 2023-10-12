@@ -19,8 +19,6 @@ export const Notifications = observer(() => {
         <div
           className="notifications__leftSide"
           style={{
-            width: "50px",
-            height: "50px",
             background: `url(${media_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -28,11 +26,13 @@ export const Notifications = observer(() => {
           }}
         ></div>
         <div className="notifications__rightSide">
-          {type === 1 && <div>{title} sent you a friend request!</div>}
-          {type === 2 && <div>{title} started following you!</div>}
-          {type === 3 && <div>You got mail from {title}!</div>}
-          {type === 4 && <div>{title} added a new item to the garderobe.</div>}
-          {type === 5 && <div>{title} added a new look to the garderobe.</div>}
+          <div className="notification__title">
+            {type === 1 && `${title} sent you a friend request!`}
+            {type === 2 && `${title} started following you!`}
+            {type === 3 && `You got mail from ${title}!`}
+            {type === 4 && `${title} added a new item to the garderobe`}
+            {type === 5 && `${title} added a new look to the garderobe`}
+          </div>
           <div className="notifications__date"> {createdAt}</div>
         </div>
       </div>
