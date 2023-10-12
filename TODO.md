@@ -26,14 +26,14 @@
   - [ ] Brand autocomplete
   - [ ] Color multiselect
 - [ ] Profile:
-  - [ ] Profile is responsive
+  - [x] Profile is responsive
   - [x] UX: Center column with Max width
   - [x] Subpage with headers showing Looks and Items
-    - [ ] simplified version of cards, with comment and liking function
+    - [ ] simplified version of cards with comment and liking function
     - [ ] Friend can propose Look name
     - [x] ofc, private item/look are hidden
     - [ ] Zoomed modus, focus on one look/item
-- [ ] when scrolled down, show floating add items button
+- [x] when scrolled down, show floating add items button
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
   - [ ] Banner calling for action
@@ -42,7 +42,7 @@
 - [ ] Redo info page,
   - [ ] include https://wearme30times.com/
   - [ ] fashion revolution
-- [ ] When archinving
+- [ ] When archiving
   - [ ] Add a undo feature in the notification
   - [ ] Add a delete feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
@@ -56,31 +56,22 @@
   - [x] Use right language
   - [ ] Implement Multiselect
   - [x] Implement disabled
-  - [ ] Implement space holder as props
+  - [x] Implement space holder as props
   - [x] Implement info/tooltip as props
 - [ ] Add friends feature
+- [ ] Get only friends in getUser which are not pending
+  - [ ] Create extra Endpoint for friends
+  - [ ] Stop fetching those in the GraphQL
 - [ ] Settings: friends who are allowed to see you private stuff
-- [ ] Follow someone feature
-- [ ] Tips in setting page?
-  - [ ] ~Use backspace to return to main view~
-  - [ ] use Arrow to naviguate through items/Looks
 - [ ] Title editable : Input vs ContentEditable
 - [ ] <ExclamationCircleOutlined /> on items not fully taged
 - [ ] Make nice Footer to make it look pro
-- [ ] Get only friends in getUser which are not pending
-- [ ] Create resolver for UserFriends (to manage pending requests)
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Implement the search function to find
   - [ ] Friends (Settings make not findable)
   - [ ] Looks (Settings: make not findable)
   - [ ] Items (Settings: make not findable)
-- [ ] Make site responsive!
-  - [x] Login + Pwd Recover
-  - [x] SignUp + Email Check
-  - [x] MenuBar
-  - [ ] Profil
-  - [x] Looks
-  - [x] Items
+  - [ ] Messager feature
 - [ ] Service Worker
   - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
   - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
@@ -224,3 +215,14 @@
 - [x] Navigation with Arrows in item/look -detailview
 - [x] Include a manifest to use Page as an App
 - [x] refactor project to have only one package.json
+- [x] Follow someone feature
+- [x] use Arrow to naviguate through items/Looks
+    - [x] On mobil, use swipe
+- [x] Make site responsive!
+  - [x] Login + Pwd Recover
+  - [x] SignUp + Email Check
+  - [x] MenuBar
+  - [x] Profil
+  - [x] Looks
+  - [x] Items
+- [x] Create resolver for UserFriends (to manage pending requests)
