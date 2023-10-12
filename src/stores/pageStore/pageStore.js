@@ -73,7 +73,6 @@ export class PageStore {
 
   fetchNotifications = async () => {
     try {
-      console.log("Fetching Notifications");
       const result = await getNotifications();
       this.setNotifications(result);
       const unSeenCount = result.filter(notif => notif.seen === false).length;
