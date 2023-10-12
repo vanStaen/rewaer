@@ -44,11 +44,8 @@ const App = observer(() => {
 
   useEffect(() => {
     pageStore.fetchNotifications();
-    //Fetch new notification every minutes
-    setTimeout(() => {
-      pageStore.fetchNotifications();
-      console.log("Notifications were fetched again!");
-    }, 60000);
+    //Fetch new notification every minute
+    setInterval(pageStore.fetchNotifications, 60000);
   }, []);
 
   const resetWindowInners = () => {
