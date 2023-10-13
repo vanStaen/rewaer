@@ -123,7 +123,7 @@ exports.notificationService = {
       return await Notification.destroy({
         where: {
           _id: notificationId,
-          userId: userId,
+          user_id: userId,
         }
       });
     } catch (err) {

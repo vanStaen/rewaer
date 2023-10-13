@@ -1,5 +1,8 @@
 .notifications__container {
-  margin: 20px 40px 40px 40px;
+  position: relative;
+  margin: 30px 40px 40px 40px;
+  width: 100%;
+  max-width: 800px;
 
   .new {
     background-color: rgba(#edf1ef, .5);
@@ -9,7 +12,7 @@
   } 
 
   .seen {
-    opacity: .75;
+    opacity: .5;
     color: white;
     background-color: rgba(#7f9f8e, .5);
     &:hover {
@@ -18,8 +21,11 @@
   } 
 
   .notifications__notification {
-    margin-bottom: 20px;
+    position: relative;
     display: flex;  
+    left: 0;
+    margin-bottom: 20px;
+    transition: .3s left;
     cursor: pointer;
 
     .notifications__leftSide {
@@ -33,7 +39,7 @@
       border-top: 1px solid rgba(0,0,0,.05); 
       border-bottom: 1px solid rgba(0,0,0,.05); 
       border-right: 1px solid rgba(0,0,0,.05); 
-      width: calc(100% - 50px);
+      width: calc(100% - 40px);
       display: inline-block;
       vertical-align: top;
       padding-left: 10px;
@@ -44,19 +50,38 @@
         color: rgba(0, 0, 0, .5)
       }
     }
+  } 
+  
+  .closeDelete {
+    display: block;
+    position: relative;
+    z-index: 5;
+    top: 3px;
+    right: 7px;
+    font-size: 17px;
+    &:hover {
+      color: black;
+    }
+  }
 
-  }  
+  .notification__nothing {
+    text-align: center;
+    color: rgba(0, 0, 0, .25);
+  }
 }
-
 
 @media (max-width: 800px) {
   .notifications__container {
     margin: 15px 15px;
+    width: calc(100% - 30px);
     .notifications__notification {
       .notifications__rightSide {
         display: inline-block;
         width: calc(100% - 50px);
       }    
+    }
+    .closeDelete {
+      display: none;
     }
   }
 }
