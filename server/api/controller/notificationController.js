@@ -17,6 +17,9 @@ router.get("/all", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     const notifications = await notificationService.getNotifications(req.userId);
     res.status(200).json({
       notifications: notifications,
@@ -29,10 +32,10 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/seen", async (req, res) => {
-  if (!req.isAuth) {
-    throw new Error("Unauthorized!");
-  }
   try {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
     await notificationService.markNotificationsAsSeen(req.userId);
     res.status(200).json({
       success: true,
@@ -46,7 +49,10 @@ router.post("/seen", async (req, res) => {
 
 router.delete("/", async (req, res) => {
   try {
-    const notifications = await notificationService.deleteNotification(req.body.id, req.userId);
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const notifications = await notificationService.deleteNotification(req.body.id,);
     res.status(200).json({
       notifications: notifications,
     });
