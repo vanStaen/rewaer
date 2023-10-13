@@ -52,7 +52,7 @@ router.delete("/", async (req, res) => {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const notifications = await notificationService.deleteNotification(req.body.id,);
+    const notifications = await notificationService.deleteNotification(req.body.id, req.userId);
     res.status(200).json({
       notifications: notifications,
     });
