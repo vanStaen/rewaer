@@ -5,18 +5,17 @@
   max-width: 800px;
 
   .new {
-    background-color: rgba(#edf1ef, .5);
+    background-color: rgb(246, 248, 247);
     &:hover {
-      background-color: rgba(#edf1ef, 1);
+      background-color: rgb(238, 241, 239);
     }
   } 
 
   .seen {
-    opacity: .5;
     color: white;
-    background-color: rgba(#7f9f8e, .5);
+    background-color: rgb(224, 230, 227);
     &:hover {
-      background-color: rgba(#7f9f8e, .75);
+      background-color: rgb(209, 218, 212)
     }
   } 
 
@@ -32,18 +31,15 @@
       display: inline-block;
       vertical-align: top;
       width: 50px;
+      min-height: 50px;
       align-items: stretch;
     }    
 
     .notifications__rightSide {
-      border-top: 1px solid rgba(0,0,0,.05); 
-      border-bottom: 1px solid rgba(0,0,0,.05); 
-      border-right: 1px solid rgba(0,0,0,.05); 
-      width: calc(100% - 40px);
+      width: 100%;
       display: inline-block;
       vertical-align: top;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding: 2px 10px 5px 10px;
 
       .notifications__date {
         font-size: 12px;
@@ -59,6 +55,7 @@
     top: 3px;
     right: 7px;
     font-size: 17px;
+    color: white;
     &:hover {
       color: black;
     }
@@ -67,6 +64,23 @@
   .notification__nothing {
     text-align: center;
     color: rgba(0, 0, 0, .25);
+  }
+}
+
+.notifications__deleteButton {
+  display: none;
+  .icon {
+    position: absolute;
+    right: 0;
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
+    color: rgba(110, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.05);
   }
 }
 
@@ -84,4 +98,7 @@
       display: none;
     }
   }
+  .notifications__deleteButton {
+    display: block;
+  }  
 }
