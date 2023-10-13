@@ -16,9 +16,6 @@ router.get("/all", async (req, res) => {
 });*/
 
 router.get("/", async (req, res) => {
-  if (!req.isAuth) {
-    throw new Error("Unauthorized!");
-  }
   try {
     const notifications = await notificationService.getNotifications(req.userId);
     res.status(200).json({
@@ -48,9 +45,6 @@ router.post("/seen", async (req, res) => {
 });
 
 router.delete("/", async (req, res) => {
-  if (!req.isAuth) {
-    throw new Error("Unauthorized!");
-  }
   try {
     const notifications = await notificationService.deleteNotification(req.body.id, req.userId);
     res.status(200).json({
