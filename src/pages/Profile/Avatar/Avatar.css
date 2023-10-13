@@ -72,6 +72,8 @@
   .avatar__avatar {
     width: 30vw;
     height: 30vw;
+    max-width: 150px;
+    max-height: 150px;
   }
   .avatar__avatarLoading {
     width: 30vw;
