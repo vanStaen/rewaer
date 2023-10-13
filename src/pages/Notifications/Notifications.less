@@ -1,24 +1,38 @@
 .notifications__container {
   margin: 20px 40px 40px 40px;
 
+  .new {
+    background-color: rgba(#edf1ef, .5);
+    &:hover {
+      background-color: rgba(#edf1ef, 1);
+    }
+  } 
+
+  .seen {
+    opacity: .75;
+    color: white;
+    background-color: rgba(#7f9f8e, .5);
+    &:hover {
+      background-color: rgba(#7f9f8e, .75);
+    }
+  } 
+
   .notifications__notification {
     margin-bottom: 20px;
-    background-color: rgba(#edf1ef, .5);
+    display: flex;  
     cursor: pointer;
-
-    &:hover {
-      background-color: rgba(#edf1ef, .75);
-    }
 
     .notifications__leftSide {
       display: inline-block;
       vertical-align: top;
       width: 50px;
-      height: 100%;
+      align-items: stretch;
     }    
 
     .notifications__rightSide {
-      border-top: 1px solid rgba(0,0,0,.1);  
+      border-top: 1px solid rgba(0,0,0,.05); 
+      border-bottom: 1px solid rgba(0,0,0,.05); 
+      border-right: 1px solid rgba(0,0,0,.05); 
       width: calc(100% - 50px);
       display: inline-block;
       vertical-align: top;
@@ -41,7 +55,7 @@
     .notifications__notification {
       .notifications__rightSide {
         display: inline-block;
-        width: calc(100% - 60px);
+        width: calc(100% - 50px);
       }    
     }
   }

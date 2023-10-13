@@ -5,17 +5,17 @@ const { Op } = require("sequelize");
 exports.notificationService = {
 
   async getAllNotifications() {
-    try {             
+    try {
       return await Notification.findAll({
         order: [['_id', 'DESC']]
-    });
+      });
     } catch (err) {
       console.log(err);
     }
   },
 
   async getNotifications(userId) {
-    try {             
+    try {
       return await Notification.findAll({
         order: [['_id', 'DESC']],
         where: { user_id: userId }
@@ -55,8 +55,8 @@ exports.notificationService = {
       });
       const username = user.userName;
       let listOfFriendsAndFollowersId = [];
-      user.friends.forEach((friend) => {listOfFriendsAndFollowersId.push(friend._id)});
-      user.followers.forEach((follower) => {listOfFriendsAndFollowersId.push(follower._id)});
+      user.friends.forEach((friend) => { listOfFriendsAndFollowersId.push(friend._id) });
+      user.followers.forEach((follower) => { listOfFriendsAndFollowersId.push(follower._id) });
       const listOfUniqueId = [...new Set(listOfFriendsAndFollowersId)];
       for (const id of listOfUniqueId) {
         const newNotification = new Notification({
@@ -67,29 +67,29 @@ exports.notificationService = {
           action_data: actionData
         });
         await newNotification.save();
-      }        
+      }
       return true;
     } catch (err) {
       console.log(err);
     }
   },
 
-  async markNotificationsAsSeen(userId){
-    try {             
+  async markNotificationsAsSeen(userId) {
+    try {
       return await Notification.update(
-      { seen: true }, 
-      {
-        where: {
-          user_id: userId,
-        }
-      });
+        { seen: true },
+        {
+          where: {
+            user_id: userId,
+          }
+        });
     } catch (err) {
       console.log(err);
     }
   },
 
   async deleteNotificationItem(itemId) {
-    try {             
+    try {
       return await Notification.destroy({
         where: {
           action_data: itemId,
@@ -104,13 +104,26 @@ exports.notificationService = {
   },
 
   async deleteNotificationLook(lookId) {
-    try {             
+    try {
       return await Notification.destroy({
         where: {
           action_data: lookId,
           type: {
             [Op.or]: [5],
           },
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async deleteNotification(notificationId, userId) {
+    try {
+      return await Notification.destroy({
+        where: {
+          _id: notificationId,
+          userId: userId,
         }
       });
     } catch (err) {
