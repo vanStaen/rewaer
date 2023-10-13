@@ -48,15 +48,16 @@ export const Notifications = observer(() => {
   }
 
   const showDeleteHandler = (id) => {
-    const element = document.getElementById(`notification${id}`);
-    element.style.left = "-50px";
-    console.log("show", element);
+    const elementNotification = document.getElementById(`notification${id}`);
+    const elementDeleteButtonIcon = document.getElementById(`deleteButtonIcon${id}`);
+    const newHeight = `${elementNotification.offsetHeight}px`;
+    elementDeleteButtonIcon.style.height = newHeight;
+    elementNotification.style.left = "-50px";
   }
 
   const hideDeleteHandler = (id) => {
     const element = document.getElementById(`notification${id}`);
     element.style.left = "0";
-    console.log("hide", element);
   }
 
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -91,7 +92,11 @@ export const Notifications = observer(() => {
     return (
       <>
         <div className="notifications__deleteButton" id={`deleteButton${_id}`}>
-          <div className="icon" onClick={() => closeNotificationHandlerMobile(_id)}>
+          <div
+            className="icon"
+            onClick={() => closeNotificationHandlerMobile(_id)}
+            id={`deleteButtonIcon${_id}`}
+          >
             <DeleteFilled />
           </div>
         </div>
