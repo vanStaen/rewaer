@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function postNotificationLikeDislike(type, isLike, mediaUrl) {
+export async function postNotificationLikeDislike(type, isLike, mediaUrl, userNotifiedId) {
   let notificationType;
   if (type === "item" && isLike) {
     notificationType = 12
@@ -15,7 +15,10 @@ export async function postNotificationLikeDislike(type, isLike, mediaUrl) {
   const requestBody = {
     mediaUrl: mediaUrl,
     notificationType: notificationType,
+    userNotifiedId: userNotifiedId,
   };
+
+  console.log("requestBody", requestBody);
 
   try {
     const response = await axios({
@@ -26,6 +29,7 @@ export async function postNotificationLikeDislike(type, isLike, mediaUrl) {
     if ((response.status !== 200) & (response.status !== 201)) {
       throw new Error("Unauthenticated!");
     }
+    console.log(response);
     return true
   }
   catch (e) {

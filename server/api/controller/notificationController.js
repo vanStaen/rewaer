@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { notificationService } = require("../service/notificationService");
 
-/* get all notification (Debugging)
+/* get all notification (Debugging)*/
 router.get("/all", async (req, res) => {
   try {
     const notifications = await notificationService.getAllNotifications();
@@ -13,7 +13,7 @@ router.get("/all", async (req, res) => {
       error: `${err}`,
     });
   }
-});*/
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -37,12 +37,12 @@ router.post("/", async (req, res) => {
       throw new Error("Unauthorized!");
     }
     const userId = req.userId;
-    const actionData = req.userId;
+    const userNotifiedId = req.body.userNotifiedId;
     const mediaUrl = req.body.mediaUrl;
     const type = req.body.notificationType;
-    await notificationService.createNotificationBasic(userId, mediaUrl, type, actionData);
+    const response = await notificationService.createNotificationSingle(userId, userNotifiedId, mediaUrl, type);
     res.status(200).json({
-      success: true,
+      created: response,
     });
   } catch (err) {
     res.status(400).json({

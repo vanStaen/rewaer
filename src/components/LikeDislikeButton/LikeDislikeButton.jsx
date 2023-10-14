@@ -3,7 +3,9 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
 import { userStore } from "../../stores/userStore/userStore";
+import { profileStore } from "../../stores/profileStore/profileStore";
 import { updateLikeDislike } from "./updateLikeDislike";
+import { postNotificationLikeDislike } from "./postNotificationLikeDislike";
 import { TooltipLike } from "./ToolTipLike";
 
 import "./LikeDislikeButton.css";
@@ -27,6 +29,8 @@ export const LikeDislikeButton = (props) => {
       : false
   );
 
+  const userNotifiedId = profileStore._id ? profileStore._id : userStore._id;
+
   const likeClickHandler = () => {
     if (userHasDisliked) {
       const filteredArray = arrayDislikes.current.filter((id) => {
@@ -41,6 +45,7 @@ export const LikeDislikeButton = (props) => {
         ? (arrayLikes.current = [userStore._id])
         : arrayLikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, true, arrayLikes.current);
+      postNotificationLikeDislike(props.type, true, props.mediaUrl, userNotifiedId)
       setUserHasLiked(true);
     } else {
       const filteredArray = arrayLikes.current.filter((id) => {
@@ -66,6 +71,7 @@ export const LikeDislikeButton = (props) => {
         ? (arrayDislikes.current = [userStore._id])
         : arrayDislikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, false, arrayDislikes.current);
+      postNotificationLikeDislike(props.type, false, props.mediaUrl, userNotifiedId)
       setUserHasDisliked(true);
     } else {
       const filteredArray = arrayDislikes.current.filter((id) => {

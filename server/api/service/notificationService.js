@@ -74,6 +74,27 @@ exports.notificationService = {
     }
   },
 
+  async createNotificationSingle(userId, userNotifiedId, mediaUrl, notificationType) {
+    try {
+      const user = await User.findOne({
+        where: { _id: userId }
+      });
+      const username = user.userName;
+      const newNotification = new Notification({
+        user_id: userNotifiedId,
+        media_url: mediaUrl,
+        title: username,
+        type: notificationType,
+        action_data: userId,
+      });
+      await newNotification.save();
+      return true;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  },
+
   async markNotificationsAsSeen(userId) {
     try {
       return await Notification.update(

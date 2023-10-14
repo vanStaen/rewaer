@@ -329,8 +329,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-              ? "itemcard__meta itemcard__metaFavorite"
-              : "itemcard__meta"
+                ? "itemcard__meta itemcard__metaFavorite"
+                : "itemcard__meta"
           }
         >
           <EditableTitle
@@ -349,6 +349,7 @@ export const ItemCard = (props) => {
             props.item.active && (
               <LikeDislikeButton
                 _id={props.item._id}
+                mediaUrl={props.item.mediaUrlThumb}
                 arrayLikes={props.item.likes}
                 arrayDislikes={props.item.dislikes}
                 type="item"

@@ -194,8 +194,8 @@ export const LookCard = (props) => {
                 ? "lookcard__meta lookcard__metaPrivate lookcard__metaPrivateFavorite"
                 : "lookcard__meta lookcard__metaPrivate"
               : isFavorited
-              ? "lookcard__meta lookcard__metaFavorite"
-              : "lookcard__meta"
+                ? "lookcard__meta lookcard__metaFavorite"
+                : "lookcard__meta"
           }
         >
           <EditableTitle
@@ -214,6 +214,7 @@ export const LookCard = (props) => {
             props.look.active && (
               <LikeDislikeButton
                 _id={props.look._id}
+                mediaUrl={props.look.mediaUrlThumb}
                 arrayLikes={props.look.likes}
                 arrayDislikes={props.look.dislikes}
                 type="look"

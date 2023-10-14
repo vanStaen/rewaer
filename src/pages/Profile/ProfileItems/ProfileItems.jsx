@@ -68,6 +68,7 @@ export const ProfileItems = observer(() => {
               <div className="ProfileLook__containerLike">
                 <LikeDislikeButton
                   _id={item._id}
+                  mediaUrl={props.item.mediaUrlThumb}
                   arrayLikes={item.likes}
                   arrayDislikes={item.dislikes}
                   type="item"
