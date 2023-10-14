@@ -45,9 +45,9 @@ exports.itemResolver = {
         userId: req.userId,
       });
       const newItem = await item.save();
-      await notificationService.createNotificationType4to7(
-        req.userId, 
-        args.itemInput.mediaUrlThumb, 
+      await notificationService.createNotificationBasic(
+        req.userId,
+        args.itemInput.mediaUrlThumb,
         4,
         newItem._id)
       return newItem;

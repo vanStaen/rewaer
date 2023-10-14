@@ -44,7 +44,7 @@ exports.notificationService = {
     }
   },
 
-  async createNotificationType4to7(userId, mediaUrl, notificationType, actionData) {
+  async createNotificationBasic(userId, mediaUrl, notificationType, actionData) {
     try {
       const user = await User.findOne({
         where: { _id: userId },

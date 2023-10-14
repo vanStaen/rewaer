@@ -41,9 +41,9 @@ exports.lookResolver = {
         userId: req.userId,
       });
       const newLook = await look.save();
-      await notificationService.createNotificationType4to7(
-        req.userId, 
-        args.lookInput.mediaUrlThumb, 
+      await notificationService.createNotificationBasic(
+        req.userId,
+        args.lookInput.mediaUrlThumb,
         5,
         newLook._id)
       return newLook;

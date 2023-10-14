@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
 const { Look } = require("../../models/Look");
+const { notificationService } = require("../../api/service/notificationService");
 
 exports.userResolver = {
   async getUser(args, req) {
@@ -13,10 +14,10 @@ exports.userResolver = {
     return await User.findOne({
       where: { _id: req.userId },
       include: [
-        Item, 
-        Look, 
+        Item,
+        Look,
         "friends",
-        "followers", 
+        "followers",
         "followed"],
     });
   },
@@ -151,6 +152,10 @@ exports.userResolver = {
         returning: true,
         plain: true,
       });
+      //if avatar as updated, create notification
+      if (args.userInput.avatar) {
+        await notificationService.createNotificationBasic(req.userId, args.userInput.avatar, 14, req.userId)
+      };
       // updatedUser[0]: number or row udpated
       // updatedUser[1]: rows updated
       return updatedUser[1];
