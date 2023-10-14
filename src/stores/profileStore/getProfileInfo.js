@@ -31,6 +31,7 @@ export const getProfileInfo = async (username) => {
                 _id,
                 title,
                 mediaUrlMedium,
+                mediaUrlThumb,
                 likes, 
                 dislikes,
               },
@@ -38,6 +39,7 @@ export const getProfileInfo = async (username) => {
                 _id,
                 title,
                 mediaUrlMedium,
+                mediaUrlThumb,
                 likes, 
                 dislikes,
               }

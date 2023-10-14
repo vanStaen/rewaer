@@ -130,6 +130,8 @@ export const Notifications = observer(() => {
               {type === 12 && `${title} liked this Item`}
               {type === 13 && `${title} liked this Look`}
               {type === 14 && `${title} added a new profile picture`}
+              {type === 15 && `${title} disliked this Item`}
+              {type === 16 && `${title} disliked this Look`}
             </div>
             <div className="notifications__date"> {notificationAge}</div>
           </div>

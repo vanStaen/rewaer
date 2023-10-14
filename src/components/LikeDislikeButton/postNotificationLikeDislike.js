@@ -18,8 +18,6 @@ export async function postNotificationLikeDislike(type, isLike, mediaUrl, userNo
     userNotifiedId: userNotifiedId,
   };
 
-  console.log("requestBody", requestBody);
-
   try {
     const response = await axios({
       url: process.env.API_URL + `/notification`,
@@ -29,7 +27,6 @@ export async function postNotificationLikeDislike(type, isLike, mediaUrl, userNo
     if ((response.status !== 200) & (response.status !== 201)) {
       throw new Error("Unauthenticated!");
     }
-    console.log(response);
     return true
   }
   catch (e) {
