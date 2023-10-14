@@ -47,10 +47,10 @@ const writeBackupFile = async () => {
         const databaseContentNotifications = await fetchDatabaseContent("notifications");
         filenameNotifications = `${day}-${month}-${year}_rewaer_notifications.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameNotifications}`, JSON.stringify(databaseContentNotifications));
-        const databaseContentUsersfollower = await fetchDatabaseContent("Usersfollower");
+        const databaseContentUsersfollower = await fetchDatabaseContent("usersfollowers");
         filenameUsersfollower = `${day}-${month}-${year}_rewaer_Usersfollower.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfollower}`, JSON.stringify(databaseContentUsersfollower));
-        const databaseContentUsersfriend = await fetchDatabaseContent("Usersfriend");
+        const databaseContentUsersfriend = await fetchDatabaseContent("usersfriends");
         filenameUsersfriend = `${day}-${month}-${year}_rewaer_Usersfriend.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfriend}`, JSON.stringify(databaseContentUsersfriend));
 
