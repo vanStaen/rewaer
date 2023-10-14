@@ -57,5 +57,7 @@ types:
 11: Someone used your Item in a Look
 12: New Item like
 13: New Look like
-24: New Avatar from friends/followed ✓
+14: New Avatar from friends/followed ✓
+15: New Item dislike
+16: New Look dislike
 */

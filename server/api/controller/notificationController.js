@@ -37,9 +37,9 @@ router.post("/", async (req, res) => {
       throw new Error("Unauthorized!");
     }
     const userId = req.userId;
+    const actionData = req.userId;
     const mediaUrl = req.body.mediaUrl;
     const type = req.body.notificationType;
-    const actionData = req.userId;
     await notificationService.createNotificationBasic(userId, mediaUrl, type, actionData);
     res.status(200).json({
       success: true,
