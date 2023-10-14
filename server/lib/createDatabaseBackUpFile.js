@@ -43,6 +43,16 @@ const writeBackupFile = async () => {
         const databaseContentUsers = await fetchDatabaseContent("users");
         filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
+        const databaseContentNotifications = await fetchDatabaseContent("notifications");
+        filenameNotifications = `${day}-${month}-${year}_rewaer_notifications.json`;
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameNotifications}`, JSON.stringify(databaseContentNotifications));
+        const databaseContentUsersFollowers = await fetchDatabaseContent("usersFollowers");
+        filenameUsersFollowers = `${day}-${month}-${year}_rewaer_usersFollowers.json`;
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersFollowers}`, JSON.stringify(databaseContentUsersFollowers));
+        const databaseContentUsersFriends = await fetchDatabaseContent("usersFriends");
+        filenameUsersFriends = `${day}-${month}-${year}_rewaer_usersFriends.json`;
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersFriends}`, JSON.stringify(databaseContentUsersFriends));
+
         console.log("Backup Success!")
     } catch (err) {
         console.log({ error: `${err})`, });
