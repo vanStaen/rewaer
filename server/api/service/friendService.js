@@ -1,20 +1,20 @@
-const { UsersFriends } = require("../../models/UsersFriends");
+const { Usersfriend } = require("../../models/Usersfriend");
 const { Op } = require("sequelize");
 
 exports.friendService = {
   async getFriends(userId) {
-    return foundFollowers = await UsersFriends.findAll({
+    return foundFollowers = await Usersfriend.findAll({
       where: { user_id: userId, pending: false },
     });
   },
 
   async getFriendsPending(userId) {
-    return foundPending = await UsersFriends.findAll({
+    return foundPending = await Usersfriend.findAll({
       where: {
         [Op.or]: [
           { user_id: userId },
           { friend_id: userId }
-        ], 
+        ],
         pending: true,
       }
     });
@@ -22,8 +22,8 @@ exports.friendService = {
 
   async addFriendRequest(userId, friendId) {
     try {
-      const newFriend = new UsersFriends({
-        user_id: userId ,
+      const newFriend = new Usersfriend({
+        user_id: userId,
         friend_id: friendId,
       });
       return await newFriend.save();
@@ -34,7 +34,7 @@ exports.friendService = {
 
   async validateFriendRequest(userId, friendId) {
     try {
-      await UsersFriends.update(
+      await Usersfriend.update(
         { pending: false },
         {
           where: {
@@ -45,8 +45,8 @@ exports.friendService = {
           plain: true,
         }
       );
-      const newFriend = new UsersFriends({
-        user_id: userId ,
+      const newFriend = new Usersfriend({
+        user_id: userId,
         friend_id: friendId,
         pending: false,
       });
@@ -59,8 +59,8 @@ exports.friendService = {
 
   async cancelFriendRequest(userId, friendId) {
     try {
-      await UsersFriends.destroy({
-        where: {        
+      await Usersfriend.destroy({
+        where: {
           user_id: userId,
           friend_id: friendId,
         },
@@ -73,8 +73,8 @@ exports.friendService = {
 
   async cancelFremdFriendRequest(userId, friendId) {
     try {
-      await UsersFriends.destroy({
-        where: {        
+      await Usersfriend.destroy({
+        where: {
           user_id: friendId,
           friend_id: userId,
         },
@@ -86,14 +86,14 @@ exports.friendService = {
   },
 
   async deleteFriend(userId, friendId) {
-    await UsersFriends.destroy({
-      where: {        
-        user_id: userId ,
+    await Usersfriend.destroy({
+      where: {
+        user_id: userId,
         friend_id: friendId,
       },
     });
-    await UsersFriends.destroy({
-      where: {        
+    await Usersfriend.destroy({
+      where: {
         user_id: friendId,
         friend_id: userId,
       },

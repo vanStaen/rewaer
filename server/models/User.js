@@ -1,6 +1,6 @@
 const { sequelize, DataTypes } = require('../lib/sequelizedb');
-const { UsersFriends } = require("./UsersFriends");
-const { UsersFollowers } = require("./UsersFollowers");
+const { Usersfriend } = require("./Usersfriend");
+const { Usersfollower } = require("./Usersfollower");
 
 const User = sequelize.define("user", {
   _id: {
@@ -77,28 +77,28 @@ const User = sequelize.define("user", {
 });
 
 
-User.belongsToMany(User, { 
+User.belongsToMany(User, {
   as: 'friends',
   foreignKey: 'user_id',
-  through: UsersFriends
+  through: Usersfriend
 });
 
-User.belongsToMany(User, { 
-  as: 'userFriends',
+User.belongsToMany(User, {
+  as: 'Usersfriends',
   foreignKey: 'friend_id',
-  through: UsersFriends
+  through: Usersfriend
 });
 
-User.belongsToMany(User, { 
+User.belongsToMany(User, {
   as: 'followed',
   foreignKey: 'follower_id',
-  through: UsersFollowers
+  through: Usersfollower
 });
 
-User.belongsToMany(User, { 
+User.belongsToMany(User, {
   as: 'followers',
   foreignKey: 'followed_id',
-  through: UsersFollowers
+  through: Usersfollower
 });
 
 module.exports = {

@@ -20,6 +20,7 @@ client.connect(err => {
 // Fetch content from db
 const fetchDatabaseContent = async (value) => {
     try {
+        console.log('dbName', value)
         const result = await client.query(`SELECT * FROM ${value};`);
         return result.rows;
     } catch (err) {
@@ -46,12 +47,12 @@ const writeBackupFile = async () => {
         const databaseContentNotifications = await fetchDatabaseContent("notifications");
         filenameNotifications = `${day}-${month}-${year}_rewaer_notifications.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameNotifications}`, JSON.stringify(databaseContentNotifications));
-        const databaseContentUsersFollowers = await fetchDatabaseContent("usersFollowers");
-        filenameUsersFollowers = `${day}-${month}-${year}_rewaer_usersFollowers.json`;
-        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersFollowers}`, JSON.stringify(databaseContentUsersFollowers));
-        const databaseContentUsersFriends = await fetchDatabaseContent("usersFriends");
-        filenameUsersFriends = `${day}-${month}-${year}_rewaer_usersFriends.json`;
-        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersFriends}`, JSON.stringify(databaseContentUsersFriends));
+        const databaseContentUsersfollower = await fetchDatabaseContent("Usersfollower");
+        filenameUsersfollower = `${day}-${month}-${year}_rewaer_Usersfollower.json`;
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfollower}`, JSON.stringify(databaseContentUsersfollower));
+        const databaseContentUsersfriend = await fetchDatabaseContent("Usersfriend");
+        filenameUsersfriend = `${day}-${month}-${year}_rewaer_Usersfriend.json`;
+        fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfriend}`, JSON.stringify(databaseContentUsersfriend));
 
         console.log("Backup Success!")
     } catch (err) {

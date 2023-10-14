@@ -1,6 +1,6 @@
 const { sequelize, DataTypes } = require('../lib/sequelizedb');
 
-const UsersFollowers = sequelize.define("usersFollowers", {
+const Usersfollower = sequelize.define("usersfollower", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",
@@ -18,5 +18,5 @@ const UsersFollowers = sequelize.define("usersFollowers", {
 });
 
 module.exports = {
-  UsersFollowers
+  Usersfollower
 };

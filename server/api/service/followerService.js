@@ -1,22 +1,22 @@
-const { UsersFollowers } = require("../../models/UsersFollowers");
+const { Usersfollower } = require("../../models/Usersfollower");
 const { notificationService } = require("./notificationService");
 
 exports.followerService = {
   async getFollower(userId) {
-    return foundFollowers = await UsersFollowers.findAll({
+    return foundFollowers = await Usersfollower.findAll({
       where: { followed_id: userId },
     });
   },
 
   async getFollowing(userId) {
-    return foundFollowing = await UsersFollowers.findAll({
+    return foundFollowing = await Usersfollower.findAll({
       where: { follower_id: userId },
     });
   },
 
   async addFollow(follower, followed) {
     try {
-      const newFollow = new UsersFollowers({
+      const newFollow = new Usersfollower({
         follower_id: follower,
         followed_id: followed,
       });
@@ -29,8 +29,8 @@ exports.followerService = {
   },
 
   async deleteFollow(follower, followed) {
-    await UsersFollowers.destroy({
-      where: {        
+    await Usersfollower.destroy({
+      where: {
         follower_id: follower,
         followed_id: followed,
       },

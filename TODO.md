@@ -217,7 +217,7 @@
 - [x] refactor project to have only one package.json
 - [x] Follow someone feature
 - [x] use Arrow to naviguate through items/Looks
-    - [x] On mobil, use swipe
+  - [x] On mobil, use swipe
 - [x] Make site responsive!
   - [x] Login + Pwd Recover
   - [x] SignUp + Email Check
@@ -225,4 +225,4 @@
   - [x] Profil
   - [x] Looks
   - [x] Items
-- [x] Create resolver for UserFriends (to manage pending requests)
+- [x] Create resolver for Usersfriends (to manage pending requests)
