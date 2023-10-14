@@ -31,6 +31,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    const userId = req.userId;
+    const mediaUrl = req.body.mediaUrl;
+    const type = req.body.notificationType;
+    const actionData = req.userId;
+    await notificationService.createNotificationBasic(userId, mediaUrl, type, actionData);
+    res.status(200).json({
+      success: true,
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
+
 router.post("/seen", async (req, res) => {
   try {
     if (!req.isAuth) {
