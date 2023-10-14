@@ -20,7 +20,7 @@ client.connect(err => {
 // Fetch content from db
 const fetchDatabaseContent = async (value) => {
     try {
-        console.log('dbName', value)
+        console.log('Database table: ', value)
         const result = await client.query(`SELECT * FROM ${value};`);
         return result.rows;
     } catch (err) {
