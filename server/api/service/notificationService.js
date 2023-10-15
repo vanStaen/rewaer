@@ -74,7 +74,7 @@ exports.notificationService = {
     }
   },
 
-  async createNotificationSingle(userId, userNotifiedId, mediaUrl, notificationType) {
+  async createNotificationSingle(userId, userNotifiedId, mediaUrl, notificationType, actionData) {
     try {
       const user = await User.findOne({
         where: { _id: userId }
@@ -85,7 +85,7 @@ exports.notificationService = {
         media_url: mediaUrl,
         title: username,
         type: notificationType,
-        action_data: userId,
+        action_data: actionData,
       });
       await newNotification.save();
       return true;

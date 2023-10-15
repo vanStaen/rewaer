@@ -45,7 +45,7 @@ export const LikeDislikeButton = (props) => {
         ? (arrayLikes.current = [userStore._id])
         : arrayLikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, true, arrayLikes.current);
-      postNotificationLikeDislike(props.type, true, props.mediaUrl, userNotifiedId)
+      postNotificationLikeDislike(props.type, true, props.mediaUrl, userNotifiedId, props._id)
       setUserHasLiked(true);
     } else {
       const filteredArray = arrayLikes.current.filter((id) => {
@@ -71,7 +71,7 @@ export const LikeDislikeButton = (props) => {
         ? (arrayDislikes.current = [userStore._id])
         : arrayDislikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, false, arrayDislikes.current);
-      postNotificationLikeDislike(props.type, false, props.mediaUrl, userNotifiedId)
+      postNotificationLikeDislike(props.type, false, props.mediaUrl, userNotifiedId, props._id)
       setUserHasDisliked(true);
     } else {
       const filteredArray = arrayDislikes.current.filter((id) => {
