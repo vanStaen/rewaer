@@ -24,7 +24,7 @@ export const Notifications = observer(() => {
   const throttling = useRef(false);
 
   useEffect(() => {
-    //postNotificationsSeen();
+    postNotificationsSeen();
     pageStore.setUnseenNotificationsCount(0);
   }, []);
 
