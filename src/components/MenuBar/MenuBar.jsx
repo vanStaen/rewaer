@@ -88,6 +88,7 @@ export const MenuBar = observer((props) => {
               }`}
             onClick={() => {
               userStore.setMenuSelected("notifications");
+              pageStore.fetchNotifications();
             }}
           >
             <NotificationOutlined />
