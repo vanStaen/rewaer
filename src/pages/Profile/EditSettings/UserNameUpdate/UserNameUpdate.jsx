@@ -55,7 +55,7 @@ export const UserNameUpdate = () => {
   const onChangeUserNameHandler = async () => {
     setUserNameIsValidating(true);
     const response = await updateUserName(
-      newUserName,
+      newUserName.toLowerCase(),
       userStore.usernameChange + 1
     );
     if (response) {
