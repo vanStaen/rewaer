@@ -2,7 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { CloseOutlined, DeleteFilled } from '@ant-design/icons';
+import {
+  CameraOutlined,
+  CloseOutlined,
+  DeleteFilled,
+  LikeOutlined,
+  DislikeOutlined,
+  UserAddOutlined,
+  PictureOutlined,
+  SkinOutlined,
+  MailOutlined,
+  LinkOutlined,
+} from '@ant-design/icons';
 import * as dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -124,10 +135,7 @@ export const Notifications = observer(() => {
             className={seen ? "notifications__leftSideSeen" : "notifications__leftSide"}
             onClick={() => notificationClickHandler(type, title, action_data)}
             style={{
-              background: `url(${media_url})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
+              background: `url(${media_url}) center center / cover no-repeat`,
             }}
           ></div>
           <div
@@ -145,6 +153,18 @@ export const Notifications = observer(() => {
               {type === 14 && <>{linkToUserPage} added a new profile picture</>}
               {type === 15 && <>{linkToUserPage} disliked this Item</>}
               {type === 16 && <>{linkToUserPage} disliked this Look</>}
+            </div>
+            <div className="notification__icon">
+              {type === 1 && <UserAddOutlined />}
+              {type === 2 && <LinkOutlined />}
+              {type === 3 && <MailOutlined />}
+              {type === 4 && <SkinOutlined />}
+              {type === 5 && <CameraOutlined />}
+              {type === 12 && <LikeOutlined />}
+              {type === 13 && <LikeOutlined />}
+              {type === 14 && <PictureOutlined />}
+              {type === 15 && <DislikeOutlined />}
+              {type === 16 && <UserAddOutlined />}
             </div>
             <div className="notifications__date"> {notificationAge}</div>
           </div>
