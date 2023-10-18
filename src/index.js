@@ -5,11 +5,11 @@ import "regenerator-runtime/runtime";
 
 import App from "./App";
 
-if ("serviceWorker" in navigator) {
+/*if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js").then(() => {
     console.log("Service Worker Registered");
   });
-}
+}*/
 
 ReactDOM.render(
   <React.StrictMode>
