@@ -97,7 +97,7 @@ exports.userResolver = {
     }
     const foundUserUserName = await User.findOne({
       where: {
-        userName: args.userInput.userName,
+        userName: args.userInput.userName.toLowerCase(),
       },
     });
     if (foundUserUserName) {
@@ -108,7 +108,7 @@ exports.userResolver = {
       const user = new User({
         firstName: args.userInput.firstName,
         lastName: args.userInput.lastName,
-        userName: args.userInput.userName,
+        userName: args.userInput.userName.toLowerCase(),
         language: args.userInput.language,
         email: args.userInput.email,
         password: hashedPassword,
