@@ -11,10 +11,10 @@ import {
   PictureOutlined,
   SkinOutlined,
   MailOutlined,
-  LinkOutlined,
 } from "@ant-design/icons";
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Button } from 'antd';
 
 import { pageStore } from "../../stores/pageStore/pageStore";
 import { itemsStore } from "../Items/itemsStore";
@@ -159,7 +159,7 @@ export const Notifications = observer(() => {
     );
 
     return (
-      <>
+      <div className="notification__subContainer">
         <div className="notifications__deleteButton" id={`deleteButton${_id}`}>
           <div
             className="icon"
@@ -205,9 +205,15 @@ export const Notifications = observer(() => {
               {type === 15 && <>{linkToUserPage} disliked this Item</>}
               {type === 16 && <>{linkToUserPage} disliked this Look</>}
             </div>
+            {type === 1 &&
+              <div className="notification__actionsButtons">
+                <Button type="primary">Accept</Button>
+              </div>}
+            {type === 2 &&
+              <div className="notification__actionsButtons">
+                <Button type="primary">Follow Back</Button>
+              </div>}
             <div className="notification__icon">
-              {type === 1 && <UserAddOutlined />}
-              {type === 2 && <LinkOutlined />}
               {type === 3 && <MailOutlined />}
               {type === 4 && <SkinOutlined />}
               {type === 5 && <CameraOutlined />}
@@ -226,7 +232,17 @@ export const Notifications = observer(() => {
             <CloseOutlined />
           </div>
         </div>
-      </>
+        <div className="notifications__actionsButtonsMobile">
+          {type === 1 &&
+            <div className="notification__actionsButtons">
+              <Button type="primary">Accept</Button>
+            </div>}
+          {type === 2 &&
+            <div className="notification__actionsButtons">
+              <Button className="actionsButton" type="primary" block={true}>Follow Back</Button>
+            </div>}
+        </div>
+      </div>
     );
   });
 
