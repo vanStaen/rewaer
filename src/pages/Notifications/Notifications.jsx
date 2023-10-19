@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
 import { useNavigate, Link } from "react-router-dom";
+import { Button } from "antd";
 import {
   CameraOutlined,
   CloseOutlined,
@@ -14,13 +15,14 @@ import {
 } from "@ant-design/icons";
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Button } from 'antd';
 
 import { pageStore } from "../../stores/pageStore/pageStore";
+import { userStore } from "../../stores/userStore/userStore";
 import { itemsStore } from "../Items/itemsStore";
 import { looksStore } from "../Looks/looksStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
 import { deleteNotification } from "./deleteNotification";
+import { postFollow } from "../Profile/ProfileActions/postFollow";
 
 import "./Notifications.less";
 
@@ -58,7 +60,6 @@ export const Notifications = observer(() => {
   };
 
   const notificationClickHandler = async (type, title, action_data) => {
-    console.log("click");
     //Friend request
     if (type === 1) {
       navigate(`/${title}`);
@@ -158,6 +159,22 @@ export const Notifications = observer(() => {
       </Link>
     );
 
+    const isNotFollowed =
+      userStore.followed.findIndex(
+        (followed) => followed.userName === title
+      ) === -1;
+
+    const followBackHandler = async (event) => {
+      event.stopPropagation();
+      try {
+        await postFollow(action_data);
+        const element = document.getElementById(`followback${_id}`);
+        const elementMobile = document.getElementById(`followbackMobile${_id}`);
+        element.style.opacity = 0;
+        elementMobile.style.opacity = 0;
+      } catch (e) {}
+    };
+
     return (
       <div className="notification__subContainer">
         <div className="notifications__deleteButton" id={`deleteButton${_id}`}>
@@ -205,14 +222,21 @@ export const Notifications = observer(() => {
               {type === 15 && <>{linkToUserPage} disliked this Item</>}
               {type === 16 && <>{linkToUserPage} disliked this Look</>}
             </div>
-            {type === 1 &&
+            {type === 1 && (
               <div className="notification__actionsButtons">
                 <Button type="primary">Accept</Button>
-              </div>}
-            {type === 2 &&
-              <div className="notification__actionsButtons">
-                <Button type="primary">Follow Back</Button>
-              </div>}
+              </div>
+            )}
+            {type === 2 && isNotFollowed && (
+              <div
+                className="notification__actionsButtons"
+                id={`followback${_id}`}
+              >
+                <Button type="primary" onClick={(e) => followBackHandler(e)}>
+                  Follow Back
+                </Button>
+              </div>
+            )}
             <div className="notification__icon">
               {type === 3 && <MailOutlined />}
               {type === 4 && <SkinOutlined />}
@@ -233,14 +257,24 @@ export const Notifications = observer(() => {
           </div>
         </div>
         <div className="notifications__actionsButtonsMobile">
-          {type === 1 &&
+          {type === 1 && (
             <div className="notification__actionsButtons">
               <Button type="primary">Accept</Button>
-            </div>}
-          {type === 2 &&
+            </div>
+          )}
+          {type === 2 && isNotFollowed && (
             <div className="notification__actionsButtons">
-              <Button className="actionsButton" type="primary" block={true}>Follow Back</Button>
-            </div>}
+              <Button
+                className="actionsButton"
+                type="primary"
+                block={true}
+                onClick={(e) => followBackHandler(e)}
+                id={`followbackMobile${_id}`}
+              >
+                Follow Back
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     );
