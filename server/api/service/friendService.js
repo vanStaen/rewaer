@@ -71,20 +71,6 @@ exports.friendService = {
     }
   },
 
-  async cancelFremdFriendRequest(userId, friendId) {
-    try {
-      await Usersfriend.destroy({
-        where: {
-          user_id: friendId,
-          friend_id: userId,
-        },
-      });
-      return true;
-    } catch (err) {
-      console.log(err);
-    }
-  },
-
   async deleteFriend(userId, friendId) {
     await Usersfriend.destroy({
       where: {

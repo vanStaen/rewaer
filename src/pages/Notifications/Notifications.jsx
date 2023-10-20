@@ -52,10 +52,8 @@ export const Notifications = observer(() => {
   };
 
   const closeNotificationHandlerMobile = (id) => {
-    const elementNotification = document.getElementById(`notification${id}`);
-    const elementDeleteButton = document.getElementById(`deleteButton${id}`);
-    elementNotification.style.display = "none";
-    elementDeleteButton.style.display = "none";
+    const subContainer = document.getElementById(`subContainer${id}`);
+    subContainer.style.display = "none";
     deleteNotification(id);
   };
 
@@ -115,12 +113,19 @@ export const Notifications = observer(() => {
     );
     const newHeight = `${elementNotification.offsetHeight}px`;
     elementDeleteButtonIcon.style.height = newHeight;
+    elementDeleteButtonIcon.style.background = "rgba(160, 0, 0, 0.5)";
     elementNotification.style.left = "-50px";
   };
 
   const hideDeleteHandler = (id) => {
     const element = document.getElementById(`notification${id}`);
+    const elementDeleteButtonIcon = document.getElementById(
+      `deleteButtonIcon${id}`
+    );
     element.style.left = "0";
+    setTimeout(() => {
+      elementDeleteButtonIcon.style.background = "transparent";
+    }, "300");
   };
 
   const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -172,12 +177,15 @@ export const Notifications = observer(() => {
         const elementMobile = document.getElementById(`followbackMobile${_id}`);
         element.style.opacity = 0;
         elementMobile.style.opacity = 0;
+        setTimeout(() => {
+          elementMobile.style.display = "none";
+        }, 300);
       } catch (e) {}
     };
 
     return (
-      <div className="notification__subContainer">
-        <div className="notifications__deleteButton" id={`deleteButton${_id}`}>
+      <div className="notification__subContainer" id={`subContainer${_id}`}>
+        <div className="notifications__deleteButton">
           <div
             className="icon"
             onClick={() => closeNotificationHandlerMobile(_id)}
@@ -221,6 +229,10 @@ export const Notifications = observer(() => {
               {type === 14 && <>{linkToUserPage} added a new profile picture</>}
               {type === 15 && <>{linkToUserPage} disliked this Item</>}
               {type === 16 && <>{linkToUserPage} disliked this Look</>}
+              &nbsp;
+              <span className="notifications__dateMobile">
+                {notificationAge}
+              </span>
             </div>
             {type === 1 && (
               <div className="notification__actionsButtons">

@@ -157,22 +157,4 @@ router.delete("/friendrequest", async (req, res) => {
   }
 });
 
-router.delete("/fremdfriendrequest", async (req, res) => {    
-  if (!req.isAuth) {
-    throw new Error("Unauthorized!");
-  }
-  try {
-    const userId = req.userId;
-    const friendId = req.body.friendId;
-    const response = await friendService.cancelFremdFriendRequest(userId, friendId);
-    res.status(200).json({
-      success: response,
-    });
-  } catch (err) {
-    res.status(400).json({
-      error: `${err}`,
-    });
-  }
-});
-
 module.exports = router;

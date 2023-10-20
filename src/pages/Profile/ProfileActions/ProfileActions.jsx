@@ -13,12 +13,16 @@ import {
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { userStore } from "../../../stores/userStore/userStore";
 import { ProfileFriends } from "../ProfileFriends/ProfileFriends";
+import { deleteFriend } from "./deleteFriend";
+import { deleteFollow } from "./deleteFollow";
+import { deleteFriendRequest } from "./deleteFriendRequest";
+import { postFollow } from "./postFollow";
+import { postFriendRequest } from "./postFriendRequest";
 
 import "./ProfileActions.css";
-import { deleteFollow } from "./deleteFollow";
-import { postFollow } from "./postFollow";
 
 export const ProfileActions = observer(() => {
+  const { t } = useTranslation();
   const [showProfileFriends, setShowProfileFriends] = useState(false);
   const [isFollowed, setIsFollowed] = useState(
     userStore.followed.findIndex(
@@ -27,17 +31,18 @@ export const ProfileActions = observer(() => {
       ? false
       : true
   );
-  const isFriend =
+  const [isFriend, setIsFriend] = useState(
     userStore.friends.findIndex(
       (friend) => parseInt(friend._id) === profileStore._id
     ) < 0
       ? false
-      : true;
-  const { t } = useTranslation();
+      : true
+  );
+  const [isPending, setIsPending] = useState(false);
 
   const thisIsMe = userStore._id === profileStore._id;
 
-  const handleFollowClick = (action) => {
+  const handleClick = (action) => {
     if (thisIsMe) {
       return;
     }
@@ -48,6 +53,16 @@ export const ProfileActions = observer(() => {
       } else if (action === "unfollow") {
         deleteFollow(profileStore._id);
         setIsFollowed(false);
+      } else if (action === "request") {
+        postFriendRequest(profileStore._id);
+        setIsPending(true);
+      } else if (action === "unrequest") {
+        deleteFriendRequest(profileStore._id);
+        setIsPending(false);
+      } else if (action === "unfriend") {
+        deleteFriend(profileStore._id);
+        setIsPending(true);
+        setIsFriend(false);
       }
       profileStore.fetchProfileData(profileStore.userName, false);
     } catch (e) {
@@ -88,15 +103,24 @@ export const ProfileActions = observer(() => {
         </div>
         {
           // Friend/Unfriend action
-          isFriend ? (
+          isPending ? (
             <div
               className={thisIsMe ? "profil__actionDisabled" : "profil__action"}
+              onClick={() => handleClick("unrequest")}
+            >
+              <UserDeleteOutlined /> {t("profile.deletePendingRequest")}
+            </div>
+          ) : isFriend ? (
+            <div
+              className={thisIsMe ? "profil__actionDisabled" : "profil__action"}
+              onClick={() => handleClick("unfriend")}
             >
               <UserDeleteOutlined /> {t("profile.unfriendRequest")}
             </div>
           ) : (
             <div
               className={thisIsMe ? "profil__actionDisabled" : "profil__action"}
+              onClick={() => handleClick("request")}
             >
               <UserAddOutlined /> {t("profile.sendFriendRequest")}
             </div>
@@ -107,7 +131,7 @@ export const ProfileActions = observer(() => {
           isFollowed ? (
             <div
               className={thisIsMe ? "profil__actionDisabled" : "profil__action"}
-              onClick={() => handleFollowClick("unfollow")}
+              onClick={() => handleClick("unfollow")}
             >
               <EyeInvisibleOutlined /> {t("profile.unfollow")}{" "}
               {profileStore.firstName || "user"}
@@ -115,7 +139,7 @@ export const ProfileActions = observer(() => {
           ) : (
             <div
               className={thisIsMe ? "profil__actionDisabled" : "profil__action"}
-              onClick={() => handleFollowClick("follow")}
+              onClick={() => handleClick("follow")}
             >
               <EyeOutlined /> {t("profile.follow")}{" "}
               {profileStore.firstName || "user"}
