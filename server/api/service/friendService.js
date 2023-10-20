@@ -10,13 +10,13 @@ exports.friendService = {
 
   async getFriendsPending(userId) {
     return foundPending = await Usersfriend.findAll({
-      where: {
-        [Op.or]: [
-          { user_id: userId },
-          { friend_id: userId }
-        ],
-        pending: true,
-      }
+      where: { user_id: userId, pending: true }
+    });
+  },
+
+  async getFriendsRequest(userId) {
+    return foundPending = await Usersfriend.findAll({
+      where: { friend_id: userId, pending: true }
     });
   },
 

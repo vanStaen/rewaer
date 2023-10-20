@@ -161,6 +161,7 @@
     "sendMessage": "Send message",
     "sendFriendRequest": "Send friend request",
     "unfriendRequest": "Remove from Friends",
+    "deletePendingRequest": "Delete friend request",
     "unFriend": "Unfriend",
     "follow": "Follow",
     "unfollow": "Unfollow",

@@ -24,6 +24,7 @@ import "./ProfileActions.css";
 export const ProfileActions = observer(() => {
   const { t } = useTranslation();
   const [showProfileFriends, setShowProfileFriends] = useState(false);
+
   const [isFollowed, setIsFollowed] = useState(
     userStore.followed.findIndex(
       (followed) => parseInt(followed._id) === profileStore._id
@@ -38,7 +39,13 @@ export const ProfileActions = observer(() => {
       ? false
       : true
   );
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(
+    userStore.friendsPending.findIndex(
+      (pending) => parseInt(pending.friend_id) === profileStore._id
+    ) < 0
+      ? false
+      : true
+  );
 
   const thisIsMe = userStore._id === profileStore._id;
 

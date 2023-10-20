@@ -162,6 +162,7 @@
     "unfriendRequest": "Freundchaft beenden",
     "unFriend": "Freundschaft löschen",
     "follow": "Folgen",
+    "deletePendingRequest": "Freundschaft Anfrage löschen",
     "unfollow": "Unfolgen",
     "showFilterPanel": "Filter einblenden",
     "hideFilterPanel": "Filter ausblenden",

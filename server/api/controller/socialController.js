@@ -29,7 +29,7 @@ router.get("/following", async (req, res) => {
   }
 });
 
-router.post("/follow", async (req, res) => {    
+router.post("/follow", async (req, res) => {
   if (!req.isAuth) {
     throw new Error("Unauthorized!");
   }
@@ -47,7 +47,7 @@ router.post("/follow", async (req, res) => {
   }
 });
 
-router.delete("/follow", async (req, res) => {    
+router.delete("/follow", async (req, res) => {
   if (!req.isAuth) {
     throw new Error("Unauthorized!");
   }
@@ -91,6 +91,20 @@ router.get("/friendspending", async (req, res) => {
   }
 });
 
+router.post("/fremdfriendspending", async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const pending = await friendService.getFriendsPending(userId);
+    res.status(200).json({
+      pending: pending,
+    });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
+
 router.post("/friend", async (req, res) => {
   try {
     const userId = req.userId;
@@ -121,7 +135,7 @@ router.post("/validatefriendrequest", async (req, res) => {
   }
 });
 
-router.delete("/friend", async (req, res) => {    
+router.delete("/friend", async (req, res) => {
   if (!req.isAuth) {
     throw new Error("Unauthorized!");
   }
@@ -139,7 +153,7 @@ router.delete("/friend", async (req, res) => {
   }
 });
 
-router.delete("/friendrequest", async (req, res) => {    
+router.delete("/friendrequest", async (req, res) => {
   if (!req.isAuth) {
     throw new Error("Unauthorized!");
   }

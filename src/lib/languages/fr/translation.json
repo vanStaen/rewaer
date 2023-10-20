@@ -162,6 +162,7 @@
     "sendFriendRequest": "Ajouter aux amis",
     "unfriendRequest": "Supprimer des amis",
     "unFriend": "Supprimer des amis",
+    "deletePendingRequest": "Supprimer la demande",
     "follow": "Suivre",
     "unfollow": "Ne plus suivre",
     "showFilterPanel": "Montrer le filtre",

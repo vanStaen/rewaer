@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from "mobx";
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserInfo } from "./getUserInfo";
+import { getPending } from "./getPending";
 import { updateSettings } from "../../pages/Profile/EditSettings/updateSettings";
 
 export class UserStore {
@@ -19,12 +20,13 @@ export class UserStore {
   language = null;
   gender = null;
   friends = [];
+  friendsPending = [];
   followers = [];
   followed = [];
   lastActive = null;
   archived = null;
   usernameChange = null;
-  menuSelected = null; 
+  menuSelected = null;
 
   constructor() {
     makeObservable(this, {
@@ -41,6 +43,7 @@ export class UserStore {
       language: observable,
       gender: observable,
       friends: observable,
+      friendsPending: observable,
       lastActive: observable,
       archived: observable,
       usernameChange: observable,
@@ -58,6 +61,7 @@ export class UserStore {
       setLanguage: action,
       setGender: action,
       setFriends: action,
+      setFriendsPending: action,
       setFollowers: action,
       setFollowed: action,
       setLastActive: action,
@@ -79,7 +83,7 @@ export class UserStore {
   set_id = (_id) => {
     this._id = _id;
   };
-  
+
   setEmail = (email) => {
     this.email = email;
   };
@@ -120,6 +124,10 @@ export class UserStore {
     this.friends = friends;
   };
 
+  setFriendsPending = (friendsPending) => {
+    this.friendsPending = friendsPending;
+  };
+
   setLastActive = (lastActive) => {
     this.lastActive = lastActive;
   };
@@ -147,14 +155,21 @@ export class UserStore {
   fetchUserData = async () => {
     try {
       const userData = await getUserInfo();
-      if (userData) {
+      const pendingData = await getPending();
+      if (userData && pendingData) {
+        const friendsNotPending = userData.friends.filter((friend) => {
+          const isPending = pendingData.findIndex(pending => pending.friend_id === parseInt(friend._id));
+          if (isPending === -1) { return true }
+          return false;
+        })
         this.set_id(parseInt(userData._id));
         this.setEmail(userData.email);
         this.setUserName(userData.userName);
         this.setAvatar(userData.avatar);
         this.setFirstName(userData.firstName);
         this.setLastName(userData.lastName);
-        this.setFriends(userData.friends);
+        this.setFriends(friendsNotPending);
+        this.setFriendsPending(pendingData);
         this.setFollowers(userData.followers);
         this.setFollowed(userData.followed);
         this.setLastActive(userData.lastActive);
