@@ -23,6 +23,7 @@ import { looksStore } from "../Looks/looksStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
 import { deleteNotification } from "./deleteNotification";
 import { postFollow } from "../Profile/ProfileActions/postFollow";
+import { postAcceptRequest } from "../Profile/ProfileActions/postAcceptRequest";
 
 import "./Notifications.less";
 
@@ -183,6 +184,22 @@ export const Notifications = observer(() => {
       } catch (e) {}
     };
 
+    const acceptRequestHandler = async (event) => {
+      event.stopPropagation();
+      try {
+        await postAcceptRequest(action_data);
+        const element = document.getElementById(`acceptRequest${_id}`);
+        const elementMobile = document.getElementById(
+          `acceptRequestMobile${_id}`
+        );
+        element.style.opacity = 0;
+        elementMobile.style.opacity = 0;
+        setTimeout(() => {
+          elementMobile.style.display = "none";
+        }, 300);
+      } catch (e) {}
+    };
+
     return (
       <div className="notification__subContainer" id={`subContainer${_id}`}>
         <div className="notifications__deleteButton">
@@ -235,8 +252,13 @@ export const Notifications = observer(() => {
               </span>
             </div>
             {type === 1 && (
-              <div className="notification__actionsButtons">
-                <Button type="primary">Accept</Button>
+              <div
+                className="notification__actionsButtons"
+                id={`acceptRequest${_id}`}
+              >
+                <Button type="primary" onClick={(e) => acceptRequestHandler(e)}>
+                  Accept
+                </Button>
               </div>
             )}
             {type === 2 && isNotFollowed && (
@@ -270,18 +292,30 @@ export const Notifications = observer(() => {
         </div>
         <div className="notifications__actionsButtonsMobile">
           {type === 1 && (
-            <div className="notification__actionsButtons">
-              <Button type="primary">Accept</Button>
+            <div
+              className="notification__actionsButtons"
+              id={`acceptRequestMobile${_id}`}
+            >
+              <Button
+                className="actionsButton"
+                type="primary"
+                block={true}
+                onClick={(e) => acceptRequestHandler(e)}
+              >
+                Accept
+              </Button>
             </div>
           )}
           {type === 2 && isNotFollowed && (
-            <div className="notification__actionsButtons">
+            <div
+              className="notification__actionsButtons"
+              id={`followbackMobile${_id}`}
+            >
               <Button
                 className="actionsButton"
                 type="primary"
                 block={true}
                 onClick={(e) => followBackHandler(e)}
-                id={`followbackMobile${_id}`}
               >
                 Follow Back
               </Button>

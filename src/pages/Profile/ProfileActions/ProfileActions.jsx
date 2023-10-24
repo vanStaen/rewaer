@@ -68,7 +68,7 @@ export const ProfileActions = observer(() => {
         setIsPending(false);
       } else if (action === "unfriend") {
         deleteFriend(profileStore._id);
-        setIsPending(true);
+        setIsPending(false);
         setIsFriend(false);
       }
       profileStore.fetchProfileData(profileStore.userName, false);

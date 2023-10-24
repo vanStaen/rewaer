@@ -23,8 +23,8 @@ exports.friendService = {
   async addFriendRequest(userId, friendId) {
     try {
       const newFriend = new Usersfriend({
-        user_id: userId,
-        friend_id: friendId,
+        user_id: parseInt(userId),
+        friend_id: parseInt(friendId),
       });
       await newFriend.save();
       await notificationService.createNotificationNewFriendRequest(userId, friendId);
@@ -36,20 +36,18 @@ exports.friendService = {
 
   async validateFriendRequest(userId, friendId) {
     try {
-      await Usersfriend.update(
+     await Usersfriend.update(
         { pending: false },
         {
           where: {
-            user_id: userId,
-            friend_id: friendId,
+            user_id: parseInt(friendId),
+            friend_id: parseInt(userId),
           },
-          returning: true,
-          plain: true,
         }
       );
       const newFriend = new Usersfriend({
-        user_id: userId,
-        friend_id: friendId,
+        user_id: parseInt(userId),
+        friend_id: parseInt(friendId),
         pending: false,
       });
       await newFriend.save();
@@ -63,8 +61,8 @@ exports.friendService = {
     try {
       await Usersfriend.destroy({
         where: {
-          user_id: userId,
-          friend_id: friendId,
+          user_id: parseInt(userId),
+          friend_id: parseInt(friendId),
         },
       });
       await notificationService.deleteNotificatioFriendRequest(userId, friendId);
@@ -77,14 +75,14 @@ exports.friendService = {
   async deleteFriend(userId, friendId) {
     await Usersfriend.destroy({
       where: {
-        user_id: userId,
-        friend_id: friendId,
+        user_id: parseInt(userId),
+        friend_id: parseInt(friendId),
       },
     });
     await Usersfriend.destroy({
       where: {
-        user_id: friendId,
-        friend_id: userId,
+        user_id: parseInt(friendId),
+        friend_id: parseInt(userId),
       },
     });
     return true;

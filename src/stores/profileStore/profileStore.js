@@ -132,6 +132,7 @@ export class ProfileStore {
 
 
   fetchProfileData = async (userName, loader = true) => {
+    console.log(">>> Fetching profile data");
     try {
       if (loader) {
         this.setIsLoading(true)
