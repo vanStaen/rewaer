@@ -49,25 +49,25 @@ export const ProfileActions = observer(() => {
 
   const thisIsMe = userStore._id === profileStore._id;
 
-  const handleClick = (action) => {
+  const handleClick = async (action) => {
     if (thisIsMe) {
       return;
     }
     try {
       if (action === "follow") {
-        postFollow(profileStore._id);
+        await postFollow(profileStore._id);
         setIsFollowed(true);
       } else if (action === "unfollow") {
-        deleteFollow(profileStore._id);
+        await deleteFollow(profileStore._id);
         setIsFollowed(false);
       } else if (action === "request") {
-        postFriendRequest(profileStore._id);
+        await postFriendRequest(profileStore._id);
         setIsPending(true);
       } else if (action === "unrequest") {
-        deleteFriendRequest(profileStore._id);
+        await deleteFriendRequest(profileStore._id);
         setIsPending(false);
       } else if (action === "unfriend") {
-        deleteFriend(profileStore._id);
+        await deleteFriend(profileStore._id);
         setIsPending(false);
         setIsFriend(false);
       }

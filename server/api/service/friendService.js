@@ -51,6 +51,7 @@ exports.friendService = {
         pending: false,
       });
       await newFriend.save();
+      await notificationService.createNotificationNewFriend(userId, friendId);
       return true;
     } catch (err) {
       console.log(err);

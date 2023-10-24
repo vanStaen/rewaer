@@ -63,6 +63,25 @@ exports.notificationService = {
     }
   },
 
+  async createNotificationNewFriend(friendId, userId) {
+    try {
+      const user = await User.findOne({
+        where: { _id: userId }
+      });
+      const newNotification = new Notification({
+        user_id: friendId,
+        media_url: user.avatar,
+        title: user.userName,
+        type: 17,
+        action_data: userId
+      });
+      await newNotification.save();
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   async deleteNotificatioFriendRequest(requestingId, requestedId) {
     try {
       return await Notification.destroy({

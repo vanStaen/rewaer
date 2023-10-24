@@ -11,7 +11,6 @@ export const postAcceptRequest = async (friendId) => {
       method: "POST",
       data: requestBody,
     });
-    console.log(response);
     return response.data;
   } catch (err) {
     if (err.response.status === 401) {

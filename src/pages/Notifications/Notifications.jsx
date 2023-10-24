@@ -60,7 +60,7 @@ export const Notifications = observer(() => {
 
   const notificationClickHandler = async (type, title, action_data) => {
     //Friend request
-    if (type === 1) {
+    if (type === 1 || type === 17) {
       navigate(`/${title}`);
     }
     //New Follower
@@ -170,6 +170,9 @@ export const Notifications = observer(() => {
         (followed) => followed.userName === title
       ) === -1;
 
+    const isNotFriend =
+      userStore.friends.findIndex((friend) => friend.userName === title) === -1;
+
     const followBackHandler = async (event) => {
       event.stopPropagation();
       try {
@@ -246,31 +249,45 @@ export const Notifications = observer(() => {
               {type === 14 && <>{linkToUserPage} added a new profile picture</>}
               {type === 15 && <>{linkToUserPage} disliked this Item</>}
               {type === 16 && <>{linkToUserPage} disliked this Look</>}
+              {type === 17 && (
+                <>{linkToUserPage} accepted your friend request!</>
+              )}
               &nbsp;
               <span className="notifications__dateMobile">
                 {notificationAge}
               </span>
             </div>
-            {type === 1 && (
-              <div
-                className="notification__actionsButtons"
-                id={`acceptRequest${_id}`}
-              >
-                <Button type="primary" onClick={(e) => acceptRequestHandler(e)}>
-                  Accept
-                </Button>
-              </div>
-            )}
-            {type === 2 && isNotFollowed && (
-              <div
-                className="notification__actionsButtons"
-                id={`followback${_id}`}
-              >
-                <Button type="primary" onClick={(e) => followBackHandler(e)}>
-                  Follow Back
-                </Button>
-              </div>
-            )}
+            {type === 1 &&
+              (isNotFriend ? (
+                <div className="notification__actionsButtons">
+                  <Button
+                    type="primary"
+                    onClick={(e) => acceptRequestHandler(e)}
+                  >
+                    Accept
+                  </Button>
+                </div>
+              ) : (
+                <div className="notification__actionsButtons">
+                  <Button disabled type="primary">
+                    Accepted
+                  </Button>
+                </div>
+              ))}
+            {type === 2 &&
+              (isNotFollowed ? (
+                <div className="notification__actionsButtons">
+                  <Button type="primary" onClick={(e) => followBackHandler(e)}>
+                    Follow Back
+                  </Button>
+                </div>
+              ) : (
+                <div className="notification__actionsButtons">
+                  <Button type="primary" disabled>
+                    Following back
+                  </Button>
+                </div>
+              ))}
             <div className="notification__icon">
               {type === 3 && <MailOutlined />}
               {type === 4 && <SkinOutlined />}
@@ -291,7 +308,7 @@ export const Notifications = observer(() => {
           </div>
         </div>
         <div className="notifications__actionsButtonsMobile">
-          {type === 1 && (
+          {type === 1 && isNotFriend && (
             <div
               className="notification__actionsButtons"
               id={`acceptRequestMobile${_id}`}
