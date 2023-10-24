@@ -1,5 +1,5 @@
 const { Usersfriend } = require("../../models/Usersfriend");
-const { Op } = require("sequelize");
+const { notificationService } = require("./notificationService");
 
 exports.friendService = {
   async getFriends(userId) {
@@ -26,7 +26,9 @@ exports.friendService = {
         user_id: userId,
         friend_id: friendId,
       });
-      return await newFriend.save();
+      await newFriend.save();
+      await notificationService.createNotificationNewFriendRequest(userId, friendId);
+      return true;
     } catch (err) {
       console.log(err);
     }
@@ -65,6 +67,7 @@ exports.friendService = {
           friend_id: friendId,
         },
       });
+      await notificationService.deleteNotificatioFriendRequest(userId, friendId);
       return true;
     } catch (err) {
       console.log(err);

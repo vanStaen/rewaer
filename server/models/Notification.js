@@ -44,9 +44,9 @@ module.exports = {
 /*
 types:
 0: General
-1: Friend request
+1: New Friend request
 2: New Follower ✓
-3: New Messages
+3: New Message
 4: New item from friends/followed ✓
 5: New look from friend/followed ✓
 6: Someone shared an item with you (theirs)
@@ -60,4 +60,5 @@ types:
 14: New Avatar from friends/followed ✓
 15: New Item dislike
 16: New Look dislike
+17: Friend requested accepted
 */

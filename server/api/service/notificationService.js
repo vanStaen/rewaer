@@ -44,6 +44,39 @@ exports.notificationService = {
     }
   },
 
+  async createNotificationNewFriendRequest(requestingId, requestedId) {
+    try {
+      const requesting = await User.findOne({
+        where: { _id: requestingId }
+      });
+      const newNotification = new Notification({
+        user_id: requestedId,
+        media_url: requesting.avatar,
+        title: requesting.userName,
+        type: 1,
+        action_data: requestingId
+      });
+      await newNotification.save();
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async deleteNotificatioFriendRequest(requestingId, requestedId) {
+    try {
+      return await Notification.destroy({
+        where: {
+          user_id: requestedId,
+          action_data: requestingId,
+          type: 1,
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   async createNotificationBasic(userId, mediaUrl, notificationType, actionData) {
     try {
       const user = await User.findOne({
