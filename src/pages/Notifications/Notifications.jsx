@@ -177,6 +177,7 @@ export const Notifications = observer(() => {
       event.stopPropagation();
       try {
         await postFollow(action_data);
+        userStore.fetchUserData(false);
         const element = document.getElementById(`followback${_id}`);
         const elementMobile = document.getElementById(`followbackMobile${_id}`);
         element.style.opacity = 0;
@@ -191,6 +192,7 @@ export const Notifications = observer(() => {
       event.stopPropagation();
       try {
         await postAcceptRequest(action_data);
+        userStore.fetchUserData(false);
         const element = document.getElementById(`acceptRequest${_id}`);
         const elementMobile = document.getElementById(
           `acceptRequestMobile${_id}`

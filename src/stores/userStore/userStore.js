@@ -152,8 +152,11 @@ export class UserStore {
     this.followed = followed;
   };
 
-  fetchUserData = async () => {
+  fetchUserData = async (loader = true) => {
     try {
+      if (loader) {
+        this.setIsLoading(true)
+      };
       const userData = await getUserInfo();
       const pendingData = await getPending();
       if (userData && pendingData) {

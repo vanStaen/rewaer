@@ -63,7 +63,7 @@ exports.notificationService = {
     }
   },
 
-  async createNotificationNewFriend(friendId, userId) {
+  async createNotificationNewFriend(userId, friendId) {
     try {
       const user = await User.findOne({
         where: { _id: userId }
