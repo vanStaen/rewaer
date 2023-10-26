@@ -191,6 +191,7 @@ export class UserStore {
         }
       }
       this.setIsLoading(false);
+      this.setError(null);
     } catch (error) {
       this.setError(error);
     }

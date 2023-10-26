@@ -162,6 +162,7 @@ export class ProfileStore {
           this.setProfilSettings(JSON.parse(profileData.profilSettings));
         }
         this.setIsLoading(false);
+        this.setError(null);
       }
     } catch (error) {
       this.setError(error);

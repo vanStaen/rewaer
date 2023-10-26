@@ -26,7 +26,8 @@
     "makePublic": "Öffentlich machen",
     "isPrivate": "Nur du kannst es sehen",
     "item": "item",
-    "look": "look"
+    "look": "look",
+    "pleaseReload": "Bitte Seite neu laden"
   },
   "login": {
     "newHere": "Erstes mal hier",

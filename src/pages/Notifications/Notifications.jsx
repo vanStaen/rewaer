@@ -185,7 +185,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) {}
+      } catch (e) { }
     };
 
     const acceptRequestHandler = async (event) => {
@@ -202,7 +202,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) {}
+      } catch (e) { }
     };
 
     return (
@@ -259,7 +259,7 @@ export const Notifications = observer(() => {
                 {notificationAge}
               </span>
             </div>
-            {type === 1 &&
+            {(!userStore.isLoading && type === 1) &&
               (isNotFriend ? (
                 <div className="notification__actionsButtons">
                   <Button
@@ -276,7 +276,7 @@ export const Notifications = observer(() => {
                   </Button>
                 </div>
               ))}
-            {type === 2 &&
+            {(!userStore.isLoading && type === 2) &&
               (isNotFollowed ? (
                 <div className="notification__actionsButtons">
                   <Button type="primary" onClick={(e) => followBackHandler(e)}>

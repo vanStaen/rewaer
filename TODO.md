@@ -3,7 +3,7 @@
 ## To-dos:
 
 - [!] ALWAYS : Translate in all three languages
-- [!] ALWAYS : Prepare events/notifications
+- [!] ALWAYS : Add notifications
 - [ ] Image reworking:
   - [x] Create editImageBar Component
     - [x] <BulbOutlined />
@@ -32,8 +32,7 @@
     - [ ] simplified version of cards with comment and liking function
     - [ ] Friend can propose Look name
     - [x] ofc, private item/look are hidden
-    - [ ] Zoomed modus, focus on one look/item
-- [x] when scrolled down, show floating add items button
+    - [ ] Zoomed modus, focus on one look/item (overlay)
 - [ ] Show floating Feedback button
 - [ ] When items are missing basic tags info :
   - [ ] Banner calling for action
@@ -226,3 +225,4 @@
   - [x] Looks
   - [x] Items
 - [x] Create resolver for Usersfriends (to manage pending requests)
+- [x] When scrolled down, show floating add items button
