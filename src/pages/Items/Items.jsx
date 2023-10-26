@@ -71,10 +71,11 @@ export const Items = observer(() => {
     <div className="items__main">
       {itemsStore.error !== null ? (
         <div className="spinner">
-          {itemsStore.error}
-          <br />
-          <br />
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+          <br />
+          {t("main.pleaseReload")}
+          <br />
+          ({itemsStore.error})
         </div>
       ) : itemsStore.isLoading || userStore.isLoading ? (
         <div className="spinner">

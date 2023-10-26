@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
 import { MehOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+
 
 import { looksStore } from "./looksStore";
 import { authStore } from "../../stores/authStore/authStore";
@@ -13,6 +15,8 @@ import { ToolBar } from "../../components/ToolBar/ToolBar";
 import "./Looks.css";
 
 export const Looks = observer(() => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     looksStore.loadLooks();
     userStore.setMenuSelected("looks");
@@ -67,10 +71,11 @@ export const Looks = observer(() => {
     <div className="looks__main">
       {looksStore.error !== null ? (
         <div className="spinner">
-          {looksStore.error}
-          <br />
-          <br />
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+          <br />
+          {t("main.pleaseReload")}
+          <br />
+          ({looksStore.error})
         </div>
       ) : looksStore.isLoading || userStore.isLoading ? (
         <div className="spinner">

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
 import { Spin } from "antd";
 import { MehOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+
 
 import { userStore } from "../../stores/userStore/userStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
@@ -19,6 +21,7 @@ import "./Profile.css";
 export const Profile = observer(() => {
   const [contentToDisplay, setContentToDisplay] = useState("looks");
   const params = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const username = params.username ? params.username : userStore.userName;
@@ -42,10 +45,9 @@ export const Profile = observer(() => {
           </div>
         ) : profileStore.error ? (
           <div className="spinner">
-            Connection error!
-            <br />
-            <br />
             <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
+            <br />
+            {t("main.pleaseReload")}
           </div>
         ) : (
           <>
