@@ -1,14 +1,16 @@
-import React from "react";
-import { Spin, Tooltip } from "antd";
+import React, { useState } from "react";
+import { Modal, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { userStore } from "../../../../stores/userStore/userStore";
 
 import "./ItemShareWithFriends.css";
 
-export const ItemShareWithFriends = observer((props) => {
+export const ItemShareWithFriends = observer(() => {
+  const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
 
   const itemSharedWithFriends = userStore.friends.map((user) => {
@@ -34,5 +36,23 @@ export const ItemShareWithFriends = observer((props) => {
     );
   });
 
-  return <div className="itemShared__Container">{itemSharedWithFriends}</div>;
+  return (
+    <div className="itemShared__Container">
+      <div
+        className="itemdetail__addFriend pointerCursor"
+        onClick={() => setShowModal(true)}
+      >
+        <PlusOutlined />
+      </div>
+      <Modal
+        title="Pick up a friend to share this item with"
+        centered
+        open={showModal}
+        footer={null}
+        onCancel={() => setShowModal(false)}
+      >
+        {itemSharedWithFriends}
+      </Modal>
+    </div>
+  );
 });
