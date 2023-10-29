@@ -9,7 +9,7 @@ import { ItemDetailFormStringElement } from "./ItemDetailFormElement/ItemDetailF
 import { ItemDetailFormRadio } from "./ItemDetailFormElement/ItemDetailFormRadio";
 import { itemsStore } from "../itemsStore";
 import { userStore } from "../../../stores/userStore/userStore";
-import { ItemShareWithFriends } from "./ItemShareWithFriends/ItemShareWithFriends";
+import { ItemSharedWithFriends } from "./ItemSharedWithFriends/ItemSharedWithFriends";
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
@@ -236,7 +236,7 @@ export const ItemDetail = observer(() => {
           <div className="itemDetail__itemContainerDivisor">
             Friends who can access this item
           </div>
-          <ItemShareWithFriends />
+          <ItemSharedWithFriends />
         </div>
       )}
     </div>

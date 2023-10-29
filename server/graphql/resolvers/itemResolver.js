@@ -74,7 +74,7 @@ exports.itemResolver = {
       "private",
       "status",
       "favorite",
-      "shareWith",
+      "sharedWith",
       "likes",
       "dislikes",
       "mediaUrl",
