@@ -32,6 +32,7 @@ export const UserToShareWith = observer((props) => {
           itemsStore.selectedItem._id,
           updateSharedWithArray
         );
+        // TODO : create notification
         itemsStore.setSelectedItem(updateSelecteditem);
         setShowModal(false);
       } catch (e) {
@@ -45,8 +46,6 @@ export const UserToShareWith = observer((props) => {
     if (type === "alreadySharedWith") {
       setIsloading(true);
       try {
-
-        console.log('itemsStore.selectedItem.sharedWith', itemsStore.selectedItem.sharedWith);
         const updatedSharedWithArray =
           Object.values(itemsStore.selectedItem.sharedWith).filter(
             (id) => parseInt(id) !== parseInt(userId)
