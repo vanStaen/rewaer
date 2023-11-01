@@ -47,7 +47,7 @@ export const UserToShareWith = observer((props) => {
       setIsloading(true);
       try {
         const updatedSharedWithArray =
-          Object.values(itemsStore.selectedItem.sharedWith).filter(
+          itemsStore.selectedItem.sharedWith.filter(
             (id) => parseInt(id) !== parseInt(userId)
           );
         const updateSelecteditem = {

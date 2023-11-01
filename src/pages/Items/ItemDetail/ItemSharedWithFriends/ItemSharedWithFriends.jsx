@@ -14,8 +14,8 @@ export const ItemSharedWithFriends = observer(() => {
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
 
-  const sharedWithArray = Object.values(itemsStore.selectedItem.sharedWith);
-  const itemSharedWith = sharedWithArray.map((userId) => {
+  const sharedWithArray = itemsStore.selectedItem.sharedWith ? Object.values(itemsStore.selectedItem.sharedWith) : [];
+  const itemSharedWith = itemsStore.selectedItem.sharedWith.map((userId) => {
     return <UserToShareWith userId={userId} type="alreadySharedWith" setShowModal={setShowModal} />;
   });
 
