@@ -105,6 +105,9 @@
     height: 50px;
     margin: 0 10px 0 0;
     border: 1px solid #f0f0f0;
+    background-size: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
   }
   
 .itemDetail__itemContainerDivisor {

@@ -2,6 +2,7 @@ import React from "react";
 import { Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
+import { CloseCircleFilled } from "@ant-design/icons";
 
 import { userStore } from "../../../../stores/userStore/userStore";
 import { itemsStore } from "../../itemsStore";
@@ -15,6 +16,7 @@ export const UserToShareWith = observer((props) => {
   const userData = userStore.friends.filter(
     (user) => parseInt(user._id) === parseInt(userId)
   );
+
   const handleAddUserToSharedWithList = async (userId) => {
     if (type === "sharableWith") {
       try {
@@ -27,6 +29,28 @@ export const UserToShareWith = observer((props) => {
         await updateItemSharedWith(
           itemsStore.selectedItem._id,
           updateSharedWithArray
+        );
+        itemsStore.setSelectedItem(updateSelecteditem);
+      } catch (e) {
+        console.log("error", e);
+      }
+    }
+  };
+
+  const handleDeleteUserFromSharedWithList = async (userId) => {
+    if (type === "alreadySharedWith") {
+      try {
+        const updatedSharedWithArray =
+          itemsStore.selectedItem.sharedWith.filter(
+            (id) => parseInt(id) === parseInt(userId)
+          );
+        const updateSelecteditem = {
+          ...itemsStore.selectedItem,
+          sharedWith: updatedSharedWithArray,
+        };
+        await updateItemSharedWith(
+          itemsStore.selectedItem._id,
+          updatedSharedWithArray
         );
         itemsStore.setSelectedItem(updateSelecteditem);
       } catch (e) {
@@ -51,8 +75,15 @@ export const UserToShareWith = observer((props) => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        onClick={() => handleAddUserToSharedWithList(user._id)}
-      ></div>
+        onClick={() => handleAddUserToSharedWithList(userId)}
+      >
+        {type === "alreadySharedWith" && (
+          <CloseCircleFilled
+            onClick={() => handleDeleteUserFromSharedWithList(userId)}
+            className="itemdetail__deleteFriendShared"
+          />
+        )}
+      </div>
     </Tooltip>
   );
 });

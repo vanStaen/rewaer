@@ -14,3 +14,17 @@
     justify-content: center;
     vertical-align: top;
 }
+
+.itemdetail__deleteFriendShared {
+    position: relative;
+    top: -8px;
+    left: 40px;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.itemdetail__deleteFriendShared:hover {
+    background-color: #6d917e;
+}

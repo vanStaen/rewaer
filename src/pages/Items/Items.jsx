@@ -38,12 +38,6 @@ export const Items = observer(() => {
         left: 0,
         behavior: "smooth",
       });
-    } else {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
     }
   }, [itemsStore.selectedItem]);
 
@@ -74,8 +68,7 @@ export const Items = observer(() => {
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
           <br />
           {t("main.pleaseReload")}
-          <br />
-          ({itemsStore.error})
+          <br />({itemsStore.error})
         </div>
       ) : itemsStore.isLoading || userStore.isLoading ? (
         <div className="spinner">
