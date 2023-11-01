@@ -46,8 +46,9 @@ export const Profile = observer(() => {
         ) : profileStore.error ? (
           <div className="spinner">
             <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
-            <br />
-            {t("main.pleaseReload")}
+            <div className="errorText">
+              {t("main.pleaseReload")}
+          </div>
           </div>
         ) : (
           <>

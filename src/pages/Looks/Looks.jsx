@@ -72,10 +72,10 @@ export const Looks = observer(() => {
       {looksStore.error !== null ? (
         <div className="spinner">
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
-          <br />
-          {t("main.pleaseReload")}
-          <br />
-          ({looksStore.error})
+          <div className="errorText">
+            {t("main.pleaseReload")}
+            <br />({looksStore.error})
+          </div>
         </div>
       ) : looksStore.isLoading || userStore.isLoading ? (
         <div className="spinner">

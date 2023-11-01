@@ -45,6 +45,12 @@ a:visited {
   justify-content: center;
 }
 
+.App .errorText {
+  text-align: center;
+  padding-top: 10px;
+  line-height: 30px;
+}
+
 .iconRed {
   color: rgba(180, 0, 0, 1);
 }

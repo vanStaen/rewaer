@@ -66,9 +66,10 @@ export const Items = observer(() => {
       {itemsStore.error !== null ? (
         <div className="spinner">
           <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
-          <br />
-          {t("main.pleaseReload")}
-          <br />({itemsStore.error})
+          <div className="errorText">
+            {t("main.pleaseReload")}
+            <br />({itemsStore.error})
+          </div>
         </div>
       ) : itemsStore.isLoading || userStore.isLoading ? (
         <div className="spinner">
