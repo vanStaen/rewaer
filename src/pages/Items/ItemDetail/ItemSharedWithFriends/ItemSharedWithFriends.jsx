@@ -15,32 +15,42 @@ export const ItemSharedWithFriends = observer(() => {
   const { t } = useTranslation();
 
   const sharedWithArray = Object.values(itemsStore.selectedItem.sharedWith);
-  const itemSharedWith = sharedWithArray.map((userId, index) => {
-    return <UserToShareWith userId={userId} type="alreadySharedWith" />;
+  const itemSharedWith = sharedWithArray.map((userId) => {
+    return <UserToShareWith userId={userId} type="alreadySharedWith" setShowModal={setShowModal} />;
   });
 
   const itemSharabledWith = userStore.friends.map((user) => {
-    return <UserToShareWith userId={user._id} type="sharableWith" />;
+    const alreadyShared = sharedWithArray.indexOf(parseInt(user._id)) < 0 ? false : true;
+    if (!alreadyShared) {
+      return <UserToShareWith userId={user._id} type="sharableWith" setShowModal={setShowModal} />;
+    }
+    return null;
   });
+
+  const itemSharabledWithLength = itemSharabledWith.filter(e => e).length;
 
   return (
     <div className="itemShared__Container">
       {itemSharedWith}
-      <div
-        className="itemdetail__addFriend pointerCursor"
-        onClick={() => setShowModal(true)}
-      >
-        <PlusOutlined />
-      </div>
-      <Modal
-        title="Share this item with"
-        centered
-        open={showModal}
-        footer={null}
-        onCancel={() => setShowModal(false)}
-      >
-        {itemSharabledWith}
-      </Modal>
+      {itemSharabledWithLength > 0 &&
+        <>
+          <div
+            className="itemdetail__addFriend pointerCursor"
+            onClick={() => setShowModal(true)}
+          >
+            <PlusOutlined />
+          </div>
+          <Modal
+            title="Share this item with"
+            centered
+            open={showModal}
+            footer={null}
+            onCancel={() => setShowModal(false)}
+          >
+            {itemSharabledWith}
+          </Modal>
+        </>
+      }
     </div>
   );
 });
