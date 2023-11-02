@@ -185,7 +185,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) { }
+      } catch (e) {}
     };
 
     const acceptRequestHandler = async (event) => {
@@ -202,7 +202,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) { }
+      } catch (e) {}
     };
 
     return (
@@ -246,6 +246,7 @@ export const Notifications = observer(() => {
               {type === 5 && (
                 <>{linkToUserPage} added a new look to the garderobe</>
               )}
+              {type === 6 && <>{linkToUserPage} shared an item with you</>}
               {type === 12 && <>{linkToUserPage} liked this Item</>}
               {type === 13 && <>{linkToUserPage} liked this Look</>}
               {type === 14 && <>{linkToUserPage} added a new profile picture</>}
@@ -259,7 +260,8 @@ export const Notifications = observer(() => {
                 {notificationAge}
               </span>
             </div>
-            {(!userStore.isLoading && type === 1) &&
+            {!userStore.isLoading &&
+              type === 1 &&
               (isNotFriend ? (
                 <div className="notification__actionsButtons">
                   <Button
@@ -276,7 +278,8 @@ export const Notifications = observer(() => {
                   </Button>
                 </div>
               ))}
-            {(!userStore.isLoading && type === 2) &&
+            {!userStore.isLoading &&
+              type === 2 &&
               (isNotFollowed ? (
                 <div className="notification__actionsButtons">
                   <Button type="primary" onClick={(e) => followBackHandler(e)}>

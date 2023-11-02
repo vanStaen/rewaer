@@ -7,6 +7,7 @@ import { CloseCircleFilled } from "@ant-design/icons";
 import { userStore } from "../../../../stores/userStore/userStore";
 import { itemsStore } from "../../itemsStore";
 import { updateItemSharedWith } from "./updateItemSharedWith";
+import { postNotificationItemShared } from "./postNotificationItemShared";
 
 import "./ItemSharedWithFriends.css";
 
@@ -28,11 +29,18 @@ export const UserToShareWith = observer((props) => {
           ...itemsStore.selectedItem,
           sharedWith: updateSharedWithArray,
         };
+        // Update item
         await updateItemSharedWith(
           itemsStore.selectedItem._id,
           updateSharedWithArray
         );
-        // TODO : create notification
+        // Create notification
+        await postNotificationItemShared(
+          6,
+          itemsStore.selectedItem.mediaUrlThumb,
+          userId,
+          itemsStore.selectedItem._id
+        );
         itemsStore.setSelectedItem(updateSelecteditem);
         setShowModal(false);
       } catch (e) {
@@ -66,36 +74,35 @@ export const UserToShareWith = observer((props) => {
     }
   };
 
-  return (
-    isLoading ?
-      <div className="itemdetail__addFriend">
-        <Spin size="small" />
-      </div>
-      :
-      <Tooltip
-        title={
-          <Link to={`/${userData[0].userName}`} className="linkAvatarUsername">
-            {userData[0].userName}
-          </Link>
-        }
+  return isLoading ? (
+    <div className="itemdetail__addFriend">
+      <Spin size="small" />
+    </div>
+  ) : (
+    <Tooltip
+      title={
+        <Link to={`/${userData[0].userName}`} className="linkAvatarUsername">
+          {userData[0].userName}
+        </Link>
+      }
+    >
+      <div
+        className="itemdetail__userAvatar pointerCursor"
+        style={{
+          background: `url("${userData[0].avatar}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        onClick={() => handleAddUserToSharedWithList(userId)}
       >
-        <div
-          className="itemdetail__userAvatar pointerCursor"
-          style={{
-            background: `url("${userData[0].avatar}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-          onClick={() => handleAddUserToSharedWithList(userId)}
-        >
-          {type === "alreadySharedWith" && (
-            <CloseCircleFilled
-              onClick={() => handleDeleteUserFromSharedWithList(userId)}
-              className="itemdetail__deleteFriendShared"
-            />
-          )}
-        </div>
-      </Tooltip>
+        {type === "alreadySharedWith" && (
+          <CloseCircleFilled
+            onClick={() => handleDeleteUserFromSharedWithList(userId)}
+            className="itemdetail__deleteFriendShared"
+          />
+        )}
+      </div>
+    </Tooltip>
   );
 });
