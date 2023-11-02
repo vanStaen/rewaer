@@ -14,25 +14,40 @@ export const ItemSharedWithFriends = observer(() => {
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
 
-  const sharedWithArray = itemsStore.selectedItem.sharedWith ? Object.values(itemsStore.selectedItem.sharedWith) : [];
-  const itemSharedWith = itemsStore.selectedItem.sharedWith.map((userId) => {
-    return <UserToShareWith userId={userId} type="alreadySharedWith" setShowModal={setShowModal} />;
+  const sharedWithArray = itemsStore.selectedItem.sharedWith
+    ? Object.values(itemsStore.selectedItem.sharedWith)
+    : [];
+  const itemSharedWith = sharedWithArray.map((userId) => {
+    return (
+      <UserToShareWith
+        userId={userId}
+        type="alreadySharedWith"
+        setShowModal={setShowModal}
+      />
+    );
   });
 
   const itemSharabledWith = userStore.friends.map((user) => {
-    const alreadyShared = sharedWithArray.indexOf(parseInt(user._id)) < 0 ? false : true;
+    const alreadyShared =
+      sharedWithArray.indexOf(parseInt(user._id)) < 0 ? false : true;
     if (!alreadyShared) {
-      return <UserToShareWith userId={user._id} type="sharableWith" setShowModal={setShowModal} />;
+      return (
+        <UserToShareWith
+          userId={user._id}
+          type="sharableWith"
+          setShowModal={setShowModal}
+        />
+      );
     }
     return null;
   });
 
-  const itemSharabledWithLength = itemSharabledWith.filter(e => e).length;
+  const itemSharabledWithLength = itemSharabledWith.filter((e) => e).length;
 
   return (
     <div className="itemShared__Container">
       {itemSharedWith}
-      {itemSharabledWithLength > 0 &&
+      {itemSharabledWithLength > 0 && (
         <>
           <div
             className="itemdetail__addFriend pointerCursor"
@@ -50,7 +65,7 @@ export const ItemSharedWithFriends = observer(() => {
             {itemSharabledWith}
           </Modal>
         </>
-      }
+      )}
     </div>
   );
 });

@@ -83,8 +83,8 @@ export const Notifications = observer(() => {
     else if (type === 5) {
       /*TODO*/
     }
-    //Item liked/disliked
-    else if (type === 12 || type === 15) {
+    //Item liked/disliked, or item shared
+    else if (type === 12 || type === 15 || type === 6) {
       if (itemsStore.isLoading === true) {
         await itemsStore.loadItems();
       }
@@ -295,7 +295,7 @@ export const Notifications = observer(() => {
               ))}
             <div className="notification__icon">
               {type === 3 && <MailOutlined />}
-              {type === 4 && <SkinOutlined />}
+              {(type === 4 || type === 6) && <SkinOutlined />}
               {type === 5 && <CameraOutlined />}
               {type === 12 && <LikeOutlined />}
               {type === 13 && <LikeOutlined />}

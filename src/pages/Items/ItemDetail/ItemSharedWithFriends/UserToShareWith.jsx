@@ -23,7 +23,9 @@ export const UserToShareWith = observer((props) => {
     if (type === "sharableWith") {
       setIsloading(true);
       try {
-        const updateSharedWithArray = itemsStore.selectedItem.sharedWith;
+        const updateSharedWithArray = itemsStore.selectedItem.sharedWith
+          ? Object.values(itemsStore.selectedItem.sharedWith)
+          : [];
         updateSharedWithArray.push(parseInt(userId));
         const updateSelecteditem = {
           ...itemsStore.selectedItem,
