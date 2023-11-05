@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const AWS = require("aws-sdk");
+const { Op } = require('sequelize');
 
 const { User } = require("../../models/User");
 const { Item } = require("../../models/Item");
@@ -17,8 +18,14 @@ exports.itemResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
+    //: where userId or sharedWith contain req.userId
     return await Item.findAll({
-      where: { userId: req.userId },
+      where: { 
+        [Op.or]: [
+          { userId: req.userId }, 
+          { sharedWith: { [Op.contains]: [req.userId] } }
+        ]
+      },
       include: User,
       order: [
         ['active', 'DESC'],
