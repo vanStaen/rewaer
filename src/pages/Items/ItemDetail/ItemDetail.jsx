@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Spin } from "antd";
 import { observer } from "mobx-react";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { ItemDetailFormDropDown } from "./ItemDetailFormElement/ItemDetailFormDropDown";
@@ -33,6 +32,8 @@ export const ItemDetail = observer(() => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
+  const isSharedItem =
+    parseInt(itemsStore.selectedItem.user._id) !== userStore._id;
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -233,10 +234,14 @@ export const ItemDetail = observer(() => {
             tooltip={t("items.notesTooltip")}
           />
           <br />
-          <div className="itemDetail__itemContainerDivisor">
-            Friends who can access this item
-          </div>
-          <ItemSharedWithFriends />
+          {!isSharedItem && (
+            <>
+              <div className="itemDetail__itemContainerDivisor">
+                Friends who can access this item
+              </div>
+              <ItemSharedWithFriends />
+            </>
+          )}
         </div>
       )}
     </div>

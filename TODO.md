@@ -46,17 +46,6 @@
   - [ ] Add a delete feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
-- [ ] Items Detail Page:
-  - [ ] shared items are possible (between friends)
-  - [x] add location
-  - [x] rename desc to notes
-  - [x] add pattern
-  - [x] convert code to string
-  - [x] Use right language
-  - [ ] Implement Multiselect
-  - [x] Implement disabled
-  - [x] Implement space holder as props
-  - [x] Implement info/tooltip as props
 - [ ] Add friends feature
 - [ ] Get only friends in getUser which are not pending
   - [ ] Create extra Endpoint for friends
@@ -226,3 +215,13 @@
   - [x] Items
 - [x] Create resolver for Usersfriends (to manage pending requests)
 - [x] When scrolled down, show floating add items button
+- [x] Items Detail Page:
+  - [x] shared items are possible (between friends)
+  - [x] add location
+  - [x] rename desc to notes
+  - [x] add pattern
+  - [x] convert code to string
+  - [x] Use right language
+  - [x] Implement disabled
+  - [x] Implement space holder as props
+  - [x] Implement info/tooltip as props
