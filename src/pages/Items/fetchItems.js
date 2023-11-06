@@ -26,6 +26,8 @@ export async function fetchItems() {
           mediaUrlThumb,
           user {
               _id,
+              avatar,
+              userName,
           }
         }
       }

@@ -117,6 +117,15 @@
   color: rgba(191, 64, 64, .75);
 }
 
+.itemcard__meta .itemcard__sharedItem {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  margin-top: 10px;
+  font-size: 24px;
+}
+
 .itemcard__metaPrivateFavorite::before {
   position: absolute;
   top: -25px;

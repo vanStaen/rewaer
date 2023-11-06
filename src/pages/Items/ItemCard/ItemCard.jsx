@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { notification, Spin, Popconfirm, Tooltip } from "antd";
+import { Link } from "react-router-dom";
+import { notification, Spin, Popconfirm, Tooltip, Avatar } from "antd";
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
@@ -17,6 +18,9 @@ import { useTranslation } from "react-i18next";
 import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore";
+import { userStore } from "../../../stores/userStore/userStore";
+import { profileStore } from "../../../stores/profileStore/profileStore";
+
 import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
@@ -31,6 +35,12 @@ export const ItemCard = (props) => {
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
+
+  const isSharedItem = parseInt(props.item.user._id) !== userStore._id;
+
+  if (isSharedItem) {
+    console.log("props.item.user._id", props.item.user);
+  }
 
   const spinnerFormated = (
     <div
@@ -121,19 +131,21 @@ export const ItemCard = (props) => {
       const elementLogoOver = document.getElementById(
         `card_item_logoover_${props.item._id}`
       );
-      const elementActionsContainer = document.getElementById(
-        `card_item_actionsContainer_${props.item._id}`
-      );
-      const elementActionsLogo = document.getElementById(
-        `card_item_actionsLogo_${props.item._id}`
-      );
       elementPicture.style.filter = "brightness(50%)";
       if (!loadingError || !props.item.active) {
         elementLogoOver.style.display = "block";
       }
-      elementActionsContainer.style.width = "34px";
-      elementActionsContainer.style.opacity = ".85";
-      elementActionsLogo.style.display = "block";
+      if (!isSharedItem) {
+        const elementActionsContainer = document.getElementById(
+          `card_item_actionsContainer_${props.item._id}`
+        );
+        const elementActionsLogo = document.getElementById(
+          `card_item_actionsLogo_${props.item._id}`
+        );
+        elementActionsContainer.style.width = "34px";
+        elementActionsContainer.style.opacity = ".85";
+        elementActionsLogo.style.display = "block";
+      }
     }
   };
 
@@ -145,26 +157,30 @@ export const ItemCard = (props) => {
       const elementLogoOver = document.getElementById(
         `card_item_logoover_${props.item._id}`
       );
-      const elementActionsContainer = document.getElementById(
-        `card_item_actionsContainer_${props.item._id}`
-      );
-      const elementActionsLogo = document.getElementById(
-        `card_item_actionsLogo_${props.item._id}`
-      );
+      if (!isSharedItem) {
+        const elementActionsContainer = document.getElementById(
+          `card_item_actionsContainer_${props.item._id}`
+        );
+        const elementActionsLogo = document.getElementById(
+          `card_item_actionsLogo_${props.item._id}`
+        );
+        if (props.item.active) {
+          elementActionsContainer.style.width = "0px";
+          setTimeout(() => {
+            elementActionsLogo.style.display = "none";
+            elementActionsContainer.style.opacity = "0";
+          }, 100);
+        } else {
+          elementActionsContainer.style.width = "0px";
+          setTimeout(() => {
+            elementActionsLogo.style.display = "none";
+            elementActionsContainer.style.opacity = "0";
+          }, 100);
+        }
+      }
       if (props.item.active) {
         elementPicture.style.filter = "brightness(100%)";
         elementLogoOver.style.display = "none";
-        elementActionsContainer.style.width = "0px";
-        setTimeout(() => {
-          elementActionsLogo.style.display = "none";
-          elementActionsContainer.style.opacity = "0";
-        }, 100);
-      } else {
-        elementActionsContainer.style.width = "0px";
-        setTimeout(() => {
-          elementActionsLogo.style.display = "none";
-          elementActionsContainer.style.opacity = "0";
-        }, 100);
       }
     }
   };
@@ -238,90 +254,92 @@ export const ItemCard = (props) => {
           </div>
         )}
 
-        <div
-          className="itemcard__actionsContainer"
-          id={`card_item_actionsContainer_${props.item._id}`}
-        >
+        {!isSharedItem && (
           <div
-            className="itemcard__actionsLogo"
-            id={`card_item_actionsLogo_${props.item._id}`}
+            className="itemcard__actionsContainer"
+            id={`card_item_actionsContainer_${props.item._id}`}
           >
-            {props.item.active ? (
-              <>
-                <Tooltip placement="left" title={t("main.markAsFavorite")}>
-                  {isFavorited ? (
-                    <HeartFilled
-                      className="iconRedHover"
-                      onClick={favoriteHandler}
-                    />
+            <div
+              className="itemcard__actionsLogo"
+              id={`card_item_actionsLogo_${props.item._id}`}
+            >
+              {props.item.active ? (
+                <>
+                  <Tooltip placement="left" title={t("main.markAsFavorite")}>
+                    {isFavorited ? (
+                      <HeartFilled
+                        className="iconRedHover"
+                        onClick={favoriteHandler}
+                      />
+                    ) : (
+                      <HeartOutlined
+                        className="iconRedHover"
+                        onClick={favoriteHandler}
+                      />
+                    )}
+                  </Tooltip>
+                  {isPrivate ? (
+                    <Tooltip placement="left" title={t("main.makePublic")}>
+                      <EyeInvisibleOutlined
+                        className="iconGreenHover"
+                        onClick={privateHandler}
+                      />
+                    </Tooltip>
                   ) : (
-                    <HeartOutlined
-                      className="iconRedHover"
-                      onClick={favoriteHandler}
-                    />
+                    <Tooltip placement="left" title={t("main.makePrivate")}>
+                      <EyeOutlined
+                        className="iconGreenHover"
+                        onClick={privateHandler}
+                      />
+                    </Tooltip>
                   )}
-                </Tooltip>
-                {isPrivate ? (
-                  <Tooltip placement="left" title={t("main.makePublic")}>
-                    <EyeInvisibleOutlined
-                      className="iconGreenHover"
-                      onClick={privateHandler}
-                    />
+                  <Tooltip placement="left" title={t("main.archive")}>
+                    <Popconfirm
+                      title={t("items.archiveConfirm")}
+                      onConfirm={() => handleArchive(false)}
+                      okText={t("main.archive")}
+                      cancelText={t("main.cancel")}
+                      icon={
+                        <ExclamationCircleOutlined style={{ color: "black" }} />
+                      }
+                    >
+                      <StopOutlined className="iconRedHover" />
+                    </Popconfirm>
                   </Tooltip>
-                ) : (
-                  <Tooltip placement="left" title={t("main.makePrivate")}>
-                    <EyeOutlined
-                      className="iconGreenHover"
-                      onClick={privateHandler}
-                    />
+                </>
+              ) : (
+                <>
+                  <Tooltip placement="left" title={t("main.restore")}>
+                    <Popconfirm
+                      title={t("items.restoreConfirm")}
+                      onConfirm={() => handleArchive(true)}
+                      okText={t("main.restore")}
+                      cancelText={t("main.cancel")}
+                      icon={
+                        <ExclamationCircleOutlined style={{ color: "black" }} />
+                      }
+                    >
+                      <UndoOutlined className="iconGreenHover" />
+                    </Popconfirm>
                   </Tooltip>
-                )}
-                <Tooltip placement="left" title={t("main.archive")}>
-                  <Popconfirm
-                    title={t("items.archiveConfirm")}
-                    onConfirm={() => handleArchive(false)}
-                    okText={t("main.archive")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <StopOutlined className="iconRedHover" />
-                  </Popconfirm>
-                </Tooltip>
-              </>
-            ) : (
-              <>
-                <Tooltip placement="left" title={t("main.restore")}>
-                  <Popconfirm
-                    title={t("items.restoreConfirm")}
-                    onConfirm={() => handleArchive(true)}
-                    okText={t("main.restore")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <UndoOutlined className="iconGreenHover" />
-                  </Popconfirm>
-                </Tooltip>
-                <Tooltip placement="left" title={t("main.delete")}>
-                  <Popconfirm
-                    title={t("items.deleteConfirm")}
-                    onConfirm={handleDelete}
-                    okText={t("main.delete")}
-                    cancelText={t("main.cancel")}
-                    icon={
-                      <ExclamationCircleOutlined style={{ color: "black" }} />
-                    }
-                  >
-                    <DeleteOutlined className="iconRedHover" />
-                  </Popconfirm>
-                </Tooltip>
-              </>
-            )}
+                  <Tooltip placement="left" title={t("main.delete")}>
+                    <Popconfirm
+                      title={t("items.deleteConfirm")}
+                      onConfirm={handleDelete}
+                      okText={t("main.delete")}
+                      cancelText={t("main.cancel")}
+                      icon={
+                        <ExclamationCircleOutlined style={{ color: "black" }} />
+                      }
+                    >
+                      <DeleteOutlined className="iconRedHover" />
+                    </Popconfirm>
+                  </Tooltip>
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        )}
         <div
           className={
             isPrivate
@@ -329,17 +347,37 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-                ? "itemcard__meta itemcard__metaFavorite"
-                : "itemcard__meta"
+              ? "itemcard__meta itemcard__metaFavorite"
+              : "itemcard__meta"
           }
         >
-          <EditableTitle
-            title={props.item.title}
-            id={props.item._id}
-            type={"item"}
-            active={props.item.active}
-          />
-          {isPrivate ? (
+          {isSharedItem ? (
+            <div style={{ color: "#999" }}>{props.item.title}</div>
+          ) : (
+            <EditableTitle
+              title={props.item.title}
+              id={props.item._id}
+              type={"item"}
+              active={props.item.active}
+            />
+          )}
+          {isSharedItem ? (
+            <Tooltip placement="bottom" title={props.item.user.userName}>
+              <div className="itemcard__sharedItem">
+                <Link
+                  to={`/${props.item.user.userName}`}
+                  onClick={() => {
+                    profileStore.fetchProfileData(props.item.user.userName);
+                    itemsStore.setOriginalScrollPosition(
+                      itemsStore.lastKnownScrollPosition
+                    );
+                  }}
+                >
+                  <Avatar src={props.item.user.avatar} size={36} />
+                </Link>
+              </div>
+            </Tooltip>
+          ) : isPrivate ? (
             <Tooltip placement="bottom" title={t("main.isPrivate")}>
               <div className="itemcard__private">
                 <EyeInvisibleOutlined />

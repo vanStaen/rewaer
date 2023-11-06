@@ -25,11 +25,4 @@ describe("Editable title element", () => {
     expect(testInstance.props.title).toBe("test");
   });
 
-  /*it("On double click, if item is not active, nothing happens", () => {
-    expect(2 + 2).toBe(4);
-  });
-
-  it("On double click, if user has rights and items is active, title swtich to edit mode.", () => {
-    expect(2 + 2).toBe(4);
-  });*/
 });
