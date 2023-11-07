@@ -38,10 +38,6 @@ export const ItemCard = (props) => {
 
   const isSharedItem = parseInt(props.item.user._id) !== userStore._id;
 
-  if (isSharedItem) {
-    console.log("props.item.user._id", props.item.user);
-  }
-
   const spinnerFormated = (
     <div
       className="item__spinner"
@@ -347,20 +343,17 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-              ? "itemcard__meta itemcard__metaFavorite"
-              : "itemcard__meta"
+                ? "itemcard__meta itemcard__metaFavorite"
+                : "itemcard__meta"
           }
         >
-          {isSharedItem ? (
-            <div style={{ color: "#999" }}>{props.item.title}</div>
-          ) : (
-            <EditableTitle
-              title={props.item.title}
-              id={props.item._id}
-              type={"item"}
-              active={props.item.active}
-            />
-          )}
+          <EditableTitle
+            title={props.item.title}
+            id={props.item._id}
+            type={"item"}
+            active={props.item.active}
+            disabled={isSharedItem}
+          />
           {isSharedItem ? (
             <Tooltip placement="bottom" title={props.item.user.userName}>
               <div className="itemcard__sharedItem">
