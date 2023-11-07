@@ -153,7 +153,7 @@ export const ItemDetail = observer(() => {
           />
           <ItemDetailFormDropDown
             title="color"
-            element="color"
+            element="colors"
             data={colors}
             value={
               itemsStore.selectedItem.colors && itemsStore.selectedItem.colors

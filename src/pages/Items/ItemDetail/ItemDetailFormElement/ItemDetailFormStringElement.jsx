@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react";
 import { Input, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
-import {
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { itemsStore } from "../../itemsStore";
@@ -58,19 +56,23 @@ export const ItemDetailFormStringElement = observer((props) => {
 
   const handleEditCancel = () => {
     setIsEditmode(false);
-    setEditInputValue(props.value.replace("-", "/"));
+    if (props.value) {
+      setEditInputValue(props.value.replace("-", "/"));
+    }
   };
 
   const handleEditConfirm = () => {
-    changeHandler(editInputValue.replace("/", "-"));
-    setValue(editInputValue.replace("-", "/"));
+    if (editInputValue.value) {
+      changeHandler(editInputValue.replace("/", "-"));
+      setValue(editInputValue.replace("-", "/"));
+    }
     setIsEditmode(false);
   };
 
   useEffect(() => {
     if (isEditMode) {
       inputRef.current.focus({
-        cursor: 'end',
+        cursor: "end",
       });
     }
   }, [isEditMode]);
@@ -94,12 +96,8 @@ export const ItemDetailFormStringElement = observer((props) => {
           <div
             className={
               value
-                ? `ItemDetailFormElement__element ${
-                    props.disabled
-                  }`
-                : `ItemDetailFormElement__selectElement textCursor ${
-                    props.disabled
-                  }`
+                ? `ItemDetailFormElement__element ${props.disabled}`
+                : `ItemDetailFormElement__selectElement textCursor ${props.disabled}`
             }
             onClick={() => {
               !props.disabled && setIsEditmode(true);

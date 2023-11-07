@@ -41,10 +41,12 @@ export const ItemCard = (props) => {
   const hasMissingBrand = props.item.brand === null;
   const hasMissingCategory = props.item.category === null;
   const hasMissingColor = props.item.colors.length === 0;
+  const hasMissingPattern = props.item.pattern === null;
   const hasMissingInfo =
-    hasMissingBrand || hasMissingCategory || hasMissingColor;
-
-  console.log("hasMissingInfo", hasMissingInfo);
+    hasMissingBrand ||
+    hasMissingCategory ||
+    hasMissingPattern ||
+    hasMissingColor;
 
   const spinnerFormated = (
     <div
@@ -235,9 +237,16 @@ export const ItemCard = (props) => {
           <Tooltip
             title={`Missing${hasMissingBrand ? " Brand" : ""}
                            ${hasMissingCategory ? " Category" : ""}
-                           ${hasMissingColor ? " Color" : ""}`}
+                           ${hasMissingColor ? " Color" : ""}
+                           ${hasMissingPattern ? " Pattern" : ""}`}
           >
-            <ExclamationOutlined className="itemcard__missingInfo" />
+            <ExclamationOutlined
+              className="itemcard__missingInfo"
+              onClick={() => {
+                onMouseLeaveHandler();
+                props.showDetailView(props.item);
+              }}
+            />
           </Tooltip>
         )}
         {props.item.active ? (

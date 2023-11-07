@@ -147,15 +147,21 @@ export const UploadForm = observer((props) => {
   };
 
   useEffect(() => {
-    if (pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm) {
+    if (
+      pageStore.showFloatingUploadForm ||
+      pageStore.showOnlyFloatingUploadForm
+    ) {
       const element = document.getElementById("upload-floating-form");
-      element.style.opacity = ".8";
+      if (element) {
+        element.style.opacity = ".8";
+      }
     }
   }, [pageStore.showFloatingUploadForm, pageStore.showOnlyFloatingUploadForm]);
 
   return (
     <>
-      {(pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm) && (
+      {(pageStore.showFloatingUploadForm ||
+        pageStore.showOnlyFloatingUploadForm) && (
         <div className="upload-floating-form" id="upload-floating-form">
           <form onSubmit={submitHandler}>
             <input
