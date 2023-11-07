@@ -127,7 +127,7 @@ export const ItemDetail = observer(() => {
             title="title"
             value={itemsStore.selectedItem.title}
             selectedItem={itemsStore.selectedItem}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <ItemDetailFormDropDown
             title="category"
@@ -142,25 +142,25 @@ export const ItemDetail = observer(() => {
             value={itemsStore.selectedItem.category}
             selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <ItemDetailFormStringElement
             element="brand"
             title="brand"
             value={itemsStore.selectedItem.brand}
             selectedItem={itemsStore.selectedItem}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <ItemDetailFormDropDown
-            title="colors"
-            element="colors"
+            title="color"
+            element="color"
             data={colors}
             value={
               itemsStore.selectedItem.colors && itemsStore.selectedItem.colors
             }
             selectedItem={itemsStore.selectedItem}
             multiSelect={true}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <ItemDetailFormDropDown
             title="pattern"
@@ -169,7 +169,7 @@ export const ItemDetail = observer(() => {
             value={itemsStore.selectedItem.pattern}
             selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <br />
           <div className="itemDetail__itemContainerDivisor">
@@ -182,7 +182,7 @@ export const ItemDetail = observer(() => {
             value={itemsStore.selectedItem.status}
             selectedItem={itemsStore.selectedItem}
             multiSelect={false}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
             tooltip={t("items.statusTooltip")}
           />
           <ItemDetailFormRadio
@@ -196,7 +196,7 @@ export const ItemDetail = observer(() => {
             selectedItem={itemsStore.selectedItem}
             whatShouldBeRed={true}
             multiSelect={false}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
             tooltip={t("items.makePrivateItem")}
           />
           <ItemDetailFormRadio
@@ -210,7 +210,7 @@ export const ItemDetail = observer(() => {
             selectedItem={itemsStore.selectedItem}
             whatShouldBeRed={false}
             multiSelect={false}
-            disabled={false}
+            disabled={isSharedItem}
             tooltip={t("items.archiveItem")}
           />
           <br />
@@ -222,7 +222,7 @@ export const ItemDetail = observer(() => {
             title="location"
             value={itemsStore.selectedItem.location}
             selectedItem={itemsStore.selectedItem}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
             tooltip={t("items.notesTooltip")}
           />
           <ItemDetailFormStringElement
@@ -230,7 +230,7 @@ export const ItemDetail = observer(() => {
             title="notes"
             value={itemsStore.selectedItem.notes}
             selectedItem={itemsStore.selectedItem}
-            disabled={!itemsStore.selectedItem.active}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
             tooltip={t("items.notesTooltip")}
           />
           <br />

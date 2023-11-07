@@ -95,10 +95,10 @@ export const ItemDetailFormStringElement = observer((props) => {
             className={
               value
                 ? `ItemDetailFormElement__element ${
-                    props.disabled && "striked"
+                    props.disabled
                   }`
                 : `ItemDetailFormElement__selectElement textCursor ${
-                    props.disabled && "striked"
+                    props.disabled
                   }`
             }
             onClick={() => {
