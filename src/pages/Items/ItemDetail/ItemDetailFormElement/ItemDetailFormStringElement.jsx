@@ -4,7 +4,6 @@ import { Input, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import {
   QuestionCircleOutlined,
-  ExclamationCircleOutlined,
 } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
@@ -15,6 +14,7 @@ import "./ItemDetailFormElement.css";
 export const ItemDetailFormStringElement = observer((props) => {
   const { t } = useTranslation();
   const originalValue = useRef(props.value);
+  const inputRef = useRef(null);
   const [value, setValue] = useState(
     props.value ? props.value.replace("-", "/") : null
   );
@@ -67,12 +67,21 @@ export const ItemDetailFormStringElement = observer((props) => {
     setIsEditmode(false);
   };
 
+  useEffect(() => {
+    if (isEditMode) {
+      inputRef.current.focus({
+        cursor: 'end',
+      });
+    }
+  }, [isEditMode]);
+
   return (
     <div className="ItemDetailFormElement__container">
       <div className="ItemDetailFormElement__title">{props.title}:</div>
       <div className="ItemDetailFormElement__input">
         {isEditMode ? (
           <Input
+            ref={inputRef}
             key={`title_input_${props.selectedItem._id}`}
             size="small"
             className="ItemDetailFormElement__element"
