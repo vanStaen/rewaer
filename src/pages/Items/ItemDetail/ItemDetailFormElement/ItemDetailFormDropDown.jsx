@@ -9,6 +9,7 @@ import { updateGenericArrayStringItem } from "../../actions/updateGenericArraySt
 import { itemsStore } from "../../itemsStore";
 import { userStore } from "../../../../stores/userStore/userStore";
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
+import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./ItemDetailFormElement.css";
 
@@ -35,7 +36,7 @@ export const ItemDetailFormDropDown = observer((props) => {
       });
     });
     setOptions(optionsTemp);
-  }
+  };
 
   const loadSelectedForSelect = () => {
     const optionsSelectedTemp = [];
@@ -48,10 +49,10 @@ export const ItemDetailFormDropDown = observer((props) => {
       }
     });
     setOptionsSelected(optionsSelectedTemp);
-  }
+  };
 
   const handleChange = async (newValue) => {
-    console.log('handleChange value', newValue);
+    console.log("handleChange value", newValue);
     try {
       if (props.multiSelect) {
         await updateGenericArrayStringItem(
@@ -68,7 +69,12 @@ export const ItemDetailFormDropDown = observer((props) => {
       }
       setOptionsSelected(newValue);
       notification.success({
-        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
+        message: (
+          <>
+            <b>{capitalizeFirstLetter(props.element)}</b> -{" "}
+            {t("main.changeSaved")}
+          </>
+        ),
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);

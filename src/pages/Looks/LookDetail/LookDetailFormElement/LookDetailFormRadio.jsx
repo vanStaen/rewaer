@@ -7,6 +7,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { updateGenericBooleanLook } from "../../actions/updateGenericBooleanLook";
 import { looksStore } from "../../looksStore";
 import { userStore } from "../../../../stores/userStore/userStore";
+import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./LookDetailFormElement.css";
 
@@ -24,7 +25,12 @@ export const LookDetailFormRadio = observer((props) => {
       setValue(event.target.value);
       props.flipValueTo(event.target.value);
       notification.success({
-        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
+        message: (
+          <>
+            <b>{capitalizeFirstLetter(props.element)}</b> -{" "}
+            {t("main.changeSaved")}
+          </>
+        ),
         placement: "bottomRight",
       });
       looksStore.setIsOutOfDate(true);

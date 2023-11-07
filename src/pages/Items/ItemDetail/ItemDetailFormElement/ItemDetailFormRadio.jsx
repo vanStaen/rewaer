@@ -6,6 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericBooleanItem } from "../../actions/updateGenericBooleanItem";
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import { itemsStore } from "../../itemsStore";
 import { userStore } from "../../../../stores/userStore/userStore";
@@ -38,7 +39,12 @@ export const ItemDetailFormRadio = observer((props) => {
 
       setValue(event.target.value);
       notification.success({
-        message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
+        message: (
+          <>
+            <b>{capitalizeFirstLetter(props.element)}</b> -{" "}
+            {t("main.changeSaved")}
+          </>
+        ),
         placement: "bottomRight",
       });
       itemsStore.setIsOutOfDate(true);

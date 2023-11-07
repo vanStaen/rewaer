@@ -6,10 +6,6 @@
     display: inline-block;
 };
 
-.title__input {
-    font-size: 36px;
-}
-
 @media (max-width: 540px) {
     .title__containerItem {
         width: 100%;

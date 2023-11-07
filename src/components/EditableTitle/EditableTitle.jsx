@@ -28,9 +28,9 @@ export const EditableTitle = (props) => {
       props.title
         ? props.title.replace(/ /g, "_").length > 20
           ? `${props.title
-            .replace("-", "/")
-            .replace(/ /g, "_")
-            .slice(0, 20)}...`
+              .replace("-", "/")
+              .replace(/ /g, "_")
+              .slice(0, 20)}...`
           : props.title.replace("-", "/").replace(/ /g, "_")
         : null
     );
@@ -43,7 +43,11 @@ export const EditableTitle = (props) => {
       patchTitle(title, props.id, props.type)
         .then(() => {
           notification.success({
-            message: `[TITLE] ${t("main.changeSaved")}`,
+            message: (
+              <>
+                <b>Title</b> - {t("main.changeSaved")}
+              </>
+            ),
             placement: "bottomRight",
           });
           setOriginalTitle(title);
@@ -70,9 +74,9 @@ export const EditableTitle = (props) => {
     setTitle(
       editInputValue.replace(/ /g, "_").length > 23
         ? `${editInputValue
-          .replace("-", "/")
-          .replace(/ /g, "_")
-          .slice(0, 23)}...`
+            .replace("-", "/")
+            .replace(/ /g, "_")
+            .slice(0, 23)}...`
         : editInputValue.replace("-", "/").replace(/ /g, "_")
     );
     setIsEditmode(false);
@@ -81,38 +85,40 @@ export const EditableTitle = (props) => {
   useEffect(() => {
     if (isEditMode) {
       inputRef.current.focus({
-        cursor: 'end',
+        cursor: "end",
       });
     }
   }, [isEditMode]);
 
-  return (
-    props.disabled ?
-      (<div style={{ color: "#999" }}>{title}</div>) :
-      <div
-        className={
-          props.type === "item" ? "title__containerItem" : "title__container"
-        }
-      >
-        {isEditMode ? (
-          <Input
-            ref={inputRef}
-            key={`title_input_${props.id}`}
-            size="small"
-            className="title__input"
-            value={editInputValue}
-            onChange={handleEditChange}
-            onBlur={handleEditCancel}
-            onPressEnter={handleEditConfirm}
-          />
-        ) : (
-          <div
-            className={props.active ? "Page__title" : "Page__title striked"}
-            onDoubleClick={() => { setIsEditmode(true); }}
-          >
-            {title}
-          </div>
-        )}
-      </div>
+  return props.disabled ? (
+    <div style={{ color: "#999" }}>{title}</div>
+  ) : (
+    <div
+      className={
+        props.type === "item" ? "title__containerItem" : "title__container"
+      }
+    >
+      {isEditMode ? (
+        <Input
+          ref={inputRef}
+          key={`title_input_${props.id}`}
+          size="small"
+          value={editInputValue}
+          onChange={handleEditChange}
+          onBlur={handleEditCancel}
+          onPressEnter={handleEditConfirm}
+          bordered={false}
+        />
+      ) : (
+        <div
+          className={props.active ? "Page__title" : "Page__title striked"}
+          onClick={() => {
+            setIsEditmode(true);
+          }}
+        >
+          {title}
+        </div>
+      )}
+    </div>
   );
 };

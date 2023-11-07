@@ -6,6 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { itemsStore } from "../../itemsStore";
+import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./ItemDetailFormElement.css";
 
@@ -38,7 +39,12 @@ export const ItemDetailFormStringElement = observer((props) => {
         setValue(newValue);
         itemsStore.setIsOutOfDate(true);
         notification.success({
-          message: `[${props.element.toUpperCase()}] ${t("main.changeSaved")}`,
+          message: (
+            <>
+              <b>{capitalizeFirstLetter(props.element)}</b> -{" "}
+              {t("main.changeSaved")}
+            </>
+          ),
           placement: "bottomRight",
         });
       } catch (error) {

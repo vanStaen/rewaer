@@ -233,7 +233,7 @@ export const ItemCard = (props) => {
             }}
           ></div>
         )}
-        {hasMissingInfo && (
+        {hasMissingInfo && !isSharedItem && (
           <Tooltip
             title={`Missing${hasMissingBrand ? " Brand" : ""}
                            ${hasMissingCategory ? " Category" : ""}
