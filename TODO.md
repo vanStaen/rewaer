@@ -52,7 +52,6 @@
   - [ ] Stop fetching those in the GraphQL
 - [ ] Settings: friends who are allowed to see you private stuff
 - [ ] Title editable : Input vs ContentEditable
-- [ ] <ExclamationCircleOutlined /> on items not fully taged
 - [ ] Make nice Footer to make it look pro
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Implement the search function to find
@@ -225,3 +224,4 @@
   - [x] Implement disabled
   - [x] Implement space holder as props
   - [x] Implement info/tooltip as props
+- [x] <ExclamationCircleOutlined /> on items not fully taged

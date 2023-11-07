@@ -4,6 +4,7 @@ import { notification, Spin, Popconfirm, Tooltip, Avatar } from "antd";
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
+  ExclamationOutlined,
   UndoOutlined,
   StopOutlined,
   TagOutlined,
@@ -37,6 +38,13 @@ export const ItemCard = (props) => {
   const [loadingError, setLoadingError] = useState(false);
 
   const isSharedItem = parseInt(props.item.user._id) !== userStore._id;
+  const hasMissingBrand = props.item.brand === null;
+  const hasMissingCategory = props.item.category === null;
+  const hasMissingColor = props.item.colors.length === 0;
+  const hasMissingInfo =
+    hasMissingBrand || hasMissingCategory || hasMissingColor;
+
+  console.log("hasMissingInfo", hasMissingInfo);
 
   const spinnerFormated = (
     <div
@@ -222,6 +230,15 @@ export const ItemCard = (props) => {
               }
             }}
           ></div>
+        )}
+        {hasMissingInfo && (
+          <Tooltip
+            title={`Missing${hasMissingBrand ? " Brand" : ""}
+                           ${hasMissingCategory ? " Category" : ""}
+                           ${hasMissingColor ? " Color" : ""}`}
+          >
+            <ExclamationOutlined className="itemcard__missingInfo" />
+          </Tooltip>
         )}
         {props.item.active ? (
           <div

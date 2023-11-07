@@ -126,6 +126,14 @@
   font-size: 24px;
 }
 
+.itemcard__missingInfo {
+  position: absolute;
+  z-index: 5;
+  top: 10px;
+  font-size: 33px;
+  color: rgba(205,92,92,1) !important;
+}
+
 .itemcard__metaPrivateFavorite::before {
   position: absolute;
   top: -25px;
