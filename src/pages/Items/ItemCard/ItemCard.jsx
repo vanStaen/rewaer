@@ -295,9 +295,6 @@ export const ItemCard = (props) => {
                       onConfirm={() => handleArchive(false)}
                       okText={t("main.archive")}
                       cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
                     >
                       <StopOutlined className="iconRedHover" />
                     </Popconfirm>
@@ -311,9 +308,6 @@ export const ItemCard = (props) => {
                       onConfirm={() => handleArchive(true)}
                       okText={t("main.restore")}
                       cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
                     >
                       <UndoOutlined className="iconGreenHover" />
                     </Popconfirm>
@@ -324,9 +318,6 @@ export const ItemCard = (props) => {
                       onConfirm={handleDelete}
                       okText={t("main.delete")}
                       cancelText={t("main.cancel")}
-                      icon={
-                        <ExclamationCircleOutlined style={{ color: "black" }} />
-                      }
                     >
                       <DeleteOutlined className="iconRedHover" />
                     </Popconfirm>
@@ -343,8 +334,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-                ? "itemcard__meta itemcard__metaFavorite"
-                : "itemcard__meta"
+              ? "itemcard__meta itemcard__metaFavorite"
+              : "itemcard__meta"
           }
         >
           <EditableTitle
