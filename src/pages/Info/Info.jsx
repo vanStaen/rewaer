@@ -9,10 +9,12 @@ export const Info = () => {
   const today = new Date();
   const year = today.getFullYear();
 
+  const elispisthreeshold = window.window.innerWidth < 530 ? 7 : 3;
+
   return (
     <div className="info__container">
       <Title level={3}>Rewaer, the green Fashion App</Title>
-      <Paragraph>
+      <Paragraph style={{ textAlign: "justify", textJustify: "inter-word" }}>
         <Text type="secondary">
           The Fashion App for minimalistic and sustainable geniuses! <br />
           <span
@@ -32,6 +34,7 @@ export const Info = () => {
           text: "admin@rewear.com",
           tooltips: ["Copy email", "Email copied!"],
         }}
+        style={{ textAlign: "justify", textJustify: "inter-word" }}
       >
         Please address any questions/comments to <b>admin@rewear.com.</b>
       </Paragraph>
@@ -39,7 +42,10 @@ export const Info = () => {
       <Divider orientation="left" plain>
         What is Rewaer?
       </Divider>
-      <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
+      <Paragraph
+        ellipsis={{ rows: elispisthreeshold, expandable: true, symbol: "more" }}
+        style={{ textAlign: "justify", textJustify: "inter-word" }}
+      >
         Rewaer is promoting green fashion based on the principle that{" "}
         <span style={{ background: "#C8D6CF" }}>
           the most sustainable piece of clothing is the one you already have
@@ -57,7 +63,10 @@ export const Info = () => {
       <Divider orientation="left" plain>
         Why do you need it?
       </Divider>
-      <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
+      <Paragraph
+        ellipsis={{ rows: elispisthreeshold, expandable: true, symbol: "more" }}
+        style={{ textAlign: "justify", textJustify: "inter-word" }}
+      >
         <em>I don't know what to wear! Do I need new clothes?</em> Fashion
         accounts for around 10% of greenhouse gas emissions from human activity,
         but there are ways to reduce the impact your wardrobe has on the
@@ -82,7 +91,10 @@ export const Info = () => {
       <Divider orientation="left" plain>
         How far are we?
       </Divider>
-      <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
+      <Paragraph
+        ellipsis={{ rows: elispisthreeshold, expandable: true, symbol: "more" }}
+        style={{ textAlign: "justify", textJustify: "inter-word" }}
+      >
         We are still working on a first version including the minimum viables
         features.{" "}
         <span style={{ background: "#C8D6CF" }}>
@@ -103,9 +115,8 @@ export const Info = () => {
         */}
 
       <Divider />
-      <Paragraph disabled>
-        App running in {process.env.NODE_ENV} mode.
-        <br />©{year} Rewaer All Rights Reserved
+      <Paragraph disabled style={{ fontSize: "12px", textAlign: "center" }}>
+        ©{year} Rewaer All Rights Reserved
       </Paragraph>
     </div>
   );
