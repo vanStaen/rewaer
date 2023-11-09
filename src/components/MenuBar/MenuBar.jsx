@@ -84,8 +84,9 @@ export const MenuBar = observer((props) => {
         <Link to="/notifications">
           <div
             key="notifications"
-            className={`notifications menu__element left ${userStore.menuSelected === "notifications" && "selected"
-              }`}
+            className={`notifications menu__element left ${
+              userStore.menuSelected === "notifications" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("notifications");
               pageStore.fetchNotifications();
@@ -106,8 +107,9 @@ export const MenuBar = observer((props) => {
 
         <div
           key="mail"
-          className={`menu__elementDisabled left ${userStore.menuSelected === "mail" && "selected"
-            }`}
+          className={`menu__elementDisabled left ${
+            userStore.menuSelected === "mail" && "selected"
+          }`}
           onClick={() => {
             //userStore.setMenuSelected("mail");
           }}
@@ -116,23 +118,27 @@ export const MenuBar = observer((props) => {
           <span className="menu__elementName">{t("menu.mail")}</span>
         </div>
 
-        <div
-          key="search"
-          className={`menu__elementDisabled left ${userStore.menuSelected === "search" && "selected"
+        <Link to="/search">
+          <div
+            key="search"
+            className={`menu__element left ${
+              userStore.menuSelected === "search" && "selected"
             }`}
-          onClick={() => {
-            //userStore.setMenuSelected("search");
-          }}
-        >
-          <SearchOutlined />
-          <span className="menu__elementName">{t("menu.search")}</span>
-        </div>
+            onClick={() => {
+              userStore.setMenuSelected("search");
+            }}
+          >
+            <SearchOutlined />
+            <span className="menu__elementName">{t("menu.search")}</span>
+          </div>
+        </Link>
 
         <Link to="/info">
           <div
             key="info"
-            className={`info menu__element left ${userStore.menuSelected === "info" && "selected"
-              }`}
+            className={`info menu__element left ${
+              userStore.menuSelected === "info" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("info");
             }}
@@ -143,8 +149,9 @@ export const MenuBar = observer((props) => {
 
         <div
           key="profile"
-          className={`menu__element right ${userStore.menuSelected === "profile" && "selected"
-            }`}
+          className={`menu__element right ${
+            userStore.menuSelected === "profile" && "selected"
+          }`}
           onMouseEnter={handlerShowSubMenu}
           onMouseLeave={handlerHideSubMenu}
         >

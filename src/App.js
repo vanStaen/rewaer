@@ -18,6 +18,7 @@ import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { MenuBar } from "./components/MenuBar/MenuBar";
 import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
+import { Search } from "./pages/Search/Search";
 import { Footer } from "./components/Footer/Footer";
 
 import "../src/lib/i18n";
@@ -108,6 +109,7 @@ const App = observer(() => {
               <Route path="profile/" element={<Profile />} />
               <Route path="editsettings/" element={<EditSettings />} />
               <Route path="notifications/" element={<Notifications />} />
+              <Route path="search/" element={<Search />} />
             </>
           )}
           <Route path="/:username" element={<Profile />} />
