@@ -105,19 +105,6 @@ export const MenuBar = observer((props) => {
           </div>
         </Link>
 
-        <div
-          key="mail"
-          className={`menu__elementDisabled left ${
-            userStore.menuSelected === "mail" && "selected"
-          }`}
-          onClick={() => {
-            //userStore.setMenuSelected("mail");
-          }}
-        >
-          <MailOutlined />
-          <span className="menu__elementName">{t("menu.mail")}</span>
-        </div>
-
         <Link to="/search">
           <div
             key="search"
@@ -132,6 +119,19 @@ export const MenuBar = observer((props) => {
             <span className="menu__elementName">{t("menu.search")}</span>
           </div>
         </Link>
+
+        <div
+          key="mail"
+          className={`menu__elementDisabled left ${
+            userStore.menuSelected === "mail" && "selected"
+          }`}
+          onClick={() => {
+            //userStore.setMenuSelected("mail");
+          }}
+        >
+          <MailOutlined />
+          <span className="menu__elementName">{t("menu.mail")}</span>
+        </div>
 
         <Link to="/info">
           <div

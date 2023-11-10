@@ -313,7 +313,7 @@ export const Notifications = observer(() => {
           </div>
         </div>
         <div className="notifications__actionsButtonsMobile">
-          {type === 1 && isNotFriend && (
+          {!userStore.isLoading && type === 1 && isNotFriend && (
             <div
               className="notification__actionsButtons"
               id={`acceptRequestMobile${_id}`}
@@ -328,7 +328,7 @@ export const Notifications = observer(() => {
               </Button>
             </div>
           )}
-          {type === 2 && isNotFollowed && (
+          {!userStore.isLoading && type === 2 && isNotFollowed && (
             <div
               className="notification__actionsButtons"
               id={`followbackMobile${_id}`}
