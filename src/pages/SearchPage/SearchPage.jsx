@@ -1,25 +1,57 @@
 import React, { useState } from "react";
 import { Input } from "antd";
-const { Search } = Input;
+
+import { postSearch } from "./postSearch";
+import { postSearchMore } from "./postSearchMore";
 
 import "./SearchPage.less";
+
+const { Search } = Input;
 
 export const SearchPage = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResult] = useState(null);
 
-  const handleEnter = (e) => {
-    console.log("enter", e.target.value);
+  const handleEnter = async (e) => {
     setIsSearching(true);
+    if (!e.target.value) {
+      return;
+    }
+    const response = await postSearchMore(e.target.value);
+    if (response.length > 0) {
+      setResult(response);
+    } else {
+      setResult(null);
+    }
+    setIsSearching(false);
   };
 
-  const handleChange = (e) => {
-    console.log("change", e.target.value);
+  const handleChange = async (e) => {
+    setIsSearching(true);
+    if (!e.target.value) {
+      return;
+    }
+    const response = await postSearch(e.target.value);
+    if (response.length > 0) {
+      setResult(response);
+    } else {
+      setResult(null);
+    }
+    setIsSearching(false);
   };
 
-  const handleSearch = (value) => {
-    console.log(value);
+  const handleSearch = async (value) => {
     setIsSearching(true);
+    if (!value) {
+      return;
+    }
+    const response = await postSearchMore(value);
+    if (response.length > 0) {
+      setResult(response);
+    } else {
+      setResult(null);
+    }
+    setIsSearching(false);
   };
 
   return (
