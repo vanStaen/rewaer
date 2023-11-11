@@ -5,14 +5,49 @@ const { Op } = require('sequelize');
 
 exports.searchService = {
 
-  async searchUsersStartingWith(searchText) {
-    const lowerSearchText = searchText.toLowerCase();
+  async searchUsersAll(searchText) {
     return foundUsers = await User.findAll({
       where: { 
         [Op.or]: [ 
-          { userName: {[Op.iLike]: `${lowerSearchText}%`}},
-          { firstName: {[Op.iLike]: `${lowerSearchText}%`}},
-          { lastName: {[Op.iLike]: `${lowerSearchText}%`}}
+          { userName: {[Op.iLike]: `%${searchText}%`}},
+          { firstName: {[Op.iLike]: `%${searchText}%`}},
+          { lastName: {[Op.iLike]: `%${searchText}%`}}
+          //{ profilSettings: { [Op.contains]: [req.userId] } }
+        ]
+      },
+    });
+  },
+
+  async searchItemsAll(searchText) {
+    return foundUsers = await Item.findAll({
+      where: { 
+        [Op.or]: [ 
+          { title: {[Op.iLike]: `%${searchText}%`}},
+          { brand: {[Op.iLike]: `%${searchText}%`}},
+          //{ profilSettings: { [Op.contains]: [req.userId] } }
+        ]
+      },
+    });
+  },
+
+  async searchLooksAll(searchText) {
+    return foundUsers = await Look.findAll({
+      where: { 
+        [Op.or]: [ 
+          { title: {[Op.iLike]: `%${searchText}%`}},
+          //{ profilSettings: { [Op.contains]: [req.userId] } }
+        ]
+      },
+    });
+  },
+
+  async searchUsersStartingWith(searchText) {
+    return foundUsers = await User.findAll({
+      where: { 
+        [Op.or]: [ 
+          { userName: {[Op.iLike]: `${searchText}%`}},
+          { firstName: {[Op.iLike]: `${searchText}%`}},
+          { lastName: {[Op.iLike]: `${searchText}%`}}
           //{ profilSettings: { [Op.contains]: [req.userId] } }
         ]
       },
@@ -20,12 +55,11 @@ exports.searchService = {
   },
 
   async searchItemsStartingWith(searchText) {
-    const lowerSearchText = searchText.toLowerCase();
     return foundUsers = await Item.findAll({
       where: { 
         [Op.or]: [ 
-          { title: {[Op.iLike]: `${lowerSearchText}%`}},
-          { brand: {[Op.iLike]: `${lowerSearchText}%`}},
+          { title: {[Op.iLike]: `${searchText}%`}},
+          { brand: {[Op.iLike]: `${searchText}%`}},
           //{ profilSettings: { [Op.contains]: [req.userId] } }
         ]
       },
@@ -33,11 +67,10 @@ exports.searchService = {
   },
 
   async searchLooksStartingWith(searchText) {
-    const lowerSearchText = searchText.toLowerCase();
     return foundUsers = await Look.findAll({
       where: { 
         [Op.or]: [ 
-          { title: {[Op.iLike]: `${lowerSearchText}%`}},
+          { title: {[Op.iLike]: `${searchText}%`}},
           //{ profilSettings: { [Op.contains]: [req.userId] } }
         ]
       },
