@@ -21,10 +21,12 @@ export const SearchPage = () => {
   const [results, setResults] = useState(null);
 
   const handleEnter = async (e) => {
-    setIsSearching(true);
     if (!e.target.value) {
+      setResults(null);
+      setIsSearching(false);
       return;
     }
+    setIsSearching(true);
     const response = await postSearchMore(e.target.value);
     if (response) {
       setResults(response);
@@ -35,10 +37,12 @@ export const SearchPage = () => {
   };
 
   const handleChange = async (e) => {
-    setIsSearching(true);
     if (!e.target.value) {
+      setResults(null);
+      setIsSearching(false);
       return;
     }
+    setIsSearching(true);
     const response = await postSearch(e.target.value);
     if (response) {
       setResults(response);
@@ -49,10 +53,12 @@ export const SearchPage = () => {
   };
 
   const handleSearch = async (value) => {
-    setIsSearching(true);
     if (!value) {
+      setResults(null);
+      setIsSearching(false);
       return;
     }
+    setIsSearching(true);
     const response = await postSearchMore(value);
     if (response) {
       setResults(response);
