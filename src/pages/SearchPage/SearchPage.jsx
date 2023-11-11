@@ -130,20 +130,19 @@ export const SearchPage = () => {
                     {item.title}
                   </div>
                   <div className="search__resultItemDataRow grey">
-                    {item.brand && item.brand}
-                    {item.colors}
+                    {item.brand && `${item.brand}  `}
                     {item.colors &&
                       `${
                         convertCodeToObjectString(item.colors, colors)[
                           userStore.language
                         ]
-                      }`}
+                      }  `}
                     {item.pattern &&
                       `${
                         convertCodeToObjectString(item.pattern, pattern)[
                           userStore.language
                         ]
-                      }`}
+                      }  `}
                   </div>
                 </div>
               </div>
@@ -168,22 +167,22 @@ export const SearchPage = () => {
                     {look.title}
                   </div>
                   <div className="search__resultItemDataRow grey">
-                    {look.category &&
+                    {!!look.category &&
                       `${
                         convertCodeToObjectString(look.category, lookCategory)[
                           userStore.language
                         ]
-                      }`}
-                    {look.seasons &&
+                      }  `}
+                    {!!look.season &&
                       `${
-                        convertCodeToObjectString(look.seasons, seasons)[
+                        convertCodeToObjectString(look.season, seasons)[
                           userStore.language
                         ]
-                      }`}
-                    {look.items &&
+                      }  `}
+                    {!!look.items &&
                       `${look.items.length} item${
                         look.items.length > 1 && "s"
-                      }`}
+                      }  `}
                   </div>
                 </div>
               </div>
