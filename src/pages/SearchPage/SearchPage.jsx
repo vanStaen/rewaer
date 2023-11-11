@@ -131,12 +131,14 @@ export const SearchPage = () => {
                   </div>
                   <div className="search__resultItemDataRow grey">
                     {item.brand && `${item.brand}  `}
-                    {item.colors &&
-                      `${
-                        convertCodeToObjectString(item.colors, colors)[
-                          userStore.language
-                        ]
-                      }  `}
+                    {item.colors.length > 0 &&
+                      item.colors.map((color) => {
+                        return `${
+                          convertCodeToObjectString(color, colors)[
+                            userStore.language
+                          ]
+                        }  `;
+                      })}
                     {item.pattern &&
                       `${
                         convertCodeToObjectString(item.pattern, pattern)[
