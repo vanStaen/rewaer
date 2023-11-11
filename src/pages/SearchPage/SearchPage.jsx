@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input } from "antd";
+import { Link } from "react-router-dom";
 
 import { postSearch } from "./postSearch";
 import { postSearchMore } from "./postSearchMore";
@@ -9,6 +10,7 @@ import { pattern } from "../../lib/data/pattern";
 import { seasons } from "../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../helpers/convertCodeTo";
 import { userStore } from "../../stores/userStore/userStore";
+import { profileStore } from "../../stores/profileStore/profileStore.js";
 
 import "./SearchPage.less";
 
@@ -81,19 +83,26 @@ export const SearchPage = () => {
           <div className="search__title">Users</div>
           {results.users.map((user) => {
             return (
-              <div className="search__resultItem">
-                <div className="search__resultItemPictures">
-                  <img src={user.avatar} className="search__picture"></img>
-                </div>
-                <div className="search__resultItemData">
-                  <div className="search__resultItemDataRow bold">
-                    {user.userName}
+              <Link
+                to={`/${user.userName}`}
+                onClick={() => {
+                  profileStore.fetchProfileData(user.userName);
+                }}
+              >
+                <div className="search__resultItem">
+                  <div className="search__resultItemPictures">
+                    <img src={user.avatar} className="search__picture"></img>
                   </div>
-                  <div className="search__resultItemDataRow grey">
-                    {user.firstName} {user.lastName}
+                  <div className="search__resultItemData">
+                    <div className="search__resultItemDataRow bold">
+                      {user.userName}
+                    </div>
+                    <div className="search__resultItemDataRow grey">
+                      {user.firstName} {user.lastName}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

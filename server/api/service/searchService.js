@@ -13,7 +13,7 @@ exports.searchService = {
           { firstName: {[Op.iLike]: `%${searchText}%`}},
           { lastName: {[Op.iLike]: `%${searchText}%`}}
           //{ profilSettings: { [Op.contains]: [req.userId] } }
-        ]
+        ],
       },
     });
   },
@@ -21,11 +21,13 @@ exports.searchService = {
   async searchItemsAll(searchText) {
     return foundUsers = await Item.findAll({
       where: { 
-        [Op.or]: [ 
-          { title: {[Op.iLike]: `%${searchText}%`}},
-          { brand: {[Op.iLike]: `%${searchText}%`}},
-          //{ profilSettings: { [Op.contains]: [req.userId] } }
-        ]
+        [Op.and] : {
+          [Op.or]: [ 
+            { title: {[Op.iLike]: `%${searchText}%`}},
+            { brand: {[Op.iLike]: `%${searchText}%`}},
+          ], 
+          private: false,
+        }
       },
     });
   },
@@ -33,10 +35,12 @@ exports.searchService = {
   async searchLooksAll(searchText) {
     return foundUsers = await Look.findAll({
       where: { 
-        [Op.or]: [ 
-          { title: {[Op.iLike]: `%${searchText}%`}},
-          //{ profilSettings: { [Op.contains]: [req.userId] } }
-        ]
+        [Op.and] : {
+          [Op.or]: [ 
+            { title: {[Op.iLike]: `%${searchText}%`}},
+          ], 
+          private: false,
+        }
       },
     });
   },
@@ -48,7 +52,6 @@ exports.searchService = {
           { userName: {[Op.iLike]: `${searchText}%`}},
           { firstName: {[Op.iLike]: `${searchText}%`}},
           { lastName: {[Op.iLike]: `${searchText}%`}}
-          //{ profilSettings: { [Op.contains]: [req.userId] } }
         ]
       },
     });
@@ -57,24 +60,28 @@ exports.searchService = {
   async searchItemsStartingWith(searchText) {
     return foundUsers = await Item.findAll({
       where: { 
-        [Op.or]: [ 
-          { title: {[Op.iLike]: `${searchText}%`}},
-          { brand: {[Op.iLike]: `${searchText}%`}},
-          //{ profilSettings: { [Op.contains]: [req.userId] } }
-        ]
+        [Op.and] : {
+          [Op.or]: [ 
+            { title: {[Op.iLike]: `${searchText}%`}},
+            { brand: {[Op.iLike]: `${searchText}%`}},
+          ], 
+          private: false,
+        }
       },
     });
   },
 
   async searchLooksStartingWith(searchText) {
     return foundUsers = await Look.findAll({
-      where: { 
-        [Op.or]: [ 
-          { title: {[Op.iLike]: `${searchText}%`}},
-          //{ profilSettings: { [Op.contains]: [req.userId] } }
-        ]
-      },
-    });
-  },
+        where: { 
+          [Op.and] : {
+            [Op.or]: [ 
+              { title: {[Op.iLike]: `${searchText}%`}},
+            ], 
+            private: false,
+          }
+        },
+      });
+    },
 
 };
