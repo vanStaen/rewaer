@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "antd";
 
 import { postSearch } from "./postSearch";
 import { postSearchMore } from "./postSearchMore";
+import { lookCategory } from "../../lib/data/categories";
+import { colors } from "../../lib/data/colors";
+import { pattern } from "../../lib/data/pattern";
+import { seasons } from "../../lib/data/seasons";
+import { convertCodeToObjectString } from "../../helpers/convertCodeTo";
+import { userStore } from "../../stores/userStore/userStore";
 
 import "./SearchPage.less";
 
@@ -10,7 +16,7 @@ const { Search } = Input;
 
 export const SearchPage = () => {
   const [isSearching, setIsSearching] = useState(false);
-  const [results, setResult] = useState(null);
+  const [results, setResults] = useState(null);
 
   const handleEnter = async (e) => {
     setIsSearching(true);
@@ -18,10 +24,10 @@ export const SearchPage = () => {
       return;
     }
     const response = await postSearchMore(e.target.value);
-    if (response.length > 0) {
-      setResult(response);
+    if (response) {
+      setResults(response);
     } else {
-      setResult(null);
+      setResults(null);
     }
     setIsSearching(false);
   };
@@ -32,10 +38,10 @@ export const SearchPage = () => {
       return;
     }
     const response = await postSearch(e.target.value);
-    if (response.length > 0) {
-      setResult(response);
+    if (response) {
+      setResults(response);
     } else {
-      setResult(null);
+      setResults(null);
     }
     setIsSearching(false);
   };
@@ -46,10 +52,10 @@ export const SearchPage = () => {
       return;
     }
     const response = await postSearchMore(value);
-    if (response.length > 0) {
-      setResult(response);
+    if (response) {
+      setResults(response);
     } else {
-      setResult(null);
+      setResults(null);
     }
     setIsSearching(false);
   };
@@ -65,7 +71,111 @@ export const SearchPage = () => {
         onChange={handleChange}
         loading={isSearching}
       />
-      {results}
+
+      {results && (
+        <div className="search__results">Results: {results.count}</div>
+      )}
+
+      {results && results.users.length > 0 && (
+        <div className="search__subContainer">
+          <div className="search__title">Users</div>
+          {results.users.map((user) => {
+            return (
+              <div className="search__resultItem">
+                <div className="search__resultItemPictures">
+                  <img src={user.avatar} className="search__picture"></img>
+                </div>
+                <div className="search__resultItemData">
+                  <div className="search__resultItemDataRow bold">
+                    {user.userName}
+                  </div>
+                  <div className="search__resultItemDataRow grey">
+                    {user.firstName} {user.lastName}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {results && results.items.length > 0 && (
+        <div className="search__subContainer">
+          <div className="search__title">Items</div>
+          {results.items.map((item) => {
+            return (
+              <div className="search__resultItem">
+                <div className="search__resultItemPictures">
+                  <img
+                    src={item.mediaUrlThumb}
+                    className="search__picture"
+                  ></img>
+                </div>
+                <div className="search__resultItemData">
+                  <div className="search__resultItemDataRow bold">
+                    {item.title}
+                  </div>
+                  <div className="search__resultItemDataRow grey">
+                    {item.brand && item.brand}
+                    {item.colors}
+                    {item.colors &&
+                      `${
+                        convertCodeToObjectString(item.colors, colors)[
+                          userStore.language
+                        ]
+                      }`}
+                    {item.pattern &&
+                      `${
+                        convertCodeToObjectString(item.pattern, pattern)[
+                          userStore.language
+                        ]
+                      }`}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {results && results.looks.length > 0 && (
+        <div className="search__subContainer">
+          <div className="search__title">Looks</div>
+          {results.looks.map((look) => {
+            return (
+              <div className="search__resultItem">
+                <div className="search__resultItemPictures">
+                  <img
+                    src={look.mediaUrlThumb}
+                    className="search__picture"
+                  ></img>
+                </div>
+                <div className="search__resultItemData">
+                  <div className="search__resultItemDataRow bold">
+                    {look.title}
+                  </div>
+                  <div className="search__resultItemDataRow grey">
+                    {look.category &&
+                      `${
+                        convertCodeToObjectString(look.category, lookCategory)[
+                          userStore.language
+                        ]
+                      }`}
+                    {look.seasons &&
+                      `${
+                        convertCodeToObjectString(look.seasons, seasons)[
+                          userStore.language
+                        ]
+                      }`}
+                    {look.items &&
+                      `${look.items.length} item${
+                        look.items.length > 1 && "s"
+                      }`}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

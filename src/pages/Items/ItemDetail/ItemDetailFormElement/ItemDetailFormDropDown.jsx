@@ -108,21 +108,3 @@ export const ItemDetailFormDropDown = observer((props) => {
     </div>
   );
 });
-
-/*
-<a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-          {value ? (
-            <span className="ItemDetailFormElement__element">
-              {convertCodeToObjectString(value, props.data)[userStore.language]}
-            </span>
-          ) : (
-            <span
-              className={`ItemDetailFormElement__selectElement ${
-                props.disabled && "striked"
-              }`}
-            >
-              Select a {props.title}
-            </span>
-          )}
-        </a>
-        */

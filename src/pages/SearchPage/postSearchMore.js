@@ -20,6 +20,5 @@ export const postSearchMore = async (searchText) => {
         }
     }
 
-    console.log("search result", response.data)
     return response.data;
 };
