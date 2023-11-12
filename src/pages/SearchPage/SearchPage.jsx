@@ -181,9 +181,9 @@ export const SearchPage = () => {
                           userStore.language
                         ]
                       }  `}
-                    {!!look.items &&
+                    {look.items.length > 0 &&
                       `${look.items.length} item${
-                        look.items.length > 1 && "s"
+                        look.items.length > 1 ? "s" : ""
                       }  `}
                   </div>
                 </div>
