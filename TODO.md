@@ -54,11 +54,7 @@
 - [ ] Title editable : Input vs ContentEditable
 - [ ] Make nice Footer to make it look pro
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
-- [ ] Implement the search function to find
-  - [ ] Friends (Settings make not findable)
-  - [ ] Looks (Settings: make not findable)
-  - [ ] Items (Settings: make not findable)
-  - [ ] Messager feature
+- [ ] Messager feature
 - [ ] Service Worker
   - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
   - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
@@ -225,3 +221,7 @@
   - [x] Implement space holder as props
   - [x] Implement info/tooltip as props
 - [x] <ExclamationCircleOutlined /> on items not fully taged
+- [x] Implement the search function to find
+  - [x] Friends (Settings make not findable)
+  - [x] Looks (Settings: make not findable)
+  - [x] Items (Settings: make not findable)
