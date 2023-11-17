@@ -1,38 +1,33 @@
-import React, { useEffect } from "react";
-import "./Footer.css";
+import React from "react";
+import "./Footer.less";
 
 export const Footer = () => {
-
-  let deferredPrompt;
-
-  const addAppClickHandler = () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-      deferredPrompt = null;
-    });
-  }
-
-  useEffect(() => {
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      console.log("Stash the event so it can be triggered later")
-      deferredPrompt = e;
-    });
-  }, [])
-
-
   return (
     <div className="footerContainer">
-      <div className="footerSubContainer">
-        Contact | Impressum | About | Newsletter | Cookie
-        <div>Social Media Logos</div>
-        <div>Copyright ©{new Date().getFullYear()} </div>
-        <div className="footerAddAsApp" onClick={addAppClickHandler}>Add app to home screen</div>
+      <div className="footerSubContainer1">
+        <div className="col">
+          <div className="title">About</div>
+          <div>bla bla bla</div>
+          <div>bla bla bla</div>
+          <div>bla bla bla</div>
+        </div>
+        <div className="col">
+          <div className="title">Contact</div>
+          <div>About us & our Project</div>
+          <div>Technical Help</div>
+          <div>Write us an email</div>
+        </div>
+        <div className="col">
+          <div className="title">Socials</div>
+        </div>
+        <div className="col">
+          <div className="title">Newsletter</div>
+          <span>Get informed about all changes of Rewear App.</span>
+        </div>
+      </div>
+      <div className="footerSubContainer2">
+        <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
+        <div className="rightSide"> Impressum | Datenschutz & Cookie</div>
       </div>
     </div>
   );
