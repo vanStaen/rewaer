@@ -7,13 +7,12 @@ export const Footer = () => {
       <div className="footerSubContainer1">
         <div className="col">
           <div className="title">About</div>
-          <div>bla bla bla</div>
-          <div>bla bla bla</div>
-          <div>bla bla bla</div>
+          <div>Our Project</div>
+          <div>About us</div>
         </div>
         <div className="col">
           <div className="title">Contact</div>
-          <div>About us & our Project</div>
+          <div>Report a Bug</div>
           <div>Technical Help</div>
           <div>Write us an email</div>
         </div>

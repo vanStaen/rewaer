@@ -121,7 +121,11 @@
   }
 
   .notification__nothing {
-    text-align: center;
+    height: calc(100vh - 50px - 190px - 70px); /*50px menu, 190px footer, -70px padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: rgba(0, 0, 0, .25);
   }
 
