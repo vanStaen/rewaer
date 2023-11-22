@@ -45,6 +45,12 @@ a:visited {
   justify-content: center;
 }
 
+@media (max-width: 800px) {
+  .App .spinner {
+  height: calc(100vh - 50px - 340px ); /*50px menu, 330px footer */
+  }
+}
+
 .App .errorText {
   text-align: center;
   padding-top: 10px;
