@@ -1,7 +1,7 @@
 .profil__main {
   width: 100vw;
   height: auto;
-  min-height: calc(100vh - 50px - 120px); /*50px menu, 120px footer*/
+  min-height: calc(100vh - 50px - 190px); /*50px menu, 190px footer*/
   text-align: center;
 }
 
@@ -41,6 +41,9 @@
 
 
 @media (max-width: 800px) {
+  .profil__main {
+    min-height: calc(100vh - 50px - 340px); /*50px menu, 340px footer*/
+  }
   .profil__containerLeft {
     display: block;
     width: 100vw;
