@@ -1,6 +1,7 @@
 .search__container {
   position: relative;
   padding: 30px 40px 40px 40px;
+  min-height: calc(100vh - 50px - 190px); /* 50px menu, 190px footer */
   width: 100%;
   
   .search__results {
@@ -59,8 +60,9 @@
 
 
 @media (max-width: 800px) {
-    .search__container {
-      padding: 20px 20px;
-      width: calc(100%);
-    }
+  .search__container {
+    padding: 20px 20px;
+    width: calc(100%);
+    min-height: calc(100vh - 50px - 340px); /* 50px menu, 340px footer */
   }
+}
