@@ -103,6 +103,8 @@ export const SearchPage = () => {
         <div className="search__results">Results: {results.count}</div>
       )}
 
+      {!results && <div className="search__empty">Wow such empty</div>}
+
       <div>
         {results && results.users.length > 0 && (
           <div className="search__subContainer">
