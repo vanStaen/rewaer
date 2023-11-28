@@ -74,20 +74,16 @@ export const SearchPage = () => {
 
   useEffect(() => {
     if (results) {
-      const resultElement = document.getElementById("resultContent");
-      console.log("Result element", resultElement);
-      console.log("searchValue", searchValue);
-      if (searchValue !== "") {
-        const content = resultElement.textContent;
-        const regex = new RegExp(searchValue, "gi");
+      const resultElements = document.getElementsByClassName("resultContent");
+      const regex = new RegExp(searchValue, "gi");
+      Array.from(resultElements).forEach((element) => {
+        const content = element.textContent;
         const highlightedContent = content.replace(
           regex,
           (match) => `<span class="highlight">${match}</span>`
         );
-        //resultElement.innerHTML = highlightedContent;
-      } else {
-        //resultElement.innerHTML = resultElement.textContent;
-      }
+        element.innerHTML = highlightedContent;
+      });
     }
   }, [results]);
 
@@ -107,7 +103,7 @@ export const SearchPage = () => {
         <div className="search__results">Results: {results.count}</div>
       )}
 
-      <div id="resultContent">
+      <div>
         {results && results.users.length > 0 && (
           <div className="search__subContainer">
             <div className="search__title">Users</div>
@@ -124,10 +120,10 @@ export const SearchPage = () => {
                       <img src={user.avatar} className="search__picture"></img>
                     </div>
                     <div className="search__resultItemData">
-                      <div className="search__resultItemDataRow bold">
+                      <div className="search__resultItemDataRow bold resultContent">
                         {user.userName}
                       </div>
-                      <div className="search__resultItemDataRow grey">
+                      <div className="search__resultItemDataRow grey resultContent">
                         {user.firstName} {user.lastName}
                       </div>
                     </div>
@@ -150,10 +146,10 @@ export const SearchPage = () => {
                     ></img>
                   </div>
                   <div className="search__resultItemData">
-                    <div className="search__resultItemDataRow bold">
+                    <div className="search__resultItemDataRow bold resultContent">
                       {item.title}
                     </div>
-                    <div className="search__resultItemDataRow grey">
+                    <div className="search__resultItemDataRow grey resultContent">
                       {item.brand && `${item.brand}  `}
                       {item.colors.length > 0 &&
                         item.colors.map((color) => {
@@ -189,10 +185,10 @@ export const SearchPage = () => {
                     ></img>
                   </div>
                   <div className="search__resultItemData">
-                    <div className="search__resultItemDataRow bold">
+                    <div className="search__resultItemDataRow bold resultContent">
                       {look.title}
                     </div>
-                    <div className="search__resultItemDataRow grey">
+                    <div className="search__resultItemDataRow grey resultContent">
                       {!!look.category &&
                         `${
                           convertCodeToObjectString(
