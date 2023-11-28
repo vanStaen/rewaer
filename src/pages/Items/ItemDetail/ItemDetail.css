@@ -119,6 +119,9 @@
   }
 
 @media (max-width: 800px) {
+    .itemdetail__container {
+        min-height: calc(100vh - 50px - 340px); /* 50px menu, 340px footer */
+    }
     .itemdetail__imageWrap {
         width: calc(100vw - 30px);
         height: calc(90vw * 1.6);

@@ -1,6 +1,7 @@
 .notifications__container {
   position: relative;
-  padding: 30px 40px 40px 40px;
+  padding: 30px 40px 0 40px;
+  min-height: calc(100vh - 50px - 190px); /* 50px menu, 190px footer */
   width: 100%;
 
   .notification__subContainer {
@@ -127,6 +128,10 @@
     align-items: center;
     justify-content: center;
     color: rgba(0, 0, 0, .25);
+    color: #ddd;
+    font-weight: 300;
+    letter-spacing: 5px;
+    font-size: 12px;
   }
 
   .notifications__actionsButtonsMobile {
@@ -160,10 +165,8 @@
 @media (max-width: 800px) {
   .notifications__container {
     padding: 15px 15px;
-    width: calc(100%);
-    .notification__nothing {
-      height: calc(100vh - 50px - 340px - 30px); /*50px menu, 340px footer, 30px padding */
-    }   
+    width: calc(100%);        
+    min-height: calc(100vh - 50px - 340px - 30px); /* 50px menu, 340px footer, 30px padding */
     .notification__subContainer {   
       .notifications__notification {
         .notifications__rightSide {

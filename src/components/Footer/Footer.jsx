@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import "./Footer.less";
 
@@ -15,12 +14,14 @@ export const Footer = () => {
         </div>
         <div className="col">
           <div className="title">Links</div>
-          <Link to="/info">
-            <div className="link">The Project</div>
-          </Link>
           <div className="link">
-            <a href="https://www.clementvanstaen.com" target="_blank">
-              clementvanstaen.com
+            <a href="https://www.fashionrevolution.org/" target="_blank">
+              Fashion revolution
+            </a>
+          </div>
+          <div className="link">
+            <a href="https://wearme30times.com/" target="_blank">
+              Wear me 30 times
             </a>
           </div>
         </div>
@@ -29,13 +30,18 @@ export const Footer = () => {
         </div>
         <div className="col">
           <div className="title">Newsletter</div>
-          <span>Get informed about all changes of Rewear App.</span>
+          <span>Stay informed about Rewear</span>
         </div>
       </div>
 
       <div className="footerSubContainer2">
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
-        <div className="rightSide"> Impressum | Datenschutz & Cookie</div>
+        <div className="rightSide">
+           Impressum | Datenschutz & Cookie |{" "}
+          <a href="https://www.clementvanstaen.com" target="_blank">
+            CvS
+          </a>
+        </div>
       </div>
     </div>
   );
