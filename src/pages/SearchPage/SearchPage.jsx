@@ -22,8 +22,8 @@ export const SearchPage = () => {
   const [results, setResults] = useState(null);
 
   const handleEnter = async (e) => {
+    setResults(null);
     if (!e.target.value) {
-      setResults(null);
       setIsSearching(false);
       return;
     }
@@ -39,8 +39,8 @@ export const SearchPage = () => {
   };
 
   const handleChange = async (e) => {
+    setResults(null);
     if (!e.target.value) {
-      setResults(null);
       setIsSearching(false);
       return;
     }
@@ -56,8 +56,8 @@ export const SearchPage = () => {
   };
 
   const handleSearch = async (value) => {
+    setResults(null);
     if (!value) {
-      setResults(null);
       setIsSearching(false);
       return;
     }
@@ -73,7 +73,7 @@ export const SearchPage = () => {
   };
 
   useEffect(() => {
-    if (results) {
+    if (results && !isSearching) {
       const resultElements = document.getElementsByClassName("resultContent");
       const regex = new RegExp(searchValue, "gi");
       Array.from(resultElements).forEach((element) => {
@@ -85,7 +85,7 @@ export const SearchPage = () => {
         element.innerHTML = highlightedContent;
       });
     }
-  }, [results]);
+  }, [results, isSearching]);
 
   return (
     <div className="search__container">
@@ -95,7 +95,7 @@ export const SearchPage = () => {
         size="large"
         onPressEnter={handleEnter}
         onSearch={handleSearch}
-        onChange={handleChange}
+        //onChange={handleChange}
         loading={isSearching}
       />
 
