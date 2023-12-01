@@ -90,7 +90,11 @@ export const ItemDetailFormDropDown = observer((props) => {
     <div className="ItemDetailFormElement__container">
       <div className="ItemDetailFormElement__title">{props.title}:</div>
       <Select
-        className="ItemDetailFormElement__select"
+        className={
+          props.disabled
+            ? "ItemDetailFormElement__selectDisabled"
+            : "ItemDetailFormElement__select"
+        }
         mode={props.multiSelect ? "multiple" : "default"}
         disabled={props.disabled}
         onChange={handleChange}
