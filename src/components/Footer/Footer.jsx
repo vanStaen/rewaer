@@ -26,9 +26,6 @@ export const Footer = () => {
           </div>
         </div>
         <div className="col">
-          <div className="title">Socials</div>
-        </div>
-        <div className="col">
           <div className="title">Newsletter</div>
           <span>Stay informed about Rewear</span>
         </div>
@@ -37,7 +34,7 @@ export const Footer = () => {
       <div className="footerSubContainer2">
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
         <div className="rightSide">
-           Impressum | Datenschutz & Cookie |{" "}
+           Impressum | Datenschutz |{" "}
           <a href="https://www.clementvanstaen.com" target="_blank">
             CvS
           </a>
