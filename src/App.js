@@ -45,7 +45,7 @@ const App = observer(() => {
 
   useEffect(() => {
     pageStore.fetchNotifications();
-    // Fetch new notification every minute
+    //Fetch new notification every minute
     setInterval(pageStore.fetchNotifications, 60000);
   }, []);
 
