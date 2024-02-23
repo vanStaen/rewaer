@@ -37,12 +37,18 @@ a:visited {
 }
 
 .App .spinner {
-  width: 100vw;
-  height: calc(100vh - 50px); /*50px menu, -(x)px footer*/
+  width: calc(100vw); 
+  height: calc(100vh - 50px - 190px); /*50px menu, 190px footer*/
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .App .spinner {
+  height: calc(100vh - 50px - 340px ); /*50px menu, 330px footer */
+  }
 }
 
 .App .errorText {

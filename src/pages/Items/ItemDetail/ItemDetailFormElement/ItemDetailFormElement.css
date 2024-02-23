@@ -23,6 +23,17 @@
   padding: 0 !important;
 }
 
+.ItemDetailFormElement__selectDisabled .ant-select-selector{
+  background-color: white !important;
+  color: #c0c0c0 !important;
+  font-weight: 300 !important;
+  font-size: 15px !important;
+}
+
+.ItemDetailFormElement__selectDisabled .ant-select-arrow {
+  display: none !important;
+}
+
 .ItemDetailFormElement__element {
   color: #909090;
 }

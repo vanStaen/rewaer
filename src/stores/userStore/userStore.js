@@ -17,7 +17,7 @@ export class UserStore {
   lastName = null;
   emailSettings = null;
   profilSettings = null;
-  language = null;
+  language = "en";
   gender = null;
   friends = [];
   friendsPending = [];

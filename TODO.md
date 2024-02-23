@@ -46,22 +46,15 @@
   - [ ] Add a delete feature in the notification
 - [ ] Due to Url limitation, restrict some username, and characters
 - [ ] 404 for the win
-- [ ] Add friends feature
-- [ ] Get only friends in getUser which are not pending
-  - [ ] Create extra Endpoint for friends
-  - [ ] Stop fetching those in the GraphQL
 - [ ] Settings: friends who are allowed to see you private stuff
 - [ ] Title editable : Input vs ContentEditable
 - [ ] Make nice Footer to make it look pro
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
-- [ ] Implement the search function to find
-  - [ ] Friends (Settings make not findable)
-  - [ ] Looks (Settings: make not findable)
-  - [ ] Items (Settings: make not findable)
-  - [ ] Messager feature
-- [ ] Service Worker
-  - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
-  - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
+- [ ] Messager feature
+- [ ] Legal
+  - [ ] Impressum with chatGPT
+  - [ ] Datenschutz & Coookie with chatGPT
+
 
 ## v2
 
@@ -76,6 +69,9 @@
   - [ ] Custom Colors
 - [ ] Infinite scrolling + lazy loading
 - [ ] Darkmode
+- [ ] Service Worker
+  - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/
+  - [ ] https://blog.bitsrc.io/using-service-workers-with-react-27a4c5e2d1a9
 
 ## Completed ✓
 
@@ -225,3 +221,11 @@
   - [x] Implement space holder as props
   - [x] Implement info/tooltip as props
 - [x] <ExclamationCircleOutlined /> on items not fully taged
+- [x] Implement the search function to find
+  - [x] Friends (Settings make not findable)
+  - [x] Looks (Settings: make not findable)
+  - [x] Items (Settings: make not findable) 
+- [x] Add friends feature
+- [x] Get only friends in getUser which are not pending
+  - [x] Create extra Endpoint for friends
+  - [x] Stop fetching those in the GraphQL

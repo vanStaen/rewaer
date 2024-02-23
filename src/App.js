@@ -121,7 +121,7 @@ const App = observer(() => {
             <Route path="/" element={<Welcome showLogin={true} />} />
           )}
         </Routes>
-        {/* authStore.hasAccess && <Footer /> */}
+        {authStore.hasAccess && <Footer />}
       </div>
     </BrowserRouter>
   );

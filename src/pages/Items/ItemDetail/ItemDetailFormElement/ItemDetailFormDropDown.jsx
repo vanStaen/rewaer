@@ -90,7 +90,11 @@ export const ItemDetailFormDropDown = observer((props) => {
     <div className="ItemDetailFormElement__container">
       <div className="ItemDetailFormElement__title">{props.title}:</div>
       <Select
-        className="ItemDetailFormElement__select"
+        className={
+          props.disabled
+            ? "ItemDetailFormElement__selectDisabled"
+            : "ItemDetailFormElement__select"
+        }
         mode={props.multiSelect ? "multiple" : "default"}
         disabled={props.disabled}
         onChange={handleChange}
@@ -108,21 +112,3 @@ export const ItemDetailFormDropDown = observer((props) => {
     </div>
   );
 });
-
-/*
-<a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-          {value ? (
-            <span className="ItemDetailFormElement__element">
-              {convertCodeToObjectString(value, props.data)[userStore.language]}
-            </span>
-          ) : (
-            <span
-              className={`ItemDetailFormElement__selectElement ${
-                props.disabled && "striked"
-              }`}
-            >
-              Select a {props.title}
-            </span>
-          )}
-        </a>
-        */
