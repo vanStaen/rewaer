@@ -51,7 +51,7 @@ exports.mailService = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": subject,
-      "body": `${body}<br/> ${emailDisclaimer}`,
+      "html": `${body}<br/> ${emailDisclaimer}`,
     };
     try {
       await sgMail.send(email);
@@ -86,7 +86,7 @@ exports.mailService = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": "Rewaer.app | Reset your password with this link",
-      "body": body,
+      "html": body,
     };
     try {
       await sgMail.send(email);
@@ -125,7 +125,7 @@ exports.mailService = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": "Rewaer.app | Confirm your email address with this link",
-      "body": body,
+      "html": body,
     };
 
     try {
