@@ -22,7 +22,7 @@ export const LookDetailHeader = observer(() => {
   const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
   const [selectedItems, setSelectedItems] = useState(
-    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
+    looksStore.selectedLook.items ? looksStore.selectedLook.items : [],
   );
   const { t } = useTranslation();
 

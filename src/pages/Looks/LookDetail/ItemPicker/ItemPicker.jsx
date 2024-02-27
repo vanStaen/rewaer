@@ -13,7 +13,7 @@ export const ItemPicker = observer((props) => {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
   const [selectedItems, setSelectedItems] = useState(
-    looksStore.selectedLook.items ? looksStore.selectedLook.items : []
+    looksStore.selectedLook.items ? looksStore.selectedLook.items : [],
   );
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const ItemPicker = observer((props) => {
       setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
       updateItemsLook(
         looksStore.selectedLook._id,
-        selectedItems.filter((itemId) => itemId !== valueAsInt)
+        selectedItems.filter((itemId) => itemId !== valueAsInt),
       );
     }
     looksStore.setIsOutOfDate(true);

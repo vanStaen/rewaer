@@ -129,7 +129,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "displayArchived",
-                !userStore.profilSettings.displayArchived
+                !userStore.profilSettings.displayArchived,
               );
             }}
             checked={userStore.profilSettings.displayArchived}
@@ -144,7 +144,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "displayPrivate",
-                !userStore.profilSettings.displayPrivate
+                !userStore.profilSettings.displayPrivate,
               );
             }}
             checked={userStore.profilSettings.displayPrivate}
@@ -162,7 +162,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "showLastSeenOnline",
-                !userStore.profilSettings.showLastSeenOnline
+                !userStore.profilSettings.showLastSeenOnline,
               );
             }}
             checked={userStore.profilSettings.showLastSeenOnline}
@@ -177,7 +177,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "hideProfilToStrangers",
-                !userStore.profilSettings.hideProfilToStrangers
+                !userStore.profilSettings.hideProfilToStrangers,
               );
             }}
             checked={userStore.profilSettings.hideProfilToStrangers}
@@ -192,7 +192,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "hideLooksToStrangers",
-                !userStore.profilSettings.hideLooksToStrangers
+                !userStore.profilSettings.hideLooksToStrangers,
               );
             }}
             checked={userStore.profilSettings.hideLooksToStrangers}
@@ -207,7 +207,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "hideItemsToStrangers",
-                !userStore.profilSettings.hideItemsToStrangers
+                !userStore.profilSettings.hideItemsToStrangers,
               );
             }}
             checked={userStore.profilSettings.hideItemsToStrangers}
@@ -222,7 +222,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeProfilSettingsHandler(
                 "showLastName",
-                !userStore.profilSettings.showLastName
+                !userStore.profilSettings.showLastName,
               );
             }}
             checked={userStore.profilSettings.showLastName}
@@ -241,7 +241,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeEmailSettingsHandler(
                 "sendEmailFriendRequest",
-                !userStore.emailSettings.sendEmailFriendRequest
+                !userStore.emailSettings.sendEmailFriendRequest,
               );
             }}
             checked={userStore.emailSettings.sendEmailFriendRequest}
@@ -256,7 +256,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeEmailSettingsHandler(
                 "sendEmailNewMessage",
-                !userStore.emailSettings.sendEmailNewMessage
+                !userStore.emailSettings.sendEmailNewMessage,
               );
             }}
             checked={userStore.emailSettings.sendEmailNewMessage}
@@ -271,7 +271,7 @@ export const EditSettings = observer(() => {
             onChange={() => {
               changeEmailSettingsHandler(
                 "sendEmailMarketing",
-                !userStore.emailSettings.sendEmailMarketing
+                !userStore.emailSettings.sendEmailMarketing,
               );
             }}
             checked={userStore.emailSettings.sendEmailMarketing}

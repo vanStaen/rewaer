@@ -44,7 +44,7 @@ export const ProfileItems = observer(() => {
   }, [containerElement.current]);
 
   useEffect(() => {
-    //console.log("profileStore.items", profileStore.items);
+    // console.log("profileStore.items", profileStore.items);
   }, [profileStore.items]);
 
   const items =

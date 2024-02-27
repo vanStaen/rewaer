@@ -73,7 +73,7 @@ export const PasswordRecover = (props) => {
             type="primary"
             htmlType="submit"
             className="recover__formbutton"
-            disabled={emailDoNotExist === "error" ? true : false}
+            disabled={emailDoNotExist === "error"}
           >
             {emailDoNotExist === "error"
               ? t("login.emailDoesNotExist")

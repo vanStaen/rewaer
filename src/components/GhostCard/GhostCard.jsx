@@ -3,7 +3,7 @@ import "./GhostCard.css";
 
 export const GhostCard = (props) => {
   const margin = props.margin ? props.margin : [0, 0, 0, 0];
-  let ghost = [];
+  const ghost = [];
   for (let i = 0; i < props.numberOfCards; i++) {
     ghost.push(
       <div
@@ -17,7 +17,7 @@ export const GhostCard = (props) => {
           marginBottom: margin[2],
           marginLeft: margin[3],
         }}
-      ></div>
+      ></div>,
     );
   }
   return ghost;

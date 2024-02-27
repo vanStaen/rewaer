@@ -14,14 +14,14 @@ export const TooltipLike = (props) => {
   useEffect(() => {
     (async () => {
       const userAvatars = [];
-      for (let id of props.userIds) {
+      for (const id of props.userIds) {
         if (id in cachedUserAvatars) {
           userAvatars.push(cachedUserAvatars[id]);
           continue;
         }
         const fetched = await getUserAvatarFromId(id);
         cachedUserAvatars[id] = {
-          id: id,
+          id,
           avatar: fetched.avatar,
           username: fetched.userName,
         };

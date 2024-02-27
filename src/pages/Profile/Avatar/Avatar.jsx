@@ -14,7 +14,7 @@ import { profileStore } from "../../../stores/profileStore/profileStore";
 export const Avatar = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
-  const isStranger = userStore.userName === profileStore.userName ? false : true;
+  const isStranger = userStore.userName !== profileStore.userName;
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
     changeAvatarSubmitHandler(event.target.files[0]);
@@ -67,37 +67,43 @@ export const Avatar = observer(() => {
         <div
           className="avatar__avatar"
           style={
-            isStranger ?
-              profileStore.avatar && {
-                backgroundImage: "url(" + profileStore.avatar + ")",
-              } :
-              userStore.avatar && {
-                backgroundImage: "url(" + userStore.avatar + ")",
-              }
+            isStranger
+              ? profileStore.avatar && {
+                  backgroundImage: "url(" + profileStore.avatar + ")",
+                }
+              : userStore.avatar && {
+                  backgroundImage: "url(" + userStore.avatar + ")",
+                }
           }
         >
-          {isStranger ?
-            !profileStore.avatar && <UserOutlined className="avatar__noAvatar" /> :
-            !userStore.avatar && <UserOutlined className="avatar__noAvatar" />}
-          {!isStranger && <div className="avatar__editAvatar">
-            <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
-              <form
-                onSubmit={changeAvatarSubmitHandler}
-                className="avatar__form"
-              >
-                <input
-                  type="file"
-                  className="avatar__inputfile"
-                  name="inputfile"
-                  id="file"
-                  onChange={fileSelectHandler}
-                />
-                <label htmlFor="file">
-                  <EditOutlined />
-                </label>
-              </form>
-            </Tooltip>
-          </div>}
+          {isStranger
+            ? !profileStore.avatar && (
+                <UserOutlined className="avatar__noAvatar" />
+              )
+            : !userStore.avatar && (
+                <UserOutlined className="avatar__noAvatar" />
+              )}
+          {!isStranger && (
+            <div className="avatar__editAvatar">
+              <Tooltip placement="bottom" title={t("profile.changeAvatar")}>
+                <form
+                  onSubmit={changeAvatarSubmitHandler}
+                  className="avatar__form"
+                >
+                  <input
+                    type="file"
+                    className="avatar__inputfile"
+                    name="inputfile"
+                    id="file"
+                    onChange={fileSelectHandler}
+                  />
+                  <label htmlFor="file">
+                    <EditOutlined />
+                  </label>
+                </form>
+              </Tooltip>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -4,7 +4,6 @@ import { Spin } from "antd";
 import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-
 import { looksStore } from "./looksStore";
 import { authStore } from "../../stores/authStore/authStore";
 import { userStore } from "../../stores/userStore/userStore";

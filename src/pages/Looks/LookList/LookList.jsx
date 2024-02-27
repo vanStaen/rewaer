@@ -46,7 +46,7 @@ export const LookList = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = 238 + 40; //card width + min gap
+    const cardWidth = 238 + 40; // card width + min gap
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
     const numberLooks = looksStore.showPrivateLooks
@@ -56,9 +56,9 @@ export const LookList = observer(() => {
       : displayArchived
         ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
         : looksStore.looks.length +
-        countForm -
-        looksStore.numberOfPrivateLook -
-        looksStore.numberOfArchivedLook;
+          countForm -
+          looksStore.numberOfPrivateLook -
+          looksStore.numberOfArchivedLook;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);

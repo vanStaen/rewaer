@@ -22,7 +22,7 @@ export const LookCard = (props) => {
   const [isFavorited, setIsFavorited] = useState(props.look.favorite);
   const [isPrivate, setIsPrivate] = useState(props.look.private);
   const [numberItems, setNumberItems] = useState(
-    props.look.items ? props.look.items.length : 0
+    props.look.items ? props.look.items.length : 0,
   );
 
   useEffect(() => {
@@ -76,16 +76,16 @@ export const LookCard = (props) => {
   const onMouseEnterHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_look_picture_${props.look._id}`
+        `card_look_picture_${props.look._id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_look_logoover_${props.look._id}`
+        `card_look_logoover_${props.look._id}`,
       );
       const elementActionsContainer = document.getElementById(
-        `card_look_actionsContainer_${props.look._id}`
+        `card_look_actionsContainer_${props.look._id}`,
       );
       const elementActionsLogo = document.getElementById(
-        `card_look_actionsLogo_${props.look._id}`
+        `card_look_actionsLogo_${props.look._id}`,
       );
       elementPicture.style.filter = "brightness(50%)";
       elementLogoOver.style.display = "block";
@@ -98,16 +98,16 @@ export const LookCard = (props) => {
   const onMouseLeaveHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_look_picture_${props.look._id}`
+        `card_look_picture_${props.look._id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_look_logoover_${props.look._id}`
+        `card_look_logoover_${props.look._id}`,
       );
       const elementActionsContainer = document.getElementById(
-        `card_look_actionsContainer_${props.look._id}`
+        `card_look_actionsContainer_${props.look._id}`,
       );
       const elementActionsLogo = document.getElementById(
-        `card_look_actionsLogo_${props.look._id}`
+        `card_look_actionsLogo_${props.look._id}`,
       );
       if (props.look.active) {
         elementPicture.style.filter = "brightness(100%)";

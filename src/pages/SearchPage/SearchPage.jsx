@@ -80,7 +80,7 @@ export const SearchPage = () => {
         const content = element.textContent;
         const highlightedContent = content.replace(
           regex,
-          (match) => `<span class="highlight">${match}</span>`
+          (match) => `<span class="highlight">${match}</span>`,
         );
         element.innerHTML = highlightedContent;
       });
@@ -95,7 +95,7 @@ export const SearchPage = () => {
         size="large"
         onPressEnter={handleEnter}
         onSearch={handleSearch}
-        //onChange={handleChange}
+        // onChange={handleChange}
         loading={isSearching}
       />
 
@@ -195,7 +195,7 @@ export const SearchPage = () => {
                         `${
                           convertCodeToObjectString(
                             look.category,
-                            lookCategory
+                            lookCategory,
                           )[userStore.language]
                         }  `}
                       {!!look.season &&

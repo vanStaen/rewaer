@@ -20,7 +20,7 @@ export const LookDetailFormRadio = observer((props) => {
       await updateGenericBooleanLook(
         props.selectedLook._id,
         props.element,
-        event.target.value
+        event.target.value,
       );
       setValue(event.target.value);
       props.flipValueTo(event.target.value);

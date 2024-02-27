@@ -46,7 +46,7 @@ export const ItemList = observer(() => {
       containerElement.current === null
         ? 0
         : containerElement.current.offsetWidth;
-    const cardWidth = 238 + 40; //row width + min gap
+    const cardWidth = 238 + 40; // row width + min gap
     const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
     const numberItemsArchived = displayArchived

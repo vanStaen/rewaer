@@ -28,8 +28,7 @@ export const ItemSharedWithFriends = observer(() => {
   });
 
   const itemSharabledWith = userStore.friends.map((user) => {
-    const alreadyShared =
-      sharedWithArray.indexOf(parseInt(user._id)) < 0 ? false : true;
+    const alreadyShared = !(sharedWithArray.indexOf(parseInt(user._id)) < 0);
     if (!alreadyShared) {
       return (
         <UserToShareWith

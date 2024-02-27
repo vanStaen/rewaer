@@ -15,12 +15,20 @@ export const Footer = () => {
         <div className="col">
           <div className="title">Links</div>
           <div className="link">
-            <a href="https://www.fashionrevolution.org/" target="_blank">
+            <a
+              href="https://www.fashionrevolution.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Fashion revolution
             </a>
           </div>
           <div className="link">
-            <a href="https://wearme30times.com/" target="_blank">
+            <a
+              href="https://wearme30times.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Wear me 30 times
             </a>
           </div>
@@ -35,7 +43,11 @@ export const Footer = () => {
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
         <div className="rightSide">
            Impressum | Datenschutz |{" "}
-          <a href="https://www.clementvanstaen.com" target="_blank">
+          <a
+            href="https://www.clementvanstaen.com"
+            target="_blank"
+            rel="noreferrer"
+          >
             CvS
           </a>
         </div>

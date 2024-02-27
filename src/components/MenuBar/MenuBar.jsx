@@ -126,7 +126,7 @@ export const MenuBar = observer((props) => {
             userStore.menuSelected === "mail" && "selected"
           }`}
           onClick={() => {
-            //userStore.setMenuSelected("mail");
+            // userStore.setMenuSelected("mail");
           }}
         >
           <MailOutlined />

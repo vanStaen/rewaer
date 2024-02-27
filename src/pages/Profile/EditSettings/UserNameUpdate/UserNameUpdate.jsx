@@ -20,13 +20,13 @@ export const UserNameUpdate = () => {
   const [errorMsgUsername, setErrorMsgUsername] = useState(
     MAX_USERNAME_CHANGE_ALLOWED - userStore.usernameChange === 0
       ? t("profile.MaxUserNameChange")
-      : null
+      : null,
   );
 
   const onInputUsernameHandler = async (event) => {
     setUserNameIsValidating(true);
     const usernameTemp = event.target.value;
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (usernameTemp) {
       if (usernameTemp.includes(" ")) {
@@ -56,7 +56,7 @@ export const UserNameUpdate = () => {
     setUserNameIsValidating(true);
     const response = await updateUserName(
       newUserName.toLowerCase(),
-      userStore.usernameChange + 1
+      userStore.usernameChange + 1,
     );
     if (response) {
       userStore.setUserName(newUserName);

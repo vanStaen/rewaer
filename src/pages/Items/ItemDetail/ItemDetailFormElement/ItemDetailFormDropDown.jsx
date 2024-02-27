@@ -58,13 +58,13 @@ export const ItemDetailFormDropDown = observer((props) => {
         await updateGenericArrayStringItem(
           props.selectedItem._id,
           props.element,
-          newValue
+          newValue,
         );
       } else {
         await updateGenericStringItem(
           props.selectedItem._id,
           props.element,
-          newValue
+          newValue,
         );
       }
       setOptionsSelected(newValue);

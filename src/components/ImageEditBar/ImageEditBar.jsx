@@ -28,25 +28,25 @@ export const ImageEditBar = observer((props) => {
         if (props.page === "look") {
           const resultFiles = await pictureRotate(
             looksStore.selectedLook.mediaUrl,
-            1
+            1,
           );
           await updateMedienLook(
             looksStore.selectedLook._id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3
+            resultFiles.UrlMediumbS3,
           );
           looksStore.setIsOutOfDate(true);
         } else if (props.page === "item") {
           const resultFiles = await pictureRotate(
             itemsStore.selectedItem.mediaUrl,
-            1
+            1,
           );
           await updateMedienItem(
             itemsStore.selectedItem._id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3
+            resultFiles.UrlMediumbS3,
           );
           itemsStore.setIsOutOfDate(true);
         }
@@ -64,25 +64,25 @@ export const ImageEditBar = observer((props) => {
         if (props.page === "look") {
           const resultFiles = await pictureFlip(
             looksStore.selectedLook.mediaUrl,
-            isMirror
+            isMirror,
           );
           await updateMedienLook(
             looksStore.selectedLook._id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3
+            resultFiles.UrlMediumbS3,
           );
           looksStore.setIsOutOfDate(true);
         } else if (props.page === "item") {
           const resultFiles = await pictureFlip(
             itemsStore.selectedItem.mediaUrl,
-            isMirror
+            isMirror,
           );
           await updateMedienItem(
             itemsStore.selectedItem._id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3
+            resultFiles.UrlMediumbS3,
           );
           itemsStore.setIsOutOfDate(true);
         }
@@ -97,10 +97,10 @@ export const ImageEditBar = observer((props) => {
     <div className="imageEditBar__imageEditBar">
       {/* <Tooltip title="Change luminosity">
         <BulbOutlined />
-      </Tooltip>*/}
+      </Tooltip> */}
       {/* <Tooltip title="Change white balance">
         <FormatPainterOutlined />
-      </Tooltip>*/}{" "}
+      </Tooltip> */}{" "}
       <div
         className="imageEditBar__imageEditBarItem"
         onClick={() => flipHandler(true)}

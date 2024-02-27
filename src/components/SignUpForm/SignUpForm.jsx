@@ -41,7 +41,7 @@ export const SignUpForm = (props) => {
           setIsValidUsername("error");
           setErrorMsgUsername(t("login.spacesinUsername"));
         } else {
-          //eslint-disable-next-line
+          // eslint-disable-next-line
           const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
           if (username.match(regexEmail)) {
             setIsValidUsername("error");
@@ -75,7 +75,7 @@ export const SignUpForm = (props) => {
         username,
         email,
         password,
-        language
+        language,
       );
       if (!response.errors) {
         await postVerifyEmailLink(email);
@@ -235,7 +235,7 @@ export const SignUpForm = (props) => {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error(t("login.passwordsDoNotMatch"))
+                  new Error(t("login.passwordsDoNotMatch")),
                 );
               },
             }),

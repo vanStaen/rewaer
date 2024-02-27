@@ -5,7 +5,6 @@ import { Spin } from "antd";
 import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-
 import { userStore } from "../../stores/userStore/userStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
 import { authStore } from "../../stores/authStore/authStore";
@@ -46,9 +45,7 @@ export const Profile = observer(() => {
         ) : profileStore.error ? (
           <div className="spinner">
             <MehOutlined style={{ fontSize: "120px", color: "#b6c8bf" }} />
-            <div className="errorText">
-              {t("main.pleaseReload")}
-          </div>
+            <div className="errorText">{t("main.pleaseReload")}</div>
           </div>
         ) : (
           <>

@@ -15,18 +15,12 @@ export const LikeDislikeButton = (props) => {
   const arrayDislikes = useRef(props.arrayDislikes);
 
   const [userHasLiked, setUserHasLiked] = useState(
-    props.arrayLikes
-      ? props.arrayLikes.indexOf(userStore._id) >= 0
-        ? true
-        : false
-      : false
+    props.arrayLikes ? props.arrayLikes.indexOf(userStore._id) >= 0 : false,
   );
   const [userHasDisliked, setUserHasDisliked] = useState(
     props.arrayDislikes
       ? props.arrayDislikes.indexOf(userStore._id) >= 0
-        ? true
-        : false
-      : false
+      : false,
   );
 
   const userNotifiedId = profileStore._id ? profileStore._id : userStore._id;
@@ -45,7 +39,13 @@ export const LikeDislikeButton = (props) => {
         ? (arrayLikes.current = [userStore._id])
         : arrayLikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, true, arrayLikes.current);
-      postNotificationLikeDislike(props.type, true, props.mediaUrl, userNotifiedId, props._id)
+      postNotificationLikeDislike(
+        props.type,
+        true,
+        props.mediaUrl,
+        userNotifiedId,
+        props._id,
+      );
       setUserHasLiked(true);
     } else {
       const filteredArray = arrayLikes.current.filter((id) => {
@@ -71,7 +71,13 @@ export const LikeDislikeButton = (props) => {
         ? (arrayDislikes.current = [userStore._id])
         : arrayDislikes.current.push(userStore._id);
       updateLikeDislike(props._id, props.type, false, arrayDislikes.current);
-      postNotificationLikeDislike(props.type, false, props.mediaUrl, userNotifiedId, props._id)
+      postNotificationLikeDislike(
+        props.type,
+        false,
+        props.mediaUrl,
+        userNotifiedId,
+        props._id,
+      );
       setUserHasDisliked(true);
     } else {
       const filteredArray = arrayDislikes.current.filter((id) => {
@@ -86,24 +92,31 @@ export const LikeDislikeButton = (props) => {
   return (
     <>
       <div
-        className={props.profile ? "likeContainerProfile" : props.type === 'item' ? "likeContainerCardItem" : "likeContainerCard"}
+        className={
+          props.profile
+            ? "likeContainerProfile"
+            : props.type === "item"
+              ? "likeContainerCardItem"
+              : "likeContainerCard"
+        }
       >
         <Tooltip
           title={
             arrayLikes.current === null ||
-              arrayLikes.current.length === 0 ? null : (
+            arrayLikes.current.length === 0 ? null : (
               <TooltipLike userIds={arrayLikes.current} />
             )
           }
           placement="bottom"
         >
           <div
-            className={`like ${userHasLiked
-              ? "iconGreen"
-              : arrayLikes.current === null || arrayLikes.current.length === 0
-                ? "iconGreenHover lightGreyed"
-                : "iconGreenHover greyed"
-              } ${props.type === 'item' && 'itemSpacer'}`}
+            className={`like ${
+              userHasLiked
+                ? "iconGreen"
+                : arrayLikes.current === null || arrayLikes.current.length === 0
+                  ? "iconGreenHover lightGreyed"
+                  : "iconGreenHover greyed"
+            } ${props.type === "item" && "itemSpacer"}`}
             onClick={likeClickHandler}
           >
             <LikeOutlined />
@@ -115,20 +128,21 @@ export const LikeDislikeButton = (props) => {
         <Tooltip
           title={
             arrayDislikes.current === null ||
-              arrayDislikes.current.length === 0 ? null : (
+            arrayDislikes.current.length === 0 ? null : (
               <TooltipLike userIds={arrayDislikes.current} />
             )
           }
           placement="bottom"
         >
           <div
-            className={`like ${userHasDisliked
-              ? "iconRed"
-              : arrayDislikes.current === null ||
-                arrayDislikes.current.length === 0
-                ? "iconRedHover lightGreyed"
-                : "iconRedHover greyed"
-              }`}
+            className={`like ${
+              userHasDisliked
+                ? "iconRed"
+                : arrayDislikes.current === null ||
+                    arrayDislikes.current.length === 0
+                  ? "iconRedHover lightGreyed"
+                  : "iconRedHover greyed"
+            }`}
             onClick={dislikeClickHandler}
           >
             <DislikeOutlined />

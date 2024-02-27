@@ -9,7 +9,7 @@ export const LanguageDropDown = () => {
   const { i18n } = useTranslation();
   const initLanguage = i18n.language.slice(-2);
   const [language, setLanguage] = useState(
-    initLanguage === "US" ? "EN" : initLanguage
+    initLanguage === "US" ? "EN" : initLanguage,
   );
 
   const onLanguageChangeHandler = (value) => {

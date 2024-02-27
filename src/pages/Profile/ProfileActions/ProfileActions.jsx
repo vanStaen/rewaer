@@ -26,25 +26,25 @@ export const ProfileActions = observer(() => {
   const [showProfileFriends, setShowProfileFriends] = useState(false);
 
   const [isFollowed, setIsFollowed] = useState(
-    userStore.followed.findIndex(
-      (followed) => parseInt(followed._id) === profileStore._id
-    ) < 0
-      ? false
-      : true
+    !(
+      userStore.followed.findIndex(
+        (followed) => parseInt(followed._id) === profileStore._id,
+      ) < 0
+    ),
   );
   const [isFriend, setIsFriend] = useState(
-    userStore.friends.findIndex(
-      (friend) => parseInt(friend._id) === profileStore._id
-    ) < 0
-      ? false
-      : true
+    !(
+      userStore.friends.findIndex(
+        (friend) => parseInt(friend._id) === profileStore._id,
+      ) < 0
+    ),
   );
   const [isPending, setIsPending] = useState(
-    userStore.friendsPending.findIndex(
-      (pending) => parseInt(pending.friend_id) === profileStore._id
-    ) < 0
-      ? false
-      : true
+    !(
+      userStore.friendsPending.findIndex(
+        (pending) => parseInt(pending.friend_id) === profileStore._id,
+      ) < 0
+    ),
   );
 
   const thisIsMe = userStore._id === profileStore._id;

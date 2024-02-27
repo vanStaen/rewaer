@@ -132,10 +132,10 @@ export const ItemCard = (props) => {
   const onMouseEnterHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item._id}`
+        `card_item_picture_${props.item._id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item._id}`
+        `card_item_logoover_${props.item._id}`,
       );
       elementPicture.style.filter = "brightness(50%)";
       if (!loadingError || !props.item.active) {
@@ -143,10 +143,10 @@ export const ItemCard = (props) => {
       }
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item._id}`
+          `card_item_actionsContainer_${props.item._id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item._id}`
+          `card_item_actionsLogo_${props.item._id}`,
         );
         elementActionsContainer.style.width = "34px";
         elementActionsContainer.style.opacity = ".85";
@@ -158,17 +158,17 @@ export const ItemCard = (props) => {
   const onMouseLeaveHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item._id}`
+        `card_item_picture_${props.item._id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item._id}`
+        `card_item_logoover_${props.item._id}`,
       );
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item._id}`
+          `card_item_actionsContainer_${props.item._id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item._id}`
+          `card_item_actionsLogo_${props.item._id}`,
         );
         if (props.item.active) {
           elementActionsContainer.style.width = "0px";
@@ -360,8 +360,8 @@ export const ItemCard = (props) => {
                 ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
                 : "itemcard__meta itemcard__metaPrivate"
               : isFavorited
-              ? "itemcard__meta itemcard__metaFavorite"
-              : "itemcard__meta"
+                ? "itemcard__meta itemcard__metaFavorite"
+                : "itemcard__meta"
           }
         >
           <EditableTitle
@@ -379,7 +379,7 @@ export const ItemCard = (props) => {
                   onClick={() => {
                     profileStore.fetchProfileData(props.item.user.userName);
                     itemsStore.setOriginalScrollPosition(
-                      itemsStore.lastKnownScrollPosition
+                      itemsStore.lastKnownScrollPosition,
                     );
                   }}
                 >

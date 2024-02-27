@@ -27,13 +27,13 @@ export const ItemDetailFormRadio = observer((props) => {
         await updateGenericBooleanItem(
           props.selectedItem._id,
           props.element,
-          event.target.value
+          event.target.value,
         );
       } else {
         await updateGenericStringItem(
           props.selectedItem._id,
           props.element,
-          event.target.value
+          event.target.value,
         );
       }
 
@@ -72,7 +72,7 @@ export const ItemDetailFormRadio = observer((props) => {
         disabled={props.disabled}
         style={{
           background: backgroundColor,
-          borderColor: borderColor,
+          borderColor,
         }}
       >
         {item[userStore.language]}

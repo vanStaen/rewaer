@@ -136,8 +136,8 @@ export const ItemDetail = observer(() => {
               userStore.gender === 1
                 ? itemCategoryMen
                 : userStore.gender === 2
-                ? itemCategoryWomen
-                : itemCategoryNB
+                  ? itemCategoryWomen
+                  : itemCategoryNB
             }
             value={itemsStore.selectedItem.category}
             selectedItem={itemsStore.selectedItem}

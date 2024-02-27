@@ -21,8 +21,8 @@ export const AddToHomeScreen = () => {
   const installPromptHandler = (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    //console.log(e);
-    //console.log("A2HS prompt was prevented and stored!");
+    // console.log(e);
+    // console.log("A2HS prompt was prevented and stored!");
     a2hsButton.style.display = "block";
   };
 
@@ -30,7 +30,7 @@ export const AddToHomeScreen = () => {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
-        //console.log("User accepted the A2HS prompt");
+        // console.log("User accepted the A2HS prompt");
         a2hsButton.style.display = "none";
         deferredPrompt = null;
       } else {

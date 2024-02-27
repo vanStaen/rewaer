@@ -59,48 +59,48 @@ export const Notifications = observer(() => {
   };
 
   const notificationClickHandler = async (type, title, action_data) => {
-    //Friend request
+    // Friend request
     if (type === 1 || type === 17) {
       navigate(`/${title}`);
     }
-    //New Follower
+    // New Follower
     else if (type === 2) {
       navigate(`/${title}`);
     }
-    //Friend new avatar
+    // Friend new avatar
     else if (type === 14) {
       navigate(`/${title}`);
     }
-    //New Mail
+    // New Mail
     else if (type === 3) {
-      /*TODO*/
+      /* TODO */
     }
-    //friends new item
+    // friends new item
     else if (type === 4) {
-      /*TODO*/
+      /* TODO */
     }
-    //friends new Look
+    // friends new Look
     else if (type === 5) {
-      /*TODO*/
+      /* TODO */
     }
-    //Item liked/disliked, or item shared
+    // Item liked/disliked, or item shared
     else if (type === 12 || type === 15 || type === 6) {
       if (itemsStore.isLoading === true) {
         await itemsStore.loadItems();
       }
       const selectedItem = itemsStore.items.filter(
-        (item) => parseInt(item._id) === action_data
+        (item) => parseInt(item._id) === action_data,
       );
       itemsStore.setSelectedItem(selectedItem[0]);
       navigate(`/items/`);
     }
-    //Look liked || disliked
+    // Look liked || disliked
     else if (type === 13 || type === 16) {
       if (looksStore.isLoading === true) {
         await looksStore.loadLooks();
       }
       const selectedLook = looksStore.looks.filter(
-        (look) => parseInt(look._id) === action_data
+        (look) => parseInt(look._id) === action_data,
       );
       looksStore.setSelectedLook(selectedLook[0]);
       navigate(`/looks/`);
@@ -110,7 +110,7 @@ export const Notifications = observer(() => {
   const showDeleteHandler = (id) => {
     const elementNotification = document.getElementById(`notification${id}`);
     const elementDeleteButtonIcon = document.getElementById(
-      `deleteButtonIcon${id}`
+      `deleteButtonIcon${id}`,
     );
     const newHeight = `${elementNotification.offsetHeight}px`;
     elementDeleteButtonIcon.style.height = newHeight;
@@ -121,7 +121,7 @@ export const Notifications = observer(() => {
   const hideDeleteHandler = (id) => {
     const element = document.getElementById(`notification${id}`);
     const elementDeleteButtonIcon = document.getElementById(
-      `deleteButtonIcon${id}`
+      `deleteButtonIcon${id}`,
     );
     element.style.left = "0";
     setTimeout(() => {
@@ -167,7 +167,7 @@ export const Notifications = observer(() => {
 
     const isNotFollowed =
       userStore.followed.findIndex(
-        (followed) => followed.userName === title
+        (followed) => followed.userName === title,
       ) === -1;
 
     const isNotFriend =
@@ -195,7 +195,7 @@ export const Notifications = observer(() => {
         userStore.fetchUserData(false);
         const element = document.getElementById(`acceptRequest${_id}`);
         const elementMobile = document.getElementById(
-          `acceptRequestMobile${_id}`
+          `acceptRequestMobile${_id}`,
         );
         element.style.opacity = 0;
         elementMobile.style.opacity = 0;

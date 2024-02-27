@@ -88,7 +88,7 @@ export const ProfileFriends = observer(() => {
             {t("profile.friends")} ({profileStore.friends.length})
           </div>
           {friendsFormatted}
-          {/*<div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
+          {/* <div className="profilFriends__followersAvatar profilFriends__followersCounterContainer">
           <div className="profilFriends__followersCounter"> +8</div>
         </div> */}
         </div>

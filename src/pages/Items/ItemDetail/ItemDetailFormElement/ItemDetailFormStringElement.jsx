@@ -15,11 +15,11 @@ export const ItemDetailFormStringElement = observer((props) => {
   const originalValue = useRef(props.value);
   const inputRef = useRef(null);
   const [value, setValue] = useState(
-    props.value ? props.value.replace("-", "/") : null
+    props.value ? props.value.replace("-", "/") : null,
   );
   const [isEditMode, setIsEditmode] = useState(false);
   const [editInputValue, setEditInputValue] = useState(
-    props.value ? props.value.replace("-", "/") : null
+    props.value ? props.value.replace("-", "/") : null,
   );
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const ItemDetailFormStringElement = observer((props) => {
         await updateGenericStringItem(
           props.selectedItem._id,
           props.element,
-          newValue
+          newValue,
         );
         setValue(newValue);
         itemsStore.setIsOutOfDate(true);
@@ -109,7 +109,7 @@ export const ItemDetailFormStringElement = observer((props) => {
               !props.disabled && setIsEditmode(true);
             }}
           >
-            {value ? value : "Enter a value"}
+            {value || "Enter a value"}
           </div>
         )}
       </div>

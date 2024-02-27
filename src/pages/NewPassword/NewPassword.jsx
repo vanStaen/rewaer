@@ -107,7 +107,7 @@ export const NewPassword = () => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error(t("login.passwordDoNotMatch"))
+                      new Error(t("login.passwordDoNotMatch")),
                     );
                   },
                 }),
@@ -131,8 +131,8 @@ export const NewPassword = () => {
                 ) : isValid ? (
                   t("login.updatePassword")
                 ) : (
-                      t("login.linkNotValidAnymore")
-                    )}
+                  t("login.linkNotValidAnymore")
+                )}
               </Button>
             </Form.Item>
           </Form>
