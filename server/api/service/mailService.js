@@ -1,6 +1,7 @@
-const axios = require('axios');
 const jsonwebtoken = require("jsonwebtoken");
+const sgMail = require('@sendgrid/mail')
 require("dotenv/config");
+sgMail.setApiKey(process.env.REWAER_SENDGRID_API_KEY);
 
 const emailDisclaimer = `
   <br/>
@@ -46,26 +47,14 @@ const emailDisclaimer = `
 exports.mailService = {
 
   async mail(sendto, subject, body) {
-    const requestBody = {
+    const email = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": subject,
       "body": `${body}<br/> ${emailDisclaimer}`,
-      "key": process.env.MAILMAN_KEY
     };
     try {
-      const response = await axios({
-        url: process.env.MAILMAN_URL,
-        method: "POST",
-        data: requestBody,
-      });
-      if ((response.status !== 200) & (response.status !== 201)) {
-        if (response.status === 401) {
-          throw new Error(`Error! Unauthorized(401)`);
-        } else {
-          throw new Error(`Error! Status ${response.status}`);
-        }
-      }
+      await sgMail.send(email);
       //Return true on success
       return true
     } catch (err) {
@@ -93,27 +82,14 @@ exports.mailService = {
                   <br/>
                   ${emailDisclaimer}`;
 
-    const requestBody = {
+    const email = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": "Rewaer.app | Reset your password with this link",
       "body": body,
-      "key": process.env.MAILMAN_KEY
     };
-    
     try {
-      const response = await axios({
-        url: process.env.MAILMAN_URL,
-        method: "POST",
-        data: requestBody,
-      });
-      if ((response.status !== 200) & (response.status !== 201)) {
-        if (response.status === 401) {
-          throw new Error(`Error! Unauthorized(401)`);
-        } else {
-          throw new Error(`Error! Status ${response.status}`);
-        }
-      }
+      await sgMail.send(email);
       //Return true on success
       return true
     } catch (err) {
@@ -145,27 +121,15 @@ exports.mailService = {
                   <br/>
                   ${emailDisclaimer}`;
 
-    const requestBody = {
+    const email = {
       "from": "Rewaer <info@rewaer.com>",
       "to": sendto,
       "subject": "Rewaer.app | Confirm your email address with this link",
       "body": body,
-      "key": process.env.MAILMAN_KEY
     };
 
     try {
-      const response = await axios({
-        url: process.env.MAILMAN_URL,
-        method: "POST",
-        data: requestBody,
-      });
-      if ((response.status !== 200) & (response.status !== 201)) {
-        if (response.status === 401) {
-          throw new Error(`Error! Unauthorized(401)`);
-        } else {
-          throw new Error(`Error! Status ${response.status}`);
-        }
-      }
+      await sgMail.send(email);
       //Return true on success
       return true
     } catch (err) {

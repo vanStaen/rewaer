@@ -48,6 +48,14 @@ To generate the image's thumbnail the library _JIMP_ ("JavaScript Image Manipula
 
 ## RESSOURCES
 
+### Email API : SendGrid 
+
+Mail are send voia the SendGrid Api. To integerate the API into node,the package `@sendgrid/mail` is used. See its use in the Mail Service (API/Service). More in the documentation under https://app.sendgrid.com/
+
+Some detail about the pricing and availibility of Sendgrid: https://elements.heroku.com/addons/sendgrid (free up to 12 000 email per month).
+
+Track email sent: https://app.sendgrid.com/email_activity
+
 ### FrontEnd : Overwrite Antd standart color
 
 AntD comes with a standart babyBlue custom color scheme: One can overwrite and customise every single componennt, or change the whole color-theme of ant. Therefore follow the following steps:
