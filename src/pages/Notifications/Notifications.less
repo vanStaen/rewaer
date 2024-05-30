@@ -1,37 +1,43 @@
 .notifications__container {
   position: relative;
   padding: 30px 40px 0 40px;
-  min-height: calc(100vh - 50px - 190px); /* 50px menu, 190px footer */
+  min-height: calc(100vh - 50px - 190px);
+  /* 50px menu, 190px footer */
   width: 100%;
 
   .notification__subContainer {
     margin-bottom: 20px;
+
     .new {
       background-color: rgb(245, 245, 245);
+
       &:hover {
         background-color: rgb(238, 241, 239);
       }
+
       a {
-          color: rgba(109, 145, 126, 1) !important;
+        color: rgba(109, 145, 126, 1) !important;
       }
-    } 
+    }
 
     .seen {
       color: #999;
       background-color: rgb(250, 250, 250);
+
       &:hover {
         background-color: rgb(238, 241, 239);
       }
+
       a {
-          &:hover {
-            color: #333;
-          }
+        &:hover {
+          color: #333;
+        }
       }
-    } 
+    }
 
     .notifications__notification {
       position: relative;
-      display: flex;  
+      display: flex;
       left: 0;
       transition: .3s left;
       cursor: pointer;
@@ -48,7 +54,7 @@
         width: 50px;
         min-height: 50px;
         align-items: stretch;
-      }    
+      }
 
       .notifications__leftSideSeen {
         display: inline-block;
@@ -57,7 +63,7 @@
         min-height: 50px;
         align-items: stretch;
         opacity: .66;
-      }   
+      }
 
 
       .notifications__rightSide {
@@ -85,7 +91,7 @@
           right: 40px;
           font-size: 30px;
           color: white;
-        } 
+        }
 
         .notification__actionsButtons {
           position: absolute;
@@ -100,8 +106,8 @@
           transition: opacity .3s ease;
         }
       }
-    } 
-    
+    }
+
     .closeDelete {
       position: relative;
       display: flex;
@@ -112,9 +118,10 @@
       top: 0px;
       right: 0px;
       font-size: 17px;
-      width: 30px; 
+      width: 30px;
       color: #ddd;
       margin-right: 10px;
+
       &:hover {
         color: black;
       }
@@ -122,7 +129,8 @@
   }
 
   .notification__nothing {
-    height: calc(100vh - 50px - 190px - 70px); /*50px menu, 190px footer, -70px padding */
+    height: calc(100vh - 50px - 190px - 70px);
+    /*50px menu, 190px footer, -70px padding */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,18 +146,20 @@
     display: none;
     padding-top: 1px;
     width: 100%;
+
     .actionsButton {
       text-transform: uppercase;
       letter-spacing: 3px;
-    }  
+    }
   }
 }
 
 .notifications__deleteButton {
   display: none;
+
   .icon {
     position: absolute;
-    right: 0;
+    right: 15px;
     font-size: 22px;
     width: 50px;
     height: 50px;
@@ -165,36 +175,45 @@
 @media (max-width: 800px) {
   .notifications__container {
     padding: 15px 15px;
-    width: calc(100%);        
-    min-height: calc(100vh - 50px - 340px - 30px); /* 50px menu, 340px footer, 30px padding */
-    .notification__subContainer {   
+    width: calc(100%);
+    min-height: calc(100vh - 50px - 340px - 30px);
+
+    /* 50px menu, 340px footer, 30px padding */
+    .notification__subContainer {
       .notifications__notification {
         .notifications__rightSide {
           display: inline-block;
           width: calc(100% - 50px);
+
           .notification__icon {
             display: none;
           }
-          .notification__actionsButtons{
+
+          .notification__actionsButtons {
             display: none;
-          } 
+          }
+
           .notifications__date {
             display: none;
-          }  
+          }
+
           .notifications__dateMobile {
             display: inline-block;
           }
-        }    
+        }
       }
+
       .notifications__actionsButtonsMobile {
         display: block;
       }
+
       .closeDelete {
         display: none;
       }
-    } 
+    }
   }
-  .notifications__deleteButton {
+
+  .notifications__deleteButton {
     display: block;
-  }  
+  }
 }
