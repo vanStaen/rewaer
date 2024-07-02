@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+require('dotenv').config({ path: __dirname + '/./../../.env' })
 
 const deleteFileFromS3 = async (fileName) => {
 
