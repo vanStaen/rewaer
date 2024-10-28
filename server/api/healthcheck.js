@@ -1,4 +1,5 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router();
 
 // healthCheck
 router.get("/", async (req, res) => {

@@ -1,5 +1,6 @@
-const router = require("express").Router();
-const { notificationService } = require("../service/notificationService");
+import { Router } from "express";
+import notificationService from "../service/notificationService.js";
+const router = Router();
 
 /* get all notification (Debugging)*/
 router.get("/all", async (req, res) => {
