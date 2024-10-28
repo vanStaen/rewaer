@@ -1,12 +1,19 @@
-const fs = require('fs');
-const { Client } = require("pg");
-require('dotenv').config({ path: __dirname + '/./../../.env' })
+import fs from "fs";
+import pg from "pg";
+import path from "path";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: __dirname + "/./../../.env" });
 
 // init Postgres
-const client = new Client({ connectionString: process.env.DATABASE_URL, ssl: true })
+const client = new pg.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+});
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; // This bypasses the SSL verification
-
 
 // Connect to Postgres 
 client.connect(err => {

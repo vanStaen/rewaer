@@ -1,10 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
-const dataEn = require('./languages/en/translation.json');
-const dataDe = require('./languages/de/translation.json');
-const dataFr = require('./languages/fr/translation.json');
+import dataEn from './languages/en/translation.json';
+import dataDe from './languages/de/translation.json';
+import dataFr from './languages/fr/translation.json';
 
 i18n
   .use(LanguageDetector)

@@ -1,6 +1,7 @@
-const router = require("express").Router();
-const { followerService } = require("../service/followerService");
-const { friendService } = require("../service/friendService");
+import { Router } from "express";
+import followerService from "../service/followerService.js";
+import friendService from "../service/friendService.js";
+const router = Router();
 
 // get follower
 router.get("/followers", async (req, res) => {
@@ -171,4 +172,4 @@ router.delete("/friendrequest", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

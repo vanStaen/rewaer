@@ -1,7 +1,17 @@
-const jsonwebtoken = require("jsonwebtoken");
-const sgMail = require('@sendgrid/mail')
-require("dotenv/config");
-sgMail.setApiKey(process.env.REWAER_SENDGRID_API_KEY);
+import jsonwebtoken from "jsonwebtoken";
+import sgMail from "@sendgrid/mail";
+import { User } from "../../models/User.js";
+import { validateEmail } from "../../lib/validateEmail.js";
+import path from "path";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: __dirname + "/./../../.env" });
+
+const mainDomain = "rewaer.com";
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const emailDisclaimer = `
   <br/>
@@ -24,7 +34,7 @@ const emailDisclaimer = `
   Be especially wary of .zip or other compressed or executable file types. 
   Do not provide sensitive personal information (like usernames and passwords) over email. 
   Watch for email senders that use suspicious or misleading domain names. 
-  If you can’t tell if an email is legitimate or not, please transfer it to us at <u>info@rewaer.com</u>. 
+  If you can’t tell if an email is legitimate or not, please transfer it to us at <u>info@${mainDomain}</u>. 
   Be especially cautious when opening attachments or clicking links if you receive an email 
   containing a warning banner indicating that it originated from an external source.<br/><br/>
   <b>Virus transmission</b><br/>
@@ -44,11 +54,11 @@ const emailDisclaimer = `
   `;
 
 
-exports.mailService = {
+export const mailService = {
 
   async mail(sendto, subject, body) {
     const email = {
-      "from": "Rewaer <info@rewaer.com>",
+      "from": `Rewaer <info@${mainDomain}>`,
       "to": sendto,
       "subject": subject,
       "html": `${body}<br/> ${emailDisclaimer}`,
@@ -75,7 +85,7 @@ exports.mailService = {
                   <b>If you did not request this, ignore this email</b> and nothing else will happen.<br/>
                   <br/>
                   This link will only be active for 10 minutes. <br/>
-                  https://rewaer.com/recoverpwd/${recoveryToken}<br/>
+                  https://${mainDomain}/recoverpwd/${recoveryToken}<br/>
                   <br/>
                   Rewaer App<br/>
                   <i>The Fashion App for minimalistic and sustainable geniuses!</i>
@@ -83,7 +93,7 @@ exports.mailService = {
                   ${emailDisclaimer}`;
 
     const email = {
-      "from": "Rewaer <info@rewaer.com>",
+      "from": `Rewaer <info@${mainDomain}>`,
       "to": sendto,
       "subject": "Rewaer.app | Reset your password with this link",
       "html": body,
@@ -99,6 +109,13 @@ exports.mailService = {
   },
 
   async emailVerify(sendto) {
+    const isValidEmail = validateEmail(sendto);
+    if (!isValidEmail) {
+      const foundUser = await User.findOne({
+        where: { userName: sendto },
+      });
+      sendto = foundUser.email;
+    }
     const emailVerifyToken = await jsonwebtoken.sign(
       { email: sendto },
       process.env.AUTH_SECRET_KEY_EMAILVERIFY,
@@ -113,7 +130,7 @@ exports.mailService = {
                   Feel free anytime to respond to this mail in order to contact us.<br/>
                   <br/>
                   This link will only be active for 24 hours. <br/>
-                  https://rewaer.com/emailverify/${emailVerifyToken}<br/>
+                  https://${mainDomain}/emailverify/${emailVerifyToken}<br/>
                   <br/>
                   Rewaer App<br/>
                   <i>Only trees should get new
@@ -122,7 +139,7 @@ exports.mailService = {
                   ${emailDisclaimer}`;
 
     const email = {
-      "from": "Rewaer <info@rewaer.com>",
+      "from": `Rewaer <info@${mainDomain}>`,
       "to": sendto,
       "subject": "Rewaer.app | Confirm your email address with this link",
       "html": body,

@@ -1,5 +1,6 @@
-const router = require("express").Router();
-const {mailService} = require("../service/mailService");
+import { Router } from "express";
+import mailService from "../service/mailService.js";
+const router = Router();
 
 // Mail
 router.post("/", async (req, res) => {
@@ -64,4 +65,4 @@ router.post("/emailverify", async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

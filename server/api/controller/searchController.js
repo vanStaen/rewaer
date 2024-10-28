@@ -1,5 +1,7 @@
-const router = require("express").Router();
-const { searchService } = require("../service/searchService");
+import { Router } from "express";
+import searchService from "../service/searchService.js";
+const router = Router();
+
 
 router.post("/", async (req, res) => {
   if (!req.isAuth) {
@@ -45,4 +47,4 @@ router.post("/more", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

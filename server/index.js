@@ -1,16 +1,26 @@
-const path = require("path");
-const express = require("express");
-const cors = require(`cors`)
-const { graphqlHTTP } = require("express-graphql");
+import path from "path";
+import express from "express";
+import cors from "cors";
+import graphqlHTTP from "express-graphql";
 
-const db = require("./models");
-const graphqlSchema = require("./graphql/schema");
-const graphqlResolver = require("./graphql/resolvers");
-const isAuth = require("./middleware/isAuth");
-const cookieSession = require("./middleware/cookieSession");
-const redirectTraffic = require("./middleware/redirectTraffic");
+import db from "./models/index.js"
+import graphqlSchema from "./graphql/schema.js";
+import graphqlResolver from "./graphql/resolvers.js";
+import isAuth from "./middleware/isAuth.js";
+import cookieSession from "./middleware/cookieSession.js";
+import redirectTraffic from "./middleware/redirectTraffic.js";
 
-require("dotenv/config");
+import { router as AuthRouter } from "./api/controller/authController.js";
+import { router as UserRouter } from "./api/controller/userController.js";
+import { router as MailRouter } from "./api/controller/mailController.js";
+import { router as UploadRouter } from "./api/controller/uploadController.js";
+import { router as PictureRouter } from "./api/controller/pictureController.js";
+import { router as SocialRouter } from "./api/controller/socialController.js";
+import { router as NotificationRouter } from "./api/controller/notificationController.js";
+import { router as SearchRouter } from "./api/controller/searchController.js";
+import { router as HealthcheckRouter } from "./api/healthcheck.js";
+
+import "./lib/loadEnv.js";
 
 const PORT = process.env.PORT || 5001;
 
@@ -55,15 +65,15 @@ app.use(function (req, res, next) {
 })
 
 // Router to API endpoints
-app.use('/auth', require('./api/controller/authController'));
-app.use('/user', require('./api/controller/userController'));
-app.use('/mail', require('./api/controller/mailController'));
-app.use('/upload', require('./api/controller/uploadController'));
-app.use('/picture', require('./api/controller/pictureController'));
-app.use('/social', require('./api/controller/socialController'));
-app.use('/notification', require('./api/controller/notificationController'));
-app.use('/search', require('./api/controller/searchController'));
-app.use('/healthcheck', require('./api/healthcheck'));
+app.use('/auth', AuthRouter);
+app.use('/user', UserRouter);
+app.use('/mail', MailRouter);
+app.use('/upload', UploadRouter);
+app.use('/picture', PictureRouter);
+app.use('/social', SocialRouter);
+app.use('/notification', NotificationRouter);
+app.use('/search', SearchRouter);
+app.use('/healthcheck', HealthcheckRouter);
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {

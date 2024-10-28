@@ -1,5 +1,6 @@
-const router = require("express").Router();
-const {authService} = require("../service/authService");
+import { Router } from "express";
+import authService from "../service/authService.js";
+const router = Router();
 
 // Login
 router.post("/login", async (req, res) => {
@@ -67,4 +68,4 @@ router.get("/access", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

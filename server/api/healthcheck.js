@@ -1,4 +1,5 @@
-const router = require("express").Router();
+import { Router } from "express";
+const router = Router();
 
 // healthCheck
 router.get("/", async (req, res) => {
@@ -19,4 +20,4 @@ router.get("/", async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

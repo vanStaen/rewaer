@@ -1,15 +1,15 @@
-const { User } = require("../../models/User");
-const bcrypt = require("bcryptjs");
-const jsonwebtoken = require("jsonwebtoken");
-const sequelize = require("sequelize");
+import { User } from "../../models/User.js";
+import bcrypt from "bcryptjs";
+import jsonwebtoken from "jsonwebtoken";
+import sequelize from "sequelize";
 
-exports.authService = {
+export const authService = {
   async login(req, email, username, password, remindMe) {
     if (username) {
       foundUser = await User.findOne({
-        where: 
+        where:
           sequelize.where(
-            sequelize.fn('lower', sequelize.col('userName')), 
+            sequelize.fn('lower', sequelize.col('userName')),
             sequelize.fn('lower', username)
           ),
       });

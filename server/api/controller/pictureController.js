@@ -1,5 +1,6 @@
-const router = require('express').Router()
-const { pictureService } = require('../service/pictureService')
+import { Router } from "express";
+import pictureService from "../service/pictureService.js";
+const router = Router();
 
 // Picture Processing
 router.post('/flip/', async (req, res) => {
@@ -67,4 +68,4 @@ router.post('/tint/', async (req, res) => {
   }
 })
 
-module.exports = router
+export default router

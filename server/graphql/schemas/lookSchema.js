@@ -1,4 +1,4 @@
-exports.Look = `
+export const Look = `
 type Look {
     _id: ID!
     userId: Int!
@@ -19,7 +19,7 @@ type Look {
     user: User
 }`;
 
-exports.LookInputData = `
+export const LookInputData = `
 input LookInputData {
     title: String
     mediaUrl: String
@@ -35,11 +35,11 @@ input LookInputData {
     dislikes: [Int]
 }`;
 
-exports.LookQueries = `
+export const LookQueries = `
     getLooks: [Look]
 `;
 
-exports.LookMutations = `
+export const LookMutations = `
     addLook(lookInput: LookInputData!): Look!
     updateLook(lookId: ID!, lookInput: LookInputData!): Look!
     deleteLook(lookId: ID!): Boolean!
