@@ -1,10 +1,16 @@
-const jsonwebtoken = require("jsonwebtoken");
-const { User } = require("../models/User");
-require("dotenv/config");
+import jsonwebtoken from "jsonwebtoken";
+import { User } from "../models/User.js";
+import path from "path";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: __dirname + "/./../../.env" });
 
 const devMode = true;
 
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   // if in development mode
   if (devMode) {
     if (req.get("host") === "localhost:5001") {

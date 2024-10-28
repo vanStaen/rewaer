@@ -1,4 +1,4 @@
-exports.User = `
+export const User = `
 type User {
     _id: ID!
     firstName: String!
@@ -22,7 +22,7 @@ type User {
     followed: [User]
 }`;
 
-exports.UserInputData = `
+export const UserInputData = `
 input UserInputData {
     firstName: String
     lastName: String
@@ -38,7 +38,7 @@ input UserInputData {
     usernameChange: Int
 }`;
 
-exports.UserQueries = `
+export const UserQueries = `
     getUser: User
     getFriends: [User]
     getFollowers: [User]
@@ -47,7 +47,7 @@ exports.UserQueries = `
     getProfileById(_id: ID!): User
 `;
 
-exports.UserMutations = `    
+export const UserMutations = `    
     addUser(userInput: UserInputData!): User!
     updateUser(userInput: UserInputData!): User!
     deleteUser: Boolean!

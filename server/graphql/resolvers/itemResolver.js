@@ -1,28 +1,20 @@
-const bcrypt = require("bcryptjs");
-const AWS = require("aws-sdk");
-const { Op } = require('sequelize');
+import bcrypt from "bcryptjs";
+// TODO: const AWS = require("aws-sdk");
+import { Op } from "sequelize";
+import { User } from "../../models/User.js";
+import { Item } from "../../models/Item.js";
+import { notificationService } from "../../api/service/notificationService.js";
 
-const { User } = require("../../models/User");
-const { Item } = require("../../models/Item");
-const { notificationService } = require("../../api/service/notificationService");
-
-// Define s3 bucket login info
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_IAM_KEY,
-  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
-  Bucket: process.env.S3_BUCKET_ID,
-});
-
-exports.itemResolver = {
+export const itemResolver = {
   async getItems(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     //: where userId or sharedWith contain req.userId
     return await Item.findAll({
-      where: { 
+      where: {
         [Op.or]: [
-          { userId: req.userId }, 
+          { userId: req.userId },
           { sharedWith: { [Op.contains]: [req.userId] } }
         ]
       },

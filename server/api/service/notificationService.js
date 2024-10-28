@@ -1,8 +1,8 @@
-const { Notification } = require("../../models/Notification");
-const { User } = require("../../models/User");
-const { Op } = require("sequelize");
+import { Notification } from "../../models/Notification.js";
+import { User } from "../../models/User.js";
+import { Op } from "sequelize";
 
-exports.notificationService = {
+export const notificationService = {
 
   async getAllNotifications() {
     try {

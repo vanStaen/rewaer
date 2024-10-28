@@ -1,9 +1,9 @@
-const { User } = require("../../models/User");
-const jsonwebtoken = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const { mailService } = require("./mailService");
+import { User } from "../../models/User.js";
+import jsonwebtoken from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import { mailService } from "./mailService.js";
 
-exports.userService = {
+export const userService = {
   async taken(username) {
     foundUser = await User.findOne({
       where: { userName: username },

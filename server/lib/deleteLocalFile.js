@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const deleteLocalFile = async (fileName) => {
 
@@ -14,4 +14,4 @@ const deleteLocalFile = async (fileName) => {
     }
 }
 
-module.exports = deleteLocalFile;
+export default deleteLocalFile;

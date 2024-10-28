@@ -1,22 +1,16 @@
-const axios = require('axios');
-const AWS = require("aws-sdk");
+import axios from "axios";
+import { uploadFileToS3 } from "../../lib/S3/uploadFileToS3.js";
+import {
+  resizeImageFromBuffer,
+  rotateImage,
+  flipImage,
+  mirrorImage,
+  tintImage
+} from "../../lib/processImageSharp";
 
-const { resizeImageFromBuffer, rotateImage, flipImage, mirrorImage, tintImage } = require("../../lib/processImageSharp");
-const uploadFileFromBufferToS3 = require("../../lib/uploadFileFromBufferToS3");
+// TODO
 
-// Setup the AWS
-AWS.config.region = "eu-west-1";
-AWS.config.signatureVersion = "v4";
-
-// Define s3 bucket login info
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_IAM_KEY,
-  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
-  Bucket: process.env.S3_BUCKET_ID,
-});
-
-exports.pictureService = {
-
+export const pictureService = {
   async rotatePicture(url, numberOfQuarterTurnToTheRight) {
     const key = url.split('.com/')[1];
     // increment version counter
@@ -87,10 +81,10 @@ exports.pictureService = {
     ).data
     let rotatedImageBuffer;
     if (isMirror) {
-    // flip picture
+      // flip picture
       rotatedImageBuffer = await flipImage(originalImageBuffer)
     } else {
-    // flip picture
+      // flip picture
       rotatedImageBuffer = await mirrorImage(originalImageBuffer)
     }
     // resize picture

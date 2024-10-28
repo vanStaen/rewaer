@@ -1,7 +1,7 @@
-const { Usersfollower } = require("../../models/Usersfollower");
-const { notificationService } = require("./notificationService");
+import { Usersfollower } from "../../models/Usersfollower.js";
+import { notificationService } from "./notificationService.js";
 
-exports.followerService = {
+export const followerService = {
   async getFollower(userId) {
     return foundFollowers = await Usersfollower.findAll({
       where: { followed_id: userId },
@@ -37,5 +37,4 @@ exports.followerService = {
     });
     return true;
   },
-
 };

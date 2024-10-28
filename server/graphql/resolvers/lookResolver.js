@@ -1,18 +1,10 @@
-const bcrypt = require("bcryptjs");
-const AWS = require("aws-sdk");
+import bcrypt from "bcryptjs";
+// TODO: const AWS = require("aws-sdk");
+import { User } from "../../models/User.js";
+import { Look } from "../../models/Look.js";
+import { notificationService } from "../../api/service/notificationService.js";
 
-const { User } = require("../../models/User");
-const { Look } = require("../../models/Look");
-const { notificationService } = require("../../api/service/notificationService");
-
-// Define s3 bucket login info
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_IAM_KEY,
-  secretAccessKey: process.env.AWS_IAM_SECRET_KEY,
-  Bucket: process.env.S3_BUCKET_ID,
-});
-
-exports.lookResolver = {
+export const lookResolver = {
   async getLooks(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");

@@ -1,7 +1,7 @@
-const { Usersfriend } = require("../../models/Usersfriend");
-const { notificationService } = require("./notificationService");
+import { Usersfriend } from "../../models/Usersfriend.js";
+import { notificationService } from "./notificationService.js";
 
-exports.friendService = {
+export const friendService = {
   async getFriends(userId) {
     return foundFollowers = await Usersfriend.findAll({
       where: { user_id: userId, pending: false },
@@ -36,7 +36,7 @@ exports.friendService = {
 
   async validateFriendRequest(userId, friendId) {
     try {
-     await Usersfriend.update(
+      await Usersfriend.update(
         { pending: false },
         {
           where: {

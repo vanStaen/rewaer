@@ -1,4 +1,4 @@
-exports.Item = `
+export const Item = `
 type Item {
     _id: ID!
     userId: Int!
@@ -24,7 +24,7 @@ type Item {
     user: User
 }`;
 
-exports.ItemInputData = `
+export const ItemInputData = `
 input ItemInputData {
     title: String
     mediaUrl: String
@@ -45,11 +45,11 @@ input ItemInputData {
     dislikes: [Int]
 }`;
 
-exports.ItemQueries = `
+export const ItemQueries = `
     getItems: [Item]
 `;
 
-exports.ItemMutations = `
+export const ItemMutations = `
     addItem(itemInput: ItemInputData!): Item!
     updateItem(itemId: ID!, itemInput: ItemInputData!): Item!
     deleteItem(itemId: ID!): Boolean!

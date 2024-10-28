@@ -1,8 +1,8 @@
-const userResolver = require("./resolvers/userResolver");
-const lookResolver = require("./resolvers/lookResolver");
-const itemResolver = require("./resolvers/itemResolver");
+import { userResolver } from "./resolvers/userResolver.js";
+import { lookResolver } from "./resolvers/lookResolver.js";
+import { itemResolver } from "./resolvers/itemResolver.js";
 
-module.exports = {
+export default {
   ...userResolver.userResolver,
   ...lookResolver.lookResolver,
   ...itemResolver.itemResolver,

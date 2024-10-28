@@ -1,4 +1,4 @@
-const { sequelize, DataTypes } = require('../lib/sequelizedb');
+import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 
 const Notification = sequelize.define("notification", {
   _id: {
@@ -37,7 +37,7 @@ const Notification = sequelize.define("notification", {
   },
 });
 
-module.exports = {
+export default {
   Notification,
 };
 

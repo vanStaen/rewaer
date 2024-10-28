@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jsonwebtoken from "jsonwebtoken";
 import sequelize from "sequelize";
 
-exports.authService = {
+export const authService = {
   async login(req, email, username, password, remindMe) {
     if (username) {
       foundUser = await User.findOne({

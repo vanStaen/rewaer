@@ -1,6 +1,6 @@
-const { sequelize, DataTypes } = require('../lib/sequelizedb');
-const { Usersfriend } = require("./Usersfriend");
-const { Usersfollower } = require("./Usersfollower");
+import { sequelize, DataTypes } from "../lib/sequelizedb.js";
+import { Usersfriend } from "./Usersfriend.js";
+import { Usersfollower } from "./Usersfollower.js";
 
 const User = sequelize.define("user", {
   _id: {
@@ -101,6 +101,6 @@ User.belongsToMany(User, {
   through: Usersfollower
 });
 
-module.exports = {
+export default {
   User
 };

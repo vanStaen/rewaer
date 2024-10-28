@@ -1,10 +1,10 @@
-const { buildSchema } = require("graphql");
+import { buildSchema } from "graphql";
 
-const userSchemas = require("./schemas/userSchema");
-const lookSchemas = require("./schemas/lookSchema");
-const itemSchemas = require("./schemas/itemSchema");
+import * as userSchemas from "./schemas/userSchema.js";
+import * as lookSchemas from "./schemas/lookSchema.js";
+import * as itemSchemas from "./schemas/itemSchema.js";
 
-module.exports = buildSchema(`
+export default buildSchema(`
 
     ${userSchemas.User}    
     ${lookSchemas.Look}
