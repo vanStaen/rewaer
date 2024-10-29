@@ -1,4 +1,4 @@
-import { Usersfollower } from "../../models/Usersfollower.js";
+import Usersfollower from "../../models/Usersfollower.js";
 import { notificationService } from "./notificationService.js";
 
 export const followerService = {

@@ -6,7 +6,7 @@ import {
   flipImage,
   mirrorImage,
   tintImage
-} from "../../lib/processImageSharp";
+} from "../../lib/processImageSharp.js";
 
 // TODO
 

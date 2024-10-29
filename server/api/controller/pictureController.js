@@ -1,5 +1,5 @@
 import { Router } from "express";
-import pictureService from "../service/pictureService.js";
+import { pictureService } from "../service/pictureService.js";
 const router = Router();
 
 // Picture Processing
@@ -68,4 +68,4 @@ router.post('/tint/', async (req, res) => {
   }
 })
 
-export default router
+export { router };

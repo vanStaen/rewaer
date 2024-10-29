@@ -1,5 +1,5 @@
 import { Router } from "express";
-import authService from "../service/authService.js";
+import { authService } from "../service/authService.js";
 const router = Router();
 
 // Login
@@ -68,4 +68,4 @@ router.get("/access", async (req, res) => {
   }
 });
 
-export default router;
+export { router };

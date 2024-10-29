@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userService from "../service/userService.js";
+import { userService } from "../service/userService.js";
 const router = Router();
 
 // Username Taken? 
@@ -101,5 +101,4 @@ router.post("/emailverified", async (req, res) => {
   4;
 });
 
-
-export default router;
+export { router };

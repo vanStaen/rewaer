@@ -1,5 +1,5 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
-import { User } from "./User.js";
+import User from "./User.js";
 
 const Item = sequelize.define("item", {
   _id: {

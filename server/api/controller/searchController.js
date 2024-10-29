@@ -1,5 +1,5 @@
 import { Router } from "express";
-import searchService from "../service/searchService.js";
+import { searchService } from "../service/searchService.js";
 const router = Router();
 
 
@@ -47,4 +47,4 @@ router.post("/more", async (req, res) => {
   }
 });
 
-export default router;
+export { router };

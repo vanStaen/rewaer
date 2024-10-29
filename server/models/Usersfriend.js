@@ -1,6 +1,6 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 
-const Usersfriend = sequelize.define("usersfriend", {
+const Usersfriend = sequelize.sequelize.define("usersfriend", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",

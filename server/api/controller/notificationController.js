@@ -1,5 +1,5 @@
 import { Router } from "express";
-import notificationService from "../service/notificationService.js";
+import { notificationService } from "../service/notificationService.js";
 const router = Router();
 
 /* get all notification (Debugging)*/
@@ -85,5 +85,4 @@ router.delete("/", async (req, res) => {
   }
 });
 
-
-export default router;
+export { router };

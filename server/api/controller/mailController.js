@@ -1,5 +1,5 @@
 import { Router } from "express";
-import mailService from "../service/mailService.js";
+import { mailService } from "../service/mailService.js";
 const router = Router();
 
 // Mail
@@ -64,5 +64,4 @@ router.post("/emailverify", async (req, res) => {
   }
 });
 
-
-export default router;
+export { router };

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import followerService from "../service/followerService.js";
-import friendService from "../service/friendService.js";
+import { followerService } from "../service/followerService.js";
+import { friendService } from "../service/friendService.js";
 const router = Router();
 
 // get follower
@@ -172,4 +172,4 @@ router.delete("/friendrequest", async (req, res) => {
   }
 });
 
-export default router;
+export { router };

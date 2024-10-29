@@ -1,6 +1,6 @@
-import { User } from "../../models/User.js";
-import { Item } from "../../models/Item.js";
-import { Look } from "../../models/Look.js";
+import User from "../../models/User.js";
+import Item from "../../models/Item.js";
+import Look from "../../models/Look.js";
 import { Op } from "sequelize";
 
 export const searchService = {
