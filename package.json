@@ -17,10 +17,10 @@
   "homepage": "https://github.com/vanStaen/rewaer#readme",
   "scripts": {
     "start": "node server/index.js",
-    "devfr": "webpack serve --config webpack.config.dev.js --hot --open",
+    "devfr": "webpack serve --config webpack.config.dev.cjs --hot --open",
     "dev": "nodemon  server/index.js",
     "prebuild": "rm -rf ./build",
-    "build": "webpack --config webpack.config.prod.js --mode production",
+    "build": "webpack --config webpack.config.prod.cjs --mode production",
     "deploy": "npm i; heroku git:remote -a rewaer; git push heroku master; npm run backup;",
     "log": "heroku logs --tail",
     "backup": "cd server/lib/; node createDatabaseBackUpFile.js; npm run pushbackup; cd ../../",
@@ -80,6 +80,17 @@
     "lint": "^1.1.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "type": "module"
 }

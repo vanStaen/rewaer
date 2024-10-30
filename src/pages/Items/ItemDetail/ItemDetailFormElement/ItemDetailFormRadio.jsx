@@ -8,8 +8,8 @@ import { updateGenericBooleanItem } from "../../actions/updateGenericBooleanItem
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
-import { itemsStore } from "../../itemsStore";
-import { userStore } from "../../../../stores/userStore/userStore";
+import { itemsStore } from "../../itemsStore.js";
+import { userStore } from "../../../../stores/userStore/userStore.js";
 
 import "./ItemDetailFormElement.css";
 

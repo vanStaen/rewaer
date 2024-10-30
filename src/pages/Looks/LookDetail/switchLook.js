@@ -1,4 +1,4 @@
-import { looksStore } from "../looksStore";
+import { looksStore } from "../looksStore.js";
 
 export const switchLook = (next, showPrivate) => {
   const indexOfResult = looksStore.looks

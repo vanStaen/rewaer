@@ -9,7 +9,7 @@ import { colors } from "../../lib/data/colors";
 import { pattern } from "../../lib/data/pattern";
 import { seasons } from "../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../helpers/convertCodeTo";
-import { userStore } from "../../stores/userStore/userStore";
+import { userStore } from "../../stores/userStore/userStore.js";
 import { profileStore } from "../../stores/profileStore/profileStore.js";
 
 import "./SearchPage.less";
@@ -155,17 +155,15 @@ export const SearchPage = () => {
                       {item.brand && `${item.brand}  `}
                       {item.colors.length > 0 &&
                         item.colors.map((color) => {
-                          return `${
-                            convertCodeToObjectString(color, colors)[
-                              userStore.language
-                            ]
-                          }  `;
-                        })}
-                      {item.pattern &&
-                        `${
-                          convertCodeToObjectString(item.pattern, pattern)[
+                          return `${convertCodeToObjectString(color, colors)[
                             userStore.language
                           ]
+                            }  `;
+                        })}
+                      {item.pattern &&
+                        `${convertCodeToObjectString(item.pattern, pattern)[
+                        userStore.language
+                        ]
                         }  `}
                     </div>
                   </div>
@@ -192,21 +190,18 @@ export const SearchPage = () => {
                     </div>
                     <div className="search__resultItemDataRow grey resultContent">
                       {!!look.category &&
-                        `${
-                          convertCodeToObjectString(
-                            look.category,
-                            lookCategory,
-                          )[userStore.language]
+                        `${convertCodeToObjectString(
+                          look.category,
+                          lookCategory,
+                        )[userStore.language]
                         }  `}
                       {!!look.season &&
-                        `${
-                          convertCodeToObjectString(look.season, seasons)[
-                            userStore.language
-                          ]
+                        `${convertCodeToObjectString(look.season, seasons)[
+                        userStore.language
+                        ]
                         }  `}
                       {look.items.length > 0 &&
-                        `${look.items.length} item${
-                          look.items.length > 1 ? "s" : ""
+                        `${look.items.length} item${look.items.length > 1 ? "s" : ""
                         }  `}
                     </div>
                   </div>

@@ -5,7 +5,7 @@ import { Tooltip, notification, Spin } from "antd";
 import { UserOutlined, EditOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { userStore } from "../../../stores/userStore/userStore";
+import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateAvatar } from "./updateAvatar";
 
 import "./Avatar.css";
@@ -69,20 +69,20 @@ export const Avatar = observer(() => {
           style={
             isStranger
               ? profileStore.avatar && {
-                  backgroundImage: "url(" + profileStore.avatar + ")",
-                }
+                backgroundImage: "url(" + profileStore.avatar + ")",
+              }
               : userStore.avatar && {
-                  backgroundImage: "url(" + userStore.avatar + ")",
-                }
+                backgroundImage: "url(" + userStore.avatar + ")",
+              }
           }
         >
           {isStranger
             ? !profileStore.avatar && (
-                <UserOutlined className="avatar__noAvatar" />
-              )
+              <UserOutlined className="avatar__noAvatar" />
+            )
             : !userStore.avatar && (
-                <UserOutlined className="avatar__noAvatar" />
-              )}
+              <UserOutlined className="avatar__noAvatar" />
+            )}
           {!isStranger && (
             <div className="avatar__editAvatar">
               <Tooltip placement="bottom" title={t("profile.changeAvatar")}>

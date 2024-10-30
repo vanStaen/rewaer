@@ -1,4 +1,4 @@
-import {forbiddenUsername} from "../../lib/data/forbiddenUsername";
+import { forbiddenUsername } from "../../lib/data/forbiddenUsername.js";
 
 export const checkUsernameforbidden = async (username) => {
   if (username in forbiddenUsername) {

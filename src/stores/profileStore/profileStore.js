@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { getProfileInfo } from "./getProfileInfo";
-import { postFremdPending } from "./postFremdPending";
+import { getProfileInfo } from "./getProfileInfo.js";
+import { postFremdPending } from "./postFremdPending.js";
 
 export class ProfileStore {
   isLoading = true;

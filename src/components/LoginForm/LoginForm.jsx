@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 import { AlreadyMember } from "../SignUpForm/AlreadyMember";
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
-import { authStore } from "../../stores/authStore/authStore";
+import { authStore } from "../../stores/authStore/authStore.js";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
 import { validateEmail } from "../../helpers/validateEmail";
 

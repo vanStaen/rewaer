@@ -17,7 +17,7 @@ import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { pageStore } from "../../stores/pageStore/pageStore";
-import { userStore } from "../../stores/userStore/userStore";
+import { userStore } from "../../stores/userStore/userStore.js";
 import { itemsStore } from "../Items/itemsStore";
 import { looksStore } from "../Looks/looksStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
@@ -185,7 +185,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) {}
+      } catch (e) { }
     };
 
     const acceptRequestHandler = async (event) => {
@@ -202,7 +202,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) {}
+      } catch (e) { }
     };
 
     return (

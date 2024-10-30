@@ -14,7 +14,7 @@ import {
 
 import { archiveLook } from "../actions/archiveLook";
 import { deleteLook } from "../actions/deleteLook";
-import { looksStore } from "../looksStore";
+import { looksStore } from "../looksStore.js";
 import { updateFavoriteLook } from "../actions/updateFavoriteLook";
 import { updatePrivateLook } from "../actions/updatePrivateLook";
 

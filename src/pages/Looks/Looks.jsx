@@ -5,8 +5,8 @@ import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { looksStore } from "./looksStore";
-import { authStore } from "../../stores/authStore/authStore";
-import { userStore } from "../../stores/userStore/userStore";
+import { authStore } from "../../stores/authStore/authStore.js";
+import { userStore } from "../../stores/userStore/userStore.js";
 import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
 import { ToolBar } from "../../components/ToolBar/ToolBar";

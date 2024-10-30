@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericBooleanLook } from "../../actions/updateGenericBooleanLook";
-import { looksStore } from "../../looksStore";
-import { userStore } from "../../../../stores/userStore/userStore";
+import { looksStore } from "../../looksStore.js";
+import { userStore } from "../../../../stores/userStore/userStore.js";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./LookDetailFormElement.css";

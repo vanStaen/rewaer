@@ -3,12 +3,15 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
-export default {
+module.exports = {
   devtool: "source-map",
   devServer: {
     historyApiFallback: true,
+    port: 3003,
+    liveReload: true,
+    hot: false,
   },
-  entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  entry: { index: "./src/index.js" },
   mode: "development",
   output: {
     path: path.resolve(__dirname, "build"),
@@ -19,7 +22,9 @@ export default {
       template: "./public/index.html",
     }),
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify("http://localhost:5001"),
+      "process.env.API_URL": JSON.stringify("http://localhost:5001"), "process.env.HOST_URL": JSON.stringify("http://localhost:3001"),
+      "process.env.HOST_URL": JSON.stringify("http://localhost:3003"),
+      "process.env.PROD": false,
     }),
     new CopyPlugin({
       patterns: [

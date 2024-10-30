@@ -4,8 +4,8 @@ import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 import { PlusOutlined } from "@ant-design/icons";
 
-import { userStore } from "../../../../stores/userStore/userStore";
-import { itemsStore } from "../../itemsStore";
+import { userStore } from "../../../../stores/userStore/userStore.js";
+import { itemsStore } from "../../itemsStore.js";
 import { UserToShareWith } from "./UserToShareWith";
 
 import "./ItemSharedWithFriends.css";

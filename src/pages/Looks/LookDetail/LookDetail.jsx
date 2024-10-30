@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
 
 import { itemsStore } from "../../Items/itemsStore";
-import { looksStore } from "../looksStore";
+import { looksStore } from "../looksStore.js";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";

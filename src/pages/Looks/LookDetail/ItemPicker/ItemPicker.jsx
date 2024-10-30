@@ -4,7 +4,7 @@ import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../../../Items/itemsStore";
-import { looksStore } from "../../looksStore";
+import { looksStore } from "../../looksStore.js";
 import { updateItemsLook } from "../../actions/updateItemsLook";
 
 import "./ItemPicker.less";

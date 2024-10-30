@@ -3,12 +3,12 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
-export default {
+module.exports = {
   devtool: "source-map",
   devServer: {
     historyApiFallback: true,
   },
-  entry: { index: "./src/index.js", sw: "./src/sw.js" },
+  entry: { index: "./src/index.js" },
   mode: "production",
   output: {
     path: path.resolve(__dirname, "build"),
@@ -20,6 +20,8 @@ export default {
     }),
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify("https://rewaer.com"),
+      "process.env.HOST_URL": JSON.stringify("https://www.rewaer.com"),
+      "process.env.PROD": true,
     }),
     new CopyPlugin({
       patterns: [

@@ -1,9 +1,9 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { deleteLogout } from "./deleteLogout";
-import { postLogin } from "./postLogin";
-import { getHasAccess } from "./getHasAccess";
-import { userStore } from "../userStore/userStore";
+import { deleteLogout } from "./deleteLogout.js";
+import { postLogin } from "./postLogin.js";
+import { getHasAccess } from "./getHasAccess.js";
+import { userStore } from "../userStore/userStore.js";
 
 
 export class AuthStore {
@@ -57,10 +57,10 @@ export class AuthStore {
   };
 
   checkAccess = async () => {
-    const hasAccess = await getHasAccess();   
+    const hasAccess = await getHasAccess();
     //console.log("Check if user has valid credentials.")
     this.setHasAccess(hasAccess);
-   }
+  }
 }
 
 export const authStore = new AuthStore();

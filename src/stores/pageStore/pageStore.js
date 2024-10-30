@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
-import { getNotifications } from "./getNotifications";
+import { getNotifications } from "./getNotifications.js";
 
 export class PageStore {
   showFloatingUploadForm = null;

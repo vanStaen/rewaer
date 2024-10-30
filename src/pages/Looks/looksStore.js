@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { fetchLooks } from "./fetchLooks";
-import { userStore } from "../../stores/userStore/userStore";
+import { fetchLooks } from "./fetchLooks.js";
+import { userStore } from "../../stores/userStore/userStore.js";
 
 export class LooksStore {
   looks = [];
@@ -31,7 +31,7 @@ export class LooksStore {
       setShowPrivateLooks: action,
       selectedLook: observable,
       setSelectedLook: action,
-      originalScrollPosition : observable,
+      originalScrollPosition: observable,
       setOriginalScrollPosition: action,
       lastKnownScrollPosition: observable,
       setLastKnownScrollPosition: action,
@@ -73,11 +73,11 @@ export class LooksStore {
     this.selectedLook = selectedLook;
   };
 
-  setOriginalScrollPosition= (originalScrollPosition) => { 
+  setOriginalScrollPosition = (originalScrollPosition) => {
     this.originalScrollPosition = originalScrollPosition;
   };
 
-  setLastKnownScrollPosition= (lastKnownScrollPosition) => {
+  setLastKnownScrollPosition = (lastKnownScrollPosition) => {
     this.lastKnownScrollPosition = lastKnownScrollPosition;
   };
 

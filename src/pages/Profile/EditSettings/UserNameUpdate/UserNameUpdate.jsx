@@ -7,7 +7,7 @@ import {
   ArrowRightOutlined,
 } from "@ant-design/icons";
 
-import { userStore } from "../../../../stores/userStore/userStore";
+import { userStore } from "../../../../stores/userStore/userStore.js";
 import { updateUserName } from "./updateUserName";
 import { postUsernameTaken } from "../../../../components/SignUpForm/postUsernameTaken";
 import { MAX_USERNAME_CHANGE_ALLOWED } from "../../../../lib/data/setup";

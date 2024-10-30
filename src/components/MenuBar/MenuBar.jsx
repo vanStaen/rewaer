@@ -15,8 +15,8 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 
-import { authStore } from "../../stores/authStore/authStore";
-import { userStore } from "../../stores/userStore/userStore";
+import { authStore } from "../../stores/authStore/authStore.js";
+import { userStore } from "../../stores/userStore/userStore.js";
 import { pageStore } from "../../stores/pageStore/pageStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
@@ -84,9 +84,8 @@ export const MenuBar = observer((props) => {
         <Link to="/notifications">
           <div
             key="notifications"
-            className={`notifications menu__element left ${
-              userStore.menuSelected === "notifications" && "selected"
-            }`}
+            className={`notifications menu__element left ${userStore.menuSelected === "notifications" && "selected"
+              }`}
             onClick={() => {
               userStore.setMenuSelected("notifications");
               pageStore.fetchNotifications();
@@ -108,9 +107,8 @@ export const MenuBar = observer((props) => {
         <Link to="/search">
           <div
             key="search"
-            className={`menu__element left ${
-              userStore.menuSelected === "search" && "selected"
-            }`}
+            className={`menu__element left ${userStore.menuSelected === "search" && "selected"
+              }`}
             onClick={() => {
               userStore.setMenuSelected("search");
             }}
@@ -122,9 +120,8 @@ export const MenuBar = observer((props) => {
 
         <div
           key="mail"
-          className={`menu__elementDisabled left ${
-            userStore.menuSelected === "mail" && "selected"
-          }`}
+          className={`menu__elementDisabled left ${userStore.menuSelected === "mail" && "selected"
+            }`}
           onClick={() => {
             // userStore.setMenuSelected("mail");
           }}
@@ -136,9 +133,8 @@ export const MenuBar = observer((props) => {
         <Link to="/info">
           <div
             key="info"
-            className={`info menu__element left ${
-              userStore.menuSelected === "info" && "selected"
-            }`}
+            className={`info menu__element left ${userStore.menuSelected === "info" && "selected"
+              }`}
             onClick={() => {
               userStore.setMenuSelected("info");
             }}
@@ -149,9 +145,8 @@ export const MenuBar = observer((props) => {
 
         <div
           key="profile"
-          className={`menu__element right ${
-            userStore.menuSelected === "profile" && "selected"
-          }`}
+          className={`menu__element right ${userStore.menuSelected === "profile" && "selected"
+            }`}
           onMouseEnter={handlerShowSubMenu}
           onMouseLeave={handlerHideSubMenu}
         >

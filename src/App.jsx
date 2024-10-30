@@ -21,7 +21,7 @@ import { Notifications } from "./pages/Notifications/Notifications";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
 
-import "../src/lib/i18n";
+import "./lib/i18n";
 
 import "./App.css";
 import "./style/rewaer-antd.css";

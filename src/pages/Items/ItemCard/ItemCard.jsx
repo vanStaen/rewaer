@@ -18,8 +18,8 @@ import { useTranslation } from "react-i18next";
 
 import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
-import { itemsStore } from "../itemsStore";
-import { userStore } from "../../../stores/userStore/userStore";
+import { itemsStore } from "../itemsStore.js";
+import { userStore } from "../../../stores/userStore/userStore.js";
 import { profileStore } from "../../../stores/profileStore/profileStore";
 
 import { archiveItem } from "../actions/archiveItem";

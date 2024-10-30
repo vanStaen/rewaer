@@ -4,8 +4,8 @@ import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { CloseCircleFilled } from "@ant-design/icons";
 
-import { userStore } from "../../../../stores/userStore/userStore";
-import { itemsStore } from "../../itemsStore";
+import { userStore } from "../../../../stores/userStore/userStore.js";
+import { itemsStore } from "../../itemsStore.js";
 import { updateItemSharedWith } from "./updateItemSharedWith";
 import { postNotificationItemShared } from "./postNotificationItemShared";
 

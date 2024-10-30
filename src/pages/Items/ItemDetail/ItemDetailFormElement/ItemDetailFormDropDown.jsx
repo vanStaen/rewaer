@@ -6,8 +6,8 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
-import { itemsStore } from "../../itemsStore";
-import { userStore } from "../../../../stores/userStore/userStore";
+import { itemsStore } from "../../itemsStore.js";
+import { userStore } from "../../../../stores/userStore/userStore.js";
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 

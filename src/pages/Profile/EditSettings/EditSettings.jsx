@@ -5,7 +5,7 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { postSendRecoverLink } from "../../../components/PasswordRecover/postSendRecoverLink";
-import { userStore } from "../../../stores/userStore/userStore";
+import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateSettings } from "./updateSettings";
 import { updateLanguage } from "./updateLanguage";
 import { updateGender } from "./updateGender";

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 
-import { looksStore } from "../looksStore";
+import { looksStore } from "../looksStore.js";
 import { pageStore } from "../../../stores/pageStore/pageStore";
-import { userStore } from "../../../stores/userStore/userStore";
+import { userStore } from "../../../stores/userStore/userStore.js";
 import { LookCard } from "../LookCard/LookCard";
 import { UploadForm } from "../../../components/UploadForm/UploadForm";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
@@ -56,9 +56,9 @@ export const LookList = observer(() => {
       : displayArchived
         ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
         : looksStore.looks.length +
-          countForm -
-          looksStore.numberOfPrivateLook -
-          looksStore.numberOfArchivedLook;
+        countForm -
+        looksStore.numberOfPrivateLook -
+        looksStore.numberOfArchivedLook;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);

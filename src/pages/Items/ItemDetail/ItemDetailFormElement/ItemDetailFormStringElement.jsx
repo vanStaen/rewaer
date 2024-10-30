@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
-import { itemsStore } from "../../itemsStore";
+import { itemsStore } from "../../itemsStore.js";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./ItemDetailFormElement.css";

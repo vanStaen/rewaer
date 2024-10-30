@@ -2,9 +2,9 @@ import { action, makeObservable, observable } from "mobx";
 
 import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
-import { getUserInfo } from "./getUserInfo";
-import { getPending } from "./getPending";
-import { updateSettings } from "../../pages/Profile/EditSettings/updateSettings";
+import { getUserInfo } from "./getUserInfo.js";
+import { getPending } from "./getPending.js";
+import { updateSettings } from "../../pages/Profile/EditSettings/updateSettings.js";
 
 export class UserStore {
   isLoading = true;
