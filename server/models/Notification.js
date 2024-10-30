@@ -1,6 +1,6 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 
-const Notification = sequelize.define("notification", {
+export const Notification = sequelize.sequelize.define("notification", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",
@@ -36,10 +36,6 @@ const Notification = sequelize.define("notification", {
     defaultValue: false,
   },
 });
-
-export default {
-  Notification,
-};
 
 /*
 types:

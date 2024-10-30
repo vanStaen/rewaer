@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 // TODO: const AWS = require("aws-sdk");
 import { Op } from "sequelize";
-import User from "../../models/User.js";
-import Item from "../../models/Item.js";
+import { User } from "../../models/User.js";
+import { Item } from "../../models/Item.js";
 import { notificationService } from "../../api/service/notificationService.js";
 
 export const itemResolver = {

@@ -1,7 +1,7 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
-import User from "./User.js";
+import { User } from "./User.js";
 
-const Look = sequelize.define("look", {
+export const Look = sequelize.sequelize.define("look", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",
@@ -63,7 +63,3 @@ const Look = sequelize.define("look", {
 
 User.hasMany(Look);
 Look.belongsTo(User);
-
-export default {
-  Look,
-};

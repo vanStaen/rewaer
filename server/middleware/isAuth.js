@@ -1,7 +1,7 @@
 import jsonwebtoken from "jsonwebtoken";
-import User from "../models/User.js";
 import path from "path";
 import dotenv from "dotenv";
+import { User } from "../models/User.js";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);

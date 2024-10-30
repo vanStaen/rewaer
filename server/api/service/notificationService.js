@@ -1,5 +1,5 @@
-import Notification from "../../models/Notification.js";
-import User from "../../models/User.js";
+import { Notification } from "../../models/Notification.js";
+import { User } from "../../models/User.js";
 import { Op } from "sequelize";
 
 export const notificationService = {

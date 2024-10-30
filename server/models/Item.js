@@ -1,7 +1,7 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
-import User from "./User.js";
+import { User } from "./User.js";
 
-const Item = sequelize.define("item", {
+export const Item = sequelize.sequelize.define("item", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",
@@ -84,7 +84,3 @@ const Item = sequelize.define("item", {
 
 User.hasMany(Item);
 Item.belongsTo(User);
-
-export default {
-  Item
-};

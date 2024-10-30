@@ -1,7 +1,8 @@
 import path from "path";
 import express from "express";
 import cors from "cors";
-import graphqlHTTP from "express-graphql";
+import { graphqlHTTP } from "express-graphql";
+import { fileURLToPath } from "url";
 
 import db from "./models/index.js"
 import graphqlSchema from "./graphql/schema.js";
@@ -95,6 +96,9 @@ db.sequelize.sync().then((req) => {
     })
   );
 });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Set up for React
 app.use(express.static(path.join(__dirname, "../build")));

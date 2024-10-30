@@ -1,8 +1,8 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
-import Usersfriend from "./Usersfriend.js";
-import Usersfollower from "./Usersfollower.js";
+import { Usersfriend } from "./Usersfriend.js";
+import { Usersfollower } from "./Usersfollower.js";
 
-const User = sequelize.sequelize.define("user", {
+export const User = sequelize.sequelize.define("user", {
   _id: {
     type: DataTypes.INTEGER,
     field: "_id",
@@ -100,7 +100,3 @@ User.belongsToMany(User, {
   foreignKey: 'followed_id',
   through: Usersfollower
 });
-
-export default {
-  User
-};

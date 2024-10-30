@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 import sgMail from "@sendgrid/mail";
-import User from "../../models/User.js";
+import { User } from "../../models/User.js";
 import { validateEmail } from "../../lib/validateEmail.js";
 import path from "path";
 import dotenv from "dotenv";
@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: __dirname + "/./../../.env" });
 
 const mainDomain = "rewaer.com";
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.REWAER_SENDGRID_API_KEY);
 
 const emailDisclaimer = `
   <br/>

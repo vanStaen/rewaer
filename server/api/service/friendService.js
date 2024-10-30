@@ -1,4 +1,4 @@
-import Usersfriend from "../../models/Usersfriend.js";
+import { Usersfriend } from "../../models/Usersfriend.js";
 import { notificationService } from "./notificationService.js";
 
 export const friendService = {
