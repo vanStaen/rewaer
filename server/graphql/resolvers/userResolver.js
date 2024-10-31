@@ -5,20 +5,55 @@ import { Look } from "../../models/Look.js";
 import { notificationService } from "../../api/service/notificationService.js";
 import { Op } from "sequelize";
 
-
 export const userResolver = {
-  async getUser(args, req) {
+  // TODO: split get user call into smaller
+  async getUser(_, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
       where: { _id: req.userId },
       include: [
-        Item,
-        Look,
         "friends",
         "followers",
         "followed"],
+    });
+  },
+
+  // TODO: split get user call into smaller
+  async getUserFriendsData(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await User.findOne({
+      where: { _id: req.userId },
+      include: [
+        "friends",
+        "followers",
+        "followed"],
+    });
+  },
+
+  // TODO: split get user call into smaller
+  async getUserLooks(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await User.findOne({
+      where: { _id: req.userId },
+      include: [Look],
+    });
+  },
+
+
+  // TODO: split get user call into smaller
+  async getUserItems(_, req) {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    return await User.findOne({
+      where: { _id: req.userId },
+      include: [Look],
     });
   },
 

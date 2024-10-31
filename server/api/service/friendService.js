@@ -3,19 +3,19 @@ import { notificationService } from "./notificationService.js";
 
 export const friendService = {
   async getFriends(userId) {
-    return foundFollowers = await Usersfriend.findAll({
+    return await Usersfriend.findAll({
       where: { user_id: userId, pending: false },
     });
   },
 
   async getFriendsPending(userId) {
-    return foundPending = await Usersfriend.findAll({
+    return await Usersfriend.findAll({
       where: { user_id: userId, pending: true }
     });
   },
 
   async getFriendsRequest(userId) {
-    return foundPending = await Usersfriend.findAll({
+    return await Usersfriend.findAll({
       where: { friend_id: userId, pending: true }
     });
   },

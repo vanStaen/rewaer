@@ -1,6 +1,6 @@
-import { userResolver } from "./resolvers/userResolver.js";
-import { lookResolver } from "./resolvers/lookResolver.js";
-import { itemResolver } from "./resolvers/itemResolver.js";
+import * as userResolver from "./resolvers/userResolver.js";
+import * as lookResolver from "./resolvers/lookResolver.js";
+import * as itemResolver from "./resolvers/itemResolver.js";
 
 export default {
   ...userResolver.userResolver,
