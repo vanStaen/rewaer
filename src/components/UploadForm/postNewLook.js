@@ -2,18 +2,14 @@ import axios from "axios";
 import { notification } from "antd";
 
 export async function postNewLook(
-  mediaUrl,
-  mediaUrlThumb,
-  mediaUrlMedium,
+  mediaId,
   title
 ) {
   const requestBody = {
     query: `
-        mutation ($mediaUrl: String, $mediaUrlThumb: String, $mediaUrlMedium: String, $title: String) {
+        mutation ($mediaId: String, $title: String) {
           addLook(
-              lookInput: { mediaUrl: $mediaUrl, 
-                           mediaUrlThumb: $mediaUrlThumb,
-                           mediaUrlMedium: $mediaUrlMedium,
+              lookInput: { mediaId: $mediaId, 
                            title: $title }
             ) {
               _id
@@ -21,9 +17,7 @@ export async function postNewLook(
           }
           `,
     variables: {
-      mediaUrl: mediaUrl,
-      mediaUrlThumb: mediaUrlThumb,
-      mediaUrlMedium: mediaUrlMedium,
+      mediaId: mediaId,
       title: title,
     },
   };

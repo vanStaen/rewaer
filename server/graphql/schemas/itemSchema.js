@@ -3,9 +3,7 @@ type Item {
     _id: ID!
     userId: Int!
     title: String
-    mediaUrl: String!
-    mediaUrlThumb: String!
-    mediaUrlMedium: String!
+    mediaId: String!
     category: String
     notes: String
     location: String
@@ -27,9 +25,7 @@ type Item {
 export const ItemInputData = `
 input ItemInputData {
     title: String
-    mediaUrl: String
-    mediaUrlThumb: String
-    mediaUrlMedium: String
+    mediaId: String
     category: String
     notes: String
     location: String

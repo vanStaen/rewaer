@@ -21,9 +21,7 @@ export async function fetchItems() {
           status,
           dislikes,
           createdAt,
-          mediaUrl,
-          mediaUrlMedium,
-          mediaUrlThumb,
+          mediaId,
           user {
               _id,
               avatar,

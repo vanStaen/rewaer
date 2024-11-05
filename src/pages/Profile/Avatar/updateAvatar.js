@@ -2,22 +2,22 @@ import axios from "axios";
 import { notification } from "antd";
 
 export async function updateAvatar(
-  mediaUrl,
+  mediaId,
 ) {
-  
+
   const requestBody = {
     query: `
-    mutation ($mediaUrl: String) {
+    mutation ($mediaId: String) {
       updateUser(
         userInput: {
-          avatar: $mediaUrl,
+          avatar: $mediaId,
         }
       ) {
         avatar,
       }
     }`,
     variables: {
-      mediaUrl,
+      mediaId,
     },
   };
 

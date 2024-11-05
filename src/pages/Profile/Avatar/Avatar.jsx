@@ -26,15 +26,15 @@ export const Avatar = observer(() => {
     try {
       const res = await axios.post(process.env.API_URL + `/upload`, formData);
       // Create Look entry
-      const mediaUrl = res.data.imageUrl;
+      const mediaId = res.data.imageUrl;
       // post new Look
-      updateAvatar(mediaUrl)
+      updateAvatar(mediaId)
         .then(() => {
           notification.success({
             message: t("profile.avatarUpdateSuccess"),
             placement: "bottomRight",
           });
-          userStore.setAvatar(mediaUrl);
+          userStore.setAvatar(mediaId);
           console.log("Success!");
         })
         .catch((error) => {

@@ -12,15 +12,7 @@ export const Look = sequelize.sequelize.define("look", {
     type: DataTypes.STRING,
     required: false,
   },
-  mediaUrl: {
-    type: DataTypes.STRING,
-    required: true,
-  },
-  mediaUrlThumb: {
-    type: DataTypes.STRING,
-    required: true,
-  },
-  mediaUrlMedium: {
+  mediaId: {
     type: DataTypes.STRING,
     required: true,
   },

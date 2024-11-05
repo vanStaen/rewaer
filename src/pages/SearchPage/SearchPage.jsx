@@ -143,7 +143,7 @@ export const SearchPage = () => {
                 <div className="search__resultItem">
                   <div className="search__resultItemPictures">
                     <img
-                      src={item.mediaUrlThumb}
+                      src={item.mediaId}
                       className="search__picture"
                     ></img>
                   </div>
@@ -180,7 +180,7 @@ export const SearchPage = () => {
                 <div className="search__resultItem">
                   <div className="search__resultItemPictures">
                     <img
-                      src={look.mediaUrlThumb}
+                      src={look.mediaId}
                       className="search__picture"
                     ></img>
                   </div>

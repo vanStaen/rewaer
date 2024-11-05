@@ -106,7 +106,7 @@ export const ItemDetail = observer(() => {
           className="itemdetail__picture"
           id={`selected_item_picture_${itemsStore.selectedItem._id}`}
           style={{
-            background: `url(${itemsStore.selectedItem.mediaUrlMedium})`,
+            background: `url(${itemsStore.selectedItem.mediaIdMedium})`,
           }}
         ></div>
       </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function postNotificationLikeDislike(type, isLike, mediaUrl, userNotifiedId, actionData) {
+export async function postNotificationLikeDislike(type, isLike, mediaId, userNotifiedId, actionData) {
   let notificationType;
   if (type === "item" && isLike) {
     notificationType = 12
@@ -13,7 +13,7 @@ export async function postNotificationLikeDislike(type, isLike, mediaUrl, userNo
   }
 
   const requestBody = {
-    mediaUrl: mediaUrl,
+    mediaId: mediaId,
     notificationType: notificationType,
     userNotifiedId: userNotifiedId,
     actionData: actionData,

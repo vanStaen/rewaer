@@ -27,7 +27,7 @@ export const ImageEditBar = observer((props) => {
       try {
         if (props.page === "look") {
           const resultFiles = await pictureRotate(
-            looksStore.selectedLook.mediaUrl,
+            looksStore.selectedLook.mediaId,
             1,
           );
           await updateMedienLook(
@@ -39,7 +39,7 @@ export const ImageEditBar = observer((props) => {
           looksStore.setIsOutOfDate(true);
         } else if (props.page === "item") {
           const resultFiles = await pictureRotate(
-            itemsStore.selectedItem.mediaUrl,
+            itemsStore.selectedItem.mediaId,
             1,
           );
           await updateMedienItem(
@@ -63,7 +63,7 @@ export const ImageEditBar = observer((props) => {
       try {
         if (props.page === "look") {
           const resultFiles = await pictureFlip(
-            looksStore.selectedLook.mediaUrl,
+            looksStore.selectedLook.mediaId,
             isMirror,
           );
           await updateMedienLook(
@@ -75,7 +75,7 @@ export const ImageEditBar = observer((props) => {
           looksStore.setIsOutOfDate(true);
         } else if (props.page === "item") {
           const resultFiles = await pictureFlip(
-            itemsStore.selectedItem.mediaUrl,
+            itemsStore.selectedItem.mediaId,
             isMirror,
           );
           await updateMedienItem(

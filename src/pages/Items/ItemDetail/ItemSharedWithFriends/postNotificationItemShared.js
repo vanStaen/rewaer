@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export async function postNotificationItemShared(notificationType, mediaUrl, userNotifiedId, actionData) {
-  
+export async function postNotificationItemShared(notificationType, mediaId, userNotifiedId, actionData) {
+
   const requestBody = {
-    mediaUrl: mediaUrl,
+    mediaId: mediaId,
     notificationType: notificationType,
     userNotifiedId: userNotifiedId,
     actionData: actionData,

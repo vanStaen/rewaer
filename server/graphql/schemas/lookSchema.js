@@ -3,9 +3,7 @@ type Look {
     _id: ID!
     userId: Int!
     title: String
-    mediaUrl: String!
-    mediaUrlThumb: String!
-    mediaUrlMedium: String!
+    mediaId: String!
     category: String
     season: String
     items: [Int]
@@ -22,9 +20,7 @@ type Look {
 export const LookInputData = `
 input LookInputData {
     title: String
-    mediaUrl: String
-    mediaUrlThumb: String
-    mediaUrlMedium: String
+    mediaId: String
     category: String
     season: String
     items: [Int]

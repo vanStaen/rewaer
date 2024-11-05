@@ -39,7 +39,7 @@ export const UserToShareWith = observer((props) => {
         // Create notification
         await postNotificationItemShared(
           6,
-          itemsStore.selectedItem.mediaUrlThumb,
+          itemsStore.selectedItem.mediaId,
           userId,
           itemsStore.selectedItem._id,
         );

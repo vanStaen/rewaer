@@ -33,9 +33,7 @@ export const itemResolver = {
       const item = new Item({
         userId: req.userId,
         title: args.itemInput.title,
-        mediaUrl: args.itemInput.mediaUrl,
-        mediaUrlThumb: args.itemInput.mediaUrlThumb,
-        mediaUrlMedium: args.itemInput.mediaUrlMedium,
+        mediaId: args.itemInput.mediaId,
         category: args.itemInput.category,
         desc: args.itemInput.desc,
         colors: args.itemInput.colors,
@@ -46,7 +44,7 @@ export const itemResolver = {
       const newItem = await item.save();
       await notificationService.createNotificationBasic(
         req.userId,
-        args.itemInput.mediaUrlThumb,
+        args.itemInput.mediaId,
         4,
         newItem._id)
       return newItem;
@@ -76,9 +74,7 @@ export const itemResolver = {
       "sharedWith",
       "likes",
       "dislikes",
-      "mediaUrl",
-      "mediaUrlThumb",
-      "mediaUrlMedium",
+      "mediaId",
     ];
     updatableFields.forEach((field) => {
       if (field in args.itemInput) {
@@ -114,7 +110,7 @@ export const itemResolver = {
       throw new Error("Unauthorized!");
     }
     const itemToDelete = await Item.findOne({ where: { _id: args.itemId } });
-    const itemId = itemToDelete.mediaUrl && itemToDelete.mediaUrl.split("/").slice(-1)[0];
+    const itemId = itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,

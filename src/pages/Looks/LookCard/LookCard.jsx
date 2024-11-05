@@ -9,7 +9,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
-import { loadImage } from "../../../helpers/loadImage";
+import { loadImage } from "../../../helpers/picture/loadImage";
 import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
 import { LookCardActions } from "./LookCardActions";
 
@@ -61,7 +61,8 @@ export const LookCard = (props) => {
 
   const imageLoadingHander = async () => {
     try {
-      await loadImage(props.look.mediaUrlMedium);
+      console.log('HERE', props.look.mediaIdMedium)
+      await loadImage(props.look.mediaIdMedium);
     } catch (e) {
       setLoadingError(true);
       console.log(e);
@@ -150,7 +151,7 @@ export const LookCard = (props) => {
             }}
             id={`card_look_picture_${props.look._id}`}
             style={{
-              background: `url(${props.look.mediaUrlMedium})`,
+              background: `url(${props.look.mediaIdMedium})`,
             }}
           ></div>
         )}
@@ -214,7 +215,7 @@ export const LookCard = (props) => {
             props.look.active && (
               <LikeDislikeButton
                 _id={props.look._id}
-                mediaUrl={props.look.mediaUrlThumb}
+                mediaId={props.look.mediaId}
                 arrayLikes={props.look.likes}
                 arrayDislikes={props.look.dislikes}
                 type="look"

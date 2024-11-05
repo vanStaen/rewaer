@@ -58,7 +58,7 @@ export const ItemPicker = observer((props) => {
               onClick={() => itemClickHandler(item._id)}
               key={item._id}
               style={{
-                background: `url(${item.mediaUrlMedium})`,
+                background: `url(${item.mediaIdMedium})`,
               }}
             ></div>
           );
@@ -77,7 +77,7 @@ export const ItemPicker = observer((props) => {
           onClick={() => itemClickHandler(item._id)}
           key={item._id}
           style={{
-            background: `url(${item.mediaUrlMedium})`,
+            background: `url(${item.mediaIdMedium})`,
           }}
         ></div>
       );

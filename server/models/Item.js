@@ -12,15 +12,7 @@ export const Item = sequelize.sequelize.define("item", {
     type: DataTypes.STRING,
     required: false,
   },
-  mediaUrl: {
-    type: DataTypes.STRING,
-    required: true,
-  },
-  mediaUrlThumb: {
-    type: DataTypes.STRING,
-    required: true,
-  },
-  mediaUrlMedium: {
+  mediaId: {
     type: DataTypes.STRING,
     required: true,
   },

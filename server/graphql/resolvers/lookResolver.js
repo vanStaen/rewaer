@@ -25,9 +25,7 @@ export const lookResolver = {
     try {
       const look = new Look({
         title: args.lookInput.title,
-        mediaUrl: args.lookInput.mediaUrl,
-        mediaUrlThumb: args.lookInput.mediaUrlThumb,
-        mediaUrlMedium: args.lookInput.mediaUrlMedium,
+        mediaId: args.lookInput.mediaId,
         category: args.lookInput.category,
         private: args.lookInput.private,
         userId: req.userId,
@@ -35,7 +33,7 @@ export const lookResolver = {
       const newLook = await look.save();
       await notificationService.createNotificationBasic(
         req.userId,
-        args.lookInput.mediaUrlThumb,
+        args.lookInput.mediaId,
         5,
         newLook._id)
       return newLook;
@@ -60,9 +58,7 @@ export const lookResolver = {
       "favorite",
       "likes",
       "dislikes",
-      "mediaUrl",
-      "mediaUrlThumb",
-      "mediaUrlMedium",
+      "mediaId",
     ];
     updatableFields.forEach((field) => {
       if (field in args.lookInput) {
@@ -98,7 +94,7 @@ export const lookResolver = {
       throw new Error("Unauthorized!");
     }
     const lookToDelete = await Look.findOne({ where: { _id: args.lookId } });
-    const lookId = lookToDelete.mediaUrl && lookToDelete.mediaUrl.split("/").slice(-1)[0];
+    const lookId = lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,

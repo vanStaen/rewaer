@@ -26,7 +26,7 @@ import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
 import { updatePrivateItem } from "../actions/updatePrivateItem";
-import { loadImage } from "../../../helpers/loadImage";
+import { loadImage } from "../../../helpers/picture/loadImage";
 
 import "./ItemCard.css";
 
@@ -78,7 +78,7 @@ export const ItemCard = (props) => {
 
   const imageLoadingHander = async () => {
     try {
-      await loadImage(props.item.mediaUrlMedium);
+      await loadImage(props.item.mediaIdMedium);
     } catch (e) {
       setLoadingError(true);
       console.log(e);
@@ -224,7 +224,7 @@ export const ItemCard = (props) => {
             className="itemcard__picture"
             id={`card_item_picture_${props.item._id}`}
             style={{
-              background: `url(${props.item.mediaUrlMedium})`,
+              background: `url(${props.item.mediaIdMedium})`,
             }}
             onClick={() => {
               if (props.item.active) {
@@ -397,7 +397,7 @@ export const ItemCard = (props) => {
             props.item.active && (
               <LikeDislikeButton
                 _id={props.item._id}
-                mediaUrl={props.item.mediaUrlThumb}
+                mediaId={props.item.mediaId}
                 arrayLikes={props.item.likes}
                 arrayDislikes={props.item.dislikes}
                 type="item"

@@ -15,7 +15,7 @@ const MIN_SWIPE_DISTANCE = 100;
 
 export const LookDetail = observer(() => {
   const [displayPictureUrl, setDisplayPictureUrl] = useState(
-    looksStore.selectedLook.mediaUrlMedium,
+    looksStore.selectedLook.mediaIdMedium,
   );
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -39,7 +39,7 @@ export const LookDetail = observer(() => {
   }, []);
 
   useEffect(() => {
-    setDisplayPictureUrl(looksStore.selectedLook.mediaUrlMedium);
+    setDisplayPictureUrl(looksStore.selectedLook.mediaIdMedium);
   }, [looksStore.selectedLook]);
 
   useEffect(() => {

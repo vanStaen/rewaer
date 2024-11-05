@@ -2,30 +2,24 @@ import axios from "axios";
 import { notification } from "antd";
 
 export async function postNewItem(
-  mediaUrl,
-  mediaUrlThumb,
-  mediaUrlMedium,
+  mediaId,
   title
 ) {
   const requestBody = {
     query: `
-        mutation ($mediaUrl: String, $mediaUrlThumb: String, $mediaUrlMedium: String, $title: String) {
+        mutation ($mediaId: String, $title: String) {
           addItem(
-            itemInput: { mediaUrl: $mediaUrl, 
-                         mediaUrlThumb: $mediaUrlThumb,
-                         mediaUrlMedium: $mediaUrlMedium,
+            itemInput: { mediaId: $mediaId, 
                          title: $title }
             ) {
               _id
             }
           }
           `,
-          variables: {
-            mediaUrl: mediaUrl,
-            mediaUrlThumb: mediaUrlThumb,
-            mediaUrlMedium: mediaUrlMedium,
-            title: title,
-          },
+    variables: {
+      mediaId: mediaId,
+      title: title,
+    },
   };
   const response = await axios({
     url: process.env.API_URL + `/graphql`,

@@ -57,13 +57,11 @@ export const UploadForm = observer((props) => {
       const res = await axios.post(process.env.API_URL + `/upload`, formData);
       if (res.data) {
         // Create Item/Look entry
-        const mediaUrl = res.data.imageUrl;
-        const mediaUrlThumb = res.data.thumbUrl;
-        const mediaUrlMedium = res.data.mediumUrl;
+        const mediaId = res.data.imageUrl;
         const title = moment().format("DD.MM.YYYY");
         // post new Item/Look
         if (page === "looks") {
-          postNewLook(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
+          postNewLook(mediaId, title)
             .then(() => {
               notification.success({
                 message: t("main.uploadSuccess"),
@@ -81,7 +79,7 @@ export const UploadForm = observer((props) => {
               console.log(error.message);
             });
         } else if (page === "items") {
-          postNewItem(mediaUrl, mediaUrlThumb, mediaUrlMedium, title)
+          postNewItem(mediaId, title)
             .then(() => {
               notification.success({
                 message: t("main.uploadSuccess"),
@@ -162,44 +160,44 @@ export const UploadForm = observer((props) => {
     <>
       {(pageStore.showFloatingUploadForm ||
         pageStore.showOnlyFloatingUploadForm) && (
-        <div className="upload-floating-form" id="upload-floating-form">
-          <form onSubmit={submitHandler}>
-            <input
-              type="file"
-              className="inputfile"
-              name="inputfile"
-              id="file"
-              onChange={fileSelectHandler}
-            />
-            <label
-              htmlFor="file"
-              onDrop={handleDrop}
-              onDragOver={(e) => handleDragOver(e)}
-              onDragEnter={(e) => handleDragEnter(e)}
-              onDragLeave={(e) => handleDragLeave(e)}
-              style={{ cursor: "pointer" }}
-            >
-              <Avatar
-                size={64}
-                icon={
-                  isUploading ? (
-                    <Spin size="large" />
-                  ) : page === "looks" ? (
-                    <CameraOutlined />
-                  ) : (
-                    <SkinOutlined />
-                  )
-                }
-                className={
-                  isUploading
-                    ? "uploadForm__avatarIsUploading"
-                    : "uploadForm__avatar"
-                }
+          <div className="upload-floating-form" id="upload-floating-form">
+            <form onSubmit={submitHandler}>
+              <input
+                type="file"
+                className="inputfile"
+                name="inputfile"
+                id="file"
+                onChange={fileSelectHandler}
               />
-            </label>
-          </form>
-        </div>
-      )}
+              <label
+                htmlFor="file"
+                onDrop={handleDrop}
+                onDragOver={(e) => handleDragOver(e)}
+                onDragEnter={(e) => handleDragEnter(e)}
+                onDragLeave={(e) => handleDragLeave(e)}
+                style={{ cursor: "pointer" }}
+              >
+                <Avatar
+                  size={64}
+                  icon={
+                    isUploading ? (
+                      <Spin size="large" />
+                    ) : page === "looks" ? (
+                      <CameraOutlined />
+                    ) : (
+                      <SkinOutlined />
+                    )
+                  }
+                  className={
+                    isUploading
+                      ? "uploadForm__avatarIsUploading"
+                      : "uploadForm__avatar"
+                  }
+                />
+              </label>
+            </form>
+          </div>
+        )}
       {!pageStore.showOnlyFloatingUploadForm && (
         <div>
           <form

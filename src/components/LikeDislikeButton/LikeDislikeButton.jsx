@@ -42,7 +42,7 @@ export const LikeDislikeButton = (props) => {
       postNotificationLikeDislike(
         props.type,
         true,
-        props.mediaUrl,
+        props.mediaId,
         userNotifiedId,
         props._id,
       );
@@ -74,7 +74,7 @@ export const LikeDislikeButton = (props) => {
       postNotificationLikeDislike(
         props.type,
         false,
-        props.mediaUrl,
+        props.mediaId,
         userNotifiedId,
         props._id,
       );

@@ -30,16 +30,14 @@ export const getProfileInfo = async (username) => {
               items {
                 _id,
                 title,
-                mediaUrlMedium,
-                mediaUrlThumb,
+                mediaId,
                 likes, 
                 dislikes,
               },
               looks {
                 _id,
                 title,
-                mediaUrlMedium,
-                mediaUrlThumb,
+                mediaId,
                 likes, 
                 dislikes,
               }

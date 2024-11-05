@@ -56,7 +56,7 @@ export const ProfileItems = observer(() => {
             <div
               className="ProfileItem__picture"
               style={{
-                background: `url(${item.mediaUrlMedium})`,
+                background: `url(${item.mediaIdMedium})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -68,7 +68,7 @@ export const ProfileItems = observer(() => {
               <div className="ProfileLook__containerLike">
                 <LikeDislikeButton
                   _id={item._id}
-                  mediaUrl={item.mediaUrlThumb}
+                  mediaId={item.mediaId}
                   arrayLikes={item.likes}
                   arrayDislikes={item.dislikes}
                   type="item"

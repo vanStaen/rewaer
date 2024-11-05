@@ -16,9 +16,7 @@ export async function fetchLooks() {
           likes,
           dislikes,
           createdAt,
-          mediaUrl,
-          mediaUrlMedium,
-          mediaUrlThumb,
+          mediaId,
           user {
               _id,
           }

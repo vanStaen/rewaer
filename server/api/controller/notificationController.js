@@ -39,10 +39,10 @@ router.post("/", async (req, res) => {
     }
     const userId = req.userId;
     const userNotifiedId = req.body.userNotifiedId;
-    const mediaUrl = req.body.mediaUrl;
+    const mediaId = req.body.mediaId;
     const type = req.body.notificationType;
     const actionData = req.body.actionData;
-    const response = await notificationService.createNotificationSingle(userId, userNotifiedId, mediaUrl, type, actionData);
+    const response = await notificationService.createNotificationSingle(userId, userNotifiedId, mediaId, type, actionData);
     res.status(200).json({
       created: response,
     });

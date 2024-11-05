@@ -96,7 +96,7 @@ export const notificationService = {
     }
   },
 
-  async createNotificationBasic(userId, mediaUrl, notificationType, actionData) {
+  async createNotificationBasic(userId, mediaId, notificationType, actionData) {
     try {
       const user = await User.findOne({
         where: { _id: userId },
@@ -113,7 +113,7 @@ export const notificationService = {
       for (const id of listOfUniqueId) {
         const newNotification = new Notification({
           user_id: id,
-          media_url: mediaUrl,
+          media_url: mediaId,
           title: username,
           type: notificationType,
           action_data: actionData
@@ -126,7 +126,7 @@ export const notificationService = {
     }
   },
 
-  async createNotificationSingle(userId, userNotifiedId, mediaUrl, notificationType, actionData) {
+  async createNotificationSingle(userId, userNotifiedId, mediaId, notificationType, actionData) {
     try {
       const user = await User.findOne({
         where: { _id: userId }
@@ -134,7 +134,7 @@ export const notificationService = {
       const username = user.userName;
       const newNotification = new Notification({
         user_id: userNotifiedId,
-        media_url: mediaUrl,
+        media_url: mediaId,
         title: username,
         type: notificationType,
         action_data: actionData,

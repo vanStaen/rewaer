@@ -1,29 +1,23 @@
 import axios from "axios";
 
-export async function updateMedienItem(id, mediaUrl, mediaUrlThumb, mediaUrlMedium) {
+export async function updateMedienItem(id, mediaId) {
   const requestBody = {
     query: `
-            mutation ($id: ID!, $mediaUrl: String, $mediaUrlThumb: String, $mediaUrlMedium: String) {
+            mutation ($id: ID!, $mediaId: String) {
               updateItem(
                 itemId: $id,
                 itemInput: { 
-                      mediaUrl: $mediaUrl,
-                      mediaUrlThumb: $mediaUrlThumb,
-                      mediaUrlMedium: $mediaUrlMedium,
+                      mediaId: $mediaId,
                       }
               ) {
                 _id,
-                mediaUrl,
-                mediaUrlThumb,
-                mediaUrlMedium,
+                mediaId,
               }
             }
             `,
     variables: {
       id,
-      mediaUrl,
-      mediaUrlThumb,
-      mediaUrlMedium
+      mediaId,
     },
   };
 

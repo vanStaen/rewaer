@@ -52,7 +52,7 @@ export const ProfileLooks = observer(() => {
             <div
               className="ProfileLook__picture"
               style={{
-                background: `url(${look.mediaUrlMedium})`,
+                background: `url(${look.mediaIdMedium})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -64,7 +64,7 @@ export const ProfileLooks = observer(() => {
               <div className="ProfileLook__containerLike">
                 <LikeDislikeButton
                   _id={look._id}
-                  mediaUrl={look.mediaUrlThumb}
+                  mediaId={look.mediaId}
                   arrayLikes={look.likes}
                   arrayDislikes={look.dislikes}
                   type="look"
