@@ -4,13 +4,13 @@ import { notificationService } from "./notificationService.js";
 export const friendService = {
   async getFriends(userId) {
     return await Usersfriend.findAll({
-      where: { user_id: userId, pending: false },
+      where: { userId: userId, pending: false },
     });
   },
 
   async getFriendsPending(userId) {
     return await Usersfriend.findAll({
-      where: { user_id: userId, pending: true }
+      where: { userId: userId, pending: true }
     });
   },
 
@@ -23,7 +23,7 @@ export const friendService = {
   async addFriendRequest(userId, friendId) {
     try {
       const newFriend = new Usersfriend({
-        user_id: parseInt(userId),
+        userId: parseInt(userId),
         friend_id: parseInt(friendId),
       });
       await newFriend.save();
@@ -40,13 +40,13 @@ export const friendService = {
         { pending: false },
         {
           where: {
-            user_id: parseInt(friendId),
+            userId: parseInt(friendId),
             friend_id: parseInt(userId),
           },
         }
       );
       const newFriend = new Usersfriend({
-        user_id: parseInt(userId),
+        userId: parseInt(userId),
         friend_id: parseInt(friendId),
         pending: false,
       });
@@ -62,7 +62,7 @@ export const friendService = {
     try {
       await Usersfriend.destroy({
         where: {
-          user_id: parseInt(userId),
+          userId: parseInt(userId),
           friend_id: parseInt(friendId),
         },
       });
@@ -76,13 +76,13 @@ export const friendService = {
   async deleteFriend(userId, friendId) {
     await Usersfriend.destroy({
       where: {
-        user_id: parseInt(userId),
+        userId: parseInt(userId),
         friend_id: parseInt(friendId),
       },
     });
     await Usersfriend.destroy({
       where: {
-        user_id: parseInt(friendId),
+        userId: parseInt(friendId),
         friend_id: parseInt(userId),
       },
     });

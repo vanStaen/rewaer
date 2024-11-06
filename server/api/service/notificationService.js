@@ -18,7 +18,7 @@ export const notificationService = {
     try {
       return await Notification.findAll({
         order: [['_id', 'DESC']],
-        where: { user_id: userId }
+        where: { userId: userId }
       });
     } catch (err) {
       console.log(err);
@@ -31,7 +31,7 @@ export const notificationService = {
         where: { _id: followerId }
       });
       const newNotification = new Notification({
-        user_id: userId,
+        userId: userId,
         media_url: follower.avatar,
         title: follower.userName,
         type: 2,
@@ -50,7 +50,7 @@ export const notificationService = {
         where: { _id: requestingId }
       });
       const newNotification = new Notification({
-        user_id: requestedId,
+        userId: requestedId,
         media_url: requesting.avatar,
         title: requesting.userName,
         type: 1,
@@ -69,7 +69,7 @@ export const notificationService = {
         where: { _id: userId }
       });
       const newNotification = new Notification({
-        user_id: friendId,
+        userId: friendId,
         media_url: user.avatar,
         title: user.userName,
         type: 17,
@@ -86,7 +86,7 @@ export const notificationService = {
     try {
       return await Notification.destroy({
         where: {
-          user_id: requestedId,
+          userId: requestedId,
           action_data: requestingId,
           type: 1,
         }
@@ -112,7 +112,7 @@ export const notificationService = {
       const listOfUniqueId = [...new Set(listOfFriendsAndFollowersId)];
       for (const id of listOfUniqueId) {
         const newNotification = new Notification({
-          user_id: id,
+          userId: id,
           media_url: mediaId,
           title: username,
           type: notificationType,
@@ -133,7 +133,7 @@ export const notificationService = {
       });
       const username = user.userName;
       const newNotification = new Notification({
-        user_id: userNotifiedId,
+        userId: userNotifiedId,
         media_url: mediaId,
         title: username,
         type: notificationType,
@@ -153,7 +153,7 @@ export const notificationService = {
         { seen: true },
         {
           where: {
-            user_id: userId,
+            userId: userId,
           }
         });
     } catch (err) {
@@ -196,7 +196,7 @@ export const notificationService = {
       return await Notification.destroy({
         where: {
           _id: notificationId,
-          user_id: userId,
+          userId: userId,
         }
       });
     } catch (err) {

@@ -79,7 +79,7 @@ export const User = sequelize.sequelize.define("user", {
 
 User.belongsToMany(User, {
   as: 'friends',
-  foreignKey: 'user_id',
+  foreignKey: 'userId',
   through: Usersfriend
 });
 

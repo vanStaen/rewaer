@@ -11,7 +11,7 @@ export const Usersfriend = sequelize.sequelize.define("usersfriend", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
