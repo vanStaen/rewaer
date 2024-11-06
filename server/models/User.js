@@ -85,18 +85,18 @@ User.belongsToMany(User, {
 
 User.belongsToMany(User, {
   as: 'Usersfriends',
-  foreignKey: 'friend_id',
+  foreignKey: 'friendId',
   through: Usersfriend
 });
 
 User.belongsToMany(User, {
   as: 'followed',
-  foreignKey: 'follower_id',
+  foreignKey: 'followerId',
   through: Usersfollower
 });
 
 User.belongsToMany(User, {
   as: 'followers',
-  foreignKey: 'followed_id',
+  foreignKey: 'followedId',
   through: Usersfollower
 });

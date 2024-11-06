@@ -42,7 +42,7 @@ export const ProfileActions = observer(() => {
   const [isPending, setIsPending] = useState(
     !(
       userStore.friendsPending.findIndex(
-        (pending) => parseInt(pending.friend_id) === profileStore._id,
+        (pending) => parseInt(pending.friendId) === profileStore._id,
       ) < 0
     ),
   );

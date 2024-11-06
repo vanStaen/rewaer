@@ -7,11 +7,11 @@ export const Usersfollower = sequelize.sequelize.define("usersfollower", {
     autoIncrement: true,
     primaryKey: true,
   },
-  follower_id: {
+  followerId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  followed_id: {
+  followedId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

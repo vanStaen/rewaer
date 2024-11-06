@@ -7,7 +7,7 @@ export const Usersfriend = sequelize.sequelize.define("usersfriend", {
     autoIncrement: true,
     primaryKey: true,
   },
-  friend_id: {
+  friendId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

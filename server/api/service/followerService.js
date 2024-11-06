@@ -4,21 +4,21 @@ import { notificationService } from "./notificationService.js";
 export const followerService = {
   async getFollower(userId) {
     return foundFollowers = await Usersfollower.findAll({
-      where: { followed_id: userId },
+      where: { followedId: userId },
     });
   },
 
   async getFollowing(userId) {
     return foundFollowing = await Usersfollower.findAll({
-      where: { follower_id: userId },
+      where: { followerId: userId },
     });
   },
 
   async addFollow(follower, followed) {
     try {
       const newFollow = new Usersfollower({
-        follower_id: follower,
-        followed_id: followed,
+        followerId: follower,
+        followedId: followed,
       });
       const newFollower = await newFollow.save();
       await notificationService.createNotificationNewFollower(followed, follower);
@@ -31,8 +31,8 @@ export const followerService = {
   async deleteFollow(follower, followed) {
     await Usersfollower.destroy({
       where: {
-        follower_id: follower,
-        followed_id: followed,
+        followerId: follower,
+        followedId: followed,
       },
     });
     return true;

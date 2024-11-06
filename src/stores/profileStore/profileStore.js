@@ -143,7 +143,7 @@ export class ProfileStore {
         const pendingData = await postFremdPending(parseInt(profileData._id));
         if (profileData && pendingData) {
           const friendsNotPending = profileData.friends.filter((friend) => {
-            const isPending = pendingData.findIndex(pending => pending.friend_id === parseInt(friend._id));
+            const isPending = pendingData.findIndex(pending => pending.friendId === parseInt(friend._id));
             if (isPending === -1) { return true }
             return false;
           })
