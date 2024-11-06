@@ -10,7 +10,7 @@ export async function updateLanguage(language) {
           language: $language,
         }
       ) {
-        _id,
+        id,
       }
     }
     `,

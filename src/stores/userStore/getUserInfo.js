@@ -5,7 +5,7 @@ export const getUserInfo = async () => {
     query: `
         {
             getUser {
-              _id,
+              id,
               firstName,
               lastName,
               userName,
@@ -16,17 +16,17 @@ export const getUserInfo = async () => {
               language,
               gender,
               friends {
-                _id,
+                id,
                 userName,
                 avatar,
               },
               followers {
-                _id,
+                id,
                 userName,
                 avatar,
               },
               followed {
-                _id,
+                id,
                 userName,
                 avatar,
               },

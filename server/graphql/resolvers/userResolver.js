@@ -12,7 +12,7 @@ export const userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      where: { _id: req.userId },
+      where: { id: req.userId },
       include: [
         "friends",
         "followers",
@@ -26,7 +26,7 @@ export const userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      where: { _id: req.userId },
+      where: { id: req.userId },
       include: [
         "friends",
         "followers",
@@ -40,7 +40,7 @@ export const userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      where: { _id: req.userId },
+      where: { id: req.userId },
       include: [Look],
     });
   },
@@ -52,7 +52,7 @@ export const userResolver = {
       throw new Error("Unauthorized!");
     }
     return await User.findOne({
-      where: { _id: req.userId },
+      where: { id: req.userId },
       include: [Look],
     });
   },
@@ -91,7 +91,7 @@ export const userResolver = {
 
   async getProfileById(args, req) {
     return await User.findOne({
-      where: { _id: args._id },
+      where: { id: args.id },
       include: [
         {
           model: Item,
@@ -155,7 +155,7 @@ export const userResolver = {
     }
   },
 
-  // updateUser(_id: ID!, userInput: UserInputData!): User!
+  // updateUser(id: ID!, userInput: UserInputData!): User!
   async updateUser(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
@@ -182,7 +182,7 @@ export const userResolver = {
     try {
       const updatedUser = await User.update(updateFields, {
         where: {
-          _id: req.userId,
+          id: req.userId,
         },
         returning: true,
         plain: true,
@@ -206,7 +206,7 @@ export const userResolver = {
     }
     await User.destroy({
       where: {
-        _id: req.userId,
+        id: req.userId,
       },
     });
     req.session = null;

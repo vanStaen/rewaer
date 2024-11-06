@@ -18,7 +18,7 @@ export const LookDetailFormRadio = observer((props) => {
   const changeHandler = async (event) => {
     try {
       await updateGenericBooleanLook(
-        props.selectedLook._id,
+        props.selectedLook.id,
         props.element,
         event.target.value,
       );

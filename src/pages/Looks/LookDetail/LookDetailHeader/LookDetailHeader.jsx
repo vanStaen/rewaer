@@ -35,12 +35,12 @@ export const LookDetailHeader = observer(() => {
   }, [looksStore.selectedLook]);
 
   const categoryChangeHandler = (value) => {
-    updateCategoryLook(looksStore.selectedLook._id, value);
+    updateCategoryLook(looksStore.selectedLook.id, value);
     looksStore.setIsOutOfDate(true);
   };
 
   const seasonChangeHandler = (value) => {
-    updateSeasonLook(looksStore.selectedLook._id, value);
+    updateSeasonLook(looksStore.selectedLook.id, value);
     looksStore.setIsOutOfDate(true);
   };
 
@@ -77,7 +77,7 @@ export const LookDetailHeader = observer(() => {
       <DetailReturnArrow page="look" />
       <div className="lookdetail__header">
         <span className="lookdetail__headerTitleId">
-          #{looksStore.selectedLook._id}
+          #{looksStore.selectedLook.id}
         </span>
         {selectedItems.length > 0 && (
           <>
@@ -91,7 +91,7 @@ export const LookDetailHeader = observer(() => {
         <div className="lookdetail__headerPoints">&#9679;</div>
         <EditableTitle
           title={looksStore.selectedLook.title}
-          id={looksStore.selectedLook._id}
+          id={looksStore.selectedLook.id}
           type={"look"}
           active={looksStore.selectedLook.active}
         />

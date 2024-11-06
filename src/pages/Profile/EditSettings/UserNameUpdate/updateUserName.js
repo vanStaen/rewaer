@@ -11,7 +11,7 @@ export async function updateUserName(userName, usernameChange) {
           usernameChange: $usernameChange
         }
       ) {
-        _id,
+        id,
       }
     }
     `,

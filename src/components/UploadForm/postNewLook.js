@@ -12,7 +12,7 @@ export async function postNewLook(
               lookInput: { mediaId: $mediaId, 
                            title: $title }
             ) {
-              _id
+              id
             }
           }
           `,

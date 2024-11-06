@@ -10,7 +10,7 @@ export async function updateSeasonLook(id, season) {
                   season: $season 
                       }
               ) {
-                _id,
+                id,
                 season
               }
             }

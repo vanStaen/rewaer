@@ -16,7 +16,7 @@ export const UserToShareWith = observer((props) => {
   const [isLoading, setIsloading] = useState(false);
 
   const userData = userStore.friends.filter(
-    (user) => parseInt(user._id) === parseInt(userId),
+    (user) => parseInt(user.id) === parseInt(userId),
   );
 
   const handleAddUserToSharedWithList = async (userId) => {
@@ -33,7 +33,7 @@ export const UserToShareWith = observer((props) => {
         };
         // Update item
         await updateItemSharedWith(
-          itemsStore.selectedItem._id,
+          itemsStore.selectedItem.id,
           updateSharedWithArray,
         );
         // Create notification
@@ -41,7 +41,7 @@ export const UserToShareWith = observer((props) => {
           6,
           itemsStore.selectedItem.mediaId,
           userId,
-          itemsStore.selectedItem._id,
+          itemsStore.selectedItem.id,
         );
         itemsStore.setSelectedItem(updateSelecteditem);
         setShowModal(false);
@@ -65,7 +65,7 @@ export const UserToShareWith = observer((props) => {
           sharedWith: updatedSharedWithArray,
         };
         await updateItemSharedWith(
-          itemsStore.selectedItem._id,
+          itemsStore.selectedItem.id,
           updatedSharedWithArray,
         );
         itemsStore.setSelectedItem(updateSelecteditem);

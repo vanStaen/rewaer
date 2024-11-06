@@ -10,7 +10,7 @@ export async function updatePrivateLook(id, isPrivate) {
                       private: $isPrivate 
                       }
               ) {
-                _id,
+                id,
                 private
               }
             }

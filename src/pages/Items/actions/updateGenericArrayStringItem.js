@@ -10,7 +10,7 @@ export async function updateGenericArrayStringItem(id, field, value) {
                       ${field}: $value 
                       }
               ) {
-                _id,
+                id,
                 ${field}
               }
             }

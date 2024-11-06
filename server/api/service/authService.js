@@ -31,7 +31,7 @@ export const authService = {
 
       // Set token in session cookie
       const accessToken = await jsonwebtoken.sign(
-        { userId: foundUser._id },
+        { userId: foundUser.id },
         process.env.AUTH_SECRET_KEY,
         { expiresIn: "15m" }
       );
@@ -40,7 +40,7 @@ export const authService = {
       // Set refreshtoken in session cookie
       if (remindMe) {
         const refreshToken = await jsonwebtoken.sign(
-          { userId: foundUser._id },
+          { userId: foundUser.id },
           process.env.AUTH_SECRET_KEY_REFRESH,
           { expiresIn: "7d" }
         );
@@ -50,7 +50,7 @@ export const authService = {
       // Update lastLogin in user table
       await User.update(
         { lastActive: Date.now() },
-        { where: { _id: foundUser._id } }
+        { where: { id: foundUser.id } }
       );
 
       // check if user has validated his email

@@ -10,7 +10,7 @@ export async function archiveAccount(archived) {
           archived: $archived,
         }
       ) {
-        _id,
+        id,
       }
     }    
     `,

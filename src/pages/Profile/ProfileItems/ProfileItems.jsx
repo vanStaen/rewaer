@@ -51,7 +51,7 @@ export const ProfileItems = observer(() => {
     profileStore.items &&
     profileStore.items.map((item) => {
       return (
-        <Col key={item._id}>
+        <Col key={item.id}>
           <div className="ProfileItem__itemContainer">
             <div
               className="ProfileItem__picture"
@@ -67,7 +67,7 @@ export const ProfileItems = observer(() => {
             <div className="ProfileLook__containerMeta">
               <div className="ProfileLook__containerLike">
                 <LikeDislikeButton
-                  _id={item._id}
+                  id={item.id}
                   mediaId={item.mediaId}
                   arrayLikes={item.likes}
                   arrayDislikes={item.dislikes}

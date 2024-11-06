@@ -10,7 +10,7 @@ export async function updateCategoryLook(id, category) {
                       category: $category 
                       }
               ) {
-                _id,
+                id,
                 category
               }
             }

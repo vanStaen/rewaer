@@ -10,7 +10,7 @@ export async function updatePrivateItem(id, isPrivate) {
                       private: $isPrivate 
                       }
               ) {
-                _id,
+                id,
                 private
               }
             }

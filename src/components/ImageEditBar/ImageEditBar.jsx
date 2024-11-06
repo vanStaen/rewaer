@@ -31,7 +31,7 @@ export const ImageEditBar = observer((props) => {
             1,
           );
           await updateMedienLook(
-            looksStore.selectedLook._id,
+            looksStore.selectedLook.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,
@@ -43,7 +43,7 @@ export const ImageEditBar = observer((props) => {
             1,
           );
           await updateMedienItem(
-            itemsStore.selectedItem._id,
+            itemsStore.selectedItem.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,
@@ -67,7 +67,7 @@ export const ImageEditBar = observer((props) => {
             isMirror,
           );
           await updateMedienLook(
-            looksStore.selectedLook._id,
+            looksStore.selectedLook.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,
@@ -79,7 +79,7 @@ export const ImageEditBar = observer((props) => {
             isMirror,
           );
           await updateMedienItem(
-            itemsStore.selectedItem._id,
+            itemsStore.selectedItem.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,

@@ -34,7 +34,7 @@ export const LookCard = (props) => {
   const errorFormated = (
     <div
       className="look__mehError"
-      id={`card_look_picture_${props.look._id}`}
+      id={`card_look_picture_${props.look.id}`}
       onClick={() => {
         if (props.look.active) {
           props.showDetailView(props.look);
@@ -77,16 +77,16 @@ export const LookCard = (props) => {
   const onMouseEnterHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_look_picture_${props.look._id}`,
+        `card_look_picture_${props.look.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_look_logoover_${props.look._id}`,
+        `card_look_logoover_${props.look.id}`,
       );
       const elementActionsContainer = document.getElementById(
-        `card_look_actionsContainer_${props.look._id}`,
+        `card_look_actionsContainer_${props.look.id}`,
       );
       const elementActionsLogo = document.getElementById(
-        `card_look_actionsLogo_${props.look._id}`,
+        `card_look_actionsLogo_${props.look.id}`,
       );
       elementPicture.style.filter = "brightness(50%)";
       elementLogoOver.style.display = "block";
@@ -99,16 +99,16 @@ export const LookCard = (props) => {
   const onMouseLeaveHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_look_picture_${props.look._id}`,
+        `card_look_picture_${props.look.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_look_logoover_${props.look._id}`,
+        `card_look_logoover_${props.look.id}`,
       );
       const elementActionsContainer = document.getElementById(
-        `card_look_actionsContainer_${props.look._id}`,
+        `card_look_actionsContainer_${props.look.id}`,
       );
       const elementActionsLogo = document.getElementById(
-        `card_look_actionsLogo_${props.look._id}`,
+        `card_look_actionsLogo_${props.look.id}`,
       );
       if (props.look.active) {
         elementPicture.style.filter = "brightness(100%)";
@@ -149,7 +149,7 @@ export const LookCard = (props) => {
                 props.showDetailView(props.look);
               }
             }}
-            id={`card_look_picture_${props.look._id}`}
+            id={`card_look_picture_${props.look.id}`}
             style={{
               background: `url(${props.look.mediaIdMedium})`,
             }}
@@ -158,7 +158,7 @@ export const LookCard = (props) => {
         {props.look.active ? (
           <div
             className="lookcard__logoover"
-            id={`card_look_logoover_${props.look._id}`}
+            id={`card_look_logoover_${props.look.id}`}
             onClick={() => {
               onMouseLeaveHandler();
               props.showDetailView(props.look);
@@ -170,7 +170,7 @@ export const LookCard = (props) => {
         ) : (
           <div
             className="lookcard__archived"
-            id={`card_look_logoover_${props.look._id}`}
+            id={`card_look_logoover_${props.look.id}`}
             onClick={() => {
               onMouseLeaveHandler();
               props.showDetailView(props.look);
@@ -201,7 +201,7 @@ export const LookCard = (props) => {
         >
           <EditableTitle
             title={props.look.title}
-            id={props.look._id}
+            id={props.look.id}
             type={"look"}
             active={props.look.active}
           />
@@ -214,7 +214,7 @@ export const LookCard = (props) => {
           ) : (
             props.look.active && (
               <LikeDislikeButton
-                _id={props.look._id}
+                id={props.look.id}
                 mediaId={props.look.mediaId}
                 arrayLikes={props.look.likes}
                 arrayDislikes={props.look.dislikes}

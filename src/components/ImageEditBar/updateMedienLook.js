@@ -10,7 +10,7 @@ export async function updateMedienLook(id, mediaId) {
                       mediaId: $mediaId,
                       }
               ) {
-                _id,
+                id,
                 mediaId,
               }
             }

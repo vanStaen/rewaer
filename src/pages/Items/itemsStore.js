@@ -93,7 +93,7 @@ export class ItemsStore {
       this.setIsOutOfDate(false);
       if (this.selectedItem) {
         const udpateSelectedItem = items.filter(
-          (item) => item._id === this.selectedItem._id
+          (item) => item.id === this.selectedItem.id
         );
         this.setSelectedItem(udpateSelectedItem[0]);
       }

@@ -2,9 +2,9 @@ import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 import { User } from "./User.js";
 
 export const Item = sequelize.sequelize.define("item", {
-  _id: {
+  id: {
     type: DataTypes.INTEGER,
-    field: "_id",
+    field: "id",
     autoIncrement: true,
     primaryKey: true,
   },

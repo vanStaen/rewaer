@@ -10,7 +10,7 @@ export async function archiveLook(id, active) {
                       active: $active 
                       }
               ) {
-                _id,
+                id,
                 active
               }
             }

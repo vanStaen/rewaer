@@ -10,7 +10,7 @@ export async function updateItemSharedWith(id, sharedWith) {
                   sharedWith: $sharedWith 
                       }
               ) {
-                _id,
+                id,
               }
             }
             `,

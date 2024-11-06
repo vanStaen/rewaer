@@ -10,7 +10,7 @@ export async function updateMedienItem(id, mediaId) {
                       mediaId: $mediaId,
                       }
               ) {
-                _id,
+                id,
                 mediaId,
               }
             }

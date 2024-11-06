@@ -32,7 +32,7 @@ export const ItemDetailFormStringElement = observer((props) => {
     if (newValue !== originalValue.current) {
       try {
         await updateGenericStringItem(
-          props.selectedItem._id,
+          props.selectedItem.id,
           props.element,
           newValue,
         );
@@ -90,7 +90,7 @@ export const ItemDetailFormStringElement = observer((props) => {
         {isEditMode ? (
           <Input
             ref={inputRef}
-            key={`title_input_${props.selectedItem._id}`}
+            key={`title_input_${props.selectedItem.id}`}
             size="small"
             className="ItemDetailFormElement__element"
             value={editInputValue}

@@ -77,7 +77,7 @@ export default async (req, res, next) => {
   // Update lastLogin in user table
   await User.update(
     { lastActive: Date.now() },
-    { where: { _id: decodedToken.userId } }
+    { where: { id: decodedToken.userId } }
   );
 
   next();

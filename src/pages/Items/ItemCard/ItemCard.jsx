@@ -37,7 +37,7 @@ export const ItemCard = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
 
-  const isSharedItem = parseInt(props.item.user._id) !== userStore._id;
+  const isSharedItem = parseInt(props.item.user.id) !== userStore.id;
   const hasMissingBrand = props.item.brand === null;
   const hasMissingCategory = props.item.category === null;
   const hasMissingColor = props.item.colors.length === 0;
@@ -64,7 +64,7 @@ export const ItemCard = (props) => {
   const errorFormated = (
     <div
       className="item__mehError"
-      id={`card_item_picture_${props.item._id}`}
+      id={`card_item_picture_${props.item.id}`}
       onClick={() => {
         if (props.item.active) {
           props.showDetailView(props.item);
@@ -91,7 +91,7 @@ export const ItemCard = (props) => {
   }, []);
 
   const handleArchive = (value) => {
-    archiveItem(props.item._id, value)
+    archiveItem(props.item.id, value)
       .then(() => {
         notification.success({
           message: value
@@ -113,7 +113,7 @@ export const ItemCard = (props) => {
   };
 
   const handleDelete = () => {
-    deleteItem(props.item._id)
+    deleteItem(props.item.id)
       .then(() => {
         notification.success({
           message: t("items.deletedSuccess"),
@@ -132,10 +132,10 @@ export const ItemCard = (props) => {
   const onMouseEnterHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item._id}`,
+        `card_item_picture_${props.item.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item._id}`,
+        `card_item_logoover_${props.item.id}`,
       );
       elementPicture.style.filter = "brightness(50%)";
       if (!loadingError || !props.item.active) {
@@ -143,10 +143,10 @@ export const ItemCard = (props) => {
       }
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item._id}`,
+          `card_item_actionsContainer_${props.item.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item._id}`,
+          `card_item_actionsLogo_${props.item.id}`,
         );
         elementActionsContainer.style.width = "34px";
         elementActionsContainer.style.opacity = ".85";
@@ -158,17 +158,17 @@ export const ItemCard = (props) => {
   const onMouseLeaveHandler = () => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item._id}`,
+        `card_item_picture_${props.item.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item._id}`,
+        `card_item_logoover_${props.item.id}`,
       );
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item._id}`,
+          `card_item_actionsContainer_${props.item.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item._id}`,
+          `card_item_actionsLogo_${props.item.id}`,
         );
         if (props.item.active) {
           elementActionsContainer.style.width = "0px";
@@ -192,7 +192,7 @@ export const ItemCard = (props) => {
   };
 
   const favoriteHandler = () => {
-    updateFavoriteItem(props.item._id, !isFavorited);
+    updateFavoriteItem(props.item.id, !isFavorited);
     setIsFavorited(!isFavorited);
   };
 
@@ -202,7 +202,7 @@ export const ItemCard = (props) => {
     } else {
       itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem + 1);
     }
-    updatePrivateItem(props.item._id, !isPrivate);
+    updatePrivateItem(props.item.id, !isPrivate);
     setIsPrivate(!isPrivate);
   };
 
@@ -222,7 +222,7 @@ export const ItemCard = (props) => {
         ) : (
           <div
             className="itemcard__picture"
-            id={`card_item_picture_${props.item._id}`}
+            id={`card_item_picture_${props.item.id}`}
             style={{
               background: `url(${props.item.mediaIdMedium})`,
             }}
@@ -252,7 +252,7 @@ export const ItemCard = (props) => {
         {props.item.active ? (
           <div
             className="itemcard__logoover"
-            id={`card_item_logoover_${props.item._id}`}
+            id={`card_item_logoover_${props.item.id}`}
             onClick={() => {
               if (props.item.active) {
                 props.showDetailView(props.item);
@@ -265,7 +265,7 @@ export const ItemCard = (props) => {
         ) : (
           <div
             className="itemcard__archived"
-            id={`card_item_logoover_${props.item._id}`}
+            id={`card_item_logoover_${props.item.id}`}
             onClick={() => {
               onMouseLeaveHandler();
               props.showDetailView(props.item);
@@ -279,11 +279,11 @@ export const ItemCard = (props) => {
         {!isSharedItem && (
           <div
             className="itemcard__actionsContainer"
-            id={`card_item_actionsContainer_${props.item._id}`}
+            id={`card_item_actionsContainer_${props.item.id}`}
           >
             <div
               className="itemcard__actionsLogo"
-              id={`card_item_actionsLogo_${props.item._id}`}
+              id={`card_item_actionsLogo_${props.item.id}`}
             >
               {props.item.active ? (
                 <>
@@ -366,7 +366,7 @@ export const ItemCard = (props) => {
         >
           <EditableTitle
             title={props.item.title}
-            id={props.item._id}
+            id={props.item.id}
             type={"item"}
             active={props.item.active}
             disabled={isSharedItem}
@@ -396,7 +396,7 @@ export const ItemCard = (props) => {
           ) : (
             props.item.active && (
               <LikeDislikeButton
-                _id={props.item._id}
+                id={props.item.id}
                 mediaId={props.item.mediaId}
                 arrayLikes={props.item.likes}
                 arrayDislikes={props.item.dislikes}

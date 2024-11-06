@@ -22,7 +22,7 @@ export const itemResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
-        ['_id', 'DESC'],
+        ['id', 'DESC'],
       ],
     });
   },
@@ -46,7 +46,7 @@ export const itemResolver = {
         req.userId,
         args.itemInput.mediaId,
         4,
-        newItem._id)
+        newItem.id)
       return newItem;
     } catch (err) {
       console.log(err);
@@ -87,7 +87,7 @@ export const itemResolver = {
     try {
       const updatedItem = await Item.update(updateFields, {
         where: {
-          _id: args.itemId,
+          id: args.itemId,
         },
         returning: true,
         plain: true,
@@ -109,7 +109,7 @@ export const itemResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const itemToDelete = await Item.findOne({ where: { _id: args.itemId } });
+    const itemToDelete = await Item.findOne({ where: { id: args.itemId } });
     const itemId = itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
@@ -131,7 +131,7 @@ export const itemResolver = {
       ]);
       await Item.destroy({
         where: {
-          _id: args.itemId,
+          id: args.itemId,
         },
       });
       await notificationService.deleteNotificationItem(args.itemId)

@@ -29,14 +29,14 @@ export const ItemPicker = observer((props) => {
     }
     if (indexOfValue < 0) {
       setSelectedItems([...selectedItems, valueAsInt]);
-      updateItemsLook(looksStore.selectedLook._id, [
+      updateItemsLook(looksStore.selectedLook.id, [
         ...selectedItems,
         valueAsInt,
       ]);
     } else {
       setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
       updateItemsLook(
-        looksStore.selectedLook._id,
+        looksStore.selectedLook.id,
         selectedItems.filter((itemId) => itemId !== valueAsInt),
       );
     }
@@ -44,7 +44,7 @@ export const ItemPicker = observer((props) => {
   };
 
   const itemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
+    const isSelected = selectedItems.indexOf(parseInt(item.id)) >= 0;
     if (!isSelected) {
       if (!item.active) {
         return null;
@@ -55,8 +55,8 @@ export const ItemPicker = observer((props) => {
           return (
             <div
               className={"itemPicker__item"}
-              onClick={() => itemClickHandler(item._id)}
-              key={item._id}
+              onClick={() => itemClickHandler(item.id)}
+              key={item.id}
               style={{
                 background: `url(${item.mediaIdMedium})`,
               }}
@@ -69,13 +69,13 @@ export const ItemPicker = observer((props) => {
   });
 
   const selectedItemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item._id)) >= 0;
+    const isSelected = selectedItems.indexOf(parseInt(item.id)) >= 0;
     if (isSelected) {
       return (
         <div
           className={"itemPicker__itemSelected"}
-          onClick={() => itemClickHandler(item._id)}
-          key={item._id}
+          onClick={() => itemClickHandler(item.id)}
+          key={item.id}
           style={{
             background: `url(${item.mediaIdMedium})`,
           }}

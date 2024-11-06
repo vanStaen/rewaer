@@ -12,7 +12,7 @@ export async function postNewItem(
             itemInput: { mediaId: $mediaId, 
                          title: $title }
             ) {
-              _id
+              id
             }
           }
           `,

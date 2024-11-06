@@ -14,7 +14,7 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
                     likes: $valueArray 
                         }
                 ) {
-                  _id,
+                  id,
                   likes,
                 }
               }
@@ -34,7 +34,7 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
                     dislikes: $valueArray 
                         }
                 ) {
-                  _id,
+                  id,
                   dislikes,
                 }
               }
@@ -56,7 +56,7 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
                     likes: $valueArray 
                         }
                 ) {
-                  _id,
+                  id,
                   likes,
                 }
               }
@@ -76,7 +76,7 @@ export async function updateLikeDislike(id, type, isLike, valueArray) {
                     dislikes: $valueArray 
                         }
                 ) {
-                  _id,
+                  id,
                   dislikes,
                 }
               }

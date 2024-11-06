@@ -5,7 +5,7 @@ export async function fetchItems() {
     query: `
       {
         getItems {
-          _id,
+          id,
           title,
           notes,
           location,
@@ -23,7 +23,7 @@ export async function fetchItems() {
           createdAt,
           mediaId,
           user {
-              _id,
+              id,
               avatar,
               userName,
           }

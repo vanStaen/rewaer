@@ -10,7 +10,7 @@ export async function updateGender(gender) {
           gender: $gender,
         }
       ) {
-        _id,
+        id,
       }
     }
     `,

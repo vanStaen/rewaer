@@ -5,37 +5,37 @@ export const getProfileInfo = async (username) => {
     query: `
         {
             getProfileByName (userName: "${username}"){
-              _id,
+              id,
               firstName,
               lastName,
               avatar,
               gender,
               friends {
-                _id,
+                id,
                 userName,
                 avatar,
               },
               followers {
-                _id,
+                id,
                 userName,
                 avatar,
               },
               followed {
-                _id,
+                id,
                 userName,
                 avatar,
               },
               lastActive,
               profilSettings,
               items {
-                _id,
+                id,
                 title,
                 mediaId,
                 likes, 
                 dislikes,
               },
               looks {
-                _id,
+                id,
                 title,
                 mediaId,
                 likes, 

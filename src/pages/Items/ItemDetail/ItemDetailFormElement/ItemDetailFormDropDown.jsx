@@ -56,13 +56,13 @@ export const ItemDetailFormDropDown = observer((props) => {
     try {
       if (props.multiSelect) {
         await updateGenericArrayStringItem(
-          props.selectedItem._id,
+          props.selectedItem.id,
           props.element,
           newValue,
         );
       } else {
         await updateGenericStringItem(
-          props.selectedItem._id,
+          props.selectedItem.id,
           props.element,
           newValue,
         );

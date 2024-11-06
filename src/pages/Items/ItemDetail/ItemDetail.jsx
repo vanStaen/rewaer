@@ -33,7 +33,7 @@ export const ItemDetail = observer(() => {
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
   const isSharedItem =
-    parseInt(itemsStore.selectedItem.user._id) !== userStore._id;
+    parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -104,7 +104,7 @@ export const ItemDetail = observer(() => {
         <ImageEditBar page="item" />
         <div
           className="itemdetail__picture"
-          id={`selected_item_picture_${itemsStore.selectedItem._id}`}
+          id={`selected_item_picture_${itemsStore.selectedItem.id}`}
           style={{
             background: `url(${itemsStore.selectedItem.mediaIdMedium})`,
           }}

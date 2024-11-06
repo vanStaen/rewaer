@@ -89,7 +89,7 @@ export const Notifications = observer(() => {
         await itemsStore.loadItems();
       }
       const selectedItem = itemsStore.items.filter(
-        (item) => parseInt(item._id) === action_data,
+        (item) => parseInt(item.id) === action_data,
       );
       itemsStore.setSelectedItem(selectedItem[0]);
       navigate(`/items/`);
@@ -100,7 +100,7 @@ export const Notifications = observer(() => {
         await looksStore.loadLooks();
       }
       const selectedLook = looksStore.looks.filter(
-        (look) => parseInt(look._id) === action_data,
+        (look) => parseInt(look.id) === action_data,
       );
       looksStore.setSelectedLook(selectedLook[0]);
       navigate(`/looks/`);
@@ -155,7 +155,7 @@ export const Notifications = observer(() => {
   };
 
   const notificationsFormated = pageStore.notifications.map((notification) => {
-    const { _id, type, seen, title, createdAt, media_url, action_data } =
+    const { id, type, seen, title, createdAt, media_url, action_data } =
       notification;
     const notificationAge = dayjs(createdAt).fromNow();
 
@@ -178,8 +178,8 @@ export const Notifications = observer(() => {
       try {
         await postFollow(action_data);
         userStore.fetchUserData(false);
-        const element = document.getElementById(`followback${_id}`);
-        const elementMobile = document.getElementById(`followbackMobile${_id}`);
+        const element = document.getElementById(`followback${id}`);
+        const elementMobile = document.getElementById(`followbackMobile${id}`);
         element.style.opacity = 0;
         elementMobile.style.opacity = 0;
         setTimeout(() => {
@@ -193,9 +193,9 @@ export const Notifications = observer(() => {
       try {
         await postAcceptRequest(action_data);
         userStore.fetchUserData(false);
-        const element = document.getElementById(`acceptRequest${_id}`);
+        const element = document.getElementById(`acceptRequest${id}`);
         const elementMobile = document.getElementById(
-          `acceptRequestMobile${_id}`,
+          `acceptRequestMobile${id}`,
         );
         element.style.opacity = 0;
         elementMobile.style.opacity = 0;
@@ -206,22 +206,22 @@ export const Notifications = observer(() => {
     };
 
     return (
-      <div className="notification__subContainer" id={`subContainer${_id}`}>
+      <div className="notification__subContainer" id={`subContainer${id}`}>
         <div className="notifications__deleteButton">
           <div
             className="icon"
-            onClick={() => closeNotificationHandlerMobile(_id)}
-            id={`deleteButtonIcon${_id}`}
+            onClick={() => closeNotificationHandlerMobile(id)}
+            id={`deleteButtonIcon${id}`}
           >
             <DeleteFilled />
           </div>
         </div>
         <div
           className={`notifications__notification ${seen ? "seen" : "new"}`}
-          id={`notification${_id}`}
+          id={`notification${id}`}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
-          onTouchEnd={() => onTouchEnd(_id)}
+          onTouchEnd={() => onTouchEnd(id)}
         >
           <div
             className={
@@ -307,7 +307,7 @@ export const Notifications = observer(() => {
           </div>
           <div
             className="closeDelete"
-            onClick={() => closeNotificationHandler(_id)}
+            onClick={() => closeNotificationHandler(id)}
           >
             <CloseOutlined />
           </div>
@@ -316,7 +316,7 @@ export const Notifications = observer(() => {
           {!userStore.isLoading && type === 1 && isNotFriend && (
             <div
               className="notification__actionsButtons"
-              id={`acceptRequestMobile${_id}`}
+              id={`acceptRequestMobile${id}`}
             >
               <Button
                 className="actionsButton"
@@ -331,7 +331,7 @@ export const Notifications = observer(() => {
           {!userStore.isLoading && type === 2 && isNotFollowed && (
             <div
               className="notification__actionsButtons"
-              id={`followbackMobile${_id}`}
+              id={`followbackMobile${id}`}
             >
               <Button
                 className="actionsButton"

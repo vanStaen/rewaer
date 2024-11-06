@@ -1,6 +1,6 @@
 export const User = `
 type User {
-    _id: ID!
+    id: ID!
     firstName: String!
     lastName: String
     userName: String!
@@ -44,7 +44,7 @@ export const UserQueries = `
     getFollowers: [User]
     getFollowed: [User]
     getProfileByName(userName: String): User
-    getProfileById(_id: ID!): User
+    getProfileById(id: ID!): User
 `;
 
 export const UserMutations = `    

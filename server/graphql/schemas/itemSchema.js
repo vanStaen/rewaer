@@ -1,6 +1,6 @@
 export const Item = `
 type Item {
-    _id: ID!
+    id: ID!
     userId: Int!
     title: String
     mediaId: String!

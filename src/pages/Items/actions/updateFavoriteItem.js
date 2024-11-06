@@ -10,7 +10,7 @@ export async function updateFavoriteItem(id, favorite) {
                       favorite: $favorite 
                       }
               ) {
-                _id,
+                id,
                 favorite
               }
             }

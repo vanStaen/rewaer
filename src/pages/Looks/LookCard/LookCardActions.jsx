@@ -24,7 +24,7 @@ export const LookCardActions = (props) => {
   const { t } = useTranslation();
 
   const favoriteHandler = () => {
-    updateFavoriteLook(props.look._id, !props.isFavorited);
+    updateFavoriteLook(props.look.id, !props.isFavorited);
     props.setIsFavorited(!props.isFavorited);
   };
 
@@ -34,12 +34,12 @@ export const LookCardActions = (props) => {
     } else {
       looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook + 1);
     }
-    updatePrivateLook(props.look._id, !props.isPrivate);
+    updatePrivateLook(props.look.id, !props.isPrivate);
     props.setIsPrivate(!props.isPrivate);
   };
 
   const handleArchive = (value) => {
-    archiveLook(props.look._id, value)
+    archiveLook(props.look.id, value)
       .then(() => {
         notification.success({
           message: value
@@ -61,7 +61,7 @@ export const LookCardActions = (props) => {
   };
 
   const handleDelete = () => {
-    deleteLook(props.look._id)
+    deleteLook(props.look.id)
       .then(() => {
         notification.success({
           message: t("looks.deletedSuccess"),
@@ -79,11 +79,11 @@ export const LookCardActions = (props) => {
   return (
     <div
       className="lookcard__actionsContainer"
-      id={`card_look_actionsContainer_${props.look._id}`}
+      id={`card_look_actionsContainer_${props.look.id}`}
     >
       <div
         className="lookcard__actionsLogo"
-        id={`card_look_actionsLogo_${props.look._id}`}
+        id={`card_look_actionsLogo_${props.look.id}`}
       >
         {props.look.active ? (
           <>

@@ -7,7 +7,7 @@ export const notificationService = {
   async getAllNotifications() {
     try {
       return await Notification.findAll({
-        order: [['_id', 'DESC']]
+        order: [['id', 'DESC']]
       });
     } catch (err) {
       console.log(err);
@@ -17,7 +17,7 @@ export const notificationService = {
   async getNotifications(userId) {
     try {
       return await Notification.findAll({
-        order: [['_id', 'DESC']],
+        order: [['id', 'DESC']],
         where: { userId: userId }
       });
     } catch (err) {
@@ -28,7 +28,7 @@ export const notificationService = {
   async createNotificationNewFollower(userId, followerId) {
     try {
       const follower = await User.findOne({
-        where: { _id: followerId }
+        where: { id: followerId }
       });
       const newNotification = new Notification({
         userId: userId,
@@ -47,7 +47,7 @@ export const notificationService = {
   async createNotificationNewFriendRequest(requestingId, requestedId) {
     try {
       const requesting = await User.findOne({
-        where: { _id: requestingId }
+        where: { id: requestingId }
       });
       const newNotification = new Notification({
         userId: requestedId,
@@ -66,7 +66,7 @@ export const notificationService = {
   async createNotificationNewFriend(userId, friendId) {
     try {
       const user = await User.findOne({
-        where: { _id: userId }
+        where: { id: userId }
       });
       const newNotification = new Notification({
         userId: friendId,
@@ -99,7 +99,7 @@ export const notificationService = {
   async createNotificationBasic(userId, mediaId, notificationType, actionData) {
     try {
       const user = await User.findOne({
-        where: { _id: userId },
+        where: { id: userId },
         include: [
           "friends",
           "followers",
@@ -107,8 +107,8 @@ export const notificationService = {
       });
       const username = user.userName;
       let listOfFriendsAndFollowersId = [];
-      user.friends.forEach((friend) => { listOfFriendsAndFollowersId.push(friend._id) });
-      user.followers.forEach((follower) => { listOfFriendsAndFollowersId.push(follower._id) });
+      user.friends.forEach((friend) => { listOfFriendsAndFollowersId.push(friend.id) });
+      user.followers.forEach((follower) => { listOfFriendsAndFollowersId.push(follower.id) });
       const listOfUniqueId = [...new Set(listOfFriendsAndFollowersId)];
       for (const id of listOfUniqueId) {
         const newNotification = new Notification({
@@ -129,7 +129,7 @@ export const notificationService = {
   async createNotificationSingle(userId, userNotifiedId, mediaId, notificationType, actionData) {
     try {
       const user = await User.findOne({
-        where: { _id: userId }
+        where: { id: userId }
       });
       const username = user.userName;
       const newNotification = new Notification({
@@ -195,7 +195,7 @@ export const notificationService = {
     try {
       return await Notification.destroy({
         where: {
-          _id: notificationId,
+          id: notificationId,
           userId: userId,
         }
       });

@@ -10,7 +10,7 @@ export async function updateFavoriteLook(id, favorite) {
                       favorite: $favorite 
                       }
               ) {
-                _id,
+                id,
                 favorite
               }
             }

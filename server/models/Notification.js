@@ -1,9 +1,9 @@
 import { sequelize, DataTypes } from "../lib/sequelizedb.js";
 
 export const Notification = sequelize.sequelize.define("notification", {
-  _id: {
+  id: {
     type: DataTypes.INTEGER,
-    field: "_id",
+    field: "id",
     autoIncrement: true,
     primaryKey: true,
   },

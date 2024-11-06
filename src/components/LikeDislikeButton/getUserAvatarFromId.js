@@ -4,7 +4,7 @@ export const getUserAvatarFromId = async (id) => {
   const requestBody = {
     query: `
         {
-            getProfileById (_id: "${id}"){
+            getProfileById (id: "${id}"){
               avatar,
               userName,
             }

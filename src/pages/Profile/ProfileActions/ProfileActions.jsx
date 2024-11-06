@@ -28,26 +28,26 @@ export const ProfileActions = observer(() => {
   const [isFollowed, setIsFollowed] = useState(
     !(
       userStore.followed.findIndex(
-        (followed) => parseInt(followed._id) === profileStore._id,
+        (followed) => parseInt(followed.id) === profileStore.id,
       ) < 0
     ),
   );
   const [isFriend, setIsFriend] = useState(
     !(
       userStore.friends.findIndex(
-        (friend) => parseInt(friend._id) === profileStore._id,
+        (friend) => parseInt(friend.id) === profileStore.id,
       ) < 0
     ),
   );
   const [isPending, setIsPending] = useState(
     !(
       userStore.friendsPending.findIndex(
-        (pending) => parseInt(pending.friendId) === profileStore._id,
+        (pending) => parseInt(pending.friendId) === profileStore.id,
       ) < 0
     ),
   );
 
-  const thisIsMe = userStore._id === profileStore._id;
+  const thisIsMe = userStore.id === profileStore.id;
 
   const handleClick = async (action) => {
     if (thisIsMe) {
@@ -55,19 +55,19 @@ export const ProfileActions = observer(() => {
     }
     try {
       if (action === "follow") {
-        await postFollow(profileStore._id);
+        await postFollow(profileStore.id);
         setIsFollowed(true);
       } else if (action === "unfollow") {
-        await deleteFollow(profileStore._id);
+        await deleteFollow(profileStore.id);
         setIsFollowed(false);
       } else if (action === "request") {
-        await postFriendRequest(profileStore._id);
+        await postFriendRequest(profileStore.id);
         setIsPending(true);
       } else if (action === "unrequest") {
-        await deleteFriendRequest(profileStore._id);
+        await deleteFriendRequest(profileStore.id);
         setIsPending(false);
       } else if (action === "unfriend") {
-        await deleteFriend(profileStore._id);
+        await deleteFriend(profileStore.id);
         setIsPending(false);
         setIsFriend(false);
       }

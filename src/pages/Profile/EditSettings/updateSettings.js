@@ -11,7 +11,7 @@ export async function updateSettings(emailSettings, profilSettings) {
           profilSettings: $profilSettings,
         }
       ) {
-        _id,
+        id,
       }
     }
     `,

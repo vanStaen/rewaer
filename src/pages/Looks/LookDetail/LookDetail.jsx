@@ -97,14 +97,14 @@ export const LookDetail = observer(() => {
         <ImageEditBar page="look" />
         <div
           className="lookdetail__pictureBlur"
-          id={`selected_look_picture_blur_${looksStore.selectedLook._id}`}
+          id={`selected_look_picture_blur_${looksStore.selectedLook.id}`}
           style={{
             background: `url(${displayPictureUrl})`,
           }}
         ></div>
         <div
           className="lookdetail__picture"
-          id={`selected_look_picture_${looksStore.selectedLook._id}`}
+          id={`selected_look_picture_${looksStore.selectedLook.id}`}
           style={{
             background: `url(${displayPictureUrl})`,
           }}

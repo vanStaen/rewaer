@@ -15,7 +15,7 @@ export const lookResolver = {
       order: [
         ['active', 'DESC'],
         ['favorite', 'DESC'],
-        ['_id', 'DESC'],
+        ['id', 'DESC'],
       ],
     });
   },
@@ -35,7 +35,7 @@ export const lookResolver = {
         req.userId,
         args.lookInput.mediaId,
         5,
-        newLook._id)
+        newLook.id)
       return newLook;
     } catch (err) {
       console.log(err);
@@ -71,7 +71,7 @@ export const lookResolver = {
     try {
       const updatedLook = await Look.update(updateFields, {
         where: {
-          _id: args.lookId,
+          id: args.lookId,
         },
         returning: true,
         plain: true,
@@ -93,7 +93,7 @@ export const lookResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const lookToDelete = await Look.findOne({ where: { _id: args.lookId } });
+    const lookToDelete = await Look.findOne({ where: { id: args.lookId } });
     const lookId = lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
@@ -115,7 +115,7 @@ export const lookResolver = {
       ]);
       await Look.destroy({
         where: {
-          _id: args.lookId,
+          id: args.lookId,
         },
       });
       await notificationService.deleteNotificationLook(args.lookId)

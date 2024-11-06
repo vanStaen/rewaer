@@ -3,9 +3,9 @@ import { itemsStore } from "../itemsStore.js";
 export const switchItem = (next, showPrivate) => {
   const indexOfResult = itemsStore.items
     .map(function (look) {
-      return look._id;
+      return look.id;
     })
-    .indexOf(itemsStore.selectedItem._id);
+    .indexOf(itemsStore.selectedItem.id);
 
   if (!showPrivate) {
     let nextLookId = indexOfResult;

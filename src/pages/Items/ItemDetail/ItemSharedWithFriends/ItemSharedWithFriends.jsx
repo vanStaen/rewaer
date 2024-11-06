@@ -28,11 +28,11 @@ export const ItemSharedWithFriends = observer(() => {
   });
 
   const itemSharabledWith = userStore.friends.map((user) => {
-    const alreadyShared = !(sharedWithArray.indexOf(parseInt(user._id)) < 0);
+    const alreadyShared = !(sharedWithArray.indexOf(parseInt(user.id)) < 0);
     if (!alreadyShared) {
       return (
         <UserToShareWith
-          userId={user._id}
+          userId={user.id}
           type="sharableWith"
           setShowModal={setShowModal}
         />

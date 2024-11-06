@@ -10,7 +10,7 @@ export async function updateItemsLook(id, items) {
                       items: $items 
                       }
               ) {
-                _id,
+                id,
                 items
               }
             }

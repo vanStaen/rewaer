@@ -25,13 +25,13 @@ export const ItemDetailFormRadio = observer((props) => {
     try {
       if (typeof event.target.value === "boolean") {
         await updateGenericBooleanItem(
-          props.selectedItem._id,
+          props.selectedItem.id,
           props.element,
           event.target.value,
         );
       } else {
         await updateGenericStringItem(
-          props.selectedItem._id,
+          props.selectedItem.id,
           props.element,
           event.target.value,
         );

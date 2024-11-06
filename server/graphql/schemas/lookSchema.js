@@ -1,6 +1,6 @@
 export const Look = `
 type Look {
-    _id: ID!
+    id: ID!
     userId: Int!
     title: String
     mediaId: String!

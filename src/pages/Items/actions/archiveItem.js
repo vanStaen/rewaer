@@ -10,7 +10,7 @@ export async function archiveItem(id, active) {
                       active: $active 
                       }
               ) {
-                _id,
+                id,
                 active
               }
             }

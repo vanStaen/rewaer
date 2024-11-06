@@ -6,7 +6,7 @@ import { postFremdPending } from "./postFremdPending.js";
 export class ProfileStore {
   isLoading = true;
   error = null;
-  _id = null;
+  id = null;
   userName = null;
   avatar = null;
   firstName = null;
@@ -26,7 +26,7 @@ export class ProfileStore {
     makeObservable(this, {
       isLoading: observable,
       error: observable,
-      _id: observable,
+      id: observable,
       userName: observable,
       avatar: observable,
       firstName: observable,
@@ -43,7 +43,7 @@ export class ProfileStore {
       filterIsPopingUp: observable,
       setIsLoading: action,
       setError: action,
-      set_id: action,
+      setid: action,
       setUserName: action,
       setAvatar: action,
       setFirstName: action,
@@ -70,8 +70,8 @@ export class ProfileStore {
     this.error = error;
   };
 
-  set_id = (_id) => {
-    this._id = _id;
+  setid = (id) => {
+    this.id = id;
   };
 
   setUserName = (userName) => {
@@ -140,14 +140,14 @@ export class ProfileStore {
       if (userName) {
         this.setUserName(userName);
         const profileData = await getProfileInfo(userName);
-        const pendingData = await postFremdPending(parseInt(profileData._id));
+        const pendingData = await postFremdPending(parseInt(profileData.id));
         if (profileData && pendingData) {
           const friendsNotPending = profileData.friends.filter((friend) => {
-            const isPending = pendingData.findIndex(pending => pending.friendId === parseInt(friend._id));
+            const isPending = pendingData.findIndex(pending => pending.friendId === parseInt(friend.id));
             if (isPending === -1) { return true }
             return false;
           })
-          this.set_id(parseInt(profileData._id));
+          this.setid(parseInt(profileData.id));
           this.setAvatar(profileData.avatar);
           this.setFirstName(profileData.firstName);
           this.setLastName(profileData.lastName);

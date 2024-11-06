@@ -5,7 +5,7 @@ export async function fetchLooks() {
     query: `
       {
         getLooks {
-          _id,
+          id,
           title,
           category,
           season,
@@ -18,7 +18,7 @@ export async function fetchLooks() {
           createdAt,
           mediaId,
           user {
-              _id,
+              id,
           }
         }
       }
