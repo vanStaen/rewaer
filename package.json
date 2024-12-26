@@ -24,6 +24,7 @@
     "deploy": "npm i; heroku git:remote -a rewaer; git push heroku master; npm run backup;",
     "log": "heroku logs --tail",
     "backup": "cd server/lib/; node createDatabaseBackUpFile.js; npm run pushbackup; cd ../../",
+    "lint": "eslint -c ./.eslintrc.json '**/*.js' '**/*.jsx' --fix",
     "pushbackup": "cd ../database-backups; git pull; git add -A; git commit -m 'Rewaer - database backup files'; git push; cd ../rewaer"
   },
   "dependencies": {
