@@ -1,11 +1,10 @@
-import { API_URL } from "../../../config";
 export const deleteNotification = async (id) => {
   try {
     const requestBody = {
       id: id,
     };
 
-    await fetch(API_URL + `/notification/`, {
+    await fetch(process.env.API_URL + `/notification/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
