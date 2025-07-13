@@ -1,7 +1,4 @@
-import axios from "axios";
-
 export async function postNotificationItemShared(notificationType, mediaId, userNotifiedId, actionData) {
-
   const requestBody = {
     mediaId: mediaId,
     notificationType: notificationType,
@@ -10,18 +7,20 @@ export async function postNotificationItemShared(notificationType, mediaId, user
   };
 
   try {
-    const response = await axios({
-      url: process.env.API_URL + `/notification`,
+    const response = await fetch(process.env.API_URL + `/notification`, {
       method: "POST",
-      data: requestBody,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
     });
-    if ((response.status !== 200) & (response.status !== 201)) {
+    if (response.status !== 200 && response.status !== 201) {
       throw new Error("Unauthenticated!");
     }
-    return true
+    return true;
   }
   catch (e) {
     console.log("error", e);
-    return false
+    return false;
   }
 }

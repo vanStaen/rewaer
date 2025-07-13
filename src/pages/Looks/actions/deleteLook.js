@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function deleteLook(id) {
   const requestBody = {
     query: `
@@ -12,13 +10,15 @@ export async function deleteLook(id) {
     },
   };
 
-  const response = await axios({
-    url: process.env.API_URL + `/graphql`,
+  const response = await fetch(process.env.API_URL + `/graphql`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
 
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     throw new Error("Unauthenticated!");
   }
 }

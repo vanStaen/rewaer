@@ -1,21 +1,22 @@
-import axios from "axios";
-
 export const postFremdPending = async (userId) => {
   try {
     const requestBody = {
       userId: userId,
     };
 
-    const response = await axios({
-      url: process.env.API_URL + `/social/fremdfriendspending/`,
+    const response = await fetch(process.env.API_URL + `/social/fremdfriendspending/`, {
       method: "POST",
-      data: requestBody,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
     });
-    return response.data.pending;
+    const data = await response.json();
+    return data.pending;
   } catch (err) {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === 401) {
       throw new Error(`Error! Unauthorized(401)`);
     }
-    return err.response.data.success;
+    return err.response ? err.response.data.success : null;
   }
 };

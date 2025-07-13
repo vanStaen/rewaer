@@ -1,11 +1,9 @@
-import axios from "axios";
-import { uploadFileToS3 } from "../../lib/S3/uploadFileToS3.js";
 import {
   resizeImageFromBuffer,
   rotateImage,
   flipImage,
   mirrorImage,
-  tintImage
+  tintImage,
 } from "../../lib/processImageSharp.js";
 
 // TODO
@@ -21,12 +19,8 @@ export const pictureService = {
     const nameImageThumb = "t_" + key;
     const nameImageMedium = "m_" + key;
     // download picture
-    const originalImageBuffer = (
-      await axios({
-        url: url,
-        responseType: 'arraybuffer'
-      })
-    ).data
+    const response = await fetch(url);
+    const originalImageBuffer = Buffer.from(await response.arrayBuffer());
     // rotate picture
     const rotationInDegrees = numberOfQuarterTurnToTheRight * 90;
     const rotatedImageBuffer = await rotateImage(originalImageBuffer, rotationInDegrees)
@@ -73,12 +67,8 @@ export const pictureService = {
     const nameImageThumb = "t_" + key;
     const nameImageMedium = "m_" + key;
     // download picture
-    const originalImageBuffer = (
-      await axios({
-        url: url,
-        responseType: 'arraybuffer'
-      })
-    ).data
+    const response = await fetch(url);
+    const originalImageBuffer = Buffer.from(await response.arrayBuffer());
     let rotatedImageBuffer;
     if (isMirror) {
       // flip picture

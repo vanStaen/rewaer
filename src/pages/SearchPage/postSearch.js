@@ -1,18 +1,17 @@
-import axios from "axios";
-
 export const postSearch = async (searchText) => {
-
     const requestBody = {
         "searchText": searchText,
     };
 
-    const response = await axios({
-        url: process.env.API_URL + `/search/`,
+    const response = await fetch(process.env.API_URL + `/search/`, {
         method: "POST",
-        data: requestBody,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
     });
 
-    if ((response.status !== 200) & (response.status !== 201)) {
+    if (response.status !== 200 && response.status !== 201) {
         if (response.status === 401) {
             throw new Error(`Error! Unauthorized(401)`);
         } else {
@@ -20,5 +19,6 @@ export const postSearch = async (searchText) => {
         }
     }
 
-    return response.data;
+    const data = await response.json();
+    return data;
 };

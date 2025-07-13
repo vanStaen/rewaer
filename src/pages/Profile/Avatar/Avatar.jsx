@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { notification, Spin, Tooltip } from "antd";
+import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
-import { Tooltip, notification, Spin } from "antd";
-import { UserOutlined, EditOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateAvatar } from "./updateAvatar";
+import { profileStore } from "../../../stores/profileStore/profileStore";
 
 import "./Avatar.css";
-import { profileStore } from "../../../stores/profileStore/profileStore";
 
 export const Avatar = observer(() => {
   const { t } = useTranslation();
@@ -24,9 +23,13 @@ export const Avatar = observer(() => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await axios.post(process.env.API_URL + `/upload`, formData);
+      const res = await fetch(process.env.API_URL + `/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
       // Create Look entry
-      const mediaId = res.data.imageUrl;
+      const mediaId = data.imageUrl;
       // post new Look
       updateAvatar(mediaId)
         .then(() => {

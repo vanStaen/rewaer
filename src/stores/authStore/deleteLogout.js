@@ -1,8 +1,5 @@
-import axios from "axios";
-
 export const deleteLogout = async () => {
-  const response = await axios({
-    url: process.env.API_URL + `/auth/logout/`,
+  const response = await fetch(process.env.API_URL + `/auth/logout/`, {
     method: "DELETE",
   });
 
@@ -10,6 +7,6 @@ export const deleteLogout = async () => {
     throw new Error(`Error on Logout! Status ${response.status}`);
   }
 
-  return response.data.success;
-
+  const data = await response.json();
+  return data.success;
 };

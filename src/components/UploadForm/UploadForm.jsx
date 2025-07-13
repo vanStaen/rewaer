@@ -7,7 +7,6 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
-import axios from "axios";
 import moment from "moment";
 
 import { looksStore } from "../../pages/Looks/looksStore";
@@ -54,10 +53,14 @@ export const UploadForm = observer((props) => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await axios.post(process.env.API_URL + `/upload`, formData);
-      if (res.data) {
+      const res = await fetch(process.env.API_URL + `/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data) {
         // Create Item/Look entry
-        const mediaId = res.data.imageUrl;
+        const mediaId = data.imageUrl;
         const title = moment().format("DD.MM.YYYY");
         // post new Item/Look
         if (page === "looks") {

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export async function fetchLooks() {
   const requestBody = {
     query: `
@@ -25,14 +23,17 @@ export async function fetchLooks() {
       `,
   };
 
-  const response = await axios({
-    url: process.env.API_URL + `/graphql/`,
+  const response = await fetch(process.env.API_URL + `/graphql/`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     throw new Error("Unauthenticated!");
   }
-  const looks = await response.data.data.getLooks;
+  const data = await response.json();
+  const looks = data.data.getLooks;
   return looks;
 }

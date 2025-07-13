@@ -1,4 +1,3 @@
-import axios from "axios";
 import { notification } from "antd";
 
 export async function patchTitle(title, id, type) {
@@ -42,13 +41,15 @@ export async function patchTitle(title, id, type) {
     throw new Error("Type missing!");
   }
 
-  const response = await axios({
-    url: process.env.API_URL + `/graphql/`,
+  const response = await fetch(process.env.API_URL + `/graphql/`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
 
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     notification.error({
       message: `Unauthenticated!`,
       placement: "bottomRight",
@@ -56,6 +57,6 @@ export async function patchTitle(title, id, type) {
     throw new Error("Unauthenticated!");
   }
 
-  //console.log(response);
-  return response;
+  const data = await response.json();
+  return data;
 }

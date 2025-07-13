@@ -5,4 +5,4 @@ export const loadImage = (url) => {
     loadImg.onload = () => resolve(url);
     loadImg.onerror = (err) => reject(err);
   });
-}; 
+};

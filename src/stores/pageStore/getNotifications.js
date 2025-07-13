@@ -1,20 +1,14 @@
-import axios from "axios";
-
 export const getNotifications = async () => {
-
   try {
-    const response = await axios({
-      url: process.env.API_URL + `/notification/`,
+    const response = await fetch(process.env.API_URL + `/notification/`, {
       method: "GET",
     });
-
-    return response.data.notifications;
-
+    const data = await response.json();
+    return data.notifications;
   } catch (err) {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === 401) {
       throw new Error(`Error! Unauthorized(401)`);
     }
-    return err.response.data;
+    return err.response ? err.response.data : null;
   }
-  
 };
