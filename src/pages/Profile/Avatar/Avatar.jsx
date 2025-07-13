@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { notification, Spin, Tooltip } from "antd";
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
@@ -7,13 +7,44 @@ import { useTranslation } from "react-i18next";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateAvatar } from "./updateAvatar";
 import { profileStore } from "../../../stores/profileStore/profileStore";
+import { postPicture } from "../../../helpers/picture/postPicture";
+import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
 
 import "./Avatar.css";
 
 export const Avatar = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isStranger = userStore.userName !== profileStore.userName;
+  const avatar = isStranger ? profileStore.avatar : userStore.avatar;
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const bucket = "users";
+
+   const getAvatarUrl = async (path) => {
+    try {
+      setAvatarUrl(null);
+      if (path) {
+        const url = await getPictureUrl(path, bucket);
+        const isloaded = new Promise((resolve, reject) => {
+          const loadImg = new Image();
+          loadImg.src = url;
+          loadImg.onload = () => resolve(url);
+          loadImg.onerror = (err) => reject(err);
+        });
+        await isloaded;
+        setAvatarUrl(url);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getAvatarUrl(avatar);
+  }, []);
+
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
     changeAvatarSubmitHandler(event.target.files[0]);
@@ -23,14 +54,8 @@ export const Avatar = observer(() => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const res = await fetch(process.env.API_URL + `/upload`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      // Create Look entry
-      const mediaId = data.imageUrl;
-      // post new Look
+      const res = await postPicture(file, bucket);
+      const mediaId = res.path;
       updateAvatar(mediaId)
         .then(() => {
           notification.success({
@@ -49,6 +74,7 @@ export const Avatar = observer(() => {
         });
       setIsUploading(false);
     } catch (err) {
+      console.error(err);
       notification.error({
         message: t("profile.avatarUpdateFail"),
         placement: "bottomRight",
@@ -72,10 +98,10 @@ export const Avatar = observer(() => {
           style={
             isStranger
               ? profileStore.avatar && {
-                backgroundImage: "url(" + profileStore.avatar + ")",
+                backgroundImage: "url(" + avatarUrl + ")",
               }
               : userStore.avatar && {
-                backgroundImage: "url(" + userStore.avatar + ")",
+                backgroundImage: "url(" + avatarUrl + ")",
               }
           }
         >

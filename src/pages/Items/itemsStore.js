@@ -84,8 +84,9 @@ export class ItemsStore {
   loadItems = async () => {
     try {
       const items = await fetchItems();
-      const archivedItems = items.filter((item) => item.active === false);
-      const privateItems = items.filter((item) => item.private);
+      const archivedItems = items.filter((item) => item?.active === false);
+      const privateItems = items.filter((item) => item?.private);
+      console.log(items, archivedItems, privateItems)
       this.setItems(items);
       this.setNumberOfArchivedItem(archivedItems.length);
       this.setNumberOfPrivateItem(privateItems.length);

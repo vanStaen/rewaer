@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
@@ -20,11 +20,39 @@ import { userStore } from "../../stores/userStore/userStore.js";
 import { pageStore } from "../../stores/pageStore/pageStore";
 import { profileStore } from "../../stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
+import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
 
 import "./MenuBar.css";
 
 export const MenuBar = observer((props) => {
   const { t } = useTranslation();
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [avatarLoading, setAvatarLoading] = useState(true);
+  const bucket = "users";
+
+  const getAvatarUrl = async (path) => {
+      try {
+        setAvatarUrl(null);
+        if (path) {
+          const url = await getPictureUrl(path, bucket);
+          const isloaded = new Promise((resolve, reject) => {
+            const loadImg = new Image();
+            loadImg.src = url;
+            loadImg.onload = () => resolve(url);
+            loadImg.onerror = (err) => reject(err);
+          });
+          await isloaded;
+          setAvatarUrl(url);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      setAvatarLoading(false);
+    };
+  
+    useEffect(() => {
+      getAvatarUrl(userStore.avatar);
+    }, [userStore.avatar]);
 
   const handlerShowSubMenu = () => {
     document.getElementById("subMenu").style.display = "block";
@@ -151,9 +179,9 @@ export const MenuBar = observer((props) => {
           onMouseLeave={handlerHideSubMenu}
         >
           <Avatar
-            src={userStore.avatar && userStore.avatar}
+            src={userStore.avatar && avatarUrl}
             icon={
-              userStore.isLoading ? (
+              userStore.isLoading || avatarLoading ? (
                 <Spin size="small" />
               ) : (
                 !userStore.avatar && (

@@ -1,17 +1,15 @@
 export const getBucketId = (bucket) => {
   if (bucket === "test") {
     return process.env.S3_BUCKET_TEST;
-  } else if (bucket === "events") {
-    return process.env.S3_BUCKET_EVENTS;
+  } else if (bucket === "items") {
+    return process.env.S3_BUCKET_ITEMS;
+  } else if (bucket === "looks") {
+    return process.env.S3_BUCKET_LOOKS;
   } else if (bucket === "users") {
     return process.env.S3_BUCKET_USERS;
-  } else if (bucket === "partners") {
-    return process.env.S3_BUCKET_PARTNERS;
-  } else if (bucket === "bugs") {
-    return process.env.S3_BUCKET_BUGS;
-  } else if (bucket === "temp") {
-    return process.env.S3_BUCKET_TEMP;
   } else {
-    throw new Error("Bucket is missing/incorrect");
+    throw new Error(`Bucket id ${bucket} does not exist`);
   }
 };
+
+// TODO create test bucket

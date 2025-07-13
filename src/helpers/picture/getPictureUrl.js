@@ -4,7 +4,7 @@ export const getPictureUrl = async (path, bucket) => {
       path,
       bucket,
     };
-    const endpoint = process.env.API_URL + "/pictures/url";
+    const endpoint = process.env.API_URL + "/upload/url";
     const options = {
       method: "POST",
       headers: {
