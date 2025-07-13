@@ -29,6 +29,7 @@ export const ItemDetailFormStringElement = observer((props) => {
   }, [props.value]);
 
   const changeHandler = async (newValue) => {
+    console.log("changeHandler", newValue, originalValue.current);
     if (newValue !== originalValue.current) {
       try {
         await updateGenericStringItem(
@@ -68,7 +69,7 @@ export const ItemDetailFormStringElement = observer((props) => {
   };
 
   const handleEditConfirm = () => {
-    if (editInputValue.value) {
+    if (editInputValue) {
       changeHandler(editInputValue.replace("/", "-"));
       setValue(editInputValue.replace("-", "/"));
     }

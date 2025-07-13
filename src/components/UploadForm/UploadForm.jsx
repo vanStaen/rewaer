@@ -16,6 +16,7 @@ import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
 import { isElementVisible } from "../../helpers/isElementVisible";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
+import { postPicture } from "../../helpers/picture/postPicture"
 
 import "./UploadForm.css";
 
@@ -25,6 +26,7 @@ export const UploadForm = observer((props) => {
   const [isUploading, setIsUploading] = useState(false);
   const [isDragDroping, setIsDragDroping] = useState(false);
   const [uploadProgress, setUploadProgress] = useState([0, 1]);
+  const bucket = page;
 
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -50,17 +52,11 @@ export const UploadForm = observer((props) => {
   }, [scrollhandler]);
 
   const submitHandler = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
     try {
-      const res = await fetch(process.env.API_URL + `/upload`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (data) {
+      const res = await postPicture(file, bucket);
+      const mediaId = res.path;
+      if (mediaId) {
         // Create Item/Look entry
-        const mediaId = data.imageUrl;
         const title = moment().format("DD.MM.YYYY");
         // post new Item/Look
         if (page === "looks") {

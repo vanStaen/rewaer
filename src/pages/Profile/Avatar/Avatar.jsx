@@ -51,8 +51,6 @@ export const Avatar = observer(() => {
   };
 
   const changeAvatarSubmitHandler = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
     try {
       const res = await postPicture(file, bucket);
       const mediaId = res.path;

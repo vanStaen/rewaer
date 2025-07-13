@@ -26,7 +26,7 @@ import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
 import { updatePrivateItem } from "../actions/updatePrivateItem";
-import { loadImage } from "../../../helpers/picture/loadImage";
+import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
 
 import "./ItemCard.css";
 
@@ -36,6 +36,7 @@ export const ItemCard = (props) => {
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
+  const [mediaUrl, setMediaUrl] = useState(false);
 
   const isSharedItem = parseInt(props.item.user.id) !== userStore.id;
   const hasMissingBrand = props.item.brand === null;
@@ -78,7 +79,15 @@ export const ItemCard = (props) => {
 
   const imageLoadingHander = async () => {
     try {
-      await loadImage(props.item.mediaIdMedium);
+        const url = await getPictureUrl(props.item.mediaId, 'items');
+        const isloaded = new Promise((resolve, reject) => {
+          const loadImg = new Image();
+          loadImg.src = url;
+          loadImg.onload = () => resolve(url);
+          loadImg.onerror = (err) => reject(err);
+        });
+        await isloaded;
+        setMediaUrl(url);
     } catch (e) {
       setLoadingError(true);
       console.log(e);
@@ -224,7 +233,7 @@ export const ItemCard = (props) => {
             className="itemcard__picture"
             id={`card_item_picture_${props.item.id}`}
             style={{
-              background: `url(${props.item.mediaIdMedium})`,
+              background: `url(${mediaUrl})`,
             }}
             onClick={() => {
               if (props.item.active) {
