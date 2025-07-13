@@ -1,4 +1,3 @@
-import axios from "axios";
 import { notification } from "antd";
 
 export async function updateAvatar(
@@ -21,12 +20,14 @@ export async function updateAvatar(
     },
   };
 
-  const response = await axios({
-    url: process.env.API_URL + `/graphql`,
+  const response = await fetch(process.env.API_URL + `/graphql`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     notification.error({
       message: `Unauthenticated!`,
       placement: "bottomRight",

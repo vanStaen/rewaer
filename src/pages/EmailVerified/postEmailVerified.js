@@ -1,18 +1,17 @@
-import axios from "axios";
-
 export const postEmailVerified = async (token) => {
-
     const requestBody = {
         "token": token,
     };
 
-    const response = await axios({
-        url: process.env.API_URL + `/user/emailverified`,
+    const response = await fetch(process.env.API_URL + `/user/emailverified`, {
         method: "POST",
-        data: requestBody,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
     });
 
-    if ((response.status !== 200) & (response.status !== 201)) {
+    if (response.status !== 200 && response.status !== 201) {
         if (response.status === 401) {
             throw new Error(`Error! Unauthorized(401)`);
         } else {
@@ -20,5 +19,6 @@ export const postEmailVerified = async (token) => {
         }
     }
 
-    return response.data.emailVerified;
+    const data = await response.json();
+    return data.emailVerified;
 };

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { notification } from "antd";
 
 export async function postNewLook(
@@ -21,18 +20,20 @@ export async function postNewLook(
       title: title,
     },
   };
-  const response = await axios({
-    url: process.env.API_URL + `/graphql`,
+  const response = await fetch(process.env.API_URL + `/graphql`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     notification.error({
       message: `Unauthenticated!`,
       placement: "bottomRight",
     });
     throw new Error("Unauthenticated!");
   }
-  const newLook = await response.data;
+  const newLook = await response.json();
   return newLook;
 }

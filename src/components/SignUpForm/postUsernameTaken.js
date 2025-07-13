@@ -1,18 +1,17 @@
-import axios from "axios";
-
 export const postUsernameTaken = async (username) => {
-
     const requestBody = {
         "username": username
     };
 
-    const response = await axios({
-        url: process.env.API_URL + `/user/taken/`,
+    const response = await fetch(process.env.API_URL + `/user/taken/`, {
         method: "POST",
-        data: requestBody,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
     });
 
-    if ((response.status !== 200) & (response.status !== 201)) {
+    if (response.status !== 200 && response.status !== 201) {
         if (response.status === 401) {
             throw new Error(`Error! Unauthorized(401)`);
         } else {
@@ -20,7 +19,7 @@ export const postUsernameTaken = async (username) => {
         }
     }
 
-    const taken = response.data.taken;
-    return taken
-
+    const data = await response.json();
+    const taken = data.taken;
+    return taken;
 };

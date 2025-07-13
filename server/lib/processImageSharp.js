@@ -1,13 +1,8 @@
 import sharp from "sharp";
-import axios from "axios";
 
 export const resizeImageFromUrl = async (originalImageUrl, size) => {
-  const inputImageBuffer = (
-    await axios({
-      url: originalImageUrl,
-      responseType: "arraybuffer",
-    })
-  ).data;
+  const response = await fetch(originalImageUrl);
+  const inputImageBuffer = Buffer.from(await response.arrayBuffer());
   return await sharp(inputImageBuffer)
     .resize(size, null, {
       kernel: sharp.kernel.nearest,

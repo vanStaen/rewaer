@@ -229,3 +229,4 @@
 - [x] Get only friends in getUser which are not pending
   - [x] Create extra Endpoint for friends
   - [x] Stop fetching those in the GraphQL
+- [x] Get rid of Axios in favor of the fetch() API

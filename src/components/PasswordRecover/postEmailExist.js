@@ -1,18 +1,17 @@
-import axios from "axios";
-
 export const postEmailExist = async (email) => {
-
     const requestBody = {
         "email": email
     };
 
-    const response = await axios({
-        url: process.env.API_URL + `/user/email/`,
+    const response = await fetch(process.env.API_URL + `/user/email/`, {
         method: "POST",
-        data: requestBody,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
     });
 
-    if ((response.status !== 200) & (response.status !== 201)) {
+    if (response.status !== 200 && response.status !== 201) {
         if (response.status === 401) {
             throw new Error(`Error! Unauthorized(401)`);
         } else {
@@ -20,7 +19,7 @@ export const postEmailExist = async (email) => {
         }
     }
 
-    const exist = response.data.exist;
-    return exist
-
+    const data = await response.json();
+    const exist = data.exist;
+    return exist;
 };
