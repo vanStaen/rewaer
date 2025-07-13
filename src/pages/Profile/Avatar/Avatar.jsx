@@ -43,7 +43,7 @@ export const Avatar = observer(() => {
 
   useEffect(() => {
     getAvatarUrl(avatar);
-  }, []);
+  }, [avatar]);
 
   const fileSelectHandler = async (event) => {
     setIsUploading(true);

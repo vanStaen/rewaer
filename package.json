@@ -23,7 +23,7 @@
     "build": "webpack --config webpack.config.prod.cjs --mode production",
     "deploy": "npm i; heroku git:remote -a rewaer; git push heroku master; npm run backup;",
     "log": "heroku logs --tail",
-    "backup": "cd server/lib/; node createDatabaseBackUpFile.js; npm run pushbackup; cd ../../",
+    "backup": "cd server/lib/; node createDatabaseBackUpFile.js; cd ../../",
     "lint": "eslint -c ./.eslintrc.json '**/*.js' '**/*.jsx' --fix",
     "pushbackup": "cd ../database-backups; git pull; git add -A; git commit -m 'Rewaer - database backup files'; git push; cd ../rewaer"
   },
