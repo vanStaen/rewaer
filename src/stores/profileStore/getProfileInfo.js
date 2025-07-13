@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export const getProfileInfo = async (username) => {
   const requestBody = {
     query: `
@@ -46,15 +44,18 @@ export const getProfileInfo = async (username) => {
           `,
   };
 
-  const response = await axios({
-    url: process.env.API_URL + `/graphql`,
+  const response = await fetch(process.env.API_URL + `/graphql`, {
     method: "POST",
-    data: requestBody,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
   });
 
-  if ((response.status !== 200) & (response.status !== 201)) {
+  if (response.status !== 200 && response.status !== 201) {
     throw new Error("Unauthenticated!");
   }
 
-  return response.data.data.getProfileByName;
+  const data = await response.json();
+  return data.data.getProfileByName;
 };
