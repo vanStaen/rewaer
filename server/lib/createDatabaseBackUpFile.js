@@ -43,22 +43,22 @@ const writeBackupFile = async () => {
         const month = today.getMonth() + 1; //Start from 0
         const day = today.getDate();
         const databaseContentItems = await fetchDatabaseContent("items");
-        filenameItems = `${day}-${month}-${year}_rewaer_items.json`;
+        const filenameItems = `${day}-${month}-${year}_rewaer_items.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameItems}`, JSON.stringify(databaseContentItems));
         const databaseContentLooks = await fetchDatabaseContent("looks");
-        filenameLooks = `${day}-${month}-${year}_rewaer_looks.json`;
+        const filenameLooks = `${day}-${month}-${year}_rewaer_looks.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameLooks}`, JSON.stringify(databaseContentLooks));
         const databaseContentUsers = await fetchDatabaseContent("users");
-        filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
+        const filenameUsers = `${day}-${month}-${year}_rewaer_users.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsers}`, JSON.stringify(databaseContentUsers));
         const databaseContentNotifications = await fetchDatabaseContent("notifications");
-        filenameNotifications = `${day}-${month}-${year}_rewaer_notifications.json`;
+        const filenameNotifications = `${day}-${month}-${year}_rewaer_notifications.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameNotifications}`, JSON.stringify(databaseContentNotifications));
         const databaseContentUsersfollower = await fetchDatabaseContent("usersfollowers");
-        filenameUsersfollower = `${day}-${month}-${year}_rewaer_Usersfollower.json`;
+        const filenameUsersfollower = `${day}-${month}-${year}_rewaer_Usersfollower.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfollower}`, JSON.stringify(databaseContentUsersfollower));
         const databaseContentUsersfriend = await fetchDatabaseContent("usersfriends");
-        filenameUsersfriend = `${day}-${month}-${year}_rewaer_Usersfriend.json`;
+        const filenameUsersfriend = `${day}-${month}-${year}_rewaer_Usersfriend.json`;
         fs.writeFileSync(`../../../database-backups/rewaer/${filenameUsersfriend}`, JSON.stringify(databaseContentUsersfriend));
 
         console.log("Backup Success!")

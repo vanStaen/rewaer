@@ -5,6 +5,8 @@
 Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
 Run `npm install`tp fetch and install all dependencies listed in the `package.json` file. With `npm run dev` you can start the server on your machine, and with `npm run devfr` you can start the frontend. Both are custom script command managed in the package file.
 
+Running with node 18: `nvm use 18`.
+
 ## ACCESS/DEPLOY
 
 The server can be access (after being started) on http://localhost:5001/ locally, or http://127.0.0.1:5001 on the local netwok.

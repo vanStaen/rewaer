@@ -23,7 +23,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env.API_URL": JSON.stringify("http://localhost:5001"),
-      "process.env.HOST_URL": JSON.stringify("http://localhost:3001"),
       "process.env.HOST_URL": JSON.stringify("http://localhost:3003"),
       "process.env.PROD": false,
     }),

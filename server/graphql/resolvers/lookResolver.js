@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-// TODO: const AWS = require("aws-sdk");
 import { User } from "../../models/User.js";
 import { Look } from "../../models/Look.js";
 import { notificationService } from "../../api/service/notificationService.js";
