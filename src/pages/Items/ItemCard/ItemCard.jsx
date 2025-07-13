@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { notification, Spin, Popconfirm, Tooltip, Avatar } from "antd";
 import {
   DeleteOutlined,
-  ExclamationCircleOutlined,
   ExclamationOutlined,
   UndoOutlined,
   StopOutlined,
@@ -36,7 +35,7 @@ export const ItemCard = (props) => {
   const [isPrivate, setIsPrivate] = useState(props.item.private);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
-  const [mediaUrl, setMediaUrl] = useState(false);
+  const [mediaUrl, setMediaUrl] = useState(null);
 
   const isSharedItem = parseInt(props.item.user.id) !== userStore.id;
   const hasMissingBrand = props.item.brand === null;
@@ -79,6 +78,7 @@ export const ItemCard = (props) => {
 
   const imageLoadingHander = async () => {
     try {
+      // TODO  fetch small image
         const url = await getPictureUrl(props.item.mediaId, 'items');
         const isloaded = new Promise((resolve, reject) => {
           const loadImg = new Image();
@@ -97,7 +97,7 @@ export const ItemCard = (props) => {
 
   useEffect(() => {
     imageLoadingHander();
-  }, []);
+  }, [props.item.mediaId]);
 
   const handleArchive = (value) => {
     archiveItem(props.item.id, value)

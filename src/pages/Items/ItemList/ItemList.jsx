@@ -34,6 +34,8 @@ export const ItemList = observer(() => {
     userStore.profilSettings,
   ]);
 
+  // TODO: implement lazy loading for items
+
   const scrollEventHandler = () => {
     itemsStore.setLastKnownScrollPosition(window.scrollY);
   };

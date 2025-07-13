@@ -12,6 +12,7 @@ import { ItemSharedWithFriends } from "./ItemSharedWithFriends/ItemSharedWithFri
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
+import {getPictureUrl} from "../../../helpers/picture/getPictureUrl";
 
 import {
   itemCategoryMen,
@@ -32,8 +33,10 @@ export const ItemDetail = observer(() => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
-  const isSharedItem =
-    parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
+  const [mediaUrl, setMediaUrl] = useState(null);
+  const [loadingMediaError, setLoadingMediaError] = useState(false);
+  const [isLoadingMedia, setIsLoadingMedia] = useState(true);
+  const isSharedItem = parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -45,6 +48,31 @@ export const ItemDetail = observer(() => {
       window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
+
+
+  const imageLoadingHander = async () => {
+      setIsLoadingMedia(true);
+      try {
+          const url = await getPictureUrl(itemsStore.selectedItem.mediaId, 'items');
+          const isloaded = new Promise((resolve, reject) => {
+            const loadImg = new Image();
+            loadImg.src = url;
+            loadImg.onload = () => resolve(url);
+            loadImg.onerror = (err) => reject(err);
+          });
+          await isloaded;
+          console.log('url', url)
+          setMediaUrl(url);
+      } catch (e) {
+        setLoadingMediaError(true);
+        console.log(e);
+      }
+      setIsLoadingMedia(false);
+    };
+
+  useEffect(() => {
+    imageLoadingHander();
+  }, [itemsStore.selectedItem.mediaId]);
 
   const browserBackHandler = (e) => {
     e.preventDefault();
@@ -91,6 +119,8 @@ export const ItemDetail = observer(() => {
     }
   };
 
+  // TODO: improve spinner/loader
+
   return (
     <div
       className="itemdetail__container"
@@ -102,13 +132,30 @@ export const ItemDetail = observer(() => {
 
       <div className="itemdetail__imageWrap">
         <ImageEditBar page="item" />
+        { isLoadingMedia ? 
+        <div
+          className="itemdetail__picture"
+          id={`selected_item_picture_${itemsStore.selectedItem.id}`}
+        > <div
+              className="item__spinner"
+              onClick={() => {
+                if (props.item.active) {
+                  props.showDetailView(props.item);
+                }
+              }}
+            >
+              <Spin size="middle" />
+            </div> 
+          </div>
+         :
         <div
           className="itemdetail__picture"
           id={`selected_item_picture_${itemsStore.selectedItem.id}`}
           style={{
-            background: `url(${itemsStore.selectedItem.mediaIdMedium})`,
+            background: `url(${mediaUrl})`,
           }}
-        ></div>
+        ></div> 
+      }
       </div>
 
       {itemsStore.isLoading ? (
