@@ -40,6 +40,10 @@ export const Item = sequelize.sequelize.define("item", {
     type: DataTypes.STRING,
     required: false,
   },
+  size: {
+    type: DataTypes.STRING,
+    required: false,
+  },
   active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,

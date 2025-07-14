@@ -10,6 +10,7 @@ export async function fetchItems() {
           category,
           colors,
           pattern,
+          size,
           brand,
           active,
           favorite,

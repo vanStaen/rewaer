@@ -7,6 +7,7 @@ type Item {
     category: String
     notes: String
     location: String
+    size: String
     colors: [String]
     pattern: String
     brand: String
@@ -29,6 +30,7 @@ input ItemInputData {
     category: String
     notes: String
     location: String
+    size: String
     colors: [String]
     pattern: String
     brand: String

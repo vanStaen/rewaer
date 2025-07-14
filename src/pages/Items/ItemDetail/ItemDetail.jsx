@@ -218,6 +218,13 @@ export const ItemDetail = observer(() => {
             multiSelect={false}
             disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
+          <ItemDetailFormStringElement
+            element="size"
+            title="size"
+            value={itemsStore.selectedItem.size}
+            selectedItem={itemsStore.selectedItem}
+            disabled={!itemsStore.selectedItem.active || isSharedItem}
+          />
           <br />
           <div className="itemDetail__itemContainerDivisor">
             The status of this item
