@@ -13,28 +13,25 @@ export const EditableTitle = (props) => {
   const [originalTitle, setOriginalTitle] = useState(props.title);
   const [title, setTitle] = useState(
     props.title
-      ? props.title.replace(/ /g, "_").length > 20
-        ? `${props.title.replace("-", "/").replace(/ /g, "_").slice(0, 20)}...`
-        : props.title.replace("-", "/").replace(/ /g, "_")
+      ? props.title.length > 20
+        ? `${props.title.slice(0, 20)}...`
+        : props.title
       : null,
   );
   const [isEditMode, setIsEditmode] = useState(false);
   const [editInputValue, setEditInputValue] = useState(
-    props.title ? props.title.replace("-", "/") : null,
+    props.title ? props.title : null,
   );
 
   useEffect(() => {
     setTitle(
       props.title
-        ? props.title.replace(/ /g, "_").length > 20
-          ? `${props.title
-              .replace("-", "/")
-              .replace(/ /g, "_")
-              .slice(0, 20)}...`
-          : props.title.replace("-", "/").replace(/ /g, "_")
+        ? props.title.length > 20
+          ? `${props.title.slice(0, 20)}...`
+          : props.title
         : null,
     );
-    setEditInputValue(props.title ? props.title.replace("-", "/") : null);
+    setEditInputValue(props.title ? props.title : null);
     setOriginalTitle(props.value);
   }, [props.title]);
 
@@ -77,7 +74,7 @@ export const EditableTitle = (props) => {
             .replace("-", "/")
             .replace(/ /g, "_")
             .slice(0, 23)}...`
-        : editInputValue.replace("-", "/").replace(/ /g, "_"),
+        : editInputValue.replace("-", "/"),
     );
     setIsEditmode(false);
   };
