@@ -53,23 +53,21 @@ const emailDisclaimer = `
   </span>
   `;
 
-
 export const mailService = {
-
   async mail(sendto, subject, body) {
     const email = {
-      "from": `Rewaer <info@${mainDomain}>`,
-      "to": sendto,
-      "subject": subject,
-      "html": `${body}<br/> ${emailDisclaimer}`,
+      from: `Rewaer <info@${mainDomain}>`,
+      to: sendto,
+      subject,
+      html: `${body}<br/> ${emailDisclaimer}`,
     };
     try {
       await sgMail.send(email);
-      //Return true on success
-      return true
+      // Return true on success
+      return true;
     } catch (err) {
       console.log(err);
-      return false
+      return false;
     }
   },
 
@@ -77,7 +75,7 @@ export const mailService = {
     const recoveryToken = await jsonwebtoken.sign(
       { email: sendto },
       process.env.AUTH_SECRET_KEY_RECOVERY,
-      { expiresIn: "10m" }
+      { expiresIn: "10m" },
     );
     const body = `Hello beautiful,<br/>
                   <br/>A recover-link has been requested for this email address.
@@ -93,18 +91,18 @@ export const mailService = {
                   ${emailDisclaimer}`;
 
     const email = {
-      "from": `Rewaer <info@${mainDomain}>`,
-      "to": sendto,
-      "subject": "Rewaer.app | Reset your password with this link",
-      "html": body,
+      from: `Rewaer <info@${mainDomain}>`,
+      to: sendto,
+      subject: "Rewaer.app | Reset your password with this link",
+      html: body,
     };
     try {
       await sgMail.send(email);
-      //Return true on success
-      return true
+      // Return true on success
+      return true;
     } catch (err) {
       console.log(err);
-      return false
+      return false;
     }
   },
 
@@ -119,7 +117,7 @@ export const mailService = {
     const emailVerifyToken = await jsonwebtoken.sign(
       { email: sendto },
       process.env.AUTH_SECRET_KEY_EMAILVERIFY,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
     const body = `Hello georgeous,<br/><br/>
                   Thank you for joining us, and welcome to your next aventure.
@@ -139,20 +137,19 @@ export const mailService = {
                   ${emailDisclaimer}`;
 
     const email = {
-      "from": `Rewaer <info@${mainDomain}>`,
-      "to": sendto,
-      "subject": "Rewaer.app | Confirm your email address with this link",
-      "html": body,
+      from: `Rewaer <info@${mainDomain}>`,
+      to: sendto,
+      subject: "Rewaer.app | Confirm your email address with this link",
+      html: body,
     };
 
     try {
       await sgMail.send(email);
-      //Return true on success
-      return true
+      // Return true on success
+      return true;
     } catch (err) {
       console.log(err);
-      return false
+      return false;
     }
   },
-
 };

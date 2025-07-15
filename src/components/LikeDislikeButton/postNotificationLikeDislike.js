@@ -1,20 +1,26 @@
-export async function postNotificationLikeDislike(type, isLike, mediaId, userNotifiedId, actionData) {
+export async function postNotificationLikeDislike(
+  type,
+  isLike,
+  mediaId,
+  userNotifiedId,
+  actionData,
+) {
   let notificationType;
   if (type === "item" && isLike) {
-    notificationType = 12
+    notificationType = 12;
   } else if (type === "look" && isLike) {
-    notificationType = 13
+    notificationType = 13;
   } else if (type === "item" && !isLike) {
-    notificationType = 15
+    notificationType = 15;
   } else if (type === "look" && !isLike) {
-    notificationType = 16
+    notificationType = 16;
   }
 
   const requestBody = {
-    mediaId: mediaId,
-    notificationType: notificationType,
-    userNotifiedId: userNotifiedId,
-    actionData: actionData,
+    mediaId,
+    notificationType,
+    userNotifiedId,
+    actionData,
   };
 
   try {
@@ -29,8 +35,7 @@ export async function postNotificationLikeDislike(type, isLike, mediaId, userNot
       throw new Error("Unauthenticated!");
     }
     return true;
-  }
-  catch (e) {
+  } catch (e) {
     console.log("error", e);
     return false;
   }

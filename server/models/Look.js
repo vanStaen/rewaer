@@ -42,12 +42,12 @@ export const Look = sequelize.sequelize.define("look", {
     defaultValue: false,
   },
   likes: {
-    //array of user id
+    // array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
   },
   dislikes: {
-    //array of user id
+    // array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
   },

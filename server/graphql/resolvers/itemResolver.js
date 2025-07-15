@@ -9,19 +9,19 @@ export const itemResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    //: where userId or sharedWith contain req.userId
+    // : where userId or sharedWith contain req.userId
     return await Item.findAll({
       where: {
         [Op.or]: [
           { userId: req.userId },
-          { sharedWith: { [Op.contains]: [req.userId] } }
-        ]
+          { sharedWith: { [Op.contains]: [req.userId] } },
+        ],
       },
       include: User,
       order: [
-        ['active', 'DESC'],
-        ['favorite', 'DESC'],
-        ['id', 'DESC'],
+        ["active", "DESC"],
+        ["favorite", "DESC"],
+        ["id", "DESC"],
       ],
     });
   },
@@ -46,7 +46,8 @@ export const itemResolver = {
         req.userId,
         args.itemInput.mediaId,
         4,
-        newItem.id)
+        newItem.id,
+      );
       return newItem;
     } catch (err) {
       console.log(err);
@@ -94,10 +95,10 @@ export const itemResolver = {
         returning: true,
         plain: true,
       });
-      //if item set to private, delete all notification about it
+      // if item set to private, delete all notification about it
       if (args.itemInput.private) {
-        await notificationService.deleteNotificationItem(args.itemId)
-      };
+        await notificationService.deleteNotificationItem(args.itemId);
+      }
       // updatedItem[0]: number or row udpated
       // updatedItem[1]: rows updated
       return updatedItem[1];
@@ -112,7 +113,8 @@ export const itemResolver = {
       throw new Error("Unauthorized!");
     }
     const itemToDelete = await Item.findOne({ where: { id: args.itemId } });
-    const itemId = itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
+    const itemId =
+      itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,
@@ -127,16 +129,16 @@ export const itemResolver = {
         Key: "m_" + itemId,
       };
       await Promise.all([
-        s3.deleteObject(params, function (err, data) { }),
-        s3.deleteObject(paramsThumb, function (err, data) { }),
-        s3.deleteObject(paramsMedium, function (err, data) { }),
+        s3.deleteObject(params, function (err, data) {}),
+        s3.deleteObject(paramsThumb, function (err, data) {}),
+        s3.deleteObject(paramsMedium, function (err, data) {}),
       ]);
       await Item.destroy({
         where: {
           id: args.itemId,
         },
       });
-      await notificationService.deleteNotificationItem(args.itemId)
+      await notificationService.deleteNotificationItem(args.itemId);
       return true;
     } catch (err) {
       return err;

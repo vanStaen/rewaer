@@ -17,7 +17,7 @@ export const userService = {
 
   async email(email) {
     foundUser = await User.findOne({
-      where: { email: email },
+      where: { email },
     });
     if (!foundUser) {
       return false;
@@ -30,7 +30,7 @@ export const userService = {
     try {
       decodedToken = jsonwebtoken.verify(
         token,
-        process.env.AUTH_SECRET_KEY_RECOVERY
+        process.env.AUTH_SECRET_KEY_RECOVERY,
       );
     } catch (err) {
       return false;
@@ -42,7 +42,7 @@ export const userService = {
     try {
       decodedToken = jsonwebtoken.verify(
         token,
-        process.env.AUTH_SECRET_KEY_RECOVERY
+        process.env.AUTH_SECRET_KEY_RECOVERY,
       );
       const email = decodedToken.email;
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -50,11 +50,11 @@ export const userService = {
         { password: hashedPassword },
         {
           where: {
-            email: email,
+            email,
           },
           returning: true,
           plain: true,
-        }
+        },
       );
       return true;
     } catch (err) {
@@ -66,24 +66,24 @@ export const userService = {
     try {
       decodedToken = jsonwebtoken.verify(
         token,
-        process.env.AUTH_SECRET_KEY_EMAILVERIFY
+        process.env.AUTH_SECRET_KEY_EMAILVERIFY,
       );
       const email = decodedToken.email;
       await User.update(
         { verifiedEmail: true },
         {
           where: {
-            email: email,
+            email,
           },
           returning: true,
           plain: true,
-        }
+        },
       );
       // Send a mail to admin
       await mailService.mail(
         process.env.ADMIN_EMAIL,
         "Rewaer | New User's email validated!",
-        `The following email has just been validated: ${email}`
+        `The following email has just been validated: ${email}`,
       );
       return true;
     } catch (err) {

@@ -110,8 +110,7 @@ export const itemCategoryMen = [
     de: "Rest",
     fr: "Divers",
   },
-]
-
+];
 
 export const itemCategoryWomen = [
   {
@@ -170,9 +169,7 @@ export const itemCategoryWomen = [
   },
 ];
 
-
 export const itemCategoryNB = [
-
   {
     code: "I1",
     en: "Shoes",

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { userService } from "../service/userService.js";
 const router = Router();
 
-// Username Taken? 
+// Username Taken?
 router.post("/taken", async (req, res) => {
   try {
     if (!req.body.username) {
@@ -20,7 +20,7 @@ router.post("/taken", async (req, res) => {
   }
 });
 
-// Email exist? 
+// Email exist?
 router.post("/email", async (req, res) => {
   try {
     if (!req.body.email) {
@@ -38,7 +38,7 @@ router.post("/email", async (req, res) => {
   }
 });
 
-// token still valid exist? 
+// token still valid exist?
 router.post("/validtoken", async (req, res) => {
   try {
     if (!req.body.token) {
@@ -56,7 +56,7 @@ router.post("/validtoken", async (req, res) => {
   }
 });
 
-// Change password 
+// Change password
 router.post("/changepassword", async (req, res) => {
   try {
     if (!req.body.token) {
@@ -77,7 +77,6 @@ router.post("/changepassword", async (req, res) => {
     });
   }
 });
-
 
 // Email is verified?
 router.post("/emailverified", async (req, res) => {

@@ -16,7 +16,7 @@ import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
 import { isElementVisible } from "../../helpers/isElementVisible";
 import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
-import { postPicture } from "../../helpers/picture/postPicture"
+import { postPicture } from "../../helpers/picture/postPicture";
 
 import "./UploadForm.css";
 
@@ -159,44 +159,44 @@ export const UploadForm = observer((props) => {
     <>
       {(pageStore.showFloatingUploadForm ||
         pageStore.showOnlyFloatingUploadForm) && (
-          <div className="upload-floating-form" id="upload-floating-form">
-            <form onSubmit={submitHandler}>
-              <input
-                type="file"
-                className="inputfile"
-                name="inputfile"
-                id="file"
-                onChange={fileSelectHandler}
+        <div className="upload-floating-form" id="upload-floating-form">
+          <form onSubmit={submitHandler}>
+            <input
+              type="file"
+              className="inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+            <label
+              htmlFor="file"
+              onDrop={handleDrop}
+              onDragOver={(e) => handleDragOver(e)}
+              onDragEnter={(e) => handleDragEnter(e)}
+              onDragLeave={(e) => handleDragLeave(e)}
+              style={{ cursor: "pointer" }}
+            >
+              <Avatar
+                size={64}
+                icon={
+                  isUploading ? (
+                    <Spin size="large" />
+                  ) : page === "looks" ? (
+                    <CameraOutlined />
+                  ) : (
+                    <SkinOutlined />
+                  )
+                }
+                className={
+                  isUploading
+                    ? "uploadForm__avatarIsUploading"
+                    : "uploadForm__avatar"
+                }
               />
-              <label
-                htmlFor="file"
-                onDrop={handleDrop}
-                onDragOver={(e) => handleDragOver(e)}
-                onDragEnter={(e) => handleDragEnter(e)}
-                onDragLeave={(e) => handleDragLeave(e)}
-                style={{ cursor: "pointer" }}
-              >
-                <Avatar
-                  size={64}
-                  icon={
-                    isUploading ? (
-                      <Spin size="large" />
-                    ) : page === "looks" ? (
-                      <CameraOutlined />
-                    ) : (
-                      <SkinOutlined />
-                    )
-                  }
-                  className={
-                    isUploading
-                      ? "uploadForm__avatarIsUploading"
-                      : "uploadForm__avatar"
-                  }
-                />
-              </label>
-            </form>
-          </div>
-        )}
+            </label>
+          </form>
+        </div>
+      )}
       {!pageStore.showOnlyFloatingUploadForm && (
         <div>
           <form

@@ -1,8 +1,11 @@
 export const getPending = async () => {
   try {
-    const response = await fetch(process.env.API_URL + `/social/friendspending/`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      process.env.API_URL + `/social/friendspending/`,
+      {
+        method: "GET",
+      },
+    );
     const data = await response.json();
     return data.pending;
   } catch (err) {

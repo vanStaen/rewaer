@@ -5,9 +5,7 @@ import { postLogin } from "./postLogin.js";
 import { getHasAccess } from "./getHasAccess.js";
 import { userStore } from "../userStore/userStore.js";
 
-
 export class AuthStore {
-
   hasAccess = null;
 
   constructor() {
@@ -16,7 +14,7 @@ export class AuthStore {
       setHasAccess: action,
       login: action,
       logout: action,
-      checkAccess: action
+      checkAccess: action,
     });
   }
 
@@ -29,7 +27,7 @@ export class AuthStore {
     if (resultLogIn.success) {
       this.setHasAccess(true);
     } else {
-      return resultLogIn.error
+      return resultLogIn.error;
     }
   };
 
@@ -58,9 +56,9 @@ export class AuthStore {
 
   checkAccess = async () => {
     const hasAccess = await getHasAccess();
-    //console.log("Check if user has valid credentials.")
+    // console.log("Check if user has valid credentials.")
     this.setHasAccess(hasAccess);
-  }
+  };
 }
 
 export const authStore = new AuthStore();

@@ -1,16 +1,19 @@
 export const deleteFriendRequest = async (friendId) => {
   const requestBody = {
-    friendId: friendId,
+    friendId,
   };
 
   try {
-    const response = await fetch(process.env.API_URL + `/social/friendrequest/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      process.env.API_URL + `/social/friendrequest/`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
       },
-      body: JSON.stringify(requestBody),
-    });
+    );
     const data = await response.json();
     return data.success;
   } catch (err) {

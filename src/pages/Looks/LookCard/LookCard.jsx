@@ -61,7 +61,7 @@ export const LookCard = (props) => {
 
   const imageLoadingHander = async () => {
     try {
-      console.log('HERE', props.look.mediaIdMedium)
+      console.log("HERE", props.look.mediaIdMedium);
       await loadImage(props.look.mediaIdMedium);
     } catch (e) {
       setLoadingError(true);

@@ -1,6 +1,6 @@
 export const deleteFriend = async (friendId) => {
   const requestBody = {
-    friendId: friendId,
+    friendId,
   };
 
   try {

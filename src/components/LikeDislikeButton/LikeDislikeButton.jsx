@@ -103,19 +103,20 @@ export const LikeDislikeButton = (props) => {
         <Tooltip
           title={
             arrayLikes.current === null ||
-              arrayLikes.current.length === 0 ? null : (
+            arrayLikes.current.length === 0 ? null : (
               <TooltipLike userIds={arrayLikes.current} />
             )
           }
           placement="bottom"
         >
           <div
-            className={`like ${userHasLiked
-              ? "iconGreen"
-              : arrayLikes.current === null || arrayLikes.current.length === 0
-                ? "iconGreenHover lightGreyed"
-                : "iconGreenHover greyed"
-              } ${props.type === "item" && "itemSpacer"}`}
+            className={`like ${
+              userHasLiked
+                ? "iconGreen"
+                : arrayLikes.current === null || arrayLikes.current.length === 0
+                  ? "iconGreenHover lightGreyed"
+                  : "iconGreenHover greyed"
+            } ${props.type === "item" && "itemSpacer"}`}
             onClick={likeClickHandler}
           >
             <LikeOutlined />
@@ -127,20 +128,21 @@ export const LikeDislikeButton = (props) => {
         <Tooltip
           title={
             arrayDislikes.current === null ||
-              arrayDislikes.current.length === 0 ? null : (
+            arrayDislikes.current.length === 0 ? null : (
               <TooltipLike userIds={arrayDislikes.current} />
             )
           }
           placement="bottom"
         >
           <div
-            className={`like ${userHasDisliked
-              ? "iconRed"
-              : arrayDislikes.current === null ||
-                arrayDislikes.current.length === 0
-                ? "iconRedHover lightGreyed"
-                : "iconRedHover greyed"
-              }`}
+            className={`like ${
+              userHasDisliked
+                ? "iconRed"
+                : arrayDislikes.current === null ||
+                    arrayDislikes.current.length === 0
+                  ? "iconRedHover lightGreyed"
+                  : "iconRedHover greyed"
+            }`}
             onClick={dislikeClickHandler}
           >
             <DislikeOutlined />

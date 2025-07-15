@@ -1,7 +1,7 @@
 export async function pictureRotate(url, numberOfQuarterTurnToTheRight) {
   const requestBody = {
-    url: url,
-    numberOfQuarterTurnToTheRight: numberOfQuarterTurnToTheRight,
+    url,
+    numberOfQuarterTurnToTheRight,
   };
 
   const response = await fetch(process.env.API_URL + `/picture/rotate`, {

@@ -3,15 +3,15 @@ import { notificationService } from "./notificationService.js";
 
 export const followerService = {
   async getFollower(userId) {
-    return foundFollowers = await Usersfollower.findAll({
+    return (foundFollowers = await Usersfollower.findAll({
       where: { followedId: userId },
-    });
+    }));
   },
 
   async getFollowing(userId) {
-    return foundFollowing = await Usersfollower.findAll({
+    return (foundFollowing = await Usersfollower.findAll({
       where: { followerId: userId },
-    });
+    }));
   },
 
   async addFollow(follower, followed) {
@@ -21,7 +21,10 @@ export const followerService = {
         followedId: followed,
       });
       const newFollower = await newFollow.save();
-      await notificationService.createNotificationNewFollower(followed, follower);
+      await notificationService.createNotificationNewFollower(
+        followed,
+        follower,
+      );
       return newFollower;
     } catch (err) {
       console.log(err);

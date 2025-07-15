@@ -2,7 +2,6 @@ import { Router } from "express";
 import { searchService } from "../service/searchService.js";
 const router = Router();
 
-
 router.post("/", async (req, res) => {
   if (!req.isAuth) {
     throw new Error("Unauthorized!");

@@ -14,7 +14,7 @@ export async function updateLanguage(language) {
     }
     `,
     variables: {
-      language
+      language,
     },
   };
 

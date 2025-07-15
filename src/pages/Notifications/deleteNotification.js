@@ -1,7 +1,7 @@
 export const deleteNotification = async (id) => {
   try {
     const requestBody = {
-      id: id,
+      id,
     };
 
     await fetch(process.env.API_URL + `/notification/`, {

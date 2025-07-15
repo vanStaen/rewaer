@@ -27,7 +27,7 @@ export const User = sequelize.sequelize.define("user", {
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true
+      isEmail: true,
     },
   },
   password: {
@@ -76,27 +76,26 @@ export const User = sequelize.sequelize.define("user", {
   },
 });
 
-
 User.belongsToMany(User, {
-  as: 'friends',
-  foreignKey: 'userId',
-  through: Usersfriend
+  as: "friends",
+  foreignKey: "userId",
+  through: Usersfriend,
 });
 
 User.belongsToMany(User, {
-  as: 'Usersfriends',
-  foreignKey: 'friendId',
-  through: Usersfriend
+  as: "Usersfriends",
+  foreignKey: "friendId",
+  through: Usersfriend,
 });
 
 User.belongsToMany(User, {
-  as: 'followed',
-  foreignKey: 'followerId',
-  through: Usersfollower
+  as: "followed",
+  foreignKey: "followerId",
+  through: Usersfollower,
 });
 
 User.belongsToMany(User, {
-  as: 'followers',
-  foreignKey: 'followedId',
-  through: Usersfollower
+  as: "followers",
+  foreignKey: "followedId",
+  through: Usersfollower,
 });

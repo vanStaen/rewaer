@@ -12,7 +12,7 @@ import { ItemSharedWithFriends } from "./ItemSharedWithFriends/ItemSharedWithFri
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
-import {getPictureUrl} from "../../../helpers/picture/getPictureUrl";
+import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
 
 import {
   itemCategoryMen,
@@ -36,7 +36,8 @@ export const ItemDetail = observer(() => {
   const [mediaUrl, setMediaUrl] = useState(null);
   const [loadingMediaError, setLoadingMediaError] = useState(false);
   const [isLoadingMedia, setIsLoadingMedia] = useState(true);
-  const isSharedItem = parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
+  const isSharedItem =
+    parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
 
   useEffect(() => {
     const url = new URL(window.location);
@@ -49,25 +50,24 @@ export const ItemDetail = observer(() => {
     };
   }, []);
 
-
   const imageLoadingHander = async () => {
-      setIsLoadingMedia(true);
-      try {
-          const url = await getPictureUrl(itemsStore.selectedItem.mediaId, 'items');
-          const isloaded = new Promise((resolve, reject) => {
-            const loadImg = new Image();
-            loadImg.src = url;
-            loadImg.onload = () => resolve(url);
-            loadImg.onerror = (err) => reject(err);
-          });
-          await isloaded;
-          setMediaUrl(url);
-      } catch (e) {
-        setLoadingMediaError(true);
-        console.log(e);
-      }
-      setIsLoadingMedia(false);
-    };
+    setIsLoadingMedia(true);
+    try {
+      const url = await getPictureUrl(itemsStore.selectedItem.mediaId, "items");
+      const isloaded = new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = url;
+        loadImg.onload = () => resolve(url);
+        loadImg.onerror = (err) => reject(err);
+      });
+      await isloaded;
+      setMediaUrl(url);
+    } catch (e) {
+      setLoadingMediaError(true);
+      console.log(e);
+    }
+    setIsLoadingMedia(false);
+  };
 
   useEffect(() => {
     imageLoadingHander();
@@ -131,11 +131,13 @@ export const ItemDetail = observer(() => {
 
       <div className="itemdetail__imageWrap">
         <ImageEditBar page="items" />
-        { isLoadingMedia ? 
-        <div
-          className="itemdetail__picture"
-          id={`selected_item_picture_${itemsStore.selectedItem.id}`}
-        > <div
+        {isLoadingMedia ? (
+          <div
+            className="itemdetail__picture"
+            id={`selected_item_picture_${itemsStore.selectedItem.id}`}
+          >
+            {" "}
+            <div
               className="item__spinner"
               onClick={() => {
                 if (props.item.active) {
@@ -144,17 +146,17 @@ export const ItemDetail = observer(() => {
               }}
             >
               <Spin size="middle" />
-            </div> 
+            </div>
           </div>
-         :
-        <div
-          className="itemdetail__picture"
-          id={`selected_item_picture_${itemsStore.selectedItem.id}`}
-          style={{
-            background: `url(${mediaUrl})`,
-          }}
-        ></div> 
-      }
+        ) : (
+          <div
+            className="itemdetail__picture"
+            id={`selected_item_picture_${itemsStore.selectedItem.id}`}
+            style={{
+              background: `url(${mediaUrl})`,
+            }}
+          ></div>
+        )}
       </div>
 
       {itemsStore.isLoading ? (

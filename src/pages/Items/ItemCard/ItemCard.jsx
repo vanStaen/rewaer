@@ -79,15 +79,15 @@ export const ItemCard = (props) => {
   const imageLoadingHander = async () => {
     try {
       // TODO  fetch small image
-        const url = await getPictureUrl(props.item.mediaId, 'items');
-        const isloaded = new Promise((resolve, reject) => {
-          const loadImg = new Image();
-          loadImg.src = url;
-          loadImg.onload = () => resolve(url);
-          loadImg.onerror = (err) => reject(err);
-        });
-        await isloaded;
-        setMediaUrl(url);
+      const url = await getPictureUrl(props.item.mediaId, "items");
+      const isloaded = new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = url;
+        loadImg.onload = () => resolve(url);
+        loadImg.onerror = (err) => reject(err);
+      });
+      await isloaded;
+      setMediaUrl(url);
     } catch (e) {
       setLoadingError(true);
       console.log(e);

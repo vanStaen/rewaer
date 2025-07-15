@@ -7,14 +7,12 @@ import { EditableTitle } from "./EditableTitle.jsx";
 describe("Editable title element", () => {
   it("Render a title", () => {
     const testElement = TestRenderer.create(
-      <EditableTitle title="test" id="id" type="item" active={true} />
+      <EditableTitle title="test" id="id" type="item" active={true} />,
     );
     const testInstance = testElement.root;
     const expectedElement = (
       <div>
-        <div className="Page__title">
-          test
-        </div>
+        <div className="Page__title">test</div>
       </div>
     );
 
@@ -24,5 +22,4 @@ describe("Editable title element", () => {
     expect(testInstance.props.id).toBe("id");
     expect(testInstance.props.title).toBe("test");
   });
-
 });

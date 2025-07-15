@@ -20,7 +20,7 @@ import { postPicture } from "../../helpers/picture/postPicture";
 
 import "./ImageEditBar.less";
 
-export const ImageEditBar = observer(({page}) => {
+export const ImageEditBar = observer(({ page }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const rotateHandler = async () => {
@@ -106,24 +106,18 @@ export const ImageEditBar = observer(({page}) => {
     try {
       const res = await postPicture(file, page);
       const mediaId = res.path;
-        if (page === "looks") {
-          await updateMediaLook(
-            looksStore.selectedLook.id,
-            mediaId,
-          );
-          looksStore.setIsOutOfDate(true);
-        } else if (page === "items") {
-          await updateMediaItem(
-            itemsStore.selectedItem.id,
-            mediaId,
-          );
-          itemsStore.setIsOutOfDate(true);
-        }
-      } catch (e) {
-        console.log(e);
+      if (page === "looks") {
+        await updateMediaLook(looksStore.selectedLook.id, mediaId);
+        looksStore.setIsOutOfDate(true);
+      } else if (page === "items") {
+        await updateMediaItem(itemsStore.selectedItem.id, mediaId);
+        itemsStore.setIsOutOfDate(true);
       }
+    } catch (e) {
+      console.log(e);
+    }
     setIsLoading(false);
-  }
+  };
 
   return (
     <div className="imageEditBar__imageEditBar">
@@ -160,10 +154,7 @@ export const ImageEditBar = observer(({page}) => {
       </div>
       <div className="imageEditBar__imageEditBarItem">
         <Tooltip title="Replace image">
-          <form
-            onSubmit={replaceMediahandler}
-            className="imageEditBar__form"
-          >
+          <form onSubmit={replaceMediahandler} className="imageEditBar__form">
             <input
               type="file"
               className="imageEditBar__inputfile"
@@ -171,9 +162,9 @@ export const ImageEditBar = observer(({page}) => {
               id="file"
               onChange={fileSelectHandler}
             />
-              <label htmlFor="file">
-                {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
-              </label>
+            <label htmlFor="file">
+              {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
+            </label>
           </form>
         </Tooltip>
       </div>

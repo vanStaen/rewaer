@@ -4,7 +4,7 @@ import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
 import { fileURLToPath } from "url";
 
-import db from "./models/index.js"
+import db from "./models/index.js";
 import graphqlSchema from "./graphql/schema.js";
 import graphqlResolver from "./graphql/resolvers.js";
 import isAuth from "./middleware/isAuth.js";
@@ -45,36 +45,36 @@ app.use(isAuth);
 // Allow cross origin request
 app.use(function (req, res, next) {
   let corsOptions = {};
-  if ((req.get('host') === 'localhost:5001')) {
+  if (req.get("host") === "localhost:5001") {
     corsOptions = {
-      origin: 'http://localhost:3003',
-      optionsSuccessStatus: 200
-    }
+      origin: "http://localhost:3003",
+      optionsSuccessStatus: 200,
+    };
   } else {
     corsOptions = {
       origin: [
-        'https://www.rewaer.com',
-        'https://rewaer.com',
-        'http://rewaer.herokuapp.com',
-        'https://rewaer.herokuapp.com',
+        "https://www.rewaer.com",
+        "https://rewaer.com",
+        "http://rewaer.herokuapp.com",
+        "https://rewaer.herokuapp.com",
       ],
       credentials: true,
-      optionsSuccessStatus: 200
-    }
+      optionsSuccessStatus: 200,
+    };
   }
   cors(corsOptions)(req, res, next);
-})
+});
 
 // Router to API endpoints
-app.use('/auth', AuthRouter);
-app.use('/user', UserRouter);
-app.use('/mail', MailRouter);
-app.use('/upload', UploadRouter);
-app.use('/picture', PictureRouter);
-app.use('/social', SocialRouter);
-app.use('/notification', NotificationRouter);
-app.use('/search', SearchRouter);
-app.use('/healthcheck', HealthcheckRouter);
+app.use("/auth", AuthRouter);
+app.use("/user", UserRouter);
+app.use("/mail", MailRouter);
+app.use("/upload", UploadRouter);
+app.use("/picture", PictureRouter);
+app.use("/social", SocialRouter);
+app.use("/notification", NotificationRouter);
+app.use("/search", SearchRouter);
+app.use("/healthcheck", HealthcheckRouter);
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {
@@ -86,14 +86,14 @@ db.sequelize.sync().then((req) => {
       graphiql: true,
       customFormatErrorFn(err) {
         if (!err.originalError) {
-          return err
+          return err;
         }
         const data = err.originalError.data;
-        const message = err.message || 'An error occured with GraphQl';
+        const message = err.message || "An error occured with GraphQl";
         const code = err.originalError.code || 500;
-        return { message: message, status: code, data: data }
-      }
-    })
+        return { message, status: code, data };
+      },
+    }),
   );
 });
 

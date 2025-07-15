@@ -16,8 +16,8 @@ export async function patchTitle(title, id, type) {
                 }
                 `,
       variables: {
-        id: id,
-        title: title,
+        id,
+        title,
       },
     };
   } else if (type === "item") {

@@ -31,28 +31,28 @@ export const MenuBar = observer((props) => {
   const bucket = "users";
 
   const getAvatarUrl = async (path) => {
-      try {
-        setAvatarUrl(null);
-        if (path) {
-          const url = await getPictureUrl(path, bucket);
-          const isloaded = new Promise((resolve, reject) => {
-            const loadImg = new Image();
-            loadImg.src = url;
-            loadImg.onload = () => resolve(url);
-            loadImg.onerror = (err) => reject(err);
-          });
-          await isloaded;
-          setAvatarUrl(url);
-        }
-      } catch (e) {
-        console.error(e);
+    try {
+      setAvatarUrl(null);
+      if (path) {
+        const url = await getPictureUrl(path, bucket);
+        const isloaded = new Promise((resolve, reject) => {
+          const loadImg = new Image();
+          loadImg.src = url;
+          loadImg.onload = () => resolve(url);
+          loadImg.onerror = (err) => reject(err);
+        });
+        await isloaded;
+        setAvatarUrl(url);
       }
-      setAvatarLoading(false);
-    };
-  
-    useEffect(() => {
-      getAvatarUrl(userStore.avatar);
-    }, [userStore.avatar]);
+    } catch (e) {
+      console.error(e);
+    }
+    setAvatarLoading(false);
+  };
+
+  useEffect(() => {
+    getAvatarUrl(userStore.avatar);
+  }, [userStore.avatar]);
 
   const handlerShowSubMenu = () => {
     document.getElementById("subMenu").style.display = "block";
@@ -112,8 +112,9 @@ export const MenuBar = observer((props) => {
         <Link to="/notifications">
           <div
             key="notifications"
-            className={`notifications menu__element left ${userStore.menuSelected === "notifications" && "selected"
-              }`}
+            className={`notifications menu__element left ${
+              userStore.menuSelected === "notifications" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("notifications");
               pageStore.fetchNotifications();
@@ -135,8 +136,9 @@ export const MenuBar = observer((props) => {
         <Link to="/search">
           <div
             key="search"
-            className={`menu__element left ${userStore.menuSelected === "search" && "selected"
-              }`}
+            className={`menu__element left ${
+              userStore.menuSelected === "search" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("search");
             }}
@@ -148,8 +150,9 @@ export const MenuBar = observer((props) => {
 
         <div
           key="mail"
-          className={`menu__elementDisabled left ${userStore.menuSelected === "mail" && "selected"
-            }`}
+          className={`menu__elementDisabled left ${
+            userStore.menuSelected === "mail" && "selected"
+          }`}
           onClick={() => {
             // userStore.setMenuSelected("mail");
           }}
@@ -161,8 +164,9 @@ export const MenuBar = observer((props) => {
         <Link to="/info">
           <div
             key="info"
-            className={`info menu__element left ${userStore.menuSelected === "info" && "selected"
-              }`}
+            className={`info menu__element left ${
+              userStore.menuSelected === "info" && "selected"
+            }`}
             onClick={() => {
               userStore.setMenuSelected("info");
             }}
@@ -173,15 +177,16 @@ export const MenuBar = observer((props) => {
 
         <div
           key="profile"
-          className={`menu__element right ${userStore.menuSelected === "profile" && "selected"
-            }`}
+          className={`menu__element right ${
+            userStore.menuSelected === "profile" && "selected"
+          }`}
           onMouseEnter={handlerShowSubMenu}
           onMouseLeave={handlerHideSubMenu}
         >
           <Avatar
             src={userStore.avatar && avatarUrl}
             icon={
-              userStore.isLoading || avatarLoading ? (
+              userStore.isLoading || avatarLoading ? (
                 <Spin size="small" />
               ) : (
                 !userStore.avatar && (

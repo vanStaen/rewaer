@@ -1,9 +1,6 @@
 import { notification } from "antd";
 
-export async function updateAvatar(
-  mediaId,
-) {
-
+export async function updateAvatar(mediaId) {
   const requestBody = {
     query: `
     mutation ($mediaId: String) {

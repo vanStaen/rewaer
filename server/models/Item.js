@@ -62,17 +62,17 @@ export const Item = sequelize.sequelize.define("item", {
     defaultValue: false,
   },
   sharedWith: {
-    //array of user id
+    // array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
   },
   likes: {
-    //array of user id
+    // array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
   },
   dislikes: {
-    //array of user id
+    // array of user id
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     defaultValue: [],
   },

@@ -1,9 +1,6 @@
 import { notification } from "antd";
 
-export async function postNewItem(
-  mediaId,
-  title
-) {
+export async function postNewItem(mediaId, title) {
   const requestBody = {
     query: `
         mutation ($mediaId: String, $title: String) {
@@ -16,8 +13,8 @@ export async function postNewItem(
           }
           `,
     variables: {
-      mediaId: mediaId,
-      title: title,
+      mediaId,
+      title,
     },
   };
   const response = await fetch(process.env.API_URL + `/graphql`, {

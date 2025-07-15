@@ -110,7 +110,7 @@ export const LookDetailHeader = observer(() => {
               <span className="lookdetail__headerCategory">
                 {
                   convertCodeToObjectString(category, lookCategory)[
-                  userStore.language
+                    userStore.language
                   ]
                 }
               </span>

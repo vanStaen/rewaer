@@ -56,9 +56,9 @@ export const LookList = observer(() => {
       : displayArchived
         ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
         : looksStore.looks.length +
-        countForm -
-        looksStore.numberOfPrivateLook -
-        looksStore.numberOfArchivedLook;
+          countForm -
+          looksStore.numberOfPrivateLook -
+          looksStore.numberOfArchivedLook;
     const numberFullRow = Math.floor(numberLooks / numberPerRow);
     const missingCards =
       numberPerRow - (numberLooks - numberFullRow * numberPerRow);

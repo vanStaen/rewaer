@@ -4,19 +4,19 @@ import { notificationService } from "./notificationService.js";
 export const friendService = {
   async getFriends(userId) {
     return await Usersfriend.findAll({
-      where: { userId: userId, pending: false },
+      where: { userId, pending: false },
     });
   },
 
   async getFriendsPending(userId) {
     return await Usersfriend.findAll({
-      where: { userId: userId, pending: true }
+      where: { userId, pending: true },
     });
   },
 
   async getFriendsRequest(userId) {
     return await Usersfriend.findAll({
-      where: { friendId: userId, pending: true }
+      where: { friendId: userId, pending: true },
     });
   },
 
@@ -27,7 +27,10 @@ export const friendService = {
         friendId: parseInt(friendId),
       });
       await newFriend.save();
-      await notificationService.createNotificationNewFriendRequest(userId, friendId);
+      await notificationService.createNotificationNewFriendRequest(
+        userId,
+        friendId,
+      );
       return true;
     } catch (err) {
       console.log(err);
@@ -43,7 +46,7 @@ export const friendService = {
             userId: parseInt(friendId),
             friendId: parseInt(userId),
           },
-        }
+        },
       );
       const newFriend = new Usersfriend({
         userId: parseInt(userId),
@@ -66,7 +69,10 @@ export const friendService = {
           friendId: parseInt(friendId),
         },
       });
-      await notificationService.deleteNotificatioFriendRequest(userId, friendId);
+      await notificationService.deleteNotificatioFriendRequest(
+        userId,
+        friendId,
+      );
       return true;
     } catch (err) {
       console.log(err);

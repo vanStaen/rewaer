@@ -8,15 +8,14 @@ export const authService = {
     let foundUser;
     if (username) {
       foundUser = await User.findOne({
-        where:
-          sequelize.where(
-            sequelize.fn('lower', sequelize.col('userName')),
-            sequelize.fn('lower', username)
-          ),
+        where: sequelize.where(
+          sequelize.fn("lower", sequelize.col("userName")),
+          sequelize.fn("lower", username),
+        ),
       });
     } else {
       foundUser = await User.findOne({
-        where: { email: email },
+        where: { email },
       });
     }
 
@@ -34,7 +33,7 @@ export const authService = {
       const accessToken = await jsonwebtoken.sign(
         { userId: foundUser.id },
         process.env.AUTH_SECRET_KEY,
-        { expiresIn: "15m" }
+        { expiresIn: "15m" },
       );
       req.session.token = accessToken;
 
@@ -43,7 +42,7 @@ export const authService = {
         const refreshToken = await jsonwebtoken.sign(
           { userId: foundUser.id },
           process.env.AUTH_SECRET_KEY_REFRESH,
-          { expiresIn: "7d" }
+          { expiresIn: "7d" },
         );
         req.session.refreshToken = refreshToken;
       }
@@ -51,7 +50,7 @@ export const authService = {
       // Update lastLogin in user table
       await User.update(
         { lastActive: Date.now() },
-        { where: { id: foundUser.id } }
+        { where: { id: foundUser.id } },
       );
 
       // check if user has validated his email

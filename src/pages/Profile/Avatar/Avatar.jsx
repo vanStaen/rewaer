@@ -21,7 +21,7 @@ export const Avatar = observer(() => {
   const [avatarUrl, setAvatarUrl] = useState(null);
   const bucket = "users";
 
-   const getAvatarUrl = async (path) => {
+  const getAvatarUrl = async (path) => {
     try {
       setAvatarUrl(null);
       if (path) {
@@ -96,20 +96,20 @@ export const Avatar = observer(() => {
           style={
             isStranger
               ? profileStore.avatar && {
-                backgroundImage: "url(" + avatarUrl + ")",
-              }
+                  backgroundImage: "url(" + avatarUrl + ")",
+                }
               : userStore.avatar && {
-                backgroundImage: "url(" + avatarUrl + ")",
-              }
+                  backgroundImage: "url(" + avatarUrl + ")",
+                }
           }
         >
           {isStranger
             ? !profileStore.avatar && (
-              <UserOutlined className="avatar__noAvatar" />
-            )
+                <UserOutlined className="avatar__noAvatar" />
+              )
             : !userStore.avatar && (
-              <UserOutlined className="avatar__noAvatar" />
-            )}
+                <UserOutlined className="avatar__noAvatar" />
+              )}
           {!isStranger && (
             <div className="avatar__editAvatar">
               <Tooltip placement="bottom" title={t("profile.changeAvatar")}>

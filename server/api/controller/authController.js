@@ -16,7 +16,7 @@ router.post("/login", async (req, res) => {
       req.body.email,
       req.body.username,
       req.body.password,
-      req.body.remind
+      req.body.remind,
     );
     res.status(200).json({
       success: loginSuccess,

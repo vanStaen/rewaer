@@ -8,7 +8,7 @@ router.get("/followers", async (req, res) => {
   try {
     const followers = await followerService.getFollower(req.userId);
     res.status(200).json({
-      followers: followers,
+      followers,
     });
   } catch (err) {
     res.status(400).json({
@@ -70,7 +70,7 @@ router.get("/friends", async (req, res) => {
   try {
     const friends = await friendService.getFriends(req.userId);
     res.status(200).json({
-      friends: friends,
+      friends,
     });
   } catch (err) {
     res.status(400).json({
@@ -83,7 +83,7 @@ router.get("/friendspending", async (req, res) => {
   try {
     const pending = await friendService.getFriendsPending(req.userId);
     res.status(200).json({
-      pending: pending,
+      pending,
     });
   } catch (err) {
     res.status(400).json({
@@ -97,7 +97,7 @@ router.post("/fremdfriendspending", async (req, res) => {
     const userId = req.body.userId;
     const pending = await friendService.getFriendsPending(userId);
     res.status(200).json({
-      pending: pending,
+      pending,
     });
   } catch (err) {
     res.status(400).json({
@@ -125,9 +125,12 @@ router.post("/validatefriendrequest", async (req, res) => {
   try {
     const userId = req.userId;
     const friendId = req.body.friendId;
-    const validated = await friendService.validateFriendRequest(userId, friendId);
+    const validated = await friendService.validateFriendRequest(
+      userId,
+      friendId,
+    );
     res.status(200).json({
-      validated: validated,
+      validated,
     });
   } catch (err) {
     res.status(400).json({

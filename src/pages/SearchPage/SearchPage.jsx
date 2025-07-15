@@ -142,10 +142,7 @@ export const SearchPage = () => {
               return (
                 <div className="search__resultItem">
                   <div className="search__resultItemPictures">
-                    <img
-                      src={item.mediaId}
-                      className="search__picture"
-                    ></img>
+                    <img src={item.mediaId} className="search__picture"></img>
                   </div>
                   <div className="search__resultItemData">
                     <div className="search__resultItemDataRow bold resultContent">
@@ -155,15 +152,17 @@ export const SearchPage = () => {
                       {item.brand && `${item.brand}  `}
                       {item.colors.length > 0 &&
                         item.colors.map((color) => {
-                          return `${convertCodeToObjectString(color, colors)[
-                            userStore.language
-                          ]
-                            }  `;
+                          return `${
+                            convertCodeToObjectString(color, colors)[
+                              userStore.language
+                            ]
+                          }  `;
                         })}
                       {item.pattern &&
-                        `${convertCodeToObjectString(item.pattern, pattern)[
-                        userStore.language
-                        ]
+                        `${
+                          convertCodeToObjectString(item.pattern, pattern)[
+                            userStore.language
+                          ]
                         }  `}
                     </div>
                   </div>
@@ -179,10 +178,7 @@ export const SearchPage = () => {
               return (
                 <div className="search__resultItem">
                   <div className="search__resultItemPictures">
-                    <img
-                      src={look.mediaId}
-                      className="search__picture"
-                    ></img>
+                    <img src={look.mediaId} className="search__picture"></img>
                   </div>
                   <div className="search__resultItemData">
                     <div className="search__resultItemDataRow bold resultContent">
@@ -190,18 +186,21 @@ export const SearchPage = () => {
                     </div>
                     <div className="search__resultItemDataRow grey resultContent">
                       {!!look.category &&
-                        `${convertCodeToObjectString(
-                          look.category,
-                          lookCategory,
-                        )[userStore.language]
+                        `${
+                          convertCodeToObjectString(
+                            look.category,
+                            lookCategory,
+                          )[userStore.language]
                         }  `}
                       {!!look.season &&
-                        `${convertCodeToObjectString(look.season, seasons)[
-                        userStore.language
-                        ]
+                        `${
+                          convertCodeToObjectString(look.season, seasons)[
+                            userStore.language
+                          ]
                         }  `}
                       {look.items.length > 0 &&
-                        `${look.items.length} item${look.items.length > 1 ? "s" : ""
+                        `${look.items.length} item${
+                          look.items.length > 1 ? "s" : ""
                         }  `}
                     </div>
                   </div>

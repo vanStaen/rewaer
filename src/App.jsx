@@ -27,8 +27,8 @@ import "./App.css";
 import "./style/rewaer-antd.css";
 
 const TRESHOLD_FLOATING_FORMS = 800;
-//console.log("Env", process.env.NODE_ENV);
-//console.log("Api", process.env.API_URL);
+// console.log("Env", process.env.NODE_ENV);
+// console.log("Api", process.env.API_URL);
 
 const App = observer(() => {
   const { t } = useTranslation();
@@ -45,22 +45,26 @@ const App = observer(() => {
 
   useEffect(() => {
     pageStore.fetchNotifications();
-    //Fetch new notification every minute
+    // Fetch new notification every minute
     setInterval(pageStore.fetchNotifications, 60000);
   }, []);
 
   const resetWindowInners = () => {
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingUploadForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
+    pageStore.setShowOnlyFloatingUploadForm(
+      window.innerWidth < TRESHOLD_FLOATING_FORMS,
+    );
   };
 
   useEffect(() => {
-    //initialize variables
+    // initialize variables
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingUploadForm(window.innerWidth < TRESHOLD_FLOATING_FORMS)
-    //Event listener
+    pageStore.setShowOnlyFloatingUploadForm(
+      window.innerWidth < TRESHOLD_FLOATING_FORMS,
+    );
+    // Event listener
     window.addEventListener("resize", resetWindowInners);
     return () => {
       window.removeEventListener("resize", resetWindowInners);

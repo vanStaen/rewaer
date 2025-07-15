@@ -155,16 +155,20 @@ export class UserStore {
   fetchUserData = async (loader = true) => {
     try {
       if (loader) {
-        this.setIsLoading(true)
-      };
+        this.setIsLoading(true);
+      }
       const userData = await getUserInfo();
       const pendingData = await getPending();
       if (userData && pendingData) {
         const friendsNotPending = userData.friends.filter((friend) => {
-          const isPending = pendingData.findIndex(pending => pending.friendId === parseInt(friend.id));
-          if (isPending === -1) { return true }
+          const isPending = pendingData.findIndex(
+            (pending) => pending.friendId === parseInt(friend.id),
+          );
+          if (isPending === -1) {
+            return true;
+          }
           return false;
-        })
+        });
         this.setid(parseInt(userData.id));
         this.setEmail(userData.email);
         this.setUserName(userData.userName);
@@ -181,7 +185,10 @@ export class UserStore {
         this.setUsernameChange(userData.usernameChange);
         this.setArchived(userData.archived);
 
-        if (userData.profilSettings === "{}" || userData.emailSettings === "{}") {
+        if (
+          userData.profilSettings === "{}" ||
+          userData.emailSettings === "{}"
+        ) {
           this.setEmailSettings(defaultEmailSettings);
           this.setProfilSettings(defaultProfilSettings);
           updateSettings(defaultEmailSettings, defaultProfilSettings);

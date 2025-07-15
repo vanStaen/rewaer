@@ -2,12 +2,12 @@ import { Router } from "express";
 import { notificationService } from "../service/notificationService.js";
 const router = Router();
 
-/* get all notification (Debugging)*/
+/* get all notification (Debugging) */
 router.get("/all", async (req, res) => {
   try {
     const notifications = await notificationService.getAllNotifications();
     res.status(200).json({
-      notifications: notifications,
+      notifications,
     });
   } catch (err) {
     res.status(400).json({
@@ -21,9 +21,11 @@ router.get("/", async (req, res) => {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const notifications = await notificationService.getNotifications(req.userId);
+    const notifications = await notificationService.getNotifications(
+      req.userId,
+    );
     res.status(200).json({
-      notifications: notifications,
+      notifications,
     });
   } catch (err) {
     res.status(400).json({
@@ -42,7 +44,13 @@ router.post("/", async (req, res) => {
     const mediaId = req.body.mediaId;
     const type = req.body.notificationType;
     const actionData = req.body.actionData;
-    const response = await notificationService.createNotificationSingle(userId, userNotifiedId, mediaId, type, actionData);
+    const response = await notificationService.createNotificationSingle(
+      userId,
+      userNotifiedId,
+      mediaId,
+      type,
+      actionData,
+    );
     res.status(200).json({
       created: response,
     });
@@ -74,9 +82,12 @@ router.delete("/", async (req, res) => {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const notifications = await notificationService.deleteNotification(req.body.id, req.userId);
+    const notifications = await notificationService.deleteNotification(
+      req.body.id,
+      req.userId,
+    );
     res.status(200).json({
-      notifications: notifications,
+      notifications,
     });
   } catch (err) {
     res.status(400).json({

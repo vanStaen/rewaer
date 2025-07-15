@@ -4,7 +4,7 @@ export const postAddUser = async (
   userName,
   email,
   password,
-  language
+  language,
 ) => {
   const requestBody = {
     query: `mutation ( $firstName: String, 
@@ -33,7 +33,7 @@ export const postAddUser = async (
       userName,
       email,
       password,
-      language
+      language,
     },
   };
 

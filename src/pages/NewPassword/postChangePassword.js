@@ -1,7 +1,7 @@
 export const postChangePassword = async (token, password) => {
   const requestBody = {
-    token: token,
-    password: password,
+    token,
+    password,
   };
 
   const response = await fetch(process.env.API_URL + `/user/changepassword`, {

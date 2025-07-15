@@ -1,7 +1,7 @@
 export async function pictureFlip(url, isMirror) {
   const requestBody = {
-    url: url,
-    isMirror: isMirror,
+    url,
+    isMirror,
   };
 
   const response = await fetch(process.env.API_URL + `/picture/flip`, {

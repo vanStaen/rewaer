@@ -1,6 +1,6 @@
 export const postFriendRequest = async (friendId) => {
   const requestBody = {
-    friendId: friendId,
+    friendId,
   };
 
   try {

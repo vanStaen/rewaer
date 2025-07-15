@@ -25,8 +25,8 @@ export default async (req, res, next) => {
   // Authorization: Bearer <token>
   const token = req.session.token;
   const refreshToken = req.session.refreshToken;
-  //console.log("token", token)
-  //console.log("refreshToken", refreshToken)
+  // console.log("token", token)
+  // console.log("refreshToken", refreshToken)
 
   // Check tokens are valid:
   if (!token || token === "undefined" || token === "") {
@@ -41,7 +41,7 @@ export default async (req, res, next) => {
       // if refreshToken exist = user checked remind me
       decodedToken = jsonwebtoken.verify(
         refreshToken,
-        process.env.AUTH_SECRET_KEY_REFRESH
+        process.env.AUTH_SECRET_KEY_REFRESH,
       );
     } catch (err) {
       req.isAuth = false;
@@ -57,10 +57,10 @@ export default async (req, res, next) => {
   const accessToken = await jsonwebtoken.sign(
     { userId: decodedToken.userId },
     process.env.AUTH_SECRET_KEY,
-    { expiresIn: "15m" }
+    { expiresIn: "15m" },
   );
 
-  //console.log("accessToken updated!");
+  // console.log("accessToken updated!");
   req.session.token = accessToken;
 
   // Update refrehstoken in session cookie
@@ -68,16 +68,16 @@ export default async (req, res, next) => {
     const refreshToken = await jsonwebtoken.sign(
       { userId: decodedToken.userId },
       process.env.AUTH_SECRET_KEY_REFRESH,
-      { expiresIn: "7d" }
+      { expiresIn: "7d" },
     );
-    //console.log("refreshToken updated!");
+    // console.log("refreshToken updated!");
     req.session.refreshToken = refreshToken;
   }
 
   // Update lastLogin in user table
   await User.update(
     { lastActive: Date.now() },
-    { where: { id: decodedToken.userId } }
+    { where: { id: decodedToken.userId } },
   );
 
   next();

@@ -13,10 +13,7 @@ export const userResolver = {
     }
     return await User.findOne({
       where: { id: req.userId },
-      include: [
-        "friends",
-        "followers",
-        "followed"],
+      include: ["friends", "followers", "followed"],
     });
   },
 
@@ -27,10 +24,7 @@ export const userResolver = {
     }
     return await User.findOne({
       where: { id: req.userId },
-      include: [
-        "friends",
-        "followers",
-        "followed"],
+      include: ["friends", "followers", "followed"],
     });
   },
 
@@ -44,7 +38,6 @@ export const userResolver = {
       include: [Look],
     });
   },
-
 
   // TODO: split get user call into smaller
   async getUserItems(_, req) {
@@ -187,10 +180,15 @@ export const userResolver = {
         returning: true,
         plain: true,
       });
-      //if avatar as updated, create notification
+      // if avatar as updated, create notification
       if (args.userInput.avatar) {
-        await notificationService.createNotificationBasic(req.userId, args.userInput.avatar, 14, req.userId)
-      };
+        await notificationService.createNotificationBasic(
+          req.userId,
+          args.userInput.avatar,
+          14,
+          req.userId,
+        );
+      }
       // updatedUser[0]: number or row udpated
       // updatedUser[1]: rows updated
       return updatedUser[1];

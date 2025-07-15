@@ -14,7 +14,7 @@ export async function archiveAccount(archived) {
     }    
     `,
     variables: {
-      archived
+      archived,
     },
   };
 

@@ -93,7 +93,7 @@ export class LooksStore {
       this.setIsOutOfDate(false);
       if (this.selectedLook) {
         const udpateSelectedLook = looks.filter(
-          (look) => look.id === this.selectedLook.id
+          (look) => look.id === this.selectedLook.id,
         );
         this.setSelectedLook(udpateSelectedLook[0]);
       }

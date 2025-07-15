@@ -75,13 +75,12 @@ export class PageStore {
     try {
       const result = await getNotifications();
       this.setNotifications(result);
-      const unSeenCount = result.filter(notif => notif.seen === false).length;
+      const unSeenCount = result.filter((notif) => notif.seen === false).length;
       this.setUnseenNotificationsCount(unSeenCount);
     } catch (e) {
       console.log("error loading notification: ", e);
     }
   };
-
 }
 
 export const pageStore = new PageStore();

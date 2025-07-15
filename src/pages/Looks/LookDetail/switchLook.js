@@ -38,7 +38,7 @@ export const switchLook = (next, showPrivate) => {
     } else {
       if (indexOfResult === 0) {
         looksStore.setSelectedLook(
-          looksStore.looks[looksStore.looks.length - 1]
+          looksStore.looks[looksStore.looks.length - 1],
         );
       } else {
         looksStore.setSelectedLook(looksStore.looks[indexOfResult - 1]);

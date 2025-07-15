@@ -1,9 +1,14 @@
-export async function postNotificationItemShared(notificationType, mediaId, userNotifiedId, actionData) {
+export async function postNotificationItemShared(
+  notificationType,
+  mediaId,
+  userNotifiedId,
+  actionData,
+) {
   const requestBody = {
-    mediaId: mediaId,
-    notificationType: notificationType,
-    userNotifiedId: userNotifiedId,
-    actionData: actionData,
+    mediaId,
+    notificationType,
+    userNotifiedId,
+    actionData,
   };
 
   try {
@@ -18,8 +23,7 @@ export async function postNotificationItemShared(notificationType, mediaId, user
       throw new Error("Unauthenticated!");
     }
     return true;
-  }
-  catch (e) {
+  } catch (e) {
     console.log("error", e);
     return false;
   }

@@ -185,7 +185,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) { }
+      } catch (e) {}
     };
 
     const acceptRequestHandler = async (event) => {
@@ -202,7 +202,7 @@ export const Notifications = observer(() => {
         setTimeout(() => {
           elementMobile.style.display = "none";
         }, 300);
-      } catch (e) { }
+      } catch (e) {}
     };
 
     return (

@@ -38,7 +38,7 @@ export const switchItem = (next, showPrivate) => {
     } else {
       if (indexOfResult === 0) {
         itemsStore.setSelectedItem(
-          itemsStore.items[itemsStore.items.length - 1]
+          itemsStore.items[itemsStore.items.length - 1],
         );
       } else {
         itemsStore.setSelectedItem(itemsStore.items[indexOfResult - 1]);

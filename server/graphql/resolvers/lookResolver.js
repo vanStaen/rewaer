@@ -12,9 +12,9 @@ export const lookResolver = {
       where: { userId: req.userId },
       include: User,
       order: [
-        ['active', 'DESC'],
-        ['favorite', 'DESC'],
-        ['id', 'DESC'],
+        ["active", "DESC"],
+        ["favorite", "DESC"],
+        ["id", "DESC"],
       ],
     });
   },
@@ -34,7 +34,8 @@ export const lookResolver = {
         req.userId,
         args.lookInput.mediaId,
         5,
-        newLook.id)
+        newLook.id,
+      );
       return newLook;
     } catch (err) {
       console.log(err);
@@ -76,10 +77,10 @@ export const lookResolver = {
         returning: true,
         plain: true,
       });
-      //if look set to private, delete all notification about it
+      // if look set to private, delete all notification about it
       if (args.lookInput.private) {
-        await notificationService.deleteNotificationLook(args.lookId)
-      };
+        await notificationService.deleteNotificationLook(args.lookId);
+      }
       // updatedLook[0]: number or row udpated
       // updatedLook[1]: rows updated
       return updatedLook[1];
@@ -94,7 +95,8 @@ export const lookResolver = {
       throw new Error("Unauthorized!");
     }
     const lookToDelete = await Look.findOne({ where: { id: args.lookId } });
-    const lookId = lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
+    const lookId =
+      lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
     try {
       const params = {
         Bucket: process.env.S3_BUCKET_ID,
@@ -109,16 +111,16 @@ export const lookResolver = {
         Key: "m_" + lookId,
       };
       await Promise.all([
-        s3.deleteObject(params, function (err, data) { }),
-        s3.deleteObject(paramsThumb, function (err, data) { }),
-        s3.deleteObject(paramsMedium, function (err, data) { }),
+        s3.deleteObject(params, function (err, data) {}),
+        s3.deleteObject(paramsThumb, function (err, data) {}),
+        s3.deleteObject(paramsMedium, function (err, data) {}),
       ]);
       await Look.destroy({
         where: {
           id: args.lookId,
         },
       });
-      await notificationService.deleteNotificationLook(args.lookId)
+      await notificationService.deleteNotificationLook(args.lookId);
       return true;
     } catch (err) {
       return err;
