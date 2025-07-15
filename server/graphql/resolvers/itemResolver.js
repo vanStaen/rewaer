@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import { User } from "../../models/User.js";
 import { Item } from "../../models/Item.js";
 import { notificationService } from "../../api/service/notificationService.js";
-import { deleteFileFromS3 } from "../../helpers/deleteFileFromS3.js";
+import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 
 export const itemResolver = {
   async getItems(args, req) {
