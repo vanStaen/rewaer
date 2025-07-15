@@ -13,13 +13,14 @@ export const ProfileFriends = observer(() => {
 
   const friendsFormatted = profileStore.friends.map((friend) => {
     return (
-      <Tooltip title={friend.userName}>
-        <Link
-          to={`/${friend.userName}`}
-          onClick={() => {
-            profileStore.fetchProfileData(friend.userName);
-          }}
-        >
+      <Link
+        to={`/${friend.userName}`}
+        onClick={() => {
+          profileStore.fetchProfileData(friend.userName);
+        }}
+        key={friend.id}
+      >
+        <Tooltip title={friend.userName}>
           <div
             className="profilFriends__followersAvatar"
             style={{
@@ -29,20 +30,21 @@ export const ProfileFriends = observer(() => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-        </Link>
-      </Tooltip>
+        </Tooltip>
+      </Link>
     );
   });
 
   const friendsFollowers = profileStore.followers.map((follower) => {
     return (
-      <Tooltip title={follower.userName}>
-        <Link
-          to={`/${follower.userName}`}
-          onClick={() => {
-            profileStore.fetchProfileData(follower.userName);
-          }}
-        >
+      <Link
+        to={`/${follower.userName}`}
+        onClick={() => {
+          profileStore.fetchProfileData(follower.userName);
+        }}
+        key={follower.id}
+      >
+        <Tooltip title={follower.userName}>
           <div
             className="profilFriends__followersAvatar"
             style={{
@@ -52,20 +54,21 @@ export const ProfileFriends = observer(() => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-        </Link>
-      </Tooltip>
+        </Tooltip>
+      </Link>
     );
   });
 
   const friendsFollowed = profileStore.followed.map((followed) => {
     return (
-      <Tooltip title={followed.userName}>
-        <Link
-          to={`/${followed.userName}`}
-          onClick={() => {
-            profileStore.fetchProfileData(followed.userName);
-          }}
-        >
+      <Link
+        to={`/${followed.userName}`}
+        onClick={() => {
+          profileStore.fetchProfileData(followed.userName);
+        }}
+        key={followed.id}
+      >
+        <Tooltip title={followed.userName}>
           <div
             className="profilFriends__followersAvatar"
             style={{
@@ -75,8 +78,8 @@ export const ProfileFriends = observer(() => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-        </Link>
-      </Tooltip>
+        </Tooltip>
+      </Link>
     );
   });
 

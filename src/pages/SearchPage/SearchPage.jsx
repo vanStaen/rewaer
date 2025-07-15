@@ -95,7 +95,7 @@ export const SearchPage = () => {
         size="large"
         onPressEnter={handleEnter}
         onSearch={handleSearch}
-        // onChange={handleChange}
+        onChange={handleChange}
         loading={isSearching}
       />
 
@@ -116,6 +116,7 @@ export const SearchPage = () => {
                   onClick={() => {
                     profileStore.fetchProfileData(user.userName);
                   }}
+                  key={user.id}
                 >
                   <div className="search__resultItem">
                     <div className="search__resultItemPictures">
@@ -140,7 +141,7 @@ export const SearchPage = () => {
             <div className="search__title">Items</div>
             {results.items.map((item) => {
               return (
-                <div className="search__resultItem">
+                <div className="search__resultItem" key={item.id}>
                   <div className="search__resultItemPictures">
                     <img src={item.mediaId} className="search__picture"></img>
                   </div>
@@ -176,7 +177,7 @@ export const SearchPage = () => {
             <div className="search__title">Looks</div>
             {results.looks.map((look) => {
               return (
-                <div className="search__resultItem">
+                <div className="search__resultItem" key={look.id}>
                   <div className="search__resultItemPictures">
                     <img src={look.mediaId} className="search__picture"></img>
                   </div>
