@@ -61,7 +61,6 @@ export const ItemDetail = observer(() => {
             loadImg.onerror = (err) => reject(err);
           });
           await isloaded;
-          console.log('url', url)
           setMediaUrl(url);
       } catch (e) {
         setLoadingMediaError(true);
@@ -131,7 +130,7 @@ export const ItemDetail = observer(() => {
       <DetailReturnArrow page="item" />
 
       <div className="itemdetail__imageWrap">
-        <ImageEditBar page="item" />
+        <ImageEditBar page="items" />
         { isLoadingMedia ? 
         <div
           className="itemdetail__picture"

@@ -12,38 +12,39 @@ import {
 
 import { pictureRotate } from "./pictureRotate";
 import { pictureFlip } from "./pictureFlip";
-import { updateMedienLook } from "./updateMedienLook";
-import { updateMedienItem } from "./updateMedienItem";
+import { updateMediaLook } from "./updateMediaLook";
+import { updateMediaItem } from "./updateMediaItem";
 import { looksStore } from "../../pages/Looks/looksStore";
 import { itemsStore } from "../../pages/Items/itemsStore";
+import { postPicture } from "../../helpers/picture/postPicture";
 
 import "./ImageEditBar.less";
 
-export const ImageEditBar = observer((props) => {
+export const ImageEditBar = observer(({page}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const rotateHandler = async () => {
     if (!isLoading) {
       setIsLoading(true);
       try {
-        if (props.page === "look") {
+        if (page === "looks") {
           const resultFiles = await pictureRotate(
             looksStore.selectedLook.mediaId,
             1,
           );
-          await updateMedienLook(
+          await updateMediaLook(
             looksStore.selectedLook.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,
           );
           looksStore.setIsOutOfDate(true);
-        } else if (props.page === "item") {
+        } else if (page === "items") {
           const resultFiles = await pictureRotate(
             itemsStore.selectedItem.mediaId,
             1,
           );
-          await updateMedienItem(
+          await updateMediaItem(
             itemsStore.selectedItem.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
@@ -62,24 +63,25 @@ export const ImageEditBar = observer((props) => {
     if (!isLoading) {
       setIsLoading(true);
       try {
-        if (props.page === "look") {
+        if (page === "looks") {
           const resultFiles = await pictureFlip(
             looksStore.selectedLook.mediaId,
             isMirror,
           );
-          await updateMedienLook(
+          // TODO FIX this
+          await updateMediaLook(
             looksStore.selectedLook.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
             resultFiles.UrlMediumbS3,
           );
           looksStore.setIsOutOfDate(true);
-        } else if (props.page === "item") {
+        } else if (page === "items") {
           const resultFiles = await pictureFlip(
             itemsStore.selectedItem.mediaId,
             isMirror,
           );
-          await updateMedienItem(
+          await updateMediaItem(
             itemsStore.selectedItem.id,
             resultFiles.UrlOriginalS3,
             resultFiles.UrlThumbS3,
@@ -94,9 +96,33 @@ export const ImageEditBar = observer((props) => {
     }
   };
 
-  const replacehandler = async () => {
-    //TODO: implement replace image functionality
-    console.log("Replace image functionality is not implemented yet.");
+  const fileSelectHandler = async (event) => {
+    setIsLoading(true);
+    replaceMediahandler(event.target.files[0]);
+  };
+
+  const replaceMediahandler = async (file) => {
+    setIsLoading(true);
+    try {
+      const res = await postPicture(file, page);
+      const mediaId = res.path;
+        if (page === "looks") {
+          await updateMediaLook(
+            looksStore.selectedLook.id,
+            mediaId,
+          );
+          looksStore.setIsOutOfDate(true);
+        } else if (page === "items") {
+          await updateMediaItem(
+            itemsStore.selectedItem.id,
+            mediaId,
+          );
+          itemsStore.setIsOutOfDate(true);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    setIsLoading(false);
   }
 
   return (
@@ -132,9 +158,23 @@ export const ImageEditBar = observer((props) => {
           {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
         </Tooltip>
       </div>
-      <div className="imageEditBar__imageEditBarItem" onClick={replacehandler}>
+      <div className="imageEditBar__imageEditBarItem">
         <Tooltip title="Replace image">
-          {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
+          <form
+            onSubmit={replaceMediahandler}
+            className="imageEditBar__form"
+          >
+            <input
+              type="file"
+              className="imageEditBar__inputfile"
+              name="inputfile"
+              id="file"
+              onChange={fileSelectHandler}
+            />
+              <label htmlFor="file">
+                {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
+              </label>
+          </form>
         </Tooltip>
       </div>
     </div>

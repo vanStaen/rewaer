@@ -85,6 +85,10 @@ export const itemResolver = {
     if (args.itemInput.password) {
       updateFields.password = await bcrypt.hash(args.itemInput.password, 12);
     }
+    if (args.itemInput.mediaId) {
+      //TODO: delete old media from S3
+      const oldItem = await Item.findOne({ where: { id: args.itemId } });
+    }
     try {
       const updatedItem = await Item.update(updateFields, {
         where: {

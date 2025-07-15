@@ -1,4 +1,4 @@
-export async function updateMedienItem(id, mediaId) {
+export async function updateMediaItem(id, mediaId) {
   const requestBody = {
     query: `
             mutation ($id: ID!, $mediaId: String) {

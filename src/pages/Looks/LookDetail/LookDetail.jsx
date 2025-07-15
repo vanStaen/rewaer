@@ -94,7 +94,7 @@ export const LookDetail = observer(() => {
     >
       <LookDetailHeader />
       <div className="lookdetail__imageWrap">
-        <ImageEditBar page="look" />
+        <ImageEditBar page="looks" />
         <div
           className="lookdetail__pictureBlur"
           id={`selected_look_picture_blur_${looksStore.selectedLook.id}`}
