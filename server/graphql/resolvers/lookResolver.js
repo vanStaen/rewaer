@@ -1,7 +1,7 @@
-import bcrypt from "bcryptjs";
 import { User } from "../../models/User.js";
 import { Look } from "../../models/Look.js";
 import { notificationService } from "../../api/service/notificationService.js";
+import { deleteFileFromS3 } from "../../helpers/deleteFileFromS3.js";
 
 export const lookResolver = {
   async getLooks(args, req) {
@@ -64,8 +64,9 @@ export const lookResolver = {
         updateFields[field] = args.lookInput[field];
       }
     });
-    if (args.lookInput.password) {
-      updateFields.password = await bcrypt.hash(args.lookInput.password, 12);
+    if (args.lookInput.mediaId) {
+      const oldLook = await Look.findOne({ where: { id: args.lookId } });
+      deleteFileFromS3(oldLook.mediaId, "looks");
     }
     try {
       const updatedLook = await Look.update(updateFields, {

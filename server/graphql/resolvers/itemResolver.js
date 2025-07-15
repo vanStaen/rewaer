@@ -1,8 +1,8 @@
-import bcrypt from "bcryptjs";
 import { Op } from "sequelize";
 import { User } from "../../models/User.js";
 import { Item } from "../../models/Item.js";
 import { notificationService } from "../../api/service/notificationService.js";
+import { deleteFileFromS3 } from "../../helpers/deleteFileFromS3.js";
 
 export const itemResolver = {
   async getItems(args, req) {
@@ -82,12 +82,9 @@ export const itemResolver = {
         updateFields[field] = args.itemInput[field];
       }
     });
-    if (args.itemInput.password) {
-      updateFields.password = await bcrypt.hash(args.itemInput.password, 12);
-    }
     if (args.itemInput.mediaId) {
-      //TODO: delete old media from S3
       const oldItem = await Item.findOne({ where: { id: args.itemId } });
+      deleteFileFromS3(oldItem.mediaId, "items");
     }
     try {
       const updatedItem = await Item.update(updateFields, {
