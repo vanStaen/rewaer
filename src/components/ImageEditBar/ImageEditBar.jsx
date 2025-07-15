@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import {
   BulbOutlined,
   FormatPainterOutlined,
+  UploadOutlined,
   RedoOutlined,
   VerticalAlignMiddleOutlined,
   LoadingOutlined,
@@ -93,6 +94,11 @@ export const ImageEditBar = observer((props) => {
     }
   };
 
+  const replacehandler = async () => {
+    //TODO: implement replace image functionality
+    console.log("Replace image functionality is not implemented yet.");
+  }
+
   return (
     <div className="imageEditBar__imageEditBar">
       {/* <Tooltip title="Change luminosity">
@@ -100,7 +106,7 @@ export const ImageEditBar = observer((props) => {
       </Tooltip> */}
       {/* <Tooltip title="Change white balance">
         <FormatPainterOutlined />
-      </Tooltip> */}{" "}
+      </Tooltip> */}
       <div
         className="imageEditBar__imageEditBarItem"
         onClick={() => flipHandler(true)}
@@ -124,6 +130,11 @@ export const ImageEditBar = observer((props) => {
       <div className="imageEditBar__imageEditBarItem" onClick={rotateHandler}>
         <Tooltip title="Rotate">
           {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
+        </Tooltip>
+      </div>
+      <div className="imageEditBar__imageEditBarItem" onClick={replacehandler}>
+        <Tooltip title="Replace image">
+          {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
         </Tooltip>
       </div>
     </div>
