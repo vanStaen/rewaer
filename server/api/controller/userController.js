@@ -97,7 +97,6 @@ router.post("/emailverified", async (req, res) => {
       error: `${err}`,
     });
   }
-  4;
 });
 
 export { router };

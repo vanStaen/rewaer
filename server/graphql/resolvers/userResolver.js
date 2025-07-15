@@ -132,7 +132,7 @@ export const userResolver = {
       throw new Error("This username is already associated with an account.");
     }
     try {
-      hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+      const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
       const user = new User({
         firstName: args.userInput.firstName,
         lastName: args.userInput.lastName,

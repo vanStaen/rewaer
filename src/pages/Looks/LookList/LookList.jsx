@@ -12,32 +12,6 @@ export const LookList = observer(() => {
   const containerElement = useRef(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
 
-  useEffect(() => {
-    calculateMissingCardsForFullRow();
-  }, [
-    containerElement.current,
-    missingCardForFullRow,
-    calculateMissingCardsForFullRow,
-    looksStore.numberOfPrivateLook,
-    looksStore.numberOfArchivedLook,
-    looksStore.showPrivateLooks,
-    looksStore.looks,
-    userStore.profilSettings,
-  ]);
-
-  useEffect(() => {
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    window.addEventListener("scroll", scrollEventHandler);
-    return () => {
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-      window.removeEventListener("scroll", scrollEventHandler);
-    };
-  }, []);
-
-  const scrollEventHandler = () => {
-    looksStore.setLastKnownScrollPosition(window.scrollY);
-  };
-
   const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
       ? userStore.profilSettings.displayArchived
@@ -69,6 +43,32 @@ export const LookList = observer(() => {
     userStore.profilSettings,
   ]);
 
+  useEffect(() => {
+    calculateMissingCardsForFullRow();
+  }, [
+    containerElement.current,
+    missingCardForFullRow,
+    calculateMissingCardsForFullRow,
+    looksStore.numberOfPrivateLook,
+    looksStore.numberOfArchivedLook,
+    looksStore.showPrivateLooks,
+    looksStore.looks,
+    userStore.profilSettings,
+  ]);
+
+  useEffect(() => {
+    window.addEventListener("resize", calculateMissingCardsForFullRow);
+    window.addEventListener("scroll", scrollEventHandler);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCardsForFullRow);
+      window.removeEventListener("scroll", scrollEventHandler);
+    };
+  }, []);
+
+  const scrollEventHandler = () => {
+    looksStore.setLastKnownScrollPosition(window.scrollY);
+  };
+
   const showDetailView = (look) => {
     looksStore.setSelectedLook(look);
     looksStore.setOriginalScrollPosition(looksStore.lastKnownScrollPosition);
@@ -80,7 +80,7 @@ export const LookList = observer(() => {
         return null;
       } else {
         return (
-          <div>
+          <div key={look.id}>
             <LookCard look={look} showDetailView={showDetailView} />
           </div>
         );

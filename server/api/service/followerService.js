@@ -3,15 +3,15 @@ import { notificationService } from "./notificationService.js";
 
 export const followerService = {
   async getFollower(userId) {
-    return (foundFollowers = await Usersfollower.findAll({
+    return await Usersfollower.findAll({
       where: { followedId: userId },
-    }));
+    });
   },
 
   async getFollowing(userId) {
-    return (foundFollowing = await Usersfollower.findAll({
+    return await Usersfollower.findAll({
       where: { followerId: userId },
-    }));
+    });
   },
 
   async addFollow(follower, followed) {

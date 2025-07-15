@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Tooltip } from "antd";
 import { observer } from "mobx-react";
 import {
-  BulbOutlined,
-  FormatPainterOutlined,
+  // BulbOutlined,
+  // FormatPainterOutlined,
   UploadOutlined,
   RedoOutlined,
   VerticalAlignMiddleOutlined,

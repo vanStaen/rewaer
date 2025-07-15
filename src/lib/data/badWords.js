@@ -1,4 +1,4 @@
-badWords = {
+const badWords = {
   "4r5e": 1,
   "5h1t": 1,
   "5hit": 1,

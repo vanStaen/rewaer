@@ -28,7 +28,7 @@ import "./ItemDetail.css";
 // the required distance between touchStart and touchEnd to be detected as a swipe
 const MIN_SWIPE_DISTANCE = 100;
 
-export const ItemDetail = observer(() => {
+export const ItemDetail = observer((props) => {
   const { t } = useTranslation();
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);

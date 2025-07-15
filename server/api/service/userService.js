@@ -5,7 +5,7 @@ import { mailService } from "./mailService.js";
 
 export const userService = {
   async taken(username) {
-    foundUser = await User.findOne({
+    const foundUser = await User.findOne({
       where: { userName: username },
     });
     if (!foundUser) {
@@ -16,7 +16,7 @@ export const userService = {
   },
 
   async email(email) {
-    foundUser = await User.findOne({
+    const foundUser = await User.findOne({
       where: { email },
     });
     if (!foundUser) {
@@ -28,10 +28,7 @@ export const userService = {
 
   async validtoken(token) {
     try {
-      decodedToken = jsonwebtoken.verify(
-        token,
-        process.env.AUTH_SECRET_KEY_RECOVERY,
-      );
+      jsonwebtoken.verify(token, process.env.AUTH_SECRET_KEY_RECOVERY);
     } catch (err) {
       return false;
     }
@@ -40,7 +37,7 @@ export const userService = {
 
   async changepassword(token, password) {
     try {
-      decodedToken = jsonwebtoken.verify(
+      const decodedToken = jsonwebtoken.verify(
         token,
         process.env.AUTH_SECRET_KEY_RECOVERY,
       );
@@ -64,7 +61,7 @@ export const userService = {
 
   async emailverified(token) {
     try {
-      decodedToken = jsonwebtoken.verify(
+      const decodedToken = jsonwebtoken.verify(
         token,
         process.env.AUTH_SECRET_KEY_EMAILVERIFY,
       );

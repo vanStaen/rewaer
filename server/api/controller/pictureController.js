@@ -13,7 +13,7 @@ router.post("/flip/", async (req, res) => {
     }
     const url = req.body.url;
     const isMirror = req.body.isMirror;
-    newUrl = await pictureService.flipPicture(url, isMirror);
+    const newUrl = await pictureService.flipPicture(url, isMirror);
     res.status(200).json({
       newUrl,
     });
@@ -61,7 +61,7 @@ router.post("/tint/", async (req, res) => {
     const red = req.body.red;
     const green = req.body.green;
     const blue = req.body.blue;
-    newUrl = await pictureService.tintPicture(url, red, green, blue);
+    const newUrl = await pictureService.tintPicture(url, red, green, blue);
     res.status(200).json({
       newUrl,
     });

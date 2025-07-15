@@ -23,6 +23,7 @@ export const ItemSharedWithFriends = observer(() => {
         userId={userId}
         type="alreadySharedWith"
         setShowModal={setShowModal}
+        key={userId}
       />
     );
   });
@@ -35,6 +36,7 @@ export const ItemSharedWithFriends = observer(() => {
           userId={user.id}
           type="sharableWith"
           setShowModal={setShowModal}
+          key={user.id}
         />
       );
     }

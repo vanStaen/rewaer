@@ -45,7 +45,6 @@ router.delete("/logout", async (req, res) => {
       error: `${err}`,
     });
   }
-  4;
 });
 
 // Has access?

@@ -37,9 +37,7 @@ export const itemResolver = {
         desc: args.itemInput.desc,
         colors: args.itemInput.colors,
         size: args.itemInput.size,
-        category: args.itemInput.category,
         brand: args.itemInput.brand,
-        userId: req.userId,
       });
       const newItem = await item.save();
       await notificationService.createNotificationBasic(

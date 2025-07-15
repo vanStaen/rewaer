@@ -85,7 +85,7 @@ export const ItemList = observer(() => {
         return null;
       } else {
         return (
-          <div>
+          <div key={item.id}>
             <ItemCard item={item} showDetailView={showDetailView} />
           </div>
         );

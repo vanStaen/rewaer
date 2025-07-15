@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Select, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,6 @@ import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
 import { itemsStore } from "../../itemsStore.js";
 import { userStore } from "../../../../stores/userStore/userStore.js";
-import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
 import "./ItemDetailFormElement.css";

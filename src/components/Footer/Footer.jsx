@@ -42,7 +42,8 @@ export const Footer = () => {
       <div className="footerSubContainer2">
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
         <div className="rightSide">
-           Impressum | Datenschutz |{" "}
+          {" "}
+          Impressum | Datenschutz |{" "}
           <a
             href="https://www.clementvanstaen.com"
             target="_blank"

@@ -5,7 +5,7 @@ import { Op } from "sequelize";
 
 export const searchService = {
   async searchUsersAll(searchText) {
-    return (foundUsers = await User.findAll({
+    return await User.findAll({
       where: {
         [Op.or]: [
           { userName: { [Op.iLike]: `%${searchText}%` } },
@@ -14,11 +14,11 @@ export const searchService = {
           // { profilSettings: { [Op.contains]: [req.userId] } }
         ],
       },
-    }));
+    });
   },
 
   async searchItemsAll(searchText) {
-    return (foundUsers = await Item.findAll({
+    return await Item.findAll({
       where: {
         [Op.and]: {
           [Op.or]: [
@@ -28,22 +28,22 @@ export const searchService = {
           private: false,
         },
       },
-    }));
+    });
   },
 
   async searchLooksAll(searchText) {
-    return (foundUsers = await Look.findAll({
+    return await Look.findAll({
       where: {
         [Op.and]: {
           [Op.or]: [{ title: { [Op.iLike]: `%${searchText}%` } }],
           private: false,
         },
       },
-    }));
+    });
   },
 
   async searchUsersStartingWith(searchText) {
-    return (foundUsers = await User.findAll({
+    return await User.findAll({
       where: {
         [Op.or]: [
           { userName: { [Op.iLike]: `${searchText}%` } },
@@ -51,11 +51,11 @@ export const searchService = {
           { lastName: { [Op.iLike]: `${searchText}%` } },
         ],
       },
-    }));
+    });
   },
 
   async searchItemsStartingWith(searchText) {
-    return (foundUsers = await Item.findAll({
+    return await Item.findAll({
       where: {
         [Op.and]: {
           [Op.or]: [
@@ -65,17 +65,17 @@ export const searchService = {
           private: false,
         },
       },
-    }));
+    });
   },
 
   async searchLooksStartingWith(searchText) {
-    return (foundUsers = await Look.findAll({
+    return await Look.findAll({
       where: {
         [Op.and]: {
           [Op.or]: [{ title: { [Op.iLike]: `${searchText}%` } }],
           private: false,
         },
       },
-    }));
+    });
   },
 };
