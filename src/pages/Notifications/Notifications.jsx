@@ -58,7 +58,7 @@ export const Notifications = observer(() => {
     deleteNotification(id);
   };
 
-  const notificationClickHandler = async (type, title, action_data) => {
+  const notificationClickHandler = async (type, title, actionData) => {
     // Friend request
     if (type === 1 || type === 17) {
       navigate(`/${title}`);
@@ -89,7 +89,7 @@ export const Notifications = observer(() => {
         await itemsStore.loadItems();
       }
       const selectedItem = itemsStore.items.filter(
-        (item) => parseInt(item.id) === action_data,
+        (item) => parseInt(item.id) === actionData,
       );
       itemsStore.setSelectedItem(selectedItem[0]);
       navigate(`/items/`);
@@ -100,7 +100,7 @@ export const Notifications = observer(() => {
         await looksStore.loadLooks();
       }
       const selectedLook = looksStore.looks.filter(
-        (look) => parseInt(look.id) === action_data,
+        (look) => parseInt(look.id) === actionData,
       );
       looksStore.setSelectedLook(selectedLook[0]);
       navigate(`/looks/`);
@@ -155,7 +155,7 @@ export const Notifications = observer(() => {
   };
 
   const notificationsFormated = pageStore.notifications.map((notification) => {
-    const { id, type, seen, title, createdAt, media_url, action_data } =
+    const { id, type, seen, title, createdAt, mediaUrl, actionData } =
       notification;
     const notificationAge = dayjs(createdAt).fromNow();
 
@@ -176,7 +176,7 @@ export const Notifications = observer(() => {
     const followBackHandler = async (event) => {
       event.stopPropagation();
       try {
-        await postFollow(action_data);
+        await postFollow(actionData);
         userStore.fetchUserData(false);
         const element = document.getElementById(`followback${id}`);
         const elementMobile = document.getElementById(`followbackMobile${id}`);
@@ -191,7 +191,7 @@ export const Notifications = observer(() => {
     const acceptRequestHandler = async (event) => {
       event.stopPropagation();
       try {
-        await postAcceptRequest(action_data);
+        await postAcceptRequest(actionData);
         userStore.fetchUserData(false);
         const element = document.getElementById(`acceptRequest${id}`);
         const elementMobile = document.getElementById(
@@ -205,8 +205,14 @@ export const Notifications = observer(() => {
       } catch (e) {}
     };
 
+    // TODO: get aws s3 url for mediaUrl based on right bucket
+
     return (
-      <div className="notification__subContainer" id={`subContainer${id}`}>
+      <div
+        className="notification__subContainer"
+        id={`subContainer${id}`}
+        key={`subContainer${id}`}
+      >
         <div className="notifications__deleteButton">
           <div
             className="icon"
@@ -227,14 +233,14 @@ export const Notifications = observer(() => {
             className={
               seen ? "notifications__leftSideSeen" : "notifications__leftSide"
             }
-            onClick={() => notificationClickHandler(type, title, action_data)}
+            onClick={() => notificationClickHandler(type, title, actionData)}
             style={{
-              background: `url(${media_url}) center center / cover no-repeat`,
+              background: `url(${mediaUrl}) center center / cover no-repeat`,
             }}
           ></div>
           <div
             className="notifications__rightSide"
-            onClick={() => notificationClickHandler(type, title, action_data)}
+            onClick={() => notificationClickHandler(type, title, actionData)}
           >
             <div className="notification__title">
               {type === 1 && <>{linkToUserPage} sent you a friend request!</>}

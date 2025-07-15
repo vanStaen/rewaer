@@ -84,7 +84,7 @@ export const Avatar = observer(() => {
 
   return (
     <div className="avatar__container">
-      {isUploading ? (
+      {isUploading || isLoading ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading">
             <Spin size="large" />

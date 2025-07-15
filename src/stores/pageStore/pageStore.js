@@ -74,8 +74,15 @@ export class PageStore {
   fetchNotifications = async () => {
     try {
       const result = await getNotifications();
-      this.setNotifications(result);
-      const unSeenCount = result.filter((notif) => notif.seen === false).length;
+      const cleanedResult = result.map((notif) => ({
+        ...notif,
+        mediaUrl: notif.media_url,
+        actionData: notif.action_data,
+      }));
+      this.setNotifications(cleanedResult);
+      const unSeenCount = cleanedResult.filter(
+        (notif) => notif.seen === false,
+      ).length;
       this.setUnseenNotificationsCount(unSeenCount);
     } catch (e) {
       console.log("error loading notification: ", e);
