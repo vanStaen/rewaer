@@ -37,7 +37,6 @@
   }
   .welcome__rightPanel {
     width: 100vw;
-    background-image: url("./../../img/clothes.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
