@@ -10,7 +10,7 @@ import { profileStore } from "../../../stores/profileStore/profileStore";
 import { postPicture } from "../../../helpers/picture/postPicture";
 import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
 
-import "./Avatar.css";
+import "./Avatar.less";
 
 export const Avatar = observer(() => {
   const { t } = useTranslation();

@@ -29,7 +29,6 @@ export const Profile = observer(() => {
 
   useEffect(() => {
     if (authStore.hasAccess === false) {
-      console.log("authStore.hasAccess:", authStore.hasAccess);
       window.location.href = "../";
     }
   }, [authStore.hasAccess]);
