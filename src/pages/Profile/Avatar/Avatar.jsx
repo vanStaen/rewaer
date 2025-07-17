@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { notification, Spin, Tooltip } from "antd";
-import { EditOutlined, UserOutlined } from "@ant-design/icons";
+import { EditOutlined, UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
@@ -8,42 +8,18 @@ import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateAvatar } from "./updateAvatar";
 import { profileStore } from "../../../stores/profileStore/profileStore";
 import { postPicture } from "../../../helpers/picture/postPicture";
-import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
+import { useMediaUrl } from "../../../hooks/useMediaUrl";
 
 import "./Avatar.less";
 
 export const Avatar = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const isStranger = userStore.userName !== profileStore.userName;
   const avatar = isStranger ? profileStore.avatar : userStore.avatar;
-  const [avatarUrl, setAvatarUrl] = useState(null);
   const bucket = "users";
 
-  const getAvatarUrl = async (path) => {
-    try {
-      setAvatarUrl(null);
-      if (path) {
-        const url = await getPictureUrl(path, bucket);
-        const isloaded = new Promise((resolve, reject) => {
-          const loadImg = new Image();
-          loadImg.src = url;
-          loadImg.onload = () => resolve(url);
-          loadImg.onerror = (err) => reject(err);
-        });
-        await isloaded;
-        setAvatarUrl(url);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getAvatarUrl(avatar);
-  }, [avatar]);
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(avatar, bucket);
 
   const fileSelectHandler = async (event) => {
     setIsUploading(true);
@@ -84,10 +60,16 @@ export const Avatar = observer(() => {
 
   return (
     <div className="avatar__container">
-      {isUploading || isLoading ? (
+      {isUploading || mediaLoading ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading">
             <Spin size="large" />
+          </div>
+        </div>
+      ) : mediaError ? (
+        <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
+          <div className="avatar__avatarLoading">
+            <CloseOutlined className="avatar__avatarError" />
           </div>
         </div>
       ) : (
@@ -96,10 +78,10 @@ export const Avatar = observer(() => {
           style={
             isStranger
               ? profileStore.avatar && {
-                  backgroundImage: "url(" + avatarUrl + ")",
+                  backgroundImage: "url(" + mediaS3Url + ")",
                 }
               : userStore.avatar && {
-                  backgroundImage: "url(" + avatarUrl + ")",
+                  backgroundImage: "url(" + mediaS3Url + ")",
                 }
           }
         >

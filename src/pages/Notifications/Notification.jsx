@@ -16,13 +16,13 @@ import { useNavigate, Link } from "react-router-dom";
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
 import { postFollow } from "../Profile/ProfileActions/postFollow";
 import { postAcceptRequest } from "../Profile/ProfileActions/postAcceptRequest";
 import { userStore } from "../../stores/userStore/userStore.js";
 import { itemsStore } from "../Items/itemsStore";
 import { looksStore } from "../Looks/looksStore";
 import { deleteNotification } from "./deleteNotification";
+import { useMediaUrl } from "../../hooks/useMediaUrl";
 
 import "./Notifications.less";
 
@@ -40,8 +40,10 @@ export const Notification = ({ data }) => {
   const { id, type, seen, title, createdAt, mediaUrl, actionData } = data;
   const notificationAge = dayjs(createdAt).fromNow();
 
-  const [mediaS3Url, setMediaS3Url] = useState(null);
-  const [mediaLoading, setMediaLoading] = useState(false);
+  // TODO: map bucket to notification types if needed
+  const bucket = "users";
+
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, bucket);
 
   const closeNotificationHandler = (id) => {
     const element = document.getElementById(`notification${id}`);
@@ -106,32 +108,6 @@ export const Notification = ({ data }) => {
       navigate(`/looks/`);
     }
   };
-
-  const getMediaUrl = async (path) => {
-    try {
-      setMediaS3Url(null);
-      // TODO map bucket to notification types
-      const bucket = "users";
-      if (path) {
-        const url = await getPictureUrl(mediaUrl, bucket);
-        const isloaded = new Promise((resolve, reject) => {
-          const loadImg = new Image();
-          loadImg.src = url;
-          loadImg.onload = () => resolve(url);
-          loadImg.onerror = (err) => reject(err);
-        });
-        await isloaded;
-        setMediaS3Url(url);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    setMediaLoading(false);
-  };
-
-  useEffect(() => {
-    getMediaUrl(mediaUrl);
-  }, [mediaUrl]);
 
   const linkToUserPage = (
     <Link to={`/${title}`} onClick={(e) => e.stopPropagation()}>
@@ -247,6 +223,8 @@ export const Notification = ({ data }) => {
       >
         {mediaLoading ? (
           "loading"
+        ) : mediaError ? (
+          "error"
         ) : (
           <div
             className={
