@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { notification, Spin, Popconfirm, Tooltip, Avatar } from "antd";
+import { notification, Spin, Popconfirm, Tooltip } from "antd";
 import {
   DeleteOutlined,
   ExclamationOutlined,
@@ -19,13 +18,13 @@ import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDis
 import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
 import { itemsStore } from "../itemsStore.js";
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { profileStore } from "../../../stores/profileStore/profileStore";
 
 import { archiveItem } from "../actions/archiveItem";
 import { deleteItem } from "../actions/deleteItem";
 import { updateFavoriteItem } from "../actions/updateFavoriteItem";
 import { updatePrivateItem } from "../actions/updatePrivateItem";
 import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
+import { UserAvatar } from "../../../components/UserAvatar/UserAvatar.jsx";
 
 import "./ItemCard.css";
 
@@ -383,17 +382,7 @@ export const ItemCard = (props) => {
           {isSharedItem ? (
             <Tooltip placement="bottom" title={props.item.user.userName}>
               <div className="itemcard__sharedItem">
-                <Link
-                  to={`/${props.item.user.userName}`}
-                  onClick={() => {
-                    profileStore.fetchProfileData(props.item.user.userName);
-                    itemsStore.setOriginalScrollPosition(
-                      itemsStore.lastKnownScrollPosition,
-                    );
-                  }}
-                >
-                  <Avatar src={props.item.user.avatar} size={36} />
-                </Link>
+                <UserAvatar user={props.item.user} page={"items"} />
               </div>
             </Tooltip>
           ) : isPrivate ? (
