@@ -17,7 +17,10 @@ export const Welcome = (props) => {
       <div className="welcome__alreadyMember">
         <AlreadyMember showLogin={showLogin} setShowLogin={setShowLogin} />
       </div>
-      <div className="welcome__leftPanel" style={{ backgroundImage: `url(${clothesImage})` }}>
+      <div
+        className="welcome__leftPanel"
+        style={{ backgroundImage: `url(${clothesImage})` }}
+      >
         <LanguageDropDown />
       </div>
       <div className="welcome__rightPanel">

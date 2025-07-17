@@ -1,0 +1,103 @@
+.avatar__container {
+  text-align: right;
+
+  .avatar__avatar {
+    border: 1px solid #aaaaaa;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    background-position: center;
+    background-size: cover;
+
+    .avatar__noAvatar {
+      position: relative;
+      padding: 50px;
+      font-size: 100px;
+      color: rgba(109, 145, 126, .25);
+      z-index: -1;
+
+      @media (max-width: 800px) {
+        padding: 20px;
+        font-size: 60px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      width: 30vw;
+      height: 30vw;
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    .avatar__avatarLoading {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 800px) {
+        width: 30vw;
+        height: 30vw;
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+
+    .avatar__editAvatar {
+      position: absolute;
+      bottom: 0px;
+      font-size: 22px;
+      color: #aaaaaa;
+      width: 200px;
+      text-align: right;
+
+      &:hover {
+        color: #6d917e;
+      }
+
+      @media (max-width: 800px) {
+        width: 30vw;
+        max-width: 150px;
+      }
+    }
+
+    .avatar__inputfile {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+
+      + label {
+        cursor: pointer;
+      }
+    }
+
+    .avatar__avatarError {
+      color: FireBrick !important;
+      font-size: 150px;
+    }
+
+    .avatar__form {
+      width: 25px;
+      margin-left: 175px;
+
+      @media (max-width: 800px) {
+        margin-left: calc(30vw - 15px);
+      }
+    }
+
+    @media (max-width: 800px) {
+      display: inline-block;
+      width: 30vw;
+      max-width: 150px;
+      padding: 20px 0 0 20px;
+    }
+  }
+}
