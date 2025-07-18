@@ -64,14 +64,14 @@ export const Avatar: React.FC = observer(() => {
     <div className="avatar__container">
       {isUploading || mediaLoading ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
-          <div className="avatar__avatarLoading">
-            <Spin size="large" />
+          <div className="avatar__avatarLoading" data-testid="Spinner">
+            <Spin size="large"/>
           </div>
         </div>
       ) : mediaError ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading">
-            <CloseOutlined className="avatar__avatarError" />
+            <CloseOutlined className="avatar__avatarError" data-testid="CloseOutlined"/>
           </div>
         </div>
       ) : (
@@ -104,8 +104,9 @@ export const Avatar: React.FC = observer(() => {
                     name="inputfile"
                     id="file"
                     onChange={fileSelectHandler}
+                    data-testid="fileSelectInput"
                   />
-                  <label htmlFor="file">
+                  <label htmlFor="file" data-testid="fileSelectLabel">
                     <EditOutlined />
                   </label>
                 </form>
