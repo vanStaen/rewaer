@@ -1,6 +1,7 @@
 import { notification } from "antd";
 
-export async function updateAvatar(mediaId) {
+// Accepts a string mediaId, returns a Promise<boolean>
+export async function updateAvatar(mediaId: string): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($mediaId: String) {
