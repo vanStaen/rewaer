@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import { Avatar } from "./Avatar";
 
@@ -26,6 +26,12 @@ jest.mock("./updateAvatar", () => ({
 jest.mock("../../../hooks/useMediaUrl", () => ({
   useMediaUrl: jest.fn(() => ["mediaUrl.jpg", false, null]),
 }));
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: { changeLanguage: () => new Promise(() => {}) }
+  }),
+}));
 
 describe("Avatar component", () => {
   it("renders loading spinner when uploading", async () => {
@@ -36,7 +42,9 @@ describe("Avatar component", () => {
     render(<Avatar />);
     const input = screen.getByTestId("fileSelectInput");
     // Simulate file selection to trigger uploading state
+    act( async () => {
     fireEvent.change(input, { target: { files: [new File([""], "avatar.png", { type: "image/png" })] } });
+    });
     // Wait for spinner to appear
     const spinner = document.querySelector(".ant-spin-dot");
     expect(spinner).toBeInTheDocument();
@@ -69,9 +77,10 @@ describe("Avatar component", () => {
     render(<Avatar />);
     const input = screen.getByTestId("fileSelectInput");
     // Simulate file selection
-    fireEvent.change(input, { target: { files: [new File(["dummy"], "avatar.png", { type: "image/png" })] } });
-    // Wait for promises to resolve
-    await Promise.resolve();
+    await act(async () => {
+      fireEvent.change(input, { target: { files: [new File(["dummy"], "avatar.png", { type: "image/png" })] } });
+      await Promise.resolve();
+    });
     expect(postPicture).toHaveBeenCalledWith(expect.any(File), "users");
     expect(updateAvatar).toHaveBeenCalledWith("newAvatar.jpg");
   });

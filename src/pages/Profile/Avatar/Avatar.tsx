@@ -39,7 +39,6 @@ export const Avatar: React.FC = observer(() => {
             placement: "bottomRight",
           });
           userStore.setAvatar(mediaId);
-          console.log("Success!");
         })
         .catch((error: Error) => {
           notification.error({
