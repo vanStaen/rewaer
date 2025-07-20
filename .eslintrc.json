@@ -22,6 +22,22 @@
       "parserOptions": {
         "sourceType": "script"
       }
+    },
+    {
+      "files": ["*.less"],
+      "plugins": ["prettier"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "singleQuote": true,
+            "tabWidth": 2,
+            "printWidth": 100,
+            "semi": true
+          }
+        ]
+      }
     }
   ],
   "parserOptions": {
