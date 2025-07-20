@@ -16,7 +16,7 @@ import { userStore } from "./stores/userStore/userStore";
 import { pageStore } from "./stores/pageStore/pageStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { MenuBar } from "./components/MenuBar/MenuBar";
-import { archiveAccount } from "./pages/Profile/EditSettings/DeleteAccountButton/archiveAccount";
+import { archiveAccount } from "./pages/Profile/EditSettings/actions/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";

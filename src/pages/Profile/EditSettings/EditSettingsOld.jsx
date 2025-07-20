@@ -1,16 +1,16 @@
 import React from "react";
-import { Spin, Divider, Switch, Radio, Tooltip } from "antd";
+import { Spin, Divider, Switch, Radio, Tooltip, notification } from "antd";
 import { observer } from "mobx-react";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
+import { postSendRecoverLink } from "../../../components/PasswordRecover/postSendRecoverLink";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateSettings } from "./actions/updateSettings";
 import { updateLanguage } from "./actions/updateLanguage";
 import { updateGender } from "./actions/updateGender";
-import { UserNameUpdate } from "./UserSettings/UserNameUpdate/UserNameUpdate.jsx";
-import { DeleteAccountButton } from "./DangerZone/DeleteAccountButton/DeleteAccountButton";
-import { useResetPasswordLink } from "../../../hooks/useResetPasswordLink.js";
+import { UserNameUpdate } from "./UserNameUpdate/UserNameUpdate";
+import { DeleteAccountButton } from "./DeleteAccountButton/DeleteAccountButton";
 
 import "./EditSettings.less";
 
@@ -52,6 +52,21 @@ export const EditSettings = observer(() => {
     updateGender(value);
   };
 
+  const resetPasswordLink = async () => {
+    try {
+      await postSendRecoverLink(userStore.email);
+      notification.success({
+        message: t("login.recoverEmailSent"),
+        placement: "bottomRight",
+      });
+    } catch (error) {
+      notification.warn({
+        message: error.message,
+        placement: "bottomRight",
+      });
+    }
+  };
+
   return (
     <div className="EditSettings__main">
       {userStore.isLoading ? (
@@ -71,7 +86,7 @@ export const EditSettings = observer(() => {
           </Divider>
           <div className="EditSettings__singleSetting">
             {t("profile.triggerPasswordReset")}{" "}
-            <span onClick={useResetPasswordLink} className="EditSettings__link">
+            <span onClick={resetPasswordLink} className="EditSettings__link">
               {t("main.clickHere")}
             </span>
           </div>
