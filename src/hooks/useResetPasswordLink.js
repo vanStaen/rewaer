@@ -6,17 +6,17 @@ import { postSendRecoverLink } from "../components/PasswordRecover/postSendRecov
 import { userStore } from "../stores/userStore/userStore.js";
 
 export const useResetPasswordLink = async () => {
-  const { t } = useTranslation();   
-    try {
-      await postSendRecoverLink(userStore.email);
-      notification.success({
-        message: t("login.recoverEmailSent"),
-        placement: "bottomRight",
-      });
-    } catch (error) {
-      notification.warn({
-        message: error.message,
-        placement: "bottomRight",
-      });
-    }
-  };
+  const { t } = useTranslation();
+  try {
+    await postSendRecoverLink(userStore.email);
+    notification.success({
+      message: t("login.recoverEmailSent"),
+      placement: "bottomRight",
+    });
+  } catch (error) {
+    notification.warn({
+      message: error.message,
+      placement: "bottomRight",
+    });
+  }
+};
