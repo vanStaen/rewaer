@@ -22,13 +22,9 @@ import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
 
 import "./lib/i18n";
-
 import "./App.css";
-import "./style/rewaer-antd.css";
 
 const TRESHOLD_FLOATING_FORMS = 800;
-// console.log("Env", process.env.NODE_ENV);
-// console.log("Api", process.env.API_URL);
 
 const App = observer(() => {
   const { t } = useTranslation();
