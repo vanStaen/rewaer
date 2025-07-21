@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    font-feature-settings: 'tnum';
+    .App {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      letter-spacing: 1.5px;
+      font-size: 15px;
+      a {
+        text-decoration: none;
+        &:visited{
+          transition: color 0.3s;
+          color: rgba(109, 145, 126, 0.75);
+        }
+        &:hover {
+          color: rgba(109, 145, 126, 1);
+        }
+      }
+      .spinner {
+        width: calc(100vw); 
+        height: calc(100vh - 50px - 190px); /*50px menu, 190px footer*/
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+
+.striked {
+  text-decoration: line-through;
+}
+
+
+// TODO nest those classes in a more appropriate file
+.iconRed {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconRedHover:hover {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconGoldHover:hover {
+  color: rgba(241, 196, 15, 1);
+}
+
+.iconGreen {
+  color: #6c917d;
+}
+
+.iconGreenHover:hover {
+  color: #6c917d;
+}
+
+.greyed {
+  color: #aaa;
+}
+
+.lightGreyed {
+  color: #ddd;
+}

@@ -22,7 +22,11 @@ import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
 
 import "./lib/i18n";
-import "./App.css";
+
+import "./App.less";
+import "./style/colors.less";
+import "./style/customAntd.less";
+
 
 const TRESHOLD_FLOATING_FORMS = 800;
 
