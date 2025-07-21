@@ -8,7 +8,7 @@ import { archiveAccount } from "../../actions/archiveAccount.js";
 
 import "./DeleteAccountButton.css";
 
-//TOFO : test this component
+// TOFO : test this component
 
 export const DeleteAccountButton = () => {
   const { t } = useTranslation();
@@ -58,7 +58,7 @@ export const DeleteAccountButton = () => {
         onClick={areYouSureHandler}
         type="primary"
       >
-         &nbsp;{t("profile.deleteAccount")}
+        &nbsp;{t("profile.deleteAccount")}
       </Button>
       {showAreYouSureButton && (
         <>
@@ -70,7 +70,7 @@ export const DeleteAccountButton = () => {
             onClick={deleteAccountHandler}
             type="primary"
           >
-             &nbsp;{t("profile.areYouSure")} ... {secondsBeforeDisapearing}
+            &nbsp;{t("profile.areYouSure")} ... {secondsBeforeDisapearing}
           </Button>
         </>
       )}

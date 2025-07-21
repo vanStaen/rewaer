@@ -10,7 +10,6 @@ import { DeleteAccountButton } from "./DeleteAccountButton/DeleteAccountButton";
 export const DangerZone = observer(() => {
   const { t } = useTranslation();
 
-
   return (
     <div className="EditSettings__subContainer">
       <Divider orientation="left" plain>
@@ -18,8 +17,8 @@ export const DangerZone = observer(() => {
       </Divider>
       <div className="EditSettings__centerDiv">
         <div className="EditSettings__singleSetting">
-        <DeleteAccountButton />
-      </div>
+          <DeleteAccountButton />
+        </div>
       </div>
     </div>
   );

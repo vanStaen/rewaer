@@ -41,68 +41,66 @@ export const DisplaySettings = observer(() => {
   };
 
   return (
-        <div className="EditSettings__subContainer">
-          <Divider orientation="left" plain>
-            {t("profile.displaySettings")}
-          </Divider>
-          <div className="EditSettings__singleSetting">
-            {t("profile.genderBasedGarderobe")}
-              <Radio.Group
-                defaultValue={String(userStore.gender)}
-                buttonStyle="solid"
-                onChange={changeGenderHandler}
-                className="EditSettings__radioGroup"
-              >
-                <Radio.Button value="1">{t("profile.male")}</Radio.Button>
-                <Radio.Button value="2">{t("profile.female")}</Radio.Button>
-                <Tooltip placement="top" title={t("profile.tooltipNB")}>
-                  <Radio.Button value="3">
-                    {t("profile.nonbinary")}
-                  </Radio.Button>
-                </Tooltip>
-              </Radio.Group>
-          </div>
-          <div className="EditSettings__singleSetting">
-            {t("profile.displayLanguage")}
-              <Radio.Group
-                defaultValue={initLanguage}
-                buttonStyle="solid"
-                onChange={changeLanguageHandler}
-                className="EditSettings__radioGroup"
-              >
-                <Radio.Button value="en">English</Radio.Button>
-                <Radio.Button value="fr">Français</Radio.Button>
-                <Radio.Button value="de">Deutsch</Radio.Button>
-              </Radio.Group>
-          </div>
-          <div className="EditSettings__singleSetting">
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={() => {
-                changeProfilSettingsHandler(
-                  "displayArchived",
-                  !userStore.profilSettings.displayArchived,
-                );
-              }}
-              checked={userStore.profilSettings.displayArchived}
-            />{" "}
-            {t("profile.settingShowArchived")}
-          </div>
-          <div className="EditSettings__singleSetting">
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={() => {
-                changeProfilSettingsHandler(
-                  "displayPrivate",
-                  !userStore.profilSettings.displayPrivate,
-                );
-              }}
-              checked={userStore.profilSettings.displayPrivate}
-            />{" "}
-            {t("profile.settingDisplayPrivate")}
-          </div>
-        </div>
+    <div className="EditSettings__subContainer">
+      <Divider orientation="left" plain>
+        {t("profile.displaySettings")}
+      </Divider>
+      <div className="EditSettings__singleSetting">
+        {t("profile.genderBasedGarderobe")}
+        <Radio.Group
+          defaultValue={String(userStore.gender)}
+          buttonStyle="solid"
+          onChange={changeGenderHandler}
+          className="EditSettings__radioGroup"
+        >
+          <Radio.Button value="1">{t("profile.male")}</Radio.Button>
+          <Radio.Button value="2">{t("profile.female")}</Radio.Button>
+          <Tooltip placement="top" title={t("profile.tooltipNB")}>
+            <Radio.Button value="3">{t("profile.nonbinary")}</Radio.Button>
+          </Tooltip>
+        </Radio.Group>
+      </div>
+      <div className="EditSettings__singleSetting">
+        {t("profile.displayLanguage")}
+        <Radio.Group
+          defaultValue={initLanguage}
+          buttonStyle="solid"
+          onChange={changeLanguageHandler}
+          className="EditSettings__radioGroup"
+        >
+          <Radio.Button value="en">English</Radio.Button>
+          <Radio.Button value="fr">Français</Radio.Button>
+          <Radio.Button value="de">Deutsch</Radio.Button>
+        </Radio.Group>
+      </div>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={() => {
+            changeProfilSettingsHandler(
+              "displayArchived",
+              !userStore.profilSettings.displayArchived,
+            );
+          }}
+          checked={userStore.profilSettings.displayArchived}
+        />{" "}
+        {t("profile.settingShowArchived")}
+      </div>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={() => {
+            changeProfilSettingsHandler(
+              "displayPrivate",
+              !userStore.profilSettings.displayPrivate,
+            );
+          }}
+          checked={userStore.profilSettings.displayPrivate}
+        />{" "}
+        {t("profile.settingDisplayPrivate")}
+      </div>
+    </div>
   );
 });

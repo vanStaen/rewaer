@@ -73,9 +73,7 @@ export const MenuBar = observer((props) => {
       ></div>
       <div className="menu__spacer"></div>
       <div className="menu__main">
-        <span className="menu__RewaerMotto left">
-          Rewaer
-        </span>
+        <span className="menu__RewaerMotto left">Rewaer</span>
 
         <Link to="/looks">
           <div

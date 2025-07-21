@@ -22,51 +22,51 @@ export const EmailSettings = observer(() => {
 
   return (
     <div className="EditSettings__subContainer">
-          <Divider orientation="left" plain>
-            {t("profile.emailSettings")}
-          </Divider>
-          <div className="EditSettings__singleSetting">
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={() => {
-                changeEmailSettingsHandler(
-                  "sendEmailFriendRequest",
-                  !userStore.emailSettings.sendEmailFriendRequest,
-                );
-              }}
-              checked={userStore.emailSettings.sendEmailFriendRequest}
-            />{" "}
-            {t("profile.settingSendEmailOnFriendRequest")}
-          </div>
-          <div className="EditSettings__singleSetting">
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={() => {
-                changeEmailSettingsHandler(
-                  "sendEmailNewMessage",
-                  !userStore.emailSettings.sendEmailNewMessage,
-                );
-              }}
-              checked={userStore.emailSettings.sendEmailNewMessage}
-            />{" "}
-            {t("profile.settingSendEmailWhenNewMessage")}
-          </div>
-          <div className="EditSettings__singleSetting">
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={() => {
-                changeEmailSettingsHandler(
-                  "sendEmailMarketing",
-                  !userStore.emailSettings.sendEmailMarketing,
-                );
-              }}
-              checked={userStore.emailSettings.sendEmailMarketing}
-            />{" "}
-            {t("profile.settingKeepMeInformedAboutRewaer")}
-          </div>
+      <Divider orientation="left" plain>
+        {t("profile.emailSettings")}
+      </Divider>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={() => {
+            changeEmailSettingsHandler(
+              "sendEmailFriendRequest",
+              !userStore.emailSettings.sendEmailFriendRequest,
+            );
+          }}
+          checked={userStore.emailSettings.sendEmailFriendRequest}
+        />{" "}
+        {t("profile.settingSendEmailOnFriendRequest")}
+      </div>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={() => {
+            changeEmailSettingsHandler(
+              "sendEmailNewMessage",
+              !userStore.emailSettings.sendEmailNewMessage,
+            );
+          }}
+          checked={userStore.emailSettings.sendEmailNewMessage}
+        />{" "}
+        {t("profile.settingSendEmailWhenNewMessage")}
+      </div>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={() => {
+            changeEmailSettingsHandler(
+              "sendEmailMarketing",
+              !userStore.emailSettings.sendEmailMarketing,
+            );
+          }}
+          checked={userStore.emailSettings.sendEmailMarketing}
+        />{" "}
+        {t("profile.settingKeepMeInformedAboutRewaer")}
+      </div>
     </div>
   );
 });
