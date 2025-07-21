@@ -20579,7 +20579,7 @@ span.ant-radio + * {
   box-shadow: none;
 }
 .ant-switch-checked {
-  background-color: #6C917D;
+  background-color: #6C917D !important;
 }
 .ant-switch-loading,
 .ant-switch-disabled {
@@ -20599,7 +20599,7 @@ span.ant-radio + * {
   transition: margin 0.2s;
 }
 .ant-switch-checked .ant-switch-inner {
-  margin: 0 25px 0 7px;
+  margin: 0 25px 0 7px !important;
 }
 .ant-switch-handle {
   position: absolute;

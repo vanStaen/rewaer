@@ -1,61 +1,59 @@
 .EditSettings__main {
   width: 100vw;
-  height: auto;
+    min-height: calc(100vh - 50px - 190px); /* 50px menu, 190px footer */
 
         @media (max-width: 800px) {
-        .EditSettings__container {
-            margin: 10px 20px;
-            .EditSettings__title {
-                font-size: 14px;
-                font-weight: 500;
-                margin-bottom: 0;
-                .EditSettings__singleSetting {
-                    font-size: 13px;
-                    text-justify: inter-word;
-                }
+            .EditSettings__container {
+                margin: 10px 20px;
                 .EditSettings__centerDiv {
                     width: 100%;
                     text-align: center;
+                    .EditSettings__title {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+                .EditSettings__subContainer {
+                    .EditSettings__singleSetting {
+                        font-size: 13px;
+                        text-justify: inter-word;
+                        .EditSettings__radioGroup {
+                            margin-top: 10px;
+                        }
+                    }
                 }
             }
         }
-        }
 
     .EditSettings__container {
-        margin: 40px 8vw;
+        margin: 30px 40px 0 40px;
         max-width: 1200px;
         text-align: left;
         vertical-align: top;
         font-size: 16px;
-
         .EditSettings__title {
             font-size: 22px;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+        .EditSettings__subContainer {
+            margin: 30px 0;
+            .EditSettings__singleSetting {
+                font-size: 14px;
+                margin-bottom: 20px;
+                .EditSettings__link {
+                    color: #6C917D;
 
-
-        .ant-divider-inner-text {
-            color: rgba(0, 0, 0, .25) !important;
-        }
-
-        .EditSettings__Spacer {
-        margin-bottom: 15px;
-        }
-
-        .EditSettings__SpacerBeforeDivider {
-        margin-bottom: 30px;
-        }
-
-        .EditSettings__singleSetting {
-            font-size: 14px;
-
-            .EditSettings__link {
-                color: #6C917D;
-
-                &:hover {
-                cursor: pointer;
+                    &:hover {
+                    cursor: pointer;
+                    }
                 }
+                .EditSettings__radioGroup {
+                    margin-left: 20px;
+                }
+            }
+            .ant-divider-inner-text {
+                color: rgba(0, 0, 0, .25) !important;
             }
         }
     }

@@ -2,10 +2,10 @@ import React from "react";
 import { notification } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { postSendRecoverLink } from "../components/PasswordRecover/postSendRecoverLink.js";
-import { userStore } from "../stores/userStore/userStore.js";
+import { postSendRecoverLink } from "../../../../components/PasswordRecover/postSendRecoverLink.js";
+import { userStore } from "../../../../stores/userStore/userStore.js";
 
-export const useResetPasswordLink = async () => {
+export async function resetPasswordLink() {
   const { t } = useTranslation();
   try {
     await postSendRecoverLink(userStore.email);
@@ -19,4 +19,4 @@ export const useResetPasswordLink = async () => {
       placement: "bottomRight",
     });
   }
-};
+}
