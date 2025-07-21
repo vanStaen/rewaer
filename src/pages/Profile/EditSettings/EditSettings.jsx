@@ -8,6 +8,7 @@ import {
   SettingOutlined,
   MailOutlined,
   WarningOutlined,
+  FundProjectionScreenOutlined,
 } from "@ant-design/icons";
 
 import { userStore } from "../../../stores/userStore/userStore.js";
@@ -45,7 +46,7 @@ export const EditSettings = observer(() => {
     {
       value: 2,
       label: !isMobile && t("profile.displaySettings"),
-      icon: <SettingOutlined />,
+      icon: <FundProjectionScreenOutlined />,
     },
     {
       value: 3,

@@ -1,5 +1,5 @@
 .EditSettings__singleSetting .deleteButton {
-    width: 250px;
+    width: 100%;
     background: rgba(110, 0, 0, 1);
     border: 1px solid rgb(80, 0, 0);
   }
