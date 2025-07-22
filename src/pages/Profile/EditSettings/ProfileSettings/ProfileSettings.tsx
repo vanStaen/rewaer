@@ -7,14 +7,20 @@ import { useTranslation } from "react-i18next";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings.js";
 
-// TODO add tests for this component
-// TODO refactor to make it more readable and maintainable
+type ProfilSettingKey =
+  | "showLastSeenOnline"
+  | "hideProfilToStrangers"
+  | "hideLooksToStrangers"
+  | "hideItemsToStrangers"
+  | "displayArchived"
+  | "displayPrivate"
+  | "showLastName";
 
-export const ProfileSettings = observer(() => {
+export const ProfileSettings: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  const changeProfilSettingsHandler = (setting, value) => {
-    const tempProfilSettings = userStore.profilSettings;
+  const changeProfilSettingsHandler = (setting: ProfilSettingKey, value: boolean): void => {
+    const tempProfilSettings = { ...userStore.profilSettings };
     tempProfilSettings[setting] = value;
     userStore.setProfilSettings(tempProfilSettings);
     updateSettings(userStore.emailSettings, tempProfilSettings);

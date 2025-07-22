@@ -3,26 +3,27 @@ import { Divider, Switch, Radio, Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import { RadioChangeEvent } from "antd/es/radio";
 
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings.js";
 import { updateLanguage } from "../actions/updateLanguage.js";
 import { updateGender } from "../actions/updateGender.js";
 
-// TODO add tests for this component
+type ProfilSettingsKey = keyof typeof userStore.profilSettings;
 
-export const DisplaySettings = observer(() => {
+export const DisplaySettings: React.FC = observer(() => {
   const { i18n, t } = useTranslation();
   const initLanguage = i18n.language.slice(0, 2);
 
-  const changeProfilSettingsHandler = (setting, value) => {
-    const tempProfilSettings = userStore.profilSettings;
+  const changeProfilSettingsHandler = (setting: ProfilSettingsKey, value: boolean): void => {
+    const tempProfilSettings = { ...userStore.profilSettings };
     tempProfilSettings[setting] = value;
     userStore.setProfilSettings(tempProfilSettings);
     updateSettings(userStore.emailSettings, tempProfilSettings);
   };
 
-  const changeLanguageHandler = (event) => {
+  const changeLanguageHandler = (event: RadioChangeEvent): void => {
     const value = event.target.value;
     if (value === "en") {
       i18n.changeLanguage("en-US");
@@ -34,7 +35,7 @@ export const DisplaySettings = observer(() => {
     updateLanguage(value);
   };
 
-  const changeGenderHandler = (event) => {
+  const changeGenderHandler = (event: RadioChangeEvent): void => {
     const value = parseInt(event.target.value);
     userStore.setGender(value);
     updateGender(value);

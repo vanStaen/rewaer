@@ -6,7 +6,7 @@ import { getHasAccess } from "./getHasAccess.js";
 import { userStore } from "../userStore/userStore.js";
 
 export class AuthStore {
-  hasAccess = null;
+  hasAccess = false;
 
   constructor() {
     makeObservable(this, {

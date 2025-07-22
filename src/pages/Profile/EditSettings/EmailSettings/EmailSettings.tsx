@@ -7,14 +7,13 @@ import { useTranslation } from "react-i18next";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings";
 
-// TODO add tests for this component
-// TODO refactor to make it more readable and maintainable
-
-export const EmailSettings = observer(() => {
+export const EmailSettings: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  const changeEmailSettingsHandler = (setting, value) => {
-    const tempEmailSettings = userStore.emailSettings;
+  type EmailSettingKey = "sendEmailFriendRequest" | "sendEmailNewMessage" | "sendEmailMarketing";
+
+  const changeEmailSettingsHandler = (setting: EmailSettingKey, value: boolean): void => {
+    const tempEmailSettings = { ...userStore.emailSettings };
     tempEmailSettings[setting] = value;
     userStore.setEmailSettings(tempEmailSettings);
     updateSettings(tempEmailSettings, userStore.profilSettings);

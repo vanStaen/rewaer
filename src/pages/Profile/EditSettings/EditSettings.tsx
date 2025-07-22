@@ -11,10 +11,10 @@ import {
   FundProjectionScreenOutlined,
 } from "@ant-design/icons";
 
-import { UserSettings } from "./UserSettings/UserSettings.jsx";
-import { DisplaySettings } from "./DisplaySettings/DisplaySettings.jsx";
-import { EmailSettings } from "./EmailSettings/EmailSettings.jsx";
-import { ProfileSettings } from "./ProfileSettings/ProfileSettings.jsx";
+import { UserSettings } from "./UserSettings/UserSettings";
+import { DisplaySettings } from "./DisplaySettings/DisplaySettings";
+import { EmailSettings } from "./EmailSettings/EmailSettings";
+import { ProfileSettings } from "./ProfileSettings/ProfileSettings";
 import { DangerZone } from "./DangerZone/DangerZone";
 
 import { isMobileCheck } from "../../../helpers/dev/checkMobileTablet.js";
@@ -23,12 +23,16 @@ import { userStore } from "../../../stores/userStore/userStore.js";
 
 import "./EditSettings.less";
 
-// TODO add tests for this component
+interface SettingsOption {
+  value: number;
+  label: string | false;
+  icon: React.ReactNode;
+}
 
-export const EditSettings = observer(() => {
+export const EditSettings: React.FC = observer(() => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [pageSelected, setPageSelected] = useState(1);
+  const [pageSelected, setPageSelected] = useState<number>(1);
 
   const isMobile = isMobileCheck();
 
@@ -36,9 +40,9 @@ export const EditSettings = observer(() => {
     if (authStore.hasAccess === false) {
       navigate("/");
     }
-  }, [authStore.hasAccess]);
+  }, [authStore.hasAccess, navigate]);
 
-  const settingsOption = [
+  const settingsOption: SettingsOption[] = [
     {
       value: 1,
       label: !isMobile && t("profile.accountSettings"),
@@ -66,11 +70,11 @@ export const EditSettings = observer(() => {
     },
   ];
 
-  const segmentedChangeHandler = (e) => {
-    setPageSelected(e);
+  const segmentedChangeHandler = (value: string | number): void => {
+    setPageSelected(value as number);
   };
 
-  const renderSwitch = (settingPage) => {
+  const renderSwitch = (settingPage: number): React.ReactNode => {
     switch (settingPage) {
       case 1:
         return <UserSettings />;
@@ -100,7 +104,7 @@ export const EditSettings = observer(() => {
               {t("profile.editYourSetting")}
             </div>
             <Segmented
-              size={isMobile && "large"}
+              size={isMobile ? "large" : "middle"}
               onChange={segmentedChangeHandler}
               options={settingsOption}
             />

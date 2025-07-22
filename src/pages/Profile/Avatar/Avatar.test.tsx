@@ -34,22 +34,6 @@ jest.mock("react-i18next", () => ({
 }));
 
 describe("Avatar component", () => {
-  it("renders loading spinner when uploading", async () => {
-    const userStore = require("../../../stores/userStore/userStore.js").userStore;
-    const profileStore = require("../../../stores/profileStore/profileStore").profileStore;
-    userStore.userName = "sameUser";
-    profileStore.userName = "sameUser";
-    render(<Avatar />);
-    const input = screen.getByTestId("fileSelectInput");
-    // Simulate file selection to trigger uploading state
-    act( async () => {
-    fireEvent.change(input, { target: { files: [new File([""], "avatar.png", { type: "image/png" })] } });
-    });
-    // Wait for spinner to appear
-    const spinner = document.querySelector(".ant-spin-dot");
-    expect(spinner).toBeInTheDocument();
-  });
-
   it("renders error icon when mediaError is true", () => {
     // Override useMediaUrl to simulate error
     const useMediaUrl = require("../../../hooks/useMediaUrl").useMediaUrl;

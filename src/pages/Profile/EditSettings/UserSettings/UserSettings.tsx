@@ -5,10 +5,15 @@ import { useTranslation } from "react-i18next";
 
 import { UserNameUpdate } from "./UserNameUpdate/UserNameUpdate.jsx";
 import { resetPasswordLink } from "../actions/resetPasswordLink.js";
+
 import "../EditSettings.less";
 
-export const UserSettings = observer(() => {
+export const UserSettings: React.FC = observer(() => {
   const { t } = useTranslation();
+
+  const handleResetPasswordClick = (): void => {
+    resetPasswordLink();
+  };
 
   return (
     <div className="EditSettings__subContainer">
@@ -17,7 +22,7 @@ export const UserSettings = observer(() => {
       </Divider>
       <div className="EditSettings__singleSetting">
         {t("profile.triggerPasswordReset")}{" "}
-        <span onClick={resetPasswordLink} className="EditSettings__link">
+        <span onClick={handleResetPasswordClick} className="EditSettings__link">
           {t("main.clickHere")}
         </span>
       </div>

@@ -15,8 +15,8 @@ export class UserStore {
   avatar = null;
   firstName = null;
   lastName = null;
-  emailSettings = null;
-  profilSettings = null;
+  emailSettings = defaultEmailSettings;
+  profilSettings = defaultProfilSettings;
   language = "en";
   gender = null;
   friends = [];
