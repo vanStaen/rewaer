@@ -1,0 +1,23 @@
+@import './colors.less';
+
+/* Radio custom */
+.ant-radio-group {
+    .ant-radio-button-wrapper {
+        &:hover {
+            color: @primaryColor !important;
+        }
+    }
+    .ant-radio-button-wrapper-checked {
+            border-color: @primaryColor !important;
+            background: @primaryColor !important;
+        &:hover {
+            color: @whiteFaded !important;
+        }
+        &::before {
+            background-color: @borderColor !important;
+        }
+        .ant-radio-button-checked {
+            background: @primaryColor !important;
+        }
+    }
+}
