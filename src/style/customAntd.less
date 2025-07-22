@@ -21,3 +21,37 @@
         }
     }
 }
+
+/* Switch custom */
+.ant-switch {
+    &.ant-switch-checked {
+        background-color: @primaryColor !important;
+    }
+}
+
+/* Input custom */
+.ant-input-outlined {
+    &:hover {
+        border-color: @primaryColor !important;
+    }
+    &:focus-within {
+        border-color: @primaryColor !important;
+        box-shadow: 0 0 0 2px rgba(@primaryColor, .1) !important;
+    }
+}
+
+/* Button custom */
+.ant-btn-variant-solid {
+    background-color: @primaryColor !important;
+    border-color: @primaryColor !important;
+    color: @white !important;
+    &:hover {
+        background-color: @primaryColorDark !important;
+        border-color: @primaryColor !important;
+    }
+    &:disabled{
+        background-color: @disabledColor !important;
+        border-color: @borderColor !important;
+        color: @borderColor !important;
+    }
+}
