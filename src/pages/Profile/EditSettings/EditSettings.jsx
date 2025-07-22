@@ -11,14 +11,15 @@ import {
   FundProjectionScreenOutlined,
 } from "@ant-design/icons";
 
-import { userStore } from "../../../stores/userStore/userStore.js";
 import { UserSettings } from "./UserSettings/UserSettings.jsx";
 import { DisplaySettings } from "./DisplaySettings/DisplaySettings.jsx";
 import { EmailSettings } from "./EmailSettings/EmailSettings.jsx";
 import { ProfileSettings } from "./ProfileSettings/ProfileSettings.jsx";
-import { DangerZone } from "./DangerZone/DangerZone.jsx";
+import { DangerZone } from "./DangerZone/DangerZone";
+
 import { isMobileCheck } from "../../../helpers/dev/checkMobileTablet.js";
 import { authStore } from "../../../stores/authStore/authStore.js";
+import { userStore } from "../../../stores/userStore/userStore.js";
 
 import "./EditSettings.less";
 

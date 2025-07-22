@@ -8,14 +8,14 @@ import { archiveAccount } from "../../actions/archiveAccount.js";
 
 import "./DeleteAccountButton.less";
 
-// TOFO : test this component
+// TODO : test this component
 
-export const DeleteAccountButton = () => {
+export const DeleteAccountButton: React.FC = () => {
   const { t } = useTranslation();
-  const [showAreYouSureButton, setShowAreYouSureButton] = useState(false);
-  const [secondsBeforeDisapearing, setSecondsBeforeDisapearing] = useState(0);
+  const [showAreYouSureButton, setShowAreYouSureButton] = useState<boolean>(false);
+  const [secondsBeforeDisapearing, setSecondsBeforeDisapearing] = useState<number>(0);
 
-  const areYouSureHandler = () => {
+  const areYouSureHandler = (): void => {
     setShowAreYouSureButton(true);
     setSecondsBeforeDisapearing(5);
     setTimeout(() => {
@@ -35,12 +35,12 @@ export const DeleteAccountButton = () => {
     }, 5000);
   };
 
-  const deleteAccountHandler = (event) => {
+  const deleteAccountHandler = (): void => {
     archiveAccount(true);
     notification.error({
       message: (
         <>
-          <b> {t("profile.willBeArchived")} </b>{" "}
+          <b>{t("profile.willBeArchived")}</b>{" "}
           {t("profile.loggingToReactivate")}
         </>
       ),

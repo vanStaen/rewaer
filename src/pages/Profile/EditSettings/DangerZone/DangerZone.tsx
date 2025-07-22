@@ -7,7 +7,7 @@ import { DeleteAccountButton } from "./DeleteAccountButton/DeleteAccountButton";
 
 // TODO add tests for this component
 
-export const DangerZone = observer(() => {
+export const DangerZone: React.FC = observer(() => {
   const { t } = useTranslation();
 
   return (
