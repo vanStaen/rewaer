@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { authStore } from "../../../../../stores/authStore/authStore";
 import { archiveAccount } from "../../actions/archiveAccount.js";
 
-import "./DeleteAccountButton.css";
+import "./DeleteAccountButton.less";
 
 // TOFO : test this component
 
@@ -57,6 +57,7 @@ export const DeleteAccountButton = () => {
         icon={<DeleteOutlined />}
         onClick={areYouSureHandler}
         type="primary"
+        disabled={showAreYouSureButton}
       >
         &nbsp;{t("profile.deleteAccount")}
       </Button>
