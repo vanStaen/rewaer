@@ -14,15 +14,21 @@ import { authStore } from "../../stores/authStore/authStore.js";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
 import { validateEmail } from "../../helpers/validateEmail";
 
-import "./LoginForm.css";
+import "./LoginForm.less";
 
-export const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRecovery, setIsRecovery] = useState(false);
-  const isEmail = useRef(undefined);
+interface LoginFormValues {
+  emailOrUsername: string;
+  password: string;
+  remember?: boolean;
+}
+
+export const LoginForm: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRecovery, setIsRecovery] = useState<boolean>(false);
+  const isEmail = useRef<string | undefined>(undefined);
   const { t } = useTranslation();
 
-  const submitHandler = async (values) => {
+  const submitHandler = async (values: LoginFormValues) => {
     setIsLoading(true);
     const emailOrUsername = values.emailOrUsername;
     const isValidEmail = validateEmail(emailOrUsername);
@@ -32,7 +38,7 @@ export const LoginForm = () => {
     const password = values.password;
     const remember = values.remember;
     try {
-      let error = null;
+      let error: string | null = null;
       if (isValidEmail) {
         error = await authStore.login(
           emailOrUsername,
@@ -99,6 +105,7 @@ export const LoginForm = () => {
         }
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
     setIsLoading(false);
@@ -155,6 +162,7 @@ export const LoginForm = () => {
           name="remember"
           valuePropName="checked"
           style={{ display: "inline-block", width: "calc(50%)" }}
+          // @ts-ignore
           defaultChecked={false}
           className="login__checkBoxRemember"
         >
@@ -173,7 +181,7 @@ export const LoginForm = () => {
           }}
         >
           <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
-            {t("login.recoverPassword").replace(/^\w/, (c) => c.toUpperCase())}
+            {t("login.recoverPassword").replace(/^\w/, (c: string) => c.toUpperCase())}
           </span>
         </Form.Item>
 

@@ -55,3 +55,24 @@
         color: @borderColor !important;
     }
 }
+.ant-btn-color-primary {
+    box-shadow: 0 2px 0 rgba(@primaryColor, .1) !important;
+}
+
+
+/* Checkbox custom */
+.ant-checkbox-wrapper {
+    &:hover {
+        color: @primaryColor !important;
+    }
+    .ant-checkbox-inner {
+        border-color: @borderColor !important;
+        background-color: @white !important;
+    }
+}
+.ant-checkbox-wrapper-checked {
+    .ant-checkbox-inner {
+        border-color: @borderColor !important;
+        background-color: @primaryColor !important;
+    }
+}
