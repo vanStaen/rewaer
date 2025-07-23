@@ -1,3 +1,5 @@
+@import '../../style/colors.less';
+
 .signup__full {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
@@ -18,7 +20,12 @@
 
 .signup__full .signup__terms {
   text-align: left;
-  color: #43464D;
+    a {
+        color: @primaryColor !important;
+        &:hover {
+            color: black !important;
+        }
+    }
 }
 
 .signup__full .ant-btn-primary {

@@ -21,6 +21,8 @@ export interface SignUpFormProps {
   setShowLogin: (show: boolean) => void;
 }
 
+// TODO create service/privacy/settings pages
+
 type ValidateStatus = "success" | "warning" | "error" | "validating" | undefined;
 
 interface SignUpFormValues {
