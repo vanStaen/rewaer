@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { notification } from "antd";
 import { DeleteAccountButton } from "./DeleteAccountButton";
-import { authStore } from "../../../../../stores/authStore/authStore";
+import { authStore } from "../../../../stores/authStore/authStore";
 import { archiveAccount } from "../../actions/archiveAccount.js";
 
 // Mock dependencies

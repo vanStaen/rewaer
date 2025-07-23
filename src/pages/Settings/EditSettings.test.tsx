@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { EditSettings } from "./EditSettings";
-import { authStore } from "../../../stores/authStore/authStore.js";
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { EditSettings } from "../Profile/EditSettings/EditSettings";
+import { authStore } from "../../stores/authStore/authStore.js";
+import { userStore } from "../../stores/userStore/userStore.js";
 
 // Mock dependencies
 const mockNavigate = jest.fn();

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { ProfileSettings } from "./ProfileSettings";
-import { userStore } from "../../../../stores/userStore/userStore.js";
+import { userStore } from "../../../stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings.js";
 
 // Mock dependencies

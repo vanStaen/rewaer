@@ -8,7 +8,7 @@ import { Looks } from "./pages/Looks/Looks";
 import { Items } from "./pages/Items/Items";
 import { Info } from "./pages/Info/Info";
 import { Profile } from "./pages/Profile/Profile";
-import { EditSettings } from "./pages/Profile/EditSettings/EditSettings";
+import { EditSettings } from "./pages/Settings/EditSettings";
 import { Welcome } from "./pages/Welcome/Welcome";
 import { NewPassword } from "./pages/NewPassword/NewPassword";
 import { authStore } from "./stores/authStore/authStore";
@@ -16,7 +16,7 @@ import { userStore } from "./stores/userStore/userStore";
 import { pageStore } from "./stores/pageStore/pageStore";
 import { EmailVerified } from "./pages/EmailVerified/EmailVerified";
 import { MenuBar } from "./components/MenuBar/MenuBar";
-import { archiveAccount } from "./pages/Profile/EditSettings/actions/archiveAccount";
+import { archiveAccount } from "./pages/Settings/actions/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
@@ -26,7 +26,6 @@ import "./lib/i18n";
 import "./App.less";
 import "./style/colors.less";
 import "./style/customAntd.less";
-
 
 const TRESHOLD_FLOATING_FORMS = 800;
 
