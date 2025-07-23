@@ -7,13 +7,17 @@ import { LanguageDropDown } from "../../components/LanguageDropDown/LanguageDrop
 
 import clothesImage from "../../img/clothes.jpg";
 
-import "./Welcome.css";
+import "./Welcome.less";
 
-export const Welcome = (props) => {
-  const [showLogin, setShowLogin] = useState(props.showLogin ?? true);
+export interface WelcomeProps {
+  showLogin?: boolean;
+}
+
+export const Welcome: React.FC<WelcomeProps> = (props) => {
+  const [showLogin, setShowLogin] = useState<boolean>(props.showLogin ?? true);
 
   return (
-    <div>
+    <div className="welcome__container">
       <div className="welcome__alreadyMember">
         <AlreadyMember showLogin={showLogin} setShowLogin={setShowLogin} />
       </div>
