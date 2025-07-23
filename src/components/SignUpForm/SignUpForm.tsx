@@ -114,8 +114,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
         message: error.message,
         placement: "topLeft",
       });
-      // eslint-disable-next-line no-console
-      console.log(error);
     }
     setIsLoading(false);
   };
