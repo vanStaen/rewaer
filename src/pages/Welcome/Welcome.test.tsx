@@ -2,10 +2,10 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Welcome } from "./Welcome";
 
-// Mock child components
 jest.mock("../../components/LoginForm/LoginForm", () => ({
   LoginForm: () => <div>LoginForm</div>,
 }));
+
 jest.mock("../../components/SignUpForm/SignUpForm", () => ({
   SignUpForm: ({ setShowLogin }: any) => (
     <div>
@@ -14,6 +14,7 @@ jest.mock("../../components/SignUpForm/SignUpForm", () => ({
     </div>
   ),
 }));
+
 jest.mock("../../components/SignUpForm/AlreadyMember", () => ({
   AlreadyMember: ({ showLogin, setShowLogin }: any) => (
     <button onClick={() => setShowLogin(!showLogin)}>
@@ -21,8 +22,13 @@ jest.mock("../../components/SignUpForm/AlreadyMember", () => ({
     </button>
   ),
 }));
+
 jest.mock("../../components/LanguageDropDown/LanguageDropDown", () => ({
   LanguageDropDown: () => <div>LanguageDropDown</div>,
+}));
+
+jest.mock("../../helpers/dev/checkMobileTablet.js", () => ({
+  isMobileCheck: jest.fn(() => false)
 }));
 
 describe("Welcome", () => {

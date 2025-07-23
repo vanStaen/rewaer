@@ -4,7 +4,6 @@
     height: 100vh;
     display: inline-block;
     vertical-align: top;
-    background-image: url("./../../img/clothes.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -27,8 +26,10 @@
   .inlineBlock {
     display: inline-block;
   }
+}
 
-  @media (max-width: 800px) {
+ @media (max-width: 800px) {
+  .welcome__container {
     .welcome__alreadyMember {
       width: 50vw;
       text-align: right;
@@ -38,9 +39,7 @@
     }
     .welcome__rightPanel {
       width: 100vw;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
+      background-color: transparent;
     }
     .inlineBlock {
       display: block;
