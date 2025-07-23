@@ -8,7 +8,6 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { AlreadyMember } from "../SignUpForm/AlreadyMember";
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
@@ -193,9 +192,6 @@ export const LoginForm: React.FC = () => {
           >
             {isLoading ? <SyncOutlined spin /> : t("login.logMeIn")}
           </Button>
-          <div className="login__showAlreadyMember">
-            <AlreadyMember />
-          </div>
         </Form.Item>
       </Form>
     </div>

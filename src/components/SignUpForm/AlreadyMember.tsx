@@ -1,7 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export const AlreadyMember = (props) => {
+export interface AlreadyMemberProps {
+  showLogin: boolean;
+  setShowLogin: (show: boolean) => void;
+}
+
+export const AlreadyMember: React.FC<AlreadyMemberProps> = (props) => {
   const { t } = useTranslation();
 
   return (

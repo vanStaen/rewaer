@@ -20,7 +20,10 @@ import { archiveAccount } from "./pages/Settings/actions/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
-import { THRESHOLD_FLOATING_FORMS, FETCH_NEW_NOTIF_IN_MILLISECONDS } from "./lib/data/setup";
+import {
+  THRESHOLD_FLOATING_FORMS,
+  FETCH_NEW_NOTIF_IN_MILLISECONDS,
+} from "./lib/data/setup";
 
 import "./lib/i18n";
 

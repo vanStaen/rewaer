@@ -15,16 +15,32 @@ import { postVerifyEmailLink } from "../LoginForm/postVerifyEmailLink";
 import { postAddUser } from "./postAddUser";
 import { AlreadyMember } from "./AlreadyMember";
 
-import "./SignUpForm.css";
+import "./SignUpForm.less";
 
-export const SignUpForm = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isValidUsername, setIsValidUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
-  const [errorMsgUsername, setErrorMsgUsername] = useState(undefined); // validateStatus: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
+export interface SignUpFormProps {
+  setShowLogin: (show: boolean) => void;
+}
+
+type ValidateStatus = "success" | "warning" | "error" | "validating" | undefined;
+
+interface SignUpFormValues {
+  firstname: string;
+  lastname: string;
+  username: string;
+  email: string;
+  password: string;
+  confirm: string;
+  agreement: boolean;
+}
+
+export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isValidUsername, setIsValidUsername] = useState<ValidateStatus>(undefined);
+  const [errorMsgUsername, setErrorMsgUsername] = useState<string | null | undefined>(undefined);
   const { t, i18n } = useTranslation();
   const language = i18n.language.slice(0, 2);
 
-  const changeUserNameHandler = async (e) => {
+  const changeUserNameHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const username = e.target.value;
     if (username === "") {
       setIsValidUsername("error");
@@ -61,7 +77,7 @@ export const SignUpForm = (props) => {
     }
   };
 
-  const submitHandler = async (values) => {
+  const submitHandler = async (values: SignUpFormValues) => {
     setIsLoading(true);
     const firstname = values.firstname;
     const lastname = values.lastname;
@@ -91,11 +107,12 @@ export const SignUpForm = (props) => {
           placement: "topLeft",
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       notification.error({
         message: error.message,
         placement: "topLeft",
       });
+      // eslint-disable-next-line no-console
       console.log(error);
     }
     setIsLoading(false);
@@ -166,7 +183,6 @@ export const SignUpForm = (props) => {
           <Form.Item
             name="username"
             validateStatus={isValidUsername}
-            onChange={changeUserNameHandler}
             hasFeedback
             rules={[
               {
@@ -176,7 +192,7 @@ export const SignUpForm = (props) => {
               {
                 validator(_, value) {
                   if (value && isValidUsername === "error") {
-                    return Promise.reject(new Error(errorMsgUsername));
+                    return Promise.reject(new Error(errorMsgUsername || ""));
                   }
                   return Promise.resolve();
                 },
@@ -186,6 +202,7 @@ export const SignUpForm = (props) => {
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder={t("login.pickUsername")}
+              onChange={changeUserNameHandler}
             />
           </Form.Item>
         </Tooltip>
@@ -230,7 +247,7 @@ export const SignUpForm = (props) => {
               message: t("login.pleaseConfirmYourPassword"),
             },
             ({ getFieldValue }) => ({
-              validator(_, value) {
+              validator(_: any, value: string) {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
@@ -276,7 +293,7 @@ export const SignUpForm = (props) => {
             {isLoading ? <SyncOutlined spin /> : t("login.createAccount")}
           </Button>
           <div className="signup__showAlreadyMember">
-            <AlreadyMember />
+            <AlreadyMember setShowLogin={props.setShowLogin} showLogin={false} />
           </div>
         </Form.Item>
       </Form>

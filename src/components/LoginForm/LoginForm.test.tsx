@@ -19,9 +19,6 @@ jest.mock("react-i18next", () => ({
 }));
 
 // Mock child components
-jest.mock("../SignUpForm/AlreadyMember", () => ({
-  AlreadyMember: () => <div>AlreadyMember</div>,
-}));
 jest.mock("../PasswordRecover/PasswordRecover", () => ({
   PasswordRecover: ({ setIsRecovery, email }: any) => (
     <div>
@@ -53,7 +50,6 @@ describe("LoginForm", () => {
     expect(screen.getByPlaceholderText("login.emailOrUsername")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("login.password")).toBeInTheDocument();
     expect(screen.getByText("login.logMeIn")).toBeInTheDocument();
-    expect(screen.getByText("AlreadyMember")).toBeInTheDocument();
   });
 
   it("submits form with email and calls login", async () => {

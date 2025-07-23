@@ -1,9 +1,9 @@
-export const postUsernameTaken = async (username) => {
+export const postUsernameTaken = async (username: string): Promise<boolean> => {
   const requestBody = {
     username,
   };
 
-  const response = await fetch(process.env.API_URL + `/user/taken/`, {
+  const response = await fetch((process.env.API_URL as string) + `/user/taken/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,6 +20,6 @@ export const postUsernameTaken = async (username) => {
   }
 
   const data = await response.json();
-  const taken = data.taken;
+  const taken: boolean = data.taken;
   return taken;
 };

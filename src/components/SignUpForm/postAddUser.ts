@@ -1,11 +1,11 @@
 export const postAddUser = async (
-  firstName,
-  lastName,
-  userName,
-  email,
-  password,
-  language,
-) => {
+  firstName: string,
+  lastName: string,
+  userName: string,
+  email: string,
+  password: string,
+  language: string,
+): Promise<any> => {
   const requestBody = {
     query: `mutation ( $firstName: String, 
                        $lastName: String, 
@@ -38,7 +38,7 @@ export const postAddUser = async (
   };
 
   try {
-    const response = await fetch(process.env.API_URL + `/graphql`, {
+    const response = await fetch((process.env.API_URL as string) + `/graphql`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const postAddUser = async (
     });
     const data = await response.json();
     return data;
-  } catch (err) {
+  } catch (err: any) {
     if (err.response && err.response.status === 401) {
       throw new Error(`Error! Unauthorized(401)`);
     }
