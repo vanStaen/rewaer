@@ -24,7 +24,7 @@ jest.mock("../../actions/archiveAccount.js", () => ({
   archiveAccount: jest.fn()
 }));
 
-jest.mock("../../../../../stores/authStore/authStore", () => ({
+jest.mock("../../../../stores/authStore/authStore", () => ({
   authStore: {
     logout: jest.fn()
   }

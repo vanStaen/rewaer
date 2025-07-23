@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { EditSettings } from "../Profile/EditSettings/EditSettings";
+import { EditSettings } from "../Settings/EditSettings";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { userStore } from "../../stores/userStore/userStore.js";
 
@@ -27,17 +27,17 @@ jest.mock("react-i18next", () => ({
   })
 }));
 
-jest.mock("../../../helpers/dev/checkMobileTablet.js", () => ({
+jest.mock("../../helpers/dev/checkMobileTablet.js", () => ({
   isMobileCheck: jest.fn(() => false)
 }));
 
-jest.mock("../../../stores/authStore/authStore.js", () => ({
+jest.mock("../../stores/authStore/authStore.js", () => ({
   authStore: {
     hasAccess: true
   }
 }));
 
-jest.mock("../../../stores/userStore/userStore.js", () => ({
+jest.mock("../../stores/userStore/userStore.js", () => ({
   userStore: {
     isLoading: false
   }
@@ -187,7 +187,7 @@ describe("EditSettings", () => {
 
   it("handles mobile view correctly", () => {
     authStore.hasAccess = true;
-    const { isMobileCheck } = require("../../../helpers/dev/checkMobileTablet.js");
+    const { isMobileCheck } = require("../../helpers/dev/checkMobileTablet.js");
     isMobileCheck.mockReturnValue(true);
     
     render(<EditSettings />);

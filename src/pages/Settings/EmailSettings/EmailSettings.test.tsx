@@ -19,7 +19,7 @@ jest.mock("react-i18next", () => ({
   })
 }));
 
-jest.mock("../../../../stores/userStore/userStore.js", () => ({
+jest.mock("../../../stores/userStore/userStore.js", () => ({
   userStore: {
     emailSettings: {
       sendEmailFriendRequest: true,
