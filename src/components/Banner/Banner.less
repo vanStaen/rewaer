@@ -1,0 +1,41 @@
+.banner__container {
+  position: relative;
+  z-index: 5;
+  width: 100vw;
+  font-size: 16px;
+  background-color: rgba(218,133,133,1);
+  transition: max-height 0.5s linear;
+  visibility: hidden;
+
+  .banner__desc {
+    text-align: center;
+    font-weight: 300;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    padding-right: 36px; /* width of close button */
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(205,92,92,1); /*IndianRed*/
+    }
+  }
+
+  .banner__close {
+    position: absolute;
+    height: 100%;
+    width: 36px;
+    padding: 10px;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      color: firebrick;
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
