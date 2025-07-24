@@ -13,6 +13,7 @@ import {
   LogoutOutlined,
   SearchOutlined,
   SettingOutlined,
+  RobotOutlined,
 } from "@ant-design/icons";
 
 import { authStore } from "../../stores/authStore/authStore.js";
@@ -163,6 +164,20 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
           <MailOutlined />
           <span className="menu__elementName">{t("menu.mail")}</span>
         </div>
+
+        <div
+          key="mail"
+          className={`menu__elementDisabled left ${
+            pageStore.menuSelected === "assistant" && "selected"
+          }`}
+          onClick={() => {
+            // pageStore.setMenuSelected("mail");
+          }}
+        >
+          <RobotOutlined />
+          <span className="menu__elementName">{t("menu.assistant")}</span>
+        </div>
+        
 
         <Link to="/info">
           <div

@@ -116,7 +116,8 @@
     "mail": "Mail",
     "friends": "Friends",
     "notifications": "Notifications",
-    "search" : "Search"
+    "search" : "Search",
+    "assistant": "Creator (AI)"
   },
   "profile": {
     "hello": "Hello",
