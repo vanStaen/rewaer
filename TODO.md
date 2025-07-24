@@ -230,3 +230,7 @@
   - [x] Create extra Endpoint for friends
   - [x] Stop fetching those in the GraphQL
 - [x] Get rid of Axios in favor of the fetch() API
+- [ ] Refactor all React component that
+  - [ ] all are typescript
+  - [ ] all component have tests
+  - [ ] all style files are less

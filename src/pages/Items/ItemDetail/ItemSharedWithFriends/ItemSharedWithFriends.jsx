@@ -10,6 +10,8 @@ import { UserToShareWith } from "./UserToShareWith";
 
 import "./ItemSharedWithFriends.css";
 
+// TODO: translation
+
 export const ItemSharedWithFriends = observer(() => {
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
@@ -57,7 +59,7 @@ export const ItemSharedWithFriends = observer(() => {
             <PlusOutlined />
           </div>
           <Modal
-            title="Share this item with"
+            title={t("item.Share this item with")}
             centered
             open={showModal}
             footer={null}

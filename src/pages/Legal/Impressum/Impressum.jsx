@@ -1,6 +1,6 @@
 import React from "react";
 
-const Impressum = () => {
+export const Impressum = () => {
   return (
     <>
       <div>Impressum</div>

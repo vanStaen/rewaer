@@ -1,12 +1,45 @@
 @import './colors.less';
 
-.link {
-    cursor: pointer;
-    &:hover {
-        color: @primaryColor !important;
-    }
-}
-
 .striked {
   text-decoration: line-through;
+}
+
+
+.spinner {
+  width: calc(100vw); 
+  height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+// TODO nest those classes in a more appropriate file
+.iconRed {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconRedHover:hover {
+  color: rgba(180, 0, 0, 1);
+}
+
+.iconGoldHover:hover {
+  color: rgba(241, 196, 15, 1);
+}
+
+.iconGreen {
+  color: #6c917d;
+}
+
+.iconGreenHover:hover {
+  color: #6c917d;
+}
+
+.greyed {
+  color: #aaa;
+}
+
+.lightGreyed {
+  color: #ddd;
 }
