@@ -166,12 +166,12 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
         </div>
 
         <div
-          key="mail"
+          key="assistant"
           className={`menu__elementDisabled left ${
             pageStore.menuSelected === "assistant" && "selected"
           }`}
           onClick={() => {
-            // pageStore.setMenuSelected("mail");
+            // pageStore.setMenuSelected("assistant");
           }}
         >
           <RobotOutlined />
