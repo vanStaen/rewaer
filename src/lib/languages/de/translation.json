@@ -159,8 +159,8 @@
     "accountReactivated": "Ihr Konto ist nun reaktiviert.",
     "gladToHaveYouBack": "Schön, dass Sie wieder da sind!",
     "sendMessage": "Nachrichten schicken",
-    "sendFriendRequest": "Freundchaft anbieten",
-    "unfriendRequest": "Freundchaft beenden",
+    "sendFriendRequest": "Freundschaft anbieten",
+    "unfriendRequest": "Freundschaft beenden",
     "unFriend": "Freundschaft löschen",
     "follow": "Folgen",
     "deletePendingRequest": "Freundschaft Anfrage löschen",
@@ -208,5 +208,18 @@
     "itemPartOfThisLook": "Item in dieses look",
     "yourItems": "Deine items",
     "itemsSharedWithYou": "Items mit dir geteilt"
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "reportBug": "Fehler melden",
+    "writeEmail": "Schreiben Sie uns eine E-Mail",
+    "links": "Links",
+    "newsletter": "Newsletter",
+    "stayInformed": "Bleiben Sie über Rewaer informiert",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "aboutUs": "Über uns",
+    "termsOfService": "Allgemeine Geschäftsbedingungen",
+    "contactUs": "Uns kontaktieren"
   }
 }

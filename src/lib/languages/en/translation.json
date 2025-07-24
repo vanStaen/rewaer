@@ -213,5 +213,17 @@
     "itemPartOfThisLook": "Items part of this look",
     "yourItems": "Your items",
     "itemsSharesWithYou": "Items shared with you"
-  }
+  },
+  "footer": {
+    "aboutUs": "About us",
+    "impressum": "Impressum",
+    "datenschutz": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactUs": "Contact us",
+    "reportBug": "Report a bug",
+    "stayInformed": "Stay informed",
+    "newsletter": "Newsletter",
+    "contact": "Contact",
+    "links": "Links"
+    }
 }

@@ -209,5 +209,21 @@
     "itemPartOfThisLook": "Piéces dans ce look",
     "yourItems": "Vos piéces",
     "itemsSharedWithYou": "Pieces partagées avec vous"
+  },
+  "footer": {
+    "contact": "Contact",
+    "reportBug": "Signaler un bug",
+    "writeEmail": "Écrivez-nous un email",
+    "links": "Liens",
+    "fashionRevolution": "Fashion revolution",
+    "wearMe30Times": "Porte-moi 30 fois",
+    "newsletter": "Newsletter",
+    "stayInformed": "Restez informé sur Rewaer",
+    "impressum": "Mentions légales",
+    "datenschutz": "Protection des données",
+    "aboutUs": "About us",
+    "termsOfService": "Conditions d'utilisation",
+    "privacyPolicy": "Politique de confidentialité",
+    "contactUs": "Nous contacter"
   }
 }

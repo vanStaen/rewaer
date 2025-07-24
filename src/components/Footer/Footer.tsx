@@ -3,8 +3,6 @@ import { useTranslation } from "react-i18next";
 
 import "./Footer.less";
 
-// TODO: finish translation
-
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
@@ -22,7 +20,7 @@ export const Footer: React.FC = () => {
         <div className="col">
           <div className="title">{t("footer.contact")}</div>
           <div>{t("footer.reportBug")}</div>
-          <div>{t("footer.writeEmail")}</div>
+          <div>{t("footer.contactUs")}</div>
         </div>
         <div className="col">
           <div className="title">{t("footer.links")}</div>
@@ -54,8 +52,9 @@ export const Footer: React.FC = () => {
       <div className="footerSubContainer2">
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
         <div className="rightSide">
-          {" "}
-          {t("footer.impressum")} | {t("footer.datenschutz")} |{" "}
+          <div className="inlineBlock">{t("footer.impressum")}</div>{" "}|{" "} 
+          <div className="inlineBlock">{t("footer.datenschutz")}</div>{" "}|{" "} 
+          <div className="inlineBlock">{t("footer.termsOfService")}</div>{" "}|{" "} 
           <a
             href="https://www.clementvanstaen.com"
             target="_blank"
