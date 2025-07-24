@@ -24,19 +24,23 @@ import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
 
 import "./MenuBar.less";
 
-export const MenuBar = observer((props) => {
+interface MenuBarProps {
+  visitor?: boolean;
+}
+
+export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
   const { t } = useTranslation();
-  const [avatarUrl, setAvatarUrl] = useState(null);
-  const [avatarLoading, setAvatarLoading] = useState(true);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [avatarLoading, setAvatarLoading] = useState<boolean>(true);
   const bucket = "users";
 
-  const getAvatarUrl = async (path) => {
+  const getAvatarUrl = async (path: string | null) => {
     try {
       setAvatarUrl(null);
       if (path) {
         const url = await getPictureUrl(path, bucket);
-        const isloaded = new Promise((resolve, reject) => {
-          const loadImg = new Image();
+        const isloaded = new Promise<string>((resolve, reject) => {
+          const loadImg = new window.Image();
           loadImg.src = url;
           loadImg.onload = () => resolve(url);
           loadImg.onerror = (err) => reject(err);
@@ -45,6 +49,7 @@ export const MenuBar = observer((props) => {
         setAvatarUrl(url);
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     }
     setAvatarLoading(false);
@@ -55,13 +60,17 @@ export const MenuBar = observer((props) => {
   }, [userStore.avatar]);
 
   const handlerShowSubMenu = () => {
-    document.getElementById("subMenu").style.display = "block";
-    document.getElementById("subMenuBackGround").style.display = "block";
+    const subMenu = document.getElementById("subMenu");
+    const subMenuBackGround = document.getElementById("subMenuBackGround");
+    if (subMenu) subMenu.style.display = "block";
+    if (subMenuBackGround) subMenuBackGround.style.display = "block";
   };
 
   const handlerHideSubMenu = () => {
-    document.getElementById("subMenu").style.display = "none";
-    document.getElementById("subMenuBackGround").style.display = "none";
+    const subMenu = document.getElementById("subMenu");
+    const subMenuBackGround = document.getElementById("subMenuBackGround");
+    if (subMenu) subMenu.style.display = "none";
+    if (subMenuBackGround) subMenuBackGround.style.display = "none";
   };
 
   return (
@@ -188,15 +197,15 @@ export const MenuBar = observer((props) => {
                 )
               )
             }
-            style={userStore.isLoading && { backgroundColor: "#FFF" }}
+            style={userStore.isLoading ? { backgroundColor: "#FFF" } : undefined}
             size={36}
           />
           <div className="customSubMenu__container" id="subMenu">
             {userStore.isLoading ? (
-              <div key="spinner" disabled>
+              <div key="spinner" aria-disabled>
                 <Spin
                   style={{ width: "100%", padding: "10px" }}
-                  size="medium"
+                  size="default"
                 />
               </div>
             ) : (
