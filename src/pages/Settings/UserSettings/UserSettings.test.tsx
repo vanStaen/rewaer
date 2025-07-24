@@ -17,7 +17,7 @@ jest.mock("react-i18next", () => ({
   })
 }));
 
-jest.mock("./UserNameUpdate/UserNameUpdate.jsx", () => ({
+jest.mock("./UserNameUpdate/UserNameUpdate.tsx", () => ({
   UserNameUpdate: () => <div data-testid="username-update">Username Update Component</div>
 }));
 
