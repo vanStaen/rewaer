@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { looksStore } from "./looksStore";
 import { authStore } from "../../stores/authStore/authStore.js";
+import { pageStore } from "../../stores/pageStore/pageStore.js";
 import { userStore } from "../../stores/userStore/userStore.js";
 import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
@@ -18,7 +19,7 @@ export const Looks = observer(() => {
 
   useEffect(() => {
     looksStore.loadLooks();
-    userStore.setMenuSelected("looks");
+    pageStore.setMenuSelected("looks");
     userStore.profilSettings &&
       looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
   }, [looksStore.isOutOfDate, userStore.profilSettings]);

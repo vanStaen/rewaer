@@ -22,7 +22,7 @@ import { profileStore } from "../../stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
 import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
 
-import "./MenuBar.css";
+import "./MenuBar.less";
 
 export const MenuBar = observer((props) => {
   const { t } = useTranslation();
@@ -79,11 +79,9 @@ export const MenuBar = observer((props) => {
           <div
             key="looks"
             className={`left 
-            ${userStore.menuSelected === "looks" && "selected"}
+            ${pageStore.menuSelected === "looks" && "selected"}
             ${props.visitor ? "menu__elementDisabled" : "menu__element"}`}
-            onClick={() => {
-              !props.visitor && userStore.setMenuSelected("looks");
-            }}
+            onClick={() => pageStore.setMenuSelected("looks")}
             style={{ float: "left" }}
           >
             <CameraOutlined />
@@ -95,11 +93,9 @@ export const MenuBar = observer((props) => {
           <div
             key="items"
             className={`left 
-            ${userStore.menuSelected === "items" && "selected"}
+            ${pageStore.menuSelected === "items" && "selected"}
             ${props.visitor ? "menu__elementDisabled" : "menu__element"}`}
-            onClick={() => {
-              !props.visitor && userStore.setMenuSelected("items");
-            }}
+            onClick={() => pageStore.setMenuSelected("items")}
             style={{ float: "left" }}
           >
             <SkinOutlined />
@@ -111,10 +107,10 @@ export const MenuBar = observer((props) => {
           <div
             key="notifications"
             className={`notifications menu__element left ${
-              userStore.menuSelected === "notifications" && "selected"
+              pageStore.menuSelected === "notifications" && "selected"
             }`}
             onClick={() => {
-              userStore.setMenuSelected("notifications");
+              pageStore.setMenuSelected("notifications");
               pageStore.fetchNotifications();
             }}
           >
@@ -135,10 +131,10 @@ export const MenuBar = observer((props) => {
           <div
             key="search"
             className={`menu__element left ${
-              userStore.menuSelected === "search" && "selected"
+              pageStore.menuSelected === "search" && "selected"
             }`}
             onClick={() => {
-              userStore.setMenuSelected("search");
+              pageStore.setMenuSelected("search");
             }}
           >
             <SearchOutlined />
@@ -149,10 +145,10 @@ export const MenuBar = observer((props) => {
         <div
           key="mail"
           className={`menu__elementDisabled left ${
-            userStore.menuSelected === "mail" && "selected"
+            pageStore.menuSelected === "mail" && "selected"
           }`}
           onClick={() => {
-            // userStore.setMenuSelected("mail");
+            // pageStore.setMenuSelected("mail");
           }}
         >
           <MailOutlined />
@@ -163,10 +159,10 @@ export const MenuBar = observer((props) => {
           <div
             key="info"
             className={`info menu__element left ${
-              userStore.menuSelected === "info" && "selected"
+              pageStore.menuSelected === "info" && "selected"
             }`}
             onClick={() => {
-              userStore.setMenuSelected("info");
+              pageStore.setMenuSelected("info");
             }}
           >
             <QuestionOutlined />
@@ -176,7 +172,7 @@ export const MenuBar = observer((props) => {
         <div
           key="profile"
           className={`menu__element right ${
-            userStore.menuSelected === "profile" && "selected"
+            pageStore.menuSelected === "profile" && "selected"
           }`}
           onMouseEnter={handlerShowSubMenu}
           onMouseLeave={handlerHideSubMenu}
@@ -209,7 +205,7 @@ export const MenuBar = observer((props) => {
                   <div
                     key="profile"
                     onClick={() => {
-                      userStore.setMenuSelected("profile");
+                      pageStore.setMenuSelected("profile");
                       profileStore.fetchProfileData(userStore.userName);
                     }}
                     className="customSubMenu__element"
@@ -219,7 +215,11 @@ export const MenuBar = observer((props) => {
                   </div>
                 </Link>
                 <Link to="/editsettings/">
-                  <div key="settings" className="customSubMenu__element">
+                  <div
+                    key="settings"
+                    className="customSubMenu__element"
+                    onClick={() => pageStore.setMenuSelected("settings")}
+                  >
                     <SettingOutlined style={{ marginRight: "10px" }} />
                     {t("menu.editSetting")}
                   </div>

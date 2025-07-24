@@ -11,6 +11,7 @@ export class PageStore {
   notifications = [];
   messages = [];
   unseenNotificationsCount = 0;
+  menuSelected = null;
 
   constructor() {
     makeObservable(this, {
@@ -32,6 +33,8 @@ export class PageStore {
       setMessages: action,
       unseenNotificationsCount: observable,
       setUnseenNotificationsCount: action,
+      menuSelected: observable,
+      setMenuSelected: action,
     });
   }
 
@@ -69,6 +72,10 @@ export class PageStore {
 
   setUnseenNotificationsCount = (unseenNotificationsCount) => {
     this.unseenNotificationsCount = unseenNotificationsCount;
+  };
+
+  setMenuSelected = (menuSelected) => {
+    this.menuSelected = menuSelected;
   };
 
   fetchNotifications = async () => {

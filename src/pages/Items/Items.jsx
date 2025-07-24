@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { itemsStore } from "./itemsStore";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { userStore } from "../../stores/userStore/userStore.js";
+import { pageStore } from "../../stores/pageStore/pageStore.js";
 import { ItemDetail } from "./ItemDetail/ItemDetail";
 import { ItemList } from "./ItemList/ItemList";
 import { Banner } from "../../components/Banner/Banner";
@@ -19,7 +20,7 @@ export const Items = observer(() => {
 
   useEffect(() => {
     itemsStore.loadItems();
-    userStore.setMenuSelected("items");
+    pageStore.setMenuSelected("items");
     userStore.profilSettings &&
       itemsStore.setShowPrivateItems(userStore.profilSettings.displayPrivate);
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);

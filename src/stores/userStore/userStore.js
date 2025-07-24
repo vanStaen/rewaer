@@ -26,7 +26,6 @@ export class UserStore {
   lastActive = null;
   archived = null;
   usernameChange = null;
-  menuSelected = null;
 
   constructor() {
     makeObservable(this, {
@@ -47,7 +46,6 @@ export class UserStore {
       lastActive: observable,
       archived: observable,
       usernameChange: observable,
-      menuSelected: observable,
       setIsLoading: action,
       setError: action,
       setid: action,
@@ -67,7 +65,6 @@ export class UserStore {
       setLastActive: action,
       setArchived: action,
       setUsernameChange: action,
-      setMenuSelected: action,
       fetchUserData: action,
     });
   }
@@ -138,10 +135,6 @@ export class UserStore {
 
   setUsernameChange = (usernameChange) => {
     this.usernameChange = usernameChange;
-  };
-
-  setMenuSelected = (menuSelected) => {
-    this.menuSelected = menuSelected;
   };
 
   setFollowers = (followers) => {
