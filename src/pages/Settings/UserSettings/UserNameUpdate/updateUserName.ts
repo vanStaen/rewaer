@@ -1,6 +1,6 @@
 import { notification } from "antd";
 
-export async function updateUserName(userName, usernameChange) {
+export async function updateUserName(userName: string, usernameChange: number): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($userName: String, $usernameChange: Int){
@@ -20,7 +20,7 @@ export async function updateUserName(userName, usernameChange) {
     },
   };
 
-  const response = await fetch(process.env.API_URL + `/graphql`, {
+  const response = await fetch((process.env.API_URL as string) + `/graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
