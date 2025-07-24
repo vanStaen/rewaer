@@ -28,7 +28,7 @@ export const ItemDetailFormDropDown = observer((props) => {
 
   const loadOptionsForSelect = () => {
     const optionsTemp = [];
-    props.data.map((item) => {
+    props.data.forEach((item) => {
       optionsTemp.push({
         label: item[userStore.language],
         value: item.code,
@@ -39,7 +39,7 @@ export const ItemDetailFormDropDown = observer((props) => {
 
   const loadSelectedForSelect = () => {
     const optionsSelectedTemp = [];
-    props.data.map((item) => {
+    props.data.forEach((item) => {
       if (props.value?.includes(item.code)) {
         optionsSelectedTemp.push({
           label: item[userStore.language],

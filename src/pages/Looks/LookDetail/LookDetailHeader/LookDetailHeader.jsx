@@ -12,7 +12,6 @@ import { updateSeasonLook } from "../../actions/updateSeasonLook";
 import { lookCategory } from "../../../../lib/data/categories";
 import { seasons } from "../../../../lib/data/seasons";
 import { DetailReturnArrow } from "../../../../components/DetailReturnArrow/DetailReturnArrow";
-import { LookDetailFormRadio } from "../LookDetailFormElement/LookDetailFormRadio";
 
 import "./LookDetailHeader.less";
 
