@@ -1,43 +1,46 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import { DownloadOutlined, CheckOutlined } from "@ant-design/icons";
 
-import "./AddToHomeScreen.css";
+import "./AddToHomeScreen.less";
 
-export const AddToHomeScreen = () => {
-  let deferredPrompt;
-  let a2hsButton;
+export const AddToHomeScreen: React.FC = () => {
+  let deferredPrompt: any;
+  let a2hsButton: HTMLElement | null;
+
+  const installPromptHandler = (e: any) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (a2hsButton) {
+      a2hsButton.style.display = "block";
+    }
+  };
 
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", installPromptHandler);
     return () => {
       window.removeEventListener("beforeinstallprompt", installPromptHandler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useLayoutEffect(() => {
     a2hsButton = document.getElementById("a2hsButton");
   });
 
-  const installPromptHandler = (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    // console.log(e);
-    // console.log("A2HS prompt was prevented and stored!");
-    a2hsButton.style.display = "block";
-  };
-
   const addToHomeScreenClickHandler = () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        // console.log("User accepted the A2HS prompt");
-        a2hsButton.style.display = "none";
-        deferredPrompt = null;
-      } else {
-        console.log("User dismissed the A2HS prompt");
-        a2hsButton.style.display = "block";
-      }
-    });
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === "accepted") {
+          if (a2hsButton) a2hsButton.style.display = "none";
+          deferredPrompt = null;
+        } else {
+          // eslint-disable-next-line no-console
+          console.log("User dismissed the A2HS prompt");
+          if (a2hsButton) a2hsButton.style.display = "block";
+        }
+      });
+    }
   };
 
   return (

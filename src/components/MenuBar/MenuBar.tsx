@@ -235,7 +235,7 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
                 </Link>
                 <div className="menu__customDivider"></div>
 
-                <div key="logout" onClick={authStore.logout}>
+                <div key="add2hs">
                   <AddToHomeScreen />
                 </div>
 
