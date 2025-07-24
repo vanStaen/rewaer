@@ -168,7 +168,7 @@ export const ItemDetail = observer((props) => {
       ) : (
         <div className="itemDetail__itemContainer">
           <div className="itemDetail__itemContainerDivisor">
-            Item's description and informations
+            Item description and informations
           </div>
           <ItemDetailFormStringElement
             element="title"
