@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { notification } from "antd";
 import { observer } from "mobx-react";
@@ -32,9 +32,8 @@ import "./style/colors.less";
 import "./style/customAntd.less";
 import "./style/commun.less";
 
-const App = observer(() => {
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
+const App: React.FC = observer(() => {
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     authStore.checkAccess();
@@ -51,13 +50,13 @@ const App = observer(() => {
     setInterval(pageStore.fetchNotifications, FETCH_NEW_NOTIF_IN_MILLISECONDS);
   }, []);
 
-  const resetWindowInners = () => {
+  const resetWindowInners = useCallback(() => {
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
     pageStore.setShowOnlyFloatingUploadForm(
       window.innerWidth < THRESHOLD_FLOATING_FORMS,
     );
-  };
+  }, []);
 
   useEffect(() => {
     // initialize variables
@@ -81,7 +80,7 @@ const App = observer(() => {
     } else if (userStore.language === "de") {
       i18n.changeLanguage("de-DE");
     }
-  }, [userStore.language]);
+  }, [userStore.language, i18n]);
 
   useEffect(() => {
     // Check if account was archived
@@ -98,7 +97,7 @@ const App = observer(() => {
         placement: "bottomRight",
       });
     }
-  }, [userStore.archived]);
+  }, [userStore.archived, t]);
 
   return (
     <BrowserRouter>

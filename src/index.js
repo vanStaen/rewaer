@@ -1,10 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "core-js/stable";
-// import "regenerator-runtime/runtime";
 
 import { consoleGreetings } from "./helpers/dev/consoleGreetings.js";
-import App from "./App.jsx";
+import App from "./App.tsx";
 
 /* if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js").then(() => {
