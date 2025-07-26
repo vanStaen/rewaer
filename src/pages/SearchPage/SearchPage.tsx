@@ -135,11 +135,9 @@ export const SearchPage: React.FC = () => {
         loading={isSearching}
       />
 
-      {results && (
+      {results?.count ? 
         <div className="search__results">Results: {results.count}</div>
-      )}
-
-      {!results && <div className="search__empty">Wow, such empty</div>}
+       :  <div className="search__empty">Wow, such empty</div>}
 
       <div>
         {results && results.users.length > 0 && (

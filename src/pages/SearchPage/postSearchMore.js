@@ -3,7 +3,7 @@ export const postSearchMore = async (searchText) => {
     searchText,
   };
 
-  const response = await fetch(process.env.API_URL + `/search/more`, {
+  const response = await fetch(process.env.API_URL + `/search/more/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

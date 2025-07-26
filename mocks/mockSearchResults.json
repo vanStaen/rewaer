@@ -3,17 +3,17 @@
   "users": [
     {
       "id": "1",
-      "userName": "testuser",
+      "userName": "username",
       "firstName": "Test",
-      "lastName": "User",
+      "lastName": "Result user",
       "avatar": "https://example.com/avatar.jpg"
     }
   ],
   "items": [
     {
       "id": "2",
-      "title": "Test Item",
-      "brand": "Test Brand",
+      "title": "Result item",
+      "brand": "Brand",
       "mediaId": "https://example.com/item.jpg",
       "colors": ["red", "blue"],
       "pattern": "solid"
@@ -22,7 +22,7 @@
   "looks": [
     {
       "id": "3",
-      "title": "Test Look",
+      "title": "Result look",
       "mediaId": "https://example.com/look.jpg",
       "category": "casual",
       "season": "summer",

@@ -48,7 +48,7 @@
     "graphql": "^15.3.0",
     "i18next": "^20.4.0",
     "i18next-browser-languagedetector": "^6.1.2",
-    "image-webpack-loader": "^4.4.0",
+    "image-webpack-loader": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mobx": "^6.1.7",
     "mobx-react": "^7.0.5",
