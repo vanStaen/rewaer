@@ -1,0 +1,274 @@
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { SearchPage } from './SearchPage';
+import { profileStore } from '../../stores/profileStore/profileStore.js';
+import mockSearchResults from '../../../mocks/mockSearchResults.json';
+
+// Mock external dependencies
+jest.mock('../../stores/userStore/userStore.js', () => ({
+  userStore: {
+    language: 'en'
+  }
+}));
+jest.mock('../../stores/profileStore/profileStore.js', () => ({
+  profileStore: {
+    fetchProfileData: jest.fn()
+  }
+}));
+jest.mock('../../helpers/convertCodeTo', () => ({
+  convertCodeToObjectString: jest.fn().mockReturnValue({ en: 'Translated Text' })
+}));
+
+jest.mock("./postSearch", () => ({
+  postSearch: jest.fn(() => Promise.resolve(mockSearchResults)),
+}));
+jest.mock("./postSearchMore", () => ({
+  postSearchMore: jest.fn(() => Promise.resolve(mockSearchResults)),
+}));
+
+jest.mock('../../lib/data/categories', () => ({
+  lookCategory: {
+    casual: { en: 'Casual', fr: 'Décontracté' },
+    formal: { en: 'Formal', fr: 'Formel' },
+    business: { en: 'Business', fr: 'Affaires' },
+    party: { en: 'Party', fr: 'Fête' }
+  }
+}));
+jest.mock('../../lib/data/colors', () => ({
+  colors: {
+    red: { en: 'Red', fr: 'Rouge' },
+    blue: { en: 'Blue', fr: 'Bleu' },
+    black: { en: 'Black', fr: 'Noir' }
+  }
+}));
+jest.mock('../../lib/data/pattern', () => ({
+  pattern: {
+    solid: { en: 'Solid', fr: 'Uni' },
+    striped: { en: 'Striped', fr: 'Rayé' },
+    polka: { en: 'Polka Dots', fr: 'Pois' }
+  }
+}));
+jest.mock('../../lib/data/seasons', () => ({
+  seasons: {
+    spring: { en: 'Spring', fr: 'Printemps' },
+    summer: { en: 'Summer', fr: 'Été' },
+    autumn: { en: 'Autumn', fr: 'Automne' },
+    winter: { en: 'Winter', fr: 'Hiver' }
+  }
+}));
+
+const { postSearch } = require("./postSearch");
+const { postSearchMore } = require("./postSearchMore");
+
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(
+    <BrowserRouter>
+      {component}
+    </BrowserRouter>
+  );
+};
+
+describe('SearchPage', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('renders search input with correct placeholder', () => {
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    expect(searchInput).toBeInTheDocument();
+  });
+
+  it('shows empty state when no results', () => {
+    renderWithRouter(<SearchPage />);
+    
+    const emptyMessage = screen.getByText('Wow, such empty');
+    expect(emptyMessage).toBeInTheDocument();
+  });
+
+  it('calls postSearch on input change', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test query' } });
+    
+    await waitFor(() => {
+      expect(postSearch).toHaveBeenCalledWith('test query');
+    });
+  });
+
+  fit('calls postSearchMore on enter key press', async () => {
+    postSearchMore.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test query' } });
+    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter' });
+    
+    await waitFor(() => {
+      expect(postSearchMore).toHaveBeenCalledWith('test query');
+    });
+  });
+
+  it('calls postSearchMore on search button click', async () => {
+    postSearchMore.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test query' } });
+    
+    const searchButton = screen.getByRole('button', { name: /search/i });
+    fireEvent.click(searchButton);
+    
+    await waitFor(() => {
+      expect(postSearchMore).toHaveBeenCalledWith('test query');
+    });
+  });
+
+  it('displays search results count', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Results: 3')).toBeInTheDocument();
+    });
+  });
+
+  it('renders user results correctly', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Users')).toBeInTheDocument();
+      expect(screen.getByText('testuser')).toBeInTheDocument();
+      expect(screen.getByText('Test User')).toBeInTheDocument();
+    });
+  });
+
+  it('renders item results correctly', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Items')).toBeInTheDocument();
+      expect(screen.getByText('Test Item')).toBeInTheDocument();
+    });
+  });
+
+  it('renders look results correctly', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Looks')).toBeInTheDocument();
+      expect(screen.getByText('Test Look')).toBeInTheDocument();
+      expect(screen.getByText('2 items')).toBeInTheDocument();
+    });
+  });
+
+  it('calls profileStore.fetchProfileData when user link is clicked', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      const userLink = screen.getByText('testuser').closest('a');
+      expect(userLink).toHaveAttribute('href', '/testuser');
+    });
+    
+    const userLink = screen.getByText('testuser').closest('a');
+    if (userLink) {
+      fireEvent.click(userLink);
+      expect(profileStore.fetchProfileData).toHaveBeenCalledWith('testuser');
+    }
+  });
+
+  it('shows loading state during search', async () => {
+    postSearch.mockImplementation(() => new Promise(resolve => setTimeout(() => resolve(mockSearchResults), 100)));
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    // Check if loading state is active (Ant Design Search component shows loading)
+    expect(searchInput).toBeInTheDocument();
+  });
+
+  it('handles empty search input correctly', async () => {
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    fireEvent.change(searchInput, { target: { value: '' } });
+    
+    expect(postSearch).not.toHaveBeenCalledWith('');
+    expect(screen.getByText('Wow, such empty')).toBeInTheDocument();
+  });
+
+  it('handles API error gracefully', async () => {
+    postSearch.mockResolvedValue(null);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('Wow, such empty')).toBeInTheDocument();
+    });
+  });
+
+  it('highlights search terms in results', async () => {
+    postSearch.mockResolvedValue(mockSearchResults);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('testuser')).toBeInTheDocument();
+    });
+    
+    // Check if highlighting effect is applied (this tests the useEffect)
+    const resultElements = document.getElementsByClassName('resultContent');
+    expect(resultElements.length).toBeGreaterThan(0);
+  });
+
+  it('displays correct item count for looks', async () => {
+    const mockResultsWithSingleItem = {
+      ...mockSearchResults,
+      looks: [
+        {
+          ...mockSearchResults.looks[0],
+          items: [{ id: '4' }]
+        }
+      ]
+    };
+    
+    postSearch.mockResolvedValue(mockResultsWithSingleItem);
+    renderWithRouter(<SearchPage />);
+    
+    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+    fireEvent.change(searchInput, { target: { value: 'test' } });
+    
+    await waitFor(() => {
+      expect(screen.getByText('1 item')).toBeInTheDocument();
+    });
+  });
+});

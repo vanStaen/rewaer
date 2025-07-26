@@ -1,0 +1,32 @@
+{
+  "count": 3,
+  "users": [
+    {
+      "id": "1",
+      "userName": "testuser",
+      "firstName": "Test",
+      "lastName": "User",
+      "avatar": "https://example.com/avatar.jpg"
+    }
+  ],
+  "items": [
+    {
+      "id": "2",
+      "title": "Test Item",
+      "brand": "Test Brand",
+      "mediaId": "https://example.com/item.jpg",
+      "colors": ["red", "blue"],
+      "pattern": "solid"
+    }
+  ],
+  "looks": [
+    {
+      "id": "3",
+      "title": "Test Look",
+      "mediaId": "https://example.com/look.jpg",
+      "category": "casual",
+      "season": "summer",
+      "items": [{ "id": "4" }, { "id": "5" }]
+    }
+  ]
+}
