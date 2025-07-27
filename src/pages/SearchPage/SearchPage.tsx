@@ -9,12 +9,16 @@ import { colors } from "../../lib/data/colors";
 import { pattern } from "../../lib/data/pattern";
 import { seasons } from "../../lib/data/seasons";
 import { convertCodeToObjectString } from "../../helpers/convertCodeTo";
-import { userStore } from "../../stores/userStore/userStore.js";
-import { profileStore } from "../../stores/profileStore/profileStore.js";
+import { userStore } from "../../stores/userStore/userStore";
+import { profileStore } from "../../stores/profileStore/profileStore";
 
 import "./SearchPage.less";
 
 const { Search } = Input;
+
+// TODO show zero results when no results found
+// TODO delete search input
+// TODO make searchmore clearer
 
 interface User {
   id: string;
