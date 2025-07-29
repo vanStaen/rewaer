@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, TouchEvent, MouseEvent } from "react";
 import { Button } from "antd";
 import {
   CameraOutlined,
@@ -13,7 +13,7 @@ import {
 } from "@ant-design/icons";
 import { useNavigate, Link } from "react-router-dom";
 
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { postFollow } from "../Profile/ProfileActions/postFollow";
@@ -31,11 +31,25 @@ dayjs.extend(relativeTime);
 // the required distance between touchStart and touchEnd to be detected as a swipe
 const MIN_SWIPE_DISTANCE = 20;
 
-export const Notification = ({ data }) => {
+interface NotificationData {
+  id: string;
+  type: number;
+  seen: boolean;
+  title: string;
+  createdAt: string;
+  mediaUrl: string;
+  actionData: number;
+}
+
+interface NotificationProps {
+  data: NotificationData;
+}
+
+export const Notification: React.FC<NotificationProps> = ({ data }) => {
   const navigate = useNavigate();
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const throttling = useRef(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const throttling = useRef<boolean>(false);
 
   const { id, type, seen, title, createdAt, mediaUrl, actionData } = data;
   const notificationAge = dayjs(createdAt).fromNow();
@@ -45,22 +59,26 @@ export const Notification = ({ data }) => {
 
   const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, bucket);
 
-  const closeNotificationHandler = (id) => {
+  const closeNotificationHandler = (id: string): void => {
     const element = document.getElementById(`notification${id}`);
-    element.style.left = "100vw";
-    setTimeout(() => {
-      element.style.display = "none";
-      deleteNotification(id);
-    }, 300);
+    if (element) {
+      element.style.left = "100vw";
+      setTimeout(() => {
+        element.style.display = "none";
+        deleteNotification(id);
+      }, 300);
+    }
   };
 
-  const closeNotificationHandlerMobile = (id) => {
+  const closeNotificationHandlerMobile = (id: string): void => {
     const subContainer = document.getElementById(`subContainer${id}`);
-    subContainer.style.display = "none";
-    deleteNotification(id);
+    if (subContainer) {
+      subContainer.style.display = "none";
+      deleteNotification(id);
+    }
   };
 
-  const notificationClickHandler = async (type, title, actionData) => {
+  const notificationClickHandler = async (type: number, title: string, actionData: number): Promise<void> => {
     // Friend request
     if (type === 1 || type === 17) {
       navigate(`/${title}`);
@@ -122,66 +140,74 @@ export const Notification = ({ data }) => {
   const isNotFriend =
     userStore.friends.findIndex((friend) => friend.userName === title) === -1;
 
-  const followBackHandler = async (event) => {
+  const followBackHandler = async (event: MouseEvent<HTMLElement>): Promise<void> => {
     event.stopPropagation();
     try {
       await postFollow(actionData);
       userStore.fetchUserData(false);
       const element = document.getElementById(`followback${id}`);
       const elementMobile = document.getElementById(`followbackMobile${id}`);
-      element.style.opacity = 0;
-      elementMobile.style.opacity = 0;
-      setTimeout(() => {
-        elementMobile.style.display = "none";
-      }, 300);
+      if (element) element.style.opacity = "0";
+      if (elementMobile) {
+        elementMobile.style.opacity = "0";
+        setTimeout(() => {
+          elementMobile.style.display = "none";
+        }, 300);
+      }
     } catch (e) {}
   };
 
-  const acceptRequestHandler = async (event) => {
+  const acceptRequestHandler = async (event: MouseEvent<HTMLElement>): Promise<void> => {
     event.stopPropagation();
     try {
       await postAcceptRequest(actionData);
       userStore.fetchUserData(false);
       const element = document.getElementById(`acceptRequest${id}`);
       const elementMobile = document.getElementById(`acceptRequestMobile${id}`);
-      element.style.opacity = 0;
-      elementMobile.style.opacity = 0;
-      setTimeout(() => {
-        elementMobile.style.display = "none";
-      }, 300);
+      if (element) element.style.opacity = "0";
+      if (elementMobile) {
+        elementMobile.style.opacity = "0";
+        setTimeout(() => {
+          elementMobile.style.display = "none";
+        }, 300);
+      }
     } catch (e) {}
   };
 
-  const showDeleteHandler = (id) => {
+  const showDeleteHandler = (id: string): void => {
     const elementNotification = document.getElementById(`notification${id}`);
     const elementDeleteButtonIcon = document.getElementById(
       `deleteButtonIcon${id}`,
     );
-    const newHeight = `${elementNotification.offsetHeight}px`;
-    elementDeleteButtonIcon.style.height = newHeight;
-    elementDeleteButtonIcon.style.background = "rgba(160, 0, 0, 0.5)";
-    elementNotification.style.left = "-50px";
+    if (elementNotification && elementDeleteButtonIcon) {
+      const newHeight = `${elementNotification.offsetHeight}px`;
+      elementDeleteButtonIcon.style.height = newHeight;
+      elementDeleteButtonIcon.style.background = "rgba(160, 0, 0, 0.5)";
+      elementNotification.style.left = "-50px";
+    }
   };
 
-  const hideDeleteHandler = (id) => {
+  const hideDeleteHandler = (id: string): void => {
     const element = document.getElementById(`notification${id}`);
     const elementDeleteButtonIcon = document.getElementById(
       `deleteButtonIcon${id}`,
     );
-    element.style.left = "0";
-    setTimeout(() => {
-      elementDeleteButtonIcon.style.background = "transparent";
-    }, "300");
+    if (element) element.style.left = "0";
+    if (elementDeleteButtonIcon) {
+      setTimeout(() => {
+        elementDeleteButtonIcon.style.background = "transparent";
+      }, 300);
+    }
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>): void => setTouchEnd(e.targetTouches[0].clientX);
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>): void => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchEnd = (id) => {
+  const onTouchEnd = (id: string): void => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;

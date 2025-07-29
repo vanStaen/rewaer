@@ -7,7 +7,7 @@ import { Notification } from "./Notification";
 
 import "./Notifications.less";
 
-export const Notifications = observer(() => {
+export const Notifications: React.FC = observer(() => {
   useEffect(() => {
     postNotificationsSeen();
     pageStore.setUnseenNotificationsCount(0);
