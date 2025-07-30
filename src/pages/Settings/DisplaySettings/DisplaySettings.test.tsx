@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { DisplaySettings } from "./DisplaySettings";
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { updateSettings } from "../actions/updateSettings.js";
-import { updateLanguage } from "../actions/updateLanguage.js";
-import { updateGender } from "../actions/updateGender.js";
+import { updateSettings } from "../actions/updateSettings";
+import { updateLanguage } from "../actions/updateLanguage";
+import { updateGender } from "../actions/updateGender";
 
 // Mock dependencies
 const mockI18n = {
@@ -45,15 +45,15 @@ jest.mock("../../../stores/userStore/userStore.js", () => ({
   }
 }));
 
-jest.mock("../actions/updateSettings.js", () => ({
+jest.mock("../actions/updateSettings", () => ({
   updateSettings: jest.fn()
 }));
 
-jest.mock("../actions/updateLanguage.js", () => ({
+jest.mock("../actions/updateLanguage", () => ({
   updateLanguage: jest.fn()
 }));
 
-jest.mock("../actions/updateGender.js", () => ({
+jest.mock("../actions/updateGender", () => ({
   updateGender: jest.fn()
 }));
 

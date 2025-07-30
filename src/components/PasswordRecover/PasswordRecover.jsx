@@ -31,7 +31,7 @@ export const PasswordRecover = (props) => {
         });
         props.setIsRecovery(false);
       } catch (error) {
-        notification.warn({
+        notification.warning({
           message: error.message,
           placement: "topLeft",
         });

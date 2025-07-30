@@ -1,13 +1,12 @@
 import { notification } from "antd";
 
-export async function updateSettings(emailSettings, profilSettings) {
+export async function updateLanguage(language: string): Promise<boolean> {
   const requestBody = {
     query: `
-    mutation ($emailSettings: String, $profilSettings: String){
+    mutation ($language: String!){
       updateUser(
         userInput: {          
-          emailSettings: $emailSettings,
-          profilSettings: $profilSettings,
+          language: $language,
         }
       ) {
         id,
@@ -15,8 +14,7 @@ export async function updateSettings(emailSettings, profilSettings) {
     }
     `,
     variables: {
-      emailSettings: JSON.stringify(emailSettings),
-      profilSettings: JSON.stringify(profilSettings),
+      language,
     },
   };
 

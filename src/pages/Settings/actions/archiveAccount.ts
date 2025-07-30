@@ -1,6 +1,6 @@
 import { notification } from "antd";
 
-export async function archiveAccount(archived) {
+export async function archiveAccount(archived: boolean): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($archived: Boolean) {
@@ -25,6 +25,7 @@ export async function archiveAccount(archived) {
     },
     body: JSON.stringify(requestBody),
   });
+  
   if (response.status !== 200 && response.status !== 201) {
     notification.error({
       message: `Unauthenticated!`,

@@ -5,7 +5,7 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { updateSettings } from "../actions/updateSettings.js";
+import { updateSettings } from "../actions/updateSettings";
 
 type ProfilSettingKey =
   | "showLastSeenOnline"

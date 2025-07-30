@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next";
 import { RadioChangeEvent } from "antd/es/radio";
 
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { updateSettings } from "../actions/updateSettings.js";
-import { updateLanguage } from "../actions/updateLanguage.js";
-import { updateGender } from "../actions/updateGender.js";
+import { updateSettings } from "../actions/updateSettings";
+import { updateLanguage } from "../actions/updateLanguage";
+import { updateGender } from "../actions/updateGender";
 
 type ProfilSettingsKey = keyof typeof userStore.profilSettings;
 

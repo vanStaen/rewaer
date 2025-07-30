@@ -4,7 +4,7 @@ import { DeleteOutlined, WarningOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { authStore } from "../../../../stores/authStore/authStore";
-import { archiveAccount } from "../../actions/archiveAccount.js";
+import { archiveAccount } from "../../actions/archiveAccount";
 
 import "./DeleteAccountButton.less";
 

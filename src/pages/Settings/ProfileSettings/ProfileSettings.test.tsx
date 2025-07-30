@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { ProfileSettings } from "./ProfileSettings";
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { updateSettings } from "../actions/updateSettings.js";
+import { updateSettings } from "../actions/updateSettings";
 
 // Mock dependencies
 jest.mock("react-i18next", () => ({
@@ -35,7 +35,7 @@ jest.mock("../../../stores/userStore/userStore.js", () => ({
   }
 }));
 
-jest.mock("../actions/updateSettings.js", () => ({
+jest.mock("../actions/updateSettings", () => ({
   updateSettings: jest.fn()
 }));
 

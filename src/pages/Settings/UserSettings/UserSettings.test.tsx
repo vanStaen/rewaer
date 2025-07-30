@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { UserSettings } from "./UserSettings";
-import { resetPasswordLink } from "../actions/resetPasswordLink.js";
+import { resetPasswordLink } from "../actions/resetPasswordLink";
 
 // Mock dependencies
 jest.mock("react-i18next", () => ({
@@ -21,7 +21,7 @@ jest.mock("./UserNameUpdate/UserNameUpdate.tsx", () => ({
   UserNameUpdate: () => <div data-testid="username-update">Username Update Component</div>
 }));
 
-jest.mock("../actions/resetPasswordLink.js", () => ({
+jest.mock("../actions/resetPasswordLink", () => ({
   resetPasswordLink: jest.fn()
 }));
 

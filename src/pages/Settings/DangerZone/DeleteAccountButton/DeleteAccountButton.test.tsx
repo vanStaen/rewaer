@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
 import { notification } from "antd";
 import { DeleteAccountButton } from "./DeleteAccountButton";
 import { authStore } from "../../../../stores/authStore/authStore";
-import { archiveAccount } from "../../actions/archiveAccount.js";
+import { archiveAccount } from "../../actions/archiveAccount";
 
 // Mock dependencies
 jest.mock("react-i18next", () => ({
@@ -20,7 +20,7 @@ jest.mock("react-i18next", () => ({
   })
 }));
 
-jest.mock("../../actions/archiveAccount.js", () => ({
+jest.mock("../../actions/archiveAccount", () => ({
   archiveAccount: jest.fn()
 }));
 

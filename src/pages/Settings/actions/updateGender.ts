@@ -1,6 +1,6 @@
 import { notification } from "antd";
 
-export async function updateGender(gender) {
+export async function updateGender(gender: number): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($gender: Int!){

@@ -4,6 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { Notifications } from './Notifications';
 import { pageStore } from '../../stores/pageStore/pageStore';
 import { postNotificationsSeen } from './postNotificationsSeen';
+import { deleteNotification } from './deleteNotification';
+
+// Mock fetch globally
+global.fetch = jest.fn();
+const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
+
+// Mock environment variable
+process.env.API_URL = 'https://api.example.com';
 
 // Mock external dependencies
 jest.mock('./postNotificationsSeen');
@@ -126,3 +134,125 @@ describe('Notifications', () => {
     expect(emptyState).toHaveClass('notification__nothing');
   });
 });
+
+
+describe('deleteNotification', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('successfully deletes notification and returns true', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      status: 200,
+    } as Response);
+
+    const result = await deleteNotification('123');
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://api.example.com/notification/',
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: '123' }),
+      }
+    );
+    expect(result).toBe(true);
+  });
+
+  it('calls fetch with correct parameters', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      status: 200,
+    } as Response);
+
+    await deleteNotification('test-id-456');
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://api.example.com/notification/',
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: 'test-id-456' }),
+      }
+    );
+  });
+
+  it('handles network error and returns null', async () => {
+    const networkError = new Error('Network error');
+    mockFetch.mockRejectedValue(networkError);
+
+    const result = await deleteNotification('123');
+
+    expect(result).toBeNull();
+  });
+
+  it('throws error for 401 unauthorized response', async () => {
+    const unauthorizedError = {
+      response: {
+        status: 401,
+        data: 'Unauthorized'
+      }
+    };
+    mockFetch.mockRejectedValue(unauthorizedError);
+
+    await expect(deleteNotification('123')).rejects.toThrow('Error! Unauthorized(401)');
+  });
+
+  it('returns error response data for non-401 errors', async () => {
+    const errorWithResponse = {
+      response: {
+        status: 500,
+        data: { error: 'Internal server error' }
+      }
+    };
+    mockFetch.mockRejectedValue(errorWithResponse);
+
+    const result = await deleteNotification('123');
+
+    expect(result).toEqual({ error: 'Internal server error' });
+  });
+
+  it('returns null for errors without response', async () => {
+    const errorWithoutResponse = new Error('Some other error');
+    mockFetch.mockRejectedValue(errorWithoutResponse);
+
+    const result = await deleteNotification('123');
+
+    expect(result).toBeNull();
+  });
+
+  it('handles empty string id', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      status: 200,
+    } as Response);
+
+    await deleteNotification('');
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://api.example.com/notification/',
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: '' }),
+      }
+    );
+  });
+
+  it('handles fetch rejection without response property', async () => {
+    const simpleError = new Error('Simple error');
+    mockFetch.mockRejectedValue(simpleError);
+
+    const result = await deleteNotification('123');
+
+    expect(result).toBeNull();
+  });
+});
+

@@ -4,7 +4,7 @@ import defaultEmailSettings from "./defaultEmailSettings.json";
 import defaultProfilSettings from "./defaultProfilSettings.json";
 import { getUserInfo } from "./getUserInfo.js";
 import { getPending } from "./getPending.js";
-import { updateSettings } from "../../pages/Settings/actions/updateSettings.js";
+import { updateSettings } from "../../pages/Settings/actions/updateSettings.ts";
 
 export class UserStore {
   isLoading = true;

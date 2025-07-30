@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Form, Input, Button, notification } from "antd";
 import { useParams } from "react-router-dom";
 import { LockOutlined, SyncOutlined } from "@ant-design/icons";
@@ -7,47 +7,80 @@ import { useTranslation } from "react-i18next";
 import { postTokenVerify } from "./postTokenVerify";
 import { postChangePassword } from "./postChangePassword";
 
-import "./NewPassword.css";
+import "./NewPassword.less";
 
-export const NewPassword = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isValid, setIsValid] = useState(true);
+interface FormValues {
+  password: string;
+  confirm: string;
+}
+
+interface RouteParams {
+  key: string;
+}
+
+// TODO : test this component
+
+export const NewPassword: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean>(true);
   const { t } = useTranslation();
   const params = useParams();
+  const isMountedRef = useRef<boolean>(true);
 
   const token = params.key;
 
-  const submitHandler = async (value) => {
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  const submitHandler = async (value: FormValues): Promise<void> => {
+    if (!isMountedRef.current) return;
+
     setIsLoading(true);
     const password = value.password;
     try {
       const success = await postChangePassword(token, password);
+      if (!isMountedRef.current) return;
+
       if (success === true) {
         notification.success({
           message: t("login.passwordReseted"),
           placement: "topLeft",
         });
         setTimeout(() => {
-          document.location.href = "/";
+          if (isMountedRef.current) {
+            document.location.href = "/";
+          }
         }, 3000);
       } else {
-        notification.warn({
+        notification.warning({
           message: t("login.passwordNotChanged"),
           placement: "topLeft",
         });
       }
-    } catch (error) {
-      notification.warn({
+    } catch (error: any) {
+      if (!isMountedRef.current) return;
+
+      notification.warning({
         message: error.message,
         placement: "topLeft",
       });
       console.log(error);
     }
-    setIsLoading(false);
+
+    if (isMountedRef.current) {
+      setIsLoading(false);
+    }
   };
 
-  const verifyToken = useCallback(async () => {
+  const verifyToken = useCallback(async (): Promise<void> => {
+    if (!isMountedRef.current) return;
+
     const tokenValid = await postTokenVerify(token);
+    if (!isMountedRef.current) return;
+
     if (!tokenValid) {
       setIsValid(false);
       notification.error({
@@ -56,7 +89,7 @@ export const NewPassword = () => {
         duration: 0,
       });
     }
-  }, [token]);
+  }, [token, t]);
 
   useEffect(() => {
     verifyToken();
@@ -127,7 +160,7 @@ export const NewPassword = () => {
                 disabled={!isValid}
               >
                 {isLoading ? (
-                  <SyncOutlined spin />
+                  <SyncOutlined spin data-testid="loading-icon" />
                 ) : isValid ? (
                   t("login.updatePassword")
                 ) : (

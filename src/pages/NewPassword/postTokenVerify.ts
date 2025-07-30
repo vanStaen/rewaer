@@ -1,10 +1,9 @@
-export const postChangePassword = async (token, password) => {
+export const postTokenVerify = async (token: string | undefined): Promise<boolean> => {
   const requestBody = {
     token,
-    password,
   };
 
-  const response = await fetch(process.env.API_URL + `/user/changepassword`, {
+  const response = await fetch(process.env.API_URL + `/user/validtoken`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,6 +20,6 @@ export const postChangePassword = async (token, password) => {
   }
 
   const data = await response.json();
-  const changed = data.changed;
-  return changed;
+  const valid: boolean = data.valid;
+  return valid;
 };
