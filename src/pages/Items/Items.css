@@ -4,7 +4,7 @@
 
 .items__container {
   width: 100vw;
-  min-height: calc(100vh - 50px - 190px); /* 50px menu, 190px footer */
+  min-height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
