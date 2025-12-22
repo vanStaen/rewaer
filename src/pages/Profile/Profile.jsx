@@ -10,7 +10,7 @@ import { profileStore } from "../../stores/profileStore/profileStore";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { Avatar } from "./Avatar/Avatar";
 import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
-import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
+// import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
 import { ProfileMain } from "./ProfileMain/ProfileMain";
 import { MenuBar } from "../../components/MenuBar/MenuBar";
@@ -50,7 +50,6 @@ export const Profile = observer(() => {
           <>
             <div className="profil__containerLeft">
               <Avatar />
-              <ProfileDetails />
               <ProfileActions />
             </div>
             <div className="profil__containerCenter">

@@ -120,7 +120,7 @@ const App: React.FC = observer(() => {
           <Route path="/:username" element={<Profile />} />
           {authStore.hasAccess ? (
             <>
-              <Route path="/" element={<Profile />} />
+              <Route path="/" element={<Items />} />
             </>
           ) : (
             <Route path="/" element={<Welcome showLogin={true} />} />
