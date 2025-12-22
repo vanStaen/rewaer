@@ -1,6 +1,7 @@
 import { User } from "./userTypes";
+import { Item } from "./itemTypes";
 
-export interface Item {
+export interface Look {
   id: number | string;
   title: string;
   brand: string | null;
@@ -11,8 +12,11 @@ export interface Item {
   favorite: boolean;
   private: boolean;
   mediaId: string;
+  mediaIdMedium: string;
   likes: string[];
   dislikes: string[];
   createdAt: string;
   user: User;
+  items?: Item[];
 }
+

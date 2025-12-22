@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { looksStore } from "../looksStore.js";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore.js";
-import { LookCard } from "../LookCard/LookCard";
+import { ElementCard } from "../../../components/ElementCard/ElementCard";
 import { UploadForm } from "../../../components/UploadForm/UploadForm";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
 
@@ -81,7 +81,7 @@ export const LookList = observer(() => {
       } else {
         return (
           <div key={look.id}>
-            <LookCard look={look} showDetailView={showDetailView} />
+            <ElementCard element={look} showDetailView={showDetailView} type="looks" />
           </div>
         );
       }

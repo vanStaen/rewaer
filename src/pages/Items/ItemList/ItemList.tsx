@@ -5,12 +5,13 @@ import { itemsStore } from "../itemsStore.js";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
-import { ElementCard } from "../ElementCard/ElementCard";
+import { ElementCard } from "../../../components/ElementCard/ElementCard";
 import { UploadForm } from "../../../components/UploadForm/UploadForm";
+import { Item } from "../../../types/itemTypes";
 
-export const ItemList = observer(() => {
-  const containerElement = useRef(null);
-  const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
+export const ItemList: React.FC = observer(() => {
+  const containerElement = useRef<HTMLDivElement>(null);
+  const [missingCardForFullRow, setMissingCardForFullRow] = useState<number>(0);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollEventHandler);
@@ -23,11 +24,11 @@ export const ItemList = observer(() => {
 
   // TODO: implement lazy loading for items
 
-  const scrollEventHandler = () => {
+  const scrollEventHandler = (): void => {
     itemsStore.setLastKnownScrollPosition(window.scrollY);
   };
 
-  const calculateMissingCardsForFullRow = useCallback(() => {
+  const calculateMissingCardsForFullRow = useCallback((): void => {
     const displayArchived = userStore.profilSettings
       ? userStore.profilSettings.displayArchived
       : false;
@@ -36,7 +37,7 @@ export const ItemList = observer(() => {
         ? 0
         : containerElement.current.offsetWidth;
     const cardWidth = 238 + 40; // row width + min gap
-    const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
+    const numberPerRow = Math.floor(containerWidth / cardWidth);
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
     const numberItemsArchived = displayArchived
       ? 0
@@ -61,7 +62,7 @@ export const ItemList = observer(() => {
     pageStore.showOnlyFloatingUploadForm,
   ]);
 
-  const showDetailView = (item) => {
+  const showDetailView = (item: Item): void => {
     itemsStore.setSelectedItem(item);
     itemsStore.setOriginalScrollPosition(itemsStore.lastKnownScrollPosition);
   };
@@ -86,7 +87,7 @@ export const ItemList = observer(() => {
       } else {
         return (
           <div key={item.id}>
-            <ElementCard element={item} showDetailView={showDetailView} />
+            <ElementCard element={item} showDetailView={showDetailView} type="items" />
           </div>
         );
       }

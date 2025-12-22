@@ -1,4 +1,4 @@
-.itemcard {
+.elementcard {
   &__container {
     position: relative;
     width: 240px;
@@ -73,12 +73,12 @@
     height: 65px;
     padding: 10px 15px;
 
-    .itemcard__date {
+    .elementcard__date {
       font-size: 12px;
       color: #999;
     }
 
-    .itemcard__private {
+    .elementcard__private {
       position: absolute;
       top: 0;
       right: 0;
@@ -88,7 +88,7 @@
       color: rgba(191, 64, 64, .75);
     }
 
-    .itemcard__sharedItem {
+    .elementcard__sharedItem {
       position: absolute;
       top: 0;
       right: 0;
@@ -141,7 +141,7 @@
   }
 }
 
-.item {
+.element {
   &__mehError {
     font-size: 62px;
     color: rgba(178, 34, 34, 0.25);
@@ -164,7 +164,7 @@
 }
 
 @media (max-width: 540px) {
-  .itemcard {
+  .elementcard {
     &__container {
       width: 40vw;
       height: calc(40vw * 1.6);
@@ -175,7 +175,7 @@
       font-size: 12px;
       padding: 10px;
 
-      .itemcard__sharedItem {
+      .elementcard__sharedItem {
         position: absolute;
         top: 0;
         right: 0;
@@ -199,7 +199,7 @@
     }
   }
 
-  .item {
+  .element {
     &__spinner {
       padding-top: 50%;
     }

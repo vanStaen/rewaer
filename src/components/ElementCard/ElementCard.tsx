@@ -15,27 +15,24 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
-import { EditableTitle } from "../../../components/EditableTitle/EditableTitle";
-import { itemsStore } from "../itemsStore.js";
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { LikeDislikeButton } from "../LikeDislikeButton/LikeDislikeButton";
+import { EditableTitle } from "../EditableTitle/EditableTitle";
+import { itemsStore } from "../../pages/Items/itemsStore.js";
+import { looksStore } from "../../pages/Looks/looksStore.js";
+import { userStore } from "../../stores/userStore/userStore.js";
 
-import { archiveItem } from "../actions/archiveItem";
-import { deleteItem } from "../actions/deleteItem";
-import { updateFavoriteItem } from "../actions/updateFavoriteItem";
-import { updatePrivateItem } from "../actions/updatePrivateItem";
-import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
-import { UserAvatar } from "../../../components/UserAvatar/UserAvatar.jsx";
-import { Item } from "../../../types/itemTypes";
+import { archiveItem } from "../../pages/Items/actions/archiveItem";
+import { deleteItem } from "../../pages/Items/actions/deleteItem";
+import { updateFavoriteItem } from "../../pages/Items/actions/updateFavoriteItem";
+import { updatePrivateItem } from "../../pages/Items/actions/updatePrivateItem";
+import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
+import { UserAvatar } from "../UserAvatar/UserAvatar.jsx";
+import { ElementCardActions } from "./ElementCardActions";
+import { ElementCardProps } from "./ElementCardTypes";
 
 import "./ElementCard.less";
 
-interface ElementCardProps {
-  element: Item;
-  showDetailView: (element: Item) => void;
-}
-
-export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView}) => {
+export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDetailView}) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState<boolean>(element.favorite);
   const [isPrivate, setIsPrivate] = useState<boolean>(element.private);
@@ -46,7 +43,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
   const isSharedItem = parseInt(element.user.id.toString()) !== userStore.id;
   const hasMissingBrand = element.brand === null;
   const hasMissingCategory = element.category === null;
-  const hasMissingColor = element.colors.length === 0;
+  const hasMissingColor = type === "items" ? element.colors.length === 0: false;
   const hasMissingPattern = element.pattern === null;
   const hasMissingInfo =
     hasMissingBrand ||
@@ -56,7 +53,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
 
   const spinnerFormated = (
     <div
-      className="item__spinner"
+      className="element__spinner"
       onClick={() => {
         if (element.active) {
           showDetailView(element);
@@ -69,7 +66,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
 
   const errorFormated = (
     <div
-      className="item__mehError"
+      className="element__mehError"
       id={`card_item_picture_${element.id}`}
       onClick={() => {
         if (element.active) {
@@ -85,7 +82,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
   const imageLoadingHander = async (): Promise<void> => {
     try {
       // TODO  fetch small image
-      const url = await getPictureUrl(element.mediaId, "items");
+      const url = await getPictureUrl(element.mediaId, type);
       const isloaded = new Promise<string>((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;
@@ -119,7 +116,9 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        itemsStore.setIsOutOfDate(true);
+        type === "items"
+          ? itemsStore.setIsOutOfDate(true)
+          : looksStore.setIsOutOfDate(true);
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
@@ -226,7 +225,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
         }
       }
     }
-  };
+  }; 
 
   const favoriteHandler = (): void => {
     updateFavoriteItem(element.id, !isFavorited);
@@ -245,12 +244,10 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
 
   const createdDate = new Date(element.createdAt);
 
-  
-
   return (
     <>
       <div
-        className="itemcard__container"
+        className="elementcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
       >
@@ -260,7 +257,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
           spinnerFormated
         ) : (
           <div
-            className="itemcard__picture"
+            className="elementcard__picture"
             id={`card_item_picture_${element.id}`}
             style={{
               background: `url(${mediaUrl})`,
@@ -280,7 +277,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
                            ${hasMissingPattern ? " Pattern" : ""}`}
           >
             <ExclamationOutlined
-              className="itemcard__missingInfo"
+              className="elementcard__missingInfo"
               onClick={() => {
                 onMouseLeaveHandler();
                 showDetailView(element);
@@ -290,7 +287,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
         )}
         {element.active ? (
           <div
-            className="itemcard__logoover"
+            className="elementcard__logoover"
             id={`card_item_logoover_${element.id}`}
             onClick={() => {
               if (element.active) {
@@ -303,7 +300,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
           </div>
         ) : (
           <div
-            className="itemcard__archived"
+            className="elementcard__archived"
             id={`card_item_logoover_${element.id}`}
             onClick={() => {
               onMouseLeaveHandler();
@@ -316,91 +313,26 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
         )}
 
         {!isSharedItem && (
-          <div
-            className="itemcard__actionsContainer"
-            id={`card_item_actionsContainer_${element.id}`}
-          >
-            <div
-              className="itemcard__actionsLogo"
-              id={`card_item_actionsLogo_${element.id}`}
-            >
-              {element.active ? (
-                <>
-                  <Tooltip placement="left" title={t("main.markAsFavorite")}>
-                    {isFavorited ? (
-                      <HeartFilled
-                        className="iconRedHover"
-                        onClick={favoriteHandler}
-                      />
-                    ) : (
-                      <HeartOutlined
-                        className="iconRedHover"
-                        onClick={favoriteHandler}
-                      />
-                    )}
-                  </Tooltip>
-                  {isPrivate ? (
-                    <Tooltip placement="left" title={t("main.makePublic")}>
-                      <EyeInvisibleOutlined
-                        className="iconGreenHover"
-                        onClick={privateHandler}
-                      />
-                    </Tooltip>
-                  ) : (
-                    <Tooltip placement="left" title={t("main.makePrivate")}>
-                      <EyeOutlined
-                        className="iconGreenHover"
-                        onClick={privateHandler}
-                      />
-                    </Tooltip>
-                  )}
-                  <Tooltip placement="left" title={t("main.archive")}>
-                    <Popconfirm
-                      title={t("items.archiveConfirm")}
-                      onConfirm={() => handleArchive(false)}
-                      okText={t("main.archive")}
-                      cancelText={t("main.cancel")}
-                    >
-                      <StopOutlined className="iconRedHover" />
-                    </Popconfirm>
-                  </Tooltip>
-                </>
-              ) : (
-                <>
-                  <Tooltip placement="left" title={t("main.restore")}>
-                    <Popconfirm
-                      title={t("items.restoreConfirm")}
-                      onConfirm={() => handleArchive(true)}
-                      okText={t("main.restore")}
-                      cancelText={t("main.cancel")}
-                    >
-                      <UndoOutlined className="iconGreenHover" />
-                    </Popconfirm>
-                  </Tooltip>
-                  <Tooltip placement="left" title={t("main.delete")}>
-                    <Popconfirm
-                      title={t("items.deleteConfirm")}
-                      onConfirm={handleDelete}
-                      okText={t("main.delete")}
-                      cancelText={t("main.cancel")}
-                    >
-                      <DeleteOutlined className="iconRedHover" />
-                    </Popconfirm>
-                  </Tooltip>
-                </>
-              )}
-            </div>
-          </div>
+          <ElementCardActions
+            elementId={element.id}
+            isActive={element.active}
+            isFavorited={isFavorited}
+            isPrivate={isPrivate}
+            onFavoriteToggle={favoriteHandler}
+            onPrivateToggle={privateHandler}
+            onArchive={handleArchive}
+            onDelete={handleDelete}
+          /> 
         )}
         <div
           className={
             isPrivate
               ? isFavorited
-                ? "itemcard__meta itemcard__metaPrivate itemcard__metaPrivateFavorite"
-                : "itemcard__meta itemcard__metaPrivate"
+                ? "elementcard__meta elementcard__metaPrivate elementcard__metaPrivateFavorite"
+                : "elementcard__meta elementcard__metaPrivate"
               : isFavorited
-                ? "itemcard__meta itemcard__metaFavorite"
-                : "itemcard__meta"
+                ? "elementcard__meta elementcard__metaFavorite"
+                : "elementcard__meta"
           }
         >
           <EditableTitle
@@ -412,13 +344,13 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
           />
           {isSharedItem ? (
             <Tooltip placement="bottom" title={element.user.userName}>
-              <div className="itemcard__sharedItem">
+              <div className="elementcard__sharedItem">
                 <UserAvatar user={element.user} page={"items"} />
               </div>
             </Tooltip>
           ) : isPrivate ? (
             <Tooltip placement="bottom" title={t("main.isPrivate")}>
-              <div className="itemcard__private">
+              <div className="elementcard__private">
                 <EyeInvisibleOutlined />
               </div>
             </Tooltip>
@@ -435,7 +367,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView
           )}
           <div
             className={
-              element.active ? "itemcard__date" : "itemcard__date striked"
+              element.active ? "elementcard__date" : "elementcard__date striked"
             }
           >
             {createdDate.toLocaleDateString()}
