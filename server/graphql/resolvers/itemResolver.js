@@ -114,23 +114,7 @@ export const itemResolver = {
     const itemId =
       itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
     try {
-      const params = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: itemId,
-      };
-      const paramsThumb = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: "t_" + itemId,
-      };
-      const paramsMedium = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: "m_" + itemId,
-      };
-      await Promise.all([
-        s3.deleteObject(params, function (err, data) {}),
-        s3.deleteObject(paramsThumb, function (err, data) {}),
-        s3.deleteObject(paramsMedium, function (err, data) {}),
-      ]);
+      await deleteFileFromS3(itemId, "items");
       await Item.destroy({
         where: {
           id: args.itemId,

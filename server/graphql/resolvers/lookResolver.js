@@ -98,23 +98,7 @@ export const lookResolver = {
     const lookId =
       lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
     try {
-      const params = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: lookId,
-      };
-      const paramsThumb = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: "t_" + lookId,
-      };
-      const paramsMedium = {
-        Bucket: process.env.S3_BUCKET_ID,
-        Key: "m_" + lookId,
-      };
-      await Promise.all([
-        s3.deleteObject(params, function (err, data) {}),
-        s3.deleteObject(paramsThumb, function (err, data) {}),
-        s3.deleteObject(paramsMedium, function (err, data) {}),
-      ]);
+      await deleteFileFromS3(lookId, "looks");
       await Look.destroy({
         where: {
           id: args.lookId,

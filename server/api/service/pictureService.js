@@ -3,8 +3,28 @@ import {
   rotateImage,
   flipImage,
   mirrorImage,
-  tintImage,
 } from "../../lib/processImageSharp.js";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
+
+const s3 = new S3Client({
+  region: "eu-central-1",
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_ACCESS_SECRET_KEY,
+  },
+});
+
+const uploadFileFromBufferToS3 = async (buffer, key) => {
+  const putObjectCommand = new PutObjectCommand({
+    Bucket: process.env.S3_BUCKET_ID,
+    Key: key,
+    Body: buffer,
+    ContentType: "image/png",
+  });
+  await s3.send(putObjectCommand);
+  return `https://${process.env.S3_BUCKET_ID}.s3.eu-central-1.amazonaws.com/${key}`;
+};
 
 // TODO
 
@@ -33,23 +53,7 @@ export const pictureService = {
       resizeImageFromBuffer(rotatedImageBuffer, 750),
     ]);
     // delete old pictures
-    const params = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: key,
-    };
-    const paramsThumb = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: "t_" + key,
-    };
-    const paramsMedium = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: "m_" + key,
-    };
-    await Promise.all([
-      s3.deleteObject(params, function (err, data) {}),
-      s3.deleteObject(paramsThumb, function (err, data) {}),
-      s3.deleteObject(paramsMedium, function (err, data) {}),
-    ]);
+    await deleteFileFromS3(key, "pictures");
     // upload new pictures
     const [UrlOriginalS3, UrlThumbS3, UrlMediumbS3] = await Promise.all([
       uploadFileFromBufferToS3(rotatedImageBuffer, `${key}-${version}`),
@@ -92,23 +96,7 @@ export const pictureService = {
       resizeImageFromBuffer(rotatedImageBuffer, 750),
     ]);
     // delete old pictures
-    const params = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: key,
-    };
-    const paramsThumb = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: "t_" + key,
-    };
-    const paramsMedium = {
-      Bucket: process.env.S3_BUCKET_ID,
-      Key: "m_" + key,
-    };
-    await Promise.all([
-      s3.deleteObject(params, function (err, data) {}),
-      s3.deleteObject(paramsThumb, function (err, data) {}),
-      s3.deleteObject(paramsMedium, function (err, data) {}),
-    ]);
+    await deleteFileFromS3(key, "pictures");
     // upload new pictures
     const [UrlOriginalS3, UrlThumbS3, UrlMediumbS3] = await Promise.all([
       uploadFileFromBufferToS3(rotatedImageBuffer, `${key}-${version}`),

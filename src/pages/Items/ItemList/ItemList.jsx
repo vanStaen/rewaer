@@ -21,19 +21,6 @@ export const ItemList = observer(() => {
     };
   }, []);
 
-  useEffect(() => {
-    calculateMissingCardsForFullRow();
-  }, [
-    containerElement.current,
-    missingCardForFullRow,
-    calculateMissingCardsForFullRow,
-    itemsStore.numberOfPrivateItem,
-    itemsStore.numberOfArchivedItem,
-    itemsStore.items,
-    itemsStore.showPrivateItems,
-    userStore.profilSettings,
-  ]);
-
   // TODO: implement lazy loading for items
 
   const scrollEventHandler = () => {
@@ -78,6 +65,19 @@ export const ItemList = observer(() => {
     itemsStore.setSelectedItem(item);
     itemsStore.setOriginalScrollPosition(itemsStore.lastKnownScrollPosition);
   };
+
+  useEffect(() => {
+    calculateMissingCardsForFullRow();
+  }, [
+    containerElement.current,
+    missingCardForFullRow,
+    calculateMissingCardsForFullRow,
+    itemsStore.numberOfPrivateItem,
+    itemsStore.numberOfArchivedItem,
+    itemsStore.items,
+    itemsStore.showPrivateItems,
+    userStore.profilSettings,
+  ]);
 
   const itemList = itemsStore.items.map((item) => {
     if (!item.private || itemsStore.showPrivateItems) {
