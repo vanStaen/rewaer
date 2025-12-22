@@ -12,6 +12,7 @@ import {
   HeartFilled,
   FileImageOutlined,
 } from "@ant-design/icons";
+
 import { useTranslation } from "react-i18next";
 
 import { LikeDislikeButton } from "../../../components/LikeDislikeButton/LikeDislikeButton";
@@ -25,22 +26,28 @@ import { updateFavoriteItem } from "../actions/updateFavoriteItem";
 import { updatePrivateItem } from "../actions/updatePrivateItem";
 import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
 import { UserAvatar } from "../../../components/UserAvatar/UserAvatar.jsx";
+import { Item } from "../../../types/itemTypes";
 
-import "./ItemCard.css";
+import "./ElementCard.less";
 
-export const ItemCard = (props) => {
+interface ElementCardProps {
+  element: Item;
+  showDetailView: (element: Item) => void;
+}
+
+export const ElementCard: React.FC<ElementCardProps> = ({element, showDetailView}) => {
   const { t } = useTranslation();
-  const [isFavorited, setIsFavorited] = useState(props.item.favorite);
-  const [isPrivate, setIsPrivate] = useState(props.item.private);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingError, setLoadingError] = useState(false);
-  const [mediaUrl, setMediaUrl] = useState(null);
+  const [isFavorited, setIsFavorited] = useState<boolean>(element.favorite);
+  const [isPrivate, setIsPrivate] = useState<boolean>(element.private);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [loadingError, setLoadingError] = useState<boolean>(false);
+  const [mediaUrl, setMediaUrl] = useState<string | null>(null);
 
-  const isSharedItem = parseInt(props.item.user.id) !== userStore.id;
-  const hasMissingBrand = props.item.brand === null;
-  const hasMissingCategory = props.item.category === null;
-  const hasMissingColor = props.item.colors.length === 0;
-  const hasMissingPattern = props.item.pattern === null;
+  const isSharedItem = parseInt(element.user.id.toString()) !== userStore.id;
+  const hasMissingBrand = element.brand === null;
+  const hasMissingCategory = element.category === null;
+  const hasMissingColor = element.colors.length === 0;
+  const hasMissingPattern = element.pattern === null;
   const hasMissingInfo =
     hasMissingBrand ||
     hasMissingCategory ||
@@ -51,22 +58,22 @@ export const ItemCard = (props) => {
     <div
       className="item__spinner"
       onClick={() => {
-        if (props.item.active) {
-          props.showDetailView(props.item);
+        if (element.active) {
+          showDetailView(element);
         }
       }}
     >
-      <Spin size="middle" />
+      <Spin />
     </div>
   );
 
   const errorFormated = (
     <div
       className="item__mehError"
-      id={`card_item_picture_${props.item.id}`}
+      id={`card_item_picture_${element.id}`}
       onClick={() => {
-        if (props.item.active) {
-          props.showDetailView(props.item);
+        if (element.active) {
+          showDetailView(element);
         }
       }}
     >
@@ -75,11 +82,11 @@ export const ItemCard = (props) => {
     </div>
   );
 
-  const imageLoadingHander = async () => {
+  const imageLoadingHander = async (): Promise<void> => {
     try {
       // TODO  fetch small image
-      const url = await getPictureUrl(props.item.mediaId, "items");
-      const isloaded = new Promise((resolve, reject) => {
+      const url = await getPictureUrl(element.mediaId, "items");
+      const isloaded = new Promise<string>((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;
         loadImg.onload = () => resolve(url);
@@ -96,10 +103,10 @@ export const ItemCard = (props) => {
 
   useEffect(() => {
     imageLoadingHander();
-  }, [props.item.mediaId]);
+  }, [element.mediaId]);
 
-  const handleArchive = (value) => {
-    archiveItem(props.item.id, value)
+  const handleArchive = (value: boolean): void => {
+    archiveItem(element.id, value)
       .then(() => {
         notification.success({
           message: value
@@ -120,8 +127,8 @@ export const ItemCard = (props) => {
       });
   };
 
-  const handleDelete = () => {
-    deleteItem(props.item.id)
+  const handleDelete = (): void => {
+    deleteItem(element.id)
       .then(() => {
         notification.success({
           message: t("items.deletedSuccess"),
@@ -137,84 +144,108 @@ export const ItemCard = (props) => {
       });
   };
 
-  const onMouseEnterHandler = () => {
+  const onMouseEnterHandler = (): void => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item.id}`,
+        `card_item_picture_${element.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item.id}`,
+        `card_item_logoover_${element.id}`,
       );
-      elementPicture.style.filter = "brightness(50%)";
-      if (!loadingError || !props.item.active) {
+      if (elementPicture) {
+        elementPicture.style.filter = "brightness(50%)";
+      }
+      if (elementLogoOver && (!loadingError || !element.active)) {
         elementLogoOver.style.display = "block";
       }
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item.id}`,
+          `card_item_actionsContainer_${element.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item.id}`,
+          `card_item_actionsLogo_${element.id}`,
         );
-        elementActionsContainer.style.width = "34px";
-        elementActionsContainer.style.opacity = ".85";
-        elementActionsLogo.style.display = "block";
+        if (elementActionsContainer) {
+          elementActionsContainer.style.width = "34px";
+          elementActionsContainer.style.opacity = ".85";
+        }
+        if (elementActionsLogo) {
+          elementActionsLogo.style.display = "block";
+        }
       }
     }
   };
 
-  const onMouseLeaveHandler = () => {
+  const onMouseLeaveHandler = (): void => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${props.item.id}`,
+        `card_item_picture_${element.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${props.item.id}`,
+        `card_item_logoover_${element.id}`,
       );
       if (!isSharedItem) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${props.item.id}`,
+          `card_item_actionsContainer_${element.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${props.item.id}`,
+          `card_item_actionsLogo_${element.id}`,
         );
-        if (props.item.active) {
-          elementActionsContainer.style.width = "0px";
-          setTimeout(() => {
-            elementActionsLogo.style.display = "none";
-            elementActionsContainer.style.opacity = "0";
-          }, 100);
+        if (element.active) {
+          if (elementActionsContainer) {
+            elementActionsContainer.style.width = "0px";
+            setTimeout(() => {
+              if (elementActionsLogo) {
+                elementActionsLogo.style.display = "none";
+              }
+              if (elementActionsContainer) {
+                elementActionsContainer.style.opacity = "0";
+              }
+            }, 100);
+          }
         } else {
-          elementActionsContainer.style.width = "0px";
-          setTimeout(() => {
-            elementActionsLogo.style.display = "none";
-            elementActionsContainer.style.opacity = "0";
-          }, 100);
+          if (elementActionsContainer) {
+            elementActionsContainer.style.width = "0px";
+            setTimeout(() => {
+              if (elementActionsLogo) {
+                elementActionsLogo.style.display = "none";
+              }
+              if (elementActionsContainer) {
+                elementActionsContainer.style.opacity = "0";
+              }
+            }, 100);
+          }
         }
       }
-      if (props.item.active) {
-        elementPicture.style.filter = "brightness(100%)";
-        elementLogoOver.style.display = "none";
+      if (element.active) {
+        if (elementPicture) {
+          elementPicture.style.filter = "brightness(100%)";
+        }
+        if (elementLogoOver) {
+          elementLogoOver.style.display = "none";
+        }
       }
     }
   };
 
-  const favoriteHandler = () => {
-    updateFavoriteItem(props.item.id, !isFavorited);
+  const favoriteHandler = (): void => {
+    updateFavoriteItem(element.id, !isFavorited);
     setIsFavorited(!isFavorited);
   };
 
-  const privateHandler = () => {
+  const privateHandler = (): void => {
     if (isPrivate) {
       itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem - 1);
     } else {
       itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem + 1);
     }
-    updatePrivateItem(props.item.id, !isPrivate);
+    updatePrivateItem(element.id, !isPrivate);
     setIsPrivate(!isPrivate);
   };
 
-  const createdDate = new Date(props.item.createdAt);
+  const createdDate = new Date(element.createdAt);
+
+  
 
   return (
     <>
@@ -230,13 +261,13 @@ export const ItemCard = (props) => {
         ) : (
           <div
             className="itemcard__picture"
-            id={`card_item_picture_${props.item.id}`}
+            id={`card_item_picture_${element.id}`}
             style={{
               background: `url(${mediaUrl})`,
             }}
             onClick={() => {
-              if (props.item.active) {
-                props.showDetailView(props.item);
+              if (element.active) {
+                showDetailView(element);
               }
             }}
           ></div>
@@ -252,18 +283,18 @@ export const ItemCard = (props) => {
               className="itemcard__missingInfo"
               onClick={() => {
                 onMouseLeaveHandler();
-                props.showDetailView(props.item);
+                showDetailView(element);
               }}
             />
           </Tooltip>
         )}
-        {props.item.active ? (
+        {element.active ? (
           <div
             className="itemcard__logoover"
-            id={`card_item_logoover_${props.item.id}`}
+            id={`card_item_logoover_${element.id}`}
             onClick={() => {
-              if (props.item.active) {
-                props.showDetailView(props.item);
+              if (element.active) {
+                showDetailView(element);
               }
             }}
           >
@@ -273,10 +304,10 @@ export const ItemCard = (props) => {
         ) : (
           <div
             className="itemcard__archived"
-            id={`card_item_logoover_${props.item.id}`}
+            id={`card_item_logoover_${element.id}`}
             onClick={() => {
               onMouseLeaveHandler();
-              props.showDetailView(props.item);
+              showDetailView(element);
             }}
           >
             <StopOutlined />
@@ -287,13 +318,13 @@ export const ItemCard = (props) => {
         {!isSharedItem && (
           <div
             className="itemcard__actionsContainer"
-            id={`card_item_actionsContainer_${props.item.id}`}
+            id={`card_item_actionsContainer_${element.id}`}
           >
             <div
               className="itemcard__actionsLogo"
-              id={`card_item_actionsLogo_${props.item.id}`}
+              id={`card_item_actionsLogo_${element.id}`}
             >
-              {props.item.active ? (
+              {element.active ? (
                 <>
                   <Tooltip placement="left" title={t("main.markAsFavorite")}>
                     {isFavorited ? (
@@ -373,16 +404,16 @@ export const ItemCard = (props) => {
           }
         >
           <EditableTitle
-            title={props.item.title}
-            id={props.item.id}
+            title={element.title}
+            id={element.id}
             type={"item"}
-            active={props.item.active}
+            active={element.active}
             disabled={isSharedItem}
           />
           {isSharedItem ? (
-            <Tooltip placement="bottom" title={props.item.user.userName}>
+            <Tooltip placement="bottom" title={element.user.userName}>
               <div className="itemcard__sharedItem">
-                <UserAvatar user={props.item.user} page={"items"} />
+                <UserAvatar user={element.user} page={"items"} />
               </div>
             </Tooltip>
           ) : isPrivate ? (
@@ -392,19 +423,19 @@ export const ItemCard = (props) => {
               </div>
             </Tooltip>
           ) : (
-            props.item.active && (
+            element.active && (
               <LikeDislikeButton
-                id={props.item.id}
-                mediaId={props.item.mediaId}
-                arrayLikes={props.item.likes}
-                arrayDislikes={props.item.dislikes}
+                id={element.id}
+                mediaId={element.mediaId}
+                arrayLikes={element.likes}
+                arrayDislikes={element.dislikes}
                 type="item"
               />
             )
           )}
           <div
             className={
-              props.item.active ? "itemcard__date" : "itemcard__date striked"
+              element.active ? "itemcard__date" : "itemcard__date striked"
             }
           >
             {createdDate.toLocaleDateString()}

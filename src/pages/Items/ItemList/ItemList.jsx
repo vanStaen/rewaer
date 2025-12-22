@@ -5,7 +5,7 @@ import { itemsStore } from "../itemsStore.js";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";
-import { ItemCard } from "../ItemCard/ItemCard";
+import { ElementCard } from "../ElementCard/ElementCard";
 import { UploadForm } from "../../../components/UploadForm/UploadForm";
 
 export const ItemList = observer(() => {
@@ -86,7 +86,7 @@ export const ItemList = observer(() => {
       } else {
         return (
           <div key={item.id}>
-            <ItemCard item={item} showDetailView={showDetailView} />
+            <ElementCard element={item} showDetailView={showDetailView} />
           </div>
         );
       }
