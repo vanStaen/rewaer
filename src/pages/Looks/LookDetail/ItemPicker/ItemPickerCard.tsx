@@ -1,8 +1,19 @@
 import React from "react";
 import { Spin } from "antd";
 import { useMediaUrl } from "../../../../hooks/useMediaUrl";
+import { Item } from "../../../../types/itemTypes";
 
-export const ItemPickerCard = ({ item, isSelected, onClick }) => {
+interface ItemPickerCardProps {
+  item: Item;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+export const ItemPickerCard: React.FC<ItemPickerCardProps> = ({
+  item,
+  isSelected,
+  onClick,
+}) => {
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
     item.mediaId,
     "items",

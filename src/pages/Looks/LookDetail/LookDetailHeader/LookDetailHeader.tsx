@@ -15,31 +15,35 @@ import { DetailReturnArrow } from "../../../../components/DetailReturnArrow/Deta
 
 import "./LookDetailHeader.less";
 
-export const LookDetailHeader = observer(() => {
-  const [category, setCategory] = useState(looksStore.selectedLook.category);
-  const [season, setSeason] = useState(looksStore.selectedLook.season);
-  const [isPrivate, setIsPrivate] = useState(looksStore.selectedLook.private);
-  const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
-  const [selectedItems, setSelectedItems] = useState(
-    looksStore.selectedLook.items ? looksStore.selectedLook.items : [],
-  );
+export const LookDetailHeader: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    setCategory(looksStore.selectedLook.category);
-    setSeason(looksStore.selectedLook.season);
-    setSelectedItems(looksStore.selectedLook.items);
-    setIsPrivate(looksStore.selectedLook.private);
-    setIsActive(looksStore.selectedLook.active);
-  }, [looksStore.selectedLook]);
+  const selectedLook = looksStore.selectedLook || { id: 0, items: [], category: null, season: null, private: false, active: false, title: "" };
 
-  const categoryChangeHandler = (value) => {
-    updateCategoryLook(looksStore.selectedLook.id, value);
+  const [category, setCategory] = useState<string | null>(selectedLook.category);
+  const [season, setSeason] = useState<string | null>(selectedLook.season);
+  const [isPrivate, setIsPrivate] = useState<boolean>(selectedLook.private);
+  const [isActive, setIsActive] = useState<boolean>(selectedLook.active);
+  const [selectedItems, setSelectedItems] = useState<number[]>(
+    selectedLook.items ? selectedLook.items : [],
+  );
+
+  useEffect(() => {
+    if (!selectedLook) return;
+    setCategory(selectedLook.category);
+    setSeason(selectedLook.season);
+    setSelectedItems(selectedLook.items);
+    setIsPrivate(selectedLook.private);
+    setIsActive(selectedLook.active);
+  }, [selectedLook]);
+
+  const categoryChangeHandler = (value: string): void => {
+    updateCategoryLook(selectedLook.id, value);
     looksStore.setIsOutOfDate(true);
   };
 
-  const seasonChangeHandler = (value) => {
-    updateSeasonLook(looksStore.selectedLook.id, value);
+  const seasonChangeHandler = (value: string): void => {
+    updateSeasonLook(selectedLook.id, value);
     looksStore.setIsOutOfDate(true);
   };
 
@@ -52,7 +56,7 @@ export const LookDetailHeader = observer(() => {
           setCategory(category.code);
         }}
       >
-        {category[userStore.language]}
+        {category[userStore.language as keyof typeof category]}
       </Menu.Item>
     );
   });
@@ -66,7 +70,7 @@ export const LookDetailHeader = observer(() => {
           setSeason(season.code);
         }}
       >
-        {season[userStore.language]}
+        {season[userStore.language as keyof typeof season]}
       </Menu.Item>
     );
   });
@@ -76,7 +80,7 @@ export const LookDetailHeader = observer(() => {
       <DetailReturnArrow page="look" />
       <div className="lookdetail__header">
         <span className="lookdetail__headerTitleId">
-          #{looksStore.selectedLook.id}
+          #{selectedLook.id}
         </span>
         {selectedItems.length > 0 && (
           <>
@@ -89,10 +93,10 @@ export const LookDetailHeader = observer(() => {
         )}
         <div className="lookdetail__headerPoints">&#9679;</div>
         <EditableTitle
-          title={looksStore.selectedLook.title}
-          id={looksStore.selectedLook.id}
+          title={selectedLook.title}
+          id={selectedLook.id}
           type={"look"}
-          active={looksStore.selectedLook.active}
+          active={selectedLook.active}
         />
         {window.innerWidth < 530 ? (
           <br />

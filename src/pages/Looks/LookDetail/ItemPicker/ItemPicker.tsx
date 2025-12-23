@@ -10,34 +10,38 @@ import { ItemPickerCard } from "./ItemPickerCard";
 
 import "./ItemPicker.less";
 
-export const ItemPicker = observer((props) => {
+export const ItemPicker: React.FC = observer(() => {
   const { t } = useTranslation();
-  const [isActive, setIsActive] = useState(looksStore.selectedLook.active);
-  const [selectedItems, setSelectedItems] = useState(
-    looksStore.selectedLook.items ? looksStore.selectedLook.items : [],
+
+  const selectedLook = looksStore.selectedLook || { id: 0, items: [], active: false };
+
+  const [isActive, setIsActive] = useState<boolean>(selectedLook.active);
+  const [selectedItems, setSelectedItems] = useState<number[]>(
+    selectedLook.items ? selectedLook.items : [],
   );
 
   useEffect(() => {
-    setIsActive(looksStore.selectedLook.active);
-    setSelectedItems(looksStore.selectedLook.items);
+    if (!looksStore.selectedLook) return;
+    setIsActive(selectedLook.active);
+    setSelectedItems(selectedLook.items);
   }, [looksStore.selectedLook]);
 
-  const itemClickHandler = (value) => {
-    const valueAsInt = parseInt(value);
+  const itemClickHandler = (value: number | string): void => {
+    const valueAsInt = parseInt(value.toString());
     const indexOfValue = selectedItems.indexOf(valueAsInt);
     if (!isActive) {
-      return null;
+      return;
     }
     if (indexOfValue < 0) {
       setSelectedItems([...selectedItems, valueAsInt]);
-      updateItemsLook(looksStore.selectedLook.id, [
+      updateItemsLook(selectedLook.id, [
         ...selectedItems,
         valueAsInt,
       ]);
     } else {
       setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
       updateItemsLook(
-        looksStore.selectedLook.id,
+        selectedLook.id,
         selectedItems.filter((itemId) => itemId !== valueAsInt),
       );
     }
@@ -45,7 +49,7 @@ export const ItemPicker = observer((props) => {
   };
 
   const itemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item.id)) >= 0;
+    const isSelected = selectedItems.indexOf(parseInt(item.id.toString())) >= 0;
     if (!isSelected) {
       if (!item.active) {
         return null;
@@ -68,7 +72,7 @@ export const ItemPicker = observer((props) => {
   });
 
   const selectedItemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item.id)) >= 0;
+    const isSelected = selectedItems.indexOf(parseInt(item.id.toString())) >= 0;
     if (isSelected) {
       return (
         <ItemPickerCard

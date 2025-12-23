@@ -3,19 +3,43 @@ import { observer } from "mobx-react";
 import { notification, Radio, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { RadioChangeEvent } from "antd";
 
 import { updateGenericBooleanLook } from "../../actions/updateGenericBooleanLook";
 import { looksStore } from "../../looksStore.js";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 
-import "./LookDetailFormElement.css";
+import "./LookDetailFormElement.less";
 
-export const LookDetailFormRadio = observer((props) => {
+interface DataItem {
+  code: boolean | string;
+  en: string;
+  de: string;
+  fr: string;
+}
+
+interface Look {
+  id: number | string;
+  [key: string]: any;
+}
+
+interface LookDetailFormRadioProps {
+  value: boolean | string;
+  element: string;
+  data: DataItem[];
+  selectedLook: Look;
+  flipValueTo: (value: boolean | string) => void;
+  disabled?: boolean;
+  whatShouldBeRed?: boolean | string;
+  tooltip?: string;
+}
+
+export const LookDetailFormRadio: React.FC<LookDetailFormRadioProps> = observer((props) => {
   const { t } = useTranslation();
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState<boolean | string>(props.value);
 
-  const changeHandler = async (event) => {
+  const changeHandler = async (event: RadioChangeEvent): Promise<void> => {
     try {
       await updateGenericBooleanLook(
         props.selectedLook.id,
@@ -34,7 +58,7 @@ export const LookDetailFormRadio = observer((props) => {
         placement: "bottomRight",
       });
       looksStore.setIsOutOfDate(true);
-    } catch (error) {
+    } catch (error: any) {
       notification.error({
         message: error.message,
         placement: "bottomRight",
@@ -45,21 +69,21 @@ export const LookDetailFormRadio = observer((props) => {
   const DataRadio = props.data.map((look) => {
     return (
       <Radio.Button
-        key={look.code}
+        key={String(look.code)}
         value={look.code}
         disabled={props.disabled}
         style={{
           background:
-            look.code === props.whatShouldBeRed &&
-            look.code === value &&
-            "rgba(191, 64, 64, .75)",
+            look.code === props.whatShouldBeRed && look.code === value
+              ? "rgba(191, 64, 64, .75)"
+              : undefined,
           borderColor:
-            look.code === props.whatShouldBeRed &&
-            look.code === value &&
-            "rgba(191, 64, 64, 1)",
+            look.code === props.whatShouldBeRed && look.code === value
+              ? "rgba(191, 64, 64, 1)"
+              : undefined,
         }}
       >
-        {look[userStore.language]}
+        {look[userStore.language as keyof DataItem]}
       </Radio.Button>
     );
   });

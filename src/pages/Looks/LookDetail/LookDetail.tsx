@@ -10,34 +10,35 @@ import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
 import { useMediaUrl } from "../../../hooks/useMediaUrl";
 
-import "./LookDetail.css";
+import "./LookDetail.less";
 
 // the required distance between touchStart and touchEnd to be detected as a swipe
 const MIN_SWIPE_DISTANCE = 100;
 
-export const LookDetail = observer(() => {
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const throttling = useRef(false);
+export const LookDetail: React.FC = observer(() => {
+ const selectedLook = looksStore.selectedLook || { id: 0, items: [], active: false, mediaId: "" };
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const throttling = useRef<boolean>(false);
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
-    looksStore.selectedLook.mediaId,
+    selectedLook.mediaId,
     "looks",
-    "m"
+    "m",
   );
 
-  const browserBackHandler = (e) => {
+  const browserBackHandler = (e: PopStateEvent): void => {
     e.preventDefault();
     e.stopImmediatePropagation();
     looksStore.setSelectedLook(null);
   };
 
   useEffect(() => {
-    const url = new URL(window.location);
-    history.pushState({}, "", url);
+    const url = new URL(window.location.href);
+    history.pushState({}, "", url.toString());
     window.addEventListener("keydown", keydownEventHandler);
-    window.addEventListener("popstate", browserBackHandler);
+    window.addEventListener("popstate", browserBackHandler as any);
     return () => {
-      window.removeEventListener("popstate", browserBackHandler);
+      window.removeEventListener("popstate", browserBackHandler as any);
       window.removeEventListener("keydown", keydownEventHandler);
     };
   }, []);
@@ -46,14 +47,15 @@ export const LookDetail = observer(() => {
     itemsStore.loadItems();
   }, [itemsStore.isOutOfDate]);
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>): void =>
+    setTouchEnd(e.touches[0].clientX);
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>): void => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart(e.touches[0].clientX);
   };
 
-  const onTouchEnd = () => {
+  const onTouchEnd = (): void => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > MIN_SWIPE_DISTANCE;
@@ -71,7 +73,7 @@ export const LookDetail = observer(() => {
     }
   };
 
-  const keydownEventHandler = (event) => {
+  const keydownEventHandler = (event: KeyboardEvent): void => {
     const keyPressed = event.key.toLowerCase();
     if (keyPressed === "escape") {
       event.preventDefault();
@@ -98,7 +100,7 @@ export const LookDetail = observer(() => {
         {isLoadingMedia ? (
           <div
             className="lookdetail__picture"
-            id={`selected_look_picture_${looksStore.selectedLook.id}`}
+            id={`selected_look_picture_${selectedLook.id}`}
           >
             <div className="lookdetail__spinner">
               <Spin size="large" />
@@ -112,14 +114,14 @@ export const LookDetail = observer(() => {
           <>
             <div
               className="lookdetail__pictureBlur"
-              id={`selected_look_picture_blur_${looksStore.selectedLook.id}`}
+              id={`selected_look_picture_blur_${selectedLook.id}`}
               style={{
                 background: `url(${mediaUrl})`,
               }}
             ></div>
             <div
               className="lookdetail__picture"
-              id={`selected_look_picture_${looksStore.selectedLook.id}`}
+              id={`selected_look_picture_${selectedLook.id}`}
               style={{
                 background: `url(${mediaUrl})`,
               }}

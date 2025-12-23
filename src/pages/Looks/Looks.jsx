@@ -8,7 +8,7 @@ import { looksStore } from "./looksStore";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { pageStore } from "../../stores/pageStore/pageStore.js";
 import { userStore } from "../../stores/userStore/userStore.js";
-import { LookDetail } from "./LookDetail/LookDetail";
+import { LookDetail } from "./LookDetail/LookDetail.tsx";
 import { LookList } from "./LookList/LookList";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 
