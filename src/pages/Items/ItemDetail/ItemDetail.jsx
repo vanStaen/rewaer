@@ -12,7 +12,7 @@ import { ItemSharedWithFriends } from "./ItemSharedWithFriends/ItemSharedWithFri
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
-import { getPictureUrl } from "../../../helpers/picture/getPictureUrl";
+import { useMediaUrl } from "../../../hooks/useMediaUrl";
 
 import {
   itemCategoryMen,
@@ -33,9 +33,11 @@ export const ItemDetail = observer((props) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
-  const [mediaUrl, setMediaUrl] = useState(null);
-  const [loadingMediaError, setLoadingMediaError] = useState(false);
-  const [isLoadingMedia, setIsLoadingMedia] = useState(true);
+  const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
+    itemsStore.selectedItem.mediaId,
+    "items",
+    "m"
+  );
   const isSharedItem =
     parseInt(itemsStore.selectedItem.user.id) !== userStore.id;
 
@@ -49,29 +51,6 @@ export const ItemDetail = observer((props) => {
       window.removeEventListener("popstate", browserBackHandler);
     };
   }, []);
-
-  const imageLoadingHander = async () => {
-    setIsLoadingMedia(true);
-    try {
-      const url = await getPictureUrl(itemsStore.selectedItem.mediaId, "items", 'm');
-      const isloaded = new Promise((resolve, reject) => {
-        const loadImg = new Image();
-        loadImg.src = url;
-        loadImg.onload = () => resolve(url);
-        loadImg.onerror = (err) => reject(err);
-      });
-      await isloaded;
-      setMediaUrl(url);
-    } catch (e) {
-      setLoadingMediaError(true);
-      console.log(e);
-    }
-    setIsLoadingMedia(false);
-  };
-
-  useEffect(() => {
-    imageLoadingHander();
-  }, [itemsStore.selectedItem.mediaId]);
 
   const browserBackHandler = (e) => {
     e.preventDefault();
