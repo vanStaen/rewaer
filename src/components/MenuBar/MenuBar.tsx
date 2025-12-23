@@ -39,7 +39,7 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
     try {
       setAvatarUrl(null);
       if (path) {
-        const url = await getPictureUrl(path, bucket);
+        const url = await getPictureUrl(path, bucket, 't');
         const isloaded = new Promise<string>((resolve, reject) => {
           const loadImg = new window.Image();
           loadImg.src = url;

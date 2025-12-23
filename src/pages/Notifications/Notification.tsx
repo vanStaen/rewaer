@@ -59,7 +59,7 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
   // TODO: map bucket to notification types if needed
   const bucket = "users";
 
-  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, bucket);
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, bucket, 't');
 
   const closeNotificationHandler = (id: string): void => {
     const element = document.getElementById(`notification${id}`);

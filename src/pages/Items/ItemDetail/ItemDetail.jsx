@@ -53,7 +53,7 @@ export const ItemDetail = observer((props) => {
   const imageLoadingHander = async () => {
     setIsLoadingMedia(true);
     try {
-      const url = await getPictureUrl(itemsStore.selectedItem.mediaId, "items");
+      const url = await getPictureUrl(itemsStore.selectedItem.mediaId, "items", 'm');
       const isloaded = new Promise((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;

@@ -1,7 +1,7 @@
-export const getPictureUrl = async (path, bucket) => {
+export const getPictureUrl = async (path, bucket, size) => {
   try {
     const data = {
-      path,
+      path: `${path}_${size}`,
       bucket,
     };
     const endpoint = process.env.API_URL + "/upload/url";

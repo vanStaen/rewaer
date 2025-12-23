@@ -19,7 +19,7 @@ export const Avatar: React.FC = observer(() => {
   const avatar: string | null = isStranger ? profileStore.avatar : userStore.avatar;
   const bucket = "users";
 
-  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(avatar, bucket);
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(avatar, bucket, 'm');
 
   const fileSelectHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     setIsUploading(true);

@@ -87,8 +87,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
 
   const imageLoadingHander = async (): Promise<void> => {
     try {
-      // TODO  fetch small image
-      const url = await getPictureUrl(element.mediaId, type);
+      const url = await getPictureUrl(element.mediaId, type, 't');
       const isloaded = new Promise<string>((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;
