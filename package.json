@@ -22,7 +22,7 @@
     "dev:backend": "nodemon  server/index.js",
     "prebuild": "rm -rf ./build",
     "build": "webpack --config webpack.config.prod.cjs --mode production",
-    "deploy": "npm i --force; npm run test; heroku git:remote -a rewaer; git push heroku master;",
+    "deploy": "npm i --force; npm run lint --fix; npm run test; heroku git:remote -a rewaer; git push heroku master;",
     "log": "heroku logs --tail",
     "backup": "cd server/lib/; node createDatabaseBackUpFile.js; cd ../../",
     "lint": "eslint -c ./.eslintrc.json '**/*.js' '**/*.jsx' --fix",
