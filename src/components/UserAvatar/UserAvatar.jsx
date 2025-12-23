@@ -13,7 +13,11 @@ import "./UserAvatar.less";
 
 export const UserAvatar = ({ user, page }) => {
   const bucket = "users";
-  const [mediaUrl, mediaLoading, mediaError] = useMediaUrl(user.avatar, bucket, 'm');
+  const [mediaUrl, mediaLoading, mediaError] = useMediaUrl(
+    user.avatar,
+    bucket,
+    "m",
+  );
 
   return (
     <Link

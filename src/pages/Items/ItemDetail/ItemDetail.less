@@ -1,0 +1,112 @@
+.itemdetail {
+  &__container {
+    min-height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
+    width: 100vw;
+    padding: 15px;
+  }
+
+  &__backArrow {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  &__arrowIcon {
+    font-size: 36px;  
+    color: rgba(0, 0, 0, 1);
+
+    &:hover {  
+      color: rgba(109, 145, 126, 1);
+    }
+  }
+
+  &__imageWrap {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 400px;
+    height: 600px;
+    border-radius: 2px;
+
+    .itemdetail__picture {
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px 10px;
+    width: 120px;
+    height: 163px;
+    opacity: .3;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .9;
+      box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    }
+  }
+
+  &__itemSelected {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px 10px;
+    width: 120px;
+    height: 163px;
+    cursor: pointer;
+    opacity: 1;   
+    border: 1px solid #c0c0c0;
+  }
+
+  &__headerPoints {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 5px;
+    padding: 0 10px;
+  }
+
+  &__headerShowPrivate {
+    position: absolute;
+    right: 75px;
+    font-size: 14px;
+  }
+
+  &__headerItemCount {
+    color: #c0c0c0;
+    display: inline-block;
+    font-weight: 300;
+  }
+
+  &__userAvatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px 0 0;
+    border: 1px solid #f0f0f0;
+    background-size: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+}
+
+@media (max-width: 800px) {
+  .itemdetail {
+    &__container {
+      min-height: calc(100vh - 50px - 340px); /* 50px menu, 340px footer */
+    }
+
+    &__imageWrap {
+      width: calc(100vw - 30px);
+      height: calc(90vw * 1.6);
+    }
+  }
+}
