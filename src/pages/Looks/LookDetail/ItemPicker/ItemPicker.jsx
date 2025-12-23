@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { itemsStore } from "../../../Items/itemsStore";
 import { looksStore } from "../../looksStore.js";
 import { updateItemsLook } from "../../actions/updateItemsLook";
+import { ItemPickerCard } from "./ItemPickerCard";
 
 import "./ItemPicker.less";
 
@@ -53,14 +54,12 @@ export const ItemPicker = observer((props) => {
           return null;
         } else {
           return (
-            <div
-              className={"itemPicker__item"}
-              onClick={() => itemClickHandler(item.id)}
+            <ItemPickerCard
               key={item.id}
-              style={{
-                background: `url(${item.mediaIdMedium})`,
-              }}
-            ></div>
+              item={item}
+              isSelected={false}
+              onClick={() => itemClickHandler(item.id)}
+            />
           );
         }
       }
@@ -72,14 +71,12 @@ export const ItemPicker = observer((props) => {
     const isSelected = selectedItems.indexOf(parseInt(item.id)) >= 0;
     if (isSelected) {
       return (
-        <div
-          className={"itemPicker__itemSelected"}
-          onClick={() => itemClickHandler(item.id)}
+        <ItemPickerCard
           key={item.id}
-          style={{
-            background: `url(${item.mediaIdMedium})`,
-          }}
-        ></div>
+          item={item}
+          isSelected={true}
+          onClick={() => itemClickHandler(item.id)}
+        />
       );
     }
     return null;

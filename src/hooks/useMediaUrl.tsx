@@ -20,6 +20,7 @@ export function useMediaUrl(
     let isMounted = true;
     async function fetchMedia(): Promise<void> {
       setMediaLoading(true);
+      setMediaError(false);
       setMediaS3Url(null);
       try {
         if (mediaUrl) {

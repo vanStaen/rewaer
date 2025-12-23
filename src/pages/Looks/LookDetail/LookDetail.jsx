@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Spin } from "antd";
 import { observer } from "mobx-react";
 
 import { itemsStore } from "../../Items/itemsStore";
@@ -7,6 +8,7 @@ import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
 import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
+import { useMediaUrl } from "../../../hooks/useMediaUrl";
 
 import "./LookDetail.css";
 
@@ -14,12 +16,14 @@ import "./LookDetail.css";
 const MIN_SWIPE_DISTANCE = 100;
 
 export const LookDetail = observer(() => {
-  const [displayPictureUrl, setDisplayPictureUrl] = useState(
-    looksStore.selectedLook.mediaIdMedium,
-  );
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
+  const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
+    looksStore.selectedLook.mediaId,
+    "looks",
+    "m"
+  );
 
   const browserBackHandler = (e) => {
     e.preventDefault();
@@ -37,10 +41,6 @@ export const LookDetail = observer(() => {
       window.removeEventListener("keydown", keydownEventHandler);
     };
   }, []);
-
-  useEffect(() => {
-    setDisplayPictureUrl(looksStore.selectedLook.mediaIdMedium);
-  }, [looksStore.selectedLook]);
 
   useEffect(() => {
     itemsStore.loadItems();
@@ -95,56 +95,38 @@ export const LookDetail = observer(() => {
       <LookDetailHeader />
       <div className="lookdetail__imageWrap">
         <ImageEditBar page="looks" />
-        <div
-          className="lookdetail__pictureBlur"
-          id={`selected_look_picture_blur_${looksStore.selectedLook.id}`}
-          style={{
-            background: `url(${displayPictureUrl})`,
-          }}
-        ></div>
-        <div
-          className="lookdetail__picture"
-          id={`selected_look_picture_${looksStore.selectedLook.id}`}
-          style={{
-            background: `url(${displayPictureUrl})`,
-          }}
-        ></div>
+        {isLoadingMedia ? (
+          <div
+            className="lookdetail__picture"
+            id={`selected_look_picture_${looksStore.selectedLook.id}`}
+          >
+            <div className="lookdetail__spinner">
+              <Spin size="large" />
+            </div>
+          </div>
+        ) : loadingMediaError ? (
+          <div className="lookdetail__picture">
+            <div className="lookdetail__spinner">MEDIA ERROR TODO</div>
+          </div>
+        ) : (
+          <>
+            <div
+              className="lookdetail__pictureBlur"
+              id={`selected_look_picture_blur_${looksStore.selectedLook.id}`}
+              style={{
+                background: `url(${mediaUrl})`,
+              }}
+            ></div>
+            <div
+              className="lookdetail__picture"
+              id={`selected_look_picture_${looksStore.selectedLook.id}`}
+              style={{
+                background: `url(${mediaUrl})`,
+              }}
+            ></div>
+          </>
+        )}
       </div>
-      {/*
-        <div className="lookDetail__actionContainer">
-          <LookDetailFormRadio
-            title="private"
-            element="private"
-            data={[
-              { code: false, en: "Public", de: "Öffentlich", fr: "Publique" },
-              { code: true, en: "Private", de: "Privat", fr: "Privé" },
-            ]}
-            value={isPrivate}
-            flipValueTo={setIsPrivate}
-            selectedLook={looksStore.selectedLook}
-            whatShouldBeRed={true}
-            multiSelect={false}
-            disabled={!looksStore.selectedLook.active}
-            tooltip={t("looks.makePrivateLook")}
-          />
-          <LookDetailFormRadio
-            title="active"
-            element="active"
-            data={[
-              { code: true, en: "Active", de: "Aktiv", fr: "Actif" },
-              { code: false, en: "Archived", de: "Archiviert", fr: "Archivé" },
-            ]}
-            value={isActive}
-            flipValueTo={setIsActive}
-            selectedLook={looksStore.selectedLook}
-            whatShouldBeRed={false}
-            multiSelect={false}
-            disabled={false}
-            tooltip={t("looks.archiveLook")}
-          />
-        </div>
-        */}
-
       <ItemPicker />
     </div>
   );
