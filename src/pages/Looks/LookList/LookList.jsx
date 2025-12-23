@@ -81,7 +81,11 @@ export const LookList = observer(() => {
       } else {
         return (
           <div key={look.id}>
-            <ElementCard element={look} showDetailView={showDetailView} type="looks" />
+            <ElementCard
+              element={look}
+              showDetailView={showDetailView}
+              type="looks"
+            />
           </div>
         );
       }

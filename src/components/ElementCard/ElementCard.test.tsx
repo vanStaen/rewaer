@@ -29,20 +29,37 @@ jest.mock("../../stores/userStore/userStore.js", () => ({
     id: 1,
   },
 }));
+
 jest.mock("../../pages/Items/actions/archiveItem", () => ({
   archiveItem: jest.fn(() => Promise.resolve()),
+}));
+
+jest.mock("../../pages/Looks/actions/archiveLook", () => ({
+  archiveLook: jest.fn(() => Promise.resolve()),
 }));
 
 jest.mock("../../pages/Items/actions/deleteItem", () => ({
   deleteItem: jest.fn(() => Promise.resolve()),
 }));
 
+jest.mock("../../pages/Looks/actions/deleteLook", () => ({
+  deleteLook: jest.fn(() => Promise.resolve()),
+}));
+
 jest.mock("../../pages/Items/actions/updateFavoriteItem", () => ({
   updateFavoriteItem: jest.fn(() => Promise.resolve()),
 }));
 
+jest.mock("../../pages/Looks/actions/updateFavoriteLook", () => ({
+  updateFavoriteLook: jest.fn(() => Promise.resolve()),
+}));
+
 jest.mock("../../pages/Items/actions/updatePrivateItem", () => ({
   updatePrivateItem: jest.fn(() => Promise.resolve()),
+}));
+
+jest.mock("../../pages/Looks/actions/updatePrivateLook", () => ({
+  updatePrivateLook: jest.fn(() => Promise.resolve()),
 }));
 
 jest.mock("../../helpers/picture/getPictureUrl", () => ({
@@ -64,6 +81,23 @@ jest.mock("../UserAvatar/UserAvatar.jsx", () => ({
 jest.mock("./ElementCardActions", () => ({
   ElementCardActions: () => <div>ElementCardActions</div>,
 }));
+
+// Mock Image to simulate onload event
+class MockImage {
+  onload: (() => void) | null = null;
+  onerror: ((err: any) => void) | null = null;
+  src = "";
+
+  constructor() {
+    setTimeout(() => {
+      if (this.onload) {
+        this.onload();
+      }
+    }, 0);
+  }
+}
+
+global.Image = MockImage as any;
 
 describe("ElementCard", () => {
   const mockShowDetailView = jest.fn();
@@ -129,7 +163,7 @@ describe("ElementCard", () => {
     expect(screen.getByRole("img", { hidden: true })).toBeInTheDocument(); // Spin component
   });
 
-  xit("loads and displays the image after loading", async () => {
+  it("loads and displays the image after loading", async () => {
     render(
       <ElementCard
         element={mockItem}
@@ -163,7 +197,7 @@ describe("ElementCard", () => {
     });
   });
 
-  xit("calls showDetailView when clicking on active item", async () => {
+  it("calls showDetailView when clicking on active item", async () => {
     render(
       <ElementCard
         element={mockItem}
@@ -244,12 +278,12 @@ describe("ElementCard", () => {
     expect(metaDiv).toBeInTheDocument();
   });
 
-  xit("does not show missing info for shared items", async () => {
+  it("does not show missing info for shared items", async () => {
     const sharedItem: Item = {
       ...mockItem,
       brand: null,
       user: {
-        id: 1, 
+        id: 2, // Different from userStore.id (1)
         userName: "shareduser",
       },
     };
@@ -292,7 +326,7 @@ describe("ElementCard", () => {
     expect(container).toBeInTheDocument();
   });
 
-  xit("renders correctly with a look instead of an item", async () => {
+  it("renders correctly with a look instead of an item", async () => {
     render(
       <ElementCard
         element={mockLook}
