@@ -1,11 +1,11 @@
 import { looksStore } from "../looksStore.js";
 
-export const switchLook = (next, showPrivate) => {
+export const switchLook = (next, showPrivate, selectedLookId) => {
   const indexOfResult = looksStore.looks
     .map(function (look) {
       return look.id;
     })
-    .indexOf(looksStore.selectedLook.id);
+    .indexOf(selectedLookId);
 
   if (!showPrivate) {
     let nextLookId = indexOfResult;

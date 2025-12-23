@@ -63,9 +63,9 @@ export const LookDetail: React.FC = observer(() => {
     if (throttling.current === false) {
       throttling.current = true;
       if (isRightSwipe) {
-        switchLook(false, looksStore.showPrivateLooks);
+        switchLook(false, looksStore.showPrivateLooks, selectedLook.id);
       } else if (isLeftSwipe) {
-        switchLook(true, looksStore.showPrivateLooks);
+        switchLook(true, looksStore.showPrivateLooks, selectedLook.id);
       }
       setTimeout(() => {
         throttling.current = false;
@@ -80,10 +80,10 @@ export const LookDetail: React.FC = observer(() => {
       looksStore.setSelectedLook(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchLook(false, looksStore.showPrivateLooks);
+      switchLook(false, looksStore.showPrivateLooks, selectedLook.id);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchLook(true, looksStore.showPrivateLooks);
+      switchLook(true, looksStore.showPrivateLooks, selectedLook.id);
     }
   };
 
