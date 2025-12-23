@@ -28,11 +28,11 @@ export const ElementCardActions: React.FC<ElementCardActionsProps> = ({
   return (
     <div
       className="elementcard__actionsContainer"
-      id={`card_item_actionsContainer_${elementId}`}
+      id={`card_element_actionsContainer_${elementId}`}
     >
       <div
         className="elementcard__actionsLogo"
-        id={`card_item_actionsLogo_${elementId}`}
+        id={`card_element_actionsLogo_${elementId}`}
       >
         {isActive ? (
           <>

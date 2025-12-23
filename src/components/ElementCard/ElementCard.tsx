@@ -25,6 +25,12 @@ import { archiveItem } from "../../pages/Items/actions/archiveItem";
 import { deleteItem } from "../../pages/Items/actions/deleteItem";
 import { updateFavoriteItem } from "../../pages/Items/actions/updateFavoriteItem";
 import { updatePrivateItem } from "../../pages/Items/actions/updatePrivateItem";
+
+import { archiveLook } from "../../pages/Looks/actions/archiveLook";
+import { deleteLook } from "../../pages/Looks/actions/deleteLook";
+import { updateFavoriteLook } from "../../pages/Looks/actions/updateFavoriteLook";
+import { updatePrivateLook } from "../../pages/Looks/actions/updatePrivateLook";
+
 import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
 import { UserAvatar } from "../UserAvatar/UserAvatar.jsx";
 import { ElementCardActions } from "./ElementCardActions";
@@ -40,7 +46,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
   const [loadingError, setLoadingError] = useState<boolean>(false);
   const [mediaUrl, setMediaUrl] = useState<string | null>(null);
 
-  const isSharedItem = parseInt(element.user.id.toString()) !== userStore.id;
+  const isSharedElement = parseInt(element.user.id.toString()) !== userStore.id;
   const hasMissingBrand = element.brand === null;
   const hasMissingCategory = element.category === null;
   const hasMissingColor = type === "items" ? element.colors.length === 0: false;
@@ -67,7 +73,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
   const errorFormated = (
     <div
       className="element__mehError"
-      id={`card_item_picture_${element.id}`}
+      id={`card_element_picture_${element.id}`}
       onClick={() => {
         if (element.active) {
           showDetailView(element);
@@ -102,7 +108,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
     imageLoadingHander();
   }, [element.mediaId]);
 
-  const handleArchive = (value: boolean): void => {
+  const handleArchiveItem = (value: boolean): void => {
     archiveItem(element.id, value)
       .then(() => {
         notification.success({
@@ -116,9 +122,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        type === "items"
-          ? itemsStore.setIsOutOfDate(true)
-          : looksStore.setIsOutOfDate(true);
+        itemsStore.setIsOutOfDate(true)
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
@@ -126,7 +130,29 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
       });
   };
 
-  const handleDelete = (): void => {
+  const handleArchiveLook = (value: boolean): void => {
+    archiveLook(element.id, value)
+      .then(() => {
+        notification.success({
+          message: value
+            ? t("looks.restoreSuccess")
+            : t("looks.archiveSuccess"),
+          placement: "bottomRight",
+          icon: value ? (
+            <UndoOutlined style={{ color: "green" }} />
+          ) : (
+            <StopOutlined style={{ color: "green" }} />
+          ),
+        });
+        looksStore.setIsOutOfDate(true)
+      })
+      .catch((error) => {
+        notification.error({ message: `Error!`, placement: "bottomRight" });
+        console.log(error.message);
+      });
+  };
+
+  const handleDeleteItem = (): void => {
     deleteItem(element.id)
       .then(() => {
         notification.success({
@@ -143,13 +169,30 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
       });
   };
 
+  const handleDeleteLook = (): void => {
+    deleteLook(element.id)
+      .then(() => {
+        notification.success({
+          message: t("looks.deletedSuccess"),
+          placement: "bottomRight",
+          icon: <DeleteOutlined style={{ color: "green" }} />,
+        });
+        looksStore.setIsOutOfDate(true);
+        console.log("Success!");
+      })
+      .catch((error) => {
+        notification.error({ message: `Error!`, placement: "bottomRight" });
+        console.log(error.message);
+      });
+  };
+
   const onMouseEnterHandler = (): void => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${element.id}`,
+        `card_element_picture_${element.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${element.id}`,
+        `card_element_logoover_${element.id}`,
       );
       if (elementPicture) {
         elementPicture.style.filter = "brightness(50%)";
@@ -157,12 +200,12 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
       if (elementLogoOver && (!loadingError || !element.active)) {
         elementLogoOver.style.display = "block";
       }
-      if (!isSharedItem) {
+      if (!isSharedElement) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${element.id}`,
+          `card_element_actionsContainer_${element.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${element.id}`,
+          `card_element_actionsLogo_${element.id}`,
         );
         if (elementActionsContainer) {
           elementActionsContainer.style.width = "34px";
@@ -178,17 +221,17 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
   const onMouseLeaveHandler = (): void => {
     if (!isLoading) {
       const elementPicture = document.getElementById(
-        `card_item_picture_${element.id}`,
+        `card_element_picture_${element.id}`,
       );
       const elementLogoOver = document.getElementById(
-        `card_item_logoover_${element.id}`,
+        `card_element_logoover_${element.id}`,
       );
-      if (!isSharedItem) {
+      if (!isSharedElement) {
         const elementActionsContainer = document.getElementById(
-          `card_item_actionsContainer_${element.id}`,
+          `card_element_actionsContainer_${element.id}`,
         );
         const elementActionsLogo = document.getElementById(
-          `card_item_actionsLogo_${element.id}`,
+          `card_element_actionsLogo_${element.id}`,
         );
         if (element.active) {
           if (elementActionsContainer) {
@@ -227,18 +270,33 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
     }
   }; 
 
-  const favoriteHandler = (): void => {
+  const favoriteHandlerItem = (): void => {
     updateFavoriteItem(element.id, !isFavorited);
     setIsFavorited(!isFavorited);
   };
 
-  const privateHandler = (): void => {
+  const favoriteHandlerLook = (): void => {
+    updateFavoriteLook(element.id, !isFavorited);
+    setIsFavorited(!isFavorited);
+  };
+
+  const privateHandlerItem = (): void => {
     if (isPrivate) {
       itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem - 1);
     } else {
       itemsStore.setNumberOfPrivateItem(itemsStore.numberOfPrivateItem + 1);
     }
     updatePrivateItem(element.id, !isPrivate);
+    setIsPrivate(!isPrivate);
+  };
+
+  const privateHandlerLook = (): void => {
+    if (isPrivate) {
+      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook - 1);
+    } else {
+      looksStore.setNumberOfPrivateLook(looksStore.numberOfPrivateLook + 1);
+    }
+    updatePrivateLook(element.id, !isPrivate);
     setIsPrivate(!isPrivate);
   };
 
@@ -258,7 +316,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
         ) : (
           <div
             className="elementcard__picture"
-            id={`card_item_picture_${element.id}`}
+            id={`card_element_picture_${element.id}`}
             style={{
               background: `url(${mediaUrl})`,
             }}
@@ -269,7 +327,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             }}
           ></div>
         )}
-        {hasMissingInfo && !isSharedItem && (
+        {hasMissingInfo && !isSharedElement && (
           <Tooltip
             title={`Missing${hasMissingBrand ? " Brand" : ""}
                            ${hasMissingCategory ? " Category" : ""}
@@ -288,7 +346,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
         {element.active ? (
           <div
             className="elementcard__logoover"
-            id={`card_item_logoover_${element.id}`}
+            id={`card_element_logoover_${element.id}`}
             onClick={() => {
               if (element.active) {
                 showDetailView(element);
@@ -301,7 +359,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
         ) : (
           <div
             className="elementcard__archived"
-            id={`card_item_logoover_${element.id}`}
+            id={`card_element_logoover_${element.id}`}
             onClick={() => {
               onMouseLeaveHandler();
               showDetailView(element);
@@ -312,16 +370,16 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
           </div>
         )}
 
-        {!isSharedItem && (
+        {!isSharedElement && (
           <ElementCardActions
             elementId={element.id}
             isActive={element.active}
             isFavorited={isFavorited}
             isPrivate={isPrivate}
-            onFavoriteToggle={favoriteHandler}
-            onPrivateToggle={privateHandler}
-            onArchive={handleArchive}
-            onDelete={handleDelete}
+            onFavoriteToggle={type === 'items' ? favoriteHandlerItem: favoriteHandlerLook}
+            onPrivateToggle={type === 'items' ? privateHandlerItem: privateHandlerLook}
+            onArchive={type === 'items' ? handleArchiveItem : handleArchiveLook}
+            onDelete={type === 'items' ? handleDeleteItem: handleDeleteLook}
           /> 
         )}
         <div
@@ -340,9 +398,9 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             id={element.id}
             type={"item"}
             active={element.active}
-            disabled={isSharedItem}
+            disabled={isSharedElement}
           />
-          {isSharedItem ? (
+          {isSharedElement ? (
             <Tooltip placement="bottom" title={element.user.userName}>
               <div className="elementcard__sharedItem">
                 <UserAvatar user={element.user} page={"items"} />
