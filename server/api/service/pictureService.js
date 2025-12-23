@@ -49,7 +49,7 @@ export const pictureService = {
     );
     // resize picture
     const [thumbBufferLocal, mediumBufferLocal] = await Promise.all([
-      resizeImageFromBuffer(rotatedImageBuffer, 420),
+      resizeImageFromBuffer(rotatedImageBuffer, 360),
       resizeImageFromBuffer(rotatedImageBuffer, 750),
     ]);
     // delete old pictures

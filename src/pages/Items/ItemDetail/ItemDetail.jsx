@@ -118,8 +118,6 @@ export const ItemDetail = observer((props) => {
     }
   };
 
-  // TODO: improve spinner/loader
-
   return (
     <div
       className="itemdetail__container"
@@ -128,7 +126,6 @@ export const ItemDetail = observer((props) => {
       onTouchEnd={onTouchEnd}
     >
       <DetailReturnArrow page="item" />
-
       <div className="itemdetail__imageWrap">
         {!isSharedItem && <ImageEditBar page="items" />}
         {isLoadingMedia ? (
@@ -136,19 +133,24 @@ export const ItemDetail = observer((props) => {
             className="itemdetail__picture"
             id={`selected_item_picture_${itemsStore.selectedItem.id}`}
           >
-            {" "}
             <div
-              className="item__spinner"
+              className="itemdetail__spinner"
               onClick={() => {
                 if (props.item.active) {
                   props.showDetailView(props.item);
                 }
               }}
             >
-              <Spin size="middle" />
+              <Spin size="large" />
             </div>
           </div>
-        ) : (
+        ) : loadingMediaError ? (
+        <div className="itemdetail__picture">
+          <div className="itemdetail__spinner">
+            MEDIA ERROR TODO
+          </div>
+        </div>
+      )  : (
           <div
             className="itemdetail__picture"
             id={`selected_item_picture_${itemsStore.selectedItem.id}`}
@@ -160,14 +162,14 @@ export const ItemDetail = observer((props) => {
       </div>
 
       {itemsStore.isLoading ? (
-        <div className="itemDetail__itemContainer">
-          <div className="itemDetail__spinner">
+        <div className="itemdetail__itemContainer">
+          <div className="itemdetail__spinner">
             <Spin size="large" />
           </div>
         </div>
       ) : (
-        <div className="itemDetail__itemContainer">
-          <div className="itemDetail__itemContainerDivisor">
+        <div className="itemdetail__itemContainer">
+          <div className="itemdetail__itemContainerDivisor">
             Item description and informations
           </div>
           <ItemDetailFormStringElement
@@ -227,7 +229,7 @@ export const ItemDetail = observer((props) => {
             disabled={!itemsStore.selectedItem.active || isSharedItem}
           />
           <br />
-          <div className="itemDetail__itemContainerDivisor">
+          <div className="itemdetail__itemContainerDivisor">
             The status of this item
           </div>
           <ItemDetailFormRadio
@@ -269,7 +271,7 @@ export const ItemDetail = observer((props) => {
             tooltip={t("items.archiveItem")}
           />
           <br />
-          <div className="itemDetail__itemContainerDivisor">
+          <div className="itemdetail__itemContainerDivisor">
             Details on the where about of this item
           </div>
           <ItemDetailFormStringElement
@@ -291,7 +293,7 @@ export const ItemDetail = observer((props) => {
           <br />
           {!isSharedItem && (
             <>
-              <div className="itemDetail__itemContainerDivisor">
+              <div className="itemdetail__itemContainerDivisor">
                 Friends who can access this item
               </div>
               <ItemSharedWithFriends />
