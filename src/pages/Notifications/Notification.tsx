@@ -56,10 +56,35 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
   const { id, type, seen, title, createdAt, mediaUrl, actionData } = data;
   const notificationAge = dayjs(createdAt).fromNow();
 
+  const notificationTypeToBucket = (type: number): string => {
+    switch (type) {
+      case 1: // Friend request
+        return "users";
+      case 2: // New Follower
+        return "users";
+      case 14: // Friend new avatar
+        return "users";
+      case 3: // New Mail
+        return "mails";
+      case 4: // friends new item
+        return "items";
+      case 6: // Item liked/disliked, or item shared
+        return "items";
+      case 5: // friends new Look
+        return "looks";
+      case 13: // Look liked
+        return "looks";
+      case 16: // Look disliked
+        return "looks";
+      default:
+        return "users";
+    }
+  };
+
   // TODO: map bucket to notification types if needed
   const bucket = "users";
 
-  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, bucket, 't');
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, notificationTypeToBucket(data.type), 't');
 
   const closeNotificationHandler = (id: string): void => {
     const element = document.getElementById(`notification${id}`);
