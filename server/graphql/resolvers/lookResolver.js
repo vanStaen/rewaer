@@ -95,10 +95,8 @@ export const lookResolver = {
       throw new Error("Unauthorized!");
     }
     const lookToDelete = await Look.findOne({ where: { id: args.lookId } });
-    const lookId =
-      lookToDelete.mediaId && lookToDelete.mediaId.split("/").slice(-1)[0];
     try {
-      await deleteFileFromS3(lookId, "looks");
+      await deleteFileFromS3(lookToDelete.mediaId, "looks");
       await Look.destroy({
         where: {
           id: args.lookId,

@@ -111,10 +111,8 @@ export const itemResolver = {
       throw new Error("Unauthorized!");
     }
     const itemToDelete = await Item.findOne({ where: { id: args.itemId } });
-    const itemId =
-      itemToDelete.mediaId && itemToDelete.mediaId.split("/").slice(-1)[0];
     try {
-      await deleteFileFromS3(itemId, "items");
+      await deleteFileFromS3(itemToDelete.mediaId, "items");
       await Item.destroy({
         where: {
           id: args.itemId,
