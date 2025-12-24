@@ -3,8 +3,6 @@ import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 import { CameraOutlined, SkinOutlined } from "@ant-design/icons";
 
-import { ProfileItems } from "../ProfileItems/ProfileItems";
-import { ProfileLooks } from "../ProfileLooks/ProfileLooks";
 import { profileStore } from "../../../stores/profileStore/profileStore";
 
 import "./ProfileMain.less";
@@ -47,8 +45,6 @@ export const ProfileMain = observer((props) => {
         </div>
       </div>
       <div className="profil__containerCenterContent">
-        {props.contentToDisplay === "items" && <ProfileItems />}
-        {props.contentToDisplay === "looks" && <ProfileLooks />}
         {props.contentToDisplay === "wall" && <>Nothing here yet</>}
       </div>
     </>

@@ -93,7 +93,13 @@ export const ItemDetail = observer((props) => {
     >
       <DetailReturnArrow page="item" />
       <div className="itemdetail__imageWrap">
-        {!isSharedItem && <ImageEditBar page="items" />}
+        {!isSharedItem && (
+          <ImageEditBar
+            page="items"
+            loading={isLoadingMedia}
+            error={!!loadingMediaError}
+          />
+        )}
         {isLoadingMedia ? (
           <div
             className="itemdetail__picture"
