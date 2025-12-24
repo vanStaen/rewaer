@@ -20,28 +20,37 @@ import { postPicture } from "../../helpers/picture/postPicture";
 
 import "./ImageEditBar.less";
 
-export const ImageEditBar = observer(({ page, loading, error }) => {
-  const [isLoading, setIsLoading] = useState(loading);
+interface ImageEditBarProps {
+  page: "looks" | "items";
+  loading?: boolean;
+  error?: boolean;
+}
 
-  const rotateHandler = async () => {
+export const ImageEditBar: React.FC<ImageEditBarProps> = observer(({ page, loading, error }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(loading || false);
+
+  const selectedLook = looksStore.selectedLook || { id: 0, mediaId: "" };
+  const selectedItem = itemsStore.selectedItem || { id: 0, mediaId: "" };
+
+  const rotateHandler = async (): Promise<void> => {
     if (!isLoading) {
       setIsLoading(true);
       try {
         if (page === "looks") {
           const mediaId = await pictureRotate(
-            looksStore.selectedLook.mediaId,
+            selectedLook.mediaId,
             page,
             1,
           );
-          await updateMediaLook(looksStore.selectedLook.id, mediaId);
+          await updateMediaLook(selectedLook.id, mediaId);
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
           const mediaId = await pictureRotate(
-            itemsStore.selectedItem.mediaId,
+            selectedItem.mediaId,
             page,
             1,
           );
-          await updateMediaItem(itemsStore.selectedItem.id, mediaId);
+          await updateMediaItem(selectedItem.id, mediaId);
           itemsStore.setIsOutOfDate(true);
         }
       } catch (e) {
@@ -51,25 +60,25 @@ export const ImageEditBar = observer(({ page, loading, error }) => {
     }
   };
 
-  const flipHandler = async (isMirror) => {
+  const flipHandler = async (isMirror: boolean): Promise<void> => {
     if (!isLoading) {
       setIsLoading(true);
       try {
         if (page === "looks") {
           const mediaId = await pictureFlip(
-            looksStore.selectedLook.mediaId,
+            selectedLook.mediaId,
             page,
             isMirror,
           );
-          await updateMediaLook(looksStore.selectedLook.id, mediaId);
+          await updateMediaLook(selectedLook.id, mediaId);
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
           const mediaId = await pictureFlip(
-            itemsStore.selectedItem.mediaId,
+            selectedItem.mediaId,
             page,
             isMirror,
           );
-          await updateMediaItem(itemsStore.selectedItem.id, mediaId);
+          await updateMediaItem(selectedItem.id, mediaId);
           itemsStore.setIsOutOfDate(true);
         }
       } catch (e) {
@@ -79,21 +88,23 @@ export const ImageEditBar = observer(({ page, loading, error }) => {
     }
   };
 
-  const fileSelectHandler = async (event) => {
+  const fileSelectHandler = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     setIsLoading(true);
-    replaceMediahandler(event.target.files[0]);
+    if (event.target.files && event.target.files[0]) {
+      replaceMediahandler(event.target.files[0]);
+    }
   };
 
-  const replaceMediahandler = async (file) => {
+  const replaceMediahandler = async (file: File): Promise<void> => {
     setIsLoading(true);
     try {
       const res = await postPicture(file, page);
       const mediaId = res.path;
       if (page === "looks") {
-        await updateMediaLook(looksStore.selectedLook.id, mediaId);
+        await updateMediaLook(selectedLook.id, mediaId);
         looksStore.setIsOutOfDate(true);
       } else if (page === "items") {
-        await updateMediaItem(itemsStore.selectedItem.id, mediaId);
+        await updateMediaItem(selectedItem.id, mediaId);
         itemsStore.setIsOutOfDate(true);
       }
     } catch (e) {
@@ -148,7 +159,7 @@ export const ImageEditBar = observer(({ page, loading, error }) => {
       )}
       <div className="imageEditBar__imageEditBarItem">
         <Tooltip title="Replace image">
-          <form onSubmit={replaceMediahandler} className="imageEditBar__form">
+          <form onSubmit={(e) => e.preventDefault()} className="imageEditBar__form">
             <input
               type="file"
               className="imageEditBar__inputfile"

@@ -6,7 +6,7 @@ import { itemsStore } from "../itemsStore.js";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
-import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
+import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar.tsx";
 import { useMediaUrl } from "../../../hooks/useMediaUrl";
 import { ItemDetailContainer } from "./ItemDetailContainer/ItemDetailContainer";
 
