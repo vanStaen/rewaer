@@ -2,8 +2,8 @@ import { itemsStore } from "../itemsStore.js";
 
 export const switchItem = (next, showPrivate) => {
   const indexOfResult = itemsStore.items
-    .map(function (look) {
-      return look.id;
+    .map(function (item) {
+      return item.id;
     })
     .indexOf(itemsStore.selectedItem.id);
 

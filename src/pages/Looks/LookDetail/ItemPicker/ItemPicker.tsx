@@ -12,9 +12,8 @@ import "./ItemPicker.less";
 
 export const ItemPicker: React.FC = observer(() => {
   const { t } = useTranslation();
-
   const selectedLook = looksStore.selectedLook || { id: 0, items: [], active: false };
-
+  const [isEdit, setIsEdit] = useState<boolean>(false); // TODO (isEdit should be always false if !isActive)
   const [isActive, setIsActive] = useState<boolean>(selectedLook.active);
   const [selectedItems, setSelectedItems] = useState<number[]>(
     selectedLook.items ? selectedLook.items : [],
@@ -27,6 +26,12 @@ export const ItemPicker: React.FC = observer(() => {
   }, [looksStore.selectedLook]);
 
   const itemClickHandler = (value: number | string): void => {
+
+    if (!isEdit) {
+        // TODO: Link to item 
+        return;
+    }
+
     const valueAsInt = parseInt(value.toString());
     const indexOfValue = selectedItems.indexOf(valueAsInt);
     if (!isActive) {
@@ -63,6 +68,7 @@ export const ItemPicker: React.FC = observer(() => {
               item={item}
               isSelected={false}
               onClick={() => itemClickHandler(item.id)}
+              isEdit={false}
             />
           );
         }
@@ -80,6 +86,7 @@ export const ItemPicker: React.FC = observer(() => {
           item={item}
           isSelected={true}
           onClick={() => itemClickHandler(item.id)}
+          isEdit={isEdit}
         />
       );
     }
@@ -103,7 +110,7 @@ export const ItemPicker: React.FC = observer(() => {
               <div className="itemPicker__itemSpacer"></div>
             </div>
           )}
-          {isActive && (
+          {isEdit && (
             <div>
               <div className="itemPicker__itemContainerDivisorAllItems">
                 {t("looks.yourItems")}

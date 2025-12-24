@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { notification, Spin, Popconfirm, Tooltip } from "antd";
+import { notification, Spin, Tooltip } from "antd";
 import {
   DeleteOutlined,
   ExclamationOutlined,
@@ -7,9 +7,6 @@ import {
   StopOutlined,
   TagOutlined,
   EyeInvisibleOutlined,
-  EyeOutlined,
-  HeartOutlined,
-  HeartFilled,
   FileImageOutlined,
 } from "@ant-design/icons";
 

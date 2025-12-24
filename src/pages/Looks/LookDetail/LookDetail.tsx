@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { Spin } from "antd";
 import { observer } from "mobx-react";
 
+import { FileImageOutlined } from "@ant-design/icons";
+
 import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore.js";
 import { switchLook } from "./switchLook";
@@ -108,7 +110,10 @@ export const LookDetail: React.FC = observer(() => {
           </div>
         ) : loadingMediaError ? (
           <div className="lookdetail__picture">
-            <div className="lookdetail__spinner">MEDIA ERROR TODO</div>
+            <div className="lookdetail__error" >
+                <FileImageOutlined />
+                <div style={{ fontSize: "15px", marginTop: 18 }}>File not found</div>
+            </div>
           </div>
         ) : (
           <>
