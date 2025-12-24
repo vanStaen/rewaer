@@ -8,14 +8,22 @@ router.post("/flip/", async (req, res) => {
     throw new Error("Unauthorized!");
   }
   try {
-    if (!req.body.url) {
-      throw new Error("Please provide a picture url!");
+    if (!req.body.path) {
+      throw new Error("Please provide a path!");
     }
-    const url = req.body.url;
+    if (!req.body.bucket) {
+      throw new Error("Please provide a bucket!");
+    }
+    const path = req.body.path;
+    const bucket = req.body.bucket;
     const isMirror = req.body.isMirror;
-    const newUrl = await pictureService.flipPicture(url, isMirror);
+    const newPath = await pictureService.flipPicture(
+      path,
+      bucket,
+      req.userId,
+      isMirror);
     res.status(200).json({
-      newUrl,
+      newPath,
     });
   } catch (err) {
     res.status(400).json({
@@ -29,19 +37,23 @@ router.post("/rotate/", async (req, res) => {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    if (!req.body.url) {
-      throw new Error("Please provide a picture url!");
+    if (!req.body.path) {
+      throw new Error("Please provide a path!");
     }
-    const url = req.body.url;
+    if (!req.body.bucket) {
+      throw new Error("Please provide a bucket!");
+    }
+    const path = req.body.path;
+    const bucket = req.body.bucket;
     const numberOfQuarterTurnToTheRight =
       req.body.numberOfQuarterTurnToTheRight;
-    const newUrl = await pictureService.rotatePicture(
-      url,
+    const newPath = await pictureService.rotatePicture(
+      path,
+      bucket,
+      req.userId,
       numberOfQuarterTurnToTheRight,
     );
-    res.status(200).json({
-      newUrl,
-    });
+    res.status(200).json({ newPath });
   } catch (err) {
     res.status(400).json({
       error: `${err}`,

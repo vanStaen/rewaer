@@ -4,7 +4,7 @@ import { getBucketId } from "./getBuketId.js";
 
 import { resizeImageFromBuffer, blurImage } from "../processImageSharp.js";
 
-const THUMB_SIZE_IN_PX = 180;
+const THUMB_SIZE_IN_PX = 240;
 const MEDIUM_SIZE_IN_PX = 800;
 
 const s3 = new S3Client({

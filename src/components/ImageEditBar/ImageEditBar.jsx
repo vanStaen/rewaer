@@ -28,27 +28,25 @@ export const ImageEditBar = observer(({ page }) => {
       setIsLoading(true);
       try {
         if (page === "looks") {
-          const resultFiles = await pictureRotate(
+          const mediaId = await pictureRotate(
             looksStore.selectedLook.mediaId,
+            page,
             1,
           );
           await updateMediaLook(
             looksStore.selectedLook.id,
-            resultFiles.UrlOriginalS3,
-            resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3,
+            mediaId,
           );
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
-          const resultFiles = await pictureRotate(
+          const mediaId = await pictureRotate(
             itemsStore.selectedItem.mediaId,
+            page,
             1,
           );
           await updateMediaItem(
             itemsStore.selectedItem.id,
-            resultFiles.UrlOriginalS3,
-            resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3,
+            mediaId,
           );
           itemsStore.setIsOutOfDate(true);
         }
@@ -64,28 +62,25 @@ export const ImageEditBar = observer(({ page }) => {
       setIsLoading(true);
       try {
         if (page === "looks") {
-          const resultFiles = await pictureFlip(
+          const mediaId = await pictureFlip(
             looksStore.selectedLook.mediaId,
+            page,
             isMirror,
           );
-          // TODO FIX this
           await updateMediaLook(
             looksStore.selectedLook.id,
-            resultFiles.UrlOriginalS3,
-            resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3,
+            mediaId,
           );
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
-          const resultFiles = await pictureFlip(
+          const mediaId = await pictureFlip(
             itemsStore.selectedItem.mediaId,
+            page,
             isMirror,
           );
           await updateMediaItem(
             itemsStore.selectedItem.id,
-            resultFiles.UrlOriginalS3,
-            resultFiles.UrlThumbS3,
-            resultFiles.UrlMediumbS3,
+            mediaId,
           );
           itemsStore.setIsOutOfDate(true);
         }

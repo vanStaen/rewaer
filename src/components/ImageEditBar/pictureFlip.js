@@ -1,6 +1,7 @@
-export async function pictureFlip(url, isMirror) {
+export async function pictureFlip(path, bucket, isMirror) {
   const requestBody = {
-    url,
+    path,
+    bucket,
     isMirror,
   };
 
@@ -17,5 +18,5 @@ export async function pictureFlip(url, isMirror) {
   }
 
   const data = await response.json();
-  return data.newUrl;
+  return data.newPath;
 }

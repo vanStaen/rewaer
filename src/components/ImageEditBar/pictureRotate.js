@@ -1,6 +1,7 @@
-export async function pictureRotate(url, numberOfQuarterTurnToTheRight) {
+export async function pictureRotate(path, bucket, numberOfQuarterTurnToTheRight) {
   const requestBody = {
-    url,
+    path,
+    bucket,
     numberOfQuarterTurnToTheRight,
   };
 
@@ -17,5 +18,5 @@ export async function pictureRotate(url, numberOfQuarterTurnToTheRight) {
   }
 
   const data = await response.json();
-  return data.newUrl;
+  return data.newPath;
 }
