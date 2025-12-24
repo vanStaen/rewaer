@@ -20,8 +20,8 @@ import { postPicture } from "../../helpers/picture/postPicture";
 
 import "./ImageEditBar.less";
 
-export const ImageEditBar = observer(({ page }) => {
-  const [isLoading, setIsLoading] = useState(false);
+export const ImageEditBar = observer(({ page, loading, error }) => {
+  const [isLoading, setIsLoading] = useState(loading);
 
   const rotateHandler = async () => {
     if (!isLoading) {
@@ -33,10 +33,7 @@ export const ImageEditBar = observer(({ page }) => {
             page,
             1,
           );
-          await updateMediaLook(
-            looksStore.selectedLook.id,
-            mediaId,
-          );
+          await updateMediaLook(looksStore.selectedLook.id, mediaId);
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
           const mediaId = await pictureRotate(
@@ -44,10 +41,7 @@ export const ImageEditBar = observer(({ page }) => {
             page,
             1,
           );
-          await updateMediaItem(
-            itemsStore.selectedItem.id,
-            mediaId,
-          );
+          await updateMediaItem(itemsStore.selectedItem.id, mediaId);
           itemsStore.setIsOutOfDate(true);
         }
       } catch (e) {
@@ -67,10 +61,7 @@ export const ImageEditBar = observer(({ page }) => {
             page,
             isMirror,
           );
-          await updateMediaLook(
-            looksStore.selectedLook.id,
-            mediaId,
-          );
+          await updateMediaLook(looksStore.selectedLook.id, mediaId);
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
           const mediaId = await pictureFlip(
@@ -78,10 +69,7 @@ export const ImageEditBar = observer(({ page }) => {
             page,
             isMirror,
           );
-          await updateMediaItem(
-            itemsStore.selectedItem.id,
-            mediaId,
-          );
+          await updateMediaItem(itemsStore.selectedItem.id, mediaId);
           itemsStore.setIsOutOfDate(true);
         }
       } catch (e) {
@@ -116,37 +104,48 @@ export const ImageEditBar = observer(({ page }) => {
 
   return (
     <div className="imageEditBar__imageEditBar">
-      {/* <Tooltip title="Change luminosity">
+      {!error && (
+        <>
+          {/* <Tooltip title="Change luminosity">
         <BulbOutlined />
       </Tooltip> */}
-      {/* <Tooltip title="Change white balance">
+          {/* <Tooltip title="Change white balance">
         <FormatPainterOutlined />
       </Tooltip> */}
-      <div
-        className="imageEditBar__imageEditBarItem"
-        onClick={() => flipHandler(true)}
-      >
-        <Tooltip title="Flip">
-          {isLoading ? <LoadingOutlined /> : <VerticalAlignMiddleOutlined />}
-        </Tooltip>
-      </div>
-      <div
-        className="imageEditBar__imageEditBarItem"
-        onClick={() => flipHandler(false)}
-      >
-        <Tooltip title="Mirror">
-          {isLoading ? (
-            <LoadingOutlined />
-          ) : (
-            <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
-          )}
-        </Tooltip>
-      </div>
-      <div className="imageEditBar__imageEditBarItem" onClick={rotateHandler}>
-        <Tooltip title="Rotate">
-          {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
-        </Tooltip>
-      </div>
+          <div
+            className="imageEditBar__imageEditBarItem"
+            onClick={() => flipHandler(true)}
+          >
+            <Tooltip title="Flip">
+              {isLoading ? (
+                <LoadingOutlined />
+              ) : (
+                <VerticalAlignMiddleOutlined />
+              )}
+            </Tooltip>
+          </div>
+          <div
+            className="imageEditBar__imageEditBarItem"
+            onClick={() => flipHandler(false)}
+          >
+            <Tooltip title="Mirror">
+              {isLoading ? (
+                <LoadingOutlined />
+              ) : (
+                <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
+              )}
+            </Tooltip>
+          </div>
+          <div
+            className="imageEditBar__imageEditBarItem"
+            onClick={rotateHandler}
+          >
+            <Tooltip title="Rotate">
+              {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
+            </Tooltip>
+          </div>
+        </>
+      )}
       <div className="imageEditBar__imageEditBarItem">
         <Tooltip title="Replace image">
           <form onSubmit={replaceMediahandler} className="imageEditBar__form">

@@ -96,7 +96,7 @@ export const LookDetail: React.FC = observer(() => {
     >
       <LookDetailHeader />
       <div className="lookdetail__imageWrap">
-        <ImageEditBar page="looks" />
+        <ImageEditBar page="looks" loading={isLoadingMedia} error={loadingMediaError}/>
         {isLoadingMedia ? (
           <div
             className="lookdetail__picture"

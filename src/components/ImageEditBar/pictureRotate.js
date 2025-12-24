@@ -1,4 +1,8 @@
-export async function pictureRotate(path, bucket, numberOfQuarterTurnToTheRight) {
+export async function pictureRotate(
+  path,
+  bucket,
+  numberOfQuarterTurnToTheRight,
+) {
   const requestBody = {
     path,
     bucket,

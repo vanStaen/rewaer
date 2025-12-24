@@ -21,7 +21,8 @@ router.post("/flip/", async (req, res) => {
       path,
       bucket,
       req.userId,
-      isMirror);
+      isMirror,
+    );
     res.status(200).json({
       newPath,
     });

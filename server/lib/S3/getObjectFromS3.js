@@ -14,7 +14,7 @@ export const getObjectFromS3 = async (path, bucket) => {
   try {
     const command = new GetObjectCommand({ Bucket: s3BucketId, Key: path });
     const response = await s3.send(command);
-    
+
     // Convert stream to buffer
     const chunks = [];
     for await (const chunk of response.Body) {
