@@ -45,8 +45,6 @@ interface NotificationProps {
   data: NotificationData;
 }
 
-// TODO picture loader
-
 export const Notification: React.FC<NotificationProps> = ({ data }) => {
   const navigate = useNavigate();
   const [touchStart, setTouchStart] = useState<number | null>(null);
