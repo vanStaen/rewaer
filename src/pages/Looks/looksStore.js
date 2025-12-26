@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { fetchLooks } from "./fetchLooks.js";
+import { fetchLooks } from "./fetchLooks.ts";
 import { userStore } from "../../stores/userStore/userStore.js";
 
 export class LooksStore {

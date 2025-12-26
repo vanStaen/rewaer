@@ -1,4 +1,6 @@
-export async function fetchLooks() {
+import { Look, getLooksGraphQLResponse } from "../../types/lookTypes";
+
+export async function fetchLooks(): Promise<Look[]> {
   const requestBody = {
     query: `
       {
@@ -33,7 +35,7 @@ export async function fetchLooks() {
   if (response.status !== 200 && response.status !== 201) {
     throw new Error("Unauthenticated!");
   }
-  const data = await response.json();
+  const data: getLooksGraphQLResponse = await response.json();
   const looks = data.data.getLooks;
   return looks;
 }

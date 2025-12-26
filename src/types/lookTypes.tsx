@@ -4,15 +4,15 @@ import { Item } from "./itemTypes";
 export interface Look {
   id: number | string;
   title: string;
-  brand: string | null;
+  brand?: string | null;
   category: string | null;
-  colors: string[];
-  pattern: string | null;
+  season?: string;
+  colors?: string[];
+  pattern?: string | null;
   active: boolean;
   favorite: boolean;
   private: boolean;
   mediaId: string;
-  mediaIdMedium: string;
   likes: string[];
   dislikes: string[];
   createdAt: string;
@@ -20,3 +20,8 @@ export interface Look {
   items?: Item[];
 }
 
+export interface getLooksGraphQLResponse {
+  data: {
+    getLooks: Look[];
+  };
+}
