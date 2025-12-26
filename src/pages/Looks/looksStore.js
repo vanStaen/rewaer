@@ -11,8 +11,8 @@ export class LooksStore {
   numberOfArchivedLook = 0;
   numberOfPrivateLook = 0;
   selectedLook = null;
-  originalScrollPosition = null;
-  lastKnownScrollPosition = null;
+  originalScrollPosition = 0;
+  lastKnownScrollPosition = 0;
   showPrivateLooks = userStore.profilSettings?.displayPrivate;
 
   constructor() {

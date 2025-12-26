@@ -8,13 +8,13 @@ import { looksStore } from "./looksStore";
 import { authStore } from "../../stores/authStore/authStore.js";
 import { pageStore } from "../../stores/pageStore/pageStore.js";
 import { userStore } from "../../stores/userStore/userStore.js";
-import { LookDetail } from "./LookDetail/LookDetail.tsx";
+import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
 import { ToolBar } from "../../components/ToolBar/ToolBar";
 
 import "./Looks.css";
 
-export const Looks = observer(() => {
+export const Looks: React.FC = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const Looks = observer(() => {
     }
   }, [looksStore.selectedLook]);
 
-  const totalLooks = () => {
+  const totalLooks = (): number => {
     if (userStore.profilSettings.displayArchived) {
       if (looksStore.showPrivateLooks) {
         return looksStore.looks.length;
