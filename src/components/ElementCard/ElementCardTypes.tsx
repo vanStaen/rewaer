@@ -4,7 +4,7 @@ import { Look } from "../../types/lookTypes";
 export interface ElementCardProps {
   element: Item | Look;
   type: "items" | "looks";
-  showDetailView: (element: Item) => void;
+  showDetailView: (element: Item | Look) => void;
 }
 
 export interface ElementCardActionsProps {

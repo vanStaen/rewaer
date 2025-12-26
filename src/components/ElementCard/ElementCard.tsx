@@ -14,8 +14,8 @@ import { useTranslation } from "react-i18next";
 
 import { LikeDislikeButton } from "../LikeDislikeButton/LikeDislikeButton";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
-import { itemsStore } from "../../pages/Items/itemsStore.js";
-import { looksStore } from "../../pages/Looks/looksStore.js";
+import { itemsStore } from "../../pages/Items/itemsStore";
+import { looksStore } from "../../pages/Looks/looksStore";
 import { userStore } from "../../stores/userStore/userStore.js";
 
 import { archiveItem } from "../../pages/Items/actions/archiveItem";
@@ -46,7 +46,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
   const isSharedElement = parseInt(element.user.id.toString()) !== userStore.id;
   const hasMissingBrand = element.brand === null;
   const hasMissingCategory = element.category === null;
-  const hasMissingColor = type === "items" ? element.colors.length === 0: false;
+  const hasMissingColor = type === "items" ? element.colors && element.colors.length === 0: false;
   const hasMissingPattern = element.pattern === null;
   const hasMissingInfo =
     hasMissingBrand ||

@@ -1,4 +1,6 @@
-export async function fetchItems() {
+import { Item, getItemsGraphQLResponse } from "../../types/itemTypes";
+
+export async function fetchItems(): Promise<Item[]> {
   const requestBody = {
     query: `
       {
@@ -38,10 +40,13 @@ export async function fetchItems() {
     },
     body: JSON.stringify(requestBody),
   });
+
   if (response.status !== 200 && response.status !== 201) {
     throw new Error("Unauthenticated!");
   }
-  const data = await response.json();
-  const items = data.data.getItems;
+
+  const data: getItemsGraphQLResponse = await response.json();
+  const items: Item[] = data.data.getItems;
+  
   return items;
 }

@@ -1,19 +1,20 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { fetchItems } from "./fetchItems.js";
+import { fetchItems } from "./fetchItems";
 import { userStore } from "../../stores/userStore/userStore.js";
+import { Item } from "../../types/itemTypes";
 
 export class ItemsStore {
-  items = [];
-  isLoading = true;
-  isOutOfDate = true;
-  error = null;
-  numberOfArchivedItem = 0;
-  numberOfPrivateItem = 0;
-  selectedItem = null;
-  originalScrollPosition = null;
-  lastKnownScrollPosition = null;
-  showPrivateItems = userStore.profilSettings?.displayPrivate;
+  items: Item[] = [];
+  isLoading: boolean = true;
+  isOutOfDate: boolean = true;
+  error: string | null = null;
+  numberOfArchivedItem: number = 0;
+  numberOfPrivateItem: number = 0;
+  selectedItem: Item | null = null;
+  originalScrollPosition: number | null = null;
+  lastKnownScrollPosition: number | null = null;
+  showPrivateItems: boolean = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -41,47 +42,47 @@ export class ItemsStore {
     });
   }
 
-  setItems = (items) => {
+  setItems = (items: Item[]): void => {
     this.items = items;
   };
 
-  setIsLoading = (isLoading) => {
+  setIsLoading = (isLoading: boolean): void => {
     this.isLoading = isLoading;
   };
 
-  setIsOutOfDate = (isOutOfDate) => {
+  setIsOutOfDate = (isOutOfDate: boolean): void => {
     this.isOutOfDate = isOutOfDate;
   };
 
-  setNumberOfArchivedItem = (numberOfArchivedItem) => {
-    this.numberOfArchivedItem = parseInt(numberOfArchivedItem);
+  setNumberOfArchivedItem = (numberOfArchivedItem: number): void => {
+    this.numberOfArchivedItem = parseInt(numberOfArchivedItem.toString());
   };
 
-  setNumberOfPrivateItem = (numberOfPrivateItem) => {
-    this.numberOfPrivateItem = parseInt(numberOfPrivateItem);
+  setNumberOfPrivateItem = (numberOfPrivateItem: number): void => {
+    this.numberOfPrivateItem = parseInt(numberOfPrivateItem.toString());
   };
 
-  setError = (error) => {
+  setError = (error: string | null): void => {
     this.error = error;
   };
 
-  setShowPrivateItems = (showPrivateItems) => {
+  setShowPrivateItems = (showPrivateItems: boolean): void => {
     this.showPrivateItems = showPrivateItems;
   };
 
-  setSelectedItem = (selectedItem) => {
+  setSelectedItem = (selectedItem: Item | null): void => {
     this.selectedItem = selectedItem;
   };
 
-  setOriginalScrollPosition = (originalScrollPosition) => {
+  setOriginalScrollPosition = (originalScrollPosition: number | null): void => {
     this.originalScrollPosition = originalScrollPosition;
   };
 
-  setLastKnownScrollPosition = (lastKnownScrollPosition) => {
+  setLastKnownScrollPosition = (lastKnownScrollPosition: number | null): void => {
     this.lastKnownScrollPosition = lastKnownScrollPosition;
   };
 
-  loadItems = async () => {
+  loadItems = async (): Promise<void> => {
     try {
       const items = await fetchItems();
       const archivedItems = items.filter((item) => item?.active === false);
@@ -93,13 +94,13 @@ export class ItemsStore {
       this.setIsOutOfDate(false);
       if (this.selectedItem) {
         const udpateSelectedItem = items.filter(
-          (item) => item.id === this.selectedItem.id,
+          (item) => item.id === this.selectedItem!.id,
         );
         this.setSelectedItem(udpateSelectedItem[0]);
       }
     } catch (error) {
-      console.log(error.message);
-      this.setError(error.message);
+      console.log((error as Error).message);
+      this.setError((error as Error).message);
     }
   };
 }

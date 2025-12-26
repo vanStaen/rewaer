@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Spin } from "antd";
 import { observer } from "mobx-react";
 
-import { itemsStore } from "../itemsStore.js";
+import { itemsStore } from "../itemsStore.ts";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { switchItem } from "./switchItem";
 import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";

@@ -6,7 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
 import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
-import { itemsStore } from "../../itemsStore.js";
+import { itemsStore } from "../../itemsStore.ts";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 

@@ -3,7 +3,7 @@ import { Dropdown, Menu } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { looksStore } from "../../looksStore.js";
+import { looksStore } from "../../looksStore.ts";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { EditableTitle } from "../../../../components/EditableTitle/EditableTitle";
 import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";

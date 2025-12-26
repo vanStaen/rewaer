@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ItemDetailFormDropDown } from "../ItemDetailFormElement/ItemDetailFormDropDown";
 import { ItemDetailFormStringElement } from "../ItemDetailFormElement/ItemDetailFormStringElement";
 import { ItemDetailFormRadio } from "../ItemDetailFormElement/ItemDetailFormRadio";
-import { itemsStore } from "../../itemsStore.js";
+import { itemsStore } from "../../itemsStore.ts";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { ItemSharedWithFriends } from "../ItemSharedWithFriends/ItemSharedWithFriends";
 

@@ -6,7 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { RadioChangeEvent } from "antd";
 
 import { updateGenericBooleanLook } from "../../actions/updateGenericBooleanLook";
-import { looksStore } from "../../looksStore.js";
+import { looksStore } from "../../looksStore.ts";
 import { userStore } from "../../../../stores/userStore/userStore.js";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 

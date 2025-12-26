@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 
-import { itemsStore } from "../itemsStore.js";
+import { itemsStore } from "../itemsStore.ts";
 import { pageStore } from "../../../stores/pageStore/pageStore";
 import { userStore } from "../../../stores/userStore/userStore.js";
 import { GhostCard } from "../../../components/GhostCard/GhostCard";

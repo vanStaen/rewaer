@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CloseCircleFilled } from "@ant-design/icons";
 
 import { userStore } from "../../../../stores/userStore/userStore.js";
-import { itemsStore } from "../../itemsStore.js";
+import { itemsStore } from "../../itemsStore.ts";
 import { updateItemSharedWith } from "./updateItemSharedWith";
 import { postNotificationItemShared } from "./postNotificationItemShared";
 

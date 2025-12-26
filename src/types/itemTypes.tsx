@@ -16,3 +16,9 @@ export interface Item {
   createdAt: string;
   user: User;
 }
+
+export interface getItemsGraphQLResponse {
+  data: {
+    getItems: Item[];
+  };
+}

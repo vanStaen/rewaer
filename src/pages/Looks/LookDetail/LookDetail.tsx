@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 import { FileImageOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "../../Items/itemsStore";
-import { looksStore } from "../looksStore.js";
+import { looksStore } from "../looksStore.ts";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";

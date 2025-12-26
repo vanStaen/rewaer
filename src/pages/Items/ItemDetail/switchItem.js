@@ -1,4 +1,4 @@
-import { itemsStore } from "../itemsStore.js";
+import { itemsStore } from "../itemsStore.ts";
 
 export const switchItem = (next, showPrivate) => {
   const indexOfResult = itemsStore.items

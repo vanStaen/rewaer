@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { PlusOutlined } from "@ant-design/icons";
 
 import { userStore } from "../../../../stores/userStore/userStore.js";
-import { itemsStore } from "../../itemsStore.js";
+import { itemsStore } from "../../itemsStore.ts";
 import { UserToShareWith } from "./UserToShareWith";
 
 import "./ItemSharedWithFriends.css";

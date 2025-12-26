@@ -10,7 +10,7 @@ jest.mock("react-i18next", () => ({
   }),
 }));
 
-jest.mock("../../pages/Items/itemsStore.js", () => ({
+jest.mock("../../pages/Items/itemsStore.ts", () => ({
   itemsStore: {
     setIsOutOfDate: jest.fn(),
     setNumberOfPrivateItem: jest.fn(),
@@ -18,7 +18,7 @@ jest.mock("../../pages/Items/itemsStore.js", () => ({
   },
 }));
 
-jest.mock("../../pages/Looks/looksStore.js", () => ({
+jest.mock("../../pages/Looks/looksStore.ts", () => ({
   looksStore: {
     setIsOutOfDate: jest.fn(),
   },
@@ -133,7 +133,6 @@ describe("ElementCard", () => {
     favorite: false,
     private: false,
     mediaId: "test-look-media-id",
-    mediaIdMedium: "test-look-media-id-medium",
     likes: [],
     dislikes: [],
     createdAt: "2023-01-01T00:00:00.000Z",

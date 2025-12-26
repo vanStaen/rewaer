@@ -1,19 +1,20 @@
 import { action, makeObservable, observable } from "mobx";
 
-import { fetchLooks } from "./fetchLooks.ts";
+import { fetchLooks } from "./fetchLooks";
 import { userStore } from "../../stores/userStore/userStore.js";
+import { Look } from "../../types/lookTypes";
 
 export class LooksStore {
-  looks = [];
-  isLoading = true;
-  isOutOfDate = true;
-  error = null;
-  numberOfArchivedLook = 0;
-  numberOfPrivateLook = 0;
-  selectedLook = null;
-  originalScrollPosition = 0;
-  lastKnownScrollPosition = 0;
-  showPrivateLooks = userStore.profilSettings?.displayPrivate;
+  looks: Look[] = [];
+  isLoading: boolean = true;
+  isOutOfDate: boolean = true;
+  error: string | null = null;
+  numberOfArchivedLook: number = 0;
+  numberOfPrivateLook: number = 0;
+  selectedLook: Look | null = null;
+  originalScrollPosition: number = 0;
+  lastKnownScrollPosition: number = 0;
+  showPrivateLooks: boolean = userStore.profilSettings?.displayPrivate;
 
   constructor() {
     makeObservable(this, {
@@ -41,47 +42,47 @@ export class LooksStore {
     });
   }
 
-  setLooks = (looks) => {
+  setLooks = (looks: Look[]): void => {
     this.looks = looks;
   };
 
-  setIsLoading = (isLoading) => {
+  setIsLoading = (isLoading: boolean): void => {
     this.isLoading = isLoading;
   };
 
-  setIsOutOfDate = (isOutOfDate) => {
+  setIsOutOfDate = (isOutOfDate: boolean): void => {
     this.isOutOfDate = isOutOfDate;
   };
 
-  setNumberOfArchivedLook = (numberOfArchivedLook) => {
-    this.numberOfArchivedLook = parseInt(numberOfArchivedLook);
+  setNumberOfArchivedLook = (numberOfArchivedLook: number): void => {
+    this.numberOfArchivedLook = parseInt(numberOfArchivedLook.toString());
   };
 
-  setNumberOfPrivateLook = (numberOfPrivateLook) => {
-    this.numberOfPrivateLook = parseInt(numberOfPrivateLook);
+  setNumberOfPrivateLook = (numberOfPrivateLook: number): void => {
+    this.numberOfPrivateLook = parseInt(numberOfPrivateLook.toString());
   };
 
-  setError = (error) => {
+  setError = (error: string | null): void => {
     this.error = error;
   };
 
-  setShowPrivateLooks = (showPrivateLooks) => {
+  setShowPrivateLooks = (showPrivateLooks: boolean): void => {
     this.showPrivateLooks = showPrivateLooks;
   };
 
-  setSelectedLook = (selectedLook) => {
+  setSelectedLook = (selectedLook: Look | null): void => {
     this.selectedLook = selectedLook;
   };
 
-  setOriginalScrollPosition = (originalScrollPosition) => {
+  setOriginalScrollPosition = (originalScrollPosition: number): void => {
     this.originalScrollPosition = originalScrollPosition;
   };
 
-  setLastKnownScrollPosition = (lastKnownScrollPosition) => {
+  setLastKnownScrollPosition = (lastKnownScrollPosition: number): void => {
     this.lastKnownScrollPosition = lastKnownScrollPosition;
   };
 
-  loadLooks = async () => {
+  loadLooks = async (): Promise<void> => {
     try {
       const looks = await fetchLooks();
       const archivedLooks = looks.filter((look) => look.active === false);
@@ -93,13 +94,13 @@ export class LooksStore {
       this.setIsOutOfDate(false);
       if (this.selectedLook) {
         const udpateSelectedLook = looks.filter(
-          (look) => look.id === this.selectedLook.id,
+          (look) => look.id === this.selectedLook!.id,
         );
         this.setSelectedLook(udpateSelectedLook[0]);
       }
     } catch (error) {
-      console.log(error.message);
-      this.setError(error.message);
+      console.log((error as Error).message);
+      this.setError((error as Error).message);
     }
   };
 }
