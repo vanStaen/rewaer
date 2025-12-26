@@ -28,7 +28,7 @@ jest.mock("../../components/LanguageDropDown/LanguageDropDown", () => ({
 }));
 
 jest.mock("../../helpers/dev/checkMobileTablet.js", () => ({
-  isMobileCheck: jest.fn(() => false)
+  isMobileCheck: jest.fn(() => false),
 }));
 
 describe("Welcome", () => {

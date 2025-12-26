@@ -25,7 +25,7 @@ export async function archiveAccount(archived: boolean): Promise<boolean> {
     },
     body: JSON.stringify(requestBody),
   });
-  
+
   if (response.status !== 200 && response.status !== 201) {
     notification.error({
       message: `Unauthenticated!`,

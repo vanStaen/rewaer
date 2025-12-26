@@ -23,7 +23,12 @@ export interface SignUpFormProps {
 
 // TODO create service/privacy/settings pages
 
-type ValidateStatus = "success" | "warning" | "error" | "validating" | undefined;
+type ValidateStatus =
+  | "success"
+  | "warning"
+  | "error"
+  | "validating"
+  | undefined;
 
 interface SignUpFormValues {
   firstname: string;
@@ -37,12 +42,17 @@ interface SignUpFormValues {
 
 export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isValidUsername, setIsValidUsername] = useState<ValidateStatus>(undefined);
-  const [errorMsgUsername, setErrorMsgUsername] = useState<string | null | undefined>(undefined);
+  const [isValidUsername, setIsValidUsername] =
+    useState<ValidateStatus>(undefined);
+  const [errorMsgUsername, setErrorMsgUsername] = useState<
+    string | null | undefined
+  >(undefined);
   const { t, i18n } = useTranslation();
   const language = i18n.language.slice(0, 2);
 
-  const changeUserNameHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeUserNameHandler = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const username = e.target.value;
     if (username === "") {
       setIsValidUsername("error");
@@ -293,7 +303,10 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
             {isLoading ? <SyncOutlined spin /> : t("login.createAccount")}
           </Button>
           <div className="signup__showAlreadyMember">
-            <AlreadyMember setShowLogin={props.setShowLogin} showLogin={false} />
+            <AlreadyMember
+              setShowLogin={props.setShowLogin}
+              showLogin={false}
+            />
           </div>
         </Form.Item>
       </Form>

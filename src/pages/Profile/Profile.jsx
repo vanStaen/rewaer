@@ -5,15 +5,15 @@ import { Spin } from "antd";
 import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { userStore } from "../../stores/userStore/userStore.js";
-import { profileStore } from "../../stores/profileStore/profileStore";
-import { authStore } from "../../stores/authStore/authStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
+import { profileStore } from "@stores/profileStore/profileStore";
+import { authStore } from "@stores/authStore/authStore.js";
 import { Avatar } from "./Avatar/Avatar";
 import { ProfileFriends } from "./ProfileFriends/ProfileFriends";
 // import { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 import { ProfileActions } from "./ProfileActions/ProfileActions";
 import { ProfileMain } from "./ProfileMain/ProfileMain";
-import { MenuBar } from "../../components/MenuBar/MenuBar";
+import { MenuBar } from "@components/MenuBar/MenuBar";
 
 import "./Profile.css";
 

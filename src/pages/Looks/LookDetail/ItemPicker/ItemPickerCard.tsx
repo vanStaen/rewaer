@@ -1,7 +1,7 @@
 import React from "react";
 import { Spin } from "antd";
-import { useMediaUrl } from "../../../../hooks/useMediaUrl";
-import { Item } from "../../../../types/itemTypes";
+import { useMediaUrl } from "@hooks/useMediaUrl";
+import { Item } from "@type/itemTypes";
 
 interface ItemPickerCardProps {
   item: Item;
@@ -19,12 +19,14 @@ export const ItemPickerCard: React.FC<ItemPickerCardProps> = ({
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
     item.mediaId,
     "items",
-    "t"
+    "t",
   );
 
-  const className = isEdit ? "itemPicker__itemEdit" : isSelected
-    ? "itemPicker__itemSelected"
-    : "itemPicker__item";
+  const className = isEdit
+    ? "itemPicker__itemEdit"
+    : isSelected
+      ? "itemPicker__itemSelected"
+      : "itemPicker__item";
 
   if (isLoadingMedia) {
     return (

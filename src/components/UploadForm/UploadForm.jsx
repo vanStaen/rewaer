@@ -11,12 +11,12 @@ import moment from "moment";
 
 import { looksStore } from "../../pages/Looks/looksStore";
 import { itemsStore } from "../../pages/Items/itemsStore";
-import { pageStore } from "../../stores/pageStore/pageStore";
+import { pageStore } from "@stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
-import { isElementVisible } from "../../helpers/isElementVisible";
-import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
-import { postPicture } from "../../helpers/picture/postPicture";
+import { isElementVisible } from "@helpers/isElementVisible";
+import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
+import { postPicture } from "@helpers/picture/postPicture";
 
 import "./UploadForm.css";
 

@@ -16,7 +16,7 @@ import { LikeDislikeButton } from "../LikeDislikeButton/LikeDislikeButton";
 import { EditableTitle } from "../EditableTitle/EditableTitle";
 import { itemsStore } from "../../pages/Items/itemsStore";
 import { looksStore } from "../../pages/Looks/looksStore";
-import { userStore } from "../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 
 import { archiveItem } from "../../pages/Items/actions/archiveItem";
 import { deleteItem } from "../../pages/Items/actions/deleteItem";
@@ -28,14 +28,18 @@ import { deleteLook } from "../../pages/Looks/actions/deleteLook";
 import { updateFavoriteLook } from "../../pages/Looks/actions/updateFavoriteLook";
 import { updatePrivateLook } from "../../pages/Looks/actions/updatePrivateLook";
 
-import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
+import { getPictureUrl } from "@helpers/picture/getPictureUrl";
 import { UserAvatar } from "../UserAvatar/UserAvatar.jsx";
 import { ElementCardActions } from "./ElementCardActions";
 import { ElementCardProps } from "./ElementCardTypes";
 
 import "./ElementCard.less";
 
-export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDetailView}) => {
+export const ElementCard: React.FC<ElementCardProps> = ({
+  type,
+  element,
+  showDetailView,
+}) => {
   const { t } = useTranslation();
   const [isFavorited, setIsFavorited] = useState<boolean>(element.favorite);
   const [isPrivate, setIsPrivate] = useState<boolean>(element.private);
@@ -46,7 +50,8 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
   const isSharedElement = parseInt(element.user.id.toString()) !== userStore.id;
   const hasMissingBrand = element.brand === null;
   const hasMissingCategory = element.category === null;
-  const hasMissingColor = type === "items" ? element.colors && element.colors.length === 0: false;
+  const hasMissingColor =
+    type === "items" ? element.colors && element.colors.length === 0 : false;
   const hasMissingPattern = element.pattern === null;
   const hasMissingInfo =
     hasMissingBrand ||
@@ -84,7 +89,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
 
   const imageLoadingHander = async (): Promise<void> => {
     try {
-      const url = await getPictureUrl(element.mediaId, type, 't');
+      const url = await getPictureUrl(element.mediaId, type, "t");
       const isloaded = new Promise<string>((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;
@@ -118,7 +123,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        itemsStore.setIsOutOfDate(true)
+        itemsStore.setIsOutOfDate(true);
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
@@ -140,7 +145,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             <StopOutlined style={{ color: "green" }} />
           ),
         });
-        looksStore.setIsOutOfDate(true)
+        looksStore.setIsOutOfDate(true);
       })
       .catch((error) => {
         notification.error({ message: `Error!`, placement: "bottomRight" });
@@ -264,7 +269,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
         }
       }
     }
-  }; 
+  };
 
   const favoriteHandlerItem = (): void => {
     updateFavoriteItem(element.id, !isFavorited);
@@ -372,11 +377,15 @@ export const ElementCard: React.FC<ElementCardProps> = ({type, element, showDeta
             isActive={element.active}
             isFavorited={isFavorited}
             isPrivate={isPrivate}
-            onFavoriteToggle={type === 'items' ? favoriteHandlerItem: favoriteHandlerLook}
-            onPrivateToggle={type === 'items' ? privateHandlerItem: privateHandlerLook}
-            onArchive={type === 'items' ? handleArchiveItem : handleArchiveLook}
-            onDelete={type === 'items' ? handleDeleteItem: handleDeleteLook}
-          /> 
+            onFavoriteToggle={
+              type === "items" ? favoriteHandlerItem : favoriteHandlerLook
+            }
+            onPrivateToggle={
+              type === "items" ? privateHandlerItem : privateHandlerLook
+            }
+            onArchive={type === "items" ? handleArchiveItem : handleArchiveLook}
+            onDelete={type === "items" ? handleDeleteItem : handleDeleteLook}
+          />
         )}
         <div
           className={

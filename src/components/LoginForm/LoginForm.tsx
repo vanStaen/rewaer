@@ -9,9 +9,9 @@ import {
 import { useTranslation } from "react-i18next";
 
 import { PasswordRecover } from "../PasswordRecover/PasswordRecover";
-import { authStore } from "../../stores/authStore/authStore.js";
+import { authStore } from "@stores/authStore/authStore.js";
 import { postVerifyEmailLink } from "./postVerifyEmailLink";
-import { validateEmail } from "../../helpers/validateEmail";
+import { validateEmail } from "@helpers/validateEmail";
 
 import "./LoginForm.less";
 
@@ -180,7 +180,9 @@ export const LoginForm: React.FC = () => {
           }}
         >
           <span className="link" onClick={() => setIsRecovery(!isRecovery)}>
-            {t("login.recoverPassword").replace(/^\w/, (c: string) => c.toUpperCase())}
+            {t("login.recoverPassword").replace(/^\w/, (c: string) =>
+              c.toUpperCase(),
+            )}
           </span>
         </Form.Item>
 

@@ -3,11 +3,11 @@ import { Spin } from "antd";
 import { observer } from "mobx-react";
 
 import { itemsStore } from "../itemsStore.ts";
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { switchItem } from "./switchItem";
-import { DetailReturnArrow } from "../../../components/DetailReturnArrow/DetailReturnArrow";
-import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar.tsx";
-import { useMediaUrl } from "../../../hooks/useMediaUrl";
+import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArrow";
+import { ImageEditBar } from "@components/ImageEditBar/ImageEditBar.tsx";
+import { useMediaUrl } from "@hooks/useMediaUrl";
 import { ItemDetailContainer } from "./ItemDetailContainer/ItemDetailContainer";
 
 import "./ItemDetail.less";

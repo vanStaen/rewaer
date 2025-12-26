@@ -42,7 +42,11 @@ export const Banner: React.FC<BannerProps> = observer((props) => {
   return (
     <div id={props.id} className="banner__container">
       <div className="banner__desc">{props.desc}</div>
-      <div className="banner__close" data-testid="closeButton" onClick={closeHandler}>
+      <div
+        className="banner__close"
+        data-testid="closeButton"
+        onClick={closeHandler}
+      >
         <CloseOutlined />
       </div>
     </div>

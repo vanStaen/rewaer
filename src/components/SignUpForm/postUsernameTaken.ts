@@ -3,13 +3,16 @@ export const postUsernameTaken = async (username: string): Promise<boolean> => {
     username,
   };
 
-  const response = await fetch((process.env.API_URL as string) + `/user/taken/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    (process.env.API_URL as string) + `/user/taken/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
     },
-    body: JSON.stringify(requestBody),
-  });
+  );
 
   if (response.status !== 200 && response.status !== 201) {
     if (response.status === 401) {

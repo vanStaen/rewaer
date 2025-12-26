@@ -3,7 +3,7 @@ import { Button, notification } from "antd";
 import { DeleteOutlined, WarningOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { authStore } from "../../../../stores/authStore/authStore";
+import { authStore } from "@stores/authStore/authStore";
 import { archiveAccount } from "../../actions/archiveAccount";
 
 import "./DeleteAccountButton.less";
@@ -12,8 +12,10 @@ import "./DeleteAccountButton.less";
 
 export const DeleteAccountButton: React.FC = () => {
   const { t } = useTranslation();
-  const [showAreYouSureButton, setShowAreYouSureButton] = useState<boolean>(false);
-  const [secondsBeforeDisapearing, setSecondsBeforeDisapearing] = useState<number>(0);
+  const [showAreYouSureButton, setShowAreYouSureButton] =
+    useState<boolean>(false);
+  const [secondsBeforeDisapearing, setSecondsBeforeDisapearing] =
+    useState<number>(0);
 
   const areYouSureHandler = (): void => {
     setShowAreYouSureButton(true);

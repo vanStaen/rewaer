@@ -6,14 +6,18 @@ import "./Footer.less";
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
-  useEffect(() => { 
-    const footerHeight = document.getElementById("footerContainer")?.offsetHeight;
+  useEffect(() => {
+    const footerHeight =
+      document.getElementById("footerContainer")?.offsetHeight;
     if (footerHeight) {
       const footerHeightTotal = footerHeight + 30; // 30px for padding
-      document.documentElement.style.setProperty('--footerHeight', `${footerHeightTotal}px`);
+      document.documentElement.style.setProperty(
+        "--footerHeight",
+        `${footerHeightTotal}px`,
+      );
     }
   }, []);
-      
+
   return (
     <div className="footerContainer" id={"footerContainer"}>
       <div className="footerSubContainer1">
@@ -52,9 +56,9 @@ export const Footer: React.FC = () => {
       <div className="footerSubContainer2">
         <div className="leftSide">©{new Date().getFullYear()} REWAER</div>
         <div className="rightSide">
-          <div className="inlineBlock">{t("footer.impressum")}</div>{" "}|{" "} 
-          <div className="inlineBlock">{t("footer.datenschutz")}</div>{" "}|{" "} 
-          <div className="inlineBlock">{t("footer.termsOfService")}</div>{" "}|{" "} 
+          <div className="inlineBlock">{t("footer.impressum")}</div> |{" "}
+          <div className="inlineBlock">{t("footer.datenschutz")}</div> |{" "}
+          <div className="inlineBlock">{t("footer.termsOfService")}</div> |{" "}
           <a
             href="https://www.clementvanstaen.com"
             target="_blank"

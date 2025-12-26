@@ -7,17 +7,17 @@ import { ItemDetailFormDropDown } from "../ItemDetailFormElement/ItemDetailFormD
 import { ItemDetailFormStringElement } from "../ItemDetailFormElement/ItemDetailFormStringElement";
 import { ItemDetailFormRadio } from "../ItemDetailFormElement/ItemDetailFormRadio";
 import { itemsStore } from "../../itemsStore.ts";
-import { userStore } from "../../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { ItemSharedWithFriends } from "../ItemSharedWithFriends/ItemSharedWithFriends";
 
 import {
   itemCategoryMen,
   itemCategoryWomen,
   itemCategoryNB,
-} from "../../../../lib/data/categories";
-import { colors } from "../../../../lib/data/colors";
-import { pattern } from "../../../../lib/data/pattern";
-import { itemStatus } from "../../../../lib/data/itemStatus";
+} from "@lib/data/categories";
+import { colors } from "@lib/data/colors";
+import { pattern } from "@lib/data/pattern";
+import { itemStatus } from "@lib/data/itemStatus";
 
 import "./ItemDetailContainer.less";
 

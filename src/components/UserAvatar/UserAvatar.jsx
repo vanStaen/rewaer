@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Avatar, Spin } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 
-import { useMediaUrl } from "../../hooks/useMediaUrl";
-import { profileStore } from "../../stores/profileStore/profileStore";
+import { useMediaUrl } from "@hooks/useMediaUrl";
+import { profileStore } from "@stores/profileStore/profileStore";
 import { itemsStore } from "../../pages/Items/itemsStore";
 
 import "./UserAvatar.less";

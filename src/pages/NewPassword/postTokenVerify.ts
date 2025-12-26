@@ -1,4 +1,6 @@
-export const postTokenVerify = async (token: string | undefined): Promise<boolean> => {
+export const postTokenVerify = async (
+  token: string | undefined,
+): Promise<boolean> => {
   const requestBody = {
     token,
   };

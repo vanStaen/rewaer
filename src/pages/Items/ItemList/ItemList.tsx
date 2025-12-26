@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 
-import { itemsStore } from "../itemsStore.ts";
-import { pageStore } from "../../../stores/pageStore/pageStore";
-import { userStore } from "../../../stores/userStore/userStore.js";
-import { GhostCard } from "../../../components/GhostCard/GhostCard";
-import { ElementCard } from "../../../components/ElementCard/ElementCard";
-import { UploadForm } from "../../../components/UploadForm/UploadForm";
-import { Item } from "../../../types/itemTypes";
+import { itemsStore } from "../itemsStore";
+import { pageStore } from "@stores/pageStore/pageStore";
+import { userStore } from "@stores/userStore/userStore.js";
+import { GhostCard } from "@components/GhostCard/GhostCard";
+import { ElementCard } from "@components/ElementCard/ElementCard";
+import { UploadForm } from "@components/UploadForm/UploadForm";
+import { Item } from "@type/itemTypes";
+import { Look } from "@type/lookTypes";
 
 export const ItemList: React.FC = observer(() => {
   const containerElement = useRef<HTMLDivElement>(null);
@@ -62,8 +63,8 @@ export const ItemList: React.FC = observer(() => {
     pageStore.showOnlyFloatingUploadForm,
   ]);
 
-  const showDetailView = (item: Item): void => {
-    itemsStore.setSelectedItem(item);
+  const showDetailView = (item: Item | Look): void => {
+    itemsStore.setSelectedItem(item as Item);
     itemsStore.setOriginalScrollPosition(itemsStore.lastKnownScrollPosition);
   };
 
@@ -87,7 +88,11 @@ export const ItemList: React.FC = observer(() => {
       } else {
         return (
           <div key={item.id}>
-            <ElementCard element={item} showDetailView={showDetailView} type="items" />
+            <ElementCard
+              element={item}
+              showDetailView={showDetailView}
+              type="items"
+            />
           </div>
         );
       }

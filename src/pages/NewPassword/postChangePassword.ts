@@ -1,4 +1,7 @@
-export const postChangePassword = async (token: string | undefined, password: string): Promise<boolean> => {
+export const postChangePassword = async (
+  token: string | undefined,
+  password: string,
+): Promise<boolean> => {
   const requestBody = {
     token,
     password,

@@ -1,8 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { fetchLooks } from "./fetchLooks";
-import { userStore } from "../../stores/userStore/userStore.js";
-import { Look } from "../../types/lookTypes";
+import { userStore } from "@stores/userStore/userStore.js";
+import { Look } from "@type/lookTypes";
 
 export class LooksStore {
   looks: Look[] = [];

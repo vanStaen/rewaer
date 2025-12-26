@@ -1,14 +1,14 @@
-import React, { useState, ChangeEvent, } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { notification, Spin, Tooltip } from "antd";
 import { EditOutlined, UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { updateAvatar } from "./updateAvatar";
-import { profileStore } from "../../../stores/profileStore/profileStore";
-import { postPicture } from "../../../helpers/picture/postPicture";
-import { useMediaUrl } from "../../../hooks/useMediaUrl";
+import { profileStore } from "@stores/profileStore/profileStore";
+import { postPicture } from "@helpers/picture/postPicture";
+import { useMediaUrl } from "@hooks/useMediaUrl";
 
 import "./Avatar.less";
 
@@ -16,10 +16,16 @@ export const Avatar: React.FC = observer(() => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const isStranger: boolean = userStore.userName !== profileStore.userName;
-  const avatar: string | null = isStranger ? profileStore.avatar : userStore.avatar;
+  const avatar: string | null = isStranger
+    ? profileStore.avatar
+    : userStore.avatar;
   const bucket = "users";
 
-  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(avatar, bucket, 'm');
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(
+    avatar,
+    bucket,
+    "m",
+  );
 
   const fileSelectHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     setIsUploading(true);
@@ -64,13 +70,16 @@ export const Avatar: React.FC = observer(() => {
       {isUploading || mediaLoading ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading" data-testid="Spinner">
-            <Spin size="large"/>
+            <Spin size="large" />
           </div>
         </div>
       ) : mediaError ? (
         <div className="avatar__avatar" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="avatar__avatarLoading">
-            <CloseOutlined className="avatar__avatarError" data-testid="CloseOutlined"/>
+            <CloseOutlined
+              className="avatar__avatarError"
+              data-testid="CloseOutlined"
+            />
           </div>
         </div>
       ) : (

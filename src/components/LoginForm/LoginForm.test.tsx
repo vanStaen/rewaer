@@ -7,8 +7,8 @@ import { LoginForm } from "./LoginForm";
 jest.mock("antd", () => ({
   ...jest.requireActual("antd"),
   notification: {
-    error: jest.fn()
-  }
+    error: jest.fn(),
+  },
 }));
 
 // Mock translations
@@ -47,7 +47,9 @@ describe("LoginForm", () => {
 
   it("renders login form fields", () => {
     render(<LoginForm />);
-    expect(screen.getByPlaceholderText("login.emailOrUsername")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("login.emailOrUsername"),
+    ).toBeInTheDocument();
     expect(screen.getByPlaceholderText("login.password")).toBeInTheDocument();
     expect(screen.getByText("login.logMeIn")).toBeInTheDocument();
   });
@@ -62,9 +64,14 @@ describe("LoginForm", () => {
       target: { value: "password123" },
     });
     fireEvent.click(screen.getByText("login.logMeIn"));
-    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith(
-      "test@example.com", null, "password123", undefined
-    ));
+    await waitFor(() =>
+      expect(mockLogin).toHaveBeenCalledWith(
+        "test@example.com",
+        null,
+        "password123",
+        undefined,
+      ),
+    );
   });
 
   it("shows error notification for unverified email", async () => {
@@ -83,8 +90,8 @@ describe("LoginForm", () => {
           message: expect.any(Object),
           placement: "topLeft",
           duration: 0,
-        })
-      )
+        }),
+      ),
     );
   });
 
@@ -103,8 +110,8 @@ describe("LoginForm", () => {
         expect.objectContaining({
           message: expect.any(Object),
           placement: "topLeft",
-        })
-      )
+        }),
+      ),
     );
   });
 

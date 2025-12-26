@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 import { postSearch } from "./postSearch";
 import { postSearchMore } from "./postSearchMore";
-import { lookCategory } from "../../lib/data/categories";
-import { colors } from "../../lib/data/colors";
-import { pattern } from "../../lib/data/pattern";
-import { seasons } from "../../lib/data/seasons";
-import { convertCodeToObjectString } from "../../helpers/convertCodeTo";
-import { userStore } from "../../stores/userStore/userStore";
-import { profileStore } from "../../stores/profileStore/profileStore";
+import { lookCategory } from "@lib/data/categories";
+import { colors } from "@lib/data/colors";
+import { pattern } from "@lib/data/pattern";
+import { seasons } from "@lib/data/seasons";
+import { convertCodeToObjectString } from "@helpers/convertCodeTo";
+import { userStore } from "@stores/userStore/userStore";
+import { profileStore } from "@stores/profileStore/profileStore";
 
 import "./SearchPage.less";
 
@@ -58,7 +58,9 @@ export const SearchPage: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string | false>(false);
   const [results, setResults] = useState<SearchResults | null>(null);
 
-  const handleEnter = async (e: KeyboardEvent<HTMLInputElement>): Promise<void> => {
+  const handleEnter = async (
+    e: KeyboardEvent<HTMLInputElement>,
+  ): Promise<void> => {
     setResults(null);
     const target = e.target as HTMLInputElement;
     if (!target.value) {
@@ -76,7 +78,9 @@ export const SearchPage: React.FC = () => {
     setIsSearching(false);
   };
 
-  const handleChange = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleChange = async (
+    e: ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     setResults(null);
     if (!e.target.value) {
       setIsSearching(false);
@@ -139,9 +143,11 @@ export const SearchPage: React.FC = () => {
         loading={isSearching}
       />
 
-      {results?.count ? 
+      {results?.count ? (
         <div className="search__results">Results: {results.count}</div>
-       :  <div className="search__empty">Wow, such empty</div>}
+      ) : (
+        <div className="search__empty">Wow, such empty</div>
+      )}
 
       <div>
         {results && results.users.length > 0 && (
@@ -158,7 +164,11 @@ export const SearchPage: React.FC = () => {
                 >
                   <div className="search__resultItem">
                     <div className="search__resultItemPictures">
-                      <img src={user.avatar} className="search__picture" alt={user.userName} />
+                      <img
+                        src={user.avatar}
+                        className="search__picture"
+                        alt={user.userName}
+                      />
                     </div>
                     <div className="search__resultItemData">
                       <div className="search__resultItemDataRow bold resultContent">
@@ -181,7 +191,11 @@ export const SearchPage: React.FC = () => {
               return (
                 <div className="search__resultItem" key={item.id}>
                   <div className="search__resultItemPictures">
-                    <img src={item.mediaId} className="search__picture" alt={item.title} />
+                    <img
+                      src={item.mediaId}
+                      className="search__picture"
+                      alt={item.title}
+                    />
                   </div>
                   <div className="search__resultItemData">
                     <div className="search__resultItemDataRow bold resultContent">
@@ -217,7 +231,11 @@ export const SearchPage: React.FC = () => {
               return (
                 <div className="search__resultItem" key={look.id}>
                   <div className="search__resultItemPictures">
-                    <img src={look.mediaId} className="search__picture" alt={look.title} />
+                    <img
+                      src={look.mediaId}
+                      className="search__picture"
+                      alt={look.title}
+                    />
                   </div>
                   <div className="search__resultItemData">
                     <div className="search__resultItemDataRow bold resultContent">

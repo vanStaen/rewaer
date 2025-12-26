@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { profileStore } from "../../../stores/profileStore/profileStore";
+import { profileStore } from "@stores/profileStore/profileStore";
 
 import "./ProfileFriends.css";
 

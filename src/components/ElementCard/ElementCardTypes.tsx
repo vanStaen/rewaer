@@ -1,5 +1,5 @@
-import { Item } from "../../types/itemTypes";
-import { Look } from "../../types/lookTypes";
+import { Item } from "@type/itemTypes";
+import { Look } from "@type/lookTypes";
 
 export interface ElementCardProps {
   element: Item | Look;

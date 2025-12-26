@@ -5,7 +5,7 @@ import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { RadioChangeEvent } from "antd/es/radio";
 
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings";
 import { updateLanguage } from "../actions/updateLanguage";
 import { updateGender } from "../actions/updateGender";
@@ -16,7 +16,10 @@ export const DisplaySettings: React.FC = observer(() => {
   const { i18n, t } = useTranslation();
   const initLanguage = i18n.language.slice(0, 2);
 
-  const changeProfilSettingsHandler = (setting: ProfilSettingsKey, value: boolean): void => {
+  const changeProfilSettingsHandler = (
+    setting: ProfilSettingsKey,
+    value: boolean,
+  ): void => {
     const tempProfilSettings = { ...userStore.profilSettings };
     tempProfilSettings[setting] = value;
     userStore.setProfilSettings(tempProfilSettings);

@@ -17,9 +17,9 @@ import { EmailSettings } from "./EmailSettings/EmailSettings";
 import { ProfileSettings } from "./ProfileSettings/ProfileSettings";
 import { DangerZone } from "./DangerZone/DangerZone";
 
-import { isMobileCheck } from "../../helpers/dev/checkMobileTablet.js";
-import { authStore } from "../../stores/authStore/authStore.js";
-import { userStore } from "../../stores/userStore/userStore.js";
+import { isMobileCheck } from "@helpers/dev/checkMobileTablet.js";
+import { authStore } from "@stores/authStore/authStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 
 import "./EditSettings.less";
 
@@ -29,7 +29,7 @@ interface SettingsOption {
   icon: React.ReactNode;
 }
 
-// improve subdivision within the pages, show user data (non editable) 
+// improve subdivision within the pages, show user data (non editable)
 
 export const EditSettings: React.FC = observer(() => {
   const { t } = useTranslation();

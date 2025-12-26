@@ -4,15 +4,21 @@ import { observer } from "mobx-react";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings";
 
 export const EmailSettings: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  type EmailSettingKey = "sendEmailFriendRequest" | "sendEmailNewMessage" | "sendEmailMarketing";
+  type EmailSettingKey =
+    | "sendEmailFriendRequest"
+    | "sendEmailNewMessage"
+    | "sendEmailMarketing";
 
-  const changeEmailSettingsHandler = (setting: EmailSettingKey, value: boolean): void => {
+  const changeEmailSettingsHandler = (
+    setting: EmailSettingKey,
+    value: boolean,
+  ): void => {
     const tempEmailSettings = { ...userStore.emailSettings };
     tempEmailSettings[setting] = value;
     userStore.setEmailSettings(tempEmailSettings);

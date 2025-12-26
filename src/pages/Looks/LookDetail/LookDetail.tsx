@@ -5,12 +5,12 @@ import { observer } from "mobx-react";
 import { FileImageOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "../../Items/itemsStore";
-import { looksStore } from "../looksStore.ts";
+import { looksStore } from "../looksStore";
 import { switchLook } from "./switchLook";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
 import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
-import { ImageEditBar } from "../../../components/ImageEditBar/ImageEditBar";
-import { useMediaUrl } from "../../../hooks/useMediaUrl";
+import { ImageEditBar } from "@components/ImageEditBar/ImageEditBar";
+import { useMediaUrl } from "@hooks/useMediaUrl";
 
 import "./LookDetail.less";
 
@@ -18,7 +18,12 @@ import "./LookDetail.less";
 const MIN_SWIPE_DISTANCE = 100;
 
 export const LookDetail: React.FC = observer(() => {
- const selectedLook = looksStore.selectedLook || { id: 0, items: [], active: false, mediaId: "" };
+  const selectedLook = looksStore.selectedLook || {
+    id: 0,
+    items: [],
+    active: false,
+    mediaId: "",
+  };
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const throttling = useRef<boolean>(false);
@@ -65,9 +70,9 @@ export const LookDetail: React.FC = observer(() => {
     if (throttling.current === false) {
       throttling.current = true;
       if (isRightSwipe) {
-        switchLook(false, looksStore.showPrivateLooks, selectedLook.id);
+        switchLook(false, looksStore.showPrivateLooks);
       } else if (isLeftSwipe) {
-        switchLook(true, looksStore.showPrivateLooks, selectedLook.id);
+        switchLook(true, looksStore.showPrivateLooks);
       }
       setTimeout(() => {
         throttling.current = false;
@@ -82,10 +87,10 @@ export const LookDetail: React.FC = observer(() => {
       looksStore.setSelectedLook(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchLook(false, looksStore.showPrivateLooks, selectedLook.id);
+      switchLook(false, looksStore.showPrivateLooks);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchLook(true, looksStore.showPrivateLooks, selectedLook.id);
+      switchLook(true, looksStore.showPrivateLooks);
     }
   };
 
@@ -98,7 +103,11 @@ export const LookDetail: React.FC = observer(() => {
     >
       <LookDetailHeader />
       <div className="lookdetail__imageWrap">
-        <ImageEditBar page="looks" loading={isLoadingMedia} error={!!loadingMediaError}/>
+        <ImageEditBar
+          page="looks"
+          loading={isLoadingMedia}
+          error={!!loadingMediaError}
+        />
         {isLoadingMedia ? (
           <div
             className="lookdetail__picture"
@@ -110,9 +119,11 @@ export const LookDetail: React.FC = observer(() => {
           </div>
         ) : loadingMediaError ? (
           <div className="lookdetail__picture">
-            <div className="lookdetail__error" >
-                <FileImageOutlined />
-                <div style={{ fontSize: "15px", marginTop: 18 }}>File not found</div>
+            <div className="lookdetail__error">
+              <FileImageOutlined />
+              <div style={{ fontSize: "15px", marginTop: 18 }}>
+                File not found
+              </div>
             </div>
           </div>
         ) : (

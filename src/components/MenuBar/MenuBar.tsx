@@ -16,12 +16,12 @@ import {
   RobotOutlined,
 } from "@ant-design/icons";
 
-import { authStore } from "../../stores/authStore/authStore.js";
-import { userStore } from "../../stores/userStore/userStore.js";
-import { pageStore } from "../../stores/pageStore/pageStore";
-import { profileStore } from "../../stores/profileStore/profileStore";
+import { authStore } from "@stores/authStore/authStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
+import { pageStore } from "@stores/pageStore/pageStore";
+import { profileStore } from "@stores/profileStore/profileStore";
 import { AddToHomeScreen } from "../AddToHomeScreen/AddToHomeScreen";
-import { getPictureUrl } from "../../helpers/picture/getPictureUrl";
+import { getPictureUrl } from "@helpers/picture/getPictureUrl";
 
 import "./MenuBar.less";
 
@@ -39,7 +39,7 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
     try {
       setAvatarUrl(null);
       if (path) {
-        const url = await getPictureUrl(path, bucket, 't');
+        const url = await getPictureUrl(path, bucket, "t");
         const isloaded = new Promise<string>((resolve, reject) => {
           const loadImg = new window.Image();
           loadImg.src = url;
@@ -213,7 +213,9 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
                 )
               )
             }
-            style={userStore.isLoading ? { backgroundColor: "#FFF" } : undefined}
+            style={
+              userStore.isLoading ? { backgroundColor: "#FFF" } : undefined
+            }
             size={36}
           />
           <div className="customSubMenu__container" id="subMenu">

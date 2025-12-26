@@ -25,7 +25,9 @@ interface SearchResults {
   }>;
 }
 
-export const postSearchMore = async (searchText: string): Promise<SearchResults | null> => {
+export const postSearchMore = async (
+  searchText: string,
+): Promise<SearchResults | null> => {
   const requestBody = {
     searchText,
   };

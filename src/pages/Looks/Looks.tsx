@@ -5,12 +5,12 @@ import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { looksStore } from "./looksStore";
-import { authStore } from "../../stores/authStore/authStore.js";
-import { pageStore } from "../../stores/pageStore/pageStore.js";
-import { userStore } from "../../stores/userStore/userStore.js";
+import { authStore } from "@stores/authStore/authStore.js";
+import { pageStore } from "@stores/pageStore/pageStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
-import { ToolBar } from "../../components/ToolBar/ToolBar";
+import { ToolBar } from "@components/ToolBar/ToolBar.jsx";
 
 import "./Looks.css";
 

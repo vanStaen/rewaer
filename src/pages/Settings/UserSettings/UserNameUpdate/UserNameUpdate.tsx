@@ -7,25 +7,27 @@ import {
   ArrowRightOutlined,
 } from "@ant-design/icons";
 
-import { userStore } from "../../../../stores/userStore/userStore";
+import { userStore } from "@stores/userStore/userStore";
 import { updateUserName } from "./updateUserName";
-import { postUsernameTaken } from "../../../../components/SignUpForm/postUsernameTaken";
-import { MAX_USERNAME_CHANGE_ALLOWED } from "../../../../lib/data/setup";
+import { postUsernameTaken } from "@components/SignUpForm/postUsernameTaken";
+import { MAX_USERNAME_CHANGE_ALLOWED } from "@lib/data/setup";
 
 export const UserNameUpdate: React.FC = () => {
   const { t } = useTranslation();
-  const [userNameIsValidating, setUserNameIsValidating] = useState<boolean>(false);
+  const [userNameIsValidating, setUserNameIsValidating] =
+    useState<boolean>(false);
   const [userNameAvailable, setUserNameAvailable] = useState<boolean>(false);
   const [newUserName, setNewUserName] = useState<string | null>(null);
-  const userNameChange = userStore.usernameChange ?? 0
-  const canNotChangeUserName = MAX_USERNAME_CHANGE_ALLOWED - (userStore.usernameChange ?? 0) === 0
+  const userNameChange = userStore.usernameChange ?? 0;
+  const canNotChangeUserName =
+    MAX_USERNAME_CHANGE_ALLOWED - (userStore.usernameChange ?? 0) === 0;
   const [errorMsgUsername, setErrorMsgUsername] = useState<string | null>(
-   canNotChangeUserName
-      ? t("profile.MaxUserNameChange")
-      : null,
+    canNotChangeUserName ? t("profile.MaxUserNameChange") : null,
   );
 
-  const onInputUsernameHandler = async (event: ChangeEvent<HTMLInputElement>) => {
+  const onInputUsernameHandler = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
     setUserNameIsValidating(true);
     const usernameTemp = event.target.value;
     // eslint-disable-next-line
@@ -110,10 +112,7 @@ export const UserNameUpdate: React.FC = () => {
             onClick={onChangeUserNameHandler}
             icon={<ArrowRightOutlined />}
             loading={userNameIsValidating}
-            disabled={
-              canNotChangeUserName ||
-              !userNameAvailable
-            }
+            disabled={canNotChangeUserName || !userNameAvailable}
           />
         </Tooltip>
       </div>

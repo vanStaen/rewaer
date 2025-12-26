@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { profileStore } from "../../../stores/profileStore/profileStore";
+import { profileStore } from "@stores/profileStore/profileStore";
 
 import "./ProfileDetails.css";
 

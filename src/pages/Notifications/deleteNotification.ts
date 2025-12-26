@@ -1,4 +1,6 @@
-export const deleteNotification = async (id: string): Promise<boolean | any> => {
+export const deleteNotification = async (
+  id: string,
+): Promise<boolean | any> => {
   try {
     const requestBody = {
       id,

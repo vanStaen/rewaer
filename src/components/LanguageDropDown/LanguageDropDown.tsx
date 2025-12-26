@@ -27,20 +27,46 @@ export const LanguageDropDown: React.FC = () => {
 
   return (
     <div className="languageDropdown">
-      <Dropdown menu={{ items: [
-        {
-          key: "en",
-          label: <div className="languageDropdown__item" onClick={() => onLanguageChangeHandler("en")}>EN</div>
-        },
-        {
-          key: "de",
-          label: <div className="languageDropdown__item" onClick={() => onLanguageChangeHandler("de")}>DE</div>
-        },
-        {
-          key: "fr",
-          label: <div className="languageDropdown__item" onClick={() => onLanguageChangeHandler("fr")}>FR</div>
-        }
-      ]}} trigger={["click"]}>
+      <Dropdown
+        menu={{
+          items: [
+            {
+              key: "en",
+              label: (
+                <div
+                  className="languageDropdown__item"
+                  onClick={() => onLanguageChangeHandler("en")}
+                >
+                  EN
+                </div>
+              ),
+            },
+            {
+              key: "de",
+              label: (
+                <div
+                  className="languageDropdown__item"
+                  onClick={() => onLanguageChangeHandler("de")}
+                >
+                  DE
+                </div>
+              ),
+            },
+            {
+              key: "fr",
+              label: (
+                <div
+                  className="languageDropdown__item"
+                  onClick={() => onLanguageChangeHandler("fr")}
+                >
+                  FR
+                </div>
+              ),
+            },
+          ],
+        }}
+        trigger={["click"]}
+      >
         {/* eslint-disable-next-line */}
         <a
           className="ant-dropdown-link"

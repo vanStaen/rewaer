@@ -24,6 +24,23 @@
       }
     },
     {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.test.js", "**/*.test.jsx", "jest.setup.ts"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off"
+      }
+    },
+    {
       "files": ["*.less"],
       "plugins": ["prettier"],
       "extends": ["plugin:prettier/recommended"],

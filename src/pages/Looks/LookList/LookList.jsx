@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 
 import { looksStore } from "../looksStore.ts";
-import { pageStore } from "../../../stores/pageStore/pageStore";
-import { userStore } from "../../../stores/userStore/userStore.js";
-import { ElementCard } from "../../../components/ElementCard/ElementCard";
-import { UploadForm } from "../../../components/UploadForm/UploadForm";
-import { GhostCard } from "../../../components/GhostCard/GhostCard";
+import { pageStore } from "@stores/pageStore/pageStore";
+import { userStore } from "@stores/userStore/userStore.js";
+import { ElementCard } from "@components/ElementCard/ElementCard";
+import { UploadForm } from "@components/UploadForm/UploadForm";
+import { GhostCard } from "@components/GhostCard/GhostCard";
 
 export const LookList = observer(() => {
   const containerElement = useRef(null);

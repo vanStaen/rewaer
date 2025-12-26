@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 import { FilterOutlined, FilterFilled } from "@ant-design/icons";
-import { pageStore } from "../../stores/pageStore/pageStore";
+import { pageStore } from "@stores/pageStore/pageStore";
 
 import "./ToolBar.css";
 

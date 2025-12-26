@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 
-import { pageStore } from "../../stores/pageStore/pageStore";
+import { pageStore } from "@stores/pageStore/pageStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
 import { Notification } from "./Notification";
 

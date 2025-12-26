@@ -1,6 +1,9 @@
 import { notification } from "antd";
 
-export async function updateSettings(emailSettings: any, profilSettings: any): Promise<boolean> {
+export async function updateSettings(
+  emailSettings: any,
+  profilSettings: any,
+): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($emailSettings: String, $profilSettings: String){

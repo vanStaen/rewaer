@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { updateSettings } from "../actions/updateSettings";
 
 type ProfilSettingKey =
@@ -19,7 +19,10 @@ type ProfilSettingKey =
 export const ProfileSettings: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  const changeProfilSettingsHandler = (setting: ProfilSettingKey, value: boolean): void => {
+  const changeProfilSettingsHandler = (
+    setting: ProfilSettingKey,
+    value: boolean,
+  ): void => {
     const tempProfilSettings = { ...userStore.profilSettings };
     tempProfilSettings[setting] = value;
     userStore.setProfilSettings(tempProfilSettings);

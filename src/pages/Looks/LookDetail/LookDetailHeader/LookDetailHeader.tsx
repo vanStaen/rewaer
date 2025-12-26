@@ -3,36 +3,56 @@ import { Dropdown, Menu } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { looksStore } from "../../looksStore.ts";
-import { userStore } from "../../../../stores/userStore/userStore.js";
-import { EditableTitle } from "../../../../components/EditableTitle/EditableTitle";
-import { convertCodeToObjectString } from "../../../../helpers/convertCodeTo";
+import { looksStore } from "../../looksStore";
+import { userStore } from "@stores/userStore/userStore.js";
+import { EditableTitle } from "@components/EditableTitle/EditableTitle";
+import { convertCodeToObjectString } from "@helpers/convertCodeTo";
 import { updateCategoryLook } from "../../actions/updateCategoryLook";
 import { updateSeasonLook } from "../../actions/updateSeasonLook";
-import { lookCategory } from "../../../../lib/data/categories";
-import { seasons } from "../../../../lib/data/seasons";
-import { DetailReturnArrow } from "../../../../components/DetailReturnArrow/DetailReturnArrow";
+import { lookCategory } from "@lib/data/categories";
+import { seasons } from "@lib/data/seasons";
+import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArrow";
 
 import "./LookDetailHeader.less";
 
 export const LookDetailHeader: React.FC = observer(() => {
   const { t } = useTranslation();
 
-  const selectedLook = looksStore.selectedLook || { id: 0, items: [], category: null, season: null, private: false, active: false, title: "" };
+  const selectedLook = looksStore.selectedLook || {
+    id: 0,
+    items: [],
+    category: null,
+    season: null,
+    private: false,
+    active: false,
+    title: "",
+  };
 
-  const [category, setCategory] = useState<string | null>(selectedLook.category);
-  const [season, setSeason] = useState<string | null>(selectedLook.season);
+  const [category, setCategory] = useState<string | null>(
+    selectedLook.category,
+  );
+  const [season, setSeason] = useState<string>(selectedLook.season || "");
   const [isPrivate, setIsPrivate] = useState<boolean>(selectedLook.private);
   const [isActive, setIsActive] = useState<boolean>(selectedLook.active);
-  const [selectedItems, setSelectedItems] = useState<number[]>(
-    selectedLook.items ? selectedLook.items : [],
+  const [selectedItemIds, setSelectedItemIds] = useState<number[]>(
+    selectedLook.items
+      ? selectedLook.items.map((item) =>
+          typeof item === "number" ? item : parseInt(item.id.toString()),
+        )
+      : [],
   );
 
   useEffect(() => {
     if (!selectedLook) return;
     setCategory(selectedLook.category);
-    setSeason(selectedLook.season);
-    setSelectedItems(selectedLook.items);
+    setSeason(selectedLook.season || "");
+    setSelectedItemIds(
+      selectedLook.items
+        ? selectedLook.items.map((item) =>
+            typeof item === "number" ? item : parseInt(item.id.toString()),
+          )
+        : [],
+    );
     setIsPrivate(selectedLook.private);
     setIsActive(selectedLook.active);
   }, [selectedLook]);
@@ -79,15 +99,13 @@ export const LookDetailHeader: React.FC = observer(() => {
     <>
       <DetailReturnArrow page="look" />
       <div className="lookdetail__header">
-        <span className="lookdetail__headerTitleId">
-          #{selectedLook.id}
-        </span>
-        {selectedItems.length > 0 && (
+        <span className="lookdetail__headerTitleId">#{selectedLook.id}</span>
+        {selectedItemIds.length > 0 && (
           <>
             <div className="lookdetail__headerPoints">&#9679;</div>
             <div className="lookdetail__headerItemCount">
-              {selectedItems.length} {t("main.item")}
-              {selectedItems.length > 1 && "s"}
+              {selectedItemIds.length} {t("main.item")}
+              {selectedItemIds.length > 1 && "s"}
             </div>
           </>
         )}

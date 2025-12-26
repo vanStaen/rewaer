@@ -5,13 +5,13 @@ import { MehOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "./itemsStore";
-import { authStore } from "../../stores/authStore/authStore.js";
-import { userStore } from "../../stores/userStore/userStore.js";
-import { pageStore } from "../../stores/pageStore/pageStore.js";
+import { authStore } from "@stores/authStore/authStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
+import { pageStore } from "@stores/pageStore/pageStore.js";
 import { ItemDetail } from "./ItemDetail/ItemDetail";
 import { ItemList } from "./ItemList/ItemList";
-import { Banner } from "../../components/Banner/Banner";
-import { ToolBar } from "../../components/ToolBar/ToolBar";
+import { Banner } from "@components/Banner/Banner";
+import { ToolBar } from "@components/ToolBar/ToolBar";
 
 import "./Items.css";
 

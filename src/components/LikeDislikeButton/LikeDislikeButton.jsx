@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
-import { userStore } from "../../stores/userStore/userStore.js";
-import { profileStore } from "../../stores/profileStore/profileStore";
+import { userStore } from "@stores/userStore/userStore.js";
+import { profileStore } from "@stores/profileStore/profileStore";
 import { updateLikeDislike } from "./updateLikeDislike";
 import { postNotificationLikeDislike } from "./postNotificationLikeDislike";
 import { TooltipLike } from "./ToolTipLike";

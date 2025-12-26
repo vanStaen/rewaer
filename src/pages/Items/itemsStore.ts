@@ -1,8 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 
 import { fetchItems } from "./fetchItems";
-import { userStore } from "../../stores/userStore/userStore.js";
-import { Item } from "../../types/itemTypes";
+import { userStore } from "@stores/userStore/userStore.js";
+import { Item } from "@type/itemTypes";
 
 export class ItemsStore {
   items: Item[] = [];
@@ -78,7 +78,9 @@ export class ItemsStore {
     this.originalScrollPosition = originalScrollPosition;
   };
 
-  setLastKnownScrollPosition = (lastKnownScrollPosition: number | null): void => {
+  setLastKnownScrollPosition = (
+    lastKnownScrollPosition: number | null,
+  ): void => {
     this.lastKnownScrollPosition = lastKnownScrollPosition;
   };
 

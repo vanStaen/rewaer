@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { ElementCard } from "./ElementCard";
-import { Item } from "../../types/itemTypes";
-import { Look } from "../../types/lookTypes";
+import { Item } from "@type/itemTypes";
+import { Look } from "@type/lookTypes";
 
 jest.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -101,7 +101,7 @@ global.Image = MockImage as any;
 
 describe("ElementCard", () => {
   const mockShowDetailView = jest.fn();
-  
+
   const mockItem: Item = {
     id: 1,
     title: "Test Item",
@@ -147,7 +147,7 @@ describe("ElementCard", () => {
     jest.clearAllMocks();
     const { getPictureUrl } = require("../../helpers/picture/getPictureUrl");
     (getPictureUrl as jest.Mock).mockResolvedValue(
-      "https://example.com/image.jpg"
+      "https://example.com/image.jpg",
     );
   });
 
@@ -157,7 +157,7 @@ describe("ElementCard", () => {
         element={mockItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
     expect(screen.getByRole("img", { hidden: true })).toBeInTheDocument(); // Spin component
   });
@@ -168,7 +168,7 @@ describe("ElementCard", () => {
         element={mockItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -179,16 +179,14 @@ describe("ElementCard", () => {
 
   it("displays error message when image fails to load", async () => {
     const { getPictureUrl } = require("../../helpers/picture/getPictureUrl");
-    (getPictureUrl as jest.Mock).mockRejectedValue(
-      new Error("Load failed")
-    );
+    (getPictureUrl as jest.Mock).mockRejectedValue(new Error("Load failed"));
 
     render(
       <ElementCard
         element={mockItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -202,7 +200,7 @@ describe("ElementCard", () => {
         element={mockItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -230,11 +228,13 @@ describe("ElementCard", () => {
         element={itemWithMissingData}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
-      const missingInfoIcon = document.querySelector(".elementcard__missingInfo");
+      const missingInfoIcon = document.querySelector(
+        ".elementcard__missingInfo",
+      );
       expect(missingInfoIcon).toBeInTheDocument();
     });
   });
@@ -250,7 +250,7 @@ describe("ElementCard", () => {
         element={archivedItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     expect(screen.getByText("main.archived")).toBeInTheDocument();
@@ -268,11 +268,11 @@ describe("ElementCard", () => {
         element={privateFavoritedItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     const metaDiv = document.querySelector(
-      ".elementcard__meta.elementcard__metaPrivate.elementcard__metaPrivateFavorite"
+      ".elementcard__meta.elementcard__metaPrivate.elementcard__metaPrivateFavorite",
     );
     expect(metaDiv).toBeInTheDocument();
   });
@@ -292,11 +292,13 @@ describe("ElementCard", () => {
         element={sharedItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
-      const missingInfoIcon = document.querySelector(".elementcard__missingInfo");
+      const missingInfoIcon = document.querySelector(
+        ".elementcard__missingInfo",
+      );
       expect(missingInfoIcon).not.toBeInTheDocument();
     });
   });
@@ -307,7 +309,7 @@ describe("ElementCard", () => {
         element={mockItem}
         type="items"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -331,7 +333,7 @@ describe("ElementCard", () => {
         element={mockLook}
         type="looks"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -356,11 +358,13 @@ describe("ElementCard", () => {
         element={lookWithMissingData}
         type="looks"
         showDetailView={mockShowDetailView}
-      />
+      />,
     );
 
     await waitFor(() => {
-      const missingInfoIcon = document.querySelector(".elementcard__missingInfo");
+      const missingInfoIcon = document.querySelector(
+        ".elementcard__missingInfo",
+      );
       // Should still show missing info for brand and category, but not colors
       expect(missingInfoIcon).toBeInTheDocument();
     });

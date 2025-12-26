@@ -1,4 +1,5 @@
+// TODO
 export interface User {
-  id: number | string; // TODO
+  id: number | string;
   userName: string;
 }

@@ -6,10 +6,10 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { updateGenericBooleanItem } from "../../actions/updateGenericBooleanItem";
 import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
-import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
+import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 
 import { itemsStore } from "../../itemsStore.ts";
-import { userStore } from "../../../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 
 import "./ItemDetailFormElement.css";
 

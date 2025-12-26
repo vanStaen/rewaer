@@ -4,7 +4,7 @@ import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { itemsStore } from "../../../Items/itemsStore";
-import { looksStore } from "../../looksStore.ts";
+import { looksStore } from "../../looksStore";
 import { updateItemsLook } from "../../actions/updateItemsLook";
 import { ItemPickerCard } from "./ItemPickerCard";
 
@@ -12,49 +12,62 @@ import "./ItemPicker.less";
 
 export const ItemPicker: React.FC = observer(() => {
   const { t } = useTranslation();
-  const selectedLook = looksStore.selectedLook || { id: 0, items: [], active: false };
+  const selectedLook = looksStore.selectedLook || {
+    id: 0,
+    items: [],
+    active: false,
+  };
   const [isEdit, setIsEdit] = useState<boolean>(false); // TODO (isEdit should be always false if !isActive)
   const [isActive, setIsActive] = useState<boolean>(selectedLook.active);
-  const [selectedItems, setSelectedItems] = useState<number[]>(
-    selectedLook.items ? selectedLook.items : [],
+  const [selectedItemIds, setSelectedItemIds] = useState<number[]>(
+    selectedLook.items
+      ? selectedLook.items.map((item) =>
+          typeof item === "number" ? item : parseInt(item.id.toString()),
+        )
+      : [],
   );
 
   useEffect(() => {
     if (!looksStore.selectedLook) return;
     setIsActive(selectedLook.active);
-    setSelectedItems(selectedLook.items);
+    setSelectedItemIds(
+      selectedLook.items
+        ? selectedLook.items.map((item) =>
+            typeof item === "number" ? item : parseInt(item.id.toString()),
+          )
+        : [],
+    );
   }, [looksStore.selectedLook]);
 
   const itemClickHandler = (value: number | string): void => {
-
     if (!isEdit) {
-        // TODO: Link to item 
-        return;
+      // TODO: Link to item
+      return;
     }
 
     const valueAsInt = parseInt(value.toString());
-    const indexOfValue = selectedItems.indexOf(valueAsInt);
+    const indexOfValue = selectedItemIds.indexOf(valueAsInt);
     if (!isActive) {
       return;
     }
     if (indexOfValue < 0) {
-      setSelectedItems([...selectedItems, valueAsInt]);
-      updateItemsLook(selectedLook.id, [
-        ...selectedItems,
-        valueAsInt,
-      ]);
+      setSelectedItemIds([...selectedItemIds, valueAsInt]);
+      updateItemsLook(selectedLook.id, [...selectedItemIds, valueAsInt]);
     } else {
-      setSelectedItems(selectedItems.filter((itemId) => itemId !== valueAsInt));
+      setSelectedItemIds(
+        selectedItemIds.filter((itemId) => itemId !== valueAsInt),
+      );
       updateItemsLook(
         selectedLook.id,
-        selectedItems.filter((itemId) => itemId !== valueAsInt),
+        selectedItemIds.filter((itemId) => itemId !== valueAsInt),
       );
     }
     looksStore.setIsOutOfDate(true);
   };
 
   const itemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item.id.toString())) >= 0;
+    const isSelected =
+      selectedItemIds.indexOf(parseInt(item.id.toString())) >= 0;
     if (!isSelected) {
       if (!item.active) {
         return null;
@@ -78,7 +91,8 @@ export const ItemPicker: React.FC = observer(() => {
   });
 
   const selectedItemList = itemsStore.items.map((item) => {
-    const isSelected = selectedItems.indexOf(parseInt(item.id.toString())) >= 0;
+    const isSelected =
+      selectedItemIds.indexOf(parseInt(item.id.toString())) >= 0;
     if (isSelected) {
       return (
         <ItemPickerCard
@@ -101,7 +115,7 @@ export const ItemPicker: React.FC = observer(() => {
         </div>
       ) : (
         <div className="itemPicker__itemContainer">
-          {selectedItems.length > 0 && (
+          {selectedItemIds.length > 0 && (
             <div className="itemPicker__itemContainerSelected">
               <div className="itemPicker__itemContainerDivisor">
                 {t("looks.itemPartOfThisLook")}

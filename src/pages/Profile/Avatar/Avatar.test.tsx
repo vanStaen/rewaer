@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import { Avatar } from "./Avatar";
 
 // Mock dependencies
@@ -29,7 +29,7 @@ jest.mock("../../../hooks/useMediaUrl", () => ({
 jest.mock("react-i18next", () => ({
   useTranslation: () => ({
     t: (key: string) => key,
-    i18n: { changeLanguage: () => new Promise(() => {}) }
+    i18n: { changeLanguage: () => new Promise(() => {}) },
   }),
 }));
 
@@ -43,8 +43,10 @@ describe("Avatar component", () => {
   });
 
   it("renders edit button for own profile", () => {
-    const userStore = require("../../../stores/userStore/userStore.js").userStore;
-    const profileStore = require("../../../stores/profileStore/profileStore").profileStore;
+    const userStore =
+      require("../../../stores/userStore/userStore.js").userStore;
+    const profileStore =
+      require("../../../stores/profileStore/profileStore").profileStore;
     userStore.userName = "sameUser";
     profileStore.userName = "sameUser";
     render(<Avatar />);
@@ -54,19 +56,24 @@ describe("Avatar component", () => {
   it("calls upload logic when a file is selected", async () => {
     const { postPicture } = require("../../../helpers/picture/postPicture");
     const { updateAvatar } = require("./updateAvatar");
-    const userStore = require("../../../stores/userStore/userStore.js").userStore;
-    const profileStore = require("../../../stores/profileStore/profileStore").profileStore;
+    const userStore =
+      require("../../../stores/userStore/userStore.js").userStore;
+    const profileStore =
+      require("../../../stores/profileStore/profileStore").profileStore;
     userStore.userName = "sameUser";
     profileStore.userName = "sameUser";
     render(<Avatar />);
     const input = screen.getByTestId("fileSelectInput");
     // Simulate file selection
     await act(async () => {
-      fireEvent.change(input, { target: { files: [new File(["dummy"], "avatar.png", { type: "image/png" })] } });
+      fireEvent.change(input, {
+        target: {
+          files: [new File(["dummy"], "avatar.png", { type: "image/png" })],
+        },
+      });
       await Promise.resolve();
     });
     expect(postPicture).toHaveBeenCalledWith(expect.any(File), "users");
     expect(updateAvatar).toHaveBeenCalledWith("newAvatar.jpg");
   });
-
 });

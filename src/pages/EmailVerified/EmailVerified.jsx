@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { postEmailVerified } from "./postEmailVerified";
-import { LanguageDropDown } from "../../components/LanguageDropDown/LanguageDropDown";
+import { LanguageDropDown } from "@components/LanguageDropDown/LanguageDropDown";
 
 import "./EmailVerified.css";
 

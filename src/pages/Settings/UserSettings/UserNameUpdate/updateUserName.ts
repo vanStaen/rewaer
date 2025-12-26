@@ -1,6 +1,9 @@
 import { notification } from "antd";
 
-export async function updateUserName(userName: string, usernameChange: number): Promise<boolean> {
+export async function updateUserName(
+  userName: string,
+  usernameChange: number,
+): Promise<boolean> {
   const requestBody = {
     query: `
     mutation ($userName: String, $usernameChange: Int){

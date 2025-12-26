@@ -1,4 +1,4 @@
-import { Item, getItemsGraphQLResponse } from "../../types/itemTypes";
+import { Item, getItemsGraphQLResponse } from "@type/itemTypes";
 
 export async function fetchItems(): Promise<Item[]> {
   const requestBody = {
@@ -47,6 +47,6 @@ export async function fetchItems(): Promise<Item[]> {
 
   const data: getItemsGraphQLResponse = await response.json();
   const items: Item[] = data.data.getItems;
-  
+
   return items;
 }

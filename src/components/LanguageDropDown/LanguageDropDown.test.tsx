@@ -32,5 +32,4 @@ describe("LanguageDropDown", () => {
     expect(changeLanguage).toHaveBeenCalledWith("de-DE");
     expect(screen.getAllByText("DE")[1]).toBeInTheDocument();
   });
-
 });

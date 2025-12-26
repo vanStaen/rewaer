@@ -1,23 +1,31 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { SearchPage } from './SearchPage';
-import { profileStore } from '../../stores/profileStore/profileStore.js';
-import mockSearchResults from '../../../mocks/mockSearchResults.json';
+import React from "react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import { SearchPage } from "./SearchPage";
+import { profileStore } from "@stores/profileStore/profileStore.js";
+import mockSearchResults from "../../../mocks/mockSearchResults.json";
 
 // Mock external dependencies
-jest.mock('../../stores/userStore/userStore.js', () => ({
+jest.mock("../../stores/userStore/userStore.js", () => ({
   userStore: {
-    language: 'en'
-  }
+    language: "en",
+  },
 }));
-jest.mock('../../stores/profileStore/profileStore.js', () => ({
+jest.mock("../../stores/profileStore/profileStore.js", () => ({
   profileStore: {
-    fetchProfileData: jest.fn()
-  }
+    fetchProfileData: jest.fn(),
+  },
 }));
-jest.mock('../../helpers/convertCodeTo', () => ({
-  convertCodeToObjectString: jest.fn().mockReturnValue({ en: 'Translated Text' })
+jest.mock("../../helpers/convertCodeTo", () => ({
+  convertCodeToObjectString: jest
+    .fn()
+    .mockReturnValue({ en: "Translated Text" }),
 }));
 
 jest.mock("./postSearch", () => ({
@@ -27,217 +35,240 @@ jest.mock("./postSearchMore", () => ({
   postSearchMore: jest.fn(() => mockSearchResults),
 }));
 
-jest.mock('../../lib/data/categories', () => ({
+jest.mock("../../lib/data/categories", () => ({
   lookCategory: {
-    casual: { en: 'Casual', fr: 'Décontracté' },
-    formal: { en: 'Formal', fr: 'Formel' },
-    business: { en: 'Business', fr: 'Affaires' },
-    party: { en: 'Party', fr: 'Fête' }
-  }
+    casual: { en: "Casual", fr: "Décontracté" },
+    formal: { en: "Formal", fr: "Formel" },
+    business: { en: "Business", fr: "Affaires" },
+    party: { en: "Party", fr: "Fête" },
+  },
 }));
-jest.mock('../../lib/data/colors', () => ({
+jest.mock("../../lib/data/colors", () => ({
   colors: {
-    red: { en: 'Red', fr: 'Rouge' },
-    blue: { en: 'Blue', fr: 'Bleu' },
-    black: { en: 'Black', fr: 'Noir' }
-  }
+    red: { en: "Red", fr: "Rouge" },
+    blue: { en: "Blue", fr: "Bleu" },
+    black: { en: "Black", fr: "Noir" },
+  },
 }));
-jest.mock('../../lib/data/pattern', () => ({
+jest.mock("../../lib/data/pattern", () => ({
   pattern: {
-    solid: { en: 'Solid', fr: 'Uni' },
-    striped: { en: 'Striped', fr: 'Rayé' },
-    polka: { en: 'Polka Dots', fr: 'Pois' }
-  }
+    solid: { en: "Solid", fr: "Uni" },
+    striped: { en: "Striped", fr: "Rayé" },
+    polka: { en: "Polka Dots", fr: "Pois" },
+  },
 }));
-jest.mock('../../lib/data/seasons', () => ({
+jest.mock("../../lib/data/seasons", () => ({
   seasons: {
-    spring: { en: 'Spring', fr: 'Printemps' },
-    summer: { en: 'Summer', fr: 'Été' },
-    autumn: { en: 'Autumn', fr: 'Automne' },
-    winter: { en: 'Winter', fr: 'Hiver' }
-  }
+    spring: { en: "Spring", fr: "Printemps" },
+    summer: { en: "Summer", fr: "Été" },
+    autumn: { en: "Autumn", fr: "Automne" },
+    winter: { en: "Winter", fr: "Hiver" },
+  },
 }));
 
 const { postSearch } = require("./postSearch");
 const { postSearchMore } = require("./postSearchMore");
 
 const renderWithRouter = (component: React.ReactElement) => {
-  return render(
-    <BrowserRouter>
-      {component}
-    </BrowserRouter>
-  );
+  return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
-describe('SearchPage', () => {
+describe("SearchPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('renders search input with correct placeholder', () => {
+  it("renders search input with correct placeholder", () => {
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     expect(searchInput).toBeInTheDocument();
   });
 
-  it('shows empty state when no results', () => {
+  it("shows empty state when no results", () => {
     renderWithRouter(<SearchPage />);
-    
-    const emptyMessage = screen.getByText('Wow, such empty');
+
+    const emptyMessage = screen.getByText("Wow, such empty");
     expect(emptyMessage).toBeInTheDocument();
   });
 
-  it('calls postSearch on input change', async () => {
+  it("calls postSearch on input change", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test query' } });
+      fireEvent.change(searchInput, { target: { value: "test query" } });
     });
-    
+
     await waitFor(() => {
-      expect(postSearch).toHaveBeenCalledWith('test query');
+      expect(postSearch).toHaveBeenCalledWith("test query");
     });
   });
 
- it('displays search results count', async () => {
+  it("displays search results count", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Results: 3')).toBeInTheDocument();
+      expect(screen.getByText("Results: 3")).toBeInTheDocument();
     });
   });
 
-  it('renders user results correctly', async () => {
+  it("renders user results correctly", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Users')).toBeInTheDocument();
-      expect(screen.getByText('Result user')).toBeInTheDocument();
+      expect(screen.getByText("Users")).toBeInTheDocument();
+      expect(screen.getByText("Result user")).toBeInTheDocument();
     });
   });
 
-  it('renders item results correctly', async () => {
+  it("renders item results correctly", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Items')).toBeInTheDocument();
-      expect(screen.getByText('Result item')).toBeInTheDocument();
+      expect(screen.getByText("Items")).toBeInTheDocument();
+      expect(screen.getByText("Result item")).toBeInTheDocument();
     });
   });
 
-  it('renders look results correctly', async () => {
+  it("renders look results correctly", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Looks')).toBeInTheDocument();
-      expect(screen.getByText('Result look')).toBeInTheDocument();
+      expect(screen.getByText("Looks")).toBeInTheDocument();
+      expect(screen.getByText("Result look")).toBeInTheDocument();
     });
   });
 
-  it('calls profileStore.fetchProfileData when user link is clicked', async () => {
+  it("calls profileStore.fetchProfileData when user link is clicked", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      const userLink = screen.getByText('Result user').closest('a');
-      expect(userLink).toHaveAttribute('href', '/username');
+      const userLink = screen.getByText("Result user").closest("a");
+      expect(userLink).toHaveAttribute("href", "/username");
     });
-    
-    const userLink = screen.getByText('username').closest('a');
+
+    const userLink = screen.getByText("username").closest("a");
     if (userLink) {
       await act(async () => {
         fireEvent.click(userLink);
       });
-      expect(profileStore.fetchProfileData).toHaveBeenCalledWith('username');
+      expect(profileStore.fetchProfileData).toHaveBeenCalledWith("username");
     }
   });
 
-  it('shows loading state during search', async () => {
-    postSearch.mockImplementation(() => new Promise(resolve => setTimeout(() => resolve(mockSearchResults), 100)));
+  it("shows loading state during search", async () => {
+    postSearch.mockImplementation(
+      () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve(mockSearchResults), 100),
+        ),
+    );
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     // Check if loading state is active (Ant Design Search component shows loading)
     expect(searchInput).toBeInTheDocument();
   });
 
-  it('handles empty search input correctly', async () => {
+  it("handles empty search input correctly", async () => {
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: '123' } });
-      fireEvent.change(searchInput, { target: { value: '' } });
+      fireEvent.change(searchInput, { target: { value: "123" } });
+      fireEvent.change(searchInput, { target: { value: "" } });
     });
-    
-    expect(postSearch).not.toHaveBeenCalledWith('');
+
+    expect(postSearch).not.toHaveBeenCalledWith("");
   });
 
-  it('handles API error gracefully', async () => {
+  it("handles API error gracefully", async () => {
     postSearch.mockResolvedValue(null);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Wow, such empty')).toBeInTheDocument();
+      expect(screen.getByText("Wow, such empty")).toBeInTheDocument();
     });
   });
 
-  it('highlights search terms in results', async () => {
+  it("highlights search terms in results", async () => {
     postSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
-    
-    const searchInput = screen.getByPlaceholderText('What are you looking for?');
+
+    const searchInput = screen.getByPlaceholderText(
+      "What are you looking for?",
+    );
     await act(async () => {
-      fireEvent.change(searchInput, { target: { value: 'test' } });
+      fireEvent.change(searchInput, { target: { value: "test" } });
     });
-    
+
     await waitFor(() => {
-      expect(screen.getByText('Result user')).toBeInTheDocument();
+      expect(screen.getByText("Result user")).toBeInTheDocument();
     });
-    
+
     // Check if highlighting effect is applied (this tests the useEffect)
-    const resultElements = document.getElementsByClassName('resultContent');
+    const resultElements = document.getElementsByClassName("resultContent");
     expect(resultElements.length).toBeGreaterThan(0);
   });
 });

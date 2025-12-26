@@ -1,4 +1,4 @@
-import { Look, getLooksGraphQLResponse } from "../../types/lookTypes";
+import { Look, getLooksGraphQLResponse } from "@type/lookTypes";
 
 export async function fetchLooks(): Promise<Look[]> {
   const requestBody = {

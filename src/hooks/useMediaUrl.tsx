@@ -10,7 +10,7 @@ interface UseMediaUrlReturn {
 export function useMediaUrl(
   mediaUrl: string | null | undefined,
   bucket: string,
-  size?: 't' | 'm' | 'b' 
+  size?: "t" | "m" | "b",
 ): [string | null, boolean, Error | boolean] {
   const [mediaS3Url, setMediaS3Url] = useState<string | null>(null);
   const [mediaLoading, setMediaLoading] = useState<boolean>(false);

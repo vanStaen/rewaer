@@ -100,7 +100,7 @@ const App: React.FC = observer(() => {
   }, [userStore.archived, t]);
 
   return (
-    <BrowserRouter future={{v7_relativeSplatPath: true}}>
+    <BrowserRouter future={{ v7_relativeSplatPath: true }}>
       <div className="App">
         {authStore.hasAccess && <MenuBar visitor={false} />}
         <Routes>

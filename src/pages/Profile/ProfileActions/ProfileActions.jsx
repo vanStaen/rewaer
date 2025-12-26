@@ -10,8 +10,8 @@ import {
   EyeInvisibleOutlined,
 } from "@ant-design/icons";
 
-import { profileStore } from "../../../stores/profileStore/profileStore";
-import { userStore } from "../../../stores/userStore/userStore.js";
+import { profileStore } from "@stores/profileStore/profileStore";
+import { userStore } from "@stores/userStore/userStore.js";
 import { ProfileFriends } from "../ProfileFriends/ProfileFriends";
 import { deleteFriend } from "./deleteFriend";
 import { deleteFollow } from "./deleteFollow";

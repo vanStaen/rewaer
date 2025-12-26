@@ -18,11 +18,11 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 import { postFollow } from "../Profile/ProfileActions/postFollow";
 import { postAcceptRequest } from "../Profile/ProfileActions/postAcceptRequest";
-import { userStore } from "../../stores/userStore/userStore.js";
+import { userStore } from "@stores/userStore/userStore.js";
 import { itemsStore } from "../Items/itemsStore";
 import { looksStore } from "../Looks/looksStore";
 import { deleteNotification } from "./deleteNotification";
-import { useMediaUrl } from "../../hooks/useMediaUrl";
+import { useMediaUrl } from "@hooks/useMediaUrl";
 
 import "./Notifications.less";
 
@@ -82,7 +82,11 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
   // TODO: map bucket to notification types if needed
   const bucket = "users";
 
-  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(mediaUrl, notificationTypeToBucket(data.type), 't');
+  const [mediaS3Url, mediaLoading, mediaError] = useMediaUrl(
+    mediaUrl,
+    notificationTypeToBucket(data.type),
+    "t",
+  );
 
   const closeNotificationHandler = (id: string): void => {
     const element = document.getElementById(`notification${id}`);
@@ -103,7 +107,11 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
     }
   };
 
-  const notificationClickHandler = async (type: number, title: string, actionData: number): Promise<void> => {
+  const notificationClickHandler = async (
+    type: number,
+    title: string,
+    actionData: number,
+  ): Promise<void> => {
     // Friend request
     if (type === 1 || type === 17) {
       navigate(`/${title}`);
@@ -134,7 +142,7 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
         await itemsStore.loadItems();
       }
       const selectedItem = itemsStore.items.filter(
-        (item) => parseInt(item.id) === actionData,
+        (item) => parseInt(item.id.toString()) === actionData,
       );
       itemsStore.setSelectedItem(selectedItem[0]);
       navigate(`/items/`);
@@ -145,7 +153,7 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
         await looksStore.loadLooks();
       }
       const selectedLook = looksStore.looks.filter(
-        (look) => parseInt(look.id) === actionData,
+        (look) => parseInt(look.id.toString()) === actionData,
       );
       looksStore.setSelectedLook(selectedLook[0]);
       navigate(`/looks/`);
@@ -165,7 +173,9 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
   const isNotFriend =
     userStore.friends.findIndex((friend) => friend.userName === title) === -1;
 
-  const followBackHandler = async (event: MouseEvent<HTMLElement>): Promise<void> => {
+  const followBackHandler = async (
+    event: MouseEvent<HTMLElement>,
+  ): Promise<void> => {
     event.stopPropagation();
     try {
       await postFollow(actionData);
@@ -182,7 +192,9 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
     } catch (e) {}
   };
 
-  const acceptRequestHandler = async (event: MouseEvent<HTMLElement>): Promise<void> => {
+  const acceptRequestHandler = async (
+    event: MouseEvent<HTMLElement>,
+  ): Promise<void> => {
     event.stopPropagation();
     try {
       await postAcceptRequest(actionData);
@@ -225,7 +237,8 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
     }
   };
 
-  const onTouchMove = (e: TouchEvent<HTMLDivElement>): void => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>): void =>
+    setTouchEnd(e.targetTouches[0].clientX);
 
   const onTouchStart = (e: TouchEvent<HTMLDivElement>): void => {
     setTouchEnd(null); // otherwise the swipe is fired even with usual touch events

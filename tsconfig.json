@@ -13,7 +13,17 @@
     "isolatedModules": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@img/*": ["src/img/*"],
+      "@lib/*": ["src/lib/*"],
+      "@stores/*": ["src/stores/*"],
+      "@type/*": ["src/types/*"],
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]

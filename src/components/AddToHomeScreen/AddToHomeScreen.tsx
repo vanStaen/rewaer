@@ -20,7 +20,6 @@ export const AddToHomeScreen: React.FC = () => {
     return () => {
       window.removeEventListener("beforeinstallprompt", installPromptHandler);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useLayoutEffect(() => {
