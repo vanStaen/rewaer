@@ -59,7 +59,8 @@ describe("MenuBar", () => {
     expect(screen.getByText("menu.items")).toBeInTheDocument();
     expect(screen.getByText("menu.notifications")).toBeInTheDocument();
     expect(screen.getByText("menu.search")).toBeInTheDocument();
-    expect(screen.getByText("menu.mail")).toBeInTheDocument();
+    expect(screen.queryByText("menu.mail")).not.toBeInTheDocument();
+    expect(screen.queryByText("menu.assistant")).not.toBeInTheDocument();
     expect(screen.getByText("AddToHomeScreen")).toBeInTheDocument();
     expect(screen.getByText("menu.logout")).toBeInTheDocument();
   });

@@ -152,32 +152,33 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
           </div>
         </Link>
 
-        <div
-          key="mail"
-          className={`menu__elementDisabled left ${
-            pageStore.menuSelected === "mail" && "selected"
-          }`}
-          onClick={() => {
-            // pageStore.setMenuSelected("mail");
-          }}
-        >
-          <MailOutlined />
-          <span className="menu__elementName">{t("menu.mail")}</span>
-        </div>
+        {/* 
+          <div
+            key="mail"
+            className={`menu__elementDisabled left ${
+              pageStore.menuSelected === "mail" && "selected"
+            }`}
+            onClick={() => {
+              // pageStore.setMenuSelected("mail");
+            }}
+          >
+            <MailOutlined />
+            <span className="menu__elementName">{t("menu.mail")}</span>
+          </div>
 
-        <div
-          key="assistant"
-          className={`menu__elementDisabled left ${
-            pageStore.menuSelected === "assistant" && "selected"
-          }`}
-          onClick={() => {
-            // pageStore.setMenuSelected("assistant");
-          }}
-        >
-          <RobotOutlined />
-          <span className="menu__elementName">{t("menu.assistant")}</span>
-        </div>
-        
+          <div
+            key="assistant"
+            className={`menu__elementDisabled left ${
+              pageStore.menuSelected === "assistant" && "selected"
+            }`}
+            onClick={() => {
+              // pageStore.setMenuSelected("assistant");
+            }}
+          >
+            <RobotOutlined />
+            <span className="menu__elementName">{t("menu.assistant")}</span>
+          </div> 
+        */}
 
         <Link to="/info">
           <div
