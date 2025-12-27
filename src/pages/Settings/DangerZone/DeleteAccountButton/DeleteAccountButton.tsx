@@ -42,8 +42,8 @@ export const DeleteAccountButton: React.FC = () => {
     notification.error({
       message: (
         <>
-          <b>{t("profile.willBeArchived")}</b>{" "}
-          {t("profile.loggingToReactivate")}
+          <b>{t("profile.willBeArchived")}</b>
+          <>{t("profile.loggingToReactivate")}</>
         </>
       ),
       placement: "bottomRight",

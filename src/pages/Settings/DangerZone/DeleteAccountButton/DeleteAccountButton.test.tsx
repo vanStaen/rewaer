@@ -185,8 +185,8 @@ describe("DeleteAccountButton", () => {
     expect(notification.error).toHaveBeenCalledWith({
       message: (
         <React.Fragment>
-          <b>Your account will be archived</b>{" "}
-          Log in again to reactivate
+          <b>Your account will be archived</b>
+          <React.Fragment>Log in again to reactivate</React.Fragment>
         </React.Fragment>
       ),
       placement: "bottomRight",
