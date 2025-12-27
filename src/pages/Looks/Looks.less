@@ -1,13 +1,19 @@
-.items__main {
+.looks__main {  
   width: 100vw;
 }
 
-.items__container {
+.looks__container { 
   width: 100vw;
-  min-height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
+  height: auto;
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   gap: 30px 20px;
   padding: 0 20px;
+}
+
+@media (max-width: 540px) {
+  .looks__container {
+    gap: 20px;
+  }
 }

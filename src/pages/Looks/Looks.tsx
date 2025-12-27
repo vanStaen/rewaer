@@ -12,7 +12,7 @@ import { LookDetail } from "./LookDetail/LookDetail";
 import { LookList } from "./LookList/LookList";
 import { ToolBar } from "@components/ToolBar/ToolBar.jsx";
 
-import "./Looks.css";
+import "./Looks.less";
 
 export const Looks: React.FC = observer(() => {
   const { t } = useTranslation();

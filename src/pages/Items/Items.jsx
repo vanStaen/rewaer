@@ -13,7 +13,7 @@ import { ItemList } from "./ItemList/ItemList";
 import { Banner } from "@components/Banner/Banner";
 import { ToolBar } from "@components/ToolBar/ToolBar";
 
-import "./Items.css";
+import "./Items.less";
 
 export const Items = observer(() => {
   const { t } = useTranslation();
