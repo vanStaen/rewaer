@@ -52,8 +52,8 @@
 - [ ] Finish the "visitor" mode of the Menubar + Setting parameter to hide profile from non-logged user
 - [ ] Messager feature
 - [ ] Legal
-  - [ ] Impressum with chatGPT
-  - [ ] Datenschutz & Coookie with chatGPT
+  - [ ] Impressum
+  - [ ] Datenschutz & Coookie
 
 
 ## v2
@@ -67,7 +67,7 @@
   - [ ] Custom Categories
   - [ ] Custom Season
   - [ ] Custom Colors
-- [ ] Infinite scrolling + lazy loading
+- [x] Infinite scrolling + lazy loading
 - [ ] Darkmode
 - [ ] Service Worker
   - [ ] https://developer.chrome.com/docs/workbox/service-worker-overview/

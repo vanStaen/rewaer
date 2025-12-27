@@ -369,4 +369,84 @@ describe("ElementCard", () => {
       expect(missingInfoIcon).toBeInTheDocument();
     });
   });
+
+  it("implements lazy loading with IntersectionObserver", async () => {
+    // Create a custom mock for this test to control when intersection happens
+    let observerCallback: IntersectionObserverCallback;
+    const mockObserve = jest.fn();
+    const mockUnobserve = jest.fn();
+    const mockDisconnect = jest.fn();
+
+    const CustomIntersectionObserver = jest.fn((callback) => {
+      observerCallback = callback;
+      return {
+        observe: mockObserve,
+        unobserve: mockUnobserve,
+        disconnect: mockDisconnect,
+      };
+    });
+
+    // Temporarily replace the global IntersectionObserver
+    const originalIO = global.IntersectionObserver;
+    global.IntersectionObserver = CustomIntersectionObserver as any;
+
+    const { getPictureUrl } = require("../../helpers/picture/getPictureUrl");
+    const mockGetPictureUrl = getPictureUrl as jest.Mock;
+    mockGetPictureUrl.mockClear();
+
+    const { container } = render(
+      <ElementCard
+        element={mockItem}
+        type="items"
+        showDetailView={mockShowDetailView}
+      />,
+    );
+
+    // Verify IntersectionObserver was created
+    expect(CustomIntersectionObserver).toHaveBeenCalledTimes(1);
+    expect(CustomIntersectionObserver).toHaveBeenCalledWith(
+      expect.any(Function),
+      expect.objectContaining({
+        rootMargin: "100px",
+        threshold: 0.01,
+      }),
+    );
+
+    // Verify observe was called with the card element
+    expect(mockObserve).toHaveBeenCalledTimes(1);
+
+    // Initially, the image should not have loaded yet
+    expect(mockGetPictureUrl).not.toHaveBeenCalled();
+
+    // Simulate the element becoming visible using act
+    const cardElement = container.querySelector(".elementcard");
+    await waitFor(() => {
+      observerCallback!(
+        [
+          {
+            isIntersecting: true,
+            target: cardElement!,
+            boundingClientRect: {} as DOMRectReadOnly,
+            intersectionRatio: 1,
+            intersectionRect: {} as DOMRectReadOnly,
+            rootBounds: null,
+            time: Date.now(),
+          } as IntersectionObserverEntry,
+        ],
+        {} as IntersectionObserver,
+      );
+    });
+
+    // Now the image loading should be triggered
+    await waitFor(() => {
+      expect(mockGetPictureUrl).toHaveBeenCalledWith(
+        mockItem.mediaId,
+        "items",
+        "t",
+      );
+    });
+
+    // Restore the original IntersectionObserver
+    global.IntersectionObserver = originalIO;
+  });
 });

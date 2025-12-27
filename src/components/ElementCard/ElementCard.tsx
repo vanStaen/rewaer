@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { notification, Spin, Tooltip } from "antd";
 import {
   DeleteOutlined,
@@ -46,6 +46,8 @@ export const ElementCard: React.FC<ElementCardProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [loadingError, setLoadingError] = useState<boolean>(false);
   const [mediaUrl, setMediaUrl] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const isSharedElement = parseInt(element.user.id.toString()) !== userStore.id;
   const hasMissingBrand = element.brand === null;
@@ -106,8 +108,38 @@ export const ElementCard: React.FC<ElementCardProps> = ({
   };
 
   useEffect(() => {
-    imageLoadingHander();
-  }, [element.mediaId]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        rootMargin: "100px", // Start loading 100px before the element is visible
+        threshold: 0.01,
+      },
+    );
+
+    const currentElement = cardRef.current;
+
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      imageLoadingHander();
+    }
+  }, [isVisible, element.mediaId]);
 
   const handleArchiveItem = (value: boolean): void => {
     archiveItem(element.id, value)
@@ -306,6 +338,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
   return (
     <>
       <div
+        ref={cardRef}
         className="elementcard__container"
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}

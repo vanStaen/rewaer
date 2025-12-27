@@ -23,8 +23,6 @@ export const ItemList: React.FC = observer(() => {
     };
   }, []);
 
-  // TODO: implement lazy loading for items
-
   const scrollEventHandler = (): void => {
     itemsStore.setLastKnownScrollPosition(window.scrollY);
   };
