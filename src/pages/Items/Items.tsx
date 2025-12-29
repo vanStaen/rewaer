@@ -15,7 +15,7 @@ import { ToolBar } from "@components/ToolBar/ToolBar";
 
 import "./Items.less";
 
-export const Items = observer(() => {
+export const Items: React.FC = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -35,14 +35,14 @@ export const Items = observer(() => {
   useEffect(() => {
     if (!itemsStore.selectedItem) {
       window.scroll({
-        top: itemsStore.originalScrollPosition,
+        top: itemsStore.originalScrollPosition ?? 0,
         left: 0,
         behavior: "smooth",
       });
     }
   }, [itemsStore.selectedItem]);
 
-  const totalItems = () => {
+  const totalItems = (): number => {
     if (userStore.profilSettings.displayArchived) {
       if (itemsStore.showPrivateItems) {
         return itemsStore.items.length;
