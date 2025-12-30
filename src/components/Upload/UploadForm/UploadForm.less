@@ -1,0 +1,94 @@
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.upload-form {
+  width: 240px;
+  height: 385px;
+  border: 1px dashed #d9d9d9;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #fafafa;
+  border-radius: 2px;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+}
+
+.upload-form:focus,
+.upload-form:hover {
+  border: 1px dashed #999;
+  background-color: rgba(240, 240, 240, 1);
+}
+
+.upload-form-label {
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+}
+
+.form-upload-drag-icon {
+  color: #8e9e95;
+  font-size: 48px;
+  margin-bottom: 0 !important;
+}
+
+.form-upload-hint {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.form-upload-text {
+  margin: 0 0 4px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+}
+
+.upload-floating-form {
+  position: fixed;
+  z-index: 3;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.upload-floating-form::before {
+  content: "ADD";
+  position: absolute;
+  z-index: 4;
+  bottom: 7px;
+  right: 0;
+  font-size: 7px;
+  color: white;
+  width: 64px;
+  text-align: center;
+}
+
+.uploadForm__avatar {
+  background-color: #6c917d !important;
+}
+
+.uploadForm__avatarIsUploading {
+  background-color: #fafafa !important;
+  border: 1px solid #f0f0f0 !important;
+}
+
+@media (width <= 420px) {
+  .upload-floating-form {
+    bottom: 15px;
+    right: 15px;
+    opacity: 1;
+  }
+}

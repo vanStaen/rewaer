@@ -1,0 +1,38 @@
+.upload-div {
+  width: 240px;
+  height: 385px;
+  border: 1px dashed #d9d9d9;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #fafafa;
+  border-radius: 2px;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+
+  &:focus,
+  &:hover {
+    border: 1px dashed #999;
+    background-color: rgba(240, 240, 240, 1);
+  }
+
+  .upload-icon {
+    color: #8e9e95;
+    font-size: 48px;
+    margin-bottom: 0 !important;
+  }
+
+  .upload-hint {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+  }
+
+  .upload-text {
+    margin: 0 0 4px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 16px;
+  }
+}

@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
 import moment from "moment";
 
-import { looksStore } from "../../pages/Looks/looksStore";
-import { itemsStore } from "../../pages/Items/itemsStore";
+import { looksStore } from "../../../pages/Looks/looksStore";
+import { itemsStore } from "../../../pages/Items/itemsStore";
 import { pageStore } from "@stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
@@ -29,10 +29,15 @@ export const UploadForm = observer((props: UploadFormProps) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [isDragDroping, setIsDragDroping] = useState<boolean>(false);
-  const [uploadProgress, setUploadProgress] = useState<[number, number]>([0, 1]);
+  const [uploadProgress, setUploadProgress] = useState<[number, number]>([
+    0, 1,
+  ]);
+
   const bucket = page;
 
-  const fileSelectHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const fileSelectHandler = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
     setIsUploading(true);
@@ -65,37 +70,21 @@ export const UploadForm = observer((props: UploadFormProps) => {
       if (mediaId) {
         const title = moment().format("DD.MM.YYYY");
         if (page === "looks") {
-          postNewLook(mediaId, title)
-            .then(() => {
-              notification.success({
-                message: t("main.uploadSuccess"),
-                placement: "bottomRight",
-              });
-              looksStore.setIsOutOfDate(true);
-            })
-            .catch((error: any) => {
-              notification.error({
-                message: t("main.uploadFail"),
-                placement: "bottomRight",
-              });
-              console.log(error?.message);
+          postNewLook(mediaId, title).then(() => {
+            notification.success({
+              message: t("main.uploadSuccess"),
+              placement: "bottomRight",
             });
+            looksStore.setIsOutOfDate(true);
+          });
         } else if (page === "items") {
-          postNewItem(mediaId, title)
-            .then(() => {
-              notification.success({
-                message: t("main.uploadSuccess"),
-                placement: "bottomRight",
-              });
-              itemsStore.setIsOutOfDate(true);
-            })
-            .catch((error: any) => {
-              notification.error({
-                message: t("main.uploadFail"),
-                placement: "bottomRight",
-              });
-              console.log(error?.message);
+          postNewItem(mediaId, title).then(() => {
+            notification.success({
+              message: t("main.uploadSuccess"),
+              placement: "bottomRight",
             });
+            itemsStore.setIsOutOfDate(true);
+          });
         }
         setIsUploading(false);
       }
@@ -239,7 +228,7 @@ export const UploadForm = observer((props: UploadFormProps) => {
                 onDragLeave={handleDragLeave}
                 className="upload-form-label"
               >
-                <p className="form-upload-drag-icon">
+                <div className="form-upload-drag-icon">
                   {isDragDroping ? (
                     <FileAddOutlined />
                   ) : page === "looks" ? (
@@ -247,16 +236,13 @@ export const UploadForm = observer((props: UploadFormProps) => {
                   ) : (
                     <SkinOutlined />
                   )}
-                </p>
-                <p className="form-upload-text">
-                  {t(`${page}.add${capitalizeFirstLetter(page.slice(0, -1))}`)}
-                </p>
-                <p className="form-upload-hint">
+                </div>
+                <div className="form-upload-hint">
                   {t("main.startWithPhoto")} <br />
                   {!isDragDroping
                     ? t("main.clickDragFile")
                     : t("main.dragDropMultiple")}
-                </p>
+                </div>
               </label>
             )}
           </form>

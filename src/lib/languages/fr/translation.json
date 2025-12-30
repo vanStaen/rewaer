@@ -179,6 +179,7 @@
   "items": {
     "item": "piéce",
     "addItem": "Ajoute une piéces",
+    "addNewItem": "Ajoute une nouvelle piéces",
     "missingTagsAlert": "Certaines piéces n'ont pas tous les tags nécessaires. Cliquez ici pour les ajouter.",
     "deletedSuccess": "Piéces supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer cette piéce?",
@@ -195,6 +196,7 @@
   "looks": {
     "look": "look",
     "addLook": "Ajoute un look",
+    "addNewLook": "Ajoute un nouveau look",
     "deletedSuccess": "Look supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer ce look?",
     "archiveSuccess": "Look archivé avec succès!",

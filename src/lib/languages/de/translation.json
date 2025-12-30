@@ -178,6 +178,7 @@
   "items": {
     "item": "item",
     "addItem": "Item hinzufügen",
+    "addNewItem": "Neue Item hinzufügen",
     "missingTagsAlert": "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
     "deletedSuccess": "Item erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?",
@@ -194,6 +195,7 @@
   "looks": {
     "look": "look",
     "addLook": "Look hinzufügen",
+    "addNewLook": "Neue Look hinzufügen",
     "deletedSuccess": "Look erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?",
     "archiveSuccess": "Look erfolgreich archiviert!",

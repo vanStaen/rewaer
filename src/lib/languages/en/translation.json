@@ -179,6 +179,7 @@
   "items" : {
     "item": "item",
     "addItem" : "Add Item",
+    "addNewItem" : "Add a new Item",
     "missingTagsAlert" : "Some items are missing mandatory tags/attributes. Click here to add those.",
     "deletedSuccess" : "Item deleted successfully!",
     "deleteConfirm": "Delete this item forever?",
@@ -196,7 +197,8 @@
   },
   "looks" : {
     "look": "look",
-    "addLook" : "Add Looks",
+    "addLook" : "Add Look",
+    "addNewLook" : "Add a new Look",
     "deletedSuccess" : "Look deleted successfully!",
     "deleteConfirm": "Delete this look forever?",
     "archiveSuccess" : "Look archived successfully!",
