@@ -66,10 +66,10 @@ jest.mock("@components/ElementCard/ElementCard", () => ({
   ),
 }));
 
-jest.mock("@components/UploadForm/UploadForm", () => ({
-  UploadForm: ({ page }: { page: string }) => (
-    <div data-testid="upload-form" data-page={page}>
-      UploadForm
+jest.mock("@components/Upload/Upload", () => ({
+  Upload: ({ page }: { page: string }) => (
+    <div data-testid="upload" data-page={page}>
+      Upload
     </div>
   ),
 }));
@@ -151,12 +151,12 @@ describe("ItemList", () => {
     jest.restoreAllMocks();
   });
 
-  it("renders the ItemList component with UploadForm", () => {
+  it("renders the ItemList component with Upload", () => {
     render(<ItemList />);
 
-    const uploadForm = screen.getByTestId("upload-form");
-    expect(uploadForm).toBeInTheDocument();
-    expect(uploadForm).toHaveAttribute("data-page", "items");
+    const upload = screen.getByTestId("upload");
+    expect(upload).toBeInTheDocument();
+    expect(upload).toHaveAttribute("data-page", "items");
   });
 
   it("renders items from the store", () => {
@@ -313,7 +313,7 @@ describe("ItemList", () => {
     render(<ItemList />);
 
     expect(screen.queryByTestId(/element-card-/)).not.toBeInTheDocument();
-    expect(screen.getByTestId("upload-form")).toBeInTheDocument();
+    expect(screen.getByTestId("upload")).toBeInTheDocument();
     expect(screen.getByTestId("ghost-card")).toBeInTheDocument();
   });
 

@@ -388,7 +388,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
             }}
           >
             <TagOutlined />
-            <div style={{ fontSize: "12px" }}>Detail View</div>
+            <div style={{ fontSize: "12px" }}>{t("main.detailView")}</div>
           </div>
         ) : (
           <div

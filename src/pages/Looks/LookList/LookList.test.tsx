@@ -66,10 +66,10 @@ jest.mock("@components/ElementCard/ElementCard", () => ({
   ),
 }));
 
-jest.mock("@components/UploadForm/UploadForm", () => ({
-  UploadForm: ({ page }: { page: string }) => (
-    <div data-testid="upload-form" data-page={page}>
-      UploadForm
+jest.mock("@components/Upload/Upload", () => ({
+  Upload: ({ page }: { page: string }) => (
+    <div data-testid="upload" data-page={page}>
+      Upload
     </div>
   ),
 }));
@@ -149,12 +149,12 @@ describe("LookList", () => {
     jest.restoreAllMocks();
   });
 
-  it("renders the LookList component with UploadForm", () => {
+  it("renders the LookList component with Upload", () => {
     render(<LookList />);
 
-    const uploadForm = screen.getByTestId("upload-form");
-    expect(uploadForm).toBeInTheDocument();
-    expect(uploadForm).toHaveAttribute("data-page", "looks");
+    const upload = screen.getByTestId("upload");
+    expect(upload).toBeInTheDocument();
+    expect(upload).toHaveAttribute("data-page", "looks");
   });
 
   it("renders looks from the store", () => {
@@ -276,7 +276,7 @@ describe("LookList", () => {
     render(<LookList />);
 
     expect(screen.queryByTestId(/element-card-/)).not.toBeInTheDocument();
-    expect(screen.getByTestId("upload-form")).toBeInTheDocument();
+    expect(screen.getByTestId("upload")).toBeInTheDocument();
     expect(screen.getByTestId("ghost-card")).toBeInTheDocument();
   });
 
@@ -327,8 +327,8 @@ describe("LookList", () => {
 
     render(<LookList />);
 
-    // UploadForm should be visible
-    expect(screen.getByTestId("upload-form")).toBeInTheDocument();
+    // Upload should be visible
+    expect(screen.getByTestId("upload")).toBeInTheDocument();
   });
 
   it("handles multiple private and archived looks correctly", () => {

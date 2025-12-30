@@ -27,7 +27,8 @@
     "isPrivate": "Nur du kannst es sehen",
     "item": "item",
     "look": "look",
-    "pleaseReload": "Bitte Seite neu laden"
+    "pleaseReload": "Bitte Seite neu laden",
+    "detailView": "Detail Ansicht"
   },
   "login": {
     "newHere": "Erstes mal hier",
@@ -202,7 +203,6 @@
     "archiveConfirm": "Möchten Sie diesen Look archivieren?",
     "restoreSuccess": "Look erfolgreich weiderhergestellt!",
     "restoreConfirm": "Möchten Sie diesen Look weiderherstellen?",
-    "detailView": "Detail Ansicht",
     "showPrivateLooks": "Private looks anzeigen",
     "hidePrivateLooks": "Private looks verstecken",
     "backToLooks": "Zurück zu alle Looks",

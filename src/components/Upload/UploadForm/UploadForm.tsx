@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { notification, Spin, Avatar } from "antd";
+import React, { useState } from "react";
+import { notification, Spin } from "antd";
 import {
   CameraOutlined,
   FileAddOutlined,
@@ -14,8 +14,6 @@ import { itemsStore } from "../../../pages/Items/itemsStore";
 import { pageStore } from "@stores/pageStore/pageStore";
 import { postNewLook } from "./postNewLook";
 import { postNewItem } from "./postNewItem";
-import { isElementVisible } from "@helpers/isElementVisible";
-import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { postPicture } from "@helpers/picture/postPicture";
 
 import "./UploadForm.less";
@@ -43,24 +41,6 @@ export const UploadForm = observer((props: UploadFormProps) => {
     setIsUploading(true);
     await submitHandler(file);
   };
-
-  const scrollhandler = () => {
-    if (!pageStore.showOnlyFloatingUploadForm) {
-      const elementForm = document.getElementById("upload-form");
-      if (!isElementVisible(elementForm)) {
-        pageStore.setShowFloatingUploadForm(true);
-      } else {
-        pageStore.setShowFloatingUploadForm(false);
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", scrollhandler);
-    return () => {
-      window.removeEventListener("scroll", scrollhandler);
-    };
-  }, []); // handler doesn't need to be in deps
 
   const submitHandler = async (file?: File) => {
     if (!file) return;
@@ -137,66 +117,13 @@ export const UploadForm = observer((props: UploadFormProps) => {
     setIsUploading(false);
   };
 
-  useEffect(() => {
-    if (
-      pageStore.showFloatingUploadForm ||
-      pageStore.showOnlyFloatingUploadForm
-    ) {
-      const element = document.getElementById("upload-floating-form");
-      if (element) {
-        element.style.opacity = ".8";
-      }
-    }
-  }, [pageStore.showFloatingUploadForm, pageStore.showOnlyFloatingUploadForm]);
-
   return (
     <>
-      {(pageStore.showFloatingUploadForm ||
-        pageStore.showOnlyFloatingUploadForm) && (
-        <div className="upload-floating-form" id="upload-floating-form">
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="file"
-              className="inputfile"
-              name="inputfile"
-              id="file"
-              onChange={fileSelectHandler}
-            />
-            <label
-              htmlFor="file"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              style={{ cursor: "pointer" }}
-            >
-              <Avatar
-                size={64}
-                icon={
-                  isUploading ? (
-                    <Spin size="large" />
-                  ) : page === "looks" ? (
-                    <CameraOutlined />
-                  ) : (
-                    <SkinOutlined />
-                  )
-                }
-                className={
-                  isUploading
-                    ? "uploadForm__avatarIsUploading"
-                    : "uploadForm__avatar"
-                }
-              />
-            </label>
-          </form>
-        </div>
-      )}
       {!pageStore.showOnlyFloatingUploadForm && (
         <div>
           <form
             onSubmit={(e) => e.preventDefault()}
             className="upload-form"
-            id="upload-form"
             style={
               isDragDroping
                 ? { marginBottom: "30px", boxShadow: "0px 0px 7px 7px #dae4df" }
