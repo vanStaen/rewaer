@@ -18,19 +18,25 @@ import { isElementVisible } from "@helpers/isElementVisible";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { postPicture } from "@helpers/picture/postPicture";
 
-import "./UploadForm.css";
+import "./UploadForm.less";
 
-export const UploadForm = observer((props) => {
+interface UploadFormProps {
+  page: string;
+}
+
+export const UploadForm = observer((props: UploadFormProps) => {
   const { page } = props;
   const { t } = useTranslation();
-  const [isUploading, setIsUploading] = useState(false);
-  const [isDragDroping, setIsDragDroping] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState([0, 1]);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [isDragDroping, setIsDragDroping] = useState<boolean>(false);
+  const [uploadProgress, setUploadProgress] = useState<[number, number]>([0, 1]);
   const bucket = page;
 
-  const fileSelectHandler = async (event) => {
+  const fileSelectHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
     setIsUploading(true);
-    submitHandler(event.target.files[0]);
+    await submitHandler(file);
   };
 
   const scrollhandler = () => {
@@ -49,16 +55,15 @@ export const UploadForm = observer((props) => {
     return () => {
       window.removeEventListener("scroll", scrollhandler);
     };
-  }, [scrollhandler]);
+  }, []); // handler doesn't need to be in deps
 
-  const submitHandler = async (file) => {
+  const submitHandler = async (file?: File) => {
+    if (!file) return;
     try {
-      const res = await postPicture(file, bucket);
-      const mediaId = res.path;
+      const res: any = await postPicture(file, bucket);
+      const mediaId = res?.path;
       if (mediaId) {
-        // Create Item/Look entry
         const title = moment().format("DD.MM.YYYY");
-        // post new Item/Look
         if (page === "looks") {
           postNewLook(mediaId, title)
             .then(() => {
@@ -66,16 +71,14 @@ export const UploadForm = observer((props) => {
                 message: t("main.uploadSuccess"),
                 placement: "bottomRight",
               });
-              // retrigger parent component rendering
               looksStore.setIsOutOfDate(true);
-              console.log("Success!");
             })
-            .catch((error) => {
+            .catch((error: any) => {
               notification.error({
                 message: t("main.uploadFail"),
                 placement: "bottomRight",
               });
-              console.log(error.message);
+              console.log(error?.message);
             });
         } else if (page === "items") {
           postNewItem(mediaId, title)
@@ -84,21 +87,19 @@ export const UploadForm = observer((props) => {
                 message: t("main.uploadSuccess"),
                 placement: "bottomRight",
               });
-              // retrigger parent component rendering
               itemsStore.setIsOutOfDate(true);
-              console.log("Success!");
             })
-            .catch((error) => {
+            .catch((error: any) => {
               notification.error({
                 message: t("main.uploadFail"),
                 placement: "bottomRight",
               });
-              console.log(error.message);
+              console.log(error?.message);
             });
         }
         setIsUploading(false);
       }
-    } catch (err) {
+    } catch (err: any) {
       notification.error({
         message: t("main.uploadFail"),
         placement: "bottomRight",
@@ -108,34 +109,38 @@ export const UploadForm = observer((props) => {
     }
   };
 
-  const handleDragEnter = (e) => {
+  const handleDragEnter = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragDroping(true);
   };
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragDroping(false);
   };
 
-  const handleDragOver = (e) => {
+  const handleDragOver = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
-  const handleDrop = async (e) => {
+  const handleDrop = async (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const objectOfFiles = e.dataTransfer.files;
+    const objectOfFiles = e.dataTransfer?.files;
+    if (!objectOfFiles || objectOfFiles.length === 0) return;
     const numberOfFiles = objectOfFiles.length;
     setUploadProgress([0, numberOfFiles]);
     for (let i = 0; i < numberOfFiles; i++) {
       setIsUploading(true);
       setUploadProgress([i, numberOfFiles]);
-      if (objectOfFiles[i]) {
-        const file = objectOfFiles[i];
+      const file = objectOfFiles[i];
+      if (file) {
+        // await each upload to preserve order/feedback
+        // submitHandler handles errors and notification
+        // eslint-disable-next-line no-await-in-loop
         await submitHandler(file);
       }
     }
@@ -160,7 +165,7 @@ export const UploadForm = observer((props) => {
       {(pageStore.showFloatingUploadForm ||
         pageStore.showOnlyFloatingUploadForm) && (
         <div className="upload-floating-form" id="upload-floating-form">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="file"
               className="inputfile"
@@ -171,9 +176,9 @@ export const UploadForm = observer((props) => {
             <label
               htmlFor="file"
               onDrop={handleDrop}
-              onDragOver={(e) => handleDragOver(e)}
-              onDragEnter={(e) => handleDragEnter(e)}
-              onDragLeave={(e) => handleDragLeave(e)}
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
               style={{ cursor: "pointer" }}
             >
               <Avatar
@@ -200,7 +205,7 @@ export const UploadForm = observer((props) => {
       {!pageStore.showOnlyFloatingUploadForm && (
         <div>
           <form
-            onSubmit={submitHandler}
+            onSubmit={(e) => e.preventDefault()}
             className="upload-form"
             id="upload-form"
             style={
@@ -229,9 +234,9 @@ export const UploadForm = observer((props) => {
               <label
                 htmlFor="file"
                 onDrop={handleDrop}
-                onDragOver={(e) => handleDragOver(e)}
-                onDragEnter={(e) => handleDragEnter(e)}
-                onDragLeave={(e) => handleDragLeave(e)}
+                onDragOver={handleDragOver}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
                 className="upload-form-label"
               >
                 <p className="form-upload-drag-icon">
