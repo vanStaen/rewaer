@@ -1,21 +1,24 @@
 .languageDropdown {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: rgba(0,0,0,1);
-    margin: 15px 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 1);
+  margin: 15px 25px;
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 2.5px;
+
+  .languageDropdown__item {
+    font-size: 17px;
     font-weight: 300;
-    font-size: 20px;
-    letter-spacing: 2.5px;
-    .languageDropdown__item {
-        font-size: 17px;
-        font-weight: 300;
+  }
+
+  .ant-dropdown-link {
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
     }
-    .ant-dropdown-link {
-        color: rgba(255,255,255,1);
-        cursor: pointer;
-        &:hover{
-            color: rgba(0,0,0,1);
-        }
-    }
+  }
 }

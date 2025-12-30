@@ -1,20 +1,18 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { observer } from "mobx-react";
 
-import { looksStore } from "../looksStore";
+import { looksStore } from "../looksStore.ts";
 import { pageStore } from "@stores/pageStore/pageStore";
 import { userStore } from "@stores/userStore/userStore.js";
 import { ElementCard } from "@components/ElementCard/ElementCard";
 import { Upload } from "@components/Upload/Upload";
 import { GhostCard } from "@components/GhostCard/GhostCard";
-import { Look } from "@type/lookTypes";
-import { Item } from "@type/itemTypes";
 
-export const LookList: React.FC = observer(() => {
-  const containerElement = useRef<HTMLDivElement>(null);
-  const [missingCardForFullRow, setMissingCardForFullRow] = useState<number>(0);
+export const LookList = observer(() => {
+  const containerElement = useRef(null);
+  const [missingCardForFullRow, setMissingCardForFullRow] = useState(0);
 
-  const calculateMissingCardsForFullRow = useCallback((): void => {
+  const calculateMissingCardsForFullRow = useCallback(() => {
     const displayArchived = userStore.profilSettings
       ? userStore.profilSettings.displayArchived
       : false;
@@ -23,7 +21,7 @@ export const LookList: React.FC = observer(() => {
         ? 0
         : containerElement.current.offsetWidth;
     const cardWidth = 238 + 40; // card width + min gap
-    const numberPerRow = Math.floor(containerWidth / cardWidth);
+    const numberPerRow = Math.floor(containerWidth / cardWidth, 1);
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
     const numberLooks = looksStore.showPrivateLooks
       ? displayArchived
@@ -67,12 +65,12 @@ export const LookList: React.FC = observer(() => {
     };
   }, []);
 
-  const scrollEventHandler = (): void => {
+  const scrollEventHandler = () => {
     looksStore.setLastKnownScrollPosition(window.scrollY);
   };
 
-  const showDetailView = (look: Look | Item): void => {
-    looksStore.setSelectedLook(look as Look);
+  const showDetailView = (look) => {
+    looksStore.setSelectedLook(look);
     looksStore.setOriginalScrollPosition(looksStore.lastKnownScrollPosition);
   };
 

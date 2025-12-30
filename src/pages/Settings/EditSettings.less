@@ -2,64 +2,73 @@
   width: 100vw;
   min-height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
 
+  .EditSettings__container {
+    margin: 30px 40px 0;
+    text-align: left;
+    vertical-align: top;
+    font-size: 16px;
+
+    .EditSettings__title {
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .EditSettings__subContainer {
+      margin: 30px 0;
+
+      .EditSettings__singleSetting {
+        font-size: 14px;
+        margin-bottom: 20px;
+
+        .EditSettings__link {
+          color: #6c917d;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .EditSettings__radioGroup {
+          margin-left: 20px;
+        }
+      }
+
+      .ant-divider-inner-text {
+        color: rgba(0, 0, 0, 0.25) !important;
+      }
+    }
+  }
+}
+
+@media (width <= 800px) {
+  .EditSettings__main {
     .EditSettings__container {
-        margin: 30px 40px 0 40px;
-        text-align: left;
-        vertical-align: top;
-        font-size: 16px;
+      margin: 20px;
+
+      .EditSettings__centerDiv {
+        width: 100%;
+        text-align: center;
+
         .EditSettings__title {
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 20px;
+          font-size: 14px;
+          font-weight: 500;
         }
-        .EditSettings__subContainer {
-            margin: 30px 0;
-            .EditSettings__singleSetting {
-                font-size: 14px;
-                margin-bottom: 20px;
-                .EditSettings__link {
-                    color: #6C917D;
-                    &:hover {
-                    cursor: pointer;
-                    }
-                }
-                .EditSettings__radioGroup {
-                    margin-left: 20px;
-                }
-            }
-            .ant-divider-inner-text {
-                color: rgba(0, 0, 0, .25) !important;
-            }
+      }
+
+      .EditSettings__subContainer {
+        .EditSettings__singleSetting {
+          font-size: 12px;
+
+          .EditSettings__radioGroup {
+            margin-top: 6px;
+          }
+
+          .EditSettings__inputGroup {
+            margin-top: 6px;
+          }
         }
+      }
     }
+  }
 }
-
-@media (max-width: 800px) {
-    .EditSettings__main {
-        .EditSettings__container {
-            margin: 20px 20px;
-            .EditSettings__centerDiv {
-                width: 100%;
-                text-align: center;
-                .EditSettings__title {
-                    font-size: 14px;
-                    font-weight: 500;
-                }
-            }
-            .EditSettings__subContainer {
-                .EditSettings__singleSetting {
-                    font-size: 12px;
-                    .EditSettings__radioGroup {
-                        margin-top: 6px;
-                    }
-                    .EditSettings__inputGroup {
-                        margin-top: 6px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-

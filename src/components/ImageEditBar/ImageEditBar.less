@@ -1,39 +1,40 @@
 .imageEditBar__imageEditBar {
-    position: absolute;
-    z-index: 2;
-    margin: 10px;
-    bottom: 0px;
-    right: 0px;
+  position: absolute;
+  z-index: 2;
+  margin: 10px;
+  bottom: 0;
+  right: 0;
 
-    .imageEditBar__imageEditBarItem {
-        border: 1px solid #f0f0f0;
-        border-radius: 2px;
-        background-color: rgba(255,255,255,.5);
-        padding: 3px 7px;
-        display: inline-block;
-        margin-left: 5px;
+  .imageEditBar__imageEditBarItem {
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 3px 7px;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .imageEditBar__form {
+      .imageEditBar__inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+      }
+
+      .imageEditBar__inputfile + label {
         cursor: pointer;
-        &:hover {
-            background-color: rgba(255,255,255,.95);
-        }
-
-        .imageEditBar__form {
-            .imageEditBar__inputfile {
-                width: 0.1px;
-                height: 0.1px;
-                opacity: 0;
-                overflow: hidden;
-                position: absolute;
-                z-index: -1;
-            }
-
-            .imageEditBar__inputfile + label {
-                cursor: pointer;
-            }
-        } 
+      }
     }
+  }
 
-    .imageEditBar__rotate90{
-        transform: rotate(90deg); 
-    }
+  .imageEditBar__rotate90 {
+    transform: rotate(90deg);
+  }
 }

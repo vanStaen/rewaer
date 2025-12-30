@@ -1,0 +1,21 @@
+{
+  "extends": "stylelint-config-standard",
+  "customSyntax": "postcss-less",
+  "rules": {
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "keyframes-name-pattern": null,
+    "no-descending-specificity": null,
+    "color-function-notation": null,
+    "alpha-value-notation": "number",
+    "no-invalid-double-slash-comments": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "no-irregular-whitespace": null,
+    "no-empty-source": null
+  },
+  "ignoreFiles": [
+    "node_modules/**",
+    "build/**",
+    "dist/**"
+  ]
+}

@@ -17,7 +17,7 @@
   background-color: white;
 }
 
-.emailVerified__container{
+.emailVerified__container {
   min-height: 100vh;
   padding: 20%;
   display: flex;
@@ -30,17 +30,18 @@
 
 .emailVerified__link {
   padding-top: 15px;
-  color: rgba(0, 0, 0, .75);
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .emailVerified__loader {
   font-size: 75px;
 }
 
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .emailVerified__leftPanel {
-    width: 0vw;
+    width: 0;
   }
+
   .emailVerified__rightPanel {
     width: 100vw;
     background-image: url("./../../img/open.jpg");
@@ -48,8 +49,9 @@
     background-position: center;
     background-size: cover;
   }
+
   .emailVerified__text {
     padding: 10%;
-    background-color: rgba(255,255,255,.75);
+    background-color: rgba(255, 255, 255, 0.75);
   }
 }

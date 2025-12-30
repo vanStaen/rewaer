@@ -1,20 +1,22 @@
-@import './style/commun.less';
+@import url("./style/commun.less");
 
 * {
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
 }
 
 html {
   font-family: sans-serif;
   line-height: 1.15;
+
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
     font-variant: tabular-nums;
     line-height: 1.5715;
-    font-feature-settings: 'tnum';
+    font-feature-settings: "tnum";
 
     .App {
       min-height: 100vh;
@@ -23,12 +25,15 @@ html {
       align-items: center;
       letter-spacing: 1.5px;
       font-size: 15px;
+
       a {
         text-decoration: none;
-        &:visited{
+
+        &:visited {
           transition: color 0.3s;
           color: rgba(109, 145, 126, 0.75);
         }
+
         &:hover {
           color: rgba(109, 145, 126, 1);
         }

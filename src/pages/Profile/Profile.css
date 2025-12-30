@@ -35,21 +35,22 @@
 }
 
 .profil__containerCenterContent {
-  margin: 15px 0 0 0;
+  margin: 15px 0 0;
 }
 
-
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .profil__containerLeft {
     display: block;
     width: 100vw;
     margin-top: 0;
   }
+
   .profil__containerCenter {
     display: block;
     width: 100vw;
-    padding: 15px 0 0 0;
+    padding: 15px 0 0;
   }
+
   .profil__containerRight {
     display: none;
     margin-top: 0;

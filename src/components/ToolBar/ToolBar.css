@@ -5,9 +5,11 @@
   z-index: 3;
   padding: 12px 20px;
   margin-bottom: 5px;
-  background-color: rgba(255,255,255,.95);
+  background-color: rgba(255, 255, 255, 0.95);
   color: #aaa;
-  transition: background-color .3s, color .3s; 
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   font-weight: 300;
 }
 
@@ -28,17 +30,17 @@
   cursor: pointer;
   font-size: 18px;
 }
-  
+
 .ToolBar__toolbar .ToolBar__toolbarIcon:hover {
-  color: rgba(108, 145, 125, .5);
+  color: rgba(108, 145, 125, 0.5);
 }
 
 .ToolBar__toolbar .ToolBar__toolbarIconActive {
-  color: #6C917D;
+  color: #6c917d;
 }
 
 .ToolBar__SwitchPrivateText {
-  display : inline-block;  
+  display: inline-block;
 }
 
 .ToolBar__SwitchPrivateIcons {
@@ -46,14 +48,15 @@
   bottom: -1px;
   margin-left: 5px;
   font-size: 18px;
-  display : none;
+  display: none;
 }
 
-@media (max-width: 540px) {
+@media (width <= 540px) {
   .ToolBar__SwitchPrivateText {
-    display : none;  
-  }  
+    display: none;
+  }
+
   .ToolBar__SwitchPrivateIcons {
-    display : inline-block;  
+    display: inline-block;
   }
 }

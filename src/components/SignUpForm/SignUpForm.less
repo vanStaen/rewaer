@@ -1,4 +1,4 @@
-@import '../../style/colors.less';
+@import url("../../style/colors.less");
 
 .signup__full {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-} 
+}
 
 .signup__full .signup__form {
   width: 400px;
@@ -20,33 +20,35 @@
 
 .signup__full .signup__terms {
   text-align: left;
-    a {
-        color: @primaryColor !important;
-        &:hover {
-            color: black !important;
-        }
+
+  a {
+    color: @primaryColor !important;
+
+    &:hover {
+      color: black !important;
     }
+  }
 }
 
 .signup__full .ant-btn-primary {
-  background: #43464D;
-  border-color: #43464D;
+  background: #43464d;
+  border-color: #43464d;
 }
 
-.signup__full .ant-btn-primary:hover, 
+.signup__full .ant-btn-primary:hover,
 .signup__full .ant-btn-primary:focus {
-  background:  rgba(109, 145, 126, .75);
-  border-color: rgba(109, 145, 126, .8);
+  background: rgba(109, 145, 126, 0.75);
+  border-color: rgba(109, 145, 126, 0.8);
 }
 
 .signup__full .ant-checkbox-checked .ant-checkbox-inner {
-  border-color: #43464D;
-  background: #43464D;
+  border-color: #43464d;
+  background: #43464d;
 }
 
 .signup__full .ant-checkbox-input:hover {
-  border-color: #43464D;
-  background: #43464D;
+  border-color: #43464d;
+  background: #43464d;
 }
 
 .signup__full .signup__header {
@@ -57,26 +59,28 @@
   margin-bottom: 2vh;
 }
 
-.signup__showAlreadyMember{
+.signup__showAlreadyMember {
   display: none;
 }
 
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .signup__full .signup__header {
     font-size: 14px;
     margin-left: 2vh;
     width: 330px;
   }
+
   .signup__full .signup__form {
     width: 330px;
     max-width: 85%;
   }
+
   .signup__full .signup__terms {
     .ant-checkbox-label {
-        background-color: rgba(255,255,255,.75);
-        padding: 4px 8px !important;
-        margin: 0 8px;
-        border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.75);
+      padding: 4px 8px !important;
+      margin: 0 8px;
+      border-radius: 6px;
     }
   }
 }

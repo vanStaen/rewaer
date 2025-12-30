@@ -1,14 +1,14 @@
 .title__container {
-    display: inline-block;
-};
+  display: inline-block;
+}
 
 .title__containerItem {
-    display: inline-block;
-};
+  display: inline-block;
+}
 
-@media (max-width: 540px) {
-    .title__containerItem {
-        width: 100%;
-        text-align: center;
-    }
+@media (width <= 540px) {
+  .title__containerItem {
+    width: 100%;
+    text-align: center;
   }
+}

@@ -2,7 +2,7 @@
   text-align: right;
 
   .avatar__avatar {
-    border: 1px solid #aaaaaa;
+    border: 1px solid #aaa;
     width: 200px;
     height: 200px;
     border-radius: 100px;
@@ -16,16 +16,16 @@
       position: relative;
       padding: 50px;
       font-size: 100px;
-      color: rgba(109, 145, 126, .25);
+      color: rgba(109, 145, 126, 0.25);
       z-index: -1;
 
-      @media (max-width: 800px) {
+      @media (width <= 800px) {
         padding: 20px;
         font-size: 60px;
       }
     }
 
-    @media (max-width: 800px) {
+    @media (width <= 800px) {
       width: 30vw;
       height: 30vw;
       max-width: 150px;
@@ -40,7 +40,7 @@
       align-items: center;
       justify-content: center;
 
-      @media (max-width: 800px) {
+      @media (width <= 800px) {
         width: 30vw;
         height: 30vw;
         max-width: 150px;
@@ -50,9 +50,9 @@
 
     .avatar__editAvatar {
       position: absolute;
-      bottom: 0px;
+      bottom: 0;
       font-size: 22px;
-      color: #aaaaaa;
+      color: #aaa;
       width: 200px;
       text-align: right;
 
@@ -60,7 +60,7 @@
         color: #6d917e;
       }
 
-      @media (max-width: 800px) {
+      @media (width <= 800px) {
         width: 30vw;
         max-width: 150px;
       }
@@ -80,7 +80,7 @@
     }
 
     .avatar__avatarError {
-      color: rgba(FireBrick, .75) !important;
+      color: rgba(firebrick, 0.75) !important;
       font-size: 150px;
     }
 
@@ -88,12 +88,12 @@
       width: 25px;
       margin-left: 175px;
 
-      @media (max-width: 800px) {
+      @media (width <= 800px) {
         margin-left: calc(30vw - 15px);
       }
     }
 
-    @media (max-width: 800px) {
+    @media (width <= 800px) {
       display: inline-block;
       width: 30vw;
       max-width: 150px;

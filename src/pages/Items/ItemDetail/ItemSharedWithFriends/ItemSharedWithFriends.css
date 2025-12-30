@@ -1,30 +1,30 @@
-.itemShared__Container{
-    margin-left: 20px;
-    margin-bottom: 10px;
+.itemShared__Container {
+  margin-left: 20px;
+  margin-bottom: 10px;
 }
 
 .itemdetail__addFriend {
-    width: 50px;
-    height: 50px;
-    margin: 0 10px 0 0;
-    border: 1px solid #f0f0f0;  
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    vertical-align: top;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px 0 0;
+  border: 1px solid #f0f0f0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
 }
 
 .itemdetail__deleteFriendShared {
-    position: relative;
-    top: -8px;
-    left: 40px;
-    width: 15px;
-    height: 15px;
-    background-color: white;
-    border-radius: 10px;
+  position: relative;
+  top: -8px;
+  left: 40px;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .itemdetail__deleteFriendShared:hover {
-    background-color: #6d917e;
+  background-color: #6d917e;
 }

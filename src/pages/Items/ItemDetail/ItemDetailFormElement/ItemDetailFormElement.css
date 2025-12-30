@@ -15,15 +15,14 @@
   width: 200px;
 }
 
-.ItemDetailFormElement__container
-.ant-select-selector {
+.ItemDetailFormElement__container .ant-select-selector {
   border: 1px solid transparent !important;
   font-size: 16px !important;
   color: #909090 !important;
   padding: 0 !important;
 }
 
-.ItemDetailFormElement__selectDisabled .ant-select-selector{
+.ItemDetailFormElement__selectDisabled .ant-select-selector {
   background-color: white !important;
   color: #c0c0c0 !important;
   font-weight: 300 !important;

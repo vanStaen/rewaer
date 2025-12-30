@@ -1,59 +1,60 @@
 .profilFriends__followersContainer {
-    font-weight: 300;
-    font-size: 12px;
-    margin-bottom: 20px;
+  font-weight: 300;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
-  
+
 .profilFriends__followersTitle {
-    border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 5px;
 }
 
 .profilFriends__followersAvatar {
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
-    width: 45px;
-    height: 45px;
-    margin: 2px;
-    display: inline-block;
-    vertical-align: top;
-    cursor: pointer;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  width: 45px;
+  height: 45px;
+  margin: 2px;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
 }
 
 .profilFriends__followersAvatar:hover {
-    filter: contrast(1.2) opacity(.95);
+  filter: contrast(1.2) opacity(0.95);
 }
 
 .profilFriends__followersCounterContainer {
-    border: 1px dashed #f0f0f0;
-    background-color: #fafafa;
-    color: rgba(0,0,0,.5);
-    font-weight: 200;
-    font-size: 14px;
-    cursor: pointer;
+  border: 1px dashed #f0f0f0;
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 200;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .profilFriends__followersCounterContainer:hover {
-    border: 1px dashed rgba(109, 145, 126, .5);
-    color: rgba(109, 145, 126, 1);
-    font-weight: 300;
+  border: 1px dashed rgba(109, 145, 126, 0.5);
+  color: rgba(109, 145, 126, 1);
+  font-weight: 300;
 }
 
 .profilFriends__followersCounter {
-    width: 45px;
-    height: 45px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 800px) {
-    .profilFriends__mainContainer {
-      text-align: left;
-      padding: 20px 20px 0 20px;
-    }
-    .profilFriends__followersContainer {
-      margin-bottom: 20px;
-    }
+@media (width <= 800px) {
+  .profilFriends__mainContainer {
+    text-align: left;
+    padding: 20px 20px 0;
   }
+
+  .profilFriends__followersContainer {
+    margin-bottom: 20px;
+  }
+}

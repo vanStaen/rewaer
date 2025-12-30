@@ -1,6 +1,6 @@
 .notifications__container {
   position: relative;
-  padding: 30px 40px 0 40px;  
+  padding: 30px 40px 0;
   min-height: calc(100vh - 50px - var(--footerHeight)); /* 50px for menu */
   width: 100%;
 
@@ -38,7 +38,7 @@
       position: relative;
       display: flex;
       left: 0;
-      transition: .3s left;
+      transition: 0.3s left;
       cursor: pointer;
 
       a {
@@ -61,25 +61,24 @@
         width: 50px;
         min-height: 50px;
         align-items: stretch;
-        opacity: .66;
+        opacity: 0.66;
       }
-
 
       .notifications__rightSide {
         width: 100%;
         display: inline-block;
         vertical-align: top;
-        padding: 2px 10px 5px 10px;
+        padding: 2px 10px 5px;
 
         .notifications__date {
           font-size: 12px;
-          color: rgba(0, 0, 0, .3);
+          color: rgba(0, 0, 0, 0.3);
           display: block;
         }
 
         .notifications__dateMobile {
           font-size: 12px;
-          color: rgba(0, 0, 0, .3);
+          color: rgba(0, 0, 0, 0.3);
           display: none;
         }
 
@@ -102,7 +101,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          transition: opacity .3s ease;
+          transition: opacity 0.3s ease;
         }
       }
     }
@@ -114,8 +113,8 @@
       align-items: center;
       justify-content: center;
       z-index: 5;
-      top: 0px;
-      right: 0px;
+      top: 0;
+      right: 0;
       font-size: 17px;
       width: 30px;
       color: #ddd;
@@ -129,12 +128,13 @@
 
   .notification__nothing {
     height: calc(100vh - 50px - 190px - 70px);
-    /*50px menu, 190px footer, -70px padding */
+
+    /* 50px menu, 190px footer, -70px padding */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: rgba(0, 0, 0, .25);
+    color: rgba(0, 0, 0, 0.25);
     color: #ddd;
     font-weight: 300;
     letter-spacing: 5px;
@@ -171,9 +171,9 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .notifications__container {
-    padding: 15px 15px;
+    padding: 15px;
     width: calc(100%);
     min-height: calc(100vh - 50px - 340px - 30px);
 

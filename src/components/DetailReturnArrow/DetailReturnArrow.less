@@ -1,40 +1,40 @@
 .detail__backArrowLook {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    margin: 10px 10px 0 10px;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  margin: 10px 10px 0;
 
-    .detail__arrowIcon {
-      font-size: 36px;
-      color: rgba(0, 0, 0, 1);
-    }
-    
-    .detail__arrowIcon:hover {
-      color: rgba(109, 145, 126, 1);
-    }
+  .detail__arrowIcon {
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .detail__arrowIcon:hover {
+    color: rgba(109, 145, 126, 1);
+  }
 }
 
 .detail__backArrowItem {
-    position: absolute;
-    z-index: 3;
-    top: 65px;
-    margin: 10px;
-    width: 40px;
-    height: 40px;
+  position: absolute;
+  z-index: 3;
+  top: 65px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
 
-    .detail__arrowIcon {
-      font-size: 36px;
-      color: rgba(0, 0, 0, 1);
-    }
-    
-    .detail__arrowIcon:hover {
-      color: rgba(109, 145, 126, 1);
-    }
+  .detail__arrowIcon {
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .detail__arrowIcon:hover {
+    color: rgba(109, 145, 126, 1);
+  }
 }
 
-@media (max-width: 540px) {
-  .detail__backArrowLook, 
+@media (width <= 540px) {
+  .detail__backArrowLook,
   .detail__backArrowItem {
     display: none;
-  }  
+  }
 }

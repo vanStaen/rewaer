@@ -1,5 +1,5 @@
 .profil__actionContainer {
-  margin-top: 20px; 
+  margin-top: 20px;
   text-align: right;
 }
 
@@ -8,10 +8,11 @@
   text-align: left;
 }
 
-.profil__action, .profil__actionDisabled {
+.profil__action,
+.profil__actionDisabled {
   font-weight: 500;
   font-size: 12px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .profil__action {
@@ -19,7 +20,7 @@
 }
 
 .profil__actionDisabled {
-  color: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, 0.1);
   cursor: not-allowed;
 }
 
@@ -31,7 +32,7 @@
   text-decoration: line-through;
 }
 
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .profil__friendsActionContainer {
     display: inline-block;
     padding: 0 0 0 20px;
@@ -40,14 +41,17 @@
     font-size: 12px;
     cursor: pointer;
   }
+
   .profil__actionContainer {
     display: inline-block;
     padding: 0 20px 0 10px;
     margin: 0;
     width: 55vw;
   }
-  .profil__action, .profil__actionDisabled {
+
+  .profil__action,
+  .profil__actionDisabled {
     font-size: 12px;
-    margin-bottom: 2px; 
+    margin-bottom: 2px;
   }
 }

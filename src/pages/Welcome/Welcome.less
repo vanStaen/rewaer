@@ -28,19 +28,22 @@
   }
 }
 
- @media (max-width: 800px) {
+@media (width <= 800px) {
   .welcome__container {
     .welcome__alreadyMember {
       width: 50vw;
       text-align: right;
     }
+
     .welcome__leftPanel {
-      width: 0vw;
+      width: 0;
     }
+
     .welcome__rightPanel {
       width: 100vw;
       background-color: transparent;
     }
+
     .inlineBlock {
       display: block;
     }
