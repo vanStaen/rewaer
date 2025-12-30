@@ -37,3 +37,38 @@
     font-size: 16px;
   }
 }
+
+.upload-floating-form {
+  position: fixed;
+  z-index: 3;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  .anticon {
+    position: relative;
+    top: -4px
+  }
+
+  &::before {
+    content: "ADD";
+    position: absolute;
+    z-index: 4;
+    bottom: 9px;
+    right: 0;
+    font-size: 7px;
+    color: white;
+    width: 64px;
+    text-align: center;
+  }
+}
+
+@media (width <= 420px) {
+  .upload-floating-form {
+    bottom: 15px;
+    right: 15px;
+    opacity: 1;
+  }
+}

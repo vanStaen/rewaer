@@ -140,11 +140,11 @@ export const UploadForm = observer((props: UploadFormProps) => {
             {isUploading ? (
               <label htmlFor="file" className="upload-form-label">
                 <Spin size="large" />
-                <p className="form-upload-text" style={{ color: "#999" }}>
+                <div className="form-upload-text" style={{ color: "#999" }}>
                   <br />
                   {uploadProgress[0] + 1} {t(`${page}.${page.slice(0, -1)}`)}{" "}
                   {t("main.of")} {uploadProgress[1]}
-                </p>
+                </div>
               </label>
             ) : (
               <label
