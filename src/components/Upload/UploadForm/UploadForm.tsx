@@ -27,9 +27,6 @@ export const UploadForm = observer((props: UploadFormProps) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [isDragDroping, setIsDragDroping] = useState<boolean>(false);
-  const [uploadProgress, setUploadProgress] = useState<[number, number]>([
-    0, 1,
-  ]);
 
   const bucket = page;
 
@@ -100,21 +97,11 @@ export const UploadForm = observer((props: UploadFormProps) => {
     e.stopPropagation();
     const objectOfFiles = e.dataTransfer?.files;
     if (!objectOfFiles || objectOfFiles.length === 0) return;
-    const numberOfFiles = objectOfFiles.length;
-    setUploadProgress([0, numberOfFiles]);
-    for (let i = 0; i < numberOfFiles; i++) {
+    const file = objectOfFiles[0];
+    if (file) {
       setIsUploading(true);
-      setUploadProgress([i, numberOfFiles]);
-      const file = objectOfFiles[i];
-      if (file) {
-        // await each upload to preserve order/feedback
-        // submitHandler handles errors and notification
-        // eslint-disable-next-line no-await-in-loop
-        await submitHandler(file);
-      }
+      await submitHandler(file);
     }
-    setUploadProgress([0, 0]);
-    setIsUploading(false);
   };
 
   return (
@@ -142,8 +129,7 @@ export const UploadForm = observer((props: UploadFormProps) => {
                 <Spin size="large" />
                 <div className="form-upload-text" style={{ color: "#999" }}>
                   <br />
-                  {uploadProgress[0] + 1} {t(`${page}.${page.slice(0, -1)}`)}{" "}
-                  {t("main.of")} {uploadProgress[1]}
+                  {t("main.uploading")}
                 </div>
               </label>
             ) : (
@@ -166,9 +152,7 @@ export const UploadForm = observer((props: UploadFormProps) => {
                 </div>
                 <div className="form-upload-hint">
                   {t("main.startWithPhoto")} <br />
-                  {!isDragDroping
-                    ? t("main.clickDragFile")
-                    : t("main.dragDropMultiple")}
+                  {t("main.clickDragFile")}
                 </div>
               </label>
             )}
