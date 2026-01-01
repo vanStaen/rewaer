@@ -1,6 +1,20 @@
 import { notification } from "antd";
 
-export async function postNewLook(mediaId, title) {
+interface AddLookResponse {
+  data?: {
+    addLook: {
+      id: string;
+    };
+  };
+  errors?: Array<{
+    message: string;
+  }>;
+}
+
+export async function postNewLook(
+  mediaId: string,
+  title: string
+): Promise<AddLookResponse> {
   const requestBody = {
     query: `
         mutation ($mediaId: String, $title: String) {
@@ -31,6 +45,6 @@ export async function postNewLook(mediaId, title) {
     });
     throw new Error("Unauthenticated!");
   }
-  const newLook = await response.json();
+  const newLook: AddLookResponse = await response.json();
   return newLook;
 }
