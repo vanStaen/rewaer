@@ -28,6 +28,16 @@ jest.mock("./UploadForm/postNewItem", () => ({
   ),
 }));
 
+jest.mock("@helpers/picture/getPictureUrl", () => ({
+  getPictureUrl: jest.fn(() =>
+    Promise.resolve("https://example.com/image.jpg"),
+  ),
+}));
+
+jest.mock("@helpers/picture/deletePicture", () => ({
+  deletePicture: jest.fn(() => Promise.resolve(true)),
+}));
+
 jest.mock("@stores/pageStore/pageStore", () => ({
   pageStore: {
     showFloatingUploadForm: false as boolean | null,

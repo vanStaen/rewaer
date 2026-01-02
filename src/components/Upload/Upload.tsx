@@ -10,6 +10,7 @@ import { itemsStore } from "@pages/Items/itemsStore";
 import { postNewLook } from "./UploadForm/postNewLook";
 import { postNewItem } from "./UploadForm/postNewItem";
 import { getPictureUrl } from "@helpers/picture/getPictureUrl";
+import { deletePicture } from "@helpers/picture/deletePicture";
 
 import { UploadForm } from "./UploadForm/UploadForm";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
@@ -30,7 +31,6 @@ export const Upload = observer((props: UploadProps) => {
   const { t } = useTranslation();
 
   const handlePostElement = () => {
-    debugger;
     if (mediaId) {
       const title = moment().format("DD.MM.YYYY");
       if (page === "looks") {
@@ -80,8 +80,13 @@ export const Upload = observer((props: UploadProps) => {
     setIsModalOpen(false);
   };
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
     setIsModalOpen(false);
+    if (mediaId) {
+      await deletePicture(mediaId, page);
+    }
+    setMediaId(null);
+    setMediaUrl(null);
   };
 
   const scrollhandler = () => {
