@@ -13,7 +13,7 @@ interface AddLookResponse {
 
 export async function postNewLook(
   mediaId: string,
-  title: string
+  title: string,
 ): Promise<AddLookResponse> {
   const requestBody = {
     query: `

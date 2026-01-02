@@ -14,6 +14,7 @@ module.exports = {
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
     "^@img/(.*)$": "<rootDir>/mocks/fileMock.js",
     "^@lib/(.*)$": "<rootDir>/src/lib/$1",
+    "^@pages/(.*)$": "<rootDir>/src/pages/$1",
     "^@stores/(.*)$": "<rootDir>/src/stores/$1",
     "^@type/(.*)$": "<rootDir>/src/types/$1",
   },

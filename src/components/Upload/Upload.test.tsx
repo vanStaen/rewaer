@@ -4,6 +4,30 @@ import { Upload } from "./Upload";
 import { pageStore } from "@stores/pageStore/pageStore";
 
 // Mock dependencies
+jest.mock("@pages/Looks/looksStore", () => ({
+  looksStore: {
+    setIsOutOfDate: jest.fn(),
+  },
+}));
+
+jest.mock("@pages/Items/itemsStore", () => ({
+  itemsStore: {
+    setIsOutOfDate: jest.fn(),
+  },
+}));
+
+jest.mock("./UploadForm/postNewLook", () => ({
+  postNewLook: jest.fn(() =>
+    Promise.resolve({ data: { addLook: { id: "1" } } }),
+  ),
+}));
+
+jest.mock("./UploadForm/postNewItem", () => ({
+  postNewItem: jest.fn(() =>
+    Promise.resolve({ data: { addItem: { id: "1" } } }),
+  ),
+}));
+
 jest.mock("@stores/pageStore/pageStore", () => ({
   pageStore: {
     showFloatingUploadForm: false as boolean | null,
@@ -21,7 +45,8 @@ jest.mock("./UploadForm/UploadForm", () => ({
 }));
 
 jest.mock("@helpers/capitalizeFirstLetter", () => ({
-  capitalizeFirstLetter: (str: string) => str.charAt(0).toUpperCase() + str.slice(1),
+  capitalizeFirstLetter: (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1),
 }));
 
 jest.mock("@helpers/isElementVisible", () => ({
@@ -75,14 +100,14 @@ describe("Upload", () => {
 
   it("renders SkinOutlined icon for items page", () => {
     const { container } = render(<Upload page="items" />);
-    
+
     const icon = container.querySelector(".anticon-skin");
     expect(icon).toBeInTheDocument();
   });
 
   it("renders CameraOutlined icon for looks page", () => {
     const { container } = render(<Upload page="looks" />);
-    
+
     const icon = container.querySelector(".anticon-camera");
     expect(icon).toBeInTheDocument();
   });
@@ -90,7 +115,9 @@ describe("Upload", () => {
   it("does not render floating form initially", () => {
     render(<Upload page="items" />);
 
-    expect(screen.queryByTestId("upload-floating-form")).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("upload-floating-form"),
+    ).not.toBeInTheDocument();
   });
 
   it("renders floating form when showFloatingUploadForm is true", () => {
@@ -118,7 +145,7 @@ describe("Upload", () => {
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
-    
+
     const icon = floatingForm?.querySelector(".anticon-skin");
     expect(icon).toBeInTheDocument();
   });
@@ -130,7 +157,7 @@ describe("Upload", () => {
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
-    
+
     const icon = floatingForm?.querySelector(".anticon-camera");
     expect(icon).toBeInTheDocument();
   });
@@ -218,7 +245,10 @@ describe("Upload", () => {
   it("adds scroll event listener on mount", () => {
     render(<Upload page="items" />);
 
-    expect(addEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith(
+      "scroll",
+      expect.any(Function),
+    );
   });
 
   it("removes scroll event listener on unmount", () => {
@@ -226,7 +256,10 @@ describe("Upload", () => {
 
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      "scroll",
+      expect.any(Function),
+    );
   });
 
   it("renders floating form with correct id when showFloatingUploadForm is true", () => {

@@ -13,7 +13,7 @@ interface AddItemResponse {
 
 export async function postNewItem(
   mediaId: string,
-  title: string
+  title: string,
 ): Promise<AddItemResponse> {
   const requestBody = {
     query: `

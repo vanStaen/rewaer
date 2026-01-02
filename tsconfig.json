@@ -21,6 +21,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@img/*": ["src/img/*"],
       "@lib/*": ["src/lib/*"],
+      "@pages/*": ["src/pages/*"],
       "@stores/*": ["src/stores/*"],
       "@type/*": ["src/types/*"],
     }

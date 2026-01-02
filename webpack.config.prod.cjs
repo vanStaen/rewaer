@@ -40,6 +40,7 @@ module.exports = {
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@img": path.resolve(__dirname, "src/img"),
       "@lib": path.resolve(__dirname, "src/lib"),
+      "@pages": path.resolve(__dirname, "src/pages"),
       "@stores": path.resolve(__dirname, "src/stores"),
       "@type": path.resolve(__dirname, "src/types"),
     },

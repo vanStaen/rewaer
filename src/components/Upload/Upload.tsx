@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Avatar } from "antd";
+import React, { useState, useEffect, use } from "react";
+import { Modal, Avatar, notification } from "antd";
 import { CameraOutlined, SkinOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
+import moment from "moment";
+
+import { looksStore } from "@pages/Looks/looksStore";
+import { itemsStore } from "@pages/Items/itemsStore";
+import { postNewLook } from "./UploadForm/postNewLook";
+import { postNewItem } from "./UploadForm/postNewItem";
+import { getPictureUrl } from "@helpers/picture/getPictureUrl";
 
 import { UploadForm } from "./UploadForm/UploadForm";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
@@ -17,15 +24,59 @@ interface UploadProps {
 
 export const Upload = observer((props: UploadProps) => {
   const { page } = props;
+  const [mediaId, setMediaId] = useState<string | null>(null);
+  const [mediaUrl, setMediaUrl] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { t } = useTranslation();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handlePostElement = () => {
+    debugger;
+    if (mediaId) {
+      const title = moment().format("DD.MM.YYYY");
+      if (page === "looks") {
+        postNewLook(mediaId, title).then(() => {
+          notification.success({
+            message: t("main.uploadSuccess"),
+            placement: "bottomRight",
+          });
+          looksStore.setIsOutOfDate(true);
+        });
+      } else if (page === "items") {
+        postNewItem(mediaId, title).then(() => {
+          notification.success({
+            message: t("main.uploadSuccess"),
+            placement: "bottomRight",
+          });
+          itemsStore.setIsOutOfDate(true);
+        });
+      }
+    }
+  };
+
+  const imageLoadingHander = async (): Promise<void> => {
+    const url = await getPictureUrl(mediaId, page, "t");
+    const isloaded = new Promise<string>((resolve, reject) => {
+      const loadImg = new Image();
+      loadImg.src = url;
+      loadImg.onload = () => resolve(url);
+      loadImg.onerror = (err) => reject(err);
+    });
+    await isloaded;
+    setMediaUrl(url);
+  };
+
+  useEffect(() => {
+    mediaId && imageLoadingHander();
+  }, [mediaId]);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
+    await handlePostElement();
+    setMediaId(null);
+    setMediaUrl(null);
     setIsModalOpen(false);
   };
 
@@ -96,7 +147,14 @@ export const Upload = observer((props: UploadProps) => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <UploadForm page={page} />
+        {mediaUrl === null ? (
+          <UploadForm page={page} setMediaId={setMediaId} />
+        ) : (
+          <div
+            className="upload__picture"
+            style={{ background: `url(${mediaUrl})` }}
+          ></div>
+        )}
       </Modal>
     </>
   );

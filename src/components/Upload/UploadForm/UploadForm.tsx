@@ -7,23 +7,19 @@ import {
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
-import moment from "moment";
 
-import { looksStore } from "../../../pages/Looks/looksStore";
-import { itemsStore } from "../../../pages/Items/itemsStore";
 import { pageStore } from "@stores/pageStore/pageStore";
-import { postNewLook } from "./postNewLook";
-import { postNewItem } from "./postNewItem";
 import { postPicture } from "@helpers/picture/postPicture";
 
 import "./UploadForm.less";
 
 interface UploadFormProps {
   page: string;
+  setMediaId: (path: string) => void;
 }
 
 export const UploadForm = observer((props: UploadFormProps) => {
-  const { page } = props;
+  const { page, setMediaId } = props;
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [isDragDroping, setIsDragDroping] = useState<boolean>(false);
@@ -43,28 +39,9 @@ export const UploadForm = observer((props: UploadFormProps) => {
     if (!file) return;
     try {
       const res: any = await postPicture(file, bucket);
-      const mediaId = res?.path;
-      if (mediaId) {
-        const title = moment().format("DD.MM.YYYY");
-        if (page === "looks") {
-          postNewLook(mediaId, title).then(() => {
-            notification.success({
-              message: t("main.uploadSuccess"),
-              placement: "bottomRight",
-            });
-            looksStore.setIsOutOfDate(true);
-          });
-        } else if (page === "items") {
-          postNewItem(mediaId, title).then(() => {
-            notification.success({
-              message: t("main.uploadSuccess"),
-              placement: "bottomRight",
-            });
-            itemsStore.setIsOutOfDate(true);
-          });
-        }
-        setIsUploading(false);
-      }
+      const mediaPath = res?.path;
+      setMediaId(mediaPath);
+      setIsUploading(false);
     } catch (err: any) {
       notification.error({
         message: t("main.uploadFail"),
