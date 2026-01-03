@@ -6,7 +6,7 @@ import { pageStore } from "@stores/pageStore/pageStore";
 import { userStore } from "@stores/userStore/userStore.js";
 import { GhostCard } from "@components/GhostCard/GhostCard";
 import { ElementCard } from "@components/ElementCard/ElementCard";
-import { Upload } from "@components/Upload/Upload";
+import { UploadModal } from "@components/UploadModal/UploadModal";
 import { Item } from "@type/itemTypes";
 import { Look } from "@type/lookTypes";
 
@@ -101,7 +101,7 @@ export const ItemList: React.FC = observer(() => {
   return (
     <>
       <div ref={containerElement} className="items__container">
-        <Upload page="items" />
+        <UploadModal page="items" />
         {itemList}
         <GhostCard
           numberOfCards={missingCardForFullRow}

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { Upload } from "./Upload";
+import { UploadModal } from "./UploadModal";
 import { pageStore } from "@stores/pageStore/pageStore";
 
 // Mock dependencies
@@ -95,35 +95,35 @@ describe("Upload", () => {
   });
 
   it("renders the Upload component with items page", () => {
-    render(<Upload page="items" />);
+    render(<UploadModal page="items" />);
 
     expect(screen.getByText("items.addItem")).toBeInTheDocument();
     expect(screen.getByText("main.startWithPhoto")).toBeInTheDocument();
   });
 
   it("renders the Upload component with looks page", () => {
-    render(<Upload page="looks" />);
+    render(<UploadModal page="looks" />);
 
     expect(screen.getByText("looks.addLook")).toBeInTheDocument();
     expect(screen.getByText("main.startWithPhoto")).toBeInTheDocument();
   });
 
   it("renders SkinOutlined icon for items page", () => {
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const icon = container.querySelector(".anticon-skin");
     expect(icon).toBeInTheDocument();
   });
 
   it("renders CameraOutlined icon for looks page", () => {
-    const { container } = render(<Upload page="looks" />);
+    const { container } = render(<UploadModal page="looks" />);
 
     const icon = container.querySelector(".anticon-camera");
     expect(icon).toBeInTheDocument();
   });
 
   it("does not render floating form initially", () => {
-    render(<Upload page="items" />);
+    render(<UploadModal page="items" />);
 
     expect(
       screen.queryByTestId("upload-floating-form"),
@@ -133,7 +133,7 @@ describe("Upload", () => {
   it("renders floating form when showFloatingUploadForm is true", () => {
     mockPageStore.showFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
@@ -142,7 +142,7 @@ describe("Upload", () => {
   it("renders floating form when showOnlyFloatingUploadForm is true", () => {
     mockPageStore.showOnlyFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="looks" />);
+    const { container } = render(<UploadModal page="looks" />);
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
@@ -151,7 +151,7 @@ describe("Upload", () => {
   it("renders floating form with correct icon for items page", () => {
     mockPageStore.showFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
@@ -163,7 +163,7 @@ describe("Upload", () => {
   it("renders floating form with correct icon for looks page", () => {
     mockPageStore.showFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="looks" />);
+    const { container } = render(<UploadModal page="looks" />);
 
     const floatingForm = container.querySelector(".upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
@@ -173,7 +173,7 @@ describe("Upload", () => {
   });
 
   it("opens modal when clicking the upload div", async () => {
-    render(<Upload page="items" />);
+    render(<UploadModal page="items" />);
 
     const uploadDiv = screen.getByText("items.addItem").closest(".upload-div");
     expect(uploadDiv).toBeInTheDocument();
@@ -188,7 +188,7 @@ describe("Upload", () => {
   it("opens modal when clicking the floating form avatar", async () => {
     mockPageStore.showFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="looks" />);
+    const { container } = render(<UploadModal page="looks" />);
 
     const avatar = container.querySelector(".uploadForm__avatar");
     expect(avatar).toBeInTheDocument();
@@ -201,7 +201,7 @@ describe("Upload", () => {
   });
 
   it("passes correct page prop to UploadForm in modal", async () => {
-    render(<Upload page="looks" />);
+    render(<UploadModal page="looks" />);
 
     const uploadDiv = screen.getByText("looks.addLook").closest(".upload-div");
     fireEvent.click(uploadDiv!);
@@ -213,7 +213,7 @@ describe("Upload", () => {
   });
 
   it("closes modal when handleOk is called", async () => {
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const uploadDiv = screen.getByText("items.addItem").closest(".upload-div");
     fireEvent.click(uploadDiv!);
@@ -233,7 +233,7 @@ describe("Upload", () => {
   });
 
   it("closes modal when handleCancel is called", async () => {
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const uploadDiv = screen.getByText("items.addItem").closest(".upload-div");
     fireEvent.click(uploadDiv!);
@@ -253,7 +253,7 @@ describe("Upload", () => {
   });
 
   it("adds scroll event listener on mount", () => {
-    render(<Upload page="items" />);
+    render(<UploadModal page="items" />);
 
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       "scroll",
@@ -262,7 +262,7 @@ describe("Upload", () => {
   });
 
   it("removes scroll event listener on unmount", () => {
-    const { unmount } = render(<Upload page="items" />);
+    const { unmount } = render(<UploadModal page="items" />);
 
     unmount();
 
@@ -275,7 +275,7 @@ describe("Upload", () => {
   it("renders floating form with correct id when showFloatingUploadForm is true", () => {
     mockPageStore.showFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const floatingForm = container.querySelector("#upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
@@ -284,21 +284,21 @@ describe("Upload", () => {
   it("renders floating form with correct id when showOnlyFloatingUploadForm is true", () => {
     mockPageStore.showOnlyFloatingUploadForm = true;
 
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const floatingForm = container.querySelector("#upload-floating-form");
     expect(floatingForm).toBeInTheDocument();
   });
 
   it("renders upload div with correct id", () => {
-    const { container } = render(<Upload page="items" />);
+    const { container } = render(<UploadModal page="items" />);
 
     const uploadDiv = container.querySelector("#upload-form");
     expect(uploadDiv).toBeInTheDocument();
   });
 
   it("uses capitalizeFirstLetter for translation key", () => {
-    render(<Upload page="items" />);
+    render(<UploadModal page="items" />);
 
     // Should translate to "items.addItem" (capitalizing "i" from "items")
     expect(screen.getByText("items.addItem")).toBeInTheDocument();

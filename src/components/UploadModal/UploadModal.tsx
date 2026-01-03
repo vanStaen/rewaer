@@ -16,18 +16,20 @@ import { UploadForm } from "./UploadForm/UploadForm";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { pageStore } from "@stores/pageStore/pageStore.js";
 import { isElementVisible } from "@helpers/isElementVisible";
+import { SimpleSubMenu } from "@components/SimpleSubMenu/SimpleSubMenu";
 
-import "./Upload.less";
+import "./UploadModal.less";
 
 interface UploadProps {
-  page: string;
+  page: "looks" | "items";
 }
 
-export const Upload = observer((props: UploadProps) => {
+export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const [mediaId, setMediaId] = useState<string | null>(null);
   const [mediaUrl, setMediaUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
   const { t } = useTranslation();
 
   const handlePostElement = () => {
@@ -122,6 +124,11 @@ export const Upload = observer((props: UploadProps) => {
   const showFloatingform =
     pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm;
 
+  const menuLooks = [
+    { icon: <CameraOutlined />, title: "From a picture", action: () => {} },
+    { icon: <SkinOutlined />, title: "From items", action: () => {} },
+  ];
+
   return (
     <>
       {showFloatingform && (
@@ -147,19 +154,29 @@ export const Upload = observer((props: UploadProps) => {
       </div>
 
       <Modal
-        closable={{ "aria-label": "Custom Close Button" }}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        closable={false}
+        width={620}
       >
-        {mediaUrl === null ? (
-          <UploadForm page={page} setMediaId={setMediaId} />
-        ) : (
-          <div
-            className="upload__picture"
-            style={{ background: `url(${mediaUrl})` }}
-          ></div>
+        {page === "looks" && (
+          <SimpleSubMenu
+            menuItems={menuLooks}
+            selectedMenuItem={selectedMenuItem}
+            setSelectedMenuItem={setSelectedMenuItem}
+          />
         )}
+        <div className="modal__container">
+          {mediaUrl === null ? (
+            <UploadForm page={page} setMediaId={setMediaId} />
+          ) : (
+            <div
+              className="upload__picture"
+              style={{ background: `url(${mediaUrl})` }}
+            ></div>
+          )}
+        </div>
       </Modal>
     </>
   );

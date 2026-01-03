@@ -5,7 +5,7 @@ import { looksStore } from "../looksStore";
 import { pageStore } from "@stores/pageStore/pageStore";
 import { userStore } from "@stores/userStore/userStore.js";
 import { ElementCard } from "@components/ElementCard/ElementCard";
-import { Upload } from "@components/Upload/Upload";
+import { UploadModal } from "@components/UploadModal/UploadModal";
 import { GhostCard } from "@components/GhostCard/GhostCard";
 import { Look } from "@type/lookTypes";
 import { Item } from "@type/itemTypes";
@@ -97,7 +97,7 @@ export const LookList: React.FC = observer(() => {
 
   return (
     <div ref={containerElement} className="looks__container">
-      <Upload page="looks" />
+      <UploadModal page="looks" />
       {lookList}
       <GhostCard
         numberOfCards={missingCardForFullRow}

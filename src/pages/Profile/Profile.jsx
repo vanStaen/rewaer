@@ -18,7 +18,7 @@ import { MenuBar } from "@components/MenuBar/MenuBar";
 import "./Profile.css";
 
 export const Profile = observer(() => {
-  const [contentToDisplay, setContentToDisplay] = useState("looks");
+  const [contentToDisplay, setContentToDisplay] = useState("wall");
   const params = useParams();
   const { t } = useTranslation();
 

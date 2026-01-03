@@ -66,8 +66,8 @@ jest.mock("@components/ElementCard/ElementCard", () => ({
   ),
 }));
 
-jest.mock("@components/Upload/Upload", () => ({
-  Upload: ({ page }: { page: string }) => (
+jest.mock("@components/UploadModal/UploadModal", () => ({
+  UploadModal: ({ page }: { page: string }) => (
     <div data-testid="upload" data-page={page}>
       Upload
     </div>
