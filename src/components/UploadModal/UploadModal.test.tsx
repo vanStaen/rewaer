@@ -223,7 +223,7 @@ describe("Upload", () => {
     });
 
     // Find and click OK button
-    const okButton = screen.getByText("OK");
+    const okButton = screen.getByText("Ok");
     fireEvent.click(okButton);
 
     await waitFor(() => {

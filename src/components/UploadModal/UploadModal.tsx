@@ -1,5 +1,5 @@
 import React, { useState, useEffect, use } from "react";
-import { Modal, Avatar, notification } from "antd";
+import { Modal, Avatar, notification, Button } from "antd";
 import { CameraOutlined, SkinOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
@@ -159,6 +159,25 @@ export const UploadModal = observer((props: UploadProps) => {
         onCancel={handleCancel}
         closable={false}
         width={620}
+        footer={
+          <div style={{ display: "flex", gap: "8px", width: "100%" }}>
+            <Button
+              key="cancel"
+              onClick={handleCancel}
+              style={{ flex: 1 }}
+            >
+              Cancel
+            </Button>
+            <Button
+              key="ok"
+              type="primary"
+              onClick={handleOk}
+              style={{ flex: 1 }}
+            >
+              Ok
+            </Button>
+          </div>
+        }
       >
         {page === "looks" && (
           <SimpleSubMenu
