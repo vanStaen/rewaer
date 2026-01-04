@@ -24,6 +24,10 @@ interface UploadProps {
   page: "looks" | "items";
 }
 
+// TODO: add should be translated
+// TODO: menu click actions
+// TODO: add button should be disabled if no mediaId
+
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const [mediaId, setMediaId] = useState<string | null>(null);
@@ -125,8 +129,16 @@ export const UploadModal = observer((props: UploadProps) => {
     pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm;
 
   const menuLooks = [
-    { icon: <CameraOutlined />, title: "From a picture", action: () => {} },
-    { icon: <SkinOutlined />, title: "From items", action: () => {} },
+    {
+      icon: <CameraOutlined />,
+      title: t("looks.createFromPicture"),
+      action: () => {},
+    },
+    {
+      icon: <SkinOutlined />,
+      title: t("looks.createFromItems"),
+      action: () => {},
+    },
   ];
 
   return (
@@ -158,23 +170,19 @@ export const UploadModal = observer((props: UploadProps) => {
         onOk={handleOk}
         onCancel={handleCancel}
         closable={false}
-        width={620}
+        width={530}
         footer={
           <div style={{ display: "flex", gap: "8px", width: "100%" }}>
-            <Button
-              key="cancel"
-              onClick={handleCancel}
-              style={{ flex: 1 }}
-            >
+            <Button key="cancel" onClick={handleCancel} style={{ flex: 1 }}>
               Cancel
             </Button>
             <Button
-              key="ok"
+              key="Add"
               type="primary"
               onClick={handleOk}
               style={{ flex: 1 }}
             >
-              Ok
+              Add
             </Button>
           </div>
         }

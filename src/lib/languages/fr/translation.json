@@ -198,6 +198,8 @@
     "look": "look",
     "addLook": "Ajoute un look",
     "addNewLook": "Ajoute un nouveau look",
+    "createFromPicture": "Créer un look depuis une photo",
+    "createFromItems": "Créer un look depuis des piéces",
     "deletedSuccess": "Look supprimé avec succès!",
     "deleteConfirm": "Êtes-vous sûr de supprimer ce look?",
     "archiveSuccess": "Look archivé avec succès!",

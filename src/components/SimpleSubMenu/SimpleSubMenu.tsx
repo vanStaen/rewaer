@@ -21,6 +21,7 @@ export const SimpleSubMenu: React.FC<SimpleSubMenuProps> = ({
 }) => {
   const menuElements = menuItems.map((menuItem, index) => {
     const handleClick = () => {
+      setSelectedMenuItem(index);
       if (menuItem.action) {
         menuItem.action();
       }

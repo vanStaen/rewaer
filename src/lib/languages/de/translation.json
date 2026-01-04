@@ -196,7 +196,9 @@
   "looks": {
     "look": "look",
     "addLook": "Look hinzufügen",
-    "addNewLook": "Neue Look hinzufügen",
+    "addNewLook": "Neue Look hinzufügen",    
+    "createFromPicture": "Look aus einem Bild erstellen",
+    "createFromItems": "Look aus Items erstellen",    
     "deletedSuccess": "Look erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Look wirklich löschen?",
     "archiveSuccess": "Look erfolgreich archiviert!",

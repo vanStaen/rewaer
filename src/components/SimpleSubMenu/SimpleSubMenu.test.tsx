@@ -36,7 +36,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     expect(screen.getByText("First Item")).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     expect(screen.getByTestId("icon-1")).toBeInTheDocument();
@@ -64,7 +64,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const firstItem = container.querySelector(".subMenu__item");
@@ -77,7 +77,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={1}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");
@@ -92,7 +92,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const secondItem = screen
@@ -117,7 +117,7 @@ describe("SimpleSubMenu", () => {
         menuItems={itemsWithoutAction}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const item = screen.getByText("Item Without Action");
@@ -141,7 +141,7 @@ describe("SimpleSubMenu", () => {
         menuItems={itemsWithoutIcons}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     expect(screen.getByText("Item 1")).toBeInTheDocument();
@@ -154,7 +154,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");
@@ -167,7 +167,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");
@@ -182,7 +182,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const firstItem = screen.getByText("First Item").closest(".subMenu__item");
@@ -210,7 +210,7 @@ describe("SimpleSubMenu", () => {
         menuItems={[]}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const menuContainer = container.querySelector(".subMenu__container");
@@ -224,7 +224,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");
@@ -237,7 +237,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const menuContainer = container.querySelector(".subMenu__container");
@@ -250,7 +250,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");
@@ -265,7 +265,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={0}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     let items = container.querySelectorAll(".subMenu__item");
@@ -276,7 +276,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={2}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     items = container.querySelectorAll(".subMenu__item");
@@ -290,7 +290,7 @@ describe("SimpleSubMenu", () => {
         menuItems={mockItems}
         selectedMenuItem={2}
         setSelectedMenuItem={mockSetSelectedMenuItem}
-      />
+      />,
     );
 
     const items = container.querySelectorAll(".subMenu__item");

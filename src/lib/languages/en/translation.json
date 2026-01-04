@@ -2,7 +2,7 @@
   "main": {
     "motto": "the green Fashion App", 
     "preview" : "preview",
-    "startWithPhoto": "Start with a photo",
+    "startWithPhoto": "Start with a picture",
     "clickDragFile": "Click, or drag here a file",
     "uploadFail": "File upload failed",
     "uploadSuccess": "File updated successfully",
@@ -200,6 +200,8 @@
     "look": "look",
     "addLook" : "Add Look",
     "addNewLook" : "Add a new Look",
+    "createFromPicture": "Create look from a picture",
+    "createFromItems": "Create look from items",
     "deletedSuccess" : "Look deleted successfully!",
     "deleteConfirm": "Delete this look forever?",
     "archiveSuccess" : "Look archived successfully!",
