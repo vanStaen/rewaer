@@ -171,6 +171,7 @@ export const UploadModal = observer((props: UploadProps) => {
         onCancel={handleCancel}
         closable={false}
         width={530}
+        centered={true}
         footer={
           <div style={{ display: "flex", gap: "8px", width: "100%" }}>
             <Button key="cancel" onClick={handleCancel} style={{ flex: 1 }}>

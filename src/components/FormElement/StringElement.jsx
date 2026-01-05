@@ -4,13 +4,13 @@ import { Input, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
-import { itemsStore } from "../../itemsStore.ts";
+import { updateGenericStringItem } from "../../pages/Items/actions/updateGenericStringItem";
+import { itemsStore } from "../../pages/Items/itemsStore";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 
-import "./ItemDetailFormElement.css";
+import "./FormElement.css";
 
-export const ItemDetailFormStringElement = observer((props) => {
+export const StringElement = observer((props) => {
   const { t } = useTranslation();
   const originalValue = useRef(props.value);
   const inputRef = useRef(null);
@@ -85,15 +85,15 @@ export const ItemDetailFormStringElement = observer((props) => {
   }, [isEditMode]);
 
   return (
-    <div className="ItemDetailFormElement__container">
-      <div className="ItemDetailFormElement__title">{props.title}:</div>
-      <div className="ItemDetailFormElement__input">
+    <div className="formElement__container">
+      <div className="formElement__title">{props.title}:</div>
+      <div className="formElement__input">
         {isEditMode ? (
           <Input
             ref={inputRef}
             key={`title_input_${props.selectedItem.id}`}
             size="small"
-            className="ItemDetailFormElement__element"
+            className="formElement__element"
             value={editInputValue}
             onChange={handleEditChange}
             onBlur={handleEditCancel}
@@ -103,8 +103,8 @@ export const ItemDetailFormStringElement = observer((props) => {
           <div
             className={
               value
-                ? `ItemDetailFormElement__element ${props.disabled}`
-                : `ItemDetailFormElement__selectElement textCursor ${props.disabled}`
+                ? `formElement__element ${props.disabled}`
+                : `formElement__selectElement textCursor ${props.disabled}`
             }
             onClick={() => {
               !props.disabled && setIsEditmode(true);
@@ -116,14 +116,14 @@ export const ItemDetailFormStringElement = observer((props) => {
       </div>
 
       {props.tooltip && (
-        <div className="ItemDetailFormElement__helpIcon">
+        <div className="formElement__helpIcon">
           <Tooltip placement="right" title={props.tooltip}>
             <QuestionCircleOutlined />
           </Tooltip>
         </div>
       )}
       {/*
-        <div className="ItemDetailFormElement__missingIcon">
+        <div className="formElement__missingIcon">
             < ExclamationCircleOutlined />
         </div>
         */}

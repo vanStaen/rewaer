@@ -3,9 +3,9 @@ import { Spin } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { ItemDetailFormDropDown } from "../ItemDetailFormElement/ItemDetailFormDropDown";
-import { ItemDetailFormStringElement } from "../ItemDetailFormElement/ItemDetailFormStringElement";
-import { ItemDetailFormRadio } from "../ItemDetailFormElement/ItemDetailFormRadio";
+import { DropDownElement } from "@components/FormElement/DropDownElement.jsx";
+import { StringElement } from "@components/FormElement/StringElement.jsx";
+import { RadioElement } from "@components/FormElement/RadioElement.jsx";
 import { itemsStore } from "../../itemsStore.ts";
 import { userStore } from "@stores/userStore/userStore.js";
 import { ItemSharedWithFriends } from "../ItemSharedWithFriends/ItemSharedWithFriends";
@@ -39,14 +39,14 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
       <div className="itemdetail__itemContainerDivisor">
         Item description and informations
       </div>
-      <ItemDetailFormStringElement
+      <StringElement
         element="title"
         title="title"
         value={itemsStore.selectedItem.title}
         selectedItem={itemsStore.selectedItem}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
       />
-      <ItemDetailFormDropDown
+      <DropDownElement
         title="category"
         element="category"
         data={
@@ -61,14 +61,14 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         multiSelect={false}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
       />
-      <ItemDetailFormStringElement
+      <StringElement
         element="brand"
         title="brand"
         value={itemsStore.selectedItem.brand}
         selectedItem={itemsStore.selectedItem}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
       />
-      <ItemDetailFormDropDown
+      <DropDownElement
         title="color"
         element="colors"
         data={colors}
@@ -77,7 +77,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         multiSelect={true}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
       />
-      <ItemDetailFormDropDown
+      <DropDownElement
         title="pattern"
         element="pattern"
         data={pattern}
@@ -86,7 +86,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         multiSelect={false}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
       />
-      <ItemDetailFormStringElement
+      <StringElement
         element="size"
         title="size"
         value={itemsStore.selectedItem.size}
@@ -97,7 +97,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
       <div className="itemdetail__itemContainerDivisor">
         The status of this item
       </div>
-      <ItemDetailFormRadio
+      <RadioElement
         title="status"
         element="status"
         data={itemStatus}
@@ -107,7 +107,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         disabled={!itemsStore.selectedItem.active || isSharedItem}
         tooltip={t("items.statusTooltip")}
       />
-      <ItemDetailFormRadio
+      <RadioElement
         title="private"
         element="private"
         data={[
@@ -121,7 +121,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         disabled={!itemsStore.selectedItem.active || isSharedItem}
         tooltip={t("items.makePrivateItem")}
       />
-      <ItemDetailFormRadio
+      <RadioElement
         title="active"
         element="active"
         data={[
@@ -139,7 +139,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
       <div className="itemdetail__itemContainerDivisor">
         Details on the where about of this item
       </div>
-      <ItemDetailFormStringElement
+      <StringElement
         element="location"
         title="location"
         value={itemsStore.selectedItem.location}
@@ -147,7 +147,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         disabled={!itemsStore.selectedItem.active || isSharedItem}
         tooltip={t("items.notesTooltip")}
       />
-      <ItemDetailFormStringElement
+      <StringElement
         element="notes"
         title="notes"
         value={itemsStore.selectedItem.notes}

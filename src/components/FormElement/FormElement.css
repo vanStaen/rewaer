@@ -1,49 +1,49 @@
-.ItemDetailFormElement__container {
+.formElement__container {
   margin-left: 20px;
   margin-bottom: 10px;
 }
 
-.ItemDetailFormElement__title {
+.formElement__title {
   display: inline-block;
   text-transform: capitalize;
   margin-right: 5px;
 }
 
-.ItemDetailFormElement__input,
-.ItemDetailFormElement__select {
+.formElement__input,
+.formElement__select {
   display: inline-block;
   width: 200px;
 }
 
-.ItemDetailFormElement__container .ant-select-selector {
+.formElement__container .ant-select-selector {
   border: 1px solid transparent !important;
   font-size: 16px !important;
   color: #909090 !important;
   padding: 0 !important;
 }
 
-.ItemDetailFormElement__selectDisabled .ant-select-selector {
+.formElement__selectDisabled .ant-select-selector {
   background-color: white !important;
   color: #c0c0c0 !important;
   font-weight: 300 !important;
   font-size: 15px !important;
 }
 
-.ItemDetailFormElement__selectDisabled .ant-select-arrow {
+.formElement__selectDisabled .ant-select-arrow {
   display: none !important;
 }
 
-.ItemDetailFormElement__element {
+.formElement__element {
   color: #909090;
 }
 
-.ItemDetailFormElement__selectElement {
+.formElement__selectElement {
   color: #c0c0c0;
   font-weight: 300;
   cursor: pointer;
 }
 
-.ItemDetailFormElement__helpIcon {
+.formElement__helpIcon {
   display: inline-block;
   margin-left: 4px;
   font-size: 12px;
@@ -51,14 +51,14 @@
   cursor: pointer;
 }
 
-.ItemDetailFormElement__missingIcon {
+.formElement__missingIcon {
   display: inline-block;
   margin-left: 4px;
   font-size: 12px;
   color: rgba(169, 50, 38, 1);
 }
 
-.ItemDetailFormElement__helpIcon:hover {
+.formElement__helpIcon:hover {
   color: rgba(109, 145, 126, 0.8);
 }
 

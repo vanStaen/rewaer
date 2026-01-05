@@ -4,16 +4,16 @@ import { notification, Radio, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-import { updateGenericBooleanItem } from "../../actions/updateGenericBooleanItem";
-import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { updateGenericBooleanItem } from "../../pages/Items/actions/updateGenericBooleanItem";
+import { updateGenericStringItem } from "../../pages/Items/actions/updateGenericStringItem";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 
-import { itemsStore } from "../../itemsStore.ts";
+import { itemsStore } from "../../pages/Items/itemsStore";
 import { userStore } from "@stores/userStore/userStore.js";
 
-import "./ItemDetailFormElement.css";
+import "./FormElement.css";
 
-export const ItemDetailFormRadio = observer((props) => {
+export const RadioElement = observer((props) => {
   const { t } = useTranslation();
   const [value, setValue] = useState(props.value);
 
@@ -81,7 +81,7 @@ export const ItemDetailFormRadio = observer((props) => {
   });
 
   return (
-    <div className={`ItemDetailFormElement__container`}>
+    <div className={`formElement__container`}>
       <Radio.Group
         defaultValue={value}
         buttonStyle="solid"
@@ -91,7 +91,7 @@ export const ItemDetailFormRadio = observer((props) => {
       </Radio.Group>
 
       {props.tooltip && (
-        <div className="ItemDetailFormElement__helpIcon">
+        <div className="formElement__helpIcon">
           <Tooltip placement="right" title={props.tooltip}>
             <QuestionCircleOutlined />
           </Tooltip>

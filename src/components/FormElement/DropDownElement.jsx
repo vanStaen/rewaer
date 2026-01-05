@@ -4,15 +4,15 @@ import { Select, notification, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
-import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
-import { itemsStore } from "../../itemsStore.ts";
+import { updateGenericStringItem } from "../../pages/Items/actions/updateGenericStringItem";
+import { updateGenericArrayStringItem } from "../../pages/Items/actions/updateGenericArrayStringItem";
+import { itemsStore } from "../../pages/Items/itemsStore";
 import { userStore } from "@stores/userStore/userStore.js";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 
-import "./ItemDetailFormElement.css";
+import "./FormElement.css";
 
-export const ItemDetailFormDropDown = observer((props) => {
+export const DropDownElement = observer((props) => {
   const { t } = useTranslation();
   const [options, setOptions] = useState(null);
   const [optionsSelected, setOptionsSelected] = useState(null);
@@ -86,13 +86,11 @@ export const ItemDetailFormDropDown = observer((props) => {
   };
 
   return (
-    <div className="ItemDetailFormElement__container">
-      <div className="ItemDetailFormElement__title">{props.title}:</div>
+    <div className="formElement__container">
+      <div className="formElement__title">{props.title}:</div>
       <Select
         className={
-          props.disabled
-            ? "ItemDetailFormElement__selectDisabled"
-            : "ItemDetailFormElement__select"
+          props.disabled ? "formElement__selectDisabled" : "formElement__select"
         }
         mode={props.multiSelect ? "multiple" : "default"}
         disabled={props.disabled}
@@ -102,7 +100,7 @@ export const ItemDetailFormDropDown = observer((props) => {
         options={options}
       />
       {props.tooltip && (
-        <div className="ItemDetailFormElement__helpIcon">
+        <div className="formElement__helpIcon">
           <Tooltip placement="right" title={props.tooltip}>
             <QuestionCircleOutlined />
           </Tooltip>
