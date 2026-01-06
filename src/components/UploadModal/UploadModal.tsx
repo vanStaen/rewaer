@@ -205,8 +205,8 @@ export const UploadModal = observer((props: UploadProps) => {
               style={{ background: `url(${mediaUrl})` }}
             ></div>
           )}
-        </div>
         <ItemForm />
+        </div>
       </Modal>
     </>
   );

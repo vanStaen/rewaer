@@ -11,9 +11,9 @@ import {
 import { colors } from "../../../lib/data/colors";
 import { pattern } from "../../../lib/data/pattern";
 
-export const ItemForm = () => {
-  
+import "./ItemForm.less";
 
+export const ItemForm = () => {
   const selectedItem = itemsStore.selectedItem || {
     id: 0,
     title: "",
@@ -30,10 +30,7 @@ export const ItemForm = () => {
     parseInt(itemsStore.selectedItem.user.id.toString()) !== userStore.id;
 
   return (
-    <div>
-      <div className="itemdetail__itemContainerDivisor">
-        Item description and informations
-      </div>
+    <div className="itemform__container">
       <StringElement
         element="title"
         title="title"
