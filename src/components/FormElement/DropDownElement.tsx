@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Select, Tooltip } from "antd";
-import { useTranslation } from "react-i18next";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import { itemsStore } from "../../pages/Items/itemsStore";
@@ -32,7 +31,6 @@ interface DropDownElementProps {
 
 export const DropDownElement: React.FC<DropDownElementProps> = observer(
   ({ value, data, title, disabled, multiSelect, tooltip, handleChange, element }) => {
-    const { t } = useTranslation();
     const [options, setOptions] = useState<OptionType[] | null>(null);
     const [optionsSelected, setOptionsSelected] = useState<string | string[] | null>(null);
 

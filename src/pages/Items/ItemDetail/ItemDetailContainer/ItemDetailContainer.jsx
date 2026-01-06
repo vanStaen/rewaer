@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
 import { DropDownElement } from "@components/FormElement/DropDownElement";
-import { StringElement } from "@components/FormElement/StringElement.jsx";
+import { StringElement } from "@components/FormElement/StringElement";
 import { RadioElement } from "@components/FormElement/RadioElement.jsx";
 import { itemsStore } from "../../itemsStore.ts";
 import { userStore } from "@stores/userStore/userStore.js";
@@ -80,8 +80,8 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         element="title"
         title="title"
         value={itemsStore.selectedItem.title}
-        selectedItem={itemsStore.selectedItem}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <DropDownElement
         title="category"
@@ -102,8 +102,8 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         element="brand"
         title="brand"
         value={itemsStore.selectedItem.brand}
-        selectedItem={itemsStore.selectedItem}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <DropDownElement
         title="color"
@@ -129,8 +129,8 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         element="size"
         title="size"
         value={itemsStore.selectedItem.size}
-        selectedItem={itemsStore.selectedItem}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <br />
       <div className="itemdetail__itemContainerDivisor">
@@ -182,7 +182,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         element="location"
         title="location"
         value={itemsStore.selectedItem.location}
-        selectedItem={itemsStore.selectedItem}
+        handleChange={handleChange}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
         tooltip={t("items.notesTooltip")}
       />
@@ -190,7 +190,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         element="notes"
         title="notes"
         value={itemsStore.selectedItem.notes}
-        selectedItem={itemsStore.selectedItem}
+        handleChange={handleChange}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
         tooltip={t("items.notesTooltip")}
       />
