@@ -19,6 +19,7 @@ import { isElementVisible } from "@helpers/isElementVisible";
 import { SimpleSubMenu } from "@components/SimpleSubMenu/SimpleSubMenu";
 
 import "./UploadModal.less";
+import { ItemForm } from "./ItemForm/ItemForm";
 
 interface UploadProps {
   page: "looks" | "items";
@@ -205,6 +206,7 @@ export const UploadModal = observer((props: UploadProps) => {
             ></div>
           )}
         </div>
+        <ItemForm />
       </Modal>
     </>
   );

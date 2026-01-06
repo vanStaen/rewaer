@@ -15,6 +15,7 @@ export interface Item {
   dislikes: string[];
   createdAt: string;
   user: User;
+  size: string | null;
 }
 
 export interface getItemsGraphQLResponse {
