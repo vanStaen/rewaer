@@ -13,7 +13,11 @@ import { pattern } from "../../../lib/data/pattern";
 
 import "./ItemForm.less";
 
-export const ItemForm = () => {
+export const ItemForm = ({
+  setItemInput,
+}: {
+  setItemInput: React.Dispatch<React.SetStateAction<any>>;
+}) => {
   const selectedItem = itemsStore.selectedItem || {
     id: 0,
     title: "",
@@ -23,7 +27,14 @@ export const ItemForm = () => {
     pattern: null,
     size: null,
     active: false,
-  }
+  };
+
+  const handleItemInputChange = (value: any, element: string) => {
+    setItemInput((prev: any) => ({
+      ...prev,
+      [element]: value,
+    }));
+  };
 
   return (
     <div className="itemform__container">
@@ -31,7 +42,7 @@ export const ItemForm = () => {
         element="title"
         title="title"
         value={selectedItem.title}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
       />
       <DropDownElement
         title="category"
@@ -44,21 +55,21 @@ export const ItemForm = () => {
               : itemCategoryNB
         }
         value={selectedItem.category}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
         multiSelect={false}
       />
       <StringElement
         element="brand"
         title="brand"
         value={selectedItem.brand}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
       />
       <DropDownElement
         title="color"
         element="colors"
         data={colors}
         value={selectedItem.colors && selectedItem.colors}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
         multiSelect={true}
       />
       <DropDownElement
@@ -66,14 +77,14 @@ export const ItemForm = () => {
         element="pattern"
         data={pattern}
         value={selectedItem.pattern}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
         multiSelect={false}
       />
       <StringElement
         element="size"
         title="size"
         value={selectedItem.size}
-        selectedItem={selectedItem}
+        handleChange={handleItemInputChange}
       />
     </div>
   );

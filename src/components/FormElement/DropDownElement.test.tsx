@@ -58,7 +58,7 @@ describe("DropDownElement", () => {
 
   it("loads and displays options based on data prop", async () => {
     render(<DropDownElement {...defaultProps} />);
-    
+
     // Click to open dropdown
     const select = screen.getByText("Select a Color");
     fireEvent.mouseDown(select);
@@ -73,7 +73,7 @@ describe("DropDownElement", () => {
 
   it("displays selected value when value prop is provided", () => {
     render(<DropDownElement {...defaultProps} value="red" />);
-    
+
     // The selected value should be displayed
     expect(screen.getByText("Red")).toBeInTheDocument();
   });
@@ -84,9 +84,9 @@ describe("DropDownElement", () => {
         {...defaultProps}
         multiSelect={true}
         value={["red", "blue"]}
-      />
+      />,
     );
-    
+
     // Both selected values should be displayed
     expect(screen.getByText("Red")).toBeInTheDocument();
     expect(screen.getByText("Blue")).toBeInTheDocument();
@@ -94,7 +94,7 @@ describe("DropDownElement", () => {
 
   it("calls handleChange when a new value is selected", async () => {
     render(<DropDownElement {...defaultProps} />);
-    
+
     // Click to open dropdown
     const select = screen.getByText("Select a Color");
     fireEvent.mouseDown(select);
@@ -111,7 +111,7 @@ describe("DropDownElement", () => {
 
   it("renders tooltip when tooltip prop is provided", () => {
     render(<DropDownElement {...defaultProps} tooltip="Select your color" />);
-    
+
     // Check for tooltip icon
     const tooltipIcon = document.querySelector(".formElement__helpIcon");
     expect(tooltipIcon).toBeInTheDocument();
@@ -119,7 +119,7 @@ describe("DropDownElement", () => {
 
   it("does not render tooltip when tooltip prop is not provided", () => {
     render(<DropDownElement {...defaultProps} />);
-    
+
     // Tooltip icon should not be present
     const tooltipIcon = document.querySelector(".formElement__helpIcon");
     expect(tooltipIcon).not.toBeInTheDocument();
@@ -127,23 +127,25 @@ describe("DropDownElement", () => {
 
   it("applies disabled class when disabled prop is true", () => {
     render(<DropDownElement {...defaultProps} disabled={true} />);
-    
-    const selectElement = document.querySelector(".formElement__selectDisabled");
+
+    const selectElement = document.querySelector(
+      ".formElement__selectDisabled",
+    );
     expect(selectElement).toBeInTheDocument();
   });
 
   it("applies normal class when disabled prop is false", () => {
     render(<DropDownElement {...defaultProps} disabled={false} />);
-    
+
     const selectElement = document.querySelector(".formElement__select");
     expect(selectElement).toBeInTheDocument();
   });
 
   it("uses correct language from userStore", async () => {
     (userStore as any).language = "fr";
-    
+
     render(<DropDownElement {...defaultProps} />);
-    
+
     // Click to open dropdown
     const select = screen.getByText("Select a Color");
     fireEvent.mouseDown(select);
@@ -161,32 +163,34 @@ describe("DropDownElement", () => {
 
   it("renders in multiple mode when multiSelect is true", () => {
     render(<DropDownElement {...defaultProps} multiSelect={true} />);
-    
+
     const selectElement = document.querySelector(".ant-select-multiple");
     expect(selectElement).toBeInTheDocument();
   });
 
   it("renders in single mode when multiSelect is false", () => {
     render(<DropDownElement {...defaultProps} multiSelect={false} />);
-    
+
     const selectElement = document.querySelector(".ant-select-single");
     expect(selectElement).toBeInTheDocument();
   });
 
   it("updates when value prop changes", () => {
-    const { rerender } = render(<DropDownElement {...defaultProps} value="red" />);
-    
+    const { rerender } = render(
+      <DropDownElement {...defaultProps} value="red" />,
+    );
+
     expect(screen.getByText("Red")).toBeInTheDocument();
-    
+
     // Update value prop
     rerender(<DropDownElement {...defaultProps} value="blue" />);
-    
+
     expect(screen.getByText("Blue")).toBeInTheDocument();
   });
 
   it("handles empty value prop gracefully", () => {
     render(<DropDownElement {...defaultProps} value={undefined} />);
-    
+
     expect(screen.getByText("Select a Color")).toBeInTheDocument();
   });
 });

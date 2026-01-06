@@ -30,9 +30,20 @@ interface DropDownElementProps {
 }
 
 export const DropDownElement: React.FC<DropDownElementProps> = observer(
-  ({ value, data, title, disabled, multiSelect, tooltip, handleChange, element }) => {
+  ({
+    value,
+    data,
+    title,
+    disabled,
+    multiSelect,
+    tooltip,
+    handleChange,
+    element,
+  }) => {
     const [options, setOptions] = useState<OptionType[] | null>(null);
-    const [optionsSelected, setOptionsSelected] = useState<string | string[] | null>(null);
+    const [optionsSelected, setOptionsSelected] = useState<
+      string | string[] | null
+    >(null);
 
     useEffect(() => {
       loadSelectedForSelect();
@@ -92,5 +103,5 @@ export const DropDownElement: React.FC<DropDownElementProps> = observer(
         )}
       </div>
     );
-  }
+  },
 );

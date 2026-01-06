@@ -17,9 +17,10 @@ import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { pageStore } from "@stores/pageStore/pageStore.js";
 import { isElementVisible } from "@helpers/isElementVisible";
 import { SimpleSubMenu } from "@components/SimpleSubMenu/SimpleSubMenu";
+import { ItemInput } from "@type/itemTypes";
+import { ItemForm } from "./ItemForm/ItemForm";
 
 import "./UploadModal.less";
-import { ItemForm } from "./ItemForm/ItemForm";
 
 interface UploadProps {
   page: "looks" | "items";
@@ -31,11 +32,17 @@ interface UploadProps {
 
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
+  const { t } = useTranslation();
+
   const [mediaId, setMediaId] = useState<string | null>(null);
   const [mediaUrl, setMediaUrl] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
-  const { t } = useTranslation();
+
+  const [itemInput, setItemInput] = useState<ItemInput>({});
+  const [lookInput, setLookInput] = useState<any>({}); // TODO: type
+
+  console.log("itemInput", itemInput);
 
   const handlePostElement = () => {
     if (mediaId) {
@@ -49,7 +56,7 @@ export const UploadModal = observer((props: UploadProps) => {
           looksStore.setIsOutOfDate(true);
         });
       } else if (page === "items") {
-        postNewItem(mediaId, title).then(() => {
+        postNewItem({ ...itemInput, mediaId }).then(() => {
           notification.success({
             message: t("main.uploadSuccess"),
             placement: "bottomRight",
@@ -84,6 +91,8 @@ export const UploadModal = observer((props: UploadProps) => {
     await handlePostElement();
     setMediaId(null);
     setMediaUrl(null);
+    setItemInput({});
+    setLookInput({});
     setIsModalOpen(false);
   };
 
@@ -94,6 +103,8 @@ export const UploadModal = observer((props: UploadProps) => {
     }
     setMediaId(null);
     setMediaUrl(null);
+    setItemInput({});
+    setLookInput({});
   };
 
   const scrollhandler = () => {
@@ -205,7 +216,7 @@ export const UploadModal = observer((props: UploadProps) => {
               style={{ background: `url(${mediaUrl})` }}
             ></div>
           )}
-        <ItemForm />
+          <ItemForm setItemInput={setItemInput} />
         </div>
       </Modal>
     </>

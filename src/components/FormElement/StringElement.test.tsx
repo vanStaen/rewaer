@@ -39,7 +39,7 @@ describe("StringElement", () => {
 
   it("enters edit mode when clicked and not disabled", () => {
     render(<StringElement {...defaultProps} value="Test Value" />);
-    
+
     const displayElement = screen.getByText("Test Value");
     fireEvent.click(displayElement);
 
@@ -50,8 +50,10 @@ describe("StringElement", () => {
   });
 
   it("does not enter edit mode when disabled", () => {
-    render(<StringElement {...defaultProps} value="Test Value" disabled={true} />);
-    
+    render(
+      <StringElement {...defaultProps} value="Test Value" disabled={true} />,
+    );
+
     const displayElement = screen.getByText("Test Value");
     fireEvent.click(displayElement);
 
@@ -62,7 +64,7 @@ describe("StringElement", () => {
 
   it("updates input value while editing", () => {
     render(<StringElement {...defaultProps} value="Test" />);
-    
+
     // Enter edit mode
     const displayElement = screen.getByText("Test");
     fireEvent.click(displayElement);
@@ -76,7 +78,7 @@ describe("StringElement", () => {
 
   it("calls handleChange with correct value on Enter key press", () => {
     render(<StringElement {...defaultProps} value="Test" />);
-    
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Test"));
 
@@ -90,7 +92,7 @@ describe("StringElement", () => {
 
   it("replaces slashes with hyphens when saving", () => {
     render(<StringElement {...defaultProps} value="Test" />);
-    
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Test"));
 
@@ -104,7 +106,7 @@ describe("StringElement", () => {
 
   it("exits edit mode without saving on blur", () => {
     render(<StringElement {...defaultProps} value="Original" />);
-    
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Original"));
 
@@ -117,14 +119,14 @@ describe("StringElement", () => {
 
     // handleChange should not be called
     expect(mockHandleChange).not.toHaveBeenCalled();
-    
+
     // Original value should be displayed
     expect(screen.getByText("Original")).toBeInTheDocument();
   });
 
   it("does not call handleChange when value is empty", () => {
     render(<StringElement {...defaultProps} value="Test" />);
-    
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Test"));
 
@@ -138,21 +140,21 @@ describe("StringElement", () => {
 
   it("renders tooltip when tooltip prop is provided", () => {
     render(<StringElement {...defaultProps} tooltip="This is a tooltip" />);
-    
+
     const tooltipIcon = document.querySelector(".formElement__helpIcon");
     expect(tooltipIcon).toBeInTheDocument();
   });
 
   it("does not render tooltip when tooltip prop is not provided", () => {
     render(<StringElement {...defaultProps} />);
-    
+
     const tooltipIcon = document.querySelector(".formElement__helpIcon");
     expect(tooltipIcon).not.toBeInTheDocument();
   });
 
   it("applies correct CSS classes when disabled", () => {
     render(<StringElement {...defaultProps} value="Test" disabled={true} />);
-    
+
     const displayElement = screen.getByText("Test");
     expect(displayElement).toHaveClass("formElement__element");
     expect(displayElement.className).toContain("true");
@@ -160,7 +162,7 @@ describe("StringElement", () => {
 
   it("applies placeholder class when no value", () => {
     render(<StringElement {...defaultProps} />);
-    
+
     const displayElement = screen.getByText("Enter a value");
     expect(displayElement).toHaveClass("formElement__selectElement");
     expect(displayElement).toHaveClass("textCursor");
@@ -168,7 +170,7 @@ describe("StringElement", () => {
 
   it("focuses input when entering edit mode", async () => {
     render(<StringElement {...defaultProps} value="Test" />);
-    
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Test"));
 
@@ -180,42 +182,46 @@ describe("StringElement", () => {
   });
 
   it("updates when value prop changes", () => {
-    const { rerender } = render(<StringElement {...defaultProps} value="Original" />);
-    
+    const { rerender } = render(
+      <StringElement {...defaultProps} value="Original" />,
+    );
+
     expect(screen.getByText("Original")).toBeInTheDocument();
-    
+
     // Update value prop
     rerender(<StringElement {...defaultProps} value="Updated" />);
-    
+
     expect(screen.getByText("Updated")).toBeInTheDocument();
     expect(screen.queryByText("Original")).not.toBeInTheDocument();
   });
 
   it("resets input to original value when canceled after prop change", () => {
-    const { rerender } = render(<StringElement {...defaultProps} value="Original" />);
-    
+    const { rerender } = render(
+      <StringElement {...defaultProps} value="Original" />,
+    );
+
     // Enter edit mode
     fireEvent.click(screen.getByText("Original"));
-    
+
     // Change value
     const input = screen.getByRole("textbox");
     fireEvent.change(input, { target: { value: "Modified" } });
-    
+
     // Update prop externally
     rerender(<StringElement {...defaultProps} value="New Original" />);
-    
+
     // Cancel edit
     fireEvent.blur(input);
-    
+
     // Should show the updated prop value
     expect(screen.getByText("New Original")).toBeInTheDocument();
   });
 
   it("handles multiple element types correctly", () => {
     render(<StringElement {...defaultProps} element="brand" title="Brand" />);
-    
+
     fireEvent.click(screen.getByText("Enter a value"));
-    
+
     const input = screen.getByRole("textbox");
     fireEvent.change(input, { target: { value: "Nike" } });
     fireEvent.keyDown(input, { key: "Enter", code: "Enter" });

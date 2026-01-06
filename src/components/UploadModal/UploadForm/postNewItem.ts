@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import { ItemInput } from "@type/itemTypes";
 
 interface AddItemResponse {
   data?: {
@@ -12,23 +13,18 @@ interface AddItemResponse {
 }
 
 export async function postNewItem(
-  mediaId: string,
-  title: string,
+  itemInput: ItemInput,
 ): Promise<AddItemResponse> {
   const requestBody = {
     query: `
-        mutation ($mediaId: String, $title: String) {
-          addItem(
-            itemInput: { mediaId: $mediaId, 
-                         title: $title }
-            ) {
-              id
-            }
+        mutation ($itemInput: ItemInputData!) {
+          addItem(itemInput: $itemInput) {
+            id
           }
-          `,
+        }
+      `,
     variables: {
-      mediaId,
-      title,
+      itemInput,
     },
   };
   const response = await fetch(process.env.API_URL + `/graphql`, {

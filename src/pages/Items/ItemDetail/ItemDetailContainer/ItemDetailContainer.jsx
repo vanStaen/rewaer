@@ -56,8 +56,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
       notification.success({
         message: (
           <>
-            <b>{capitalizeFirstLetter(element)}</b> -{" "}
-            {t("main.changeSaved")}
+            <b>{capitalizeFirstLetter(element)}</b> - {t("main.changeSaved")}
           </>
         ),
         placement: "bottomRight",

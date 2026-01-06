@@ -23,3 +23,22 @@ export interface getItemsGraphQLResponse {
     getItems: Item[];
   };
 }
+
+export interface ItemInput {
+  title?: string;
+  mediaId?: string;
+  category?: string;
+  notes?: string;
+  location?: string;
+  size?: string;
+  colors?: string[];
+  pattern?: string;
+  brand?: string;
+  active?: boolean;
+  status?: string;
+  favorite?: boolean;
+  private?: boolean;
+  sharedWith?: number[];
+  likes?: number[];
+  dislikes?: number[];
+}

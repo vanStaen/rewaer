@@ -19,11 +19,11 @@ export const StringElement: React.FC<StringElementProps> = observer(
     const originalValue = useRef<string | null | undefined>(value);
     const inputRef = useRef<any>(null);
     const [valueSelected, setValueSelected] = useState<string | null>(
-      value ? value.replace("-", "/") : null
+      value ? value.replace("-", "/") : null,
     );
     const [isEditMode, setIsEditmode] = useState<boolean>(false);
     const [editInputValue, setEditInputValue] = useState<string | null>(
-      value ? value.replace("-", "/") : null
+      value ? value.replace("-", "/") : null,
     );
 
     useEffect(() => {
@@ -55,7 +55,6 @@ export const StringElement: React.FC<StringElementProps> = observer(
       setValueSelected(newValue);
       handleChange(newValue, element);
     };
-
 
     useEffect(() => {
       if (isEditMode && inputRef.current) {
@@ -105,5 +104,5 @@ export const StringElement: React.FC<StringElementProps> = observer(
         )}
       </div>
     );
-  }
+  },
 );
