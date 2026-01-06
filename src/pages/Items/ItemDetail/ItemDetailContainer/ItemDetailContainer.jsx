@@ -1,9 +1,9 @@
 import React from "react";
-import { Spin } from "antd";
+import { Spin, notification } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
-import { DropDownElement } from "@components/FormElement/DropDownElement.jsx";
+import { DropDownElement } from "@components/FormElement/DropDownElement";
 import { StringElement } from "@components/FormElement/StringElement.jsx";
 import { RadioElement } from "@components/FormElement/RadioElement.jsx";
 import { itemsStore } from "../../itemsStore.ts";
@@ -19,6 +19,10 @@ import { colors } from "@lib/data/colors";
 import { pattern } from "@lib/data/pattern";
 import { itemStatus } from "@lib/data/itemStatus";
 
+import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
+import { updateGenericStringItem } from "../../actions/updateGenericStringItem";
+import { updateGenericArrayStringItem } from "../../actions/updateGenericArrayStringItem";
+
 import "./ItemDetailContainer.less";
 
 export const ItemDetailContainer = observer(({ isSharedItem }) => {
@@ -33,6 +37,39 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
       </div>
     );
   }
+
+  const handleChange = async (newValue, element) => {
+    try {
+      if (newValue.constructor === Array) {
+        await updateGenericArrayStringItem(
+          itemsStore.selectedItem.id,
+          element,
+          newValue,
+        );
+      } else {
+        await updateGenericStringItem(
+          itemsStore.selectedItem.id,
+          element,
+          newValue,
+        );
+      }
+      notification.success({
+        message: (
+          <>
+            <b>{capitalizeFirstLetter(element)}</b> -{" "}
+            {t("main.changeSaved")}
+          </>
+        ),
+        placement: "bottomRight",
+      });
+      itemsStore.setIsOutOfDate(true);
+    } catch (error) {
+      notification.error({
+        message: error.message,
+        placement: "bottomRight",
+      });
+    }
+  };
 
   return (
     <div className="itemdetail__itemContainer">
@@ -57,9 +94,9 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
               : itemCategoryNB
         }
         value={itemsStore.selectedItem.category}
-        selectedItem={itemsStore.selectedItem}
         multiSelect={false}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <StringElement
         element="brand"
@@ -76,6 +113,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         selectedItem={itemsStore.selectedItem}
         multiSelect={true}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <DropDownElement
         title="pattern"
@@ -85,6 +123,7 @@ export const ItemDetailContainer = observer(({ isSharedItem }) => {
         selectedItem={itemsStore.selectedItem}
         multiSelect={false}
         disabled={!itemsStore.selectedItem.active || isSharedItem}
+        handleChange={handleChange}
       />
       <StringElement
         element="size"

@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { itemsStore } from "../../pages/Items/itemsStore";
 import { userStore } from "@stores/userStore/userStore.js";
 
-import "./FormElement.css";
+import "./FormElement.less";
 
 export const RadioElement = observer((props) => {
   const { t } = useTranslation();

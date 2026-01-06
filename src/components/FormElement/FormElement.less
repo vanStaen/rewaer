@@ -1,0 +1,117 @@
+/* Container - shared by all FormElement components */
+.formElement__container {
+  margin-left: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  /* Ant Design Select styling - applies to DropDownElement */
+  .ant-select-selector {
+    border: 1px solid transparent !important;
+    font-size: 16px !important;
+    color: #6c917d !important;
+    padding: 0 !important;
+    font-weight: 400;
+  }
+
+  .ant-select-selection-placeholder {
+    color: rgba(#c0c0c0, 0.5);
+  }
+
+  /* Radio button styling - applies to RadioElement */
+  .ant-radio-button-wrapper {
+    font-weight: 400;
+    font-size: 16px;
+    padding: 4px 15px;
+    margin-right: 0;
+  }
+
+  .ant-radio-button-wrapper-disabled {
+    background-color: #f5f5f5 !important;
+    color: rgba(#c0c0c0, 0.5) !important;
+    font-weight: 300;
+  }
+
+  /* Input styling - applies to StringElement when editing */
+  .ant-input {
+    font-size: 16px;
+    font-weight: 400;
+    color: #909090;
+    padding: 4px 11px;
+  }
+}
+
+/* Title - shared by StringElement and DropDownElement */
+.formElement__title {
+  padding-right: 2px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 16px;
+  color: #303030;
+  flex-shrink: 0;
+}
+
+/* Input and Select containers */
+.formElement__input,
+.formElement__select {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Disabled Select styling */
+.formElement__selectDisabled {
+  .ant-select-selector {
+    background-color: white !important;
+    color: rgba(#c0c0c0, 0.5) !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+  }
+
+  .ant-select-arrow {
+    display: none !important;
+  }
+}
+
+/* Element display styling - for StringElement */
+.formElement__element {
+  color: #6c917d;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Placeholder/empty state styling - for StringElement */
+.formElement__selectElement {
+  color: rgba(#c0c0c0, 0.5);
+  font-weight: 300;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Help icon - shared by all components */
+.formElement__helpIcon {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 12px;
+  color: rgba(109, 145, 126, 0.5);
+  cursor: pointer;
+  vertical-align: middle;
+
+  &:hover {
+    color: rgba(109, 145, 126, 0.8);
+  }
+}
+
+/* Missing/error icon - shared by all components */
+.formElement__missingIcon {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 12px;
+  color: rgba(169, 50, 38, 1);
+  vertical-align: middle;
+}
+
+/* Text cursor utility */
+.textCursor {
+  cursor: text;
+}

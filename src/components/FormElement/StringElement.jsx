@@ -8,7 +8,7 @@ import { updateGenericStringItem } from "../../pages/Items/actions/updateGeneric
 import { itemsStore } from "../../pages/Items/itemsStore";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 
-import "./FormElement.css";
+import "./FormElement.less";
 
 export const StringElement = observer((props) => {
   const { t } = useTranslation();

@@ -1,0 +1,98 @@
+import React, { useState, useEffect } from "react";
+import { observer } from "mobx-react";
+import { Select, Tooltip } from "antd";
+import { useTranslation } from "react-i18next";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+
+import { itemsStore } from "../../pages/Items/itemsStore";
+import { userStore } from "@stores/userStore/userStore.js";
+
+import "./FormElement.less";
+
+interface DataItem {
+  code: string;
+  [key: string]: string;
+}
+
+interface OptionType {
+  label: string;
+  value: string;
+}
+
+interface DropDownElementProps {
+  value?: string | string[];
+  data: DataItem[];
+  title: string;
+  disabled?: boolean;
+  multiSelect: boolean;
+  tooltip?: string;
+  handleChange: (newValue: string | string[], element: string) => void;
+  element: string;
+}
+
+export const DropDownElement: React.FC<DropDownElementProps> = observer(
+  ({ value, data, title, disabled, multiSelect, tooltip, handleChange, element }) => {
+    const { t } = useTranslation();
+    const [options, setOptions] = useState<OptionType[] | null>(null);
+    const [optionsSelected, setOptionsSelected] = useState<string | string[] | null>(null);
+
+    useEffect(() => {
+      loadSelectedForSelect();
+    }, [value, itemsStore.selectedItem]);
+
+    useEffect(() => {
+      loadOptionsForSelect();
+      loadSelectedForSelect();
+    }, []);
+
+    const loadOptionsForSelect = (): void => {
+      const optionsTemp: OptionType[] = [];
+      data.forEach((item) => {
+        optionsTemp.push({
+          label: item[userStore.language],
+          value: item.code,
+        });
+      });
+      setOptions(optionsTemp);
+    };
+
+    const loadSelectedForSelect = (): void => {
+      const optionsSelectedTemp: string[] = [];
+      data.forEach((item) => {
+        if (value?.includes(item.code)) {
+          optionsSelectedTemp.push(item.code);
+        }
+      });
+      setOptionsSelected(optionsSelectedTemp as any);
+    };
+
+    const handleChangeInternal = (newValue: string | string[]): void => {
+      setOptionsSelected(newValue);
+      handleChange(newValue, element);
+    };
+
+    return (
+      <div className="formElement__container">
+        <div className="formElement__title">{title}:</div>
+        <Select
+          className={
+            disabled ? "formElement__selectDisabled" : "formElement__select"
+          }
+          mode={multiSelect ? "multiple" : undefined}
+          disabled={disabled}
+          onChange={handleChangeInternal}
+          value={optionsSelected}
+          placeholder={`Select a ${title}`}
+          options={options || []}
+        />
+        {tooltip && (
+          <div className="formElement__helpIcon">
+            <Tooltip placement="right" title={tooltip}>
+              <QuestionCircleOutlined />
+            </Tooltip>
+          </div>
+        )}
+      </div>
+    );
+  }
+);

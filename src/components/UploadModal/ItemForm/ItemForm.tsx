@@ -25,10 +25,6 @@ export const ItemForm = () => {
     active: false,
   }
 
-  const isSharedItem =
-    itemsStore.selectedItem &&
-    parseInt(itemsStore.selectedItem.user.id.toString()) !== userStore.id;
-
   return (
     <div className="itemform__container">
       <StringElement
@@ -36,7 +32,6 @@ export const ItemForm = () => {
         title="title"
         value={selectedItem.title}
         selectedItem={selectedItem}
-        disabled={!selectedItem.active || isSharedItem}
       />
       <DropDownElement
         title="category"
@@ -51,14 +46,12 @@ export const ItemForm = () => {
         value={selectedItem.category}
         selectedItem={selectedItem}
         multiSelect={false}
-        disabled={!selectedItem.active || isSharedItem}
       />
       <StringElement
         element="brand"
         title="brand"
         value={selectedItem.brand}
         selectedItem={selectedItem}
-        disabled={!selectedItem.active || isSharedItem}
       />
       <DropDownElement
         title="color"
@@ -67,7 +60,6 @@ export const ItemForm = () => {
         value={selectedItem.colors && selectedItem.colors}
         selectedItem={selectedItem}
         multiSelect={true}
-        disabled={!selectedItem.active || isSharedItem}
       />
       <DropDownElement
         title="pattern"
@@ -76,14 +68,12 @@ export const ItemForm = () => {
         value={selectedItem.pattern}
         selectedItem={selectedItem}
         multiSelect={false}
-        disabled={!selectedItem.active || isSharedItem}
       />
       <StringElement
         element="size"
         title="size"
         value={selectedItem.size}
         selectedItem={selectedItem}
-        disabled={!selectedItem.active || isSharedItem}
       />
     </div>
   );

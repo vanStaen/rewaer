@@ -54,6 +54,10 @@ jest.mock("./UploadForm/UploadForm", () => ({
   ),
 }));
 
+jest.mock("./ItemForm/ItemForm", () => ({
+  ItemForm: () => <div data-testid="item-form-component">ItemForm</div>,
+}));
+
 jest.mock("@helpers/capitalizeFirstLetter", () => ({
   capitalizeFirstLetter: (str: string) =>
     str.charAt(0).toUpperCase() + str.slice(1),
