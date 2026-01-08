@@ -20,8 +20,9 @@ export const Looks: React.FC = observer(() => {
   useEffect(() => {
     looksStore.loadLooks();
     pageStore.setMenuSelected("looks");
-    userStore.profilSettings &&
+    if (userStore.profilSettings) {
       looksStore.setShowPrivateLooks(userStore.profilSettings.displayPrivate);
+    }
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {

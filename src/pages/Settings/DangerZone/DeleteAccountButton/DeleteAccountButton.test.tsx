@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  act,
-} from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { notification } from "antd";
 import { DeleteAccountButton } from "./DeleteAccountButton";
 import { authStore } from "@stores/authStore/authStore";

@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPictureUrl } from "../helpers/picture/getPictureUrl";
 
-interface UseMediaUrlReturn {
-  mediaS3Url: string | null;
-  mediaLoading: boolean;
-  mediaError: Error | boolean;
-}
-
 export function useMediaUrl(
   mediaUrl: string | null | undefined,
   bucket: string,

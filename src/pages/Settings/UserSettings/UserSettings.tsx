@@ -12,7 +12,9 @@ export const UserSettings: React.FC = observer(() => {
   const { t } = useTranslation();
 
   const handleResetPasswordClick = (): void => {
-    resetPasswordLink();
+    resetPasswordLink().catch((error) => {
+      console.error("Failed to send password reset link:", error);
+    });
   };
 
   return (

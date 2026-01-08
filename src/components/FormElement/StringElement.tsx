@@ -87,7 +87,9 @@ export const StringElement: React.FC<StringElementProps> = observer(
                   : `formElement__selectElement textCursor ${disabled}`
               }
               onClick={() => {
-                !disabled && setIsEditmode(true);
+                if (!disabled) {
+                  setIsEditmode(true);
+                }
               }}
             >
               {valueSelected || "Enter a value"}

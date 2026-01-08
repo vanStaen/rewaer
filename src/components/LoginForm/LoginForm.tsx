@@ -161,7 +161,7 @@ export const LoginForm: React.FC = () => {
           name="remember"
           valuePropName="checked"
           style={{ display: "inline-block", width: "calc(50%)" }}
-          // @ts-ignore
+          // @ts-expect-error - defaultChecked is not in the type definition but is valid
           defaultChecked={false}
           className="login__checkBoxRemember"
         >

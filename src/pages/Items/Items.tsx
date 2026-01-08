@@ -21,8 +21,9 @@ export const Items: React.FC = observer(() => {
   useEffect(() => {
     itemsStore.loadItems();
     pageStore.setMenuSelected("items");
-    userStore.profilSettings &&
+    if (userStore.profilSettings) {
       itemsStore.setShowPrivateItems(userStore.profilSettings.displayPrivate);
+    }
   }, [itemsStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {

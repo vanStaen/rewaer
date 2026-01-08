@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Avatar, notification, Button } from "antd";
 import { CameraOutlined, SkinOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -42,11 +42,11 @@ export const UploadModal = observer((props: UploadProps) => {
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<any>({}); // TODO: type
 
-  const handlePostElement = () => {
+  const handlePostElement = async () => {
     if (mediaId) {
       const title = moment().format("DD.MM.YYYY");
       if (page === "looks") {
-        postNewLook(mediaId, title).then(() => {
+        await postNewLook(mediaId, title).then(() => {
           notification.success({
             message: t("main.uploadSuccess"),
             placement: "bottomRight",
@@ -54,7 +54,7 @@ export const UploadModal = observer((props: UploadProps) => {
           looksStore.setIsOutOfDate(true);
         });
       } else if (page === "items") {
-        postNewItem({ ...itemInput, mediaId }).then(() => {
+        await postNewItem({ ...itemInput, mediaId }).then(() => {
           notification.success({
             message: t("main.uploadSuccess"),
             placement: "bottomRight",
@@ -71,14 +71,16 @@ export const UploadModal = observer((props: UploadProps) => {
       const loadImg = new Image();
       loadImg.src = url;
       loadImg.onload = () => resolve(url);
-      loadImg.onerror = (err) => reject(err);
+      loadImg.onerror = (err) => reject(new Error(String(err)));
     });
     await isloaded;
     setMediaUrl(url);
   };
 
   useEffect(() => {
-    mediaId && imageLoadingHander();
+    if (mediaId) {
+      imageLoadingHander();
+    }
   }, [mediaId]);
 
   const showModal = () => {

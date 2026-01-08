@@ -8,12 +8,12 @@ import {
   CameraOutlined,
   SkinOutlined,
   NotificationOutlined,
-  MailOutlined,
   QuestionOutlined,
   LogoutOutlined,
   SearchOutlined,
   SettingOutlined,
-  RobotOutlined,
+  // RobotOutlined,
+  // MailOutlined,
 } from "@ant-design/icons";
 
 import { authStore } from "@stores/authStore/authStore.js";
@@ -44,7 +44,7 @@ export const MenuBar: React.FC<MenuBarProps> = observer((props) => {
           const loadImg = new window.Image();
           loadImg.src = url;
           loadImg.onload = () => resolve(url);
-          loadImg.onerror = (err) => reject(err);
+          loadImg.onerror = (err) => reject(new Error(String(err)));
         });
         await isloaded;
         setAvatarUrl(url);

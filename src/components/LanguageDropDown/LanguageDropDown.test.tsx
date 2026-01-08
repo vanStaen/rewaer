@@ -26,8 +26,8 @@ describe("LanguageDropDown", () => {
   it("shows menu and changes language to DE", async () => {
     render(<LanguageDropDown />);
     await act(async () => {
-      await fireEvent.click(screen.getByText("EN"));
-      await fireEvent.click(screen.getByText("DE"));
+      fireEvent.click(screen.getByText("EN"));
+      fireEvent.click(screen.getByText("DE"));
     });
     expect(changeLanguage).toHaveBeenCalledWith("de-DE");
     expect(screen.getAllByText("DE")[1]).toBeInTheDocument();

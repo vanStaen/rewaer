@@ -7,11 +7,16 @@ import {
   act,
 } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { SearchPage } from "./SearchPage";
-import { profileStore } from "@stores/profileStore/profileStore.js";
 import mockSearchResults from "../../../mocks/mockSearchResults.json";
 
-// Mock external dependencies
+// Import after mocks
+import { SearchPage } from "./SearchPage";
+import { profileStore } from "@stores/profileStore/profileStore.js";
+import { postSearch } from "./postSearch";
+
+// Mock external dependencies - must be before imports
+jest.mock("./postSearch");
+jest.mock("./postSearchMore");
 jest.mock("../../stores/userStore/userStore.js", () => ({
   userStore: {
     language: "en",
@@ -27,14 +32,6 @@ jest.mock("../../helpers/convertCodeTo", () => ({
     .fn()
     .mockReturnValue({ en: "Translated Text" }),
 }));
-
-jest.mock("./postSearch", () => ({
-  postSearch: jest.fn(() => mockSearchResults),
-}));
-jest.mock("./postSearchMore", () => ({
-  postSearchMore: jest.fn(() => mockSearchResults),
-}));
-
 jest.mock("../../lib/data/categories", () => ({
   lookCategory: {
     casual: { en: "Casual", fr: "Décontracté" },
@@ -66,8 +63,7 @@ jest.mock("../../lib/data/seasons", () => ({
   },
 }));
 
-const { postSearch } = require("./postSearch");
-const { postSearchMore } = require("./postSearchMore");
+const mockPostSearch = postSearch as jest.MockedFunction<typeof postSearch>;
 
 const renderWithRouter = (component: React.ReactElement) => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
@@ -95,7 +91,7 @@ describe("SearchPage", () => {
   });
 
   it("calls postSearch on input change", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -106,12 +102,12 @@ describe("SearchPage", () => {
     });
 
     await waitFor(() => {
-      expect(postSearch).toHaveBeenCalledWith("test query");
+      expect(mockPostSearch).toHaveBeenCalledWith("test query");
     });
   });
 
   it("displays search results count", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -127,7 +123,7 @@ describe("SearchPage", () => {
   });
 
   it("renders user results correctly", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -144,7 +140,7 @@ describe("SearchPage", () => {
   });
 
   it("renders item results correctly", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -161,7 +157,7 @@ describe("SearchPage", () => {
   });
 
   it("renders look results correctly", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -178,7 +174,7 @@ describe("SearchPage", () => {
   });
 
   it("calls profileStore.fetchProfileData when user link is clicked", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -203,7 +199,7 @@ describe("SearchPage", () => {
   });
 
   it("shows loading state during search", async () => {
-    postSearch.mockImplementation(
+    mockPostSearch.mockImplementation(
       () =>
         new Promise((resolve) =>
           setTimeout(() => resolve(mockSearchResults), 100),
@@ -233,11 +229,11 @@ describe("SearchPage", () => {
       fireEvent.change(searchInput, { target: { value: "" } });
     });
 
-    expect(postSearch).not.toHaveBeenCalledWith("");
+    expect(mockPostSearch).not.toHaveBeenCalledWith("");
   });
 
   it("handles API error gracefully", async () => {
-    postSearch.mockResolvedValue(null);
+    mockPostSearch.mockResolvedValue(null);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(
@@ -253,7 +249,7 @@ describe("SearchPage", () => {
   });
 
   it("highlights search terms in results", async () => {
-    postSearch.mockResolvedValue(mockSearchResults);
+    mockPostSearch.mockResolvedValue(mockSearchResults);
     renderWithRouter(<SearchPage />);
 
     const searchInput = screen.getByPlaceholderText(

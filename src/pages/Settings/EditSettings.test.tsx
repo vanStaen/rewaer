@@ -193,10 +193,12 @@ describe("EditSettings", () => {
     expect(screen.queryByTestId("user-settings")).not.toBeInTheDocument();
   });
 
-  it("handles mobile view correctly", () => {
+  it("handles mobile view correctly", async () => {
     authStore.hasAccess = true;
-    const { isMobileCheck } = require("../../helpers/dev/checkMobileTablet.js");
-    isMobileCheck.mockReturnValue(true);
+    const { isMobileCheck } = await import(
+      "../../helpers/dev/checkMobileTablet.js"
+    );
+    (isMobileCheck as jest.Mock).mockReturnValue(true);
 
     render(<EditSettings />);
 

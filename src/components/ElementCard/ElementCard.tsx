@@ -96,7 +96,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
         const loadImg = new Image();
         loadImg.src = url;
         loadImg.onload = () => resolve(url);
-        loadImg.onerror = (err) => reject(err);
+        loadImg.onerror = (err) => reject(new Error(String(err)));
       });
       await isloaded;
       setMediaUrl(url);

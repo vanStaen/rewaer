@@ -14,10 +14,6 @@ interface FormValues {
   confirm: string;
 }
 
-interface RouteParams {
-  key: string;
-}
-
 // TODO : test this component
 
 export const NewPassword: React.FC = () => {

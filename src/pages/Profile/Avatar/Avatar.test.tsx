@@ -6,15 +6,15 @@ import { Avatar } from "./Avatar";
 // Mock dependencies
 jest.mock("../../../stores/userStore/userStore.js", () => ({
   userStore: {
-    userName: "currentUser",
-    avatar: "avatar.jpg",
+    userName: "currentUser" as string | null,
+    avatar: "avatar.jpg" as string | null,
     setAvatar: jest.fn(),
   },
 }));
 jest.mock("../../../stores/profileStore/profileStore", () => ({
   profileStore: {
-    userName: "profileUser",
-    avatar: "profileAvatar.jpg",
+    userName: "profileUser" as string | null,
+    avatar: "profileAvatar.jpg" as string | null,
   },
 }));
 jest.mock("../../../helpers/picture/postPicture", () => ({
@@ -34,34 +34,40 @@ jest.mock("react-i18next", () => ({
 }));
 
 describe("Avatar component", () => {
-  it("renders error icon when mediaError is true", () => {
+  it("renders error icon when mediaError is true", async () => {
     // Override useMediaUrl to simulate error
-    const useMediaUrl = require("../../../hooks/useMediaUrl").useMediaUrl;
-    useMediaUrl.mockReturnValueOnce(["", false, true]);
+    const { useMediaUrl } = await import("../../../hooks/useMediaUrl");
+    (useMediaUrl as jest.Mock).mockReturnValueOnce(["", false, true]);
     render(<Avatar />);
     expect(screen.getByTestId("CloseOutlined")).toBeInTheDocument();
   });
 
-  it("renders edit button for own profile", () => {
-    const userStore =
-      require("../../../stores/userStore/userStore.js").userStore;
-    const profileStore =
-      require("../../../stores/profileStore/profileStore").profileStore;
-    userStore.userName = "sameUser";
-    profileStore.userName = "sameUser";
+  it("renders edit button for own profile", async () => {
+    const { userStore } = await import(
+      "../../../stores/userStore/userStore.js"
+    );
+    const { profileStore } = await import(
+      "../../../stores/profileStore/profileStore"
+    );
+    (userStore.userName as string | null) = "sameUser";
+    (profileStore.userName as string | null) = "sameUser";
     render(<Avatar />);
     expect(screen.getByTestId("fileSelectLabel")).toBeInTheDocument();
   });
 
   it("calls upload logic when a file is selected", async () => {
-    const { postPicture } = require("../../../helpers/picture/postPicture");
-    const { updateAvatar } = require("./updateAvatar");
-    const userStore =
-      require("../../../stores/userStore/userStore.js").userStore;
-    const profileStore =
-      require("../../../stores/profileStore/profileStore").profileStore;
-    userStore.userName = "sameUser";
-    profileStore.userName = "sameUser";
+    const { postPicture } = await import(
+      "../../../helpers/picture/postPicture"
+    );
+    const { updateAvatar } = await import("./updateAvatar");
+    const { userStore } = await import(
+      "../../../stores/userStore/userStore.js"
+    );
+    const { profileStore } = await import(
+      "../../../stores/profileStore/profileStore"
+    );
+    (userStore.userName as string | null) = "sameUser";
+    (profileStore.userName as string | null) = "sameUser";
     render(<Avatar />);
     const input = screen.getByTestId("fileSelectInput");
     // Simulate file selection

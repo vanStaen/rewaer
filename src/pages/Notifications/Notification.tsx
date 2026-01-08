@@ -189,7 +189,9 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
           elementMobile.style.display = "none";
         }, 300);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const acceptRequestHandler = async (
@@ -208,7 +210,9 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
           elementMobile.style.display = "none";
         }, 300);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const showDeleteHandler = (id: string): void => {

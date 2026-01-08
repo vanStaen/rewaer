@@ -66,7 +66,7 @@ describe("MenuBar", () => {
   });
 
   it("calls setMenuSelected when clicking on menu items", () => {
-    const { container } = render(<MenuBar />);
+    render(<MenuBar />);
     fireEvent.click(screen.getByText("menu.looks"));
     fireEvent.click(screen.getByText("menu.items"));
     fireEvent.click(screen.getByText("menu.notifications"));
@@ -90,8 +90,8 @@ describe("MenuBar", () => {
     expect(screen.getAllByRole("img", { hidden: true })[0]).toBeInTheDocument();
   });
 
-  it("calls authStore.logout when logout is clicked", () => {
-    const { authStore } = require("../../stores/authStore/authStore.js");
+  it("calls authStore.logout when logout is clicked", async () => {
+    const { authStore } = await import("../../stores/authStore/authStore.js");
     render(<MenuBar />);
     fireEvent.click(screen.getByText("menu.logout"));
     expect(authStore.logout).toHaveBeenCalled();

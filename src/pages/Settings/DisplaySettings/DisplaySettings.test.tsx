@@ -213,10 +213,6 @@ describe("DisplaySettings", () => {
   it("displays tooltip for non-binary option", () => {
     render(<DisplaySettings />);
 
-    // Check if the tooltip wrapper exists
-    const tooltipWrapper = document.querySelector(
-      ".ant-tooltip-inner, [title]",
-    );
     expect(
       screen.getByRole("radio", { name: "Non-binary" }),
     ).toBeInTheDocument();

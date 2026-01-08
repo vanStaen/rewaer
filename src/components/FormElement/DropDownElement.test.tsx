@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { DropDownElement } from "./DropDownElement";
-import { itemsStore } from "../../pages/Items/itemsStore";
 import { userStore } from "@stores/userStore/userStore.js";
 
 // Mock the stores

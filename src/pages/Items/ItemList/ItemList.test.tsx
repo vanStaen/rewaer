@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { ItemList } from "./ItemList";
 import { Item } from "@type/itemTypes";
 
@@ -82,6 +82,7 @@ describe("ItemList", () => {
     category: "Test Category",
     colors: ["red"],
     pattern: "solid",
+    size: "M",
     active: true,
     favorite: false,
     private: false,
@@ -102,6 +103,7 @@ describe("ItemList", () => {
     category: "Test Category",
     colors: ["blue"],
     pattern: "striped",
+    size: "L",
     active: true,
     favorite: false,
     private: true,
@@ -122,6 +124,7 @@ describe("ItemList", () => {
     category: "Test Category",
     colors: ["green"],
     pattern: "solid",
+    size: "S",
     active: false,
     favorite: false,
     private: false,
@@ -275,10 +278,7 @@ describe("ItemList", () => {
   it("calls showDetailView with correct item when ElementCard triggers it", () => {
     mockItemsStore.items = [mockItem1];
 
-    // We need to use a more sophisticated mock for this test
-    const mockShowDetailView = jest.fn();
-
-    // Re-mock ElementCard to capture the showDetailView function
+    // Mock ElementCard to capture the showDetailView function
     jest.mock("@components/ElementCard/ElementCard", () => ({
       ElementCard: ({
         element,
