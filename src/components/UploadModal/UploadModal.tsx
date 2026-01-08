@@ -42,8 +42,6 @@ export const UploadModal = observer((props: UploadProps) => {
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<any>({}); // TODO: type
 
-  console.log("itemInput", itemInput);
-
   const handlePostElement = () => {
     if (mediaId) {
       const title = moment().format("DD.MM.YYYY");

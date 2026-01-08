@@ -6,7 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import "./FormElement.less";
 
 interface StringElementProps {
-  value: string;
+  value: string | null;
   handleChange: (newValue: string, element: string) => void;
   element: string;
   title: string;

@@ -13,6 +13,8 @@ import { pattern } from "../../../lib/data/pattern";
 
 import "./ItemForm.less";
 
+// TODO: Add private flag
+
 export const ItemForm = ({
   setItemInput,
 }: {

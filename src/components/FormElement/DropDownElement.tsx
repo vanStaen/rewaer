@@ -19,7 +19,7 @@ interface OptionType {
 }
 
 interface DropDownElementProps {
-  value?: string | string[];
+  value?: string | string[] | null;
   data: DataItem[];
   title: string;
   disabled?: boolean;

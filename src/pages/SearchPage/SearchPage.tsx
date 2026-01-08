@@ -117,7 +117,7 @@ export const SearchPage: React.FC = () => {
   useEffect(() => {
     if (results && !isSearching && searchValue) {
       const resultElements = document.getElementsByClassName("resultContent");
-      const regex = new RegExp(searchValue as string, "gi");
+      const regex = new RegExp(searchValue, "gi");
       Array.from(resultElements).forEach((element) => {
         const content = element.textContent;
         if (content) {
