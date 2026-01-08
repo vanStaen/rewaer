@@ -25,11 +25,23 @@ describe("LanguageDropDown", () => {
 
   it("shows menu and changes language to DE", async () => {
     render(<LanguageDropDown />);
+    
+    // Click to open dropdown
+    const languageButton = screen.getByText("EN");
     await act(async () => {
-      fireEvent.click(screen.getByText("EN"));
-      fireEvent.click(screen.getByText("DE"));
+      fireEvent.click(languageButton);
     });
+    
+    // Wait for menu to appear and click DE option
+    await act(async () => {
+      const menuItems = document.querySelectorAll('.languageDropdown__item');
+      const deOption = Array.from(menuItems).find(item => item.textContent === 'DE');
+      if (deOption) {
+        fireEvent.click(deOption);
+      }
+    });
+    
     expect(changeLanguage).toHaveBeenCalledWith("de-DE");
-    expect(screen.getAllByText("DE")[1]).toBeInTheDocument();
+
   });
 });

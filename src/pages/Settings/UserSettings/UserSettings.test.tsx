@@ -24,7 +24,7 @@ jest.mock("./UserNameUpdate/UserNameUpdate.tsx", () => ({
 }));
 
 jest.mock("../actions/resetPasswordLink", () => ({
-  resetPasswordLink: jest.fn(),
+  resetPasswordLink: jest.fn(() => Promise.resolve()),
 }));
 
 jest.mock("mobx-react", () => ({
