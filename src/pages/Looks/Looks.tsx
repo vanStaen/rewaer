@@ -18,6 +18,10 @@ export const Looks: React.FC = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    looksStore.setSelectedLook(null);
+  }, []);
+
+  useEffect(() => {
     looksStore.loadLooks();
     pageStore.setMenuSelected("looks");
     if (userStore.profilSettings) {

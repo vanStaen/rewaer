@@ -227,7 +227,7 @@ describe("Upload", () => {
     });
 
     // Find and click OK button
-    const okButton = screen.getByText("Add");
+    const okButton = screen.getByText("main.add");
     fireEvent.click(okButton);
 
     await waitFor(() => {
@@ -247,7 +247,7 @@ describe("Upload", () => {
     });
 
     // Find and click Cancel button
-    const cancelButton = screen.getByText("Cancel");
+    const cancelButton = screen.getByText("main.cancel");
     fireEvent.click(cancelButton);
 
     await waitFor(() => {

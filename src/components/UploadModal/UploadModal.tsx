@@ -160,6 +160,14 @@ export const UploadModal = observer((props: UploadProps) => {
     },
   ];
 
+  const menuItems = [
+    {
+      icon: <SkinOutlined />,
+      title: t("items.addNewItem"),
+      action: () => {},
+    },
+  ];
+
   return (
     <>
       {showFloatingform && (
@@ -208,9 +216,15 @@ export const UploadModal = observer((props: UploadProps) => {
           </div>
         }
       >
-        {page === "looks" && (
+        {page === "looks" ? (
           <SimpleSubMenu
             menuItems={menuLooks}
+            selectedMenuItem={selectedMenuItem}
+            setSelectedMenuItem={setSelectedMenuItem}
+          />
+        ) : (
+          <SimpleSubMenu
+            menuItems={menuItems}
             selectedMenuItem={selectedMenuItem}
             setSelectedMenuItem={setSelectedMenuItem}
           />

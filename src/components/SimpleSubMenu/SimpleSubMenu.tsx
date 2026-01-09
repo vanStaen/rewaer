@@ -19,26 +19,34 @@ export const SimpleSubMenu: React.FC<SimpleSubMenuProps> = ({
   selectedMenuItem,
   setSelectedMenuItem,
 }) => {
-  const menuElements = menuItems.map((menuItem, index) => {
-    const handleClick = () => {
-      setSelectedMenuItem(index);
-      if (menuItem.action) {
-        menuItem.action();
-      }
-    };
+  const menuElements =
+    menuItems.length > 1 ? (
+      menuItems.map((menuItem, index) => {
+        const handleClick = () => {
+          setSelectedMenuItem(index);
+          if (menuItem.action) {
+            menuItem.action();
+          }
+        };
 
-    return (
-      <div
-        className={`subMenu__item 
+        return (
+          <div
+            className={`subMenu__item 
             ${selectedMenuItem === index && "subMenu__itemSelected"}`}
-        onClick={handleClick}
-        key={`subMenuElement${index}`}
-      >
-        {menuItem.icon}
-        <span className="subMenu__title">{menuItem.title}</span>
+            onClick={handleClick}
+            key={`subMenuElement${index}`}
+          >
+            {menuItem.icon}
+            <span className="subMenu__title">{menuItem.title}</span>
+          </div>
+        );
+      })
+    ) : menuItems.length === 1 ? (
+      <div className="subMenu__item" key={`subMenuElement`}>
+        {menuItems[0].icon}
+        <span className="subMenu__title">{menuItems[0].title}</span>
       </div>
-    );
-  });
+    ) : null;
 
   return (
     <>

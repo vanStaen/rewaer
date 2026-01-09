@@ -19,6 +19,10 @@ export const Items: React.FC = observer(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    itemsStore.setSelectedItem(null);
+  }, []);
+
+  useEffect(() => {
     itemsStore.loadItems();
     pageStore.setMenuSelected("items");
     if (userStore.profilSettings) {
