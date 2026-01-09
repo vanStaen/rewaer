@@ -18,16 +18,17 @@ import { pageStore } from "@stores/pageStore/pageStore.js";
 import { isElementVisible } from "@helpers/isElementVisible";
 import { SimpleSubMenu } from "@components/SimpleSubMenu/SimpleSubMenu";
 import { ItemInput } from "@type/itemTypes";
+import { LookInput } from "@type/lookTypes";
 import { ItemForm } from "./ItemForm/ItemForm";
 
 import "./UploadModal.less";
+import { LookForm } from "./LookForm/LookForm";
 
 interface UploadProps {
   page: "looks" | "items";
 }
 
 // TODO: menu click actions
-// TODO: add button should be disabled if no mediaId
 
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
@@ -39,15 +40,7 @@ export const UploadModal = observer((props: UploadProps) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
 
   const [itemInput, setItemInput] = useState<ItemInput>({});
-  const [lookInput, setLookInput] = useState<any>({}); // TODO: type
-
-  const addButtonDisabled = () => {
-    if (page === "looks") {
-      return false; // TODO: add look input validation
-    } else if (page === "items") {
-      return !itemInput.title || !itemInput.category || !mediaId;
-    }
-  };
+  const [lookInput, setLookInput] = useState<LookInput>({});
 
   const handlePostElement = async () => {
     if (mediaId) {
@@ -147,6 +140,14 @@ export const UploadModal = observer((props: UploadProps) => {
   const showFloatingform =
     pageStore.showFloatingUploadForm || pageStore.showOnlyFloatingUploadForm;
 
+  const addButtonDisabled = () => {
+    if (page === "looks") {
+      return !lookInput.title || !mediaId;
+    } else if (page === "items") {
+      return !itemInput.title || !itemInput.category || !mediaId;
+    }
+  };
+
   const menuLooks = [
     {
       icon: <CameraOutlined />,
@@ -238,7 +239,11 @@ export const UploadModal = observer((props: UploadProps) => {
               style={{ background: `url(${mediaUrl})` }}
             ></div>
           )}
-          <ItemForm setItemInput={setItemInput} />
+          {page === "looks" ? (
+            <LookForm setLookInput={setLookInput} />
+          ) : (
+            <ItemForm setItemInput={setItemInput} />
+          )}
         </div>
       </Modal>
     </>
