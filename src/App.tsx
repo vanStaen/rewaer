@@ -99,7 +99,6 @@ const App: React.FC = observer(() => {
     }
   }, [userStore.archived, t]);
 
-
   return (
     <BrowserRouter>
       <div className="App">
@@ -108,19 +107,15 @@ const App: React.FC = observer(() => {
           <Route path="recoverpwd/:key" element={<NewPassword />} />
           <Route path="emailverify/:verifyCode" element={<EmailVerified />} />
           <Route path="info/" element={<Info />} />
-          {authStore.hasAccess && (
-            <>
-              <Route path="looks/" element={<Looks />} />
-              <Route path="items/" element={<Items />} />
-              <Route path="profile/" element={<Profile />} />
-              <Route path="editsettings/" element={<EditSettings />} />
-              <Route path="notifications/" element={<Notifications />} />
-              <Route path="search/" element={<SearchPage />} />
-            </>
-          )}
+          <Route path="looks/" element={<Looks />} />
+          <Route path="items/" element={<Items />} />
+          <Route path="profile/" element={<Profile />} />
+          <Route path="editsettings/" element={<EditSettings />} />
+          <Route path="notifications/" element={<Notifications />} />
+          <Route path="search/" element={<SearchPage />} />
           <Route path="/:username" element={<Profile />} />
           {authStore.hasAccess ? (
-              <Route path="/" element={<Looks />} />
+            <Route path="/" element={<Looks />} />
           ) : (
             <Route path="/" element={<Welcome showLogin={true} />} />
           )}

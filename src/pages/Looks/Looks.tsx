@@ -26,8 +26,7 @@ export const Looks: React.FC = observer(() => {
   }, [looksStore.isOutOfDate, userStore.profilSettings]);
 
   useEffect(() => {
-    if (authStore.hasAccess === false) {
-      console.log("authStore.hasAccess:", authStore.hasAccess);
+    if (authStore.hasAccess === false && !authStore.isCheckingAccess) {
       window.location.href = "../";
     }
   }, [authStore.hasAccess]);

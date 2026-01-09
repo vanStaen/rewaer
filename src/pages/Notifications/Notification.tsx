@@ -1,4 +1,10 @@
-import React, { useState, useRef, TouchEvent, MouseEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  TouchEvent,
+  MouseEvent,
+} from "react";
 import { Button } from "antd";
 import {
   CameraOutlined,
@@ -23,6 +29,7 @@ import { itemsStore } from "../Items/itemsStore";
 import { looksStore } from "../Looks/looksStore";
 import { deleteNotification } from "./deleteNotification";
 import { useMediaUrl } from "@hooks/useMediaUrl";
+import { authStore } from "@stores/authStore/authStore.js";
 
 import "./Notifications.less";
 
@@ -53,6 +60,12 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
 
   const { id, type, seen, title, createdAt, mediaUrl, actionData } = data;
   const notificationAge = dayjs(createdAt).fromNow();
+
+  useEffect(() => {
+    if (authStore.hasAccess === false && !authStore.isCheckingAccess) {
+      window.location.href = "../";
+    }
+  }, [authStore.hasAccess]);
 
   const notificationTypeToBucket = (type: number): string => {
     switch (type) {

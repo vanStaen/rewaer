@@ -7,11 +7,14 @@ import { userStore } from "../userStore/userStore.js";
 
 export class AuthStore {
   hasAccess = false;
+  isCheckingAccess = true;
 
   constructor() {
     makeObservable(this, {
       hasAccess: observable,
       setHasAccess: action,
+      isCheckingAccess: observable,
+      setIsCheckingAccess: action,
       login: action,
       logout: action,
       checkAccess: action,
@@ -54,10 +57,16 @@ export class AuthStore {
     this.hasAccess = hasAccess;
   };
 
+  setIsCheckingAccess = (isCheckingAccess) => {
+    this.isCheckingAccess = isCheckingAccess;
+  };
+
   checkAccess = async () => {
+    this.setIsCheckingAccess(true);
     const hasAccess = await getHasAccess();
     // console.log("Check if user has valid credentials.")
     this.setHasAccess(hasAccess);
+    this.setIsCheckingAccess(false);
   };
 }
 
