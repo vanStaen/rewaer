@@ -99,31 +99,6 @@ const App: React.FC = observer(() => {
     }
   }, [userStore.archived, t]);
 
-  const getRedirectPath = (): string => {
-    switch (pageStore.menuSelected) {
-      case "looks":
-        return "/looks";
-      case "items":
-        return "/items";
-      case "notifications":
-        return "/notifications";
-      case "search":
-        return "/search";
-      case "info":
-        return "/info";
-      case "profile":
-        return "/profile";
-      default:
-        return "/looks";
-    }
-  };
-
-  /* useEffect(() => {
-    // On first load, show last menu selected item if any in local storage
-    if (pageStore.menuSelected) {
-      window.location.replace(getRedirectPath());
-    }
-  }, []);*/
 
   return (
     <BrowserRouter>
