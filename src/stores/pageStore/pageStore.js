@@ -11,7 +11,7 @@ export class PageStore {
   notifications = [];
   messages = [];
   unseenNotificationsCount = 0;
-  menuSelected = null;
+  menuSelected = localStorage.getItem("menuSelected") || null;
 
   constructor() {
     makeObservable(this, {
@@ -76,6 +76,7 @@ export class PageStore {
 
   setMenuSelected = (menuSelected) => {
     this.menuSelected = menuSelected;
+    localStorage.setItem("menuSelected", menuSelected);
   };
 
   fetchNotifications = async () => {

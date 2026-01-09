@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { notification } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
@@ -99,8 +99,34 @@ const App: React.FC = observer(() => {
     }
   }, [userStore.archived, t]);
 
+  const getRedirectPath = (): string => {
+    switch (pageStore.menuSelected) {
+      case "looks":
+        return "/looks";
+      case "items":
+        return "/items";
+      case "notifications":
+        return "/notifications";
+      case "search":
+        return "/search";
+      case "info":
+        return "/info";
+      case "profile":
+        return "/profile";
+      default:
+        return "/looks";
+    }
+  };
+
+  /* useEffect(() => {
+    // On first load, show last menu selected item if any in local storage
+    if (pageStore.menuSelected) {
+      window.location.replace(getRedirectPath());
+    }
+  }, []);*/
+
   return (
-    <BrowserRouter future={{ v7_relativeSplatPath: true }}>
+    <BrowserRouter>
       <div className="App">
         {authStore.hasAccess && <MenuBar visitor={false} />}
         <Routes>
@@ -119,9 +145,7 @@ const App: React.FC = observer(() => {
           )}
           <Route path="/:username" element={<Profile />} />
           {authStore.hasAccess ? (
-            <>
               <Route path="/" element={<Looks />} />
-            </>
           ) : (
             <Route path="/" element={<Welcome showLogin={true} />} />
           )}
