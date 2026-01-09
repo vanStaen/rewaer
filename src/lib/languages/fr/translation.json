@@ -138,6 +138,7 @@
     "settingShowArchived": "Afficher les pieces et looks archivés (Archives m'apparaissent pas dans ton Profile)",
     "settingDisplayPrivate": "Afficher les looks et piéces privés par default (vous pouvez toujours les cacher sur les pages respectives)",
     "settingShowLastName": "Afficher votre nom de famille dans le profile",
+    "settingDarkMode": "Activer le mode sombre",
     "changeAvatar": "Changer d'avatar",
     "avatarUpdateSuccess": "Nouvel avatar uploadé avec succés!",
     "avatarUpdateFail": "L'upload a échoué",

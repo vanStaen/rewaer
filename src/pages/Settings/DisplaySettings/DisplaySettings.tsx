@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { RadioChangeEvent } from "antd/es/radio";
 
 import { userStore } from "@stores/userStore/userStore.js";
+import { pageStore } from "@stores/pageStore/pageStore.js";
 import { updateSettings } from "../actions/updateSettings";
 import { updateLanguage } from "../actions/updateLanguage";
 import { updateGender } from "../actions/updateGender";
@@ -44,6 +45,10 @@ export const DisplaySettings: React.FC = observer(() => {
     updateGender(value);
   };
 
+  const changeDarkModeHandler = (checked: boolean): void => {
+    pageStore.setDarkMode(checked);
+  };
+
   return (
     <div className="EditSettings__subContainer">
       <Divider orientation="left" plain>
@@ -76,6 +81,15 @@ export const DisplaySettings: React.FC = observer(() => {
           <Radio.Button value="fr">Français</Radio.Button>
           <Radio.Button value="de">Deutsch</Radio.Button>
         </Radio.Group>
+      </div>
+      <div className="EditSettings__singleSetting">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          onChange={changeDarkModeHandler}
+          checked={pageStore.darkMode}
+        />{" "}
+        {t("profile.settingDarkMode")}
       </div>
       <div className="EditSettings__singleSetting">
         <Switch

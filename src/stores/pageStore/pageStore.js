@@ -12,6 +12,7 @@ export class PageStore {
   messages = [];
   unseenNotificationsCount = 0;
   menuSelected = null;
+  darkMode = localStorage.getItem("darkMode") === "true" ? true : false;
 
   constructor() {
     makeObservable(this, {
@@ -35,6 +36,8 @@ export class PageStore {
       setUnseenNotificationsCount: action,
       menuSelected: observable,
       setMenuSelected: action,
+      darkMode: observable,
+      setDarkMode: action,
     });
   }
 
@@ -76,6 +79,11 @@ export class PageStore {
 
   setMenuSelected = (menuSelected) => {
     this.menuSelected = menuSelected;
+  };
+
+  setDarkMode = (darkMode) => {
+    this.darkMode = darkMode;
+    localStorage.setItem("darkMode", darkMode.toString());
   };
 
   fetchNotifications = async () => {
