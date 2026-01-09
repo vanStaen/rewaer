@@ -3,6 +3,8 @@ import { observer } from "mobx-react";
 import { Input, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
+import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
+
 import "./FormElement.less";
 
 interface StringElementProps {
@@ -36,17 +38,13 @@ export const StringElement: React.FC<StringElementProps> = observer(
       setEditInputValue(e.target.value);
     };
 
-    const handleEditCancel = (): void => {
-      setIsEditmode(false);
-      if (value) {
-        setEditInputValue(value.replace("-", "/"));
-      }
-    };
-
     const handleEditConfirm = (): void => {
       if (editInputValue) {
-        handleChangeInternal(editInputValue.replace("/", "-"), element);
-        setValueSelected(editInputValue.replace("-", "/"));
+        const newValue = capitalizeFirstLetter(
+          editInputValue.replace("/", "-"),
+        );
+        handleChangeInternal(newValue, element);
+        setValueSelected(newValue);
       }
       setIsEditmode(false);
     };
@@ -74,9 +72,10 @@ export const StringElement: React.FC<StringElementProps> = observer(
               key={`title_input`}
               size="small"
               className="formElement__element"
+              style={{ height: "25px", maxHeight: "25px" }}
               value={editInputValue || ""}
               onChange={handleEditChange}
-              onBlur={handleEditCancel}
+              onBlur={handleEditConfirm}
               onPressEnter={handleEditConfirm}
             />
           ) : (

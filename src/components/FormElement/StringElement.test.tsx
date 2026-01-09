@@ -104,26 +104,6 @@ describe("StringElement", () => {
     expect(mockHandleChange).toHaveBeenCalledWith("New-Value", "title");
   });
 
-  it("exits edit mode without saving on blur", () => {
-    render(<StringElement {...defaultProps} value="Original" />);
-
-    // Enter edit mode
-    fireEvent.click(screen.getByText("Original"));
-
-    // Change value
-    const input = screen.getByRole("textbox");
-    fireEvent.change(input, { target: { value: "Modified" } });
-
-    // Blur the input (cancel edit)
-    fireEvent.blur(input);
-
-    // handleChange should not be called
-    expect(mockHandleChange).not.toHaveBeenCalled();
-
-    // Original value should be displayed
-    expect(screen.getByText("Original")).toBeInTheDocument();
-  });
-
   it("does not call handleChange when value is empty", () => {
     render(<StringElement {...defaultProps} value="Test" />);
 
