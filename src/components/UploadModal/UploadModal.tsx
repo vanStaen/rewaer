@@ -26,7 +26,6 @@ interface UploadProps {
   page: "looks" | "items";
 }
 
-// TODO: add should be translated
 // TODO: menu click actions
 // TODO: add button should be disabled if no mediaId
 
@@ -41,6 +40,14 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<any>({}); // TODO: type
+
+  const addButtonDisabled = () => {
+    if (page === "looks") {
+      return false; // TODO: add look input validation
+    } else if (page === "items") {
+      return !itemInput.title || !itemInput.category || !mediaId;
+    }
+  };
 
   const handlePostElement = async () => {
     if (mediaId) {
@@ -187,15 +194,16 @@ export const UploadModal = observer((props: UploadProps) => {
         footer={
           <div style={{ display: "flex", gap: "8px", width: "100%" }}>
             <Button key="cancel" onClick={handleCancel} style={{ flex: 1 }}>
-              Cancel
+              {t("main.cancel")}
             </Button>
             <Button
               key="Add"
               type="primary"
               onClick={handleOk}
               style={{ flex: 1 }}
+              disabled={addButtonDisabled()}
             >
-              Add
+              {t("main.add")}
             </Button>
           </div>
         }
