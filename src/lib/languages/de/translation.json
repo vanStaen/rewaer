@@ -182,6 +182,7 @@
     "item": "item",
     "addItem": "Item hinzufügen",
     "addNewItem": "Neue Item hinzufügen",
+    "itemAdded": "Item erfolgreich hinzugefügt!",
     "missingTagsAlert": "Bei einigen Item fehlen obligatorische Tags/Attribute. Klicken Sie hier, um diese hinzuzufügen.",
     "deletedSuccess": "Item erfolgreich gelöscht!",
     "deleteConfirm": "Möchten Sie diesen Item wirklich löschen?",
@@ -198,7 +199,8 @@
   "looks": {
     "look": "look",
     "addLook": "Look hinzufügen",
-    "addNewLook": "Neue Look hinzufügen",    
+    "addNewLook": "Neue Look hinzufügen",
+    "lookAdded": "Look erfolgreich hinzugefügt!",
     "createFromPicture": "Look aus einem Bild erstellen",
     "createFromItems": "Look aus Items erstellen",    
     "deletedSuccess": "Look erfolgreich gelöscht!",

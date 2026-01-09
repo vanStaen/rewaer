@@ -48,7 +48,7 @@ export const UploadModal = observer((props: UploadProps) => {
       if (page === "looks") {
         await postNewLook(mediaId, title).then(() => {
           notification.success({
-            message: t("main.uploadSuccess"),
+            message: t("looks.lookAdded"),
             placement: "bottomRight",
           });
           looksStore.setIsOutOfDate(true);
@@ -56,7 +56,7 @@ export const UploadModal = observer((props: UploadProps) => {
       } else if (page === "items") {
         await postNewItem({ ...itemInput, mediaId }).then(() => {
           notification.success({
-            message: t("main.uploadSuccess"),
+            message: t("items.itemAdded"),
             placement: "bottomRight",
           });
           itemsStore.setIsOutOfDate(true);
