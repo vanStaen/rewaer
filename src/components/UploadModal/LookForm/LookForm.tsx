@@ -30,7 +30,7 @@ export const LookForm = ({
   };
 
   return (
-    <div className="itemform__container">
+    <div className="lookform__container">
       <StringElement
         element="title"
         title="title"

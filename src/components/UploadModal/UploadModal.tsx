@@ -28,7 +28,7 @@ interface UploadProps {
   page: "looks" | "items";
 }
 
-// TODO: menu click actions
+// TODO: create look from items
 
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
@@ -231,18 +231,24 @@ export const UploadModal = observer((props: UploadProps) => {
           />
         )}
         <div className="modal__container">
-          {mediaUrl === null ? (
-            <UploadForm page={page} setMediaId={setMediaId} />
+          {selectedMenuItem === 0 ? (
+            <>
+              {mediaUrl === null ? (
+                <UploadForm page={page} setMediaId={setMediaId} />
+              ) : (
+                <div
+                  className="upload__picture"
+                  style={{ background: `url(${mediaUrl})` }}
+                ></div>
+              )}
+              {page === "looks" ? (
+                <LookForm setLookInput={setLookInput} />
+              ) : (
+                <ItemForm setItemInput={setItemInput} />
+              )}
+            </>
           ) : (
-            <div
-              className="upload__picture"
-              style={{ background: `url(${mediaUrl})` }}
-            ></div>
-          )}
-          {page === "looks" ? (
-            <LookForm setLookInput={setLookInput} />
-          ) : (
-            <ItemForm setItemInput={setItemInput} />
+            <>TODO</>
           )}
         </div>
       </Modal>
