@@ -1,8 +1,8 @@
-import { consoleGreetings } from '../dev/consoleGreetings';
+import { consoleGreetings } from "../dev/consoleGreetings";
 
-describe('consoleGreetings', () => {
-  it('should log greeting messages to console', () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+describe("consoleGreetings", () => {
+  it("should log greeting messages to console", () => {
+    const consoleSpy = jest.spyOn(console, "log").mockImplementation();
 
     consoleGreetings();
 
@@ -12,8 +12,8 @@ describe('consoleGreetings', () => {
     consoleSpy.mockRestore();
   });
 
-  it('should log multiple lines', () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+  it("should log multiple lines", () => {
+    const consoleSpy = jest.spyOn(console, "log").mockImplementation();
 
     consoleGreetings();
 
@@ -23,28 +23,28 @@ describe('consoleGreetings', () => {
     consoleSpy.mockRestore();
   });
 
-  it('should contain branding information in output', () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+  it("should contain branding information in output", () => {
+    const consoleSpy = jest.spyOn(console, "log").mockImplementation();
 
     consoleGreetings();
 
-    const allOutput = consoleSpy.mock.calls.map((call) => call[0]).join(' ');
+    const allOutput = consoleSpy.mock.calls.map((call) => call[0]).join(" ");
     expect(
-      allOutput.toLowerCase().includes('hello') ||
-        allOutput.toLowerCase().includes('welcome') ||
-        allOutput.includes('#')
+      allOutput.toLowerCase().includes("hello") ||
+        allOutput.toLowerCase().includes("welcome") ||
+        allOutput.includes("#"),
     ).toBe(true);
 
     consoleSpy.mockRestore();
   });
 
-  it('should not throw any errors', () => {
+  it("should not throw any errors", () => {
     expect(() => {
       consoleGreetings();
     }).not.toThrow();
   });
 
-  it('should return undefined', () => {
+  it("should return undefined", () => {
     const result = consoleGreetings();
     expect(result).toBeUndefined();
   });

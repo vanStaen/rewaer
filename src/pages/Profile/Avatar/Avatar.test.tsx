@@ -43,12 +43,10 @@ describe("Avatar component", () => {
   });
 
   it("renders edit button for own profile", async () => {
-    const { userStore } = await import(
-      "../../../stores/userStore/userStore.js"
-    );
-    const { profileStore } = await import(
-      "../../../stores/profileStore/profileStore"
-    );
+    const { userStore } =
+      await import("../../../stores/userStore/userStore.js");
+    const { profileStore } =
+      await import("../../../stores/profileStore/profileStore");
     (userStore.userName as string | null) = "sameUser";
     (profileStore.userName as string | null) = "sameUser";
     render(<Avatar />);
@@ -56,16 +54,13 @@ describe("Avatar component", () => {
   });
 
   it("calls upload logic when a file is selected", async () => {
-    const { postPicture } = await import(
-      "../../../helpers/picture/postPicture"
-    );
+    const { postPicture } =
+      await import("../../../helpers/picture/postPicture");
     const { updateAvatar } = await import("./updateAvatar");
-    const { userStore } = await import(
-      "../../../stores/userStore/userStore.js"
-    );
-    const { profileStore } = await import(
-      "../../../stores/profileStore/profileStore"
-    );
+    const { userStore } =
+      await import("../../../stores/userStore/userStore.js");
+    const { profileStore } =
+      await import("../../../stores/profileStore/profileStore");
     (userStore.userName as string | null) = "sameUser";
     (profileStore.userName as string | null) = "sameUser";
     render(<Avatar />);

@@ -1,10 +1,10 @@
-import { isElementVisible } from '../isElementVisible';
+import { isElementVisible } from "../isElementVisible";
 
-describe('isElementVisible', () => {
+describe("isElementVisible", () => {
   let mockElement;
 
   beforeEach(() => {
-    mockElement = document.createElement('div');
+    mockElement = document.createElement("div");
     document.body.appendChild(mockElement);
   });
 
@@ -12,30 +12,30 @@ describe('isElementVisible', () => {
     document.body.removeChild(mockElement);
   });
 
-  it('should return null for null element', () => {
+  it("should return null for null element", () => {
     expect(isElementVisible(null)).toBeNull();
   });
 
-  it('should return null for undefined element', () => {
+  it("should return null for undefined element", () => {
     expect(isElementVisible(undefined)).toBeNull();
   });
 
-  it('should return true when element is visible in viewport', () => {
-    mockElement.style.position = 'absolute';
-    mockElement.style.top = '100px';
-    mockElement.style.left = '100px';
-    mockElement.style.width = '100px';
-    mockElement.style.height = '100px';
+  it("should return true when element is visible in viewport", () => {
+    mockElement.style.position = "absolute";
+    mockElement.style.top = "100px";
+    mockElement.style.left = "100px";
+    mockElement.style.width = "100px";
+    mockElement.style.height = "100px";
 
     expect(isElementVisible(mockElement)).toBe(true);
   });
 
-  it('should return true when element is partially above the viewport', () => {
-    mockElement.style.position = 'absolute';
-    mockElement.style.top = '-50px';
-    mockElement.style.left = '100px';
-    mockElement.style.width = '100px';
-    mockElement.style.height = '100px';
+  it("should return true when element is partially above the viewport", () => {
+    mockElement.style.position = "absolute";
+    mockElement.style.top = "-50px";
+    mockElement.style.left = "100px";
+    mockElement.style.width = "100px";
+    mockElement.style.height = "100px";
 
     // Based on actual function: elemTop < window.innerHeight && elemBottom >= 0
     // elemTop = -50 (which is < window.innerHeight = true)
@@ -44,17 +44,17 @@ describe('isElementVisible', () => {
     expect(isElementVisible(mockElement)).toBe(true);
   });
 
-  it('should return true when element is partially visible at the bottom', () => {
-    mockElement.style.position = 'absolute';
+  it("should return true when element is partially visible at the bottom", () => {
+    mockElement.style.position = "absolute";
     mockElement.style.top = `${window.innerHeight - 50}px`;
-    mockElement.style.left = '100px';
-    mockElement.style.width = '100px';
-    mockElement.style.height = '100px';
+    mockElement.style.left = "100px";
+    mockElement.style.width = "100px";
+    mockElement.style.height = "100px";
 
     expect(isElementVisible(mockElement)).toBe(true);
   });
 
-  it('should return true when element extends into bottom of viewport', () => {
+  it("should return true when element extends into bottom of viewport", () => {
     mockElement.getBoundingClientRect = jest.fn(() => ({
       top: window.innerHeight - 50,
       left: 0,
@@ -70,17 +70,17 @@ describe('isElementVisible', () => {
     expect(isElementVisible(mockElement)).toBe(true);
   });
 
-  it('should return true when element is partially visible at top', () => {
-    mockElement.style.position = 'absolute';
-    mockElement.style.top = '-50px';
-    mockElement.style.left = '100px';
-    mockElement.style.width = '100px';
-    mockElement.style.height = '100px';
+  it("should return true when element is partially visible at top", () => {
+    mockElement.style.position = "absolute";
+    mockElement.style.top = "-50px";
+    mockElement.style.left = "100px";
+    mockElement.style.width = "100px";
+    mockElement.style.height = "100px";
 
     expect(isElementVisible(mockElement)).toBe(true);
   });
 
-  it('should handle elements with getBoundingClientRect returning zero values', () => {
+  it("should handle elements with getBoundingClientRect returning zero values", () => {
     mockElement.getBoundingClientRect = jest.fn(() => ({
       top: -100,
       left: 0,
@@ -93,7 +93,7 @@ describe('isElementVisible', () => {
     expect(isElementVisible(mockElement)).toBe(false);
   });
 
-  it('should return false for elements positioned on the left outside viewport', () => {
+  it("should return false for elements positioned on the left outside viewport", () => {
     mockElement.getBoundingClientRect = jest.fn(() => ({
       top: 0,
       left: -200,

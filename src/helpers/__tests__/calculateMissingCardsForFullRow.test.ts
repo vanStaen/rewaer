@@ -1,23 +1,18 @@
-import { calculateMissingCardsForFullRow } from '../calculateMissingCardsForFullRow';
+import { calculateMissingCardsForFullRow } from "../calculateMissingCardsForFullRow";
 
-describe('calculateMissingCardsForFullRow', () => {
-  // Default values: cardWidth = 238, horizontalGap = 20, containerPadding = 40
-  const defaultCardWidth = 238;
-  const defaultGap = 20;
-  const defaultPadding = 40;
-
-  describe('basic calculations with default values', () => {
-    it('should return 0 for containerWidth of 0', () => {
+describe("calculateMissingCardsForFullRow", () => {
+  describe("basic calculations with default values", () => {
+    it("should return 0 for containerWidth of 0", () => {
       const result = calculateMissingCardsForFullRow(0, 10);
       expect(result).toBe(0);
     });
 
-    it('should return 0 for totalItems of 0', () => {
+    it("should return 0 for totalItems of 0", () => {
       const result = calculateMissingCardsForFullRow(1000, 0);
       expect(result).toBe(0);
     });
 
-    it('should calculate 4 cards per row for containerWidth of 1080', () => {
+    it("should calculate 4 cards per row for containerWidth of 1080", () => {
       // Available width: 1080 - 40 = 1040
       // 4 cards: 4*238 + 3*20 = 952 + 60 = 1012 (fits)
       // 5 cards: 5*238 + 4*20 = 1190 + 80 = 1270 (doesn't fit)
@@ -27,7 +22,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(3);
     });
 
-    it('should calculate 3 cards per row for containerWidth of 1034', () => {
+    it("should calculate 3 cards per row for containerWidth of 1034", () => {
       // Available width: 1034 - 40 = 994
       // 3 cards: 3*238 + 2*20 = 714 + 40 = 754 (fits)
       // 4 cards: 4*238 + 3*20 = 952 + 60 = 1012 (doesn't fit)
@@ -37,7 +32,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(2);
     });
 
-    it('should calculate 2 cards per row for containerWidth of 580', () => {
+    it("should calculate 2 cards per row for containerWidth of 580", () => {
       // Available width: 580 - 40 = 540
       // 2 cards: 2*238 + 1*20 = 476 + 20 = 496 (fits)
       // 3 cards: 3*238 + 2*20 = 714 + 40 = 754 (doesn't fit)
@@ -47,7 +42,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(1);
     });
 
-    it('should return 0 when items perfectly fill rows', () => {
+    it("should return 0 when items perfectly fill rows", () => {
       // 1080px = 4 cards per row
       const totalItems = 8;
       const result = calculateMissingCardsForFullRow(1080, totalItems);
@@ -55,7 +50,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(0);
     });
 
-    it('should return 0 for containerWidth of 554 with 2 items', () => {
+    it("should return 0 for containerWidth of 554 with 2 items", () => {
       // Available width: 554 - 40 = 514
       // 2 cards: 2*238 + 1*20 = 496 (fits)
       const totalItems = 2;
@@ -64,7 +59,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(0);
     });
 
-    it('should calculate 2 missing cards for single item in 2-card row', () => {
+    it("should calculate 2 missing cards for single item in 2-card row", () => {
       const totalItems = 1;
       const result = calculateMissingCardsForFullRow(580, totalItems);
       // 1 item, 2 per row = needs 1 more
@@ -72,8 +67,8 @@ describe('calculateMissingCardsForFullRow', () => {
     });
   });
 
-  describe('custom values', () => {
-    it('should work with custom cardWidth', () => {
+  describe("custom values", () => {
+    it("should work with custom cardWidth", () => {
       const containerWidth = 1000;
       const totalItems = 3;
       const cardWidth = 200;
@@ -92,7 +87,7 @@ describe('calculateMissingCardsForFullRow', () => {
         totalItems,
         cardWidth,
         gap,
-        padding
+        padding,
       );
 
       // 3 items fit in one row (4 cards per row)
@@ -100,7 +95,7 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(1); // 1 + 3 = 4, fills the row
     });
 
-    it('should work with custom gap', () => {
+    it("should work with custom gap", () => {
       const containerWidth = 600;
       const totalItems = 5;
       const cardWidth = 238;
@@ -112,15 +107,15 @@ describe('calculateMissingCardsForFullRow', () => {
         totalItems,
         cardWidth,
         gap,
-        padding
+        padding,
       );
 
       // With smaller gap, more cards might fit
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
       expect(result).toBeGreaterThanOrEqual(0);
     });
 
-    it('should work with custom padding', () => {
+    it("should work with custom padding", () => {
       const containerWidth = 600;
       const totalItems = 5;
       const cardWidth = 238;
@@ -132,40 +127,40 @@ describe('calculateMissingCardsForFullRow', () => {
         totalItems,
         cardWidth,
         gap,
-        padding
+        padding,
       );
 
       // With larger padding, less space available
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
       expect(result).toBeGreaterThanOrEqual(0);
     });
   });
 
-  describe('edge cases', () => {
-    it('should handle very large containerWidth', () => {
+  describe("edge cases", () => {
+    it("should handle very large containerWidth", () => {
       const result = calculateMissingCardsForFullRow(5000, 10);
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
       expect(result).toBeGreaterThanOrEqual(0);
     });
 
-    it('should handle very small containerWidth', () => {
+    it("should handle very small containerWidth", () => {
       const result = calculateMissingCardsForFullRow(250, 1);
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
     });
 
-    it('should handle single item', () => {
+    it("should handle single item", () => {
       const result = calculateMissingCardsForFullRow(1000, 1);
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
       expect(result).toBeGreaterThanOrEqual(0);
     });
 
-    it('should handle large number of items', () => {
+    it("should handle large number of items", () => {
       const result = calculateMissingCardsForFullRow(1000, 100);
-      expect(typeof result).toBe('number');
+      expect(typeof result).toBe("number");
       expect(result).toBeGreaterThanOrEqual(0);
     });
 
-    it('should return non-negative number always', () => {
+    it("should return non-negative number always", () => {
       const testCases = [
         { containerWidth: 100, totalItems: 1 },
         { containerWidth: 500, totalItems: 5 },
@@ -176,15 +171,15 @@ describe('calculateMissingCardsForFullRow', () => {
       testCases.forEach(({ containerWidth, totalItems }) => {
         const result = calculateMissingCardsForFullRow(
           containerWidth,
-          totalItems
+          totalItems,
         );
         expect(result).toBeGreaterThanOrEqual(0);
       });
     });
   });
 
-  describe('formula validation', () => {
-    it('should calculate correct number of cards per row', () => {
+  describe("formula validation", () => {
+    it("should calculate correct number of cards per row", () => {
       // For 1080px: 1080 - 40 = 1040 available
       // Cards that fit: 4 (952 + 60 = 1012 <= 1040)
       const totalItems = 5;
@@ -194,14 +189,14 @@ describe('calculateMissingCardsForFullRow', () => {
       expect(result).toBe(3);
     });
 
-    it('should handle items that exactly fill last row', () => {
+    it("should handle items that exactly fill last row", () => {
       // 1080px supports 4 cards per row
       const totalItems = 12; // 3 complete rows
       const result = calculateMissingCardsForFullRow(1080, totalItems);
       expect(result).toBe(0);
     });
 
-    it('should handle items just over complete rows', () => {
+    it("should handle items just over complete rows", () => {
       // 1080px supports 4 cards per row
       const totalItems = 13; // 3 complete rows + 1 item
       const result = calculateMissingCardsForFullRow(1080, totalItems);

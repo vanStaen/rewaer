@@ -23,16 +23,22 @@ export const LookList: React.FC = observer(() => {
     const displayArchived = userStore.profilSettings?.displayArchived ?? false;
     const containerWidth = containerElement.current?.offsetWidth ?? 0;
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
-    
+
     const numberLooks = looksStore.showPrivateLooks
       ? displayArchived
         ? looksStore.looks.length + countForm
         : looksStore.looks.length + countForm - looksStore.numberOfArchivedLook
       : displayArchived
         ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
-        : looksStore.looks.length + countForm - looksStore.numberOfPrivateLook - looksStore.numberOfArchivedLook;
-    
-    const missingCards = calculateMissingCardsForFullRow(containerWidth, numberLooks);
+        : looksStore.looks.length +
+          countForm -
+          looksStore.numberOfPrivateLook -
+          looksStore.numberOfArchivedLook;
+
+    const missingCards = calculateMissingCardsForFullRow(
+      containerWidth,
+      numberLooks,
+    );
     setMissingCardForFullRow(missingCards);
   }, [
     looksStore.showPrivateLooks,

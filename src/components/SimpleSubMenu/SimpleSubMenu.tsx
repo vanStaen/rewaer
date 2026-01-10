@@ -42,7 +42,10 @@ export const SimpleSubMenu: React.FC<SimpleSubMenuProps> = ({
         );
       })
     ) : menuItems.length === 1 ? (
-      <div className="subMenu__item subMenu__itemSelected" key={`subMenuElement`}>
+      <div
+        className="subMenu__item subMenu__itemSelected"
+        key={`subMenuElement`}
+      >
         {menuItems[0].icon}
         <span className="subMenu__title">{menuItems[0].title}</span>
       </div>

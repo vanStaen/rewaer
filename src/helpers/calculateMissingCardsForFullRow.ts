@@ -22,7 +22,10 @@ export const calculateMissingCardsForFullRow = (
 
   // Calculate how many cards fit: for N cards we need N*cardWidth + (N-1)*gap <= availableWidth
   let numberPerRow = 1;
-  while (numberPerRow * cardWidth + (numberPerRow - 1) * horizontalGap <= availableWidth) {
+  while (
+    numberPerRow * cardWidth + (numberPerRow - 1) * horizontalGap <=
+    availableWidth
+  ) {
     numberPerRow++;
   }
   numberPerRow = Math.max(1, numberPerRow - 1);

@@ -114,7 +114,7 @@ describe("DisplaySettings", () => {
     expect(switches).toHaveLength(3);
 
     // darkMode should be unchecked (index 0)
-    // displayArchived should be unchecked (index 1) 
+    // displayArchived should be unchecked (index 1)
     // displayPrivate should be checked (index 2)
     expect(switches[0]).not.toBeChecked(); // darkMode
     expect(switches[1]).not.toBeChecked(); // displayArchived

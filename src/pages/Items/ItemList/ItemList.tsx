@@ -22,15 +22,25 @@ export const ItemList: React.FC = observer(() => {
   const calculateMissingCards = useCallback((): void => {
     const displayArchived = userStore.profilSettings?.displayArchived ?? false;
     const containerWidth = containerElement.current?.offsetWidth ?? 0;
-    
-    const numberItemsArchived = displayArchived ? 0 : itemsStore.numberOfArchivedItem;
-    const numberItemsPrivates = itemsStore.showPrivateItems ? 0 : itemsStore.numberOfPrivateItem;
+
+    const numberItemsArchived = displayArchived
+      ? 0
+      : itemsStore.numberOfArchivedItem;
+    const numberItemsPrivates = itemsStore.showPrivateItems
+      ? 0
+      : itemsStore.numberOfPrivateItem;
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
-    
+
     const totalItems =
-      itemsStore.items.length + countForm - numberItemsArchived - numberItemsPrivates;
-    
-    const missingCards = calculateMissingCardsForFullRow(containerWidth, totalItems);
+      itemsStore.items.length +
+      countForm -
+      numberItemsArchived -
+      numberItemsPrivates;
+
+    const missingCards = calculateMissingCardsForFullRow(
+      containerWidth,
+      totalItems,
+    );
     setMissingCardForFullRow(missingCards);
   }, [
     itemsStore.showPrivateItems,

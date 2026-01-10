@@ -146,9 +146,8 @@ describe("ElementCard", () => {
 
   beforeEach(async () => {
     jest.clearAllMocks();
-    const { getPictureUrl } = await import(
-      "../../helpers/picture/getPictureUrl"
-    );
+    const { getPictureUrl } =
+      await import("../../helpers/picture/getPictureUrl");
     (getPictureUrl as jest.Mock).mockResolvedValue(
       "https://example.com/image.jpg",
     );
@@ -181,9 +180,8 @@ describe("ElementCard", () => {
   });
 
   it("displays error message when image fails to load", async () => {
-    const { getPictureUrl } = await import(
-      "../../helpers/picture/getPictureUrl"
-    );
+    const { getPictureUrl } =
+      await import("../../helpers/picture/getPictureUrl");
     (getPictureUrl as jest.Mock).mockRejectedValue(new Error("Load failed"));
 
     render(
@@ -395,9 +393,8 @@ describe("ElementCard", () => {
     const originalIO = global.IntersectionObserver;
     global.IntersectionObserver = CustomIntersectionObserver as any;
 
-    const { getPictureUrl } = await import(
-      "../../helpers/picture/getPictureUrl"
-    );
+    const { getPictureUrl } =
+      await import("../../helpers/picture/getPictureUrl");
     const mockGetPictureUrl = getPictureUrl as jest.Mock;
     mockGetPictureUrl.mockClear();
 

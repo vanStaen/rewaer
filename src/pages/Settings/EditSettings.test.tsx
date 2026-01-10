@@ -195,9 +195,8 @@ describe("EditSettings", () => {
 
   it("handles mobile view correctly", async () => {
     authStore.hasAccess = true;
-    const { isMobileCheck } = await import(
-      "../../helpers/dev/checkMobileTablet.js"
-    );
+    const { isMobileCheck } =
+      await import("../../helpers/dev/checkMobileTablet.js");
     (isMobileCheck as jest.Mock).mockReturnValue(true);
 
     render(<EditSettings />);
