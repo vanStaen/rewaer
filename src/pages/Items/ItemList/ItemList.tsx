@@ -7,6 +7,7 @@ import { userStore } from "@stores/userStore/userStore.js";
 import { GhostCard } from "@components/GhostCard/GhostCard";
 import { ElementCard } from "@components/ElementCard/ElementCard";
 import { UploadModal } from "@components/UploadModal/UploadModal";
+import { calculateMissingCardsForFullRow } from "@helpers/calculateMissingCardsForFullRow";
 import { Item } from "@type/itemTypes";
 import { Look } from "@type/lookTypes";
 
@@ -14,52 +15,40 @@ export const ItemList: React.FC = observer(() => {
   const containerElement = useRef<HTMLDivElement>(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState<number>(0);
 
-  useEffect(() => {
-    window.addEventListener("scroll", scrollEventHandler);
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    return () => {
-      window.removeEventListener("scroll", scrollEventHandler);
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-    };
-  }, []);
-
   const scrollEventHandler = (): void => {
     itemsStore.setLastKnownScrollPosition(window.scrollY);
   };
 
-  const calculateMissingCardsForFullRow = useCallback((): void => {
-    const displayArchived = userStore.profilSettings
-      ? userStore.profilSettings.displayArchived
-      : false;
-    const containerWidth =
-      containerElement.current === null
-        ? 0
-        : containerElement.current.offsetWidth;
-    const cardWidth = 238 + 40; // row width + min gap
-    const numberPerRow = Math.floor(containerWidth / cardWidth);
+  const calculateMissingCards = useCallback((): void => {
+    const displayArchived = userStore.profilSettings?.displayArchived ?? false;
+    const containerWidth = containerElement.current?.offsetWidth ?? 0;
+    
+    const numberItemsArchived = displayArchived ? 0 : itemsStore.numberOfArchivedItem;
+    const numberItemsPrivates = itemsStore.showPrivateItems ? 0 : itemsStore.numberOfPrivateItem;
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
-    const numberItemsArchived = displayArchived
-      ? 0
-      : itemsStore.numberOfArchivedItem;
-    const numberItemsPrivates = itemsStore.showPrivateItems
-      ? 0
-      : itemsStore.numberOfPrivateItem;
-    const numberItems =
-      itemsStore.items.length +
-      countForm -
-      numberItemsArchived -
-      numberItemsPrivates;
-    const numberFullRow = Math.floor(numberItems / numberPerRow);
-    const missingCards =
-      numberPerRow - (numberItems - numberFullRow * numberPerRow);
-    setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
+    
+    const totalItems =
+      itemsStore.items.length + countForm - numberItemsArchived - numberItemsPrivates;
+    
+    const missingCards = calculateMissingCardsForFullRow(containerWidth, totalItems);
+    setMissingCardForFullRow(missingCards);
   }, [
-    containerElement.current,
     itemsStore.showPrivateItems,
     userStore.profilSettings,
-    pageStore.showFloatingUploadForm,
     pageStore.showOnlyFloatingUploadForm,
+    itemsStore.numberOfPrivateItem,
+    itemsStore.numberOfArchivedItem,
+    itemsStore.items.length,
   ]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollEventHandler);
+    window.addEventListener("resize", calculateMissingCards);
+    return () => {
+      window.removeEventListener("scroll", scrollEventHandler);
+      window.removeEventListener("resize", calculateMissingCards);
+    };
+  }, [calculateMissingCards]);
 
   const showDetailView = (item: Item | Look): void => {
     itemsStore.setSelectedItem(item as Item);
@@ -67,11 +56,9 @@ export const ItemList: React.FC = observer(() => {
   };
 
   useEffect(() => {
-    calculateMissingCardsForFullRow();
+    calculateMissingCards();
   }, [
-    containerElement.current,
-    missingCardForFullRow,
-    calculateMissingCardsForFullRow,
+    calculateMissingCards,
     itemsStore.numberOfPrivateItem,
     itemsStore.numberOfArchivedItem,
     itemsStore.items,

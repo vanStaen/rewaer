@@ -7,6 +7,7 @@ import { userStore } from "@stores/userStore/userStore.js";
 import { ElementCard } from "@components/ElementCard/ElementCard";
 import { UploadModal } from "@components/UploadModal/UploadModal";
 import { GhostCard } from "@components/GhostCard/GhostCard";
+import { calculateMissingCardsForFullRow } from "@helpers/calculateMissingCardsForFullRow";
 import { Look } from "@type/lookTypes";
 import { Item } from "@type/itemTypes";
 
@@ -14,62 +15,53 @@ export const LookList: React.FC = observer(() => {
   const containerElement = useRef<HTMLDivElement>(null);
   const [missingCardForFullRow, setMissingCardForFullRow] = useState<number>(0);
 
-  const calculateMissingCardsForFullRow = useCallback((): void => {
-    const displayArchived = userStore.profilSettings
-      ? userStore.profilSettings.displayArchived
-      : false;
-    const containerWidth =
-      containerElement.current === null
-        ? 0
-        : containerElement.current.offsetWidth;
-    const cardWidth = 238 + 40; // card width + min gap
-    const numberPerRow = Math.floor(containerWidth / cardWidth);
+  const scrollEventHandler = (): void => {
+    looksStore.setLastKnownScrollPosition(window.scrollY);
+  };
+
+  const calculateMissingCards = useCallback((): void => {
+    const displayArchived = userStore.profilSettings?.displayArchived ?? false;
+    const containerWidth = containerElement.current?.offsetWidth ?? 0;
     const countForm = pageStore.showOnlyFloatingUploadForm ? 0 : 1;
+    
     const numberLooks = looksStore.showPrivateLooks
       ? displayArchived
         ? looksStore.looks.length + countForm
         : looksStore.looks.length + countForm - looksStore.numberOfArchivedLook
       : displayArchived
         ? looksStore.looks.length + countForm - looksStore.numberOfPrivateLook
-        : looksStore.looks.length +
-          countForm -
-          looksStore.numberOfPrivateLook -
-          looksStore.numberOfArchivedLook;
-    const numberFullRow = Math.floor(numberLooks / numberPerRow);
-    const missingCards =
-      numberPerRow - (numberLooks - numberFullRow * numberPerRow);
-    setMissingCardForFullRow(missingCards === numberPerRow ? 0 : missingCards);
+        : looksStore.looks.length + countForm - looksStore.numberOfPrivateLook - looksStore.numberOfArchivedLook;
+    
+    const missingCards = calculateMissingCardsForFullRow(containerWidth, numberLooks);
+    setMissingCardForFullRow(missingCards);
   }, [
-    containerElement.current,
     looksStore.showPrivateLooks,
     userStore.profilSettings,
+    pageStore.showOnlyFloatingUploadForm,
+    looksStore.numberOfPrivateLook,
+    looksStore.numberOfArchivedLook,
+    looksStore.looks.length,
   ]);
 
   useEffect(() => {
-    calculateMissingCardsForFullRow();
+    window.addEventListener("resize", calculateMissingCards);
+    window.addEventListener("scroll", scrollEventHandler);
+    return () => {
+      window.removeEventListener("resize", calculateMissingCards);
+      window.removeEventListener("scroll", scrollEventHandler);
+    };
+  }, [calculateMissingCards]);
+
+  useEffect(() => {
+    calculateMissingCards();
   }, [
-    containerElement.current,
-    missingCardForFullRow,
-    calculateMissingCardsForFullRow,
+    calculateMissingCards,
     looksStore.numberOfPrivateLook,
     looksStore.numberOfArchivedLook,
     looksStore.showPrivateLooks,
     looksStore.looks,
     userStore.profilSettings,
   ]);
-
-  useEffect(() => {
-    window.addEventListener("resize", calculateMissingCardsForFullRow);
-    window.addEventListener("scroll", scrollEventHandler);
-    return () => {
-      window.removeEventListener("resize", calculateMissingCardsForFullRow);
-      window.removeEventListener("scroll", scrollEventHandler);
-    };
-  }, []);
-
-  const scrollEventHandler = (): void => {
-    looksStore.setLastKnownScrollPosition(window.scrollY);
-  };
 
   const showDetailView = (look: Look | Item): void => {
     looksStore.setSelectedLook(look as Look);
