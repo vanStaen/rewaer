@@ -20,9 +20,10 @@ import { SimpleSubMenu } from "@components/SimpleSubMenu/SimpleSubMenu";
 import { ItemInput } from "@type/itemTypes";
 import { LookInput } from "@type/lookTypes";
 import { ItemForm } from "./ItemForm/ItemForm";
+import { LookForm } from "./LookForm/LookForm";
+import { LookFromItemsForm } from "./LookFromItemsForm/LookFromItemsForm";
 
 import "./UploadModal.less";
-import { LookForm } from "./LookForm/LookForm";
 
 interface UploadProps {
   page: "looks" | "items";
@@ -198,7 +199,7 @@ export const UploadModal = observer((props: UploadProps) => {
         onOk={handleOk}
         onCancel={handleCancel}
         closable={false}
-        width={530}
+        width={selectedMenuItem === 0 ? 530 : 800}
         centered={true}
         footer={
           <div style={{ display: "flex", gap: "8px", width: "100%" }}>
@@ -248,7 +249,10 @@ export const UploadModal = observer((props: UploadProps) => {
               )}
             </>
           ) : (
-            <>TODO</>
+            <>
+              <LookFromItemsForm />
+              <LookForm setLookInput={setLookInput} />
+            </>
           )}
         </div>
       </Modal>

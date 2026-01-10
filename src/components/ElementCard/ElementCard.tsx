@@ -50,11 +50,12 @@ export const ElementCard: React.FC<ElementCardProps> = ({
   const cardRef = useRef<HTMLDivElement>(null);
 
   const isSharedElement = parseInt(element.user.id.toString()) !== userStore.id;
-  const hasMissingBrand = element.brand === null;
-  const hasMissingCategory = element.category === null;
+  const isItem = type === "items";
+  const hasMissingBrand = isItem ? (element as any).brand === null : false;
+  const hasMissingCategory = isItem ? (element as any).category === null : false;
   const hasMissingColor =
-    type === "items" ? element.colors && element.colors.length === 0 : false;
-  const hasMissingPattern = element.pattern === null;
+    isItem ? (element as any).colors && (element as any).colors.length === 0 : false;
+  const hasMissingPattern = isItem ? (element as any).pattern === null : false;
   const hasMissingInfo =
     hasMissingBrand ||
     hasMissingCategory ||
