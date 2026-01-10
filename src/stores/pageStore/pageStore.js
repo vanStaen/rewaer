@@ -12,7 +12,7 @@ export class PageStore {
   messages = [];
   unseenNotificationsCount = 0;
   menuSelected = null;
-  darkMode = localStorage.getItem("darkMode") === "true" ? true : false;
+  darkMode = localStorage.getItem("darkMode") === "true";
 
   constructor() {
     makeObservable(this, {
