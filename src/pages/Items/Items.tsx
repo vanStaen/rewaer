@@ -15,6 +15,8 @@ import { ToolBar } from "@components/ToolBar/ToolBar";
 
 import "./Items.less";
 
+// TODO: on navigate back (browser), restore scroll position
+
 export const Items: React.FC = observer(() => {
   const { t } = useTranslation();
 
@@ -40,6 +42,12 @@ export const Items: React.FC = observer(() => {
     if (!itemsStore.selectedItem) {
       window.scroll({
         top: itemsStore.originalScrollPosition ?? 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      window.scroll({
+        top: 0,
         left: 0,
         behavior: "smooth",
       });
