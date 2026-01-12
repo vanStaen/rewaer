@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import { pageStore } from "@stores/pageStore/pageStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
-import { Notification } from "./Notification";
+import { Notification } from "./Notification/Notification";
 
 import "./Notifications.less";
 
@@ -11,6 +11,10 @@ export const Notifications: React.FC = observer(() => {
   useEffect(() => {
     postNotificationsSeen();
     pageStore.setUnseenNotificationsCount(0);
+  }, []);
+
+  useEffect(() => {
+    pageStore.setMenuSelected("notifications");
   }, []);
 
   const notificationsFormated = pageStore.notifications.map((data) => {

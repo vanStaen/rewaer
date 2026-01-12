@@ -11,6 +11,7 @@ import { seasons } from "@lib/data/seasons";
 import { convertCodeToObjectString } from "@helpers/convertCodeTo";
 import { userStore } from "@stores/userStore/userStore";
 import { profileStore } from "@stores/profileStore/profileStore";
+import { pageStore } from "@stores/pageStore/pageStore";
 
 import "./SearchPage.less";
 
@@ -57,6 +58,10 @@ export const SearchPage: React.FC = () => {
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string | false>(false);
   const [results, setResults] = useState<SearchResults | null>(null);
+
+  useEffect(() => {
+    pageStore.setMenuSelected("search");
+  }, []);
 
   const handleEnter = async (
     e: KeyboardEvent<HTMLInputElement>,

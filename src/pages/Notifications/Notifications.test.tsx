@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Notifications } from "./Notifications";
 import { pageStore } from "@stores/pageStore/pageStore";
 import { postNotificationsSeen } from "./postNotificationsSeen";
-import { deleteNotification } from "./deleteNotification";
+import { deleteNotification } from "./Notification/deleteNotification";
 
 // Mock fetch globally
 global.fetch = jest.fn();
@@ -19,10 +19,11 @@ jest.mock("../../stores/pageStore/pageStore", () => ({
   pageStore: {
     notifications: [],
     setUnseenNotificationsCount: jest.fn(),
+    setMenuSelected: jest.fn(),
   },
 }));
 
-jest.mock("./Notification", () => ({
+jest.mock("./Notification/Notification", () => ({
   Notification: ({ data }: { data: any }) => (
     <div data-testid={`notification-${data.id}`}>Notification {data.id}</div>
   ),
