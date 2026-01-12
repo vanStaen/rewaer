@@ -1,7 +1,7 @@
 import path from "path";
 import express from "express";
 import cors from "cors";
-import { graphqlHTTP } from "express-graphql";
+import { createHandler } from "graphql-http/lib/use/express";
 import { fileURLToPath } from "url";
 
 import db from "./models/index.js";
@@ -78,13 +78,13 @@ app.use("/healthcheck", HealthcheckRouter);
 
 // Start DB & use GraphQL
 db.sequelize.sync().then((req) => {
-  app.use(
+  app.all(
     "/graphql",
-    graphqlHTTP({
+    createHandler({
       schema: graphqlSchema,
       rootValue: graphqlResolver,
-      graphiql: true,
-      customFormatErrorFn(err) {
+      context: (req) => req.raw,
+      formatError(err) {
         if (!err.originalError) {
           return err;
         }
