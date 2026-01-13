@@ -9,16 +9,20 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
+// TODO : Review this
+
 export const getNotificationIcon = (type: number): React.ReactNode => {
   switch (type) {
     case 3:
       return <MailOutlined />;
     case 4:
+      return <SkinOutlined />;
     case 6:
       return <SkinOutlined />;
     case 5:
       return <CameraOutlined />;
     case 12:
+      return <SkinOutlined />;
     case 13:
       return <LikeOutlined />;
     case 14:
