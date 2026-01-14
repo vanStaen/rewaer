@@ -5,7 +5,7 @@ import React, {
   TouchEvent,
   MouseEvent,
 } from "react";
-import { CloseOutlined, DeleteFilled } from "@ant-design/icons";
+import { CloseOutlined, DeleteFilled, LoadingOutlined, PictureOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 import dayjs from "dayjs";
@@ -237,9 +237,33 @@ export const Notification: React.FC<NotificationProps> = ({ data }) => {
         onTouchEnd={() => handleSwipe(id)}
       >
         {mediaLoading ? (
-          "loading"
+          <div
+            className={
+              seen ? "notifications__leftSideSeen" : "notifications__leftSide"
+            }
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+            }}
+          >
+            <LoadingOutlined style={{ fontSize: "24px", color: "#999" }} />
+          </div>
         ) : mediaError ? (
-          "error"
+          <div
+            className={
+              seen ? "notifications__leftSideSeen" : "notifications__leftSide"
+            }
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.05)",
+            }}
+          >
+            <PictureOutlined style={{ fontSize: "24px", color: "#ccc" }} />
+          </div>
         ) : (
           <div
             className={
