@@ -18,6 +18,7 @@ interface DetailViewProps {
   selectedElement: any;
   setSelectedElement: (element: any) => void;
   showPrivate: boolean;
+  children?: React.ReactNode;
 }
 
 export const DetailView = ({
@@ -27,6 +28,7 @@ export const DetailView = ({
   selectedElement,
   setSelectedElement,
   showPrivate,
+  children,
 }: DetailViewProps) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -143,7 +145,7 @@ export const DetailView = ({
           </div>
         </div>
       ) : (
-        <div>{/* ITEM DETAIL VIEW TODO */}</div>
+        children
       )}
     </div>
   );
