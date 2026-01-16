@@ -5,7 +5,12 @@ import React, {
   TouchEvent,
   MouseEvent,
 } from "react";
-import { CloseOutlined, DeleteFilled, LoadingOutlined, PictureOutlined } from "@ant-design/icons";
+import {
+  CloseOutlined,
+  DeleteFilled,
+  LoadingOutlined,
+  PictureOutlined,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 import dayjs from "dayjs";
