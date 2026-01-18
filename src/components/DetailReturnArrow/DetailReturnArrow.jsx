@@ -8,27 +8,17 @@ import { itemsStore } from "../../pages/Items/itemsStore";
 
 import "./DetailReturnArrow.less";
 
-export const DetailReturnArrow = (props) => {
+export const DetailReturnArrow = ({page}) => {
   const { t } = useTranslation();
 
-  return props.page === "look" ? (
-    <div className="detail__backArrowLook">
-      <Tooltip placement="bottomRight" title={t("looks.backToLooks")}>
-        <ArrowLeftOutlined
-          className="detail__arrowIcon"
-          onClick={() => {
-            looksStore.setSelectedLook(null);
-          }}
-        />
-      </Tooltip>
-    </div>
-  ) : (
+  return (
     <div className="detail__backArrowItem">
-      <Tooltip placement="bottomRight" title={t("items.backToItems")}>
+      <Tooltip placement="bottomRight" title={ page === "items" ? t("items.backToItems") : t("looks.backToLooks")}>
         <ArrowLeftOutlined
           className="detail__arrowIcon"
           onClick={() => {
-            itemsStore.setSelectedItem(null);
+            page === "items" ?itemsStore.setSelectedItem(null) : 
+            looksStore.setSelectedLook(null);
           }}
         />
       </Tooltip>

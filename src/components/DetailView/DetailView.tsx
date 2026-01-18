@@ -39,8 +39,6 @@ export const DetailView = ({
     "m",
   );
 
-  console.log("selectedElement in DetailView:", selectedElement);
-
   useEffect(() => {
     const url = new URL(window.location.href);
     history.pushState({}, "", url);

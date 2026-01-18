@@ -26,6 +26,8 @@ export const LookDetail: React.FC = observer(() => {
           setSelectedElement={looksStore.setSelectedLook}
           showPrivate={showPrivate}
         >
+
+          <ItemPicker />
           {/* 
           <LookDetailHeader />
           <ItemPicker />
