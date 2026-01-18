@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { DetailView } from "./DetailView";
-import * as switchItemModule from "./switchItem";
+import * as switchElementModule from "./switchElement";
 import * as useMediaUrlModule from "@hooks/useMediaUrl";
 
 jest.mock("@components/DetailReturnArrow/DetailReturnArrow", () => ({
@@ -23,8 +23,8 @@ jest.mock("@hooks/useMediaUrl", () => ({
   useMediaUrl: jest.fn(() => ["http://example.com/image.jpg", false, null]),
 }));
 
-jest.mock("./switchItem.js", () => ({
-  switchItem: jest.fn(),
+jest.mock("./switchElement.js", () => ({
+  switchElement: jest.fn(),
 }));
 
 type TouchEventOptions = {
@@ -34,7 +34,7 @@ type TouchEventOptions = {
 const defaultProps = {
   isLoading: false,
   page: "items",
-  canEditPicture: false,
+  canEdit: false,
   selectedElement: { id: 1, mediaId: "123" },
   setSelectedElement: jest.fn(),
   showPrivate: false,
@@ -75,13 +75,13 @@ describe("DetailView", () => {
       expect(screen.getByText("DetailReturnArrow-looks")).toBeInTheDocument();
     });
 
-    it("renders ImageEditBar when canEditPicture is false", () => {
-      render(<DetailView {...defaultProps} canEditPicture={false} />);
+    it("renders ImageEditBar when canEdit is false", () => {
+      render(<DetailView {...defaultProps} canEdit={false} />);
       expect(screen.getByTestId("image-edit-bar")).toBeInTheDocument();
     });
 
-    it("does not render ImageEditBar when canEditPicture is true", () => {
-      render(<DetailView {...defaultProps} canEditPicture={true} />);
+    it("does not render ImageEditBar when canEdit is true", () => {
+      render(<DetailView {...defaultProps} canEdit={true} />);
       expect(screen.queryByTestId("image-edit-bar")).not.toBeInTheDocument();
     });
 
@@ -166,22 +166,22 @@ describe("DetailView", () => {
       expect(setSelectedElement).toHaveBeenCalledWith(null);
     });
 
-    it("calls switchItem(false, showPrivate) when ArrowLeft is pressed", () => {
+    it("calls switchElement(false, showPrivate) when ArrowLeft is pressed", () => {
       render(<DetailView {...defaultProps} showPrivate={true} />);
       fireEvent.keyDown(window, { key: "ArrowLeft" });
-      expect(switchItemModule.switchItem).toHaveBeenCalledWith(false, true);
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(false, true, "items");
     });
 
-    it("calls switchItem(true, showPrivate) when ArrowRight is pressed", () => {
+    it("calls switchElement(true, showPrivate) when ArrowRight is pressed", () => {
       render(<DetailView {...defaultProps} showPrivate={false} />);
       fireEvent.keyDown(window, { key: "ArrowRight" });
-      expect(switchItemModule.switchItem).toHaveBeenCalledWith(true, false);
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(true, false, "items");
     });
 
-    it("does not call switchItem for other key presses", () => {
+    it("does not call switchElement for other key presses", () => {
       render(<DetailView {...defaultProps} />);
       fireEvent.keyDown(window, { key: "Enter" });
-      expect(switchItemModule.switchItem).not.toHaveBeenCalled();
+      expect(switchElementModule.switchElement).not.toHaveBeenCalled();
     });
 
     it("handles uppercase key names", () => {
@@ -221,7 +221,7 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).toHaveBeenCalledWith(false, true);
+        expect(switchElementModule.switchElement).toHaveBeenCalledWith(false, true, "items");
       }
     });
 
@@ -248,11 +248,11 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).toHaveBeenCalledWith(true, true);
+        expect(switchElementModule.switchElement).toHaveBeenCalledWith(true, true, "items");
       }
     });
 
-    it("does not call switchItem for small swipe distances", () => {
+    it("does not call switchElement for small swipe distances", () => {
       const { container } = render(<DetailView {...defaultProps} />);
       const detailviewContainer = container.querySelector(
         ".detailview__container",
@@ -273,7 +273,7 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).not.toHaveBeenCalled();
+        expect(switchElementModule.switchElement).not.toHaveBeenCalled();
       }
     });
 
@@ -288,7 +288,7 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).not.toHaveBeenCalled();
+        expect(switchElementModule.switchElement).not.toHaveBeenCalled();
       }
     });
 
@@ -306,7 +306,7 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).not.toHaveBeenCalled();
+        expect(switchElementModule.switchElement).not.toHaveBeenCalled();
       }
     });
   });
@@ -351,7 +351,7 @@ describe("DetailView", () => {
         });
 
         // Should only be called once due to throttling
-        expect(switchItemModule.switchItem).toHaveBeenCalledTimes(1);
+        expect(switchElementModule.switchElement).toHaveBeenCalledTimes(1);
 
         // After timeout, swipe should work again
         act(() => {
@@ -372,7 +372,7 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchItemModule.switchItem).toHaveBeenCalledTimes(2);
+        expect(switchElementModule.switchElement).toHaveBeenCalledTimes(2);
       }
       jest.useRealTimers();
     });

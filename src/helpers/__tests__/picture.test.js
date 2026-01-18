@@ -44,9 +44,9 @@ describe("Picture helpers", () => {
       const mockError = new Error("Network error");
       fetch.mockRejectedValueOnce(mockError);
 
-      const result = await deletePicture("image.jpg", "bucket");
-
-      expect(result).toEqual(mockError);
+      await expect(deletePicture("image.jpg", "bucket")).rejects.toThrow(
+        "Network error",
+      );
     });
 
     it("should include path and bucket in request body", async () => {
@@ -111,9 +111,9 @@ describe("Picture helpers", () => {
       const mockError = new Error("API error");
       fetch.mockRejectedValueOnce(mockError);
 
-      const result = await getPictureUrl("image", "bucket", "small");
-
-      expect(result).toEqual(mockError);
+      await expect(getPictureUrl("image", "bucket", "small")).rejects.toThrow(
+        "API error",
+      );
     });
 
     it("should log errors", async () => {
@@ -121,7 +121,9 @@ describe("Picture helpers", () => {
       const mockError = new Error("Request failed");
       fetch.mockRejectedValueOnce(mockError);
 
-      await getPictureUrl("image", "bucket", "small");
+      await expect(
+        getPictureUrl("image", "bucket", "small"),
+      ).rejects.toThrow("Request failed");
 
       expect(consoleSpy).toHaveBeenCalledWith(mockError);
       consoleSpy.mockRestore();
@@ -209,9 +211,9 @@ describe("Picture helpers", () => {
 
       fetch.mockRejectedValueOnce(mockError);
 
-      const result = await postPicture(mockFile, "avatars");
-
-      expect(result).toEqual(mockError);
+      await expect(postPicture(mockFile, "avatars")).rejects.toThrow(
+        "Upload failed",
+      );
     });
 
     it("should use correct endpoint", async () => {

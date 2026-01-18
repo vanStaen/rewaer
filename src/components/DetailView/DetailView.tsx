@@ -4,7 +4,7 @@ import { Spin } from "antd";
 import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "@components/ImageEditBar/ImageEditBar";
 import { useMediaUrl } from "@hooks/useMediaUrl";
-import { switchItem } from "./switchItem.js";
+import { switchElement } from "./switchElement.js";
 
 import "./DetailView.less";
 
@@ -14,7 +14,7 @@ const MIN_SWIPE_DISTANCE = 100;
 interface DetailViewProps {
   isLoading: boolean;
   page: string;
-  canEditPicture: boolean;
+  canEdit: boolean;
   selectedElement: any;
   setSelectedElement: (element: any) => void;
   showPrivate: boolean;
@@ -24,7 +24,7 @@ interface DetailViewProps {
 export const DetailView = ({
   isLoading,
   page,
-  canEditPicture,
+  canEdit,
   selectedElement,
   setSelectedElement,
   showPrivate,
@@ -38,6 +38,8 @@ export const DetailView = ({
     "items",
     "m",
   );
+
+  console.log("selectedElement in DetailView:", selectedElement);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -66,10 +68,10 @@ export const DetailView = ({
       setSelectedElement(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchItem(false, showPrivate);
+      switchElement(false, showPrivate, page);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchItem(true, showPrivate);
+      switchElement(true, showPrivate, page);
     }
   };
 
@@ -88,9 +90,9 @@ export const DetailView = ({
     if (throttling.current === false) {
       throttling.current = true;
       if (isRightSwipe) {
-        switchItem(false, showPrivate);
+        switchElement(false, showPrivate, page);
       } else if (isLeftSwipe) {
-        switchItem(true, showPrivate);
+        switchElement(true, showPrivate, page);
       }
       setTimeout(() => {
         throttling.current = false;
@@ -107,7 +109,7 @@ export const DetailView = ({
     >
       <DetailReturnArrow page={page} />
       <div className="itemdetail__imageWrap">
-        {!canEditPicture && (
+        {!canEdit && (
           <ImageEditBar
             page="items"
             loading={isLoadingMedia}

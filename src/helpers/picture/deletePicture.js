@@ -15,6 +15,6 @@ export const deletePicture = async (path, bucket) => {
     await fetch(endpoint, options);
     return true;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
