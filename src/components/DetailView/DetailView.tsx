@@ -35,7 +35,7 @@ export const DetailView = ({
   const throttling = useRef(false);
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
     selectedElement.mediaId,
-    "items",
+    page,
     "m",
   );
 
