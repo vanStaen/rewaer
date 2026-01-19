@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { looksStore } from "../looksStore";
 import { DetailView } from "@components/DetailView/DetailView";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
-//import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
+// import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
 
 import "./LookDetail.less";
 
