@@ -34,8 +34,10 @@ const getNextVisibleIndex = (currentIndex, items, next) => {
 
 export const switchElement = (next, showPrivate, page) => {
   const store = getStoreConfig(page);
-  const currentIndex = store.items.map((item) => item.id).indexOf(store.selectedItem.id);
-  
+  const currentIndex = store.items
+    .map((item) => item.id)
+    .indexOf(store.selectedItem.id);
+
   const nextIndex = showPrivate
     ? getNextIndex(currentIndex, store.items.length, next)
     : getNextVisibleIndex(currentIndex, store.items, next);

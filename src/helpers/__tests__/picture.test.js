@@ -121,9 +121,9 @@ describe("Picture helpers", () => {
       const mockError = new Error("Request failed");
       fetch.mockRejectedValueOnce(mockError);
 
-      await expect(
-        getPictureUrl("image", "bucket", "small"),
-      ).rejects.toThrow("Request failed");
+      await expect(getPictureUrl("image", "bucket", "small")).rejects.toThrow(
+        "Request failed",
+      );
 
       expect(consoleSpy).toHaveBeenCalledWith(mockError);
       consoleSpy.mockRestore();

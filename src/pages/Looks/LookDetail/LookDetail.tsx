@@ -16,22 +16,20 @@ export const LookDetail: React.FC = observer(() => {
   const selectedElement = looksStore.selectedLook;
   const showPrivate = looksStore.showPrivateLooks;
 
-
   return (
     <DetailView
-          isLoading={isLoading}
-          page={page}
-          canEdit={true}
-          selectedElement={selectedElement}
-          setSelectedElement={looksStore.setSelectedLook}
-          showPrivate={showPrivate}
-        >
-
-          <ItemPicker />
-          {/* 
+      isLoading={isLoading}
+      page={page}
+      canEdit={true}
+      selectedElement={selectedElement}
+      setSelectedElement={looksStore.setSelectedLook}
+      showPrivate={showPrivate}
+    >
+      <ItemPicker />
+      {/* 
           <LookDetailHeader />
           <ItemPicker />
           */}
-      </DetailView>
+    </DetailView>
   );
 });

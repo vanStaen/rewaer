@@ -25,65 +25,49 @@ describe("switchElement", () => {
 
   describe("Items - Navigate to next item", () => {
     it("should navigate to next item when next is true", () => {
-      itemsStoreModule.itemsStore.items = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      itemsStoreModule.itemsStore.items = [{ id: 1 }, { id: 2 }, { id: 3 }];
       itemsStoreModule.itemsStore.selectedItem = { id: 1 };
 
       switchElement(true, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 2 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 2,
+      });
     });
 
     it("should wrap around to first item when at the end", () => {
-      itemsStoreModule.itemsStore.items = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      itemsStoreModule.itemsStore.items = [{ id: 1 }, { id: 2 }, { id: 3 }];
       itemsStoreModule.itemsStore.selectedItem = { id: 3 };
 
       switchElement(true, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
   });
 
   describe("Items - Navigate to previous item", () => {
     it("should navigate to previous item when next is false", () => {
-      itemsStoreModule.itemsStore.items = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      itemsStoreModule.itemsStore.items = [{ id: 1 }, { id: 2 }, { id: 3 }];
       itemsStoreModule.itemsStore.selectedItem = { id: 2 };
 
       switchElement(false, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
 
     it("should wrap around to last item when at the beginning", () => {
-      itemsStoreModule.itemsStore.items = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      itemsStoreModule.itemsStore.items = [{ id: 1 }, { id: 2 }, { id: 3 }];
       itemsStoreModule.itemsStore.selectedItem = { id: 1 };
 
       switchElement(false, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 3 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 3,
+      });
     });
   });
 
@@ -99,9 +83,9 @@ describe("switchElement", () => {
 
       switchElement(true, false, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 4 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 4,
+      });
     });
 
     it("should skip private items when navigating backward", () => {
@@ -115,9 +99,9 @@ describe("switchElement", () => {
 
       switchElement(false, false, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
 
     it("should wrap around and skip private items", () => {
@@ -130,73 +114,57 @@ describe("switchElement", () => {
 
       switchElement(true, false, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 2 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 2,
+      });
     });
   });
 
   describe("Looks - Navigate to next look", () => {
     it("should navigate to next look when next is true", () => {
-      looksStoreModule.looksStore.looks = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      looksStoreModule.looksStore.looks = [{ id: 1 }, { id: 2 }, { id: 3 }];
       looksStoreModule.looksStore.selectedLook = { id: 1 };
 
       switchElement(true, true, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 2 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 2,
+      });
     });
 
     it("should wrap around to first look when at the end", () => {
-      looksStoreModule.looksStore.looks = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      looksStoreModule.looksStore.looks = [{ id: 1 }, { id: 2 }, { id: 3 }];
       looksStoreModule.looksStore.selectedLook = { id: 3 };
 
       switchElement(true, true, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
   });
 
   describe("Looks - Navigate to previous look", () => {
     it("should navigate to previous look when next is false", () => {
-      looksStoreModule.looksStore.looks = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      looksStoreModule.looksStore.looks = [{ id: 1 }, { id: 2 }, { id: 3 }];
       looksStoreModule.looksStore.selectedLook = { id: 2 };
 
       switchElement(false, true, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
 
     it("should wrap around to last look when at the beginning", () => {
-      looksStoreModule.looksStore.looks = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ];
+      looksStoreModule.looksStore.looks = [{ id: 1 }, { id: 2 }, { id: 3 }];
       looksStoreModule.looksStore.selectedLook = { id: 1 };
 
       switchElement(false, true, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 3 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 3,
+      });
     });
   });
 
@@ -212,9 +180,9 @@ describe("switchElement", () => {
 
       switchElement(true, false, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 4 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 4,
+      });
     });
 
     it("should skip private looks when navigating backward", () => {
@@ -228,9 +196,9 @@ describe("switchElement", () => {
 
       switchElement(false, false, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
   });
 
@@ -241,9 +209,9 @@ describe("switchElement", () => {
 
       switchElement(true, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 1 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 1,
+      });
     });
 
     it("should handle items in middle of array", () => {
@@ -258,9 +226,9 @@ describe("switchElement", () => {
 
       switchElement(true, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 4 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 4,
+      });
     });
 
     it("should handle all private items except current", () => {
@@ -273,9 +241,9 @@ describe("switchElement", () => {
 
       switchElement(true, false, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 2 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 2,
+      });
     });
   });
 
@@ -287,9 +255,9 @@ describe("switchElement", () => {
 
       switchElement(true, true, "items");
 
-      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith(
-        { id: 2 },
-      );
+      expect(itemsStoreModule.itemsStore.setSelectedItem).toHaveBeenCalledWith({
+        id: 2,
+      });
 
       // Test looks
       looksStoreModule.looksStore.looks = [{ id: 10 }, { id: 20 }];
@@ -297,9 +265,9 @@ describe("switchElement", () => {
 
       switchElement(true, true, "looks");
 
-      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith(
-        { id: 20 },
-      );
+      expect(looksStoreModule.looksStore.setSelectedLook).toHaveBeenCalledWith({
+        id: 20,
+      });
     });
   });
 });

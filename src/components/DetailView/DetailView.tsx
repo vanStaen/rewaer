@@ -138,15 +138,15 @@ export const DetailView = ({
         )}
       </div>
 
-      {isLoading ? (
-        <div className="itemdetail__itemContainer">
+      <div className="itemdetail__itemContainer">
+        {isLoading ? (
           <div className="itemdetail__spinner">
             <Spin size="large" />
           </div>
-        </div>
-      ) : (
-        children
-      )}
+        ) : (
+          children
+        )}
+      </div>
     </div>
   );
 };

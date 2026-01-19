@@ -169,13 +169,21 @@ describe("DetailView", () => {
     it("calls switchElement(false, showPrivate) when ArrowLeft is pressed", () => {
       render(<DetailView {...defaultProps} showPrivate={true} />);
       fireEvent.keyDown(window, { key: "ArrowLeft" });
-      expect(switchElementModule.switchElement).toHaveBeenCalledWith(false, true, "items");
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+        false,
+        true,
+        "items",
+      );
     });
 
     it("calls switchElement(true, showPrivate) when ArrowRight is pressed", () => {
       render(<DetailView {...defaultProps} showPrivate={false} />);
       fireEvent.keyDown(window, { key: "ArrowRight" });
-      expect(switchElementModule.switchElement).toHaveBeenCalledWith(true, false, "items");
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+        true,
+        false,
+        "items",
+      );
     });
 
     it("does not call switchElement for other key presses", () => {
@@ -221,7 +229,11 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchElementModule.switchElement).toHaveBeenCalledWith(false, true, "items");
+        expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+          false,
+          true,
+          "items",
+        );
       }
     });
 
@@ -248,7 +260,11 @@ describe("DetailView", () => {
           fireEvent.touchEnd(detailviewContainer);
         });
 
-        expect(switchElementModule.switchElement).toHaveBeenCalledWith(true, true, "items");
+        expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+          true,
+          true,
+          "items",
+        );
       }
     });
 
