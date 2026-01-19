@@ -1,14 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { itemsStore } from "../../Items/itemsStore";
 import { looksStore } from "../looksStore";
 import { DetailView } from "@components/DetailView/DetailView";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
-import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
+//import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
 
 import "./LookDetail.less";
-import { userStore } from "@stores/userStore/userStore";
 
 export const LookDetail: React.FC = observer(() => {
   const isLoading = looksStore.isLoading;
@@ -27,9 +25,8 @@ export const LookDetail: React.FC = observer(() => {
     >
       <ItemPicker />
       {/* 
-          <LookDetailHeader />
-          <ItemPicker />
-          */}
+        <LookDetailHeader />
+      */}
     </DetailView>
   );
 });
