@@ -106,7 +106,7 @@ export const DetailView = ({
       onTouchEnd={onTouchEnd}
     >
       <DetailReturnArrow page={page} />
-      <div className="itemdetail__imageWrap">
+      <div className="detailview__imageWrap">
         {!canEdit && (
           <ImageEditBar
             page="items"
@@ -116,20 +116,20 @@ export const DetailView = ({
         )}
         {isLoadingMedia ? (
           <div
-            className="itemdetail__picture"
+            className="detailview__picture"
             id={`selected_item_picture_${selectedElement.id}`}
           >
-            <div className="itemdetail__spinner">
+            <div className="detailview__spinner">
               <Spin size="large" />
             </div>
           </div>
         ) : loadingMediaError ? (
-          <div className="itemdetail__picture">
-            <div className="itemdetail__spinner">MEDIA ERROR TODO</div>
+          <div className="detailview__picture">
+            <div className="detailview__spinner">MEDIA ERROR TODO</div>
           </div>
         ) : (
           <div
-            className="itemdetail__picture"
+            className="detailview__picture"
             id={`selected_item_picture_${selectedElement.id}`}
             style={{
               background: `url(${mediaUrl})`,
@@ -138,9 +138,9 @@ export const DetailView = ({
         )}
       </div>
 
-      <div className="itemdetail__itemContainer">
+      <div className="detailview__itemContainer">
         {isLoading ? (
-          <div className="itemdetail__spinner">
+          <div className="detailview__spinner">
             <Spin size="large" />
           </div>
         ) : (

@@ -23,26 +23,6 @@
     }
   }
 
-  &__imageWrap {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    overflow: hidden;
-    width: 400px;
-    height: 600px;
-    border-radius: 2px;
-
-    .itemdetail__picture {
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      opacity: 1;
-      background-size: cover !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-    }
-  }
-
   &__item {
     display: inline-block;
     vertical-align: top;
@@ -107,11 +87,6 @@
   .itemdetail {
     &__container {
       min-height: calc(100vh - 50px - 340px); /* 50px menu, 340px footer */
-    }
-
-    &__imageWrap {
-      width: calc(100vw - 30px);
-      height: calc(90vw * 1.6);
     }
   }
 }
