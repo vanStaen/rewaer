@@ -102,7 +102,7 @@ describe("DetailView", () => {
       );
       expect(screen.queryByTestId("test-child")).not.toBeInTheDocument();
       expect(
-        container.querySelector(".itemdetail__spinner"),
+        container.querySelector(".detailview__spinner"),
       ).toBeInTheDocument();
     });
   });
@@ -117,7 +117,7 @@ describe("DetailView", () => {
       const { container } = render(<DetailView {...defaultProps} />);
       expect(screen.getByText("MEDIA ERROR TODO")).toBeInTheDocument();
       expect(
-        container.querySelector(".itemdetail__picture"),
+        container.querySelector(".detailview__picture"),
       ).toBeInTheDocument();
     });
 
@@ -129,13 +129,13 @@ describe("DetailView", () => {
       ]);
       const { container } = render(<DetailView {...defaultProps} />);
       expect(
-        container.querySelectorAll(".itemdetail__spinner").length,
+        container.querySelectorAll(".detailview__spinner").length,
       ).toBeGreaterThan(0);
     });
 
     it("renders picture with background image URL when media is loaded", () => {
       const { container } = render(<DetailView {...defaultProps} />);
-      const picture = container.querySelector(".itemdetail__picture");
+      const picture = container.querySelector(".detailview__picture");
       expect(picture).toHaveStyle({
         background: "url(http://example.com/image.jpg)",
       });
