@@ -33,7 +33,7 @@ type TouchEventOptions = {
 
 const defaultProps = {
   isLoading: false,
-  page: "items",
+  page: "items" as const,
   canEdit: false,
   selectedElement: { id: 1, mediaId: "123" },
   setSelectedElement: jest.fn(),
@@ -75,19 +75,19 @@ describe("DetailView", () => {
       expect(screen.getByText("DetailReturnArrow-looks")).toBeInTheDocument();
     });
 
-    it("renders ImageEditBar when canEdit is false", () => {
-      render(<DetailView {...defaultProps} canEdit={false} />);
+    it("renders ImageEditBar when canEdit is true", () => {
+      render(<DetailView {...defaultProps} canEdit={true} />);
       expect(screen.getByTestId("image-edit-bar")).toBeInTheDocument();
     });
 
-    it("does not render ImageEditBar when canEdit is true", () => {
-      render(<DetailView {...defaultProps} canEdit={true} />);
+    it("does not render ImageEditBar when canEdit is false", () => {
+      render(<DetailView {...defaultProps} canEdit={false} />);
       expect(screen.queryByTestId("image-edit-bar")).not.toBeInTheDocument();
     });
 
     it("renders children when isLoading is false", () => {
       render(
-        <DetailView {...defaultProps} isLoading={false}>
+        <DetailView {...defaultProps} isLoading={false} page="items">
           <div data-testid="test-child">Test Child Content</div>
         </DetailView>,
       );

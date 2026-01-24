@@ -29,8 +29,6 @@ interface UploadProps {
   page: "looks" | "items";
 }
 
-// TODO: create look from items
-
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const { t } = useTranslation();

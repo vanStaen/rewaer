@@ -41,6 +41,9 @@ jest.mock("../../pages/Items/itemsStore", () => ({
 }));
 
 describe("ImageEditBar", () => {
+  const mockLookElement = { id: 1, mediaId: "look-media-123" };
+  const mockItemElement = { id: 2, mediaId: "item-media-456" };
+
   beforeEach(() => {
     jest.clearAllMocks();
     (pictureRotate as jest.Mock).mockResolvedValue("new-media-id-rotated");
@@ -54,7 +57,9 @@ describe("ImageEditBar", () => {
 
   describe("rendering", () => {
     it("should render all edit buttons for looks", () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -63,7 +68,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should render all edit buttons for items", () => {
-      const { container } = render(<ImageEditBar page="items" />);
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -72,7 +79,13 @@ describe("ImageEditBar", () => {
     });
 
     it("should not render edit buttons when error is true", () => {
-      const { container } = render(<ImageEditBar page="looks" error={true} />);
+      const { container } = render(
+        <ImageEditBar
+          page="looks"
+          error={true}
+          selectedElement={mockLookElement}
+        />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -82,7 +95,11 @@ describe("ImageEditBar", () => {
 
     it("should show loading icon when loading prop is true", () => {
       const { container } = render(
-        <ImageEditBar page="looks" loading={true} />,
+        <ImageEditBar
+          page="looks"
+          loading={true}
+          selectedElement={mockLookElement}
+        />,
       );
 
       const loadingIcons = container.querySelectorAll(".anticon-loading");
@@ -92,7 +109,9 @@ describe("ImageEditBar", () => {
 
   describe("rotate functionality", () => {
     it("should rotate look image when rotate button is clicked", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -113,7 +132,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should rotate item image when rotate button is clicked", async () => {
-      const { container } = render(<ImageEditBar page="items" />);
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -139,7 +160,9 @@ describe("ImageEditBar", () => {
         new Error("Rotate failed"),
       );
 
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -158,7 +181,9 @@ describe("ImageEditBar", () => {
 
   describe("flip functionality", () => {
     it("should flip look image when flip button is clicked", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -179,7 +204,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should mirror item image when mirror button is clicked", async () => {
-      const { container } = render(<ImageEditBar page="items" />);
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -202,7 +229,9 @@ describe("ImageEditBar", () => {
 
   describe("file upload functionality", () => {
     it("should upload and replace look image when file is selected", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const file = new File(["test"], "test.jpg", { type: "image/jpeg" });
       const fileInput = container.querySelector("#file") as HTMLInputElement;
@@ -220,7 +249,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should upload and replace item image when file is selected", async () => {
-      const { container } = render(<ImageEditBar page="items" />);
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
 
       const file = new File(["test"], "test.png", { type: "image/png" });
       const fileInput = container.querySelector("#file") as HTMLInputElement;
@@ -241,7 +272,9 @@ describe("ImageEditBar", () => {
       const consoleLogSpy = jest.spyOn(console, "log").mockImplementation();
       (postPicture as jest.Mock).mockRejectedValue(new Error("Upload failed"));
 
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const file = new File(["test"], "test.jpg", { type: "image/jpeg" });
       const fileInput = container.querySelector("#file") as HTMLInputElement;
@@ -256,7 +289,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should not upload when no file is selected", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const fileInput = container.querySelector("#file") as HTMLInputElement;
 
@@ -270,7 +305,9 @@ describe("ImageEditBar", () => {
 
   describe("loading state", () => {
     it("should prevent multiple simultaneous rotate operations", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
@@ -288,7 +325,9 @@ describe("ImageEditBar", () => {
     });
 
     it("should prevent multiple simultaneous flip operations", async () => {
-      const { container } = render(<ImageEditBar page="looks" />);
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
 
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
