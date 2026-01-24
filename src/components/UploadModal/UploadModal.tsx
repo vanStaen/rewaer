@@ -33,8 +33,8 @@ export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const { t } = useTranslation();
 
-  const [mediaId, setMediaId] = useState<string>('');
-  const [mediaUrl, setMediaUrl] = useState<string>('');
+  const [mediaId, setMediaId] = useState<string>("");
+  const [mediaUrl, setMediaUrl] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
 
@@ -88,8 +88,8 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const handleOk = async () => {
     await handlePostElement();
-    setMediaId('');
-    setMediaUrl('');
+    setMediaId("");
+    setMediaUrl("");
     setItemInput({});
     setLookInput({});
     setIsModalOpen(false);
@@ -100,8 +100,8 @@ export const UploadModal = observer((props: UploadProps) => {
     if (mediaId) {
       await deletePicture(mediaId, page);
     }
-    setMediaId('');
-    setMediaUrl('');
+    setMediaId("");
+    setMediaUrl("");
     setItemInput({});
     setLookInput({});
   };
@@ -232,7 +232,7 @@ export const UploadModal = observer((props: UploadProps) => {
         <div className="modal__container">
           {selectedMenuItem === 0 ? (
             <>
-              {mediaUrl === null ? (
+              {!mediaUrl ? (
                 <UploadForm page={page} setMediaId={setMediaId} />
               ) : (
                 <div

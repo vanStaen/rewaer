@@ -47,7 +47,7 @@ jest.mock("@stores/pageStore/pageStore", () => ({
 }));
 
 jest.mock("./UploadForm/UploadForm", () => ({
-  UploadForm: ({ page }: { page: string }) => (
+  UploadForm: ({ page, setMediaId }: { page: string; setMediaId: jest.Mock }) => (
     <div data-testid="upload-form-component" data-page={page}>
       UploadForm
     </div>
@@ -55,7 +55,45 @@ jest.mock("./UploadForm/UploadForm", () => ({
 }));
 
 jest.mock("./ItemForm/ItemForm", () => ({
-  ItemForm: () => <div data-testid="item-form-component">ItemForm</div>,
+  ItemForm: ({ setItemInput }: { setItemInput: jest.Mock }) => (
+    <div data-testid="item-form-component">ItemForm</div>
+  ),
+}));
+
+jest.mock("./LookForm/LookForm", () => ({
+  LookForm: ({ setLookInput }: { setLookInput: jest.Mock }) => (
+    <div data-testid="look-form-component">LookForm</div>
+  ),
+}));
+
+jest.mock("./LookFromItemsForm/LookFromItemsForm", () => ({
+  LookFromItemsForm: () => (
+    <div data-testid="look-from-items-form-component">LookFromItemsForm</div>
+  ),
+}));
+
+jest.mock("@components/SimpleSubMenu/SimpleSubMenu", () => ({
+  SimpleSubMenu: ({
+    menuItems,
+    selectedMenuItem,
+    setSelectedMenuItem,
+  }: {
+    menuItems: Array<{ title: string }>;
+    selectedMenuItem: number;
+    setSelectedMenuItem: jest.Mock;
+  }) => (
+    <div data-testid="simple-sub-menu">
+      {menuItems.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => setSelectedMenuItem(index)}
+          className={selectedMenuItem === index ? "selected" : ""}
+        >
+          {item.title}
+        </div>
+      ))}
+    </div>
+  ),
 }));
 
 jest.mock("@helpers/capitalizeFirstLetter", () => ({
