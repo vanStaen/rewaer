@@ -36,11 +36,19 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
         setIsLoading(true);
         try {
           if (page === "looks") {
-            const mediaId = await pictureRotate(selectedElement.mediaId, page, 1);
+            const mediaId = await pictureRotate(
+              selectedElement.mediaId,
+              page,
+              1,
+            );
             await updateMediaLook(selectedElement.id, mediaId);
             looksStore.setIsOutOfDate(true);
           } else if (page === "items") {
-            const mediaId = await pictureRotate(selectedElement.mediaId, page, 1);
+            const mediaId = await pictureRotate(
+              selectedElement.mediaId,
+              page,
+              1,
+            );
             await updateMediaItem(selectedElement.id, mediaId);
             itemsStore.setIsOutOfDate(true);
           }

@@ -13,7 +13,7 @@ const MIN_SWIPE_DISTANCE = 100;
 
 interface DetailViewProps {
   isLoading: boolean;
-  page: 'items' | 'looks';
+  page: "items" | "looks";
   canEdit: boolean;
   selectedElement: any;
   setSelectedElement: (element: any) => void;
