@@ -33,8 +33,8 @@ export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const { t } = useTranslation();
 
-  const [mediaId, setMediaId] = useState<string | null>(null);
-  const [mediaUrl, setMediaUrl] = useState<string | null>(null);
+  const [mediaId, setMediaId] = useState<string>('');
+  const [mediaUrl, setMediaUrl] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
 
@@ -88,8 +88,8 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const handleOk = async () => {
     await handlePostElement();
-    setMediaId(null);
-    setMediaUrl(null);
+    setMediaId('');
+    setMediaUrl('');
     setItemInput({});
     setLookInput({});
     setIsModalOpen(false);
@@ -100,8 +100,8 @@ export const UploadModal = observer((props: UploadProps) => {
     if (mediaId) {
       await deletePicture(mediaId, page);
     }
-    setMediaId(null);
-    setMediaUrl(null);
+    setMediaId('');
+    setMediaUrl('');
     setItemInput({});
     setLookInput({});
   };
