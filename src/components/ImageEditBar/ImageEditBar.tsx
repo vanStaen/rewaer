@@ -24,26 +24,24 @@ interface ImageEditBarProps {
   page: "looks" | "items";
   loading?: boolean;
   error?: boolean;
+  selectedElement: any;
 }
 
 export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
-  ({ page, loading, error }) => {
+  ({ page, loading, error, selectedElement }) => {
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
-
-    const selectedLook = looksStore.selectedLook || { id: 0, mediaId: "" };
-    const selectedItem = itemsStore.selectedItem || { id: 0, mediaId: "" };
 
     const rotateHandler = async (): Promise<void> => {
       if (!isLoading) {
         setIsLoading(true);
         try {
           if (page === "looks") {
-            const mediaId = await pictureRotate(selectedLook.mediaId, page, 1);
-            await updateMediaLook(selectedLook.id, mediaId);
+            const mediaId = await pictureRotate(selectedElement.mediaId, page, 1);
+            await updateMediaLook(selectedElement.id, mediaId);
             looksStore.setIsOutOfDate(true);
           } else if (page === "items") {
-            const mediaId = await pictureRotate(selectedItem.mediaId, page, 1);
-            await updateMediaItem(selectedItem.id, mediaId);
+            const mediaId = await pictureRotate(selectedElement.mediaId, page, 1);
+            await updateMediaItem(selectedElement.id, mediaId);
             itemsStore.setIsOutOfDate(true);
           }
         } catch (e) {
@@ -59,19 +57,19 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
         try {
           if (page === "looks") {
             const mediaId = await pictureFlip(
-              selectedLook.mediaId,
+              selectedElement.mediaId,
               page,
               isMirror,
             );
-            await updateMediaLook(selectedLook.id, mediaId);
+            await updateMediaLook(selectedElement.id, mediaId);
             looksStore.setIsOutOfDate(true);
           } else if (page === "items") {
             const mediaId = await pictureFlip(
-              selectedItem.mediaId,
+              selectedElement.mediaId,
               page,
               isMirror,
             );
-            await updateMediaItem(selectedItem.id, mediaId);
+            await updateMediaItem(selectedElement.id, mediaId);
             itemsStore.setIsOutOfDate(true);
           }
         } catch (e) {
@@ -96,10 +94,10 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
         const res = await postPicture(file, page);
         const mediaId = res.path;
         if (page === "looks") {
-          await updateMediaLook(selectedLook.id, mediaId);
+          await updateMediaLook(selectedElement.id, mediaId);
           looksStore.setIsOutOfDate(true);
         } else if (page === "items") {
-          await updateMediaItem(selectedItem.id, mediaId);
+          await updateMediaItem(selectedElement.id, mediaId);
           itemsStore.setIsOutOfDate(true);
         }
       } catch (e) {

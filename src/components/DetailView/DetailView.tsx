@@ -13,7 +13,7 @@ const MIN_SWIPE_DISTANCE = 100;
 
 interface DetailViewProps {
   isLoading: boolean;
-  page: string;
+  page: 'items' | 'looks';
   canEdit: boolean;
   selectedElement: any;
   setSelectedElement: (element: any) => void;
@@ -107,11 +107,12 @@ export const DetailView = ({
     >
       <DetailReturnArrow page={page} />
       <div className="detailview__imageWrap">
-        {!canEdit && (
+        {canEdit && (
           <ImageEditBar
-            page="items"
+            page={page}
             loading={isLoadingMedia}
             error={!!loadingMediaError}
+            selectedElement={selectedElement}
           />
         )}
         {isLoadingMedia ? (
