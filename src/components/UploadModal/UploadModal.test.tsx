@@ -47,7 +47,13 @@ jest.mock("@stores/pageStore/pageStore", () => ({
 }));
 
 jest.mock("./UploadForm/UploadForm", () => ({
-  UploadForm: ({ page, setMediaId }: { page: string; setMediaId: jest.Mock }) => (
+  UploadForm: ({
+    page,
+    _setMediaId,
+  }: {
+    page: string;
+    _setMediaId: jest.Mock;
+  }) => (
     <div data-testid="upload-form-component" data-page={page}>
       UploadForm
     </div>
@@ -55,13 +61,13 @@ jest.mock("./UploadForm/UploadForm", () => ({
 }));
 
 jest.mock("./ItemForm/ItemForm", () => ({
-  ItemForm: ({ setItemInput }: { setItemInput: jest.Mock }) => (
+  ItemForm: ({ _setItemInput }: { _setItemInput: jest.Mock }) => (
     <div data-testid="item-form-component">ItemForm</div>
   ),
 }));
 
 jest.mock("./LookForm/LookForm", () => ({
-  LookForm: ({ setLookInput }: { setLookInput: jest.Mock }) => (
+  LookForm: ({ _setLookInput }: { _setLookInput: jest.Mock }) => (
     <div data-testid="look-form-component">LookForm</div>
   ),
 }));

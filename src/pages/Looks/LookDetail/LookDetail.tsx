@@ -4,9 +4,7 @@ import { observer } from "mobx-react";
 import { looksStore } from "../looksStore";
 import { DetailView } from "@components/DetailView/DetailView";
 import { ItemPicker } from "./ItemPicker/ItemPicker";
-// import { LookDetailHeader } from "./LookDetailHeader/LookDetailHeader";
-
-import "./LookDetail.less";
+import { LookDetailHeader } from "./LookDetailContainer/LookDetailContainer";
 
 export const LookDetail: React.FC = observer(() => {
   const isLoading = looksStore.isLoading;
@@ -24,9 +22,7 @@ export const LookDetail: React.FC = observer(() => {
       showPrivate={showPrivate}
     >
       <ItemPicker />
-      {/* 
-        <LookDetailHeader />
-      */}
+      <LookDetailHeader />
     </DetailView>
   );
 });

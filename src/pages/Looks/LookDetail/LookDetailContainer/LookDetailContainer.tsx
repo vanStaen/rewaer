@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown, Menu } from "antd";
+import { Dropdown } from "antd";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
 
@@ -11,9 +11,8 @@ import { updateCategoryLook } from "../../actions/updateCategoryLook";
 import { updateSeasonLook } from "../../actions/updateSeasonLook";
 import { lookCategory } from "@lib/data/categories";
 import { seasons } from "@lib/data/seasons";
-import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArrow";
 
-import "./LookDetailHeader.less";
+import "./LookDetailContainer.less";
 
 export const LookDetailHeader: React.FC = observer(() => {
   const { t } = useTranslation();
@@ -67,37 +66,26 @@ export const LookDetailHeader: React.FC = observer(() => {
     looksStore.setIsOutOfDate(true);
   };
 
-  const CategoryDropDown = lookCategory.map((category) => {
-    return (
-      <Menu.Item
-        key={category.code}
-        onClick={() => {
-          categoryChangeHandler(category.code);
-          setCategory(category.code);
-        }}
-      >
-        {category[userStore.language as keyof typeof category]}
-      </Menu.Item>
-    );
-  });
+  const categoryMenuItems = lookCategory.map((cat) => ({
+    key: cat.code,
+    label: cat[userStore.language as keyof typeof cat],
+    onClick: () => {
+      categoryChangeHandler(cat.code);
+      setCategory(cat.code);
+    },
+  }));
 
-  const SeasonsDropDown = seasons.map((season) => {
-    return (
-      <Menu.Item
-        key={season.code}
-        onClick={() => {
-          seasonChangeHandler(season.code);
-          setSeason(season.code);
-        }}
-      >
-        {season[userStore.language as keyof typeof season]}
-      </Menu.Item>
-    );
-  });
+  const seasonMenuItems = seasons.map((season) => ({
+    key: season.code,
+    label: season[userStore.language as keyof typeof season],
+    onClick: () => {
+      seasonChangeHandler(season.code);
+      setSeason(season.code);
+    },
+  }));
 
   return (
     <>
-      <DetailReturnArrow page="look" />
       <div className="lookdetail__header">
         <span className="lookdetail__headerTitleId">#{selectedLook.id}</span>
         {selectedItemIds.length > 0 && (
@@ -122,7 +110,7 @@ export const LookDetailHeader: React.FC = observer(() => {
           <div className="lookdetail__headerPoints">&#9679;</div>
         )}
         <Dropdown
-          overlay={<Menu>{CategoryDropDown}</Menu>}
+          menu={{ items: categoryMenuItems }}
           placement="bottomLeft"
           disabled={!isActive}
         >
@@ -144,7 +132,7 @@ export const LookDetailHeader: React.FC = observer(() => {
         </Dropdown>
         <div className="lookdetail__headerPoints">&#9679;</div>
         <Dropdown
-          overlay={<Menu>{SeasonsDropDown}</Menu>}
+          menu={{ items: seasonMenuItems }}
           placement="bottomLeft"
           disabled={!isActive}
         >

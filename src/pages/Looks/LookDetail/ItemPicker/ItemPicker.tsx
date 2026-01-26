@@ -107,6 +107,12 @@ export const ItemPicker: React.FC = observer(() => {
     return null;
   });
 
+  useEffect(() => {
+    if (itemsStore.isLoading && itemsStore.items.length === 0) {
+      itemsStore.loadItems();
+    }
+  }, []);
+
   return (
     <div className="itemPicker__container">
       {itemsStore.isLoading ? (
