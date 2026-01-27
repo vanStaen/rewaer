@@ -65,15 +65,24 @@ export const UploadModal = observer((props: UploadProps) => {
   };
 
   const imageLoadingHander = async (): Promise<void> => {
-    const url = await getPictureUrl(mediaId, page, "t");
-    const isloaded = new Promise<string>((resolve, reject) => {
-      const loadImg = new Image();
-      loadImg.src = url;
-      loadImg.onload = () => resolve(url);
-      loadImg.onerror = (err) => reject(new Error(String(err)));
-    });
-    await isloaded;
-    setMediaUrl(url);
+    try {
+      const url = await getPictureUrl(mediaId, page, "t");
+      const isloaded = new Promise<string>((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = url;
+        loadImg.onload = () => resolve(url);
+        loadImg.onerror = (err) => reject(err);
+      });
+      await isloaded;
+      setMediaUrl(url);
+    } catch (err) {
+      notification.error({
+        message: t("main.error"),
+        description: t("main.errorLoadingImage"),
+        placement: "bottomRight",
+      });
+      console.error(err);
+    }
   };
 
   useEffect(() => {

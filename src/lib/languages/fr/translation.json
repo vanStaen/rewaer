@@ -30,7 +30,9 @@
     "item": "piéce",
     "look": "look",
     "pleaseReload": "Rafraichi la page",
-    "detailView": "Vue detailée"
+    "detailView": "Vue detailée",
+    "error": "Erreur",
+    "errorLoadingImage": "Impossible de charger l'image. Veuillez réessayer."
   },
   "login": {
     "newHere": "Premiére fois",

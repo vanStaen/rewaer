@@ -30,7 +30,9 @@
     "item": "item",
     "look": "look",
     "pleaseReload": "Please reload the page",
-    "detailView": "Detail view"
+    "detailView": "Detail view",
+    "error": "Error",
+    "errorLoadingImage": "Failed to load image. Please try again."
   },
   "login": {
     "newHere": "New here",
