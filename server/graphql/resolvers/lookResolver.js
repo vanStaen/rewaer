@@ -27,6 +27,7 @@ export const lookResolver = {
         mediaId: args.lookInput.mediaId,
         category: args.lookInput.category,
         private: args.lookInput.private,
+        season: args.lookInput.season,
         userId: req.userId,
       });
       const newLook = await look.save();

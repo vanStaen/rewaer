@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import { LookInput } from "@type/lookTypes";
 
 interface AddLookResponse {
   data?: {
@@ -12,23 +13,18 @@ interface AddLookResponse {
 }
 
 export async function postNewLook(
-  mediaId: string,
-  title: string,
+  lookInput: LookInput,
 ): Promise<AddLookResponse> {
   const requestBody = {
     query: `
-        mutation ($mediaId: String, $title: String) {
-          addLook(
-              lookInput: { mediaId: $mediaId, 
-                           title: $title }
-            ) {
+        mutation ($lookInput: LookInputData!) {
+            addLook(lookInput: $lookInput) {
               id
             }
           }
           `,
     variables: {
-      mediaId,
-      title,
+      lookInput,
     },
   };
   const response = await fetch(process.env.API_URL + `/graphql`, {

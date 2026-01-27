@@ -45,7 +45,7 @@ export const UploadModal = observer((props: UploadProps) => {
     if (mediaId) {
       const title = moment().format("DD.MM.YYYY");
       if (page === "looks") {
-        await postNewLook(mediaId, title).then(() => {
+        await postNewLook({ ...lookInput, mediaId }).then(() => {
           notification.success({
             message: t("looks.lookAdded"),
             placement: "bottomRight",
