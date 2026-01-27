@@ -3,7 +3,6 @@ import { Modal, Avatar, notification, Button } from "antd";
 import { CameraOutlined, SkinOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react";
-import moment from "moment";
 
 import { looksStore } from "@pages/Looks/looksStore";
 import { itemsStore } from "@pages/Items/itemsStore";
@@ -43,7 +42,6 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const handlePostElement = async () => {
     if (mediaId) {
-      const title = moment().format("DD.MM.YYYY");
       if (page === "looks") {
         await postNewLook({ ...lookInput, mediaId }).then(() => {
           notification.success({

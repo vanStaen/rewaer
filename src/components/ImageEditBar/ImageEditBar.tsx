@@ -10,14 +10,12 @@ import {
   LoadingOutlined,
   BorderOuterOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
-import { pictureRotate } from "./pictureRotate";
-import { pictureFlip } from "./pictureFlip";
-import { updateMediaLook } from "./updateMediaLook";
-import { updateMediaItem } from "./updateMediaItem";
-import { looksStore } from "../../pages/Looks/looksStore";
-import { itemsStore } from "../../pages/Items/itemsStore";
-import { postPicture } from "@helpers/picture/postPicture";
+import { rotateHandler } from "./handlers/rotateHandler";
+import { flipHandler } from "./handlers/flipHandler";
+import { cropHandler } from "./handlers/cropHandler";
+import { fileSelectHandler } from "./handlers/replaceHandler";
 
 import "./ImageEditBar.less";
 
@@ -30,120 +28,34 @@ interface ImageEditBarProps {
 
 export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
+    const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
-
-    const rotateHandler = async (): Promise<void> => {
-      if (!isLoading) {
-        setIsLoading(true);
-        try {
-          if (page === "looks") {
-            const mediaId = await pictureRotate(
-              selectedElement.mediaId,
-              page,
-              1,
-            );
-            await updateMediaLook(selectedElement.id, mediaId);
-            looksStore.setIsOutOfDate(true);
-          } else if (page === "items") {
-            const mediaId = await pictureRotate(
-              selectedElement.mediaId,
-              page,
-              1,
-            );
-            await updateMediaItem(selectedElement.id, mediaId);
-            itemsStore.setIsOutOfDate(true);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-        setIsLoading(false);
-      }
-    };
-
-    const flipHandler = async (isMirror: boolean): Promise<void> => {
-      if (!isLoading) {
-        setIsLoading(true);
-        try {
-          if (page === "looks") {
-            const mediaId = await pictureFlip(
-              selectedElement.mediaId,
-              page,
-              isMirror,
-            );
-            await updateMediaLook(selectedElement.id, mediaId);
-            looksStore.setIsOutOfDate(true);
-          } else if (page === "items") {
-            const mediaId = await pictureFlip(
-              selectedElement.mediaId,
-              page,
-              isMirror,
-            );
-            await updateMediaItem(selectedElement.id, mediaId);
-            itemsStore.setIsOutOfDate(true);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-        setIsLoading(false);
-      }
-    };
-
-    const fileSelectHandler = async (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ): Promise<void> => {
-      setIsLoading(true);
-      if (event.target.files && event.target.files[0]) {
-        replaceMediahandler(event.target.files[0]);
-      }
-    };
-
-    const replaceMediahandler = async (file: File): Promise<void> => {
-      setIsLoading(true);
-      try {
-        const res = await postPicture(file, page);
-        const mediaId = res.path;
-        if (page === "looks") {
-          await updateMediaLook(selectedElement.id, mediaId);
-          looksStore.setIsOutOfDate(true);
-        } else if (page === "items") {
-          await updateMediaItem(selectedElement.id, mediaId);
-          itemsStore.setIsOutOfDate(true);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-      setIsLoading(false);
-    };
-
-    const cropHandler = async (isCrop: boolean): Promise<void> => {
-      // TODO: Implement crop functionality
-    };
 
     return (
       <div className="imageEditBar__imageEditBar">
         {!error && (
           <>
-            {/* <Tooltip title="Change luminosity">
-        <BulbOutlined />
-      </Tooltip> */}
-            {/* <Tooltip title="Change white balance">
-        <FormatPainterOutlined />
-      </Tooltip> */}
             <div
               className="imageEditBar__imageEditBarItem"
-              onClick={() => cropHandler(true)}
+              onClick={() =>
+                cropHandler(page, selectedElement, isLoading, setIsLoading, t)
+              }
             >
               <Tooltip title="Crop">
-                {isLoading ? (
-                  <LoadingOutlined />
-                ) : (
-                  <BorderOuterOutlined />
-                )}
+                {isLoading ? <LoadingOutlined /> : <BorderOuterOutlined />}
               </Tooltip>
             </div>
             <div
               className="imageEditBar__imageEditBarItem"
-              onClick={() => flipHandler(true)}
+              onClick={() =>
+                flipHandler(
+                  page,
+                  selectedElement,
+                  true,
+                  isLoading,
+                  setIsLoading,
+                )
+              }
             >
               <Tooltip title="Flip">
                 {isLoading ? (
@@ -155,7 +67,15 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
             </div>
             <div
               className="imageEditBar__imageEditBarItem"
-              onClick={() => flipHandler(false)}
+              onClick={() =>
+                flipHandler(
+                  page,
+                  selectedElement,
+                  false,
+                  isLoading,
+                  setIsLoading,
+                )
+              }
             >
               <Tooltip title="Mirror">
                 {isLoading ? (
@@ -167,7 +87,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
             </div>
             <div
               className="imageEditBar__imageEditBarItem"
-              onClick={rotateHandler}
+              onClick={() =>
+                rotateHandler(page, selectedElement, isLoading, setIsLoading)
+              }
             >
               <Tooltip title="Rotate">
                 {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
@@ -186,7 +108,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                 className="imageEditBar__inputfile"
                 name="inputfile"
                 id="file"
-                onChange={fileSelectHandler}
+                onChange={(e) =>
+                  fileSelectHandler(e, page, selectedElement, setIsLoading)
+                }
               />
               <label htmlFor="file">
                 {isLoading ? <LoadingOutlined /> : <UploadOutlined />}

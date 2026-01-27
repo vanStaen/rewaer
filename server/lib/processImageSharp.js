@@ -82,3 +82,19 @@ export const blurImage = async (originalImageBuffer, blurValue) => {
       console.error("blurImage :", err);
     });
 };
+
+export const cropImage = async (
+  originalImageBuffer,
+  left,
+  top,
+  width,
+  height,
+) => {
+  return await sharp(originalImageBuffer)
+    .extract({ left, top, width, height })
+    .toBuffer()
+    .then((data) => data)
+    .catch((err) => {
+      console.error("cropImage :", err);
+    });
+};

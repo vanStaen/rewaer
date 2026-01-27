@@ -2,6 +2,7 @@ import {
   rotateImage,
   flipImage,
   mirrorImage,
+  cropImage,
 } from "../../lib/processImageSharp.js";
 
 import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
@@ -52,5 +53,28 @@ export const pictureService = {
 
   async tintPicture(url, red, green, blue) {
     return true;
+  },
+
+  async cropPicture(path, bucket, userId, left, top, width, height) {
+    try {
+      // download picture
+      const originalImageBuffer = await getObjectFromS3(path, bucket);
+      // crop picture
+      const croppedImageBuffer = await cropImage(
+        originalImageBuffer,
+        left,
+        top,
+        width,
+        height,
+      );
+      // upload new pictures
+      const newPath = await uploadFileToS3(croppedImageBuffer, bucket, userId);
+      // delete old pictures
+      await deleteFileFromS3(path, bucket);
+      // return new Picture Url
+      return newPath;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };

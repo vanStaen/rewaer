@@ -32,7 +32,10 @@
     "pleaseReload": "Please reload the page",
     "detailView": "Detail view",
     "error": "Error",
-    "errorLoadingImage": "Failed to load image. Please try again."
+    "errorLoadingImage": "Failed to load image. Please try again.",
+    "success": "Success",
+    "imageCropped": "Image cropped successfully.",
+    "errorCroppingImage": "Failed to crop image. Please try again."
   },
   "login": {
     "newHere": "New here",

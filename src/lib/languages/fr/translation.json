@@ -32,7 +32,10 @@
     "pleaseReload": "Rafraichi la page",
     "detailView": "Vue detailée",
     "error": "Erreur",
-    "errorLoadingImage": "Impossible de charger l'image. Veuillez réessayer."
+    "errorLoadingImage": "Impossible de charger l'image. Veuillez réessayer.",
+    "success": "Succès",
+    "imageCropped": "Image recadrée avec succès.",
+    "errorCroppingImage": "Impossible de recadrer l'image. Veuillez réessayer."
   },
   "login": {
     "newHere": "Premiére fois",
