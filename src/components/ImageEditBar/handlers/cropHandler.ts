@@ -4,6 +4,7 @@ import { updateMediaLook } from "../updateMediaLook";
 import { updateMediaItem } from "../updateMediaItem";
 import { looksStore } from "../../../pages/Looks/looksStore";
 import { itemsStore } from "../../../pages/Items/itemsStore";
+import { CropValues } from "../types/cropTypes";
 
 export const cropHandler = async (
   page: "looks" | "items",
@@ -11,15 +12,12 @@ export const cropHandler = async (
   isLoading: boolean,
   setIsLoading: (loading: boolean) => void,
   t: (key: string) => string,
+  cropValues: CropValues,
 ): Promise<void> => {
   if (!isLoading) {
     setIsLoading(true);
     try {
-      // Default crop values: 10% from each side
-      const left = 50;
-      const top = 50;
-      const width = 400;
-      const height = 300;
+      const { left, top, width, height } = cropValues;
 
       if (page === "looks") {
         const mediaId = await pictureCrop(

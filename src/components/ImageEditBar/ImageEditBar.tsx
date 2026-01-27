@@ -16,6 +16,8 @@ import { rotateHandler } from "./handlers/rotateHandler";
 import { flipHandler } from "./handlers/flipHandler";
 import { cropHandler } from "./handlers/cropHandler";
 import { fileSelectHandler } from "./handlers/replaceHandler";
+import { CropModal } from "./modals/CropModal";
+import { CropValues } from "./types/cropTypes";
 
 import "./ImageEditBar.less";
 
@@ -30,21 +32,46 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
+    const [isCropModalVisible, setIsCropModalVisible] = useState(false);
+
+    const getImageUrl = () => {
+      if (page === "looks") {
+        return selectedElement?.media?.url || "";
+      }
+      return selectedElement?.image?.url || "";
+    };
+
+    const handleCropSubmit = async (cropValues: CropValues) => {
+      await cropHandler(
+        page,
+        selectedElement,
+        isLoading,
+        setIsLoading,
+        t,
+        cropValues,
+      );
+      setIsCropModalVisible(false);
+    };
 
     return (
-      <div className="imageEditBar__imageEditBar">
-        {!error && (
-          <>
-            <div
-              className="imageEditBar__imageEditBarItem"
-              onClick={() =>
-                cropHandler(page, selectedElement, isLoading, setIsLoading, t)
-              }
-            >
-              <Tooltip title="Crop">
-                {isLoading ? <LoadingOutlined /> : <BorderOuterOutlined />}
-              </Tooltip>
-            </div>
+      <>
+        <CropModal
+          visible={isCropModalVisible}
+          imageUrl={getImageUrl()}
+          onCropSubmit={handleCropSubmit}
+          onCancel={() => setIsCropModalVisible(false)}
+        />
+        <div className="imageEditBar__imageEditBar">
+          {!error && (
+            <>
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() => setIsCropModalVisible(true)}
+              >
+                <Tooltip title="Crop">
+                  {isLoading ? <LoadingOutlined /> : <BorderOuterOutlined />}
+                </Tooltip>
+              </div>
             <div
               className="imageEditBar__imageEditBarItem"
               onClick={() =>
@@ -119,6 +146,7 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
           </Tooltip>
         </div>
       </div>
+    </>
     );
   },
 );
