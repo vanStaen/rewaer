@@ -8,6 +8,7 @@ import {
   RedoOutlined,
   VerticalAlignMiddleOutlined,
   LoadingOutlined,
+  BorderOuterOutlined,
 } from "@ant-design/icons";
 
 import { pictureRotate } from "./pictureRotate";
@@ -114,6 +115,10 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
       setIsLoading(false);
     };
 
+    const cropHandler = async (isCrop: boolean): Promise<void> => {
+      // TODO: Implement crop functionality
+    };
+
     return (
       <div className="imageEditBar__imageEditBar">
         {!error && (
@@ -124,6 +129,18 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
             {/* <Tooltip title="Change white balance">
         <FormatPainterOutlined />
       </Tooltip> */}
+            <div
+              className="imageEditBar__imageEditBarItem"
+              onClick={() => cropHandler(true)}
+            >
+              <Tooltip title="Crop">
+                {isLoading ? (
+                  <LoadingOutlined />
+                ) : (
+                  <BorderOuterOutlined />
+                )}
+              </Tooltip>
+            </div>
             <div
               className="imageEditBar__imageEditBarItem"
               onClick={() => flipHandler(true)}
