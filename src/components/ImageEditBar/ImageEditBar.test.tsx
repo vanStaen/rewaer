@@ -64,7 +64,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(4); // flip, mirror, rotate, upload
+      expect(items.length).toBe(5); // crop, flip, mirror, rotate, upload
     });
 
     it("should render all edit buttons for items", () => {
@@ -75,7 +75,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(4);
+      expect(items.length).toBe(5);
     });
 
     it("should not render edit buttons when error is true", () => {
@@ -116,7 +116,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[2]; // Third button is rotate
+      const rotateButton = items[3]; // Fourth button is rotate
 
       fireEvent.click(rotateButton);
 
@@ -139,7 +139,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[2];
+      const rotateButton = items[3];
 
       fireEvent.click(rotateButton);
 
@@ -155,7 +155,7 @@ describe("ImageEditBar", () => {
     });
 
     it("should handle rotate error gracefully", async () => {
-      const consoleLogSpy = jest.spyOn(console, "log").mockImplementation();
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
       (pictureRotate as jest.Mock).mockRejectedValue(
         new Error("Rotate failed"),
       );
@@ -167,15 +167,15 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[2];
+      const rotateButton = items[3];
 
       fireEvent.click(rotateButton);
 
       await waitFor(() => {
-        expect(consoleLogSpy).toHaveBeenCalledWith(expect.any(Error));
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
       });
 
-      consoleLogSpy.mockRestore();
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -188,7 +188,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const flipButton = items[0]; // First button is flip
+      const flipButton = items[1]; // Second button is flip
 
       fireEvent.click(flipButton);
 
@@ -211,7 +211,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const mirrorButton = items[1]; // Second button is mirror
+      const mirrorButton = items[2]; // Third button is mirror
 
       fireEvent.click(mirrorButton);
 
@@ -269,7 +269,7 @@ describe("ImageEditBar", () => {
     });
 
     it("should handle upload error gracefully", async () => {
-      const consoleLogSpy = jest.spyOn(console, "log").mockImplementation();
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
       (postPicture as jest.Mock).mockRejectedValue(new Error("Upload failed"));
 
       const { container } = render(
@@ -282,10 +282,10 @@ describe("ImageEditBar", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       await waitFor(() => {
-        expect(consoleLogSpy).toHaveBeenCalledWith(expect.any(Error));
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
       });
 
-      consoleLogSpy.mockRestore();
+      consoleErrorSpy.mockRestore();
     });
 
     it("should not upload when no file is selected", async () => {
@@ -312,7 +312,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[2];
+      const rotateButton = items[3];
 
       // Click multiple times quickly
       fireEvent.click(rotateButton);
@@ -332,7 +332,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const flipButton = items[0];
+      const flipButton = items[1];
 
       // Click multiple times quickly
       fireEvent.click(flipButton);
