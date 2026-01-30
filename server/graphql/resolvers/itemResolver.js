@@ -34,6 +34,7 @@ export const itemResolver = {
         title: args.itemInput.title,
         mediaId: args.itemInput.mediaId,
         category: args.itemInput.category,
+        pattern: args.itemInput.pattern,
         desc: args.itemInput.desc,
         colors: args.itemInput.colors,
         size: args.itemInput.size,

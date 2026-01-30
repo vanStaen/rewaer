@@ -47,7 +47,7 @@ export const DropDownElement: React.FC<DropDownElementProps> = observer(
 
     useEffect(() => {
       loadSelectedForSelect();
-    }, [value, itemsStore.selectedItem]);
+    }, [itemsStore.selectedItem]);
 
     useEffect(() => {
       loadOptionsForSelect();
@@ -66,13 +66,19 @@ export const DropDownElement: React.FC<DropDownElementProps> = observer(
     };
 
     const loadSelectedForSelect = (): void => {
-      const optionsSelectedTemp: string[] = [];
-      data.forEach((item) => {
-        if (value?.includes(item.code)) {
-          optionsSelectedTemp.push(item.code);
-        }
-      });
-      setOptionsSelected(optionsSelectedTemp as any);
+      if (multiSelect) {
+        // For multiselect, handle array of values
+        const optionsSelectedTemp: string[] = [];
+        data.forEach((item) => {
+          if (Array.isArray(value) && value.includes(item.code)) {
+            optionsSelectedTemp.push(item.code);
+          }
+        });
+        setOptionsSelected(optionsSelectedTemp);
+      } else {
+        // For single select, handle string value
+        setOptionsSelected(value || null);
+      }
     };
 
     const handleChangeInternal = (newValue: string | string[]): void => {
