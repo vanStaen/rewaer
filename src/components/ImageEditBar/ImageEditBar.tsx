@@ -46,81 +46,81 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                   {isLoading ? <LoadingOutlined /> : <BorderOuterOutlined />}
                 </Tooltip>
               </div>
-            <div
-              className="imageEditBar__imageEditBarItem"
-              onClick={() =>
-                flipHandler(
-                  page,
-                  selectedElement,
-                  true,
-                  isLoading,
-                  setIsLoading,
-                )
-              }
-            >
-              <Tooltip title="Flip">
-                {isLoading ? (
-                  <LoadingOutlined />
-                ) : (
-                  <VerticalAlignMiddleOutlined />
-                )}
-              </Tooltip>
-            </div>
-            <div
-              className="imageEditBar__imageEditBarItem"
-              onClick={() =>
-                flipHandler(
-                  page,
-                  selectedElement,
-                  false,
-                  isLoading,
-                  setIsLoading,
-                )
-              }
-            >
-              <Tooltip title="Mirror">
-                {isLoading ? (
-                  <LoadingOutlined />
-                ) : (
-                  <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
-                )}
-              </Tooltip>
-            </div>
-            <div
-              className="imageEditBar__imageEditBarItem"
-              onClick={() =>
-                rotateHandler(page, selectedElement, isLoading, setIsLoading)
-              }
-            >
-              <Tooltip title="Rotate">
-                {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
-              </Tooltip>
-            </div>
-          </>
-        )}
-        <div className="imageEditBar__imageEditBarItem">
-          <Tooltip title="Replace image">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="imageEditBar__form"
-            >
-              <input
-                type="file"
-                className="imageEditBar__inputfile"
-                name="inputfile"
-                id="file"
-                onChange={(e) =>
-                  fileSelectHandler(e, page, selectedElement, setIsLoading)
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  flipHandler(
+                    page,
+                    selectedElement,
+                    true,
+                    isLoading,
+                    setIsLoading,
+                  )
                 }
-              />
-              <label htmlFor="file">
-                {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
-              </label>
-            </form>
-          </Tooltip>
+              >
+                <Tooltip title="Flip">
+                  {isLoading ? (
+                    <LoadingOutlined />
+                  ) : (
+                    <VerticalAlignMiddleOutlined />
+                  )}
+                </Tooltip>
+              </div>
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  flipHandler(
+                    page,
+                    selectedElement,
+                    false,
+                    isLoading,
+                    setIsLoading,
+                  )
+                }
+              >
+                <Tooltip title="Mirror">
+                  {isLoading ? (
+                    <LoadingOutlined />
+                  ) : (
+                    <VerticalAlignMiddleOutlined className="imageEditBar__rotate90" />
+                  )}
+                </Tooltip>
+              </div>
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  rotateHandler(page, selectedElement, isLoading, setIsLoading)
+                }
+              >
+                <Tooltip title="Rotate">
+                  {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
+                </Tooltip>
+              </div>
+            </>
+          )}
+          <div className="imageEditBar__imageEditBarItem">
+            <Tooltip title="Replace image">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="imageEditBar__form"
+              >
+                <input
+                  type="file"
+                  className="imageEditBar__inputfile"
+                  name="inputfile"
+                  id="file"
+                  onChange={(e) =>
+                    fileSelectHandler(e, page, selectedElement, setIsLoading)
+                  }
+                />
+                <label htmlFor="file">
+                  {isLoading ? <LoadingOutlined /> : <UploadOutlined />}
+                </label>
+              </form>
+            </Tooltip>
+          </div>
         </div>
-      </div>
-    </>
+      </>
     );
   },
 );
