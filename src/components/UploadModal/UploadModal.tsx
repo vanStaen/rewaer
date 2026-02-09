@@ -10,7 +10,6 @@ import { postNewLook } from "./UploadForm/postNewLook";
 import { postNewItem } from "./UploadForm/postNewItem";
 import { getPictureUrl } from "@helpers/picture/getPictureUrl";
 import { deletePicture } from "@helpers/picture/deletePicture";
-
 import { UploadForm } from "./UploadForm/UploadForm";
 import { capitalizeFirstLetter } from "@helpers/capitalizeFirstLetter";
 import { pageStore } from "@stores/pageStore/pageStore.js";
@@ -28,6 +27,8 @@ interface UploadProps {
   page: "looks" | "items";
 }
 
+const THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX = 550;
+
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
   const { t } = useTranslation();
@@ -39,6 +40,9 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<LookInput>({});
+  const [showMobileForm, setShowMobileForm] = useState<boolean>(
+    window.innerWidth <= THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX
+  );
 
   const handlePostElement = async () => {
     if (mediaId) {
@@ -125,8 +129,14 @@ export const UploadModal = observer((props: UploadProps) => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      setShowMobileForm(window.innerWidth <= 550);
+    };
+
     window.addEventListener("scroll", scrollhandler);
+    window.addEventListener("resize", handleResize);
     return () => {
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", scrollhandler);
     };
   }, []);
