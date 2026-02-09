@@ -24,6 +24,8 @@
     "uploading": "Upload en cours",
     "restore": "Restaurer",
     "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
     "makePrivate": "Rendre privé",
     "makePublic": "Rendre publique",
     "isPrivate": "Privé",

@@ -20,14 +20,13 @@ import { LookInput } from "@type/lookTypes";
 import { ItemForm } from "./ItemForm/ItemForm";
 import { LookForm } from "./LookForm/LookForm";
 import { LookFromItemsForm } from "./LookFromItemsForm/LookFromItemsForm";
+import { THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX } from "@lib/data/setup";
 
 import "./UploadModal.less";
 
 interface UploadProps {
   page: "looks" | "items";
 }
-
-const THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX = 550;
 
 export const UploadModal = observer((props: UploadProps) => {
   const { page } = props;
@@ -40,8 +39,9 @@ export const UploadModal = observer((props: UploadProps) => {
 
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<LookInput>({});
+  const [showMobileFormPage, setshowMobileFormPage] = useState<number>(0);
   const [showMobileForm, setShowMobileForm] = useState<boolean>(
-    window.innerWidth <= THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX
+    window.innerWidth <= THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX,
   );
 
   const handlePostElement = async () => {
@@ -115,6 +115,7 @@ export const UploadModal = observer((props: UploadProps) => {
     setMediaUrl("");
     setItemInput({});
     setLookInput({});
+    setshowMobileFormPage(0);
   };
 
   const scrollhandler = () => {
@@ -218,18 +219,37 @@ export const UploadModal = observer((props: UploadProps) => {
         centered={true}
         footer={
           <div style={{ display: "flex", gap: "8px", width: "100%" }}>
-            <Button key="cancel" onClick={handleCancel} style={{ flex: 1 }}>
-              {t("main.cancel")}
-            </Button>
             <Button
-              key="Add"
-              type="primary"
-              onClick={handleOk}
+              key="cancel"
+              onClick={
+                showMobileFormPage === 0
+                  ? handleCancel
+                  : () => setshowMobileFormPage(0)
+              }
               style={{ flex: 1 }}
-              disabled={addButtonDisabled()}
             >
-              {t("main.add")}
+              {showMobileFormPage === 0 ? t("main.cancel") : t("main.previous")}
             </Button>
+            {showMobileForm && showMobileFormPage === 0 ? (
+              <Button
+                key="Add"
+                type="primary"
+                onClick={() => setshowMobileFormPage(1)}
+                style={{ flex: 1 }}
+              >
+                {t("main.next")}
+              </Button>
+            ) : (
+              <Button
+                key="Add"
+                type="primary"
+                onClick={handleOk}
+                style={{ flex: 1 }}
+                disabled={addButtonDisabled()}
+              >
+                {t("main.add")}
+              </Button>
+            )}
           </div>
         }
       >
@@ -246,30 +266,50 @@ export const UploadModal = observer((props: UploadProps) => {
             setSelectedMenuItem={setSelectedMenuItem}
           />
         )}
-        <div className="modal__container">
-          {selectedMenuItem === 0 ? (
-            <>
-              {!mediaUrl ? (
+
+        {showMobileForm ? (
+          <div className="modal__container">
+            {showMobileFormPage === 0 ? (
+              !mediaUrl ? (
                 <UploadForm page={page} setMediaId={setMediaId} />
               ) : (
                 <div
                   className="upload__picture"
                   style={{ background: `url(${mediaUrl})` }}
                 ></div>
-              )}
-              {page === "looks" ? (
-                <LookForm setLookInput={setLookInput} />
-              ) : (
-                <ItemForm setItemInput={setItemInput} />
-              )}
-            </>
-          ) : (
-            <>
-              <LookFromItemsForm />
+              )
+            ) : page === "looks" ? (
               <LookForm setLookInput={setLookInput} />
-            </>
-          )}
-        </div>
+            ) : (
+              <ItemForm setItemInput={setItemInput} />
+            )}
+          </div>
+        ) : (
+          <div className="modal__container">
+            {selectedMenuItem === 0 ? (
+              <>
+                {!mediaUrl ? (
+                  <UploadForm page={page} setMediaId={setMediaId} />
+                ) : (
+                  <div
+                    className="upload__picture"
+                    style={{ background: `url(${mediaUrl})` }}
+                  ></div>
+                )}
+                {page === "looks" ? (
+                  <LookForm setLookInput={setLookInput} />
+                ) : (
+                  <ItemForm setItemInput={setItemInput} />
+                )}
+              </>
+            ) : (
+              <>
+                <LookFromItemsForm />
+                <LookForm setLookInput={setLookInput} />
+              </>
+            )}
+          </div>
+        )}
       </Modal>
     </>
   );

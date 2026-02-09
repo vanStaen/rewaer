@@ -20,10 +20,7 @@ import { archiveAccount } from "./pages/Settings/actions/archiveAccount";
 import { Notifications } from "./pages/Notifications/Notifications";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import { Footer } from "./components/Footer/Footer";
-import {
-  THRESHOLD_FLOATING_FORMS,
-  FETCH_NEW_NOTIF_IN_MILLISECONDS,
-} from "./lib/data/setup";
+import { FETCH_NEW_NOTIF_IN_MILLISECONDS } from "./lib/data/setup";
 
 import "./lib/i18n";
 
@@ -53,18 +50,12 @@ const App: React.FC = observer(() => {
   const resetWindowInners = useCallback(() => {
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingUploadForm(
-      window.innerWidth < THRESHOLD_FLOATING_FORMS,
-    );
   }, []);
 
   useEffect(() => {
     // initialize variables
     pageStore.setWindowInnerHeight(window.innerHeight);
     pageStore.setWindowInnerWidth(window.innerWidth);
-    pageStore.setShowOnlyFloatingUploadForm(
-      window.innerWidth < THRESHOLD_FLOATING_FORMS,
-    );
     // Event listener
     window.addEventListener("resize", resetWindowInners);
     return () => {

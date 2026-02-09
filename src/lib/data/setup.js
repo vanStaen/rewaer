@@ -7,3 +7,6 @@ export const MAX_USERNAME_CHANGE_ALLOWED = 3;
 
 /* PROFILE */
 export const SIZE_THUMBNAIL_IN_PROFILE = 140;
+
+/* UPLOAD */
+export const THRESHOLD_TO_SHOW_MOBILE_FORM_IN_PX = 550;
