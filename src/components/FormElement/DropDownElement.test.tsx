@@ -174,7 +174,7 @@ describe("DropDownElement", () => {
     expect(selectElement).toBeInTheDocument();
   });
 
-  it("updates when value prop changes", () => {
+  it("updates when value prop changes", async () => {
     const { rerender } = render(
       <DropDownElement {...defaultProps} value="red" />,
     );
@@ -184,7 +184,9 @@ describe("DropDownElement", () => {
     // Update value prop
     rerender(<DropDownElement {...defaultProps} value="blue" />);
 
-    expect(screen.getByText("Blue")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Blue")).toBeInTheDocument();
+    });
   });
 
   it("handles empty value prop gracefully", () => {

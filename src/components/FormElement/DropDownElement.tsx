@@ -54,6 +54,10 @@ export const DropDownElement: React.FC<DropDownElementProps> = observer(
       loadSelectedForSelect();
     }, []);
 
+    useEffect(() => {
+      loadSelectedForSelect();
+    }, [value]);
+
     const loadOptionsForSelect = (): void => {
       const optionsTemp: OptionType[] = [];
       data.forEach((item) => {
