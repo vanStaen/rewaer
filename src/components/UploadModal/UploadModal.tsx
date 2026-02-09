@@ -171,11 +171,15 @@ export const UploadModal = observer((props: UploadProps) => {
       title: t("looks.createFromPicture"),
       action: () => {},
     },
-    {
-      icon: <SkinOutlined />,
-      title: t("looks.createFromItems"),
-      action: () => {},
-    },
+    ...(!showMobileForm
+      ? [
+          {
+            icon: <SkinOutlined />,
+            title: t("looks.createFromItems"),
+            action: () => {},
+          },
+        ]
+      : []),
   ];
 
   const menuItems = [
