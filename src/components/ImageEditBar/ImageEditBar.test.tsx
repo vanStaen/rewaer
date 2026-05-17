@@ -5,6 +5,7 @@ import "@testing-library/jest-dom";
 import { ImageEditBar } from "./ImageEditBar";
 import { pictureRotate } from "./pictureRotate";
 import { pictureFlip } from "./pictureFlip";
+import { pictureAutoCorrect } from "./pictureAutoCorrect";
 import { updateMediaLook } from "./updateMediaLook";
 import { updateMediaItem } from "./updateMediaItem";
 import { postPicture } from "@helpers/picture/postPicture";
@@ -17,6 +18,9 @@ jest.mock("./pictureRotate", () => ({
 }));
 jest.mock("./pictureFlip", () => ({
   pictureFlip: jest.fn(),
+}));
+jest.mock("./pictureAutoCorrect", () => ({
+  pictureAutoCorrect: jest.fn(),
 }));
 jest.mock("./updateMediaLook", () => ({
   updateMediaLook: jest.fn(),
@@ -48,6 +52,9 @@ describe("ImageEditBar", () => {
     jest.clearAllMocks();
     (pictureRotate as jest.Mock).mockResolvedValue("new-media-id-rotated");
     (pictureFlip as jest.Mock).mockResolvedValue("new-media-id-flipped");
+    (pictureAutoCorrect as jest.Mock).mockResolvedValue(
+      "new-media-id-autocorrected",
+    );
     (updateMediaLook as jest.Mock).mockResolvedValue(undefined);
     (updateMediaItem as jest.Mock).mockResolvedValue(undefined);
     (postPicture as jest.Mock).mockResolvedValue({
@@ -64,7 +71,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5); // crop, flip, mirror, rotate, upload
+      expect(items.length).toBe(6); // auto-correct, crop, flip, mirror, rotate, upload
     });
 
     it("should render all edit buttons for items", () => {
@@ -75,7 +82,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5);
+      expect(items.length).toBe(6);
     });
 
     it("should not render edit buttons when error is true", () => {
@@ -107,6 +114,82 @@ describe("ImageEditBar", () => {
     });
   });
 
+  describe("auto-correct functionality", () => {
+    it("should auto-correct look image when auto-correct button is clicked", async () => {
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const autoCorrectButton = items[0]; // First button is auto-correct
+
+      fireEvent.click(autoCorrectButton);
+
+      await waitFor(() => {
+        expect(pictureAutoCorrect).toHaveBeenCalledWith(
+          "look-media-123",
+          "looks",
+        );
+        expect(updateMediaLook).toHaveBeenCalledWith(
+          1,
+          "new-media-id-autocorrected",
+        );
+        expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it("should auto-correct item image when auto-correct button is clicked", async () => {
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const autoCorrectButton = items[0];
+
+      fireEvent.click(autoCorrectButton);
+
+      await waitFor(() => {
+        expect(pictureAutoCorrect).toHaveBeenCalledWith(
+          "item-media-456",
+          "items",
+        );
+        expect(updateMediaItem).toHaveBeenCalledWith(
+          2,
+          "new-media-id-autocorrected",
+        );
+        expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it("should handle auto-correct error gracefully", async () => {
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+      (pictureAutoCorrect as jest.Mock).mockRejectedValue(
+        new Error("Auto-correct failed"),
+      );
+
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const autoCorrectButton = items[0];
+
+      fireEvent.click(autoCorrectButton);
+
+      await waitFor(() => {
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
+      });
+
+      consoleErrorSpy.mockRestore();
+    });
+  });
+
   describe("rotate functionality", () => {
     it("should rotate look image when rotate button is clicked", async () => {
       const { container } = render(
@@ -116,7 +199,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[3]; // Fourth button is rotate
+      const rotateButton = items[4]; // Fifth button is rotate
 
       fireEvent.click(rotateButton);
 
@@ -139,7 +222,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[3];
+      const rotateButton = items[4];
 
       fireEvent.click(rotateButton);
 
@@ -167,7 +250,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[3];
+      const rotateButton = items[4];
 
       fireEvent.click(rotateButton);
 
@@ -188,7 +271,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const flipButton = items[1]; // Second button is flip
+      const flipButton = items[2]; // Third button is flip
 
       fireEvent.click(flipButton);
 
@@ -211,7 +294,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const mirrorButton = items[2]; // Third button is mirror
+      const mirrorButton = items[3]; // Fourth button is mirror
 
       fireEvent.click(mirrorButton);
 
@@ -312,7 +395,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const rotateButton = items[3];
+      const rotateButton = items[4];
 
       // Click multiple times quickly
       fireEvent.click(rotateButton);
@@ -332,7 +415,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const flipButton = items[1];
+      const flipButton = items[2];
 
       // Click multiple times quickly
       fireEvent.click(flipButton);
