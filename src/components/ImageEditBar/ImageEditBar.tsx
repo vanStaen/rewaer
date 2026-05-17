@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tooltip } from "antd";
 import { observer } from "mobx-react";
 import {
-  BulbOutlined,
+  // BulbOutlined,
   // FormatPainterOutlined,
   UploadOutlined,
   RedoOutlined,
@@ -16,7 +16,6 @@ import { rotateHandler } from "./handlers/rotateHandler";
 import { flipHandler } from "./handlers/flipHandler";
 import { cropHandler } from "./handlers/cropHandler";
 import { fileSelectHandler } from "./handlers/replaceHandler";
-import { autoCorrectHandler } from "./handlers/autoCorrectHandler";
 
 import "./ImageEditBar.less";
 
@@ -37,22 +36,6 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
         <div className="imageEditBar__imageEditBar">
           {!error && (
             <>
-              <div
-                className="imageEditBar__imageEditBarItem"
-                onClick={() =>
-                  autoCorrectHandler(
-                    page,
-                    selectedElement,
-                    isLoading,
-                    setIsLoading,
-                    t,
-                  )
-                }
-              >
-                <Tooltip title="Auto-correct">
-                  {isLoading ? <LoadingOutlined /> : <BulbOutlined />}
-                </Tooltip>
-              </div>
               <div
                 className="imageEditBar__imageEditBarItem"
                 onClick={() =>

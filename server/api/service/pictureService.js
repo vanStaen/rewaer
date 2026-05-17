@@ -3,7 +3,6 @@ import {
   flipImage,
   mirrorImage,
   cropImage,
-  autoCorrectImage,
 } from "../../lib/processImageSharp.js";
 
 import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
@@ -71,23 +70,6 @@ export const pictureService = {
       // upload new pictures
       const newPath = await uploadFileToS3(croppedImageBuffer, bucket, userId);
       // delete old pictures
-      await deleteFileFromS3(path, bucket);
-      // return new Picture Url
-      return newPath;
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
-  async autoCorrectPicture(path, bucket, userId) {
-    try {
-      // download picture
-      const originalImageBuffer = await getObjectFromS3(path, bucket);
-      // auto-correct picture (normalize colors, remove background, center subject)
-      const correctedImageBuffer = await autoCorrectImage(originalImageBuffer);
-      // upload new picture
-      const newPath = await uploadFileToS3(correctedImageBuffer, bucket, userId);
-      // delete old picture
       await deleteFileFromS3(path, bucket);
       // return new Picture Url
       return newPath;

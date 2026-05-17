@@ -37,9 +37,7 @@
     "errorLoadingImage": "Failed to load image. Please try again.",
     "success": "Success",
     "imageCropped": "Image cropped successfully.",
-    "errorCroppingImage": "Failed to crop image. Please try again.",
-    "imageAutoCorrected": "Image auto-corrected successfully.",
-    "errorAutoCorrectingImage": "Failed to auto-correct image. Please try again."
+    "errorCroppingImage": "Failed to crop image. Please try again."
   },
   "login": {
     "newHere": "New here",

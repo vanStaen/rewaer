@@ -37,9 +37,7 @@
     "errorLoadingImage": "Bild konnte nicht geladen werden. Bitte versuchen Sie es erneut.",
     "success": "Erfolg",
     "imageCropped": "Bild erfolgreich zugeschnitten.",
-    "errorCroppingImage": "Bild konnte nicht zugeschnitten werden. Bitte versuchen Sie es erneut.",
-    "imageAutoCorrected": "Bild erfolgreich korrigiert.",
-    "errorAutoCorrectingImage": "Bild konnte nicht korrigiert werden. Bitte versuchen Sie es erneut."
+    "errorCroppingImage": "Bild konnte nicht zugeschnitten werden. Bitte versuchen Sie es erneut."
   },
   "login": {
     "newHere": "Erstes mal hier",
