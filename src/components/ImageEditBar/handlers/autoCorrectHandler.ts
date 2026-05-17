@@ -15,25 +15,19 @@ export const autoCorrectHandler = async (
   if (!isLoading) {
     setIsLoading(true);
     try {
+      const mediaId = await pictureAutoCorrect(selectedElement.mediaId, page);
       if (page === "looks") {
-        const mediaId = await pictureAutoCorrect(selectedElement.mediaId, page);
         await updateMediaLook(selectedElement.id, mediaId);
         looksStore.setIsOutOfDate(true);
-        notification.success({
-          message: t("main.success"),
-          description: t("main.imageAutoCorrected"),
-          placement: "bottomRight",
-        });
       } else if (page === "items") {
-        const mediaId = await pictureAutoCorrect(selectedElement.mediaId, page);
         await updateMediaItem(selectedElement.id, mediaId);
         itemsStore.setIsOutOfDate(true);
-        notification.success({
-          message: t("main.success"),
-          description: t("main.imageAutoCorrected"),
-          placement: "bottomRight",
-        });
       }
+      notification.success({
+        message: t("main.success"),
+        description: t("main.imageAutoCorrected"),
+        placement: "bottomRight",
+      });
     } catch (e) {
       notification.error({
         message: t("main.error"),

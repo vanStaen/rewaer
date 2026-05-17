@@ -139,6 +139,7 @@ export const autoCorrectImage = async (originalImageBuffer) => {
       targetWidth = Math.round(trimmedHeight * originalAspectRatio);
     }
 
+    // Use floor so any odd pixel remainder goes to right/bottom, keeping the subject centered
     const paddingLeft = Math.floor((targetWidth - trimmedWidth) / 2);
     const paddingTop = Math.floor((targetHeight - trimmedHeight) / 2);
 
