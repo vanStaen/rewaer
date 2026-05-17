@@ -119,4 +119,30 @@ router.post("/crop/", async (req, res) => {
   }
 });
 
+router.post("/autocorrect/", async (req, res) => {
+  try {
+    if (!req.isAuth) {
+      throw new Error("Unauthorized!");
+    }
+    if (!req.body.path) {
+      throw new Error("Please provide a path!");
+    }
+    if (!req.body.bucket) {
+      throw new Error("Please provide a bucket!");
+    }
+    const path = req.body.path;
+    const bucket = req.body.bucket;
+    const newPath = await pictureService.autoCorrectPicture(
+      path,
+      bucket,
+      req.userId,
+    );
+    res.status(200).json({ newPath });
+  } catch (err) {
+    res.status(400).json({
+      error: `${err}`,
+    });
+  }
+});
+
 export { router };

@@ -98,3 +98,63 @@ export const cropImage = async (
       console.error("cropImage :", err);
     });
 };
+
+export const autoCorrectImage = async (originalImageBuffer) => {
+  try {
+    const metadata = await sharp(originalImageBuffer).metadata();
+    const originalWidth = metadata.width;
+    const originalHeight = metadata.height;
+    const originalAspectRatio = originalWidth / originalHeight;
+
+    // Normalize colors/white balance and flatten to white background
+    const normalizedBuffer = await sharp(originalImageBuffer)
+      .normalize()
+      .flatten({ background: "#ffffff" })
+      .png()
+      .toBuffer();
+
+    // Trim uniform background to isolate the main subject
+    let trimmedBuffer, trimmedWidth, trimmedHeight;
+    try {
+      const trimResult = await sharp(normalizedBuffer)
+        .trim({ threshold: 10 })
+        .toBuffer({ resolveWithObject: true });
+      trimmedBuffer = trimResult.data;
+      trimmedWidth = trimResult.info.width;
+      trimmedHeight = trimResult.info.height;
+    } catch {
+      // If trim fails (e.g. fully uniform image), use normalized buffer as-is
+      trimmedBuffer = normalizedBuffer;
+      trimmedWidth = originalWidth;
+      trimmedHeight = originalHeight;
+    }
+
+    // Restore original aspect ratio by adding white padding around the subject
+    let targetWidth, targetHeight;
+    if (trimmedWidth / trimmedHeight > originalAspectRatio) {
+      targetWidth = trimmedWidth;
+      targetHeight = Math.round(trimmedWidth / originalAspectRatio);
+    } else {
+      targetHeight = trimmedHeight;
+      targetWidth = Math.round(trimmedHeight * originalAspectRatio);
+    }
+
+    // Use floor so any odd pixel remainder goes to right/bottom, keeping the subject centered
+    const paddingLeft = Math.floor((targetWidth - trimmedWidth) / 2);
+    const paddingTop = Math.floor((targetHeight - trimmedHeight) / 2);
+
+    return await sharp(trimmedBuffer)
+      .extend({
+        left: paddingLeft,
+        right: targetWidth - trimmedWidth - paddingLeft,
+        top: paddingTop,
+        bottom: targetHeight - trimmedHeight - paddingTop,
+        background: { r: 255, g: 255, b: 255, alpha: 1 },
+      })
+      .png()
+      .toBuffer();
+  } catch (err) {
+    console.error("autoCorrectImage :", err);
+    throw err;
+  }
+};
