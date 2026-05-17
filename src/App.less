@@ -8,7 +8,11 @@
 input,
 textarea,
 select,
-button {
+button,
+.ant-input,
+.ant-input-number-input,
+.ant-select-selector,
+.ant-picker-input > input {
   font-size: 16px;
 }
 
@@ -36,6 +40,7 @@ html {
     }
 
     .App {
+      // 100vh fallback + 100dvh for mobile browser UI-safe full-screen height
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
