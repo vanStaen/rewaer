@@ -3,7 +3,7 @@ type Look {
     id: ID!
     userId: Int!
     title: String
-    mediaId: String!
+    mediaId: MediaId!
     category: String
     season: String
     items: [Int]
@@ -20,7 +20,7 @@ type Look {
 export const LookInputData = `
 input LookInputData {
     title: String
-    mediaId: String
+    mediaId: MediaIdInput
     category: String
     season: String
     items: [Int]

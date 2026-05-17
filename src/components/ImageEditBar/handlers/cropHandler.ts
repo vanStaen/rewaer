@@ -4,6 +4,10 @@ import { updateMediaLook } from "../updateMediaLook";
 import { updateMediaItem } from "../updateMediaItem";
 import { looksStore } from "../../../pages/Looks/looksStore";
 import { itemsStore } from "../../../pages/Items/itemsStore";
+import {
+  getCurrentMediaId,
+  getOriginalMediaId,
+} from "@helpers/picture/mediaId";
 
 export const cropHandler = async (
   page: "looks" | "items",
@@ -23,14 +27,17 @@ export const cropHandler = async (
 
       if (page === "looks") {
         const mediaId = await pictureCrop(
-          selectedElement.mediaId,
+          getCurrentMediaId(selectedElement.mediaId),
           page,
           left,
           top,
           width,
           height,
         );
-        await updateMediaLook(selectedElement.id, mediaId);
+        await updateMediaLook(selectedElement.id, {
+          mediaId,
+          originalMediaId: getOriginalMediaId(selectedElement.mediaId),
+        });
         looksStore.setIsOutOfDate(true);
         notification.success({
           message: t("main.success"),
@@ -39,14 +46,17 @@ export const cropHandler = async (
         });
       } else if (page === "items") {
         const mediaId = await pictureCrop(
-          selectedElement.mediaId,
+          getCurrentMediaId(selectedElement.mediaId),
           page,
           left,
           top,
           width,
           height,
         );
-        await updateMediaItem(selectedElement.id, mediaId);
+        await updateMediaItem(selectedElement.id, {
+          mediaId,
+          originalMediaId: getOriginalMediaId(selectedElement.mediaId),
+        });
         itemsStore.setIsOutOfDate(true);
         notification.success({
           message: t("main.success"),

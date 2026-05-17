@@ -12,6 +12,7 @@ import { convertCodeToObjectString } from "@helpers/convertCodeTo";
 import { userStore } from "@stores/userStore/userStore";
 import { profileStore } from "@stores/profileStore/profileStore";
 import { pageStore } from "@stores/pageStore/pageStore";
+import { MediaIdValue, getCurrentMediaId } from "@helpers/picture/mediaId";
 
 import "./SearchPage.less";
 
@@ -33,7 +34,7 @@ interface Item {
   id: string;
   title: string;
   brand?: string;
-  mediaId: string;
+  mediaId: string | MediaIdValue;
   colors: string[];
   pattern?: string;
 }
@@ -41,7 +42,7 @@ interface Item {
 interface Look {
   id: string;
   title: string;
-  mediaId: string;
+  mediaId: string | MediaIdValue;
   category?: string;
   season?: string;
   items: any[];
@@ -197,7 +198,7 @@ export const SearchPage: React.FC = () => {
                 <div className="search__resultItem" key={item.id}>
                   <div className="search__resultItemPictures">
                     <img
-                      src={item.mediaId}
+                      src={getCurrentMediaId(item.mediaId)}
                       className="search__picture"
                       alt={item.title}
                     />
@@ -237,7 +238,7 @@ export const SearchPage: React.FC = () => {
                 <div className="search__resultItem" key={look.id}>
                   <div className="search__resultItemPictures">
                     <img
-                      src={look.mediaId}
+                      src={getCurrentMediaId(look.mediaId)}
                       className="search__picture"
                       alt={look.title}
                     />

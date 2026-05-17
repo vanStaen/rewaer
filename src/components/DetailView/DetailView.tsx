@@ -5,6 +5,7 @@ import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArr
 import { ImageEditBar } from "@components/ImageEditBar/ImageEditBar";
 import { useMediaUrl } from "@hooks/useMediaUrl";
 import { switchElement } from "./switchElement.js";
+import { getCurrentMediaId } from "@helpers/picture/mediaId";
 
 import "./DetailView.less";
 
@@ -34,7 +35,7 @@ export const DetailView = ({
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
-    selectedElement.mediaId,
+    getCurrentMediaId(selectedElement.mediaId),
     page,
     "m",
   );

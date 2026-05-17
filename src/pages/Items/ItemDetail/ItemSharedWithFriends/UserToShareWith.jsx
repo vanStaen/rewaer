@@ -8,6 +8,7 @@ import { userStore } from "@stores/userStore/userStore.js";
 import { itemsStore } from "../../itemsStore.ts";
 import { updateItemSharedWith } from "./updateItemSharedWith";
 import { postNotificationItemShared } from "./postNotificationItemShared";
+import { getCurrentMediaId } from "@helpers/picture/mediaId";
 
 import "./ItemSharedWithFriends.css";
 
@@ -39,7 +40,7 @@ export const UserToShareWith = observer((props) => {
         // Create notification
         await postNotificationItemShared(
           6,
-          itemsStore.selectedItem.mediaId,
+          getCurrentMediaId(itemsStore.selectedItem.mediaId),
           userId,
           itemsStore.selectedItem.id,
         );

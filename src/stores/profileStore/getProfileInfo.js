@@ -28,14 +28,20 @@ export const getProfileInfo = async (username) => {
               items {
                 id,
                 title,
-                mediaId,
+                mediaId {
+                  mediaId,
+                  originalMediaId
+                },
                 likes, 
                 dislikes,
               },
               looks {
                 id,
                 title,
-                mediaId,
+                mediaId {
+                  mediaId,
+                  originalMediaId
+                },
                 likes, 
                 dislikes,
               }

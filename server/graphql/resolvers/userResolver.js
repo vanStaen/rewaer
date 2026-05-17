@@ -5,6 +5,41 @@ import { Look } from "../../models/Look.js";
 import { notificationService } from "../../api/service/notificationService.js";
 import { Op } from "sequelize";
 
+const normalizeMediaId = (mediaId) => {
+  if (!mediaId) {
+    return null;
+  }
+  if (typeof mediaId === "string") {
+    return {
+      mediaId,
+      originalMediaId: mediaId,
+    };
+  }
+  return {
+    mediaId: mediaId.mediaId,
+    originalMediaId: mediaId.originalMediaId || mediaId.mediaId,
+  };
+};
+
+const normalizeUserElementsMedia = (user) => {
+  if (!user) {
+    return user;
+  }
+  if (user.items) {
+    user.items = user.items.map((item) => {
+      item.dataValues.mediaId = normalizeMediaId(item.dataValues.mediaId);
+      return item;
+    });
+  }
+  if (user.looks) {
+    user.looks = user.looks.map((look) => {
+      look.dataValues.mediaId = normalizeMediaId(look.dataValues.mediaId);
+      return look;
+    });
+  }
+  return user;
+};
+
 export const userResolver = {
   // TODO: split get user call into smaller
   async getUser(_, req) {
@@ -33,10 +68,11 @@ export const userResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await User.findOne({
+    const user = await User.findOne({
       where: { id: req.userId },
       include: [Look],
     });
+    return normalizeUserElementsMedia(user);
   },
 
   // TODO: split get user call into smaller
@@ -51,7 +87,7 @@ export const userResolver = {
   },
 
   async getProfileByName(args, req) {
-    return await User.findOne({
+    const user = await User.findOne({
       where: { userName: args.userName },
       include: [
         {
@@ -80,10 +116,11 @@ export const userResolver = {
         "followed",
       ],
     });
+    return normalizeUserElementsMedia(user);
   },
 
   async getProfileById(args, req) {
-    return await User.findOne({
+    const user = await User.findOne({
       where: { id: args.id },
       include: [
         {
@@ -111,6 +148,7 @@ export const userResolver = {
         "followed",
       ],
     });
+    return normalizeUserElementsMedia(user);
   },
 
   // addUser(userInput: UserInputData!): User!

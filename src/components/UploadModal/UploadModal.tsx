@@ -47,7 +47,10 @@ export const UploadModal = observer((props: UploadProps) => {
   const handlePostElement = async () => {
     if (mediaId) {
       if (page === "looks") {
-        await postNewLook({ ...lookInput, mediaId }).then(() => {
+        await postNewLook({
+          ...lookInput,
+          mediaId: { mediaId, originalMediaId: mediaId },
+        }).then(() => {
           notification.success({
             message: t("looks.lookAdded"),
             placement: "bottomRight",
@@ -55,7 +58,10 @@ export const UploadModal = observer((props: UploadProps) => {
           looksStore.setIsOutOfDate(true);
         });
       } else if (page === "items") {
-        await postNewItem({ ...itemInput, mediaId }).then(() => {
+        await postNewItem({
+          ...itemInput,
+          mediaId: { mediaId, originalMediaId: mediaId },
+        }).then(() => {
           notification.success({
             message: t("items.itemAdded"),
             placement: "bottomRight",

@@ -4,13 +4,46 @@ import { Item } from "../../models/Item.js";
 import { notificationService } from "../../api/service/notificationService.js";
 import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 
+const normalizeMediaId = (mediaId) => {
+  if (!mediaId) {
+    return null;
+  }
+  if (typeof mediaId === "string") {
+    return {
+      mediaId,
+      originalMediaId: mediaId,
+    };
+  }
+  return {
+    mediaId: mediaId.mediaId,
+    originalMediaId: mediaId.originalMediaId || mediaId.mediaId,
+  };
+};
+
+const getCurrentMediaId = (mediaId) =>
+  typeof mediaId === "string" ? mediaId : mediaId?.mediaId;
+
+const cleanupReplacedMedia = async (oldMediaId, newMediaId, bucket) => {
+  const oldCurrentMediaId = getCurrentMediaId(oldMediaId);
+  const oldOriginalMediaId =
+    typeof oldMediaId === "string" ? oldMediaId : oldMediaId?.originalMediaId;
+  const newCurrentMediaId = getCurrentMediaId(newMediaId);
+  if (
+    oldCurrentMediaId &&
+    oldCurrentMediaId !== oldOriginalMediaId &&
+    oldCurrentMediaId !== newCurrentMediaId
+  ) {
+    await deleteFileFromS3(oldCurrentMediaId, bucket);
+  }
+};
+
 export const itemResolver = {
   async getItems(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
     // : where userId or sharedWith contain req.userId
-    return await Item.findAll({
+    const items = await Item.findAll({
       where: {
         [Op.or]: [
           { userId: req.userId },
@@ -24,6 +57,10 @@ export const itemResolver = {
         ["id", "DESC"],
       ],
     });
+    return items.map((item) => {
+      item.dataValues.mediaId = normalizeMediaId(item.dataValues.mediaId);
+      return item;
+    });
   },
 
   // addItem(itemInput: ItemInputData!): Item!
@@ -32,7 +69,7 @@ export const itemResolver = {
       const item = new Item({
         userId: req.userId,
         title: args.itemInput.title,
-        mediaId: args.itemInput.mediaId,
+        mediaId: normalizeMediaId(args.itemInput.mediaId),
         category: args.itemInput.category,
         pattern: args.itemInput.pattern,
         desc: args.itemInput.desc,
@@ -43,7 +80,7 @@ export const itemResolver = {
       const newItem = await item.save();
       await notificationService.createNotificationBasic(
         req.userId,
-        args.itemInput.mediaId,
+        getCurrentMediaId(args.itemInput.mediaId),
         4,
         newItem.id,
       );
@@ -58,7 +95,7 @@ export const itemResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const updateFields = [];
+    const updateFields = {};
     const updatableFields = [
       "title",
       "category",
@@ -84,7 +121,12 @@ export const itemResolver = {
     });
     if (args.itemInput.mediaId) {
       const oldItem = await Item.findOne({ where: { id: args.itemId } });
-      deleteFileFromS3(oldItem.mediaId, "items");
+      const normalizedInputMediaId = normalizeMediaId(args.itemInput.mediaId);
+      updateFields.mediaId = {
+        ...normalizeMediaId(oldItem.mediaId),
+        ...normalizedInputMediaId,
+      };
+      await cleanupReplacedMedia(oldItem.mediaId, updateFields.mediaId, "items");
     }
     try {
       const updatedItem = await Item.update(updateFields, {
@@ -100,6 +142,9 @@ export const itemResolver = {
       }
       // updatedItem[0]: number or row udpated
       // updatedItem[1]: rows updated
+      updatedItem[1].dataValues.mediaId = normalizeMediaId(
+        updatedItem[1].dataValues.mediaId,
+      );
       return updatedItem[1];
     } catch (err) {
       console.log(err);
@@ -113,7 +158,11 @@ export const itemResolver = {
     }
     const itemToDelete = await Item.findOne({ where: { id: args.itemId } });
     try {
-      await deleteFileFromS3(itemToDelete.mediaId, "items");
+      const normalizedMediaId = normalizeMediaId(itemToDelete.mediaId);
+      await deleteFileFromS3(normalizedMediaId.mediaId, "items");
+      if (normalizedMediaId.originalMediaId !== normalizedMediaId.mediaId) {
+        await deleteFileFromS3(normalizedMediaId.originalMediaId, "items");
+      }
       await Item.destroy({
         where: {
           id: args.itemId,

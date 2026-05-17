@@ -3,6 +3,10 @@ import { updateMediaLook } from "../updateMediaLook";
 import { updateMediaItem } from "../updateMediaItem";
 import { looksStore } from "../../../pages/Looks/looksStore";
 import { itemsStore } from "../../../pages/Items/itemsStore";
+import {
+  getCurrentMediaId,
+  getOriginalMediaId,
+} from "@helpers/picture/mediaId";
 
 export const flipHandler = async (
   page: "looks" | "items",
@@ -16,19 +20,25 @@ export const flipHandler = async (
     try {
       if (page === "looks") {
         const mediaId = await pictureFlip(
-          selectedElement.mediaId,
+          getCurrentMediaId(selectedElement.mediaId),
           page,
           isMirror,
         );
-        await updateMediaLook(selectedElement.id, mediaId);
+        await updateMediaLook(selectedElement.id, {
+          mediaId,
+          originalMediaId: getOriginalMediaId(selectedElement.mediaId),
+        });
         looksStore.setIsOutOfDate(true);
       } else if (page === "items") {
         const mediaId = await pictureFlip(
-          selectedElement.mediaId,
+          getCurrentMediaId(selectedElement.mediaId),
           page,
           isMirror,
         );
-        await updateMediaItem(selectedElement.id, mediaId);
+        await updateMediaItem(selectedElement.id, {
+          mediaId,
+          originalMediaId: getOriginalMediaId(selectedElement.mediaId),
+        });
         itemsStore.setIsOutOfDate(true);
       }
     } catch (e) {

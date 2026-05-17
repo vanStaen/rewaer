@@ -13,7 +13,7 @@ export const Item = sequelize.sequelize.define("item", {
     required: false,
   },
   mediaId: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSONB,
     required: true,
   },
   category: {

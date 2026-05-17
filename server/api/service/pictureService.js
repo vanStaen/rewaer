@@ -5,7 +5,6 @@ import {
   cropImage,
 } from "../../lib/processImageSharp.js";
 
-import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 import { getObjectFromS3 } from "../../lib/S3/getObjectFromS3.js";
 import { uploadFileToS3 } from "../../lib/S3/uploadFileToS3.js";
 
@@ -22,8 +21,6 @@ export const pictureService = {
       );
       // upload new pictures
       const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
-      // delete old pictures
-      await deleteFileFromS3(path, bucket);
       // return new Picture Url
       return newPath;
     } catch (error) {
@@ -45,8 +42,6 @@ export const pictureService = {
     }
     // upload new pictures
     const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
-    // delete old pictures
-    await deleteFileFromS3(path, bucket);
     // return new Picture Url
     return newPath;
   },
@@ -69,8 +64,6 @@ export const pictureService = {
       );
       // upload new pictures
       const newPath = await uploadFileToS3(croppedImageBuffer, bucket, userId);
-      // delete old pictures
-      await deleteFileFromS3(path, bucket);
       // return new Picture Url
       return newPath;
     } catch (error) {

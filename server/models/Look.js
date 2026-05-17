@@ -13,7 +13,7 @@ export const Look = sequelize.sequelize.define("look", {
     required: false,
   },
   mediaId: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSONB,
     required: true,
   },
   category: {

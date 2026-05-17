@@ -1,9 +1,14 @@
 export const Item = `
+type MediaId {
+    mediaId: String!
+    originalMediaId: String!
+}
+
 type Item {
     id: ID!
     userId: Int!
     title: String
-    mediaId: String!
+    mediaId: MediaId!
     category: String
     notes: String
     location: String
@@ -24,9 +29,14 @@ type Item {
 }`;
 
 export const ItemInputData = `
+input MediaIdInput {
+    mediaId: String!
+    originalMediaId: String!
+}
+
 input ItemInputData {
     title: String
-    mediaId: String
+    mediaId: MediaIdInput
     category: String
     notes: String
     location: String

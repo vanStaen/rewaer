@@ -22,7 +22,10 @@ export async function fetchItems(): Promise<Item[]> {
           status,
           dislikes,
           createdAt,
-          mediaId,
+          mediaId {
+            mediaId,
+            originalMediaId
+          },
           user {
               id,
               avatar,

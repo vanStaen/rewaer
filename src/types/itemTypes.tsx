@@ -1,4 +1,5 @@
 import { User } from "./userTypes";
+import { MediaIdValue } from "@helpers/picture/mediaId";
 
 export interface Item {
   id: number | string;
@@ -10,7 +11,7 @@ export interface Item {
   active: boolean;
   favorite: boolean;
   private: boolean;
-  mediaId: string;
+  mediaId: MediaIdValue | string;
   likes: string[];
   dislikes: string[];
   createdAt: string;
@@ -26,7 +27,7 @@ export interface getItemsGraphQLResponse {
 
 export interface ItemInput {
   title?: string;
-  mediaId?: string;
+  mediaId?: MediaIdValue | string;
   category?: string;
   notes?: string;
   location?: string;

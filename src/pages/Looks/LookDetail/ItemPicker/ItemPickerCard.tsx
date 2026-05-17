@@ -2,6 +2,7 @@ import React from "react";
 import { Spin } from "antd";
 import { useMediaUrl } from "@hooks/useMediaUrl";
 import { Item } from "@type/itemTypes";
+import { getCurrentMediaId } from "@helpers/picture/mediaId";
 
 interface ItemPickerCardProps {
   item: Item;
@@ -17,7 +18,7 @@ export const ItemPickerCard: React.FC<ItemPickerCardProps> = ({
   onClick,
 }) => {
   const [mediaUrl, isLoadingMedia, loadingMediaError] = useMediaUrl(
-    item.mediaId,
+    getCurrentMediaId(item.mediaId),
     "items",
     "t",
   );

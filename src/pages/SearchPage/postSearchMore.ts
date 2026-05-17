@@ -1,3 +1,5 @@
+import { MediaIdValue } from "@helpers/picture/mediaId";
+
 interface SearchResults {
   count: number;
   users: Array<{
@@ -11,14 +13,14 @@ interface SearchResults {
     id: string;
     title: string;
     brand?: string;
-    mediaId: string;
+    mediaId: string | MediaIdValue;
     colors: string[];
     pattern?: string;
   }>;
   looks: Array<{
     id: string;
     title: string;
-    mediaId: string;
+    mediaId: string | MediaIdValue;
     category?: string;
     season?: string;
     items: any[];

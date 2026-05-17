@@ -1,5 +1,6 @@
 import { User } from "./userTypes";
 import { Item } from "./itemTypes";
+import { MediaIdValue } from "@helpers/picture/mediaId";
 
 export interface Look {
   id: number | string;
@@ -9,7 +10,7 @@ export interface Look {
   active: boolean;
   favorite: boolean;
   private: boolean;
-  mediaId: string;
+  mediaId: MediaIdValue | string;
   likes: string[];
   dislikes: string[];
   createdAt: string;
@@ -21,7 +22,7 @@ export interface LookInput {
   title?: string;
   category?: string | null;
   season?: string;
-  mediaId?: string;
+  mediaId?: MediaIdValue | string;
   private?: boolean;
   items?: number[];
 }

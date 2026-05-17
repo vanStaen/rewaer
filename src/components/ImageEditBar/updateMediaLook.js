@@ -1,7 +1,7 @@
 export async function updateMediaLook(id, mediaId) {
   const requestBody = {
     query: `
-            mutation ($id: ID!, $mediaId: String) {
+            mutation ($id: ID!, $mediaId: MediaIdInput) {
               updateLook(
                 lookId: $id,
                 lookInput: { 
@@ -9,7 +9,10 @@ export async function updateMediaLook(id, mediaId) {
                       }
               ) {
                 id,
-                mediaId,
+                mediaId {
+                  mediaId,
+                  originalMediaId
+                },
               }
             }
             `,

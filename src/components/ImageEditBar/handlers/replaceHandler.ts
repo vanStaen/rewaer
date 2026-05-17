@@ -32,10 +32,16 @@ const replaceMediaHandler = async (
     const res = await postPicture(file, page);
     const mediaId = res.path;
     if (page === "looks") {
-      await updateMediaLook(selectedElement.id, mediaId);
+      await updateMediaLook(selectedElement.id, {
+        mediaId,
+        originalMediaId: mediaId,
+      });
       looksStore.setIsOutOfDate(true);
     } else if (page === "items") {
-      await updateMediaItem(selectedElement.id, mediaId);
+      await updateMediaItem(selectedElement.id, {
+        mediaId,
+        originalMediaId: mediaId,
+      });
       itemsStore.setIsOutOfDate(true);
     }
   } catch (e) {

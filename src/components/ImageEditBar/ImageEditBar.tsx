@@ -9,6 +9,7 @@ import {
   VerticalAlignMiddleOutlined,
   LoadingOutlined,
   BorderOuterOutlined,
+  UndoOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +17,11 @@ import { rotateHandler } from "./handlers/rotateHandler";
 import { flipHandler } from "./handlers/flipHandler";
 import { cropHandler } from "./handlers/cropHandler";
 import { fileSelectHandler } from "./handlers/replaceHandler";
+import { restoreHandler } from "./handlers/restoreHandler";
+import {
+  getCurrentMediaId,
+  getOriginalMediaId,
+} from "@helpers/picture/mediaId";
 
 import "./ImageEditBar.less";
 
@@ -30,6 +36,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
+    const canRestore =
+      getCurrentMediaId(selectedElement?.mediaId) !==
+      getOriginalMediaId(selectedElement?.mediaId);
 
     return (
       <>
@@ -94,6 +103,24 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
               >
                 <Tooltip title="Rotate">
                   {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
+                </Tooltip>
+              </div>
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  canRestore &&
+                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
+                }
+              >
+                <Tooltip title={t("main.restore")}>
+                  {isLoading ? (
+                    <LoadingOutlined />
+                  ) : (
+                    <UndoOutlined
+                      style={{ opacity: canRestore ? 1 : 0.35 }}
+                      className={!canRestore ? "disable-click" : ""}
+                    />
+                  )}
                 </Tooltip>
               </div>
             </>

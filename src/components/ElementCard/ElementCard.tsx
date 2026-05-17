@@ -29,6 +29,7 @@ import { updateFavoriteLook } from "../../pages/Looks/actions/updateFavoriteLook
 import { updatePrivateLook } from "../../pages/Looks/actions/updatePrivateLook";
 
 import { getPictureUrl } from "@helpers/picture/getPictureUrl";
+import { getCurrentMediaId } from "@helpers/picture/mediaId";
 import { UserAvatar } from "../UserAvatar/UserAvatar.jsx";
 import { ElementCardActions } from "./ElementCardActions";
 import { ElementCardProps } from "./ElementCardTypes";
@@ -75,6 +76,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
       <Spin />
     </div>
   );
+  const currentMediaId = getCurrentMediaId(element.mediaId);
 
   const errorFormated = (
     <div
@@ -93,7 +95,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
 
   const imageLoadingHander = async (): Promise<void> => {
     try {
-      const url = await getPictureUrl(element.mediaId, type, "t");
+      const url = await getPictureUrl(currentMediaId, type, "t");
       const isloaded = new Promise<string>((resolve, reject) => {
         const loadImg = new Image();
         loadImg.src = url;
@@ -141,7 +143,7 @@ export const ElementCard: React.FC<ElementCardProps> = ({
     if (isVisible) {
       imageLoadingHander();
     }
-  }, [isVisible, element.mediaId]);
+  }, [isVisible, currentMediaId]);
 
   const handleArchiveItem = (value: boolean): void => {
     archiveItem(element.id, value)
@@ -454,10 +456,10 @@ export const ElementCard: React.FC<ElementCardProps> = ({
             </Tooltip>
           ) : (
             element.active && (
-              <LikeDislikeButton
-                id={element.id}
-                mediaId={element.mediaId}
-                arrayLikes={element.likes}
+                <LikeDislikeButton
+                  id={element.id}
+                  mediaId={currentMediaId}
+                  arrayLikes={element.likes}
                 arrayDislikes={element.dislikes}
                 type="item"
               />

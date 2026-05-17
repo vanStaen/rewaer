@@ -3,12 +3,45 @@ import { Look } from "../../models/Look.js";
 import { notificationService } from "../../api/service/notificationService.js";
 import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 
+const normalizeMediaId = (mediaId) => {
+  if (!mediaId) {
+    return null;
+  }
+  if (typeof mediaId === "string") {
+    return {
+      mediaId,
+      originalMediaId: mediaId,
+    };
+  }
+  return {
+    mediaId: mediaId.mediaId,
+    originalMediaId: mediaId.originalMediaId || mediaId.mediaId,
+  };
+};
+
+const getCurrentMediaId = (mediaId) =>
+  typeof mediaId === "string" ? mediaId : mediaId?.mediaId;
+
+const cleanupReplacedMedia = async (oldMediaId, newMediaId, bucket) => {
+  const oldCurrentMediaId = getCurrentMediaId(oldMediaId);
+  const oldOriginalMediaId =
+    typeof oldMediaId === "string" ? oldMediaId : oldMediaId?.originalMediaId;
+  const newCurrentMediaId = getCurrentMediaId(newMediaId);
+  if (
+    oldCurrentMediaId &&
+    oldCurrentMediaId !== oldOriginalMediaId &&
+    oldCurrentMediaId !== newCurrentMediaId
+  ) {
+    await deleteFileFromS3(oldCurrentMediaId, bucket);
+  }
+};
+
 export const lookResolver = {
   async getLooks(args, req) {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await Look.findAll({
+    const looks = await Look.findAll({
       where: { userId: req.userId },
       include: User,
       order: [
@@ -17,6 +50,10 @@ export const lookResolver = {
         ["id", "DESC"],
       ],
     });
+    return looks.map((look) => {
+      look.dataValues.mediaId = normalizeMediaId(look.dataValues.mediaId);
+      return look;
+    });
   },
 
   // addLook(lookInput: LookInputData!): Look!
@@ -24,7 +61,7 @@ export const lookResolver = {
     try {
       const look = new Look({
         title: args.lookInput.title,
-        mediaId: args.lookInput.mediaId,
+        mediaId: normalizeMediaId(args.lookInput.mediaId),
         category: args.lookInput.category,
         private: args.lookInput.private,
         season: args.lookInput.season,
@@ -33,7 +70,7 @@ export const lookResolver = {
       const newLook = await look.save();
       await notificationService.createNotificationBasic(
         req.userId,
-        args.lookInput.mediaId,
+        getCurrentMediaId(args.lookInput.mediaId),
         5,
         newLook.id,
       );
@@ -48,7 +85,7 @@ export const lookResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    const updateFields = [];
+    const updateFields = {};
     const updatableFields = [
       "title",
       "category",
@@ -68,7 +105,12 @@ export const lookResolver = {
     });
     if (args.lookInput.mediaId) {
       const oldLook = await Look.findOne({ where: { id: args.lookId } });
-      deleteFileFromS3(oldLook.mediaId, "looks");
+      const normalizedInputMediaId = normalizeMediaId(args.lookInput.mediaId);
+      updateFields.mediaId = {
+        ...normalizeMediaId(oldLook.mediaId),
+        ...normalizedInputMediaId,
+      };
+      await cleanupReplacedMedia(oldLook.mediaId, updateFields.mediaId, "looks");
     }
     try {
       const updatedLook = await Look.update(updateFields, {
@@ -84,6 +126,9 @@ export const lookResolver = {
       }
       // updatedLook[0]: number or row udpated
       // updatedLook[1]: rows updated
+      updatedLook[1].dataValues.mediaId = normalizeMediaId(
+        updatedLook[1].dataValues.mediaId,
+      );
       return updatedLook[1];
     } catch (err) {
       console.log(err);
@@ -97,7 +142,11 @@ export const lookResolver = {
     }
     const lookToDelete = await Look.findOne({ where: { id: args.lookId } });
     try {
-      await deleteFileFromS3(lookToDelete.mediaId, "looks");
+      const normalizedMediaId = normalizeMediaId(lookToDelete.mediaId);
+      await deleteFileFromS3(normalizedMediaId.mediaId, "looks");
+      if (normalizedMediaId.originalMediaId !== normalizedMediaId.mediaId) {
+        await deleteFileFromS3(normalizedMediaId.originalMediaId, "looks");
+      }
       await Look.destroy({
         where: {
           id: args.lookId,

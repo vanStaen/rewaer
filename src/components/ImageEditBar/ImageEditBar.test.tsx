@@ -64,7 +64,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5); // crop, flip, mirror, rotate, upload
+      expect(items.length).toBe(6); // crop, flip, mirror, rotate, restore, upload
     });
 
     it("should render all edit buttons for items", () => {
@@ -75,7 +75,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5);
+      expect(items.length).toBe(6);
     });
 
     it("should not render edit buttons when error is true", () => {
@@ -126,7 +126,10 @@ describe("ImageEditBar", () => {
           "looks",
           1,
         );
-        expect(updateMediaLook).toHaveBeenCalledWith(1, "new-media-id-rotated");
+        expect(updateMediaLook).toHaveBeenCalledWith(1, {
+          mediaId: "new-media-id-rotated",
+          originalMediaId: "look-media-123",
+        });
         expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });
@@ -149,7 +152,10 @@ describe("ImageEditBar", () => {
           "items",
           1,
         );
-        expect(updateMediaItem).toHaveBeenCalledWith(2, "new-media-id-rotated");
+        expect(updateMediaItem).toHaveBeenCalledWith(2, {
+          mediaId: "new-media-id-rotated",
+          originalMediaId: "item-media-456",
+        });
         expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });
@@ -198,7 +204,10 @@ describe("ImageEditBar", () => {
           "looks",
           true,
         );
-        expect(updateMediaLook).toHaveBeenCalledWith(1, "new-media-id-flipped");
+        expect(updateMediaLook).toHaveBeenCalledWith(1, {
+          mediaId: "new-media-id-flipped",
+          originalMediaId: "look-media-123",
+        });
         expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });
@@ -221,7 +230,10 @@ describe("ImageEditBar", () => {
           "items",
           false,
         );
-        expect(updateMediaItem).toHaveBeenCalledWith(2, "new-media-id-flipped");
+        expect(updateMediaItem).toHaveBeenCalledWith(2, {
+          mediaId: "new-media-id-flipped",
+          originalMediaId: "item-media-456",
+        });
         expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });
@@ -242,7 +254,10 @@ describe("ImageEditBar", () => {
         expect(postPicture).toHaveBeenCalledWith(file, "looks");
         expect(updateMediaLook).toHaveBeenCalledWith(
           1,
-          "new-uploaded-media-id",
+          {
+            mediaId: "new-uploaded-media-id",
+            originalMediaId: "new-uploaded-media-id",
+          },
         );
         expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
@@ -262,7 +277,10 @@ describe("ImageEditBar", () => {
         expect(postPicture).toHaveBeenCalledWith(file, "items");
         expect(updateMediaItem).toHaveBeenCalledWith(
           2,
-          "new-uploaded-media-id",
+          {
+            mediaId: "new-uploaded-media-id",
+            originalMediaId: "new-uploaded-media-id",
+          },
         );
         expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
@@ -299,6 +317,34 @@ describe("ImageEditBar", () => {
 
       await waitFor(() => {
         expect(postPicture).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("restore functionality", () => {
+    it("should restore look image to original media id", async () => {
+      const lookWithEditedMedia = {
+        id: 1,
+        mediaId: {
+          mediaId: "look-media-edited",
+          originalMediaId: "look-media-original",
+        },
+      };
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={lookWithEditedMedia} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const restoreButton = items[4];
+      fireEvent.click(restoreButton);
+
+      await waitFor(() => {
+        expect(updateMediaLook).toHaveBeenCalledWith(1, {
+          mediaId: "look-media-original",
+          originalMediaId: "look-media-original",
+        });
       });
     });
   });

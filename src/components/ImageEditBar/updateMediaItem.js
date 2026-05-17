@@ -1,7 +1,7 @@
 export async function updateMediaItem(id, mediaId) {
   const requestBody = {
     query: `
-            mutation ($id: ID!, $mediaId: String) {
+            mutation ($id: ID!, $mediaId: MediaIdInput) {
               updateItem(
                 itemId: $id,
                 itemInput: { 
@@ -9,7 +9,10 @@ export async function updateMediaItem(id, mediaId) {
                       }
               ) {
                 id,
-                mediaId,
+                mediaId {
+                  mediaId,
+                  originalMediaId
+                },
               }
             }
             `,
