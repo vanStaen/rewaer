@@ -37,9 +37,7 @@
     "errorLoadingImage": "Impossible de charger l'image. Veuillez réessayer.",
     "success": "Succès",
     "imageCropped": "Image recadrée avec succès.",
-    "errorCroppingImage": "Impossible de recadrer l'image. Veuillez réessayer.",
-    "imageAutoCorrected": "Image corrigée automatiquement avec succès.",
-    "errorAutoCorrectingImage": "Impossible de corriger automatiquement l'image. Veuillez réessayer."
+    "errorCroppingImage": "Impossible de recadrer l'image. Veuillez réessayer."
   },
   "login": {
     "newHere": "Premiére fois",
