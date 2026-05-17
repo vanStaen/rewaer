@@ -17,11 +17,13 @@ router.post("/flip/", async (req, res) => {
     const path = req.body.path;
     const bucket = req.body.bucket;
     const isMirror = req.body.isMirror;
+    const originalPath = req.body.originalPath;
     const newPath = await pictureService.flipPicture(
       path,
       bucket,
       req.userId,
       isMirror,
+      originalPath,
     );
     res.status(200).json({
       newPath,
@@ -48,11 +50,13 @@ router.post("/rotate/", async (req, res) => {
     const bucket = req.body.bucket;
     const numberOfQuarterTurnToTheRight =
       req.body.numberOfQuarterTurnToTheRight;
+    const originalPath = req.body.originalPath;
     const newPath = await pictureService.rotatePicture(
       path,
       bucket,
       req.userId,
       numberOfQuarterTurnToTheRight,
+      originalPath,
     );
     res.status(200).json({ newPath });
   } catch (err) {
@@ -102,6 +106,7 @@ router.post("/crop/", async (req, res) => {
     const top = req.body.top;
     const width = req.body.width;
     const height = req.body.height;
+    const originalPath = req.body.originalPath;
     const newPath = await pictureService.cropPicture(
       path,
       bucket,
@@ -110,6 +115,7 @@ router.post("/crop/", async (req, res) => {
       top,
       width,
       height,
+      originalPath,
     );
     res.status(200).json({ newPath });
   } catch (err) {

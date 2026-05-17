@@ -1,8 +1,9 @@
-export async function pictureFlip(path, bucket, isMirror) {
+export async function pictureFlip(path, bucket, isMirror, originalPath) {
   const requestBody = {
     path,
     bucket,
     isMirror,
+    originalPath,
   };
 
   const response = await fetch(process.env.API_URL + `/picture/flip`, {

@@ -125,6 +125,7 @@ describe("ImageEditBar", () => {
           "look-media-123",
           "looks",
           1,
+          "look-media-123",
         );
         expect(updateMediaLook).toHaveBeenCalledWith(1, {
           mediaId: "new-media-id-rotated",
@@ -151,6 +152,7 @@ describe("ImageEditBar", () => {
           "item-media-456",
           "items",
           1,
+          "item-media-456",
         );
         expect(updateMediaItem).toHaveBeenCalledWith(2, {
           mediaId: "new-media-id-rotated",
@@ -203,6 +205,7 @@ describe("ImageEditBar", () => {
           "look-media-123",
           "looks",
           true,
+          "look-media-123",
         );
         expect(updateMediaLook).toHaveBeenCalledWith(1, {
           mediaId: "new-media-id-flipped",
@@ -229,6 +232,7 @@ describe("ImageEditBar", () => {
           "item-media-456",
           "items",
           false,
+          "item-media-456",
         );
         expect(updateMediaItem).toHaveBeenCalledWith(2, {
           mediaId: "new-media-id-flipped",

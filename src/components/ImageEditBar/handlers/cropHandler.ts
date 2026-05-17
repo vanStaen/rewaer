@@ -33,6 +33,7 @@ export const cropHandler = async (
           top,
           width,
           height,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaLook(selectedElement.id, {
           mediaId,
@@ -52,6 +53,7 @@ export const cropHandler = async (
           top,
           width,
           height,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaItem(selectedElement.id, {
           mediaId,

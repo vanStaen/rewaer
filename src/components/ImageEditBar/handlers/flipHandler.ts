@@ -23,6 +23,7 @@ export const flipHandler = async (
           getCurrentMediaId(selectedElement.mediaId),
           page,
           isMirror,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaLook(selectedElement.id, {
           mediaId,
@@ -34,6 +35,7 @@ export const flipHandler = async (
           getCurrentMediaId(selectedElement.mediaId),
           page,
           isMirror,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaItem(selectedElement.id, {
           mediaId,

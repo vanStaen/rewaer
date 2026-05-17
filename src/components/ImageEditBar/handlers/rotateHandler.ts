@@ -22,6 +22,7 @@ export const rotateHandler = async (
           getCurrentMediaId(selectedElement.mediaId),
           page,
           1,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaLook(selectedElement.id, {
           mediaId,
@@ -33,6 +34,7 @@ export const rotateHandler = async (
           getCurrentMediaId(selectedElement.mediaId),
           page,
           1,
+          getOriginalMediaId(selectedElement.mediaId),
         );
         await updateMediaItem(selectedElement.id, {
           mediaId,

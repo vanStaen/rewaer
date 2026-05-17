@@ -5,11 +5,24 @@ import {
   cropImage,
 } from "../../lib/processImageSharp.js";
 
+import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 import { getObjectFromS3 } from "../../lib/S3/getObjectFromS3.js";
 import { uploadFileToS3 } from "../../lib/S3/uploadFileToS3.js";
 
+const deleteIfDerivedImage = async (path, bucket, originalPath) => {
+  if (originalPath && path && path !== originalPath) {
+    await deleteFileFromS3(path, bucket);
+  }
+};
+
 export const pictureService = {
-  async rotatePicture(path, bucket, userId, numberOfQuarterTurnToTheRight) {
+  async rotatePicture(
+    path,
+    bucket,
+    userId,
+    numberOfQuarterTurnToTheRight,
+    originalPath,
+  ) {
     try {
       // download picture
       const originalImageBuffer = await getObjectFromS3(path, bucket);
@@ -21,6 +34,7 @@ export const pictureService = {
       );
       // upload new pictures
       const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
+      await deleteIfDerivedImage(path, bucket, originalPath);
       // return new Picture Url
       return newPath;
     } catch (error) {
@@ -28,7 +42,7 @@ export const pictureService = {
     }
   },
 
-  async flipPicture(path, bucket, userId, isMirror) {
+  async flipPicture(path, bucket, userId, isMirror, originalPath) {
     // download picture
     const originalImageBuffer = await getObjectFromS3(path, bucket);
     // const originalImageBuffer = Buffer.from(await response.arrayBuffer());
@@ -42,6 +56,7 @@ export const pictureService = {
     }
     // upload new pictures
     const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
+    await deleteIfDerivedImage(path, bucket, originalPath);
     // return new Picture Url
     return newPath;
   },
@@ -50,7 +65,16 @@ export const pictureService = {
     return true;
   },
 
-  async cropPicture(path, bucket, userId, left, top, width, height) {
+  async cropPicture(
+    path,
+    bucket,
+    userId,
+    left,
+    top,
+    width,
+    height,
+    originalPath,
+  ) {
     try {
       // download picture
       const originalImageBuffer = await getObjectFromS3(path, bucket);
@@ -64,6 +88,7 @@ export const pictureService = {
       );
       // upload new pictures
       const newPath = await uploadFileToS3(croppedImageBuffer, bucket, userId);
+      await deleteIfDerivedImage(path, bucket, originalPath);
       // return new Picture Url
       return newPath;
     } catch (error) {

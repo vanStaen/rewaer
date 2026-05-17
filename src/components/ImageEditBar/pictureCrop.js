@@ -1,4 +1,12 @@
-export async function pictureCrop(path, bucket, left, top, width, height) {
+export async function pictureCrop(
+  path,
+  bucket,
+  left,
+  top,
+  width,
+  height,
+  originalPath,
+) {
   const requestBody = {
     path,
     bucket,
@@ -6,6 +14,7 @@ export async function pictureCrop(path, bucket, left, top, width, height) {
     top,
     width,
     height,
+    originalPath,
   };
 
   const response = await fetch(process.env.API_URL + `/picture/crop`, {
