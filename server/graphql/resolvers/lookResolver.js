@@ -110,7 +110,11 @@ export const lookResolver = {
         ...normalizeMediaId(oldLook.mediaId),
         ...normalizedInputMediaId,
       };
-      await cleanupReplacedMedia(oldLook.mediaId, updateFields.mediaId, "looks");
+      await cleanupReplacedMedia(
+        oldLook.mediaId,
+        updateFields.mediaId,
+        "looks",
+      );
     }
     try {
       const updatedLook = await Look.update(updateFields, {

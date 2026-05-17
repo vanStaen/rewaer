@@ -126,7 +126,11 @@ export const itemResolver = {
         ...normalizeMediaId(oldItem.mediaId),
         ...normalizedInputMediaId,
       };
-      await cleanupReplacedMedia(oldItem.mediaId, updateFields.mediaId, "items");
+      await cleanupReplacedMedia(
+        oldItem.mediaId,
+        updateFields.mediaId,
+        "items",
+      );
     }
     try {
       const updatedItem = await Item.update(updateFields, {

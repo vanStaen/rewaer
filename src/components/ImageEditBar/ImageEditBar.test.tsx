@@ -252,13 +252,10 @@ describe("ImageEditBar", () => {
 
       await waitFor(() => {
         expect(postPicture).toHaveBeenCalledWith(file, "looks");
-        expect(updateMediaLook).toHaveBeenCalledWith(
-          1,
-          {
-            mediaId: "new-uploaded-media-id",
-            originalMediaId: "new-uploaded-media-id",
-          },
-        );
+        expect(updateMediaLook).toHaveBeenCalledWith(1, {
+          mediaId: "new-uploaded-media-id",
+          originalMediaId: "new-uploaded-media-id",
+        });
         expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });
@@ -275,13 +272,10 @@ describe("ImageEditBar", () => {
 
       await waitFor(() => {
         expect(postPicture).toHaveBeenCalledWith(file, "items");
-        expect(updateMediaItem).toHaveBeenCalledWith(
-          2,
-          {
-            mediaId: "new-uploaded-media-id",
-            originalMediaId: "new-uploaded-media-id",
-          },
-        );
+        expect(updateMediaItem).toHaveBeenCalledWith(2, {
+          mediaId: "new-uploaded-media-id",
+          originalMediaId: "new-uploaded-media-id",
+        });
         expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
       });
     });

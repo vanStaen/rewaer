@@ -456,10 +456,10 @@ export const ElementCard: React.FC<ElementCardProps> = ({
             </Tooltip>
           ) : (
             element.active && (
-                <LikeDislikeButton
-                  id={element.id}
-                  mediaId={currentMediaId}
-                  arrayLikes={element.likes}
+              <LikeDislikeButton
+                id={element.id}
+                mediaId={currentMediaId}
+                arrayLikes={element.likes}
                 arrayDislikes={element.dislikes}
                 type="item"
               />
