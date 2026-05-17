@@ -11,6 +11,7 @@ export interface Item {
   favorite: boolean;
   private: boolean;
   mediaId: string;
+  originalMediaId: string | null;
   likes: string[];
   dislikes: string[];
   createdAt: string;
@@ -27,6 +28,7 @@ export interface getItemsGraphQLResponse {
 export interface ItemInput {
   title?: string;
   mediaId?: string;
+  originalMediaId?: string;
   category?: string;
   notes?: string;
   location?: string;

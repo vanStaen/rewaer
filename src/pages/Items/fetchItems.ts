@@ -23,6 +23,7 @@ export async function fetchItems(): Promise<Item[]> {
           dislikes,
           createdAt,
           mediaId,
+          originalMediaId,
           user {
               id,
               avatar,

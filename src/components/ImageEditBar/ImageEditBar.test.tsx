@@ -29,20 +29,36 @@ jest.mock("../../helpers/picture/postPicture", () => ({
 }));
 jest.mock("../../pages/Looks/looksStore", () => ({
   looksStore: {
-    selectedLook: { id: 1, mediaId: "look-media-123" },
+    selectedLook: {
+      id: 1,
+      mediaId: "look-media-123",
+      originalMediaId: "look-original-media-000",
+    },
     setIsOutOfDate: jest.fn(),
   },
 }));
 jest.mock("../../pages/Items/itemsStore", () => ({
   itemsStore: {
-    selectedItem: { id: 2, mediaId: "item-media-456" },
+    selectedItem: {
+      id: 2,
+      mediaId: "item-media-456",
+      originalMediaId: "item-original-media-000",
+    },
     setIsOutOfDate: jest.fn(),
   },
 }));
 
 describe("ImageEditBar", () => {
-  const mockLookElement = { id: 1, mediaId: "look-media-123" };
-  const mockItemElement = { id: 2, mediaId: "item-media-456" };
+  const mockLookElement = {
+    id: 1,
+    mediaId: "look-media-123",
+    originalMediaId: "look-original-media-000",
+  };
+  const mockItemElement = {
+    id: 2,
+    mediaId: "item-media-456",
+    originalMediaId: "item-original-media-000",
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -64,7 +80,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5); // crop, flip, mirror, rotate, upload
+      expect(items.length).toBe(6); // crop, flip, mirror, rotate, restore, upload
     });
 
     it("should render all edit buttons for items", () => {
@@ -75,7 +91,7 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      expect(items.length).toBe(5);
+      expect(items.length).toBe(6);
     });
 
     it("should not render edit buttons when error is true", () => {
@@ -223,6 +239,72 @@ describe("ImageEditBar", () => {
         );
         expect(updateMediaItem).toHaveBeenCalledWith(2, "new-media-id-flipped");
         expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
+      });
+    });
+  });
+
+  describe("restore functionality", () => {
+    it("should restore look image to original when restore button is clicked", async () => {
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const restoreButton = items[4]; // Fifth button is restore
+
+      fireEvent.click(restoreButton);
+
+      await waitFor(() => {
+        expect(updateMediaLook).toHaveBeenCalledWith(
+          1,
+          "look-original-media-000",
+        );
+        expect(looksStore.setIsOutOfDate).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it("should restore item image to original when restore button is clicked", async () => {
+      const { container } = render(
+        <ImageEditBar page="items" selectedElement={mockItemElement} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const restoreButton = items[4]; // Fifth button is restore
+
+      fireEvent.click(restoreButton);
+
+      await waitFor(() => {
+        expect(updateMediaItem).toHaveBeenCalledWith(
+          2,
+          "item-original-media-000",
+        );
+        expect(itemsStore.setIsOutOfDate).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it("should not restore when mediaId already equals originalMediaId", async () => {
+      const elementAtOriginal = {
+        id: 1,
+        mediaId: "same-media-id",
+        originalMediaId: "same-media-id",
+      };
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={elementAtOriginal} />,
+      );
+
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const restoreButton = items[4];
+
+      fireEvent.click(restoreButton);
+
+      await waitFor(() => {
+        expect(updateMediaLook).not.toHaveBeenCalled();
       });
     });
   });

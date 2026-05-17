@@ -9,6 +9,7 @@ import {
   VerticalAlignMiddleOutlined,
   LoadingOutlined,
   BorderOuterOutlined,
+  HistoryOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +17,7 @@ import { rotateHandler } from "./handlers/rotateHandler";
 import { flipHandler } from "./handlers/flipHandler";
 import { cropHandler } from "./handlers/cropHandler";
 import { fileSelectHandler } from "./handlers/replaceHandler";
+import { restoreHandler } from "./handlers/restoreHandler";
 
 import "./ImageEditBar.less";
 
@@ -94,6 +96,16 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
               >
                 <Tooltip title="Rotate">
                   {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
+                </Tooltip>
+              </div>
+              <div
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
+                }
+              >
+                <Tooltip title="Restore original">
+                  {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
                 </Tooltip>
               </div>
             </>

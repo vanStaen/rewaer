@@ -5,7 +5,6 @@ import {
   cropImage,
 } from "../../lib/processImageSharp.js";
 
-import { deleteFileFromS3 } from "../../lib/S3/deleteFileFromS3.js";
 import { getObjectFromS3 } from "../../lib/S3/getObjectFromS3.js";
 import { uploadFileToS3 } from "../../lib/S3/uploadFileToS3.js";
 
@@ -20,11 +19,10 @@ export const pictureService = {
         originalImageBuffer,
         rotationInDegrees,
       );
-      // upload new pictures
+      // upload new picture and return new path
+      // (deletion of the old file is handled by the updateLook/updateItem resolver,
+      // which checks whether the file is the originalMediaId before deleting)
       const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
-      // delete old pictures
-      await deleteFileFromS3(path, bucket);
-      // return new Picture Url
       return newPath;
     } catch (error) {
       console.error(error);
@@ -34,7 +32,6 @@ export const pictureService = {
   async flipPicture(path, bucket, userId, isMirror) {
     // download picture
     const originalImageBuffer = await getObjectFromS3(path, bucket);
-    // const originalImageBuffer = Buffer.from(await response.arrayBuffer());
     let rotatedImageBuffer;
     if (isMirror) {
       // flip picture
@@ -43,11 +40,10 @@ export const pictureService = {
       // mirror picture
       rotatedImageBuffer = await mirrorImage(originalImageBuffer);
     }
-    // upload new pictures
+    // upload new picture and return new path
+    // (deletion of the old file is handled by the updateLook/updateItem resolver,
+    // which checks whether the file is the originalMediaId before deleting)
     const newPath = await uploadFileToS3(rotatedImageBuffer, bucket, userId);
-    // delete old pictures
-    await deleteFileFromS3(path, bucket);
-    // return new Picture Url
     return newPath;
   },
 
@@ -67,11 +63,10 @@ export const pictureService = {
         width,
         height,
       );
-      // upload new pictures
+      // upload new picture and return new path
+      // (deletion of the old file is handled by the updateLook/updateItem resolver,
+      // which checks whether the file is the originalMediaId before deleting)
       const newPath = await uploadFileToS3(croppedImageBuffer, bucket, userId);
-      // delete old pictures
-      await deleteFileFromS3(path, bucket);
-      // return new Picture Url
       return newPath;
     } catch (error) {
       console.error(error);

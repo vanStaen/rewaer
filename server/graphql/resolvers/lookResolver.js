@@ -8,7 +8,7 @@ export const lookResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await Look.findAll({
+    const looks = await Look.findAll({
       where: { userId: req.userId },
       include: User,
       order: [
@@ -16,6 +16,14 @@ export const lookResolver = {
         ["favorite", "DESC"],
         ["id", "DESC"],
       ],
+    });
+    // HACK: Temporary fallback for existing looks that have no originalMediaId.
+    // TODO: Remove this once all existing looks have been migrated with originalMediaId.
+    return looks.map((look) => {
+      if (!look.originalMediaId) {
+        look.setDataValue("originalMediaId", look.mediaId);
+      }
+      return look;
     });
   },
 
@@ -25,6 +33,7 @@ export const lookResolver = {
       const look = new Look({
         title: args.lookInput.title,
         mediaId: args.lookInput.mediaId,
+        originalMediaId: args.lookInput.mediaId,
         category: args.lookInput.category,
         private: args.lookInput.private,
         season: args.lookInput.season,
@@ -60,6 +69,7 @@ export const lookResolver = {
       "likes",
       "dislikes",
       "mediaId",
+      "originalMediaId",
     ];
     updatableFields.forEach((field) => {
       if (field in args.lookInput) {
@@ -68,7 +78,9 @@ export const lookResolver = {
     });
     if (args.lookInput.mediaId) {
       const oldLook = await Look.findOne({ where: { id: args.lookId } });
-      deleteFileFromS3(oldLook.mediaId, "looks");
+      if (oldLook.mediaId !== oldLook.originalMediaId) {
+        deleteFileFromS3(oldLook.mediaId, "looks");
+      }
     }
     try {
       const updatedLook = await Look.update(updateFields, {
@@ -98,6 +110,12 @@ export const lookResolver = {
     const lookToDelete = await Look.findOne({ where: { id: args.lookId } });
     try {
       await deleteFileFromS3(lookToDelete.mediaId, "looks");
+      if (
+        lookToDelete.originalMediaId &&
+        lookToDelete.originalMediaId !== lookToDelete.mediaId
+      ) {
+        await deleteFileFromS3(lookToDelete.originalMediaId, "looks");
+      }
       await Look.destroy({
         where: {
           id: args.lookId,

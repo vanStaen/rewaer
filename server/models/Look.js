@@ -16,6 +16,10 @@ export const Look = sequelize.sequelize.define("look", {
     type: DataTypes.STRING,
     required: true,
   },
+  originalMediaId: {
+    type: DataTypes.STRING,
+    required: false,
+  },
   category: {
     type: DataTypes.STRING,
     defaultValue: null,
