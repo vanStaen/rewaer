@@ -80,10 +80,11 @@ export const userResolver = {
     if (!req.isAuth) {
       throw new Error("Unauthorized!");
     }
-    return await User.findOne({
+    const user = await User.findOne({
       where: { id: req.userId },
-      include: [Look],
+      include: [Item],
     });
+    return normalizeUserElementsMedia(user);
   },
 
   async getProfileByName(args, req) {

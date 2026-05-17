@@ -341,6 +341,20 @@ describe("ImageEditBar", () => {
         });
       });
     });
+
+    it("should not call update when media is already original", async () => {
+      const { container } = render(
+        <ImageEditBar page="looks" selectedElement={mockLookElement} />,
+      );
+      const items = container.querySelectorAll(
+        ".imageEditBar__imageEditBarItem",
+      );
+      const restoreButton = items[4];
+      fireEvent.click(restoreButton);
+      await waitFor(() => {
+        expect(updateMediaLook).not.toHaveBeenCalled();
+      });
+    });
   });
 
   describe("loading state", () => {
