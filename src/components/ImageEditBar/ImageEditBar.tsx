@@ -32,6 +32,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
+    const isRestoreDisabled =
+      !selectedElement?.originalMediaId ||
+      selectedElement.originalMediaId === selectedElement.mediaId;
 
     return (
       <>
@@ -99,10 +102,17 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                 </Tooltip>
               </div>
               <div
-                className="imageEditBar__imageEditBarItem"
-                onClick={() =>
-                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
-                }
+                className={`imageEditBar__imageEditBarItem ${
+                  isRestoreDisabled
+                    ? "imageEditBar__imageEditBarItem--disabled"
+                    : ""
+                }`}
+                onClick={() => {
+                  if (!isRestoreDisabled) {
+                    restoreHandler(page, selectedElement, isLoading, setIsLoading);
+                  }
+                }}
+                aria-disabled={isRestoreDisabled}
               >
                 <Tooltip title="Restore original">
                   {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}

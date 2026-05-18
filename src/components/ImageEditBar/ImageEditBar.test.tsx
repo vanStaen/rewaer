@@ -300,6 +300,7 @@ describe("ImageEditBar", () => {
         ".imageEditBar__imageEditBarItem",
       );
       const restoreButton = items[4];
+      expect(restoreButton).toHaveClass("imageEditBar__imageEditBarItem--disabled");
 
       fireEvent.click(restoreButton);
 
