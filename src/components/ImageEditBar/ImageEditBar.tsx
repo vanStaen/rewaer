@@ -109,7 +109,12 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                 }`}
                 onClick={() => {
                   if (!isRestoreDisabled) {
-                    restoreHandler(page, selectedElement, isLoading, setIsLoading);
+                    restoreHandler(
+                      page,
+                      selectedElement,
+                      isLoading,
+                      setIsLoading,
+                    );
                   }
                 }}
                 aria-disabled={isRestoreDisabled}
