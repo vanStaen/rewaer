@@ -101,7 +101,8 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                   {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
                 </Tooltip>
               </div>
-              <div
+              <button
+                type="button"
                 className={`imageEditBar__imageEditBarItem ${
                   isRestoreDisabled
                     ? "imageEditBar__imageEditBarItem--disabled"
@@ -117,11 +118,12 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                     );
                   }
                 }}
+                disabled={isRestoreDisabled}
               >
                 <Tooltip title="Restore original">
                   {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
                 </Tooltip>
-              </div>
+              </button>
             </>
           )}
           <div className="imageEditBar__imageEditBarItem">

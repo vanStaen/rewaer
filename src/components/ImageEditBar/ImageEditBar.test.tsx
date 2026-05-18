@@ -301,10 +301,11 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const restoreButton = items[4];
+      const restoreButton = items[4] as HTMLButtonElement;
       expect(restoreButton).toHaveClass(
         "imageEditBar__imageEditBarItem--disabled",
       );
+      expect(restoreButton).toBeDisabled();
 
       fireEvent.click(restoreButton);
 
