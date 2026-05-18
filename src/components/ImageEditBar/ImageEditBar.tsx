@@ -108,16 +108,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                     ? "imageEditBar__imageEditBarItem--disabled"
                     : ""
                 }`}
-                onClick={() => {
-                  if (!isRestoreDisabled) {
-                    restoreHandler(
-                      page,
-                      selectedElement,
-                      isLoading,
-                      setIsLoading,
-                    );
-                  }
-                }}
+                onClick={() =>
+                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
+                }
                 disabled={isRestoreDisabled}
               >
                 <Tooltip title="Restore original">
