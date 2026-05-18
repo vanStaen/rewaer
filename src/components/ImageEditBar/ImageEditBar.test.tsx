@@ -7,6 +7,7 @@ import { pictureRotate } from "./pictureRotate";
 import { pictureFlip } from "./pictureFlip";
 import { updateMediaLook } from "./updateMediaLook";
 import { updateMediaItem } from "./updateMediaItem";
+import * as restoreHandlerModule from "./handlers/restoreHandler";
 import { postPicture } from "@helpers/picture/postPicture";
 import { looksStore } from "../../pages/Looks/looksStore";
 import { itemsStore } from "../../pages/Items/itemsStore";
@@ -287,6 +288,7 @@ describe("ImageEditBar", () => {
     });
 
     it("should not restore when mediaId already equals originalMediaId", async () => {
+      const restoreSpy = jest.spyOn(restoreHandlerModule, "restoreHandler");
       const elementAtOriginal = {
         id: 1,
         mediaId: "same-media-id",
@@ -307,8 +309,10 @@ describe("ImageEditBar", () => {
       fireEvent.click(restoreButton);
 
       await waitFor(() => {
+        expect(restoreSpy).not.toHaveBeenCalled();
         expect(updateMediaLook).not.toHaveBeenCalled();
       });
+      restoreSpy.mockRestore();
     });
   });
 

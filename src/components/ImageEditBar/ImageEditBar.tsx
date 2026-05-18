@@ -117,7 +117,6 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                     );
                   }
                 }}
-                aria-disabled={isRestoreDisabled}
               >
                 <Tooltip title="Restore original">
                   {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
