@@ -103,21 +103,10 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
               </div>
               <button
                 type="button"
-                className={`imageEditBar__imageEditBarItem ${
-                  isRestoreDisabled
-                    ? "imageEditBar__imageEditBarItem--disabled"
-                    : ""
-                }`}
-                onClick={() => {
-                  if (!isRestoreDisabled) {
-                    restoreHandler(
-                      page,
-                      selectedElement,
-                      isLoading,
-                      setIsLoading,
-                    );
-                  }
-                }}
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
+                }
                 disabled={isRestoreDisabled}
                 aria-label="Restore original image"
               >
