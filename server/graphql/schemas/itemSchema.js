@@ -4,6 +4,7 @@ type Item {
     userId: Int!
     title: String
     mediaId: String!
+    originalMediaId: String
     category: String
     notes: String
     location: String
@@ -27,6 +28,7 @@ export const ItemInputData = `
 input ItemInputData {
     title: String
     mediaId: String
+    originalMediaId: String
     category: String
     notes: String
     location: String

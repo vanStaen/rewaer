@@ -10,6 +10,7 @@ export interface Look {
   favorite: boolean;
   private: boolean;
   mediaId: string;
+  originalMediaId: string | null;
   likes: string[];
   dislikes: string[];
   createdAt: string;
@@ -22,6 +23,7 @@ export interface LookInput {
   category?: string | null;
   season?: string;
   mediaId?: string;
+  originalMediaId?: string;
   private?: boolean;
   items?: number[];
 }

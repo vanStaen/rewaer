@@ -16,6 +16,10 @@ export const Item = sequelize.sequelize.define("item", {
     type: DataTypes.STRING,
     required: true,
   },
+  originalMediaId: {
+    type: DataTypes.STRING,
+    required: false,
+  },
   category: {
     type: DataTypes.STRING,
     defaultValue: null,

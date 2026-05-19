@@ -10,7 +10,7 @@ export const itemResolver = {
       throw new Error("Unauthorized!");
     }
     // : where userId or sharedWith contain req.userId
-    return await Item.findAll({
+    const items = await Item.findAll({
       where: {
         [Op.or]: [
           { userId: req.userId },
@@ -24,6 +24,14 @@ export const itemResolver = {
         ["id", "DESC"],
       ],
     });
+    // HACK: Temporary fallback for existing items that have no originalMediaId.
+    // TODO: Remove this once all existing items have been migrated with originalMediaId.
+    return items.map((item) => {
+      if (!item.originalMediaId) {
+        item.setDataValue("originalMediaId", item.mediaId);
+      }
+      return item;
+    });
   },
 
   // addItem(itemInput: ItemInputData!): Item!
@@ -33,6 +41,7 @@ export const itemResolver = {
         userId: req.userId,
         title: args.itemInput.title,
         mediaId: args.itemInput.mediaId,
+        originalMediaId: args.itemInput.mediaId,
         category: args.itemInput.category,
         pattern: args.itemInput.pattern,
         desc: args.itemInput.desc,
@@ -76,6 +85,7 @@ export const itemResolver = {
       "likes",
       "dislikes",
       "mediaId",
+      "originalMediaId",
     ];
     updatableFields.forEach((field) => {
       if (field in args.itemInput) {
@@ -84,7 +94,9 @@ export const itemResolver = {
     });
     if (args.itemInput.mediaId) {
       const oldItem = await Item.findOne({ where: { id: args.itemId } });
-      deleteFileFromS3(oldItem.mediaId, "items");
+      if (oldItem.mediaId !== oldItem.originalMediaId) {
+        deleteFileFromS3(oldItem.mediaId, "items");
+      }
     }
     try {
       const updatedItem = await Item.update(updateFields, {
@@ -114,6 +126,12 @@ export const itemResolver = {
     const itemToDelete = await Item.findOne({ where: { id: args.itemId } });
     try {
       await deleteFileFromS3(itemToDelete.mediaId, "items");
+      if (
+        itemToDelete.originalMediaId &&
+        itemToDelete.originalMediaId !== itemToDelete.mediaId
+      ) {
+        await deleteFileFromS3(itemToDelete.originalMediaId, "items");
+      }
       await Item.destroy({
         where: {
           id: args.itemId,

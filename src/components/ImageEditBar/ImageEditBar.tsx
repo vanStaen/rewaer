@@ -9,6 +9,7 @@ import {
   VerticalAlignMiddleOutlined,
   LoadingOutlined,
   BorderOuterOutlined,
+  HistoryOutlined,
 } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +17,7 @@ import { rotateHandler } from "./handlers/rotateHandler";
 import { flipHandler } from "./handlers/flipHandler";
 import { cropHandler } from "./handlers/cropHandler";
 import { fileSelectHandler } from "./handlers/replaceHandler";
+import { restoreHandler } from "./handlers/restoreHandler";
 
 import "./ImageEditBar.less";
 
@@ -30,6 +32,9 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
+    const isRestoreDisabled =
+      !selectedElement?.originalMediaId ||
+      selectedElement.originalMediaId === selectedElement.mediaId;
 
     return (
       <>
@@ -96,6 +101,23 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                   {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
                 </Tooltip>
               </div>
+              <button
+                type="button"
+                className="imageEditBar__imageEditBarItem"
+                onClick={() =>
+                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
+                }
+                disabled={isRestoreDisabled}
+                aria-label={
+                  isRestoreDisabled
+                    ? "Restore original image (already at original)"
+                    : "Restore original image"
+                }
+              >
+                <Tooltip title="Restore original">
+                  {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
+                </Tooltip>
+              </button>
             </>
           )}
           <div className="imageEditBar__imageEditBarItem">

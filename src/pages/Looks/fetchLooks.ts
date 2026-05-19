@@ -17,6 +17,7 @@ export async function fetchLooks(): Promise<Look[]> {
           dislikes,
           createdAt,
           mediaId,
+          originalMediaId,
           user {
               id,
           }
