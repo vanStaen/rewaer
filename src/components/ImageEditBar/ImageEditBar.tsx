@@ -32,7 +32,7 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
   ({ page, loading, error, selectedElement }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState<boolean>(loading || false);
-    const isRestoreDisabled =
+    const isOriginalPicture =
       !selectedElement?.originalMediaId ||
       selectedElement.originalMediaId === selectedElement.mediaId;
 
@@ -101,23 +101,24 @@ export const ImageEditBar: React.FC<ImageEditBarProps> = observer(
                   {isLoading ? <LoadingOutlined /> : <RedoOutlined />}
                 </Tooltip>
               </div>
-              <button
-                type="button"
-                className="imageEditBar__imageEditBarItem"
-                onClick={() =>
-                  restoreHandler(page, selectedElement, isLoading, setIsLoading)
-                }
-                disabled={isRestoreDisabled}
-                aria-label={
-                  isRestoreDisabled
-                    ? "Restore original image (already at original)"
-                    : "Restore original image"
-                }
-              >
-                <Tooltip title="Restore original">
-                  {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
-                </Tooltip>
-              </button>
+              {!isOriginalPicture && (
+                <div
+                  className="imageEditBar__imageEditBarItem"
+                  onClick={() =>
+                    restoreHandler(
+                      page,
+                      selectedElement,
+                      isLoading,
+                      setIsLoading,
+                    )
+                  }
+                  aria-label={"Restore original image"}
+                >
+                  <Tooltip title="Restore original">
+                    {isLoading ? <LoadingOutlined /> : <HistoryOutlined />}
+                  </Tooltip>
+                </div>
+              )}
             </>
           )}
           <div className="imageEditBar__imageEditBarItem">

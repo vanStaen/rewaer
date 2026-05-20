@@ -301,10 +301,8 @@ describe("ImageEditBar", () => {
       const items = container.querySelectorAll(
         ".imageEditBar__imageEditBarItem",
       );
-      const restoreButton = items[4] as HTMLButtonElement;
-      expect(restoreButton).toBeDisabled();
-
-      fireEvent.click(restoreButton);
+      // Should only have 5 buttons (crop, flip, mirror, rotate, upload) - NO restore button
+      expect(items.length).toBe(5);
 
       await waitFor(() => {
         expect(restoreSpy).not.toHaveBeenCalled();
