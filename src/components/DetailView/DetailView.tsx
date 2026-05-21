@@ -51,32 +51,33 @@ export const DetailView = ({
   const showPrivateRef = useRef(showPrivate);
   showPrivateRef.current = showPrivate;
 
-  const browserBackHandler = (e: any) => {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    setSelectedElement(null);
-  };
-
-  const keydownEventHandler = (event: {
-    key: string;
-    preventDefault: () => void;
-  }) => {
-    const keyPressed = event.key.toLowerCase();
-    if (keyPressed === "escape") {
-      event.preventDefault();
-      setSelectedElement(null);
-    } else if (keyPressed === "arrowleft") {
-      event.preventDefault();
-      switchElement(false, showPrivateRef.current, page);
-    } else if (keyPressed === "arrowright") {
-      event.preventDefault();
-      switchElement(true, showPrivateRef.current, page);
-    }
-  };
-
   useEffect(() => {
     const url = new URL(window.location.href);
     history.pushState({}, "", url);
+
+    const browserBackHandler = (e: any) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      setSelectedElement(null);
+    };
+
+    const keydownEventHandler = (event: {
+      key: string;
+      preventDefault: () => void;
+    }) => {
+      const keyPressed = event.key.toLowerCase();
+      if (keyPressed === "escape") {
+        event.preventDefault();
+        setSelectedElement(null);
+      } else if (keyPressed === "arrowleft") {
+        event.preventDefault();
+        switchElement(false, showPrivateRef.current, page);
+      } else if (keyPressed === "arrowright") {
+        event.preventDefault();
+        switchElement(true, showPrivateRef.current, page);
+      }
+    };
+
     window.addEventListener("keydown", keydownEventHandler);
     window.addEventListener("popstate", browserBackHandler);
     return () => {
@@ -128,6 +129,7 @@ export const DetailView = ({
           />
         )}
         <button
+          type="button"
           className="detailview__navArrow detailview__navArrow--left"
           onClick={() => switchElement(false, showPrivateRef.current, page)}
           aria-label={t("main.previous")}
@@ -135,6 +137,7 @@ export const DetailView = ({
           <LeftOutlined />
         </button>
         <button
+          type="button"
           className="detailview__navArrow detailview__navArrow--right"
           onClick={() => switchElement(true, showPrivateRef.current, page)}
           aria-label={t("main.next")}
