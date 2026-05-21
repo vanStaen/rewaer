@@ -29,6 +29,7 @@ input UserInputData {
     userName: String
     email: String
     password: String
+    honeypot: String
     avatar: String
     emailSettings: String
     profilSettings: String

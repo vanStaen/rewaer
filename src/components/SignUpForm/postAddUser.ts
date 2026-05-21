@@ -5,6 +5,7 @@ export const postAddUser = async (
   email: string,
   password: string,
   language: string,
+  honeypot: string,
 ): Promise<any> => {
   const requestBody = {
     query: `mutation ( $firstName: String, 
@@ -12,7 +13,8 @@ export const postAddUser = async (
                        $userName: String, 
                        $email: String, 
                        $password: String,
-                       $language: String ) {
+                       $language: String,
+                       $honeypot: String ) {
                 addUser (
                     userInput: { 
                         firstName: $firstName, 
@@ -21,6 +23,7 @@ export const postAddUser = async (
                         email: $email, 
                         password: $password, 
                         language: $language,
+                        honeypot: $honeypot,
                         }
                     ) {
                     id
@@ -34,6 +37,7 @@ export const postAddUser = async (
       email,
       password,
       language,
+      honeypot,
     },
   };
 

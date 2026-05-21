@@ -155,6 +155,46 @@ describe("SignUpForm", () => {
     // await waitFor(() => expect(setShowLogin).toHaveBeenCalledWith(true));
   });
 
+  it("has a hidden honeypot field that is not visible to users", () => {
+    render(<SignUpForm setShowLogin={setShowLogin} />);
+    const honeypotInput = screen.getByTestId("honeypot-input");
+    expect(honeypotInput).toBeInTheDocument();
+    const wrapper = screen.getByTestId("honeypot-wrapper");
+    expect(wrapper).toBeInTheDocument();
+    expect(wrapper).toHaveStyle({ left: "-9999px" });
+  });
+
+  it("does not call postAddUser when bot fills the honeypot field", async () => {
+    mockPostUsernameTaken.mockResolvedValue(false);
+    mockCheckUsernameforbidden.mockResolvedValue(false);
+    render(<SignUpForm setShowLogin={setShowLogin} />);
+    fireEvent.change(screen.getByPlaceholderText("login.firstName"), {
+      target: { value: "Bot" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("login.lastName"), {
+      target: { value: "Bot" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("login.pickUsername"), {
+      target: { value: "botuser" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Email"), {
+      target: { value: "bot@example.com" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("login.choosePassword"), {
+      target: { value: "password123" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("login.confirmYourPassword"), {
+      target: { value: "password123" },
+    });
+    fireEvent.click(screen.getByRole("checkbox"));
+    // Bot fills the hidden honeypot field
+    fireEvent.change(screen.getByTestId("honeypot-input"), {
+      target: { value: "http://spam.com" },
+    });
+    fireEvent.click(screen.getByText("login.createAccount"));
+    await waitFor(() => expect(mockPostAddUser).not.toHaveBeenCalled());
+  });
+
   it("shows error notification if postAddUser returns errors", async () => {
     mockPostUsernameTaken.mockResolvedValue(false);
     mockCheckUsernameforbidden.mockResolvedValue(false);
