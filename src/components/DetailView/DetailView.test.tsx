@@ -4,6 +4,12 @@ import { DetailView } from "./DetailView";
 import * as switchElementModule from "./switchElement";
 import * as useMediaUrlModule from "@hooks/useMediaUrl";
 
+jest.mock("react-i18next", () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
 jest.mock("@components/DetailReturnArrow/DetailReturnArrow", () => ({
   DetailReturnArrow: ({ page }: any) => (
     <div data-testid="detail-return-arrow">DetailReturnArrow-{page}</div>
@@ -94,6 +100,36 @@ describe("DetailView", () => {
       expect(screen.getByTestId("test-child")).toBeInTheDocument();
     });
 
+    it("renders left and right navigation arrows", () => {
+      render(<DetailView {...defaultProps} />);
+      expect(
+        screen.getByRole("button", { name: "main.previous" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "main.next" }),
+      ).toBeInTheDocument();
+    });
+
+    it("clicking left navigation arrow calls switchElement with false", () => {
+      render(<DetailView {...defaultProps} showPrivate={true} />);
+      fireEvent.click(screen.getByRole("button", { name: "main.previous" }));
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+        false,
+        true,
+        "items",
+      );
+    });
+
+    it("clicking right navigation arrow calls switchElement with true", () => {
+      render(<DetailView {...defaultProps} showPrivate={false} />);
+      fireEvent.click(screen.getByRole("button", { name: "main.next" }));
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+        true,
+        false,
+        "items",
+      );
+    });
+
     it("renders loading spinner when isLoading is true", () => {
       const { container } = render(
         <DetailView {...defaultProps} isLoading={true}>
@@ -115,7 +151,7 @@ describe("DetailView", () => {
         new Error("Error"),
       ]);
       const { container } = render(<DetailView {...defaultProps} />);
-      expect(screen.getByText("MEDIA ERROR TODO")).toBeInTheDocument();
+      expect(screen.getByText("main.errorLoadingImage")).toBeInTheDocument();
       expect(
         container.querySelector(".detailview__picture"),
       ).toBeInTheDocument();
@@ -202,6 +238,20 @@ describe("DetailView", () => {
       );
       fireEvent.keyDown(window, { key: "ESCAPE" });
       expect(setSelectedElement).toHaveBeenCalledWith(null);
+    });
+
+    it("uses the latest showPrivate value after prop update", () => {
+      const { rerender } = render(
+        <DetailView {...defaultProps} showPrivate={false} />,
+      );
+      // Update showPrivate via rerender
+      rerender(<DetailView {...defaultProps} showPrivate={true} />);
+      fireEvent.keyDown(window, { key: "ArrowLeft" });
+      expect(switchElementModule.switchElement).toHaveBeenCalledWith(
+        false,
+        true,
+        "items",
+      );
     });
   });
 

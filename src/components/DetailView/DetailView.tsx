@@ -1,5 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Spin } from "antd";
+import {
+  LeftOutlined,
+  RightOutlined,
+  FileImageOutlined,
+} from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { DetailReturnArrow } from "@components/DetailReturnArrow/DetailReturnArrow";
 import { ImageEditBar } from "@components/ImageEditBar/ImageEditBar";
@@ -30,6 +36,7 @@ export const DetailView = ({
   showPrivate,
   children,
 }: DetailViewProps) => {
+  const { t } = useTranslation();
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const throttling = useRef(false);
@@ -39,16 +46,10 @@ export const DetailView = ({
     "m",
   );
 
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    history.pushState({}, "", url);
-    window.addEventListener("keydown", keydownEventHandler);
-    window.addEventListener("popstate", browserBackHandler);
-    return () => {
-      window.removeEventListener("keydown", keydownEventHandler);
-      window.removeEventListener("popstate", browserBackHandler);
-    };
-  }, []);
+  // Keep a ref to the latest showPrivate so keyboard event handlers
+  // registered once on mount always see the current value.
+  const showPrivateRef = useRef(showPrivate);
+  showPrivateRef.current = showPrivate;
 
   const browserBackHandler = (e: any) => {
     e.preventDefault();
@@ -66,12 +67,23 @@ export const DetailView = ({
       setSelectedElement(null);
     } else if (keyPressed === "arrowleft") {
       event.preventDefault();
-      switchElement(false, showPrivate, page);
+      switchElement(false, showPrivateRef.current, page);
     } else if (keyPressed === "arrowright") {
       event.preventDefault();
-      switchElement(true, showPrivate, page);
+      switchElement(true, showPrivateRef.current, page);
     }
   };
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    history.pushState({}, "", url);
+    window.addEventListener("keydown", keydownEventHandler);
+    window.addEventListener("popstate", browserBackHandler);
+    return () => {
+      window.removeEventListener("keydown", keydownEventHandler);
+      window.removeEventListener("popstate", browserBackHandler);
+    };
+  }, []);
 
   const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
 
@@ -115,6 +127,20 @@ export const DetailView = ({
             selectedElement={selectedElement}
           />
         )}
+        <button
+          className="detailview__navArrow detailview__navArrow--left"
+          onClick={() => switchElement(false, showPrivateRef.current, page)}
+          aria-label={t("main.previous")}
+        >
+          <LeftOutlined />
+        </button>
+        <button
+          className="detailview__navArrow detailview__navArrow--right"
+          onClick={() => switchElement(true, showPrivateRef.current, page)}
+          aria-label={t("main.next")}
+        >
+          <RightOutlined />
+        </button>
         {isLoadingMedia ? (
           <div
             className="detailview__picture"
@@ -126,7 +152,10 @@ export const DetailView = ({
           </div>
         ) : loadingMediaError ? (
           <div className="detailview__picture">
-            <div className="detailview__spinner">MEDIA ERROR TODO</div>
+            <div className="detailview__error">
+              <FileImageOutlined className="detailview__errorIcon" />
+              <span>{t("main.errorLoadingImage")}</span>
+            </div>
           </div>
         ) : (
           <div
