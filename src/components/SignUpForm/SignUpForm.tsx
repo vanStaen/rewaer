@@ -38,6 +38,7 @@ interface SignUpFormValues {
   password: string;
   confirm: string;
   agreement: boolean;
+  honeypot?: string;
 }
 
 export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
@@ -90,12 +91,20 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
   };
 
   const submitHandler = async (values: SignUpFormValues) => {
+    const honeypot = values.honeypot || "";
+
+    // Honeypot check: if this hidden field is filled, a bot submitted the form
+    if (honeypot) {
+      return;
+    }
+
     setIsLoading(true);
     const firstname = values.firstname;
     const lastname = values.lastname;
     const username = values.username;
     const email = values.email.toLowerCase();
     const password = values.password;
+
     try {
       const response = await postAddUser(
         firstname,
@@ -104,6 +113,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
         email,
         password,
         language,
+        honeypot,
       );
       if (!response.errors) {
         await postVerifyEmailLink(email);
@@ -140,6 +150,20 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
         className="signup__form"
         onFinish={submitHandler}
       >
+        {/* Honeypot field: hidden from real users, bots will fill this */}
+        <div
+          style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
+          aria-hidden="true"
+          data-testid="honeypot-wrapper"
+        >
+          <Form.Item name="honeypot">
+            <Input
+              tabIndex={-1}
+              autoComplete="off"
+              data-testid="honeypot-input"
+            />
+          </Form.Item>
+        </div>
         <Form.Item
           name="firstname"
           style={{ display: "inline-block", width: "calc(50% - 12px)" }}

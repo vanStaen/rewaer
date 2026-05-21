@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../../models/User.js";
 import { Item } from "../../models/Item.js";
 import { Look } from "../../models/Look.js";
+import { Honeypot } from "../../models/Honeypot.js";
 import { notificationService } from "../../api/service/notificationService.js";
 import { Op } from "sequelize";
 
@@ -115,6 +116,17 @@ export const userResolver = {
 
   // addUser(userInput: UserInputData!): User!
   async addUser(args, req) {
+    // Honeypot check: if this field is filled, a bot submitted the form
+    if (args.userInput.honeypot) {
+      const ip =
+        (req.headers && req.headers["x-forwarded-for"]) || req.ip || "unknown";
+      await Honeypot.create({
+        ip: Array.isArray(ip) ? ip[0] : ip.split(",")[0].trim(),
+        honeypotValue: args.userInput.honeypot,
+      });
+      throw new Error("Unable to process registration.");
+    }
+
     const foundUserEmail = await User.findOne({
       where: {
         email: args.userInput.email,
