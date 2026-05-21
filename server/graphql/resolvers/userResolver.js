@@ -124,7 +124,7 @@ export const userResolver = {
         ip: Array.isArray(ip) ? ip[0] : ip.split(",")[0].trim(),
         honeypotValue: args.userInput.honeypot,
       });
-      throw new Error("Bot detected!");
+      throw new Error("Unable to process registration.");
     }
 
     const foundUserEmail = await User.findOne({

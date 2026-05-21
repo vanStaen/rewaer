@@ -91,19 +91,19 @@ export const SignUpForm: React.FC<SignUpFormProps> = (props) => {
   };
 
   const submitHandler = async (values: SignUpFormValues) => {
+    const honeypot = values.honeypot || "";
+
+    // Honeypot check: if this hidden field is filled, a bot submitted the form
+    if (honeypot) {
+      return;
+    }
+
     setIsLoading(true);
     const firstname = values.firstname;
     const lastname = values.lastname;
     const username = values.username;
     const email = values.email.toLowerCase();
     const password = values.password;
-    const honeypot = values.honeypot || "";
-
-    // Honeypot check: if this hidden field is filled, a bot submitted the form
-    if (honeypot) {
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const response = await postAddUser(

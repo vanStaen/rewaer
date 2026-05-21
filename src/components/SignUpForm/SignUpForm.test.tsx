@@ -192,7 +192,8 @@ describe("SignUpForm", () => {
       target: { value: "http://spam.com" },
     });
     fireEvent.click(screen.getByText("login.createAccount"));
-    await waitFor(() => expect(mockPostAddUser).not.toHaveBeenCalled());
+    await act(async () => {});
+    expect(mockPostAddUser).not.toHaveBeenCalled();
   });
 
   it("shows error notification if postAddUser returns errors", async () => {

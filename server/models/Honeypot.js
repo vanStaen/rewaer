@@ -13,6 +13,6 @@ export const Honeypot = sequelize.sequelize.define("honeypot", {
   },
   honeypotValue: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 });
