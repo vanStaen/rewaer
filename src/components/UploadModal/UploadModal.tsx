@@ -36,6 +36,7 @@ export const UploadModal = observer((props: UploadProps) => {
   const [mediaUrl, setMediaUrl] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
+  const [formResetKey, setFormResetKey] = useState<number>(0);
 
   const [itemInput, setItemInput] = useState<ItemInput>({});
   const [lookInput, setLookInput] = useState<LookInput>({});
@@ -112,6 +113,7 @@ export const UploadModal = observer((props: UploadProps) => {
     setItemInput({});
     setLookInput({});
     setIsModalOpen(false);
+    setFormResetKey((prev) => prev + 1);
   };
 
   const handleCancel = async () => {
@@ -124,6 +126,7 @@ export const UploadModal = observer((props: UploadProps) => {
     setItemInput({});
     setLookInput({});
     setshowMobileFormPage(0);
+    setFormResetKey((prev) => prev + 1);
   };
 
   const scrollhandler = () => {
@@ -291,9 +294,9 @@ export const UploadModal = observer((props: UploadProps) => {
                 ></div>
               )
             ) : page === "looks" ? (
-              <LookForm setLookInput={setLookInput} />
+              <LookForm key={formResetKey} setLookInput={setLookInput} />
             ) : (
-              <ItemForm setItemInput={setItemInput} />
+              <ItemForm key={formResetKey} setItemInput={setItemInput} itemInput={itemInput} />
             )}
           </div>
         ) : (
@@ -309,15 +312,15 @@ export const UploadModal = observer((props: UploadProps) => {
                   ></div>
                 )}
                 {page === "looks" ? (
-                  <LookForm setLookInput={setLookInput} />
+                  <LookForm key={formResetKey} setLookInput={setLookInput} />
                 ) : (
-                  <ItemForm setItemInput={setItemInput} />
+                  <ItemForm key={formResetKey} setItemInput={setItemInput} itemInput={itemInput} />
                 )}
               </>
             ) : (
               <>
                 <LookFromItemsForm />
-                <LookForm setLookInput={setLookInput} />
+                <LookForm key={formResetKey} setLookInput={setLookInput} />
               </>
             )}
           </div>
