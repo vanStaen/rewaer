@@ -100,6 +100,7 @@ export const EditableTitle = (props) => {
           ref={inputRef}
           key={`title_input_${props.id}`}
           size="small"
+          className="editableTitle__input"
           value={editInputValue}
           onChange={handleEditChange}
           onBlur={handleEditCancel}

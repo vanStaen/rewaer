@@ -6,7 +6,27 @@
   display: inline-block;
 }
 
+.editableTitle__input {
+  font-size: 16px !important;
+  line-height: 1.4;
+  padding: 4px 0 !important;
+}
+
+.Page__title {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
 @media (width <= 540px) {
+  .editableTitle__input {
+    width: min(100vw - 64px, 100%);
+    font-size: 16px !important;
+  }
+
+  .Page__title {
+    font-size: 16px;
+  }
+
   .title__containerItem {
     width: 100%;
     text-align: center;
