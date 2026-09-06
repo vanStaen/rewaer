@@ -24,16 +24,17 @@ export const ItemForm = ({
   setItemInput: React.Dispatch<React.SetStateAction<ItemInput>>;
   itemInput: ItemInput;
 }) => {
-  const displayItem = itemsStore.selectedItem || itemInput || {
-    id: 0,
-    title: "",
-    brand: "",
-    category: null,
-    colors: [],
-    pattern: null,
-    size: null,
-    active: false,
-  };
+  const displayItem = itemsStore.selectedItem ||
+    itemInput || {
+      id: 0,
+      title: "",
+      brand: "",
+      category: null,
+      colors: [],
+      pattern: null,
+      size: null,
+      active: false,
+    };
 
   const handleItemInputChange = (value: any, element: string) => {
     setItemInput((prev: any) => ({

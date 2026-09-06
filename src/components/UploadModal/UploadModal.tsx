@@ -296,7 +296,11 @@ export const UploadModal = observer((props: UploadProps) => {
             ) : page === "looks" ? (
               <LookForm key={formResetKey} setLookInput={setLookInput} />
             ) : (
-              <ItemForm key={formResetKey} setItemInput={setItemInput} itemInput={itemInput} />
+              <ItemForm
+                key={formResetKey}
+                setItemInput={setItemInput}
+                itemInput={itemInput}
+              />
             )}
           </div>
         ) : (
@@ -314,7 +318,11 @@ export const UploadModal = observer((props: UploadProps) => {
                 {page === "looks" ? (
                   <LookForm key={formResetKey} setLookInput={setLookInput} />
                 ) : (
-                  <ItemForm key={formResetKey} setItemInput={setItemInput} itemInput={itemInput} />
+                  <ItemForm
+                    key={formResetKey}
+                    setItemInput={setItemInput}
+                    itemInput={itemInput}
+                  />
                 )}
               </>
             ) : (
